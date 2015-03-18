@@ -1,0 +1,167 @@
+﻿		//[140514_1]: ca 3 và 1 tách thành 2 ca riêng biệt của 2 ngày nên nếu PC50 ca3&1 = true thì PC50 ca3 = true, PC50 ca1 = true ==> nếu muốn tách riêng thì sao? giải pháp tạm thời dùng chung
+		[2703_1] : không cho đổi mật khẩu nếu là tài khoản admin--> chưa làm
+		[140515_3]: ca3va1.Vao.TimeStr.Date , bỏ qua trường hợp checkInn sau 24h đêm: vì check lúc 1h30 sáng thì tức là ca 3 của ngày hôm trước
+		trường hợp checkInn sau 24h đêm loại bỏ ko cho xác nhận lại ca , chỉ cho xác nhận ca tự do 8h
+
+
+
+
+
+
+
+
+
+								INSERT INTO XacNhanCaVaLamThem
+						( UserEnrollNumber,  ShiftID,  ShiftCode,
+						  Onduty,  Offduty,  LateGrace,  EarlyGrace,  AfterOT,
+						  DayCount,  WorkingTime,  Workingday,
+						  TimeStrIn,  TimeStrOut,
+						  OTMin,@PCTangCuong,  Note ) 
+						VALUES 
+						( @UserEnrollNumber,  @ShiftID,  @ShiftCode,
+						  @Onduty,  @Offduty,  @LateGrace,  @EarlyGrace,  @AfterOT,
+						  @DayCount,  @WorkingTime,  @Workingday,
+						  @TimeStrIn,  @TimeStrOut,
+						  @OTMin,  @PCTangCuong,  @Note )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				#region ver 3.0
+		public static void ArrayRowsToDSCheck_A(DataRow[] arrRows, List<cChk> ds_CheckInn_A, List<cChk> ds_CheckOut_A, List<cChk> ds_Check_A, List<cChk> ds_Check_Trong30ph) { //cấu trúc datatble là cấu trúc bảng checkinout
+			#region reset lại các danh sách
+			ds_CheckInn_A.Clear();
+			ds_CheckOut_A.Clear();
+			ds_Check_A.Clear();
+			ds_Check_Trong30ph.Clear();
+			#endregion
+
+			if (arrRows.Length == 0) return;
+
+			foreach (DataRow row in arrRows) {
+				var UserEnrollNumber = (int)row["UserEnrollNumber"];
+				var MachineNo = (int)row["MachineNo"];
+				var Source = (string)row["Source"];
+				var TimeStr = (DateTime)row["TimeStr"];
+				cChk check;
+				if (MachineNo % 2 == 1) {
+					var checkInn = new cChkInn_A { UserEnrollNumber = UserEnrollNumber, TimeStr = TimeStr, Source = Source, GioLienQuan = null, MachineNo = MachineNo };
+					ds_CheckInn_A.Add(checkInn);
+					check = checkInn;
+				}
+				else {
+					var checkOut = new cChkOut_A { UserEnrollNumber = UserEnrollNumber, TimeStr = TimeStr, Source = Source, GioLienQuan = null, MachineNo = MachineNo };
+					ds_CheckOut_A.Add(checkOut);
+					check = checkOut;
+				}
+				ds_Check_A.Add(check);
+			}
+			LoaiBoCheck30phut(ds_CheckInn_A, ds_Check_Trong30ph); //dataTable lấy lên đã sort sẵn nên dùng hàm này ko tích hợp sort
+			LoaiBoCheck30phut(ds_CheckOut_A, ds_Check_Trong30ph);
+		}
+
+		public static void LoaiBoCheck30phut(List<cChk> dscheck, List<cChk> ds_Check_Trong30ph) { // lọc này phải dảm bảo sort trước
+			if (dscheck == null || dscheck.Count == 0 || dscheck.Count == 1) return;
+			int i = 0;
+			while (i + 1 < dscheck.Count) {
+				var before = dscheck[i];
+				var afterr = dscheck[i + 1];
+				if (afterr.TimeStr - before.TimeStr <= ThamSo._30phut) {
+					ds_Check_Trong30ph.Add(afterr);
+					dscheck.Remove(afterr);
+				}
+				else i++;
+			}
+		}
+		/// <summary>
+		/// Ghép CIO_A và update các thông tin 1.tổng giờ thực; 2. giờ đại diện; 3. haveIO; 4.Vao/Raa
+		/// </summary>
+		/// <param name="DSchkInn">DSchkInn đã 1.lọc các giờ liên quan; 2. sắp xếp theo thời gian</param>
+		/// <param name="DSchkOut">DSchkOut đã 1.lọc các giờ liên quan; 2. sắp xếp theo thời gian</param>
+		/// <returns></returns>
+		public static void GhepCIO_A(List<cChk> DSchkInn, List<cChk> DSchkOut, List<cChkInOut_A> kq) {
+			kq.Clear();
+			try {
+				int x1 = 0, x2 = 0;
+				if (DSchkInn.Count == 0 && DSchkOut.Count != 0) {
+					while (x2 < DSchkOut.Count) {
+						kq.Add(new cChkInOut_A { Vao = null, Raa = DSchkOut[x2], HaveINOUT = -2, TimeStrDaiDien = DSchkOut[x2].TimeStr, TG = new ThoiGian() });
+						x2++;
+					}
+				}
+				else if (DSchkInn.Count != 0 && DSchkOut.Count == 0) {
+					while (x1 < DSchkInn.Count) {
+						kq.Add(new cChkInOut_A { Vao = DSchkInn[x1], Raa = null, HaveINOUT = -1, TimeStrDaiDien = DSchkInn[x1].TimeStr, TG = new ThoiGian() });
+						x1++;
+					}
+				}
+				else if (DSchkInn.Count != 0 && DSchkOut.Count != 0) {
+					while (x1 < DSchkInn.Count && x2 < DSchkOut.Count) {
+						var chkinn = DSchkInn[x1];
+						var chkout = DSchkOut[x2];
+						var timeInn = chkinn.TimeStr;
+						var timeOut = chkout.TimeStr;
+						if (timeOut <= timeInn)//ra ko vào
+						{
+							var CIO = new cChkInOut_A { Vao = null, Raa = DSchkOut[x2], HaveINOUT = -2, TimeStrDaiDien = DSchkOut[x2].TimeStr, TG = new ThoiGian() };
+							kq.Add(CIO);
+							x2++;
+						}
+						else {
+							var duration = timeOut - timeInn;
+							if (duration <= ThamSo._30phut) {
+								kq.Add(new cChkInOut_A { Vao = DSchkInn[x1], Raa = null, HaveINOUT = -1, TimeStrDaiDien = DSchkInn[x1].TimeStr, TG = new ThoiGian() });
+								kq.Add(new cChkInOut_A { Vao = null, Raa = DSchkOut[x2], HaveINOUT = -2, TimeStrDaiDien = DSchkOut[x2].TimeStr, TG = new ThoiGian() });
+								x1++;
+								x2++;
+							}
+							else if (duration > ThamSo._21h45) {
+								var CIO = new cChkInOut_A { Vao = DSchkInn[x1], Raa = null, HaveINOUT = -1, TimeStrDaiDien = DSchkInn[x1].TimeStr, TG = new ThoiGian() };
+								kq.Add(CIO);
+								x1++;
+							}
+							else {
+								var CIO = new cChkInOut_A { Vao = DSchkInn[x1], Raa = DSchkOut[x2], HaveINOUT = 1, TimeStrDaiDien = DSchkInn[x1].TimeStr, TG = new ThoiGian { GioThuc = duration } };
+								kq.Add(CIO);
+								x1++;
+								x2++;
+							}
+						}
+					}
+					if (x2 < DSchkOut.Count) {
+						while (x2 < DSchkOut.Count) {
+							var CIO = new cChkInOut_A { Vao = null, Raa = DSchkOut[x2], HaveINOUT = -2, TimeStrDaiDien = DSchkOut[x2].TimeStr, TG = new ThoiGian() };
+							kq.Add(CIO);
+							x2++;
+						}
+					}
+					else if (x1 < DSchkInn.Count) {
+						while (x1 < DSchkInn.Count) {
+							var CIO = new cChkInOut_A { Vao = DSchkInn[x1], Raa = null, HaveINOUT = -1, TimeStrDaiDien = DSchkInn[x1].TimeStr, TG = new ThoiGian() };
+							kq.Add(CIO);
+							x1++;
+						}
+					}
+
+				}
+
+			} catch (Exception ex) {
+				log4net.Config.XmlConfigurator.Configure();
+				ILog lg = LogManager.GetLogger("GhepCaCIO_A");
+				lg.Error(null, ex);
+				throw;
+			}
+
+		}
+		#endregion

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ChamCong_v02.DTO.cChk" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAEAAAAAAAAEAAAAAAgAgAAAAAAAAA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChamCong_v02.DTO.cChkInn_V">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAgAAEAAAAAAAAEAAAAAAgAgAAAAAAAAA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChamCong_v02.DTO.cChkOut_V">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAgAAEAAAAAAAAEAAAAAAgAgAAAAAAAAA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChamCong_v02.DTO.cChkInn_A">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAEAAAAAAAAEAAAAAAgAgAAAAIAAAA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChamCong_v02.DTO.cChkOut_A">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAEAAAAAAAAEAAAAAAgAgBAAAAAAAA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChamCong_v02.DTO.cChkInOut">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQgAEACCCCCEgAAIKAIARCAACAABAAAAACIAAIA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChamCong_v02.DTO.cChkInOut_V">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQgAEACCCCCAgAAIKAIARCAACAABAAAAACIAAIA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChamCong_v02.DTO.cChkInOut_A">
+    <Position X="10.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQgAEACCCCCAgAAIKAIARCAACAABAABAACIAAIA=</HashCode>
+      <FileName>DTO\cCheckInOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

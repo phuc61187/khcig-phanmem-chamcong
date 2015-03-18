@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ChamCong_v03.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TGLamDemToiThieu" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">02:00:00</Value>
+    </Setting>
+    <Setting Name="PCTangCuong" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="PCDem" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="ConnectionStringPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files\PhanMemChamCong\Setting.txt</Value>
+    </Setting>
+    <Setting Name="PC100" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="PC200" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="PC160" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">150</Value>
+    </Setting>
+    <Setting Name="strTenPGD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Trần Hồng Sơn</Value>
+    </Setting>
+    <Setting Name="strTruongBoPhan" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Trưởng bộ phận</Value>
+    </Setting>
+    <Setting Name="strLapBieu" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lập biểu</Value>
+    </Setting>
+    <Setting Name="strPGD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PHÓ GIÁM ĐỐC</Value>
+    </Setting>
+    <Setting Name="strGD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GIÁM ĐỐC</Value>
+    </Setting>
+    <Setting Name="strTenGD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lê Anh Tuấn</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

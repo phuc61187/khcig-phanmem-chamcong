@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9CB92038-AEA7-4CE9-99D3-AA594D63BD2A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChamCong_v02</RootNamespace>
+    <AssemblyName>Phan Mem Cham Cong</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <PublisherName>NMTLKhanhHoi</PublisherName>
+    <SuiteName>NMTLKhanhHoi</SuiteName>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsUrl>\dotnetfx</BootstrapperComponentsUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ChamCong_v02.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon desktop.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>8745D1EDAE6161226FBD07665D76A397C46EEAA5</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ChamCong_v02_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=9.3.0.0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BUS\MyUtility.cs" />
+    <Compile Include="BUS\ThamSo.cs" />
+    <Compile Include="BUS\XL.cs" />
+    <Compile Include="frm_DocFileTamUngLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_DocFileTamUngLuong.Designer.cs">
+      <DependentUpon>frm_DocFileTamUngLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_XacNhanNgayLVTinhPC100.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_XacNhanNgayLVTinhPC100.Designer.cs">
+      <DependentUpon>frm_XacNhanNgayLVTinhPC100.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="v03_frm_XoaGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="v03_frm_XoaGio.Designer.cs">
+      <DependentUpon>v03_frm_XoaGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="v03_frm_SuaGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="v03_frm_SuaGio.Designer.cs">
+      <DependentUpon>v03_frm_SuaGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_52_PhanQuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_52_PhanQuyen.Designer.cs">
+      <DependentUpon>frm_52_PhanQuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_61_Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_61_Setting.Designer.cs">
+      <DependentUpon>frm_61_Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_43_ThayDoiHeSoLuong_PC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_43_ThayDoiHeSoLuong_PC.Designer.cs">
+      <DependentUpon>frm_43_ThayDoiHeSoLuong_PC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\DAL.cs" />
+    <Compile Include="DAO\SqlDataAccessHelper.cs" />
+    <Compile Include="DTO\cCheckInOut.cs" />
+    <Compile Include="DTO\cNgayCong.cs" />
+    <Compile Include="DTO\cShift.cs" />
+    <Compile Include="DTO\cUserInfo.cs" />
+    <Compile Include="frmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangNhap.Designer.cs">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKetNoiCSDL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetNoiCSDL.Designer.cs">
+      <DependentUpon>frmKetNoiCSDL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_01_Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_01_Admin.Designer.cs">
+      <DependentUpon>frm_01_Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_23_ChamCongTay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_23_ChamCongTay.Designer.cs">
+      <DependentUpon>frm_23_ChamCongTay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_111_ChiTietVaoRa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_111_ChiTietVaoRa.Designer.cs">
+      <DependentUpon>frm_111_ChiTietVaoRa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_12_DiemDanhNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_12_DiemDanhNV.Designer.cs">
+      <DependentUpon>frm_12_DiemDanhNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_42_DieuChinhLuongThangTruoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_42_DieuChinhLuongThangTruoc.Designer.cs">
+      <DependentUpon>frm_42_DieuChinhLuongThangTruoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_51_DoiMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_51_DoiMatKhau.Designer.cs">
+      <DependentUpon>frm_51_DoiMatKhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_22_KhaiBaoLamViecNgayNghi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_22_KhaiBaoLamViecNgayNghi.Designer.cs">
+      <DependentUpon>frm_22_KhaiBaoLamViecNgayNghi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_21_KhaiBaoVang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_21_KhaiBaoVang.Designer.cs">
+      <DependentUpon>frm_21_KhaiBaoVang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_main.Designer.cs">
+      <DependentUpon>frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_31_SuaGioHangLoat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_31_SuaGioHangLoat.Designer.cs">
+      <DependentUpon>frm_31_SuaGioHangLoat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_02_TaoTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_02_TaoTaiKhoan.designer.cs">
+      <DependentUpon>frm_02_TaoTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="v03_frm_ThemGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="v03_frm_ThemGio.Designer.cs">
+      <DependentUpon>v03_frm_ThemGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_311_ThongTinSuaGioHangLoat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_311_ThongTinSuaGioHangLoat.Designer.cs">
+      <DependentUpon>frm_311_ThongTinSuaGioHangLoat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_41_TinhLuongNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_41_TinhLuongNV.Designer.cs">
+      <DependentUpon>frm_41_TinhLuongNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_112_XacNhanTangCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_112_XacNhanTangCa.Designer.cs">
+      <DependentUpon>frm_112_XacNhanTangCa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_11_XemCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_11_XemCong.Designer.cs">
+      <DependentUpon>frm_11_XemCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_32_XemLichSu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_32_XemLichSu.Designer.cs">
+      <DependentUpon>frm_32_XemLichSu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <EmbeddedResource Include="frm_DocFileTamUngLuong.resx">
+      <DependentUpon>frm_DocFileTamUngLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_XacNhanNgayLVTinhPC100.resx">
+      <DependentUpon>frm_XacNhanNgayLVTinhPC100.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="v03_frm_XoaGio.resx">
+      <DependentUpon>v03_frm_XoaGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="v03_frm_SuaGio.resx">
+      <DependentUpon>v03_frm_SuaGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_52_PhanQuyen.resx">
+      <DependentUpon>frm_52_PhanQuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_61_Setting.resx">
+      <DependentUpon>frm_61_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_43_ThayDoiHeSoLuong_PC.resx">
+      <DependentUpon>frm_43_ThayDoiHeSoLuong_PC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDangNhap.resx">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetNoiCSDL.resx">
+      <DependentUpon>frmKetNoiCSDL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_01_Admin.resx">
+      <DependentUpon>frm_01_Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_23_ChamCongTay.resx">
+      <DependentUpon>frm_23_ChamCongTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_111_ChiTietVaoRa.resx">
+      <DependentUpon>frm_111_ChiTietVaoRa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_12_DiemDanhNV.resx">
+      <DependentUpon>frm_12_DiemDanhNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_42_DieuChinhLuongThangTruoc.resx">
+      <DependentUpon>frm_42_DieuChinhLuongThangTruoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_51_DoiMatKhau.resx">
+      <DependentUpon>frm_51_DoiMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_22_KhaiBaoLamViecNgayNghi.resx">
+      <DependentUpon>frm_22_KhaiBaoLamViecNgayNghi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_21_KhaiBaoVang.resx">
+      <DependentUpon>frm_21_KhaiBaoVang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_main.resx">
+      <DependentUpon>frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_31_SuaGioHangLoat.resx">
+      <DependentUpon>frm_31_SuaGioHangLoat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_02_TaoTaiKhoan.resx">
+      <DependentUpon>frm_02_TaoTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="v03_frm_ThemGio.resx">
+      <DependentUpon>v03_frm_ThemGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_311_ThongTinSuaGioHangLoat.resx">
+      <DependentUpon>frm_311_ThongTinSuaGioHangLoat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_41_TinhLuongNV.resx">
+      <DependentUpon>frm_41_TinhLuongNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_112_XacNhanTangCa.resx">
+      <DependentUpon>frm_112_XacNhanTangCa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_11_XemCong.resx">
+      <DependentUpon>frm_11_XemCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_32_XemLichSu.resx">
+      <DependentUpon>frm_32_XemLichSu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="ChamCong_v02_TemporaryKey.pfx" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\InfoInternal" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAO\TextFile1.txt" />
+    <Content Include="icon desktop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="DAO\TextFile1.txt">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

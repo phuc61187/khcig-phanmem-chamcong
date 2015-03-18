@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B90B1A2-FF09-4B16-97DE-EB34672A9A54}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GiuLaiCacFileCu</RootNamespace>
+    <AssemblyName>GiuLaiCacFileCu</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BUS\XL.cs" />
+    <Compile Include="DAO\SqlDataAccessHelper.cs" />
+    <Compile Include="DTO\cCheckInOut.cs" />
+    <Compile Include="DTO\cNgayCong.cs" />
+    <Compile Include="DTO\cShift.cs" />
+    <Compile Include="DTO\cUserInfo.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_112_XacNhanPC100.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_112_XacNhanPC100.Designer.cs">
+      <DependentUpon>frm_112_XacNhanPC100.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_113_ThemXoaSuaGioCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_113_ThemXoaSuaGioCC.Designer.cs">
+      <DependentUpon>frm_113_ThemXoaSuaGioCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ChamCongCaDai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ChamCongCaDai.Designer.cs">
+      <DependentUpon>frm_ChamCongCaDai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUtility.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="testingform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="testingform.Designer.cs">
+      <DependentUpon>testingform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThamSo.cs" />
+    <Compile Include="v03_frm_SuaGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="v03_frm_SuaGio.Designer.cs">
+      <DependentUpon>v03_frm_SuaGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="v03_frm_ThemGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="v03_frm_ThemGio.Designer.cs">
+      <DependentUpon>v03_frm_ThemGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="v03_frm_XoaGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="v03_frm_XoaGio.Designer.cs">
+      <DependentUpon>v03_frm_XoaGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XuatReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XuatReport.Designer.cs">
+      <DependentUpon>XuatReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="y_testingform_raiseEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="y_testingform_raiseEventForm.Designer.cs">
+      <DependentUpon>y_testingform_raiseEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_Backup ManualConfig_keep Class.cs" />
+    <Compile Include="z_old_v11_DSNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v11_DSNV.Designer.cs">
+      <DependentUpon>z_old_v11_DSNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v11_Form6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v11_Form6.Designer.cs">
+      <DependentUpon>z_old_v11_Form6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v11_frmTichluyBugio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v11_frmTichluyBugio.Designer.cs">
+      <DependentUpon>z_old_v11_frmTichluyBugio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v11_hinhnen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v11_hinhnen.designer.cs">
+      <DependentUpon>z_old_v11_hinhnen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v11_SuaGioChamCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v11_SuaGioChamCong.Designer.cs">
+      <DependentUpon>z_old_v11_SuaGioChamCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v12_frm_SuaGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v12_frm_SuaGio.Designer.cs">
+      <DependentUpon>z_old_v12_frm_SuaGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThemGioHangLoat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThemGioHangLoat.Designer.cs">
+      <DependentUpon>z_old_v12_frm_ThemGioHangLoat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThongTinSuaGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThongTinSuaGio.Designer.cs">
+      <DependentUpon>z_old_v12_frm_ThongTinSuaGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThongTinThemGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThongTinThemGio.Designer.cs">
+      <DependentUpon>z_old_v12_frm_ThongTinThemGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThongTinXoaGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_old_v12_frm_ThongTinXoaGio.Designer.cs">
+      <DependentUpon>z_old_v12_frm_ThongTinXoaGio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="z_temp.cs" />
+    <EmbeddedResource Include="frm_112_XacNhanPC100.resx">
+      <DependentUpon>frm_112_XacNhanPC100.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_113_ThemXoaSuaGioCC.resx">
+      <DependentUpon>frm_113_ThemXoaSuaGioCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ChamCongCaDai.resx">
+      <DependentUpon>frm_ChamCongCaDai.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="testingform.resx">
+      <DependentUpon>testingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="v03_frm_SuaGio.resx">
+      <DependentUpon>v03_frm_SuaGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="v03_frm_ThemGio.resx">
+      <DependentUpon>v03_frm_ThemGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="v03_frm_XoaGio.resx">
+      <DependentUpon>v03_frm_XoaGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XuatReport.resx">
+      <DependentUpon>XuatReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="y_testingform_raiseEventForm.resx">
+      <DependentUpon>y_testingform_raiseEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v11_DSNV.resx">
+      <DependentUpon>z_old_v11_DSNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v11_Form6.resx">
+      <DependentUpon>z_old_v11_Form6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v11_frmTichluyBugio.resx">
+      <DependentUpon>z_old_v11_frmTichluyBugio.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v11_hinhnen.resx">
+      <DependentUpon>z_old_v11_hinhnen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v11_SuaGioChamCong.resx">
+      <DependentUpon>z_old_v11_SuaGioChamCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v12_frm_SuaGio.resx">
+      <DependentUpon>z_old_v12_frm_SuaGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v12_frm_ThemGioHangLoat.resx">
+      <DependentUpon>z_old_v12_frm_ThemGioHangLoat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v12_frm_ThongTinSuaGio.resx">
+      <DependentUpon>z_old_v12_frm_ThongTinSuaGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v12_frm_ThongTinThemGio.resx">
+      <DependentUpon>z_old_v12_frm_ThongTinThemGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="z_old_v12_frm_ThongTinXoaGio.resx">
+      <DependentUpon>z_old_v12_frm_ThongTinXoaGio.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1393828552_application-vnd.ms-excel.png" />
+    <None Include="Resources\1393828552_application-vnd.ms-excel 24.png" />
+    <None Include="Resources\1393217208_user-male-information_2.png" />
+    <None Include="Resources\1393217208_user-male-information.png" />
+    <None Include="Resources\1392583166_old-edit-find.png" />
+    <Content Include="z_TextFile1.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

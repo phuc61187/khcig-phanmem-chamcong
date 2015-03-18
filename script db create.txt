@@ -1,0 +1,64 @@
+CREATE TABLE [dbo].[LichSuSuaGioVaoRa] (
+  [UserEnrollNumber] int NULL,
+  [TimeStrOld] datetime NULL,
+  [TimeStrNew] datetime NULL,
+  [OriginTypeOld] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [OriginTypeNew] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [SourceOld] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [SourceNew] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [MachineNoOld] int NULL,
+  [MachineNoNew] int NULL,
+  [UserID] int NULL,
+  [Explain] nvarchar(1000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [Note] nvarchar(1000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [ExecuteTime] datetime NULL,
+  [CommandType] int NULL
+)
+ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[NewUserAccount] (
+  [UserID] int NULL,
+  [UserAccount] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [Password] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[XacNhanCaVaLamThem] (
+  [ID] int IDENTITY(1, 1) NOT NULL,
+  [UserEnrollNumber] int NULL,
+  [ShiftID] int NULL,
+  [ShiftCode] nvarchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [Onduty] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [Offduty] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [LateGrace] int NULL,
+  [EarlyGrace] int NULL,
+  [AfterOT] int NULL,
+  [DayCount] int NULL,
+  [WorkingTime] real NULL,
+  [Workingday] real NULL,
+  [TimeStrIn] datetime NULL,
+  [TimeStrOut] datetime NULL,
+  [OTMin] int NULL,
+  [Note] nvarchar(1000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[CheckInOut] (
+  [UserEnrollNumber] int NULL,
+  [TimeDate] smalldatetime NULL,
+  [TimeStr] datetime NULL,
+  [OriginType] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [NewType] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [Source] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [MachineNo] int NULL,
+  [WorkCode] int NULL,
+  [IDXacNhanCaVaLamThem] int NULL
+)
+ON [PRIMARY]
+GO

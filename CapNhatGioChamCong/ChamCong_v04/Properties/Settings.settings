@@ -1,0 +1,193 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ChamCong_v04.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionStringPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Setting.txt</Value>
+    </Setting>
+    <Setting Name="LastAccLogIn" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastDatabase" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastEndDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastStartDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSanLuong" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10000000</Value>
+    </Setting>
+    <Setting Name="LastDonGia" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">220</Value>
+    </Setting>
+    <Setting Name="LastLuongToiThieu" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1150000</Value>
+    </Setting>
+    <Setting Name="LastBoiDuongCa3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1500</Value>
+    </Setting>
+    <Setting Name="LastTrichQuyLuong" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="LastDinhMucComTrua" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">680000</Value>
+    </Setting>
+    <Setting Name="LastSanluongGiaCongNoibo" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30000</Value>
+    </Setting>
+    <Setting Name="LastSanluongGiacongNgoai" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100000</Value>
+    </Setting>
+    <Setting Name="LastDongiaGiacongNoibo" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2800</Value>
+    </Setting>
+    <Setting Name="LastDongiaGiacongNgoai" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="headerTCty" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TỔNG CÔNG TY CÔNG NGHIỆP SÀI GÒN</Value>
+    </Setting>
+    <Setting Name="headerTNHH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TRÁCH NHIỆM HỮU HẠN MỘT THÀNH VIÊN</Value>
+    </Setting>
+    <Setting Name="headerNMTLKH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NHÀ MÁY THUỐC LÁ KHÁNH HỘI</Value>
+    </Setting>
+    <Setting Name="headerDiachi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lô 26, đường số 3, KCN Tân Tạo, Quận Bình Tân, Thành phố Hồ Chí Minh</Value>
+    </Setting>
+    <Setting Name="headerPhone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Tel: +848 37507282 - FAX: 37507784</Value>
+    </Setting>
+    <Setting Name="headerMailWEB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Email: khanhhoi@khcig.com    Website: http://khcig.com</Value>
+    </Setting>
+    <Setting Name="headerTPHCMNgaythangnam" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Thành phố Hồ Chí Minh, ngày {0} tháng {1} năm {2}</Value>
+    </Setting>
+    <Setting Name="titleBangCC_THANG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BẢNG CHẤM CÔNG THÁNG {0}</Value>
+    </Setting>
+    <Setting Name="titleBangLuongThang" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BẢNG LƯƠNG THÁNG {0}</Value>
+    </Setting>
+    <Setting Name="titleBangLuongCongNhat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BẢNG THANH TOÁN LƯƠNG 
+CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
+    </Setting>
+    <Setting Name="titleBangTongHopChiThang" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BẢNG TỔNG HỢP CÁC NGUỒN CHI TỪ QUỸ LƯƠNG THÁNG {0}</Value>
+    </Setting>
+    <Setting Name="LastTenNVLapBieuLuong" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastTenPhoGD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Trần Hồng Sơn</Value>
+    </Setting>
+    <Setting Name="LastTenTruongBP" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastTenGD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lê Anh Tuấn</Value>
+    </Setting>
+    <Setting Name="LastTenKTT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Nguyễn Quốc Thái</Value>
+    </Setting>
+    <Setting Name="LastTenNVLapBieuChamCong" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="numFormatMoney30" Type="System.String" Scope="User">
+      <Value Profile="(Default)">###,###,###,###,###,##0.000;-###,###,###,###,###,##0.000;-?;</Value>
+    </Setting>
+    <Setting Name="numFormatFloat20" Type="System.String" Scope="User">
+      <Value Profile="(Default)">###,###,##0.00;-###,###,##0.00;-?;</Value>
+    </Setting>
+    <Setting Name="numFormatFloat30" Type="System.String" Scope="User">
+      <Value Profile="(Default)">###,###,##0.000;-###,###,##0.000;-?;</Value>
+    </Setting>
+    <Setting Name="numFormatFloat10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">###,###,##0.0;-###,###,##0.0;-?;</Value>
+    </Setting>
+    <Setting Name="numFormatFloat101F" Type="System.String" Scope="User">
+      <Value Profile="(Default)">###,###,##0.0#;-###,###,##0.0#;-?;</Value>
+    </Setting>
+    <Setting Name="numFormatMoney" Type="System.String" Scope="User">
+      <Value Profile="(Default)">###,###,###,###,###,##0;-###,###,###,###,###,##0;-?;</Value>
+    </Setting>
+    <Setting Name="numFormatInt" Type="System.String" Scope="User">
+      <Value Profile="(Default)">###,###,###,###,##0;-###,###,###,###,##0;-?;</Value>
+    </Setting>
+    <Setting Name="testDateTimeDiemDanh" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">01/06/2014 13:00:00</Value>
+    </Setting>
+    <Setting Name="pathReportChiTietLuong" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TemplateChiTietLuong.xlsx</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TemplateTamUng_MucDongBHXH.xlsx</Value>
+    </Setting>
+    <Setting Name="shiftCodeCa8h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ca8h</Value>
+    </Setting>
+    <Setting Name="shiftCodeCa12h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ca12h</Value>
+    </Setting>
+    <Setting Name="shiftCodeCa4h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ca4h</Value>
+    </Setting>
+    <Setting Name="shiftCodeCa16h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ca16h</Value>
+    </Setting>
+    <Setting Name="shiftCodeCaTD8h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CaTựDo</Value>
+    </Setting>
+    <Setting Name="kyHieuCCCa4h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4g</Value>
+    </Setting>
+    <Setting Name="kyHieuCCCa8h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8g</Value>
+    </Setting>
+    <Setting Name="kyHieuCCCa12h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">12g</Value>
+    </Setting>
+    <Setting Name="kyHieuCCCa16h" Type="System.String" Scope="User">
+      <Value Profile="(Default)">16g</Value>
+    </Setting>
+    <Setting Name="kyHieuCCCaTD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TD</Value>
+    </Setting>
+    <Setting Name="MoTaCaTuDo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Tính công theo giờ làm (mức trần {0} giờ) bắt đầu từ lúc check vào </Value>
+    </Setting>
+    <Setting Name="sizeHeaderBKC_TCTCNSG" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">18</Value>
+    </Setting>
+    <Setting Name="sizeTitleBKC" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">22</Value>
+    </Setting>
+    <Setting Name="viTriOHeaderBKC_TCTCNSG" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
+    <Setting Name="viTriOHeaderBKC_DiaChi" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">42</Value>
+    </Setting>
+    <Setting Name="viTriOHeaderTitle" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">24</Value>
+    </Setting>
+    <Setting Name="cachDongBKC_LapBieu_ten" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="LastThangKetCong" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

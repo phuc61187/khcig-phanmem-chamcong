@@ -1,0 +1,287 @@
+﻿			"STT"
+			"Mã NV"
+			"Họ tên"
+			"CB"
+			"SP"
+			"Công"
+			"Phép"
+			"Học, họp, CT, PT, lễ"
+			"PTĐT"
+			"Việc riêng"
+			"Qua đêm"
+			"Chờ việc"
+			"30%"
+			"50%"
+			"TCC3 100%"
+			"LVNN 100%"
+			"LVNN 150%"
+			"Trực lễ 200%"
+			"Trực lễ ca3 290%"
+			"Tổng công"
+			"Tổng PC"
+			"Lương CB"
+			"Lương SP"
+			"Điều chỉnh lương tháng trước"
+			"Tổng lương"
+			"PC theo Lương CB"
+			"PC theo Lương SP"
+			"Bồi dưỡng ca 3"
+			"Tổng PC"
+			"Tổng lương và PC"
+			"Tạm ứng"
+			"10,5% BHXH, YT, TN"
+			"Thu chi khác"
+			"Tiền cơm trưa"
+			"Thực lãnh"
+			"Ký nhận"
+
+
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2"); // vì top là dòng phòng ban, sum từ dòng kế dòng phòng ban
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");
+FormatCell_W(ws, ref ir, ref ic5, plusCol: 1); //ký nhận// đáng lẽ sau dòng SUM này thì tăng ir để trỏ sang dòng mới
+
+
+
+
+
+
+		#region testing region [01]
+		/*
+			#region fortesting
+
+			string temp = @"
+-------------------BEFORE WRITE DB-----------------------------
+Luong CB= {0}
+Luong SP= {1}
+Dieu chinh luong thang truoc= {2}
+Tong luong ko phu cap= {3}
+PC theo Luong CB= {4}
+PC theo Luong SP= {5}
+Boi duong ca 3= {6}
+Tong PC= {7}
+TONG LUONG VA PC= {8}
+Tam ung= {9}
+10,5% BHXH, YT, TN= {10}
+Thu chi khac= {11}
+COM TRUA= {12}
+THUC LANH= {13}
+quy thanh toan= {14}
+quy cho viec= {15}
+quy nghi dinh= {16}
+quy cong nhat= {17}
+chi khac= {18}
+luong dieu chinh= {19}
+quy luong hssp= {20}
+1 hssp= {21}
+hslcb= {22}
+hslsp= {23}
+cong= {24}
+phep= {25}
+Qua dem= {26}
+Cho viec= {27}
+30%= {28}
+50%= {29}
+TCC3 100%= {30}
+LVNN 100%= {31}
+LVNN 150%= {32}
+Truc le 200%= {33}
+Truc le ca3 290%= {34}
+Tong cong= {35}
+Tong PC= {36}
+
+";
+			temp = string.Format(temp, new object[]
+				{
+					tong0.ToString("N3"), tong1.ToString("N3"), tong2.ToString("N3"), tong3.ToString("N3"), tong4.ToString("N3"), tong5.ToString("N3"), tong6.ToString("N3"), tong7.ToString("N3"), tong8.ToString("N3"), tong9.ToString("N3"), tong10.ToString("N3"), tong11.ToString("N3"), tong12.ToString("N3"), tong13.ToString("N3"),
+					tong14.ToString("N3"), tong15.ToString("N3"), tong16.ToString("N3"), tong17.ToString("N3"), tong18.ToString("N3"), tong19.ToString("N3"), tong20.ToString("N3"), tong21.ToString("N3"),
+					tong22.ToString("N3"), tong23.ToString("N3"), tong24.ToString("N3"), tong25.ToString("N3"), tong26.ToString("N3"), tong27.ToString("N3"), tong28.ToString("N3"), tong29.ToString("N3"), tong30.ToString("N3"), tong31.ToString("N3"), tong32.ToString("N3"), tong33.ToString("N3"), tong34.ToString("N3"), tong35.ToString("N3"), tong36.ToString("N3"),
+				});
+			//Console.WriteLine(temp);
+
+			#endregion
+*/
+
+		#endregion
+
+		#region testing region [02]
+		/*
+			#region fortesting
+			double tong0 = 0d, tong1 = 0d, tong2 = 0d, tong3 = 0d, tong4 = 0d, tong5 = 0d, tong6 = 0d, tong7 = 0d, tong8 = 0d, tong9 = 0d, tong10 = 0d, tong11 = 0d, tong12 = 0d, tong13 = 0d, tong14 = 0d,
+	tong15 = 0d, tong16 = 0d, tong17 = 0d, tong18 = 0d, tong19 = 0d, tong20 = 0d, tong21 = 0d,
+tong22 = 0d, tong23 = 0d, tong24 = 0d, tong25 = 0d, tong26 = 0d, tong27 = 0d, tong28 = 0d, tong29 = 0d,
+tong30 = 0d, tong31 = 0d, tong32 = 0d, tong33 = 0d, tong34 = 0d, tong35 = 0d, tong36 = 0d;
+			foreach (var nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat)) {
+				tong0 += nv.chiTietLuong.LCB_Theo.Cong_CDNghi_CV;
+				tong1 += nv.chiTietLuong.LSP_Theo.Cong_CDNghi;
+				tong2 += nv.chiTietLuong.LuongDieuChinh;
+				tong3 += nv.chiTietLuong.TongLuong_KoTinhCacLoaiPhuCap;
+				tong4 += nv.chiTietLuong.LCB_Theo.PhuCap;
+				tong5 += nv.chiTietLuong.LSP_Theo.PhuCap;
+				tong6 += nv.chiTietLuong.BoiDuongQuaDem;
+				tong7 += nv.chiTietLuong.TongPhuCapLuong;
+				tong8 += nv.chiTietLuong.TongLuong;
+				tong9 += nv.chiTietLuong.KhauTru.TamUng;
+				tong10 += nv.chiTietLuong.KhauTru.BHXH;
+				tong11 += nv.chiTietLuong.KhauTru.ThuChiKhac;
+				tong12 += nv.chiTietLuong.TienComTrua;
+				tong13 += nv.chiTietLuong.ThucLanh;
+				tong14 += nv.chiTietLuong.TongLuong; // phần này tích luỹ tổng lương tất cả nv để tính tổng quỹ thanh toán = tổng lương + tổng công nhật//
+				tong15 += nv.chiTietLuong.LCB_Theo.CongCV;
+				tong16 += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC;
+				tong17 += 0;
+				tong18 += nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.KhauTru.ThuChiKhac;
+				tong19 += nv.chiTietLuong.LuongDieuChinh;
+				tong20 += 0;
+				tong21 += 0;
+				tong22 += nv.HeSo.LuongCB;
+				tong23 += nv.HeSo.LuongCV;
+				tong24 += nv.ThongKeThang.Cong;
+				tong25 += nv.ThongKeThang.Phep;
+				tong26 += nv.ThongKeThang.NgayQuaDem;
+				tong27 += nv.ThongKeThang.CongCV;
+				tong28 += nv.ThongKeThang.PhuCaps._30_dem;
+				tong29 += nv.ThongKeThang.PhuCaps._50_TC;
+				tong30 += nv.ThongKeThang.PhuCaps._100_TCC3;
+				tong31 += nv.ThongKeThang.PhuCaps._100_LVNN_Ngay;
+				tong32 += nv.ThongKeThang.PhuCaps._150_LVNN_Dem;
+				tong33 += nv.ThongKeThang.PhuCaps._200_LeTet_Ngay;
+				tong34 += nv.ThongKeThang.PhuCaps._250_LeTet_Dem;
+				tong35 += 0;
+				tong36 += 0;
+			}
+			tong14 += tongLuongCongnhat; // phần này tích luỹ tổng lương tất cả nv để tính tổng quỹ thanh toán = tổng lương + tổng công nhật//
+
+			string temp = @"
+----------------------------------------AFTER READ DB---------------------------------
+Luong CB= {0}
+Luong SP= {1}
+Dieu chinh luong thang truoc= {2}
+Tong luong= {3}
+PC theo Luong CB= {4}
+PC theo Luong SP= {5}
+Boi duong ca 3= {6}
+Tong PC= {7}
+TONG LUONG VA PC= {8}
+Tam ung= {9}
+10,5% BHXH, YT, TN= {10}
+Thu chi khac= {11}
+COM TRUA= {12}
+THUC LANH= {13}
+quy thanh toan= {14}
+quy cho viec= {15}
+quy nghi dinh= {16}
+quy cong nhat= {17}
+chi khac= {18}
+luong dieu chinh= {19}
+quy luong hssp= {20}
+1 hssp= {21}
+hslcb= {22}
+hslsp= {23}
+cong= {24}
+phep= {25}
+Qua dem= {26}
+Cho viec= {27}
+30%= {28}
+50%= {29}
+TCC3 100%= {30}
+LVNN 100%= {31}
+LVNN 150%= {32}
+Truc le 200%= {33}
+Truc le ca3 290%= {34}
+Tong cong= {35}
+Tong PC= {36}
+";
+			temp = string.Format(temp, new object[]
+				{
+tong0.ToString("N3"),	tong1.ToString("N3"),	tong2.ToString("N3"),	tong3.ToString("N3"),	tong4.ToString("N3"),	tong5.ToString("N3"),	tong6.ToString("N3"),	tong7.ToString("N3"),	tong8.ToString("N3"),	tong9.ToString("N3"),	tong10.ToString("N3"),	tong11.ToString("N3"),	tong12.ToString("N3"),	tong13.ToString("N3"),
+tong14.ToString("N3"),	tong15.ToString("N3"),	tong16.ToString("N3"),	tong17.ToString("N3"),	tong18.ToString("N3"),	tong19.ToString("N3"),	tong20.ToString("N3"),	tong21.ToString("N3"),
+tong22.ToString("N3"),	tong23.ToString("N3"),	tong24.ToString("N3"),	tong25.ToString("N3"),	tong26.ToString("N3"),	tong27.ToString("N3"),	tong28.ToString("N3"),	tong29.ToString("N3"),	tong30.ToString("N3"),	tong31.ToString("N3"),	tong32.ToString("N3"),	tong33.ToString("N3"),	tong34.ToString("N3"),	tong35.ToString("N3"),	tong36.ToString("N3"),
+
+				});
+			Console.WriteLine(temp);
+
+
+			#endregion
+*/
+
+		#endregion
+
+		#region testing region [03]
+		/*
+				#region //fortesting
+
+				tong0 += nv.chiTietLuong.LCB_Theo.Cong_CDNghi_CV;
+				tong1 += nv.chiTietLuong.LSP_Theo.Cong_CDNghi;
+				tong2 += nv.chiTietLuong.LuongDieuChinh;
+				tong3 += nv.chiTietLuong.TongLuong_KoTinhCacLoaiPhuCap;
+				tong4 += nv.chiTietLuong.LCB_Theo.PhuCap;
+				tong5 += nv.chiTietLuong.LSP_Theo.PhuCap;
+				tong6 += nv.chiTietLuong.BoiDuongQuaDem;
+				tong7 += nv.chiTietLuong.TongPhuCapLuong;
+				tong8 += nv.chiTietLuong.TongLuong;
+				tong9 += nv.chiTietLuong.KhauTru.TamUng;
+				tong10 += nv.chiTietLuong.KhauTru.BHXH;
+				tong11 += nv.chiTietLuong.KhauTru.ThuChiKhac;
+				tong12 += nv.chiTietLuong.TienComTrua;
+				tong13 += nv.chiTietLuong.ThucLanh;
+				tong14 = _80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai;
+				tong15 += nv.chiTietLuong.LCB_Theo.CongCV;
+				tong16 += nv.chiTietLuong.TongLuong_KoTinhCacLoaiPhuCap + nv.chiTietLuong.TongPhuCapLuong; // quy lương nghi dinh = tongluong ko phu cap + tong phucap
+				tong17 = TongLuongCongNhat_AllNV;
+				tong18 += nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.KhauTru.ThuChiKhac; // chi khac tu quy luong = tổng bồi dưỡng ca 3 và tổng chi khác
+				tong19 += nv.chiTietLuong.LuongDieuChinh;
+				tong20 += nv.chiTietLuong.LSP_Theo.TongCong_CD_PC; // quỹ lương hệ số sản phẩm
+				tong21 = giaTri_1SP_B3_1;
+				tong22 += nv.HeSo.LuongCB;
+				tong23 += nv.HeSo.LuongCV;
+				tong24 += nv.ThongKeThang.Cong;
+				tong25 += nv.ThongKeThang.Phep;
+				tong26 += nv.ThongKeThang.NgayQuaDem;
+				tong27 += nv.ThongKeThang.CongCV;
+				tong28 += nv.ThongKeThang.PhuCaps._30_dem;
+				tong29 += nv.ThongKeThang.PhuCaps._50_TC;
+				tong30 += nv.ThongKeThang.PhuCaps._100_TCC3;
+				tong31 += nv.ThongKeThang.PhuCaps._100_LVNN_Ngay;
+				tong32 += nv.ThongKeThang.PhuCaps._150_LVNN_Dem;
+				tong33 += nv.ThongKeThang.PhuCaps._200_LeTet_Ngay;
+				tong34 += nv.ThongKeThang.PhuCaps._250_LeTet_Dem;
+				tong35 += 0;
+				tong36 += 0;
+
+				#endregion
+*/
+
+		#endregion
+
+
+
+
+

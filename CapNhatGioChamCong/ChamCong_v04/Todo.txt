@@ -1,0 +1,7 @@
+﻿1. dòng tổng cộng số tiền bằng chữ--> xong
+2. dòng ký hiệu chấm công sử dụng --> xong
+3. kết công tháng và xuất báo biểu kết công tháng
+4. huỷ kết lương tháng --> xong
+5. kết số lượng sữa
+
+6. sắp xếp phòng theo vị trí --> xong

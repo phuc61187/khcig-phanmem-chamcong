@@ -1,0 +1,347 @@
+﻿//--------------------------------------[BackupFunction01]
+        private string SelStr_GetDSNVThaoTac() {
+            string selectQueryString = String.Empty;
+            selectQueryString += @" select UserInfo.UserFullCode
+                                    , UserInfo.UserFullName
+                                    , UserInfo.UserEnrollNumber
+                                    , UserInfo.SchID
+	                                , Schedule.SchName
+                                    , Title.TitleName
+                                    , UserInfo.UserIDD
+                                    , RelationDept.[Description]	 ";
+            selectQueryString += @" from UserInfo , RelationDept, Schedule, Title ";
+            selectQueryString += @" where UserInfo.UserIDD IN ( select dp.IDD from DeptPrivilege dp 
+                                                         where dp.UserID = @UserID and IsYes = @IsYes )
+			                       and (RelationDept.ID = UserInfo.UserIDD)
+                                   and (UserInfo.SchID = Schedule.SchID)
+                                   and (UserIDTitle = IDT)
+
+                                    union  select UserInfo.UserFullCode
+                                                                        , UserInfo.UserFullName
+                                                                        , UserInfo.UserEnrollNumber
+                                                                        , UserInfo.SchID
+	                                                                    , Schedule.SchName
+                                                                        , N'Chưa SX'
+                                                                        , UserInfo.UserIDD
+                                                                        , RelationDept.[Description]	 
+                                    from UserInfo , RelationDept, Schedule where UserInfo.UserIDD IN ( select dp.IDD from DeptPrivilege dp 
+                                                                                             where dp.UserID = @UserID and IsYes = @IsYes )
+			                                                           and (RelationDept.ID = UserInfo.UserIDD)
+                                                                       and (UserInfo.SchID = Schedule.SchID) and UserIDTitle = 0  ";
+            return selectQueryString;
+        }
+
+//---------------------------------------[BackupFunction02]
+		        //[TBD]
+        string InsertStringThemGioVaoRa() {
+            //[TBD]
+            string kq = @"insert into CheckInOut (
+                                UserEnrollNumber
+                               ,TimeDate
+                               ,TimeStr
+                               ,OriginType
+                               ,NewType
+                               ,Source
+                               ,MachineNo
+                               ,WorkCode) 
+                          values (";
+            kq += @"            @UserEnrollNumber
+                               ,@TimeDate
+                               ,@TimeStr
+                               ,@OriginType
+                               ,@NewType
+                               ,@Source
+                               ,@MachineNo
+                               ,@WorkCode";
+            kq += @")";
+            return kq;
+        }
+
+//---------------------------------------[BackupFunction03]
+        //[TBD]
+        string InsertStringBackupThemGioVaoRa() {
+            string kq = @"INSERT INTO LichSuSuaGioVaoRa
+                               (UserEnrollNumber
+                               ,TimeDate
+                               ,TimeStrOld
+                               ,TimeStrNew
+                               ,OriginType
+                               ,NewType
+                               ,Source
+                               ,MachineNo
+                               ,WorkCode
+                               ,UserID
+                               ,Explain
+                               ,Note
+                               ,CommandType
+                               ,ExecuteTime
+                          ) VALUES (";
+            kq += @"            @UserEnrollNumber
+                               ,@TimeDate
+                               ,@TimeStrOld
+                               ,@TimeStrNew
+                               ,@OriginType
+                               ,@NewType
+                               ,@Source
+                               ,@MachineNo
+                               ,@WorkCode
+                               ,@UserID
+                               ,@Explain
+                               ,@Note
+                               ,@CommandType
+                               ,GetDate()"; //lấy giờ của sql server chứ ko lấy giờ client
+            kq += @")";
+            return kq;
+        }
+
+
+//---------------------------------------[BackupFunction04]
+
+
+		                    private void buttonThucHien_Click(object sender, EventArgs e) {
+                        throw new NotImplementedException();
+                        int kq_insertGioVao = 0, kq_insertLichSuSuaGioVao = 0;
+                        int kq_insertGioRa = 0;
+                        cUserInfo temp;
+
+                        List<cUserInfo> _dsNVTongHop_Checked = new List<cUserInfo>();
+                        List<cUserInfo> _dsNVTongHop_Unchecked = new List<cUserInfo>();
+                        // 1. duyệt qua từng dòng trên lưới tổng hợp tìm nhân viên được check
+                        foreach (DataGridViewRow dgvr in dataGridTongHop.Rows) {
+                            temp = _dsNVchecked.Find(item => item.UserEnrollNumber == int.Parse(dgvr.Cells[1].FormattedValue.ToString()));
+                            if ((bool)dgvr.Cells[0].FormattedValue == true)
+                                _dsNVTongHop_Checked.Add(temp);
+                            else
+                                _dsNVTongHop_Unchecked.Add(temp);
+                        }
+
+                        // 2. nếu chưa chọn ai thì thông báo
+                        if (_dsNVTongHop_Checked.Count == 0) {
+                            MessageBox.Show("Vui lòng chọn Nhân viên để thao tác.", "Nhắc nhở", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        // 3. đã có danh sách nhân viên để thao tác, thực hiện thao tác
+                        #region thêm giờ vào
+                        if (checkBoxThemGioVao.Checked) {
+                            // 3.1 duyệt qua từng người để thêm giờ vào
+                            foreach (cUserInfo nhanvien in _dsNVTongHop_Checked) {
+                                #region // thêm vào CheckInOut
+                                kq_insertGioVao = SqlDataAccessHelper.ExecNoneQueryString(
+                                    InsertStringThemGioVaoRa()
+                                    , new string[] { 
+                                            "@UserEnrollNumber"
+                                           ,"@TimeDate"
+                                           ,"@TimeStr"
+                                           ,"@OriginType"
+                                           ,"@NewType"
+                                           ,"@Source"
+                                           ,"@MachineNo"
+                                           ,"@WorkCode"}
+                                    , new object[] { 
+                                            nhanvien.UserEnrollNumber
+                                           , dateTimeThemGioVao.Value.Date
+                                           , dateTimeThemGioVao.Value
+                                           , "I" // in
+                                           , DBNull.Value
+                                           , "PC" // thêm trên máy pc
+                                           , 1 //mặc định thêm giờ vào là máy 1
+                                           , 0 //[TBD] giá trị này chưa biết nên để là 0
+                                    });
+                                #endregion
+
+                                #region // thêm vào bảng Lịch sử thay đổi giờ chấm công
+                                kq_insertLichSuSuaGioVao = SqlDataAccessHelper.ExecNoneQueryString(
+                                    InsertStringBackupThemGioVaoRa()
+                                    , new string[] { 
+                                            "@UserEnrollNumber"
+                                           ,"@TimeDate"
+                                           ,"@TimeStrOld"
+                                           ,"@TimeStrNew"
+                                           ,"@OriginType"
+                                           ,"@NewType"
+                                           ,"@Source"
+                                           ,"@MachineNo"
+                                           ,"@WorkCode"
+                                           ,"@UserID"
+                                           ,"@Explain"
+                                           ,"@Note"
+                                           ,"@CommandType"}
+                                    , new object[] { 
+                                            nhanvien.UserEnrollNumber
+                                           , dateTimeThemGioVao.Value.Date
+                                           , DBNull.Value
+                                           , dateTimeThemGioVao.Value
+                                           , "I" // in
+                                           , DBNull.Value
+                                           , "PC" // thêm trên PC
+                                           , 1 //mặc định thêm giờ vào là máy 1
+                                           , 0 //[TBD] giá trị này chưa biết nên để là 0
+                                           , _mCurrentUserID //[TBD] lấy current user id
+                                           , textBoxLyDo.Text
+                                           , textBoxGhiChu.Text
+                                           , 1 // [TBD] +1 nếu là thêm, 0 nếu là sửa, -1 nếu là xóa
+                                    });
+                                #endregion
+                            }
+                        }
+                        #endregion
+
+                        #region thêm giờ ra
+                        if (checkBoxThemGioRa.Checked) {
+                            // 3.2 duyệt qua từng người để thêm giờ ra
+                            foreach (cUserInfo nhanvien in _dsNVTongHop_Checked) {
+                                #region thêm vào checkinout
+                                kq_insertGioRa = SqlDataAccessHelper.ExecNoneQueryString(
+                                    InsertStringThemGioVaoRa()
+                                    , new string[] { 
+                                            "@UserEnrollNumber"
+                                           ,"@TimeDate"
+                                           ,"@TimeStr"
+                                           ,"@OriginType"
+                                           ,"@NewType"
+                                           ,"@Source"
+                                           ,"@MachineNo"
+                                           ,"@WorkCode"}
+                                    , new object[] { 
+                                            nhanvien.UserEnrollNumber
+                                           , dateTimeThemGioRa.Value.Date
+                                           , dateTimeThemGioRa.Value
+                                           , "O" // out
+                                           , DBNull.Value
+                                           , "PC" // thêm trên máy pc
+                                           , 2 //mặc định thêm giờ ra là máy 2
+                                           , 0 //[TBD] giá trị này chưa biết nên để là 0
+                                    });
+                                #endregion
+
+                                #region thêm vào lịch sử thay đổi giờ chấm công
+                                kq_insertLichSuSuaGioVao = SqlDataAccessHelper.ExecNoneQueryString(
+                                    InsertStringBackupThemGioVaoRa()
+                                    , new string[] { 
+                                            "@UserEnrollNumber"
+                                           ,"@TimeDate"
+                                           ,"@TimeStrOld"
+                                           ,"@TimeStrNew"
+                                           ,"@OriginType"
+                                           ,"@NewType"
+                                           ,"@Source"
+                                           ,"@MachineNo"
+                                           ,"@WorkCode"
+                                           ,"@UserID"
+                                           ,"@Explain"
+                                           ,"@Note"
+                                           ,"@CommandType"}
+                                    , new object[] { 
+                                            nhanvien.UserEnrollNumber
+                                           , dateTimeThemGioRa.Value.Date
+                                           , DBNull.Value
+                                           , dateTimeThemGioRa.Value
+                                           , "O" // in
+                                           , DBNull.Value
+                                           , "PC"
+                                           , 2 //mặc định thêm giờ ra là máy 2
+                                           , 0 //[TBD] giá trị này chưa biết nên để là 0
+                                           , _mCurrentUserID 
+                                           , textBoxLyDo.Text
+                                           , textBoxGhiChu.Text
+                                           , 1 // [TBD] +1 nếu là thêm, 0 nếu là sửa, -1 nếu là xóa
+                                    });
+                                #endregion
+                            }
+                        }
+                        #endregion
+                    }
+
+
+
+//---------------------------------------[BackupFunction05]
+        private string GetDescriptionShiftCode(string tempShiftCode, string tempOnduty, string tempOffduty, int tempDayCount) {
+			string kq;
+			switch (tempShiftCode) {
+				case "HC":
+					kq = "Hành chánh"; break;
+				case "HCA":
+					kq = "Hành chánh Sáng"; break;
+				case "HCB":
+					kq = "Hành chánh Chiều"; break;
+				case "HCx":
+					kq = "Hành chánh x"; break;
+				case "HCxA":
+					kq = "Hành chánh x Sáng"; break;
+				case "HCxB":
+					kq = "Hành chánh x Chiều"; break;
+				case "Ca1":
+					kq = "Ca 1"; break;
+				case "Ca1Dung":
+					kq = "Ca 1 đúng"; break;
+				case "Ca1A":
+					kq = "Ca 1 đầu"; break;
+				case "Ca1B":
+					kq = "Ca 1 sau"; break;
+				case "Ca2":
+					kq = "Ca 2"; break;
+				case "Ca2A":
+					kq = "Ca 2 đầu"; break;
+				case "Ca2B":
+					kq = "Ca 2 sau"; break;
+				case "Ca3":
+					kq = "Ca 3"; break;
+				case "Ca3A":
+					kq = "Ca 3 đầu"; break;
+				case "Ca3B":
+					kq = "Ca 3 sau"; break;
+				case "Ca1&2":
+					kq = "Ca 1 và 2"; break;
+				case "Ca2&3":
+					kq = "Ca 2 và 3"; break;
+				case "Ca3&1":
+					kq = "Ca 3 và 1"; break;
+				default:
+					kq = tempShiftCode + ""; break;
+			}
+			kq += " (" + tempOnduty + "-" + tempOffduty + ")";
+			if (tempDayCount == 1) kq += " qua đêm";
+			return kq;
+		}
+
+
+//---------------------------------------[BackupFunction06]
+		private void tachgio(cChkInOut gio, DateTime ngay, List<cChkInOut> arrGio) {
+			if (gio.Vao == null || gio.Ra == null) return;
+
+			DateTime bdDem = ngay.Add(ThamSo._21h45);
+			DateTime ktDem = ngay.AddDays(1d).Add(ThamSo._5h45);
+
+			if (gio.Ra.TimeStr < bdDem)//truoc dem
+			{
+				gio.Loai = 0;
+				gio.TongGioThuc = gio.Ra.TimeStr - gio.Vao.TimeStr;
+				arrGio.Add(gio);
+			}
+			else if (gio.Ra.TimeStr < ktDem) {
+				if (gio.Vao.TimeStr > bdDem) {
+					gio.Loai = 1;
+					arrGio.Add(gio);
+				}
+				else {
+					arrGio.Add(new cChkInOut() { Vao = gio.Vao, Ra = new cChkOut() { TimeStr = bdDem }, Loai = 0, TongGioThuc = bdDem - gio.Vao.TimeStr });
+					arrGio.Add(new cChkInOut() { Vao = new cChkIn() { TimeStr = bdDem }, Ra = gio.Ra, Loai = 1, TongGioThuc = gio.Ra.TimeStr - bdDem });
+				}
+			}
+			else if (gio.Ra.TimeStr > ktDem) {
+				if (gio.Vao.TimeStr > bdDem) {
+					arrGio.Add(new cChkInOut() { Vao = gio.Vao, Ra = new cChkOut() { TimeStr = ktDem }, Loai = 1, TongGioThuc = ktDem - gio.Vao.TimeStr });
+					arrGio.Add(new cChkInOut() { Vao = new cChkIn() { TimeStr = ktDem }, Ra = gio.Ra, Loai = 2, TongGioThuc = gio.Ra.TimeStr - ktDem });
+				}
+				else {
+					arrGio.Add(new cChkInOut() { Vao = gio.Vao, Ra = new cChkOut() { TimeStr = bdDem }, Loai = 0, TongGioThuc = bdDem - gio.Vao.TimeStr });
+					arrGio.Add(new cChkInOut() { Vao = new cChkIn() { TimeStr = bdDem }, Ra = new cChkOut() { TimeStr = ktDem }, Loai = 1, TongGioThuc = ktDem - bdDem });
+					arrGio.Add(new cChkInOut() { Vao = new cChkIn() { TimeStr = ktDem }, Ra = gio.Ra, Loai = 2, TongGioThuc = gio.Ra.TimeStr - ktDem });
+				}
+			}
+		}
+
+
+
+
