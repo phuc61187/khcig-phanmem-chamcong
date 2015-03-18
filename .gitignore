@@ -41,3 +41,16 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#Khong commit cac folder sau
+CapNhatGioChamCong/_ReSharper.CapNhatGioChamCong
+CapNhatGioChamCong/ChamCong_v04/obj
+CapNhatGioChamCong/ChamCong_v04/bin
+CapNhatGioChamCong/ChamCong_v02/obj
+CapNhatGioChamCong/ChamCong_v02/bin
+CapNhatGioChamCong/ChamCong_v03/obj
+CapNhatGioChamCong/ChamCong_v03/bin
+CapNhatGioChamCong/StudynTestNewTech/obj
+CapNhatGioChamCong/StudynTestNewTech/bin
+CapNhatGioChamCong/CapNhatGioChamCong/obj
+CapNhatGioChamCong/GiuLaiCacFileCu/obj

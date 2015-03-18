@@ -17,6 +17,7 @@ namespace ChamCong_v04.UI.XepLich {
 			log4net.Config.XmlConfigurator.Configure();
 			//không cho autogen các column khi bind dữ liệu
 			dgrdThongKe.AutoGenerateColumns = false;
+			//test git
 		}
 
 		private void Form2_Load(object sender, EventArgs e) {
