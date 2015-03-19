@@ -32,7 +32,7 @@ namespace ChamCong_v04.UI {
 				DataRow row = table.NewRow();
 				row["Loi"] = error.L;
 				row["NoiDungLoi"] = error.ND;
-				table.Rows.Add(row);
+				table.Rows.Add(row);//
 			}
 			dgrdLoi.DataSource = table;
 		}
