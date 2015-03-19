@@ -1,5 +1,5 @@
 ﻿namespace ChamCong_v04.UI.XepLich {
-	partial class Form2 {
+	partial class fmTKeCongTheoNVu {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -23,19 +23,19 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("px thành phẩm");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("bảo vệ");
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode3});
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
 			this.treePhongBan = new System.Windows.Forms.TreeView();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
-			this.radioButton2 = new System.Windows.Forms.RadioButton();
-			this.radioButton3 = new System.Windows.Forms.RadioButton();
+			this.radDate = new System.Windows.Forms.RadioButton();
+			this.radMonth = new System.Windows.Forms.RadioButton();
+			this.radQuarter = new System.Windows.Forms.RadioButton();
 			this.dtpNgayBD = new System.Windows.Forms.DateTimePicker();
 			this.label2 = new System.Windows.Forms.Label();
 			this.dtpNgayKT = new System.Windows.Forms.DateTimePicker();
@@ -43,7 +43,7 @@
 			this.dtpQuyNam = new System.Windows.Forms.DateTimePicker();
 			this.label3 = new System.Windows.Forms.Label();
 			this.numQuy = new System.Windows.Forms.NumericUpDown();
-			this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+			this.checkedListNhiemVu = new System.Windows.Forms.CheckedListBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.dgrdThongKe = new System.Windows.Forms.DataGridView();
@@ -55,11 +55,11 @@
 			this.g1c9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g2macc = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.listExcludeNV = new System.Windows.Forms.ListBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.btnXNCa = new System.Windows.Forms.Button();
+			this.btnXem = new System.Windows.Forms.Button();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.button2 = new System.Windows.Forms.Button();
+			this.btnThoat = new System.Windows.Forms.Button();
 			this.gpChonPhongBan.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numQuy)).BeginInit();
 			this.groupBox1.SuspendLayout();
@@ -91,52 +91,53 @@
 			this.treePhongBan.Location = new System.Drawing.Point(3, 20);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
-			treeNode5.Name = "Node2";
-			treeNode5.Text = "px thành phẩm";
-			treeNode6.Name = "Node5";
-			treeNode6.Text = "bảo vệ";
-			treeNode7.Name = "Node4";
-			treeNode7.Text = "văn phòng";
-			treeNode8.Name = "Node0";
-			treeNode8.Text = "Nhà máy thuốc lá khánh hội";
+			treeNode1.Name = "Node2";
+			treeNode1.Text = "px thành phẩm";
+			treeNode2.Name = "Node5";
+			treeNode2.Text = "bảo vệ";
+			treeNode3.Name = "Node4";
+			treeNode3.Text = "văn phòng";
+			treeNode4.Name = "Node0";
+			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8});
+            treeNode4});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(257, 100);
 			this.treePhongBan.TabIndex = 0;
 			// 
-			// radioButton1
+			// radDate
 			// 
-			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(7, 20);
-			this.radioButton1.Name = "radioButton1";
-			this.radioButton1.Size = new System.Drawing.Size(72, 19);
-			this.radioButton1.TabIndex = 34;
-			this.radioButton1.TabStop = true;
-			this.radioButton1.Text = "Từ ngày ";
-			this.radioButton1.UseVisualStyleBackColor = true;
+			this.radDate.AutoSize = true;
+			this.radDate.Location = new System.Drawing.Point(7, 20);
+			this.radDate.Name = "radDate";
+			this.radDate.Size = new System.Drawing.Size(72, 19);
+			this.radDate.TabIndex = 34;
+			this.radDate.TabStop = true;
+			this.radDate.Text = "Từ ngày ";
+			this.radDate.UseVisualStyleBackColor = true;
+			this.radDate.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
 			// 
-			// radioButton2
+			// radMonth
 			// 
-			this.radioButton2.AutoSize = true;
-			this.radioButton2.Location = new System.Drawing.Point(6, 64);
-			this.radioButton2.Name = "radioButton2";
-			this.radioButton2.Size = new System.Drawing.Size(60, 19);
-			this.radioButton2.TabIndex = 34;
-			this.radioButton2.TabStop = true;
-			this.radioButton2.Text = "Tháng";
-			this.radioButton2.UseVisualStyleBackColor = true;
+			this.radMonth.AutoSize = true;
+			this.radMonth.Location = new System.Drawing.Point(6, 64);
+			this.radMonth.Name = "radMonth";
+			this.radMonth.Size = new System.Drawing.Size(60, 19);
+			this.radMonth.TabIndex = 34;
+			this.radMonth.TabStop = true;
+			this.radMonth.Text = "Tháng";
+			this.radMonth.UseVisualStyleBackColor = true;
 			// 
-			// radioButton3
+			// radQuarter
 			// 
-			this.radioButton3.AutoSize = true;
-			this.radioButton3.Location = new System.Drawing.Point(6, 85);
-			this.radioButton3.Name = "radioButton3";
-			this.radioButton3.Size = new System.Drawing.Size(46, 19);
-			this.radioButton3.TabIndex = 34;
-			this.radioButton3.TabStop = true;
-			this.radioButton3.Text = "Quý";
-			this.radioButton3.UseVisualStyleBackColor = true;
+			this.radQuarter.AutoSize = true;
+			this.radQuarter.Location = new System.Drawing.Point(6, 85);
+			this.radQuarter.Name = "radQuarter";
+			this.radQuarter.Size = new System.Drawing.Size(46, 19);
+			this.radQuarter.TabIndex = 34;
+			this.radQuarter.TabStop = true;
+			this.radQuarter.Text = "Quý";
+			this.radQuarter.UseVisualStyleBackColor = true;
 			// 
 			// dtpNgayBD
 			// 
@@ -227,29 +228,29 @@
             0,
             0});
 			// 
-			// checkedListBox1
+			// checkedListNhiemVu
 			// 
-			this.checkedListBox1.CheckOnClick = true;
-			this.checkedListBox1.FormattingEnabled = true;
-			this.checkedListBox1.HorizontalScrollbar = true;
-			this.checkedListBox1.Items.AddRange(new object[] {
+			this.checkedListNhiemVu.CheckOnClick = true;
+			this.checkedListNhiemVu.FormattingEnabled = true;
+			this.checkedListNhiemVu.HorizontalScrollbar = true;
+			this.checkedListNhiemVu.Items.AddRange(new object[] {
             "Máy Focke_Vận hành",
             "Máy Focke_Bảo trì",
             "Máy A_Hốt gói",
             "Máy A_Đổ sợi",
             "Máy B_Đóng thùng"});
-			this.checkedListBox1.Location = new System.Drawing.Point(3, 20);
-			this.checkedListBox1.Name = "checkedListBox1";
-			this.checkedListBox1.ScrollAlwaysVisible = true;
-			this.checkedListBox1.Size = new System.Drawing.Size(260, 164);
-			this.checkedListBox1.TabIndex = 39;
+			this.checkedListNhiemVu.Location = new System.Drawing.Point(3, 20);
+			this.checkedListNhiemVu.Name = "checkedListNhiemVu";
+			this.checkedListNhiemVu.ScrollAlwaysVisible = true;
+			this.checkedListNhiemVu.Size = new System.Drawing.Size(260, 164);
+			this.checkedListNhiemVu.TabIndex = 39;
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.radioButton1);
-			this.groupBox1.Controls.Add(this.radioButton2);
+			this.groupBox1.Controls.Add(this.radDate);
+			this.groupBox1.Controls.Add(this.radMonth);
 			this.groupBox1.Controls.Add(this.numQuy);
-			this.groupBox1.Controls.Add(this.radioButton3);
+			this.groupBox1.Controls.Add(this.radQuarter);
 			this.groupBox1.Controls.Add(this.dtpQuyNam);
 			this.groupBox1.Controls.Add(this.dtpNgayBD);
 			this.groupBox1.Controls.Add(this.dtpThang);
@@ -265,7 +266,7 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.checkedListBox1);
+			this.groupBox2.Controls.Add(this.checkedListNhiemVu);
 			this.groupBox2.Location = new System.Drawing.Point(2, 238);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(263, 186);
@@ -277,8 +278,8 @@
 			// 
 			this.dgrdThongKe.AllowUserToAddRows = false;
 			this.dgrdThongKe.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.dgrdThongKe.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.dgrdThongKe.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgrdThongKe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -353,7 +354,7 @@
 			// 
 			// groupBox4
 			// 
-			this.groupBox4.Controls.Add(this.listBox1);
+			this.groupBox4.Controls.Add(this.listExcludeNV);
 			this.groupBox4.Controls.Add(this.button1);
 			this.groupBox4.Location = new System.Drawing.Point(2, 430);
 			this.groupBox4.Name = "groupBox4";
@@ -362,17 +363,17 @@
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Ngoại trừ các nhân viên";
 			// 
-			// listBox1
+			// listExcludeNV
 			// 
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.ItemHeight = 15;
-			this.listBox1.Items.AddRange(new object[] {
+			this.listExcludeNV.FormattingEnabled = true;
+			this.listExcludeNV.ItemHeight = 15;
+			this.listExcludeNV.Items.AddRange(new object[] {
             "K222 Lê Hoàng Phúc",
             "K333 Nguyễn Khắc Điệp"});
-			this.listBox1.Location = new System.Drawing.Point(3, 47);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(260, 94);
-			this.listBox1.TabIndex = 0;
+			this.listExcludeNV.Location = new System.Drawing.Point(3, 47);
+			this.listExcludeNV.Name = "listExcludeNV";
+			this.listExcludeNV.Size = new System.Drawing.Size(260, 94);
+			this.listExcludeNV.TabIndex = 0;
 			// 
 			// button1
 			// 
@@ -385,17 +386,18 @@
 			this.button1.Text = "+";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// btnXNCa
+			// btnXem
 			// 
-			this.btnXNCa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.btnXNCa.ForeColor = System.Drawing.Color.Blue;
-			this.btnXNCa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnXNCa.Location = new System.Drawing.Point(2, 588);
-			this.btnXNCa.Name = "btnXNCa";
-			this.btnXNCa.Size = new System.Drawing.Size(94, 27);
-			this.btnXNCa.TabIndex = 44;
-			this.btnXNCa.Text = "Xem thống kê";
-			this.btnXNCa.UseVisualStyleBackColor = true;
+			this.btnXem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
+			this.btnXem.ForeColor = System.Drawing.Color.Blue;
+			this.btnXem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnXem.Location = new System.Drawing.Point(2, 588);
+			this.btnXem.Name = "btnXem";
+			this.btnXem.Size = new System.Drawing.Size(94, 27);
+			this.btnXem.TabIndex = 44;
+			this.btnXem.Text = "Xem thống kê";
+			this.btnXem.UseVisualStyleBackColor = true;
+			this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
 			// 
 			// groupBox3
 			// 
@@ -407,24 +409,24 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Danh sách nhân viên thực hiện nhiệm vụ chính";
 			// 
-			// button2
+			// btnThoat
 			// 
-			this.button2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.button2.ForeColor = System.Drawing.Color.Blue;
-			this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button2.Location = new System.Drawing.Point(177, 588);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(85, 27);
-			this.button2.TabIndex = 44;
-			this.button2.Text = "Đóng";
-			this.button2.UseVisualStyleBackColor = true;
+			this.btnThoat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
+			this.btnThoat.ForeColor = System.Drawing.Color.Blue;
+			this.btnThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnThoat.Location = new System.Drawing.Point(177, 588);
+			this.btnThoat.Name = "btnThoat";
+			this.btnThoat.Size = new System.Drawing.Size(85, 27);
+			this.btnThoat.TabIndex = 44;
+			this.btnThoat.Text = "Đóng";
+			this.btnThoat.UseVisualStyleBackColor = true;
 			// 
 			// Form2
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(1018, 621);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.btnXNCa);
+			this.Controls.Add(this.btnThoat);
+			this.Controls.Add(this.btnXem);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.gpChonPhongBan);
 			this.Controls.Add(this.groupBox3);
@@ -433,7 +435,7 @@
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "Form2";
 			this.Text = "Form2";
-			this.Load += new System.EventHandler(this.Form2_Load);
+			this.Load += new System.EventHandler(this.fmTKeCongTheoNVu_Load);
 			this.gpChonPhongBan.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numQuy)).EndInit();
 			this.groupBox1.ResumeLayout(false);
@@ -450,9 +452,9 @@
 
 		private System.Windows.Forms.GroupBox gpChonPhongBan;
 		private System.Windows.Forms.TreeView treePhongBan;
-		private System.Windows.Forms.RadioButton radioButton1;
-		private System.Windows.Forms.RadioButton radioButton2;
-		private System.Windows.Forms.RadioButton radioButton3;
+		private System.Windows.Forms.RadioButton radDate;
+		private System.Windows.Forms.RadioButton radMonth;
+		private System.Windows.Forms.RadioButton radQuarter;
 		private System.Windows.Forms.DateTimePicker dtpNgayBD;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.DateTimePicker dtpNgayKT;
@@ -460,16 +462,16 @@
 		private System.Windows.Forms.DateTimePicker dtpQuyNam;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown numQuy;
-		private System.Windows.Forms.CheckedListBox checkedListBox1;
+		private System.Windows.Forms.CheckedListBox checkedListNhiemVu;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.DataGridView dgrdThongKe;
 		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.Button btnXNCa;
-		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.Button btnXem;
+		private System.Windows.Forms.ListBox listExcludeNV;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button btnThoat;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g4colMaNV;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1tennv;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c6;

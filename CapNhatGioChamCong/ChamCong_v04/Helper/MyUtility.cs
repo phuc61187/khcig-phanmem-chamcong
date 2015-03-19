@@ -212,6 +212,10 @@ namespace ChamCong_v04.Helper {
 		sp_NhiemVu_NhanVien_INS,
 		sp_NhiemVu_NhanVien_DEL,
 		#endregion
+
+		#region other sp
+		sp_KiemTraKetLuongThang,
+		#endregion
 	}
 	#endregion
 

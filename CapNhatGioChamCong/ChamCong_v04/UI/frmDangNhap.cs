@@ -62,7 +62,7 @@ namespace ChamCong_v04.UI {
 
 				XL.SaveSetting(lastAccLogIn: currUserAccount);
 
-				fmDSNVNhanNhiemVu frm = new fmDSNVNhanNhiemVu();
+				testForm frm = new testForm();
 				this.Hide();
 				frm.ShowDialog();
 				this.Close();
