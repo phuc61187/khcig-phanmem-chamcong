@@ -23,14 +23,14 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode3});
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode7});
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
 			this.treePhongBan = new System.Windows.Forms.TreeView();
 			this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -39,10 +39,10 @@
 			this.dtpNgayBD = new System.Windows.Forms.DateTimePicker();
 			this.label2 = new System.Windows.Forms.Label();
 			this.dtpNgayKT = new System.Windows.Forms.DateTimePicker();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+			this.dtpThang = new System.Windows.Forms.DateTimePicker();
+			this.dtpQuyNam = new System.Windows.Forms.DateTimePicker();
 			this.label3 = new System.Windows.Forms.Label();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.numQuy = new System.Windows.Forms.NumericUpDown();
 			this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -61,7 +61,7 @@
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.gpChonPhongBan.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numQuy)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdThongKe)).BeginInit();
@@ -91,16 +91,16 @@
 			this.treePhongBan.Location = new System.Drawing.Point(3, 20);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
-			treeNode1.Name = "Node2";
-			treeNode1.Text = "px thành phẩm";
-			treeNode2.Name = "Node5";
-			treeNode2.Text = "bảo vệ";
-			treeNode3.Name = "Node4";
-			treeNode3.Text = "văn phòng";
-			treeNode4.Name = "Node0";
-			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
+			treeNode5.Name = "Node2";
+			treeNode5.Text = "px thành phẩm";
+			treeNode6.Name = "Node5";
+			treeNode6.Text = "bảo vệ";
+			treeNode7.Name = "Node4";
+			treeNode7.Text = "văn phòng";
+			treeNode8.Name = "Node0";
+			treeNode8.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode8});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(257, 100);
 			this.treePhongBan.TabIndex = 0;
@@ -170,29 +170,29 @@
 			this.dtpNgayKT.TabIndex = 37;
 			this.dtpNgayKT.Value = new System.DateTime(2013, 8, 31, 0, 0, 0, 0);
 			// 
-			// dateTimePicker1
+			// dtpThang
 			// 
-			this.dateTimePicker1.CustomFormat = "MM/yyyy";
-			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePicker1.Location = new System.Drawing.Point(88, 63);
-			this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.ShowUpDown = true;
-			this.dateTimePicker1.Size = new System.Drawing.Size(167, 21);
-			this.dateTimePicker1.TabIndex = 37;
-			this.dateTimePicker1.Value = new System.DateTime(2013, 8, 31, 0, 0, 0, 0);
+			this.dtpThang.CustomFormat = "MM/yyyy";
+			this.dtpThang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dtpThang.Location = new System.Drawing.Point(88, 63);
+			this.dtpThang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.dtpThang.Name = "dtpThang";
+			this.dtpThang.ShowUpDown = true;
+			this.dtpThang.Size = new System.Drawing.Size(167, 21);
+			this.dtpThang.TabIndex = 37;
+			this.dtpThang.Value = new System.DateTime(2013, 8, 31, 0, 0, 0, 0);
 			// 
-			// dateTimePicker2
+			// dtpQuyNam
 			// 
-			this.dateTimePicker2.CustomFormat = "yyyy";
-			this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePicker2.Location = new System.Drawing.Point(195, 85);
-			this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dateTimePicker2.Name = "dateTimePicker2";
-			this.dateTimePicker2.ShowUpDown = true;
-			this.dateTimePicker2.Size = new System.Drawing.Size(60, 21);
-			this.dateTimePicker2.TabIndex = 37;
-			this.dateTimePicker2.Value = new System.DateTime(2013, 8, 31, 0, 0, 0, 0);
+			this.dtpQuyNam.CustomFormat = "yyyy";
+			this.dtpQuyNam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dtpQuyNam.Location = new System.Drawing.Point(195, 85);
+			this.dtpQuyNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.dtpQuyNam.Name = "dtpQuyNam";
+			this.dtpQuyNam.ShowUpDown = true;
+			this.dtpQuyNam.Size = new System.Drawing.Size(60, 21);
+			this.dtpQuyNam.TabIndex = 37;
+			this.dtpQuyNam.Value = new System.DateTime(2013, 8, 31, 0, 0, 0, 0);
 			// 
 			// label3
 			// 
@@ -205,12 +205,27 @@
 			this.label3.TabIndex = 36;
 			this.label3.Text = "năm";
 			// 
-			// numericUpDown1
+			// numQuy
 			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(88, 85);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(49, 21);
-			this.numericUpDown1.TabIndex = 38;
+			this.numQuy.Location = new System.Drawing.Point(88, 85);
+			this.numQuy.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+			this.numQuy.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numQuy.Name = "numQuy";
+			this.numQuy.Size = new System.Drawing.Size(49, 21);
+			this.numQuy.TabIndex = 38;
+			this.numQuy.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// checkedListBox1
 			// 
@@ -233,11 +248,11 @@
 			// 
 			this.groupBox1.Controls.Add(this.radioButton1);
 			this.groupBox1.Controls.Add(this.radioButton2);
-			this.groupBox1.Controls.Add(this.numericUpDown1);
+			this.groupBox1.Controls.Add(this.numQuy);
 			this.groupBox1.Controls.Add(this.radioButton3);
-			this.groupBox1.Controls.Add(this.dateTimePicker2);
+			this.groupBox1.Controls.Add(this.dtpQuyNam);
 			this.groupBox1.Controls.Add(this.dtpNgayBD);
-			this.groupBox1.Controls.Add(this.dateTimePicker1);
+			this.groupBox1.Controls.Add(this.dtpThang);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.dtpNgayKT);
 			this.groupBox1.Controls.Add(this.label3);
@@ -262,8 +277,8 @@
 			// 
 			this.dgrdThongKe.AllowUserToAddRows = false;
 			this.dgrdThongKe.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.dgrdThongKe.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.dgrdThongKe.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgrdThongKe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -420,7 +435,7 @@
 			this.Text = "Form2";
 			this.Load += new System.EventHandler(this.Form2_Load);
 			this.gpChonPhongBan.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numQuy)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
@@ -441,10 +456,10 @@
 		private System.Windows.Forms.DateTimePicker dtpNgayBD;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.DateTimePicker dtpNgayKT;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
-		private System.Windows.Forms.DateTimePicker dateTimePicker2;
+		private System.Windows.Forms.DateTimePicker dtpThang;
+		private System.Windows.Forms.DateTimePicker dtpQuyNam;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.NumericUpDown numQuy;
 		private System.Windows.Forms.CheckedListBox checkedListBox1;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;

@@ -21,7 +21,15 @@ namespace ChamCong_v04.UI.XepLich {
 		}
 
 		private void Form2_Load(object sender, EventArgs e) {
-
+			//load mặc định các dateTimePicker
+			DateTime ngayBD = MyUtility.FirstDayOfMonth(DateTime.Today);
+			DateTime ngayKT = MyUtility.LastDayOfMonth(DateTime.Today);
+			dtpNgayBD.Value = ngayBD;
+			dtpNgayKT.Value = ngayKT;
+			dtpThang.Value = ngayBD;
+			numQuy.Value = (int) (DateTime.Today.Month - (DateTime.Today.Month%4) / 4);
+			int thangDauQuy = (int)numQuy.Value
+			dtpQuyNam = new DateTime(DateTime.Today.Year,thangDauQuy, 1);
 		}
 
 		private void treePhongBan_AfterSelect(object sender, TreeViewEventArgs e) {
@@ -37,17 +45,6 @@ namespace ChamCong_v04.UI.XepLich {
 			}
 
 			#endregion
-
-			#region kiểm tra kết nối csdl , nếu mất kết nối thì đóng
-
-			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
-				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 4000);
-				Close();
-				return;
-			}
-
-			#endregion
-
 		}
 
 
