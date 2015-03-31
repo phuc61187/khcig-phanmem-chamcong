@@ -24,15 +24,15 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode3});
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode7});
 			this.gp1 = new System.Windows.Forms.GroupBox();
 			this.dgrdDSNVNhanNhiemVu = new System.Windows.Forms.DataGridView();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -66,15 +66,15 @@
 			this.gp1.Size = new System.Drawing.Size(514, 455);
 			this.gp1.TabIndex = 0;
 			this.gp1.TabStop = false;
-			this.gp1.Text = "Danh sách Nhân viên";
+			this.gp1.Text = "Danh sách Nhân viên nhận nhiệm vụ";
 			// 
 			// dgrdDSNVNhanNhiemVu
 			// 
 			this.dgrdDSNVNhanNhiemVu.AllowUserToAddRows = false;
 			this.dgrdDSNVNhanNhiemVu.AllowUserToDeleteRows = false;
 			this.dgrdDSNVNhanNhiemVu.AllowUserToResizeRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.dgrdDSNVNhanNhiemVu.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.dgrdDSNVNhanNhiemVu.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgrdDSNVNhanNhiemVu.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdDSNVNhanNhiemVu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
@@ -130,8 +130,8 @@
 			// dataGridViewTextBoxColumn3
 			// 
 			this.dataGridViewTextBoxColumn3.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn3.HeaderText = "Mã CC_hide";
 			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
 			this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -146,7 +146,7 @@
 			this.btnDangKyNhiemVu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnDangKyNhiemVu.Location = new System.Drawing.Point(248, 4);
 			this.btnDangKyNhiemVu.Name = "btnDangKyNhiemVu";
-			this.btnDangKyNhiemVu.Size = new System.Drawing.Size(177, 27);
+			this.btnDangKyNhiemVu.Size = new System.Drawing.Size(140, 27);
 			this.btnDangKyNhiemVu.TabIndex = 46;
 			this.btnDangKyNhiemVu.Text = "Đăng ký nhiệm vụ";
 			this.btnDangKyNhiemVu.UseVisualStyleBackColor = true;
@@ -157,11 +157,11 @@
 			this.btnHuyNhiemVu.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnHuyNhiemVu.ForeColor = System.Drawing.Color.Blue;
 			this.btnHuyNhiemVu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnHuyNhiemVu.Location = new System.Drawing.Point(431, 4);
+			this.btnHuyNhiemVu.Location = new System.Drawing.Point(394, 4);
 			this.btnHuyNhiemVu.Name = "btnHuyNhiemVu";
-			this.btnHuyNhiemVu.Size = new System.Drawing.Size(177, 27);
+			this.btnHuyNhiemVu.Size = new System.Drawing.Size(140, 27);
 			this.btnHuyNhiemVu.TabIndex = 46;
-			this.btnHuyNhiemVu.Text = "Huỷ nhiệm vụ của nhân viên";
+			this.btnHuyNhiemVu.Text = "Huỷ nhiệm vụ";
 			this.btnHuyNhiemVu.UseVisualStyleBackColor = true;
 			this.btnHuyNhiemVu.Click += new System.EventHandler(this.btnHuyNhiemVu_Click);
 			// 
@@ -200,16 +200,16 @@
 			this.treePhongBan.Location = new System.Drawing.Point(3, 20);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
-			treeNode1.Name = "Node2";
-			treeNode1.Text = "px thành phẩm";
-			treeNode2.Name = "Node5";
-			treeNode2.Text = "bảo vệ";
-			treeNode3.Name = "Node4";
-			treeNode3.Text = "văn phòng";
-			treeNode4.Name = "Node0";
-			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
+			treeNode5.Name = "Node2";
+			treeNode5.Text = "px thành phẩm";
+			treeNode6.Name = "Node5";
+			treeNode6.Text = "bảo vệ";
+			treeNode7.Name = "Node4";
+			treeNode7.Text = "văn phòng";
+			treeNode8.Name = "Node0";
+			treeNode8.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode8});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(227, 95);
 			this.treePhongBan.TabIndex = 0;
@@ -238,10 +238,6 @@
 			this.checkListNhiemVu.CheckOnClick = true;
 			this.checkListNhiemVu.FormattingEnabled = true;
 			this.checkListNhiemVu.HorizontalScrollbar = true;
-			this.checkListNhiemVu.Items.AddRange(new object[] {
-            "1fghfdghfdhfdgh fgdh fgdh f hfdhfg",
-            "2f d gdhdfgh fhfd df fhfgd f fg fdffdh",
-            "3fd h fdfghgfd gf fhdfh fgh fdhfg fg"});
 			this.checkListNhiemVu.Location = new System.Drawing.Point(3, 145);
 			this.checkListNhiemVu.Name = "checkListNhiemVu";
 			this.checkListNhiemVu.ScrollAlwaysVisible = true;
@@ -255,7 +251,7 @@
 			this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.label1.Location = new System.Drawing.Point(3, 122);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(121, 15);
+			this.label1.Size = new System.Drawing.Size(137, 16);
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Danh sách nhiệm vụ";
 			// 
@@ -268,8 +264,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(763, 494);
 			this.Controls.Add(this.gp1);
-			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.btnHuyNhiemVu);
+			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.btnDangKyNhiemVu);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);

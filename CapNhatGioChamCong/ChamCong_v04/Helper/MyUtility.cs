@@ -153,7 +153,7 @@ namespace ChamCong_v04.Helper {
 	}
 
 	public enum Quyen {
-				XemCong	= 10011,// MoTa = "Xem Công" });
+			XemCong	= 10011,// MoTa = "Xem Công" });
 			ThemXoaSuaGioCC= 10012,// MoTa = "Thêm xoá sửa giờ chấm công" });
 			XNCa_LamThem= 10033,// MoTa = "Xác nhận ca và làm thêm" });
 			XN_PCTC= 10014,// MoTa = "Xác nhận phụ cấp tăng cường" });
@@ -166,6 +166,9 @@ namespace ChamCong_v04.Helper {
 
 			SuaGioHangLoat= 30011,// MoTa = "Sửa giờ hàng loạt" });
 			XemNhatKyThaoTac= 30012,// MoTa = "Xem lịch sử thao tác" });
+			QuanLyNhiemVuNhanVien = 30013,
+			XemTKeCongVaPCTheoNhiemVu = 30014,
+			XemDSNhiemVu = 30015,
 
 			QuanLyNV= 40011,// MoTa = "Quản lý Nhân viên" });
 
@@ -190,6 +193,17 @@ namespace ChamCong_v04.Helper {
 		No = -1,
 	}
 	public enum SPName {
+		#region CheckInOut
+		sp_CheckInOut_DocCheckVanTay, // đọc các check vân tay chưa qua xác nhận
+		sp_CheckInOut_DocCheckDaCoXN, // đọc các check vân tay chưa qua xác nhận
+		#endregion
+		#region Absent
+		Absent_DocNVVang,
+		#endregion
+		#region XacNhanPC50   va XacNhanPC
+		XacNhanPC50_DocXNPC50,
+		XacNhanPC_DocXNPC,
+		#endregion
 		#region TableNhiemVu
 
 		sp_NhiemVu_DocBang,
@@ -206,6 +220,7 @@ namespace ChamCong_v04.Helper {
 		sp_UserInfo_DocDSNVThaoTac,
 		sp_UserInfo_DocDSNVDkyNhiemVu,
 		sp_UserInfo_DocNhanVienNhanNhiemVu,
+		sp_UserInfo_DocDSNVThongKeCongVaPC,
 		#endregion
 
 		#region NhiemVu_NhanVien
@@ -215,6 +230,7 @@ namespace ChamCong_v04.Helper {
 
 		#region other sp
 		sp_KiemTraKetLuongThang,
+		sp_ThongKeCongVaPhuCap,
 		#endregion
 	}
 	#endregion
@@ -565,6 +581,7 @@ namespace ChamCong_v04.Helper {
 
 
 
+		#region deep clone : copy object to new object with same data
 		public static T DeepClone<T>(T obj) {
 			using (var ms = new MemoryStream()) {
 				var formatter = new BinaryFormatter();
@@ -574,7 +591,9 @@ namespace ChamCong_v04.Helper {
 				return (T)formatter.Deserialize(ms);
 			}
 		}
+		#endregion
 
+		#region format chuoi string sao cho cung so luong ky tu
 		public static String FormatEx(String format, params Object[] varArgs) {
 			if (String.IsNullOrEmpty(format)) {
 				throw new ArgumentNullException(
@@ -806,6 +825,7 @@ namespace ChamCong_v04.Helper {
 
 			return String.Format(uiCulture, format, varArgs);
 		}
+		#endregion
 
 		public static string GetAllValueOfObject(object obj) {
 			object propValue = null;
@@ -819,6 +839,7 @@ namespace ChamCong_v04.Helper {
 			return kq + "\n";
 		}
 
+		#region mã hóa giải mã
 		private const string passPhrase = "PaS5pR@s3";
 		private const string saltValue = "s@1TValue";
 		private const string hashAlgorithm = "MD5";
@@ -846,7 +867,7 @@ namespace ChamCong_v04.Helper {
 			return cipherText;
 		}
 
-		public static string giaima(string cipherText) //Giải mã
+		public static string giaima(string cipherText) //Gi?i mã
 		{
 			byte[] initVectorBytes = Encoding.ASCII.GetBytes(initVector);
 			byte[] saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
@@ -864,6 +885,7 @@ namespace ChamCong_v04.Helper {
 			string plainText = Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
 			return plainText;
 		}
+		#endregion
 
 		public static void EnableDisableControl(bool isEnable,params  Control[] controls) {
 			foreach (var control in controls)
@@ -916,6 +938,29 @@ namespace ChamCong_v04.Helper {
 			intArray.ForEach(x => tableIntArray.Rows.Add(x));
 			return tableIntArray;
 		}
+
+		/// <summary>
+		/// Chia đoạn thời gian thành các đoạn ngắn, mỗi đoạn tối đa là 1 tháng
+		/// </summary>
+		/// <param name="NgayBd"></param>
+		/// <param name="NgayKt"></param>
+		/// <param name="ArrDoanThoigian"></param>
+		public static void ChiaDoanThoiGian(DateTime NgayBd, DateTime NgayKt, out List<List<DateTime>> ArrDoanThoigian) {
+			ArrDoanThoigian = new List<List<DateTime>>();
+			DateTime cursorDate = new DateTime(NgayBd.Year, NgayBd.Month, NgayBd.Day);
+
+			while (cursorDate.Month < NgayKt.Month && cursorDate.Year <= NgayKt.Year) // vẫn chưa phải tháng cuối cùng trong khoảng thời gian
+			{
+				DateTime ngayBD_Doan, ngayKT_Doan;
+				ngayBD_Doan = new DateTime(cursorDate.Year, cursorDate.Month, cursorDate.Day); // ngày đầu tháng bị dang dở hoặc ngày 1 đầu tháng
+				ngayKT_Doan = MyUtility.LastDayOfMonth(ngayBD_Doan);// ngày cuối tháng
+				ArrDoanThoigian.Add(new List<DateTime> { ngayBD_Doan, ngayKT_Doan });
+				cursorDate = MyUtility.FirstDayOfMonth(cursorDate).AddMonths(1); // đưa ngày đầu dang dở về đầu tháng rồi mới add thêm 1 tháng mới. VD: 16 -> 1 rồi mới add monnth
+			}
+			// ra khỏi vòng lặp là tháng cuối có thể bị dang dở cursorDate.Month = NgayKT.Month . VD: 01/01/2015 -16/01/2015
+			ArrDoanThoigian.Add(new List<DateTime> { cursorDate, NgayKt });
+		}
+
 	}
 
 	public class ACMessageBox {

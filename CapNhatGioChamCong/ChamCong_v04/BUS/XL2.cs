@@ -123,6 +123,9 @@ namespace ChamCong_v04.BUS {
 
 			lstChucNang.Add(new cChucNang() { ID = 30011, MoTa = "Sửa giờ hàng loạt" });
 			lstChucNang.Add(new cChucNang() { ID = 30012, MoTa = "Xem lịch sử thao tác" });
+			lstChucNang.Add(new cChucNang() { ID = 30013, MoTa = "Quản lý nhiệm vụ của nhân viên"});
+			lstChucNang.Add(new cChucNang() { ID = 30014, MoTa = "Xem thống kê công, PC, phép theo nhiệm vụ"});
+			lstChucNang.Add(new cChucNang() { ID = 30015, MoTa = "Xem danh sách nhiệm vụ"});
 
 			lstChucNang.Add(new cChucNang() { ID = 40011, MoTa = "Quản lý Nhân viên" });
 

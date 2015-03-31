@@ -7,12 +7,21 @@ using ChamCong_v04.Properties;
 
 namespace ChamCong_v04.UI.XepLich {
 	public partial class fmQLyNhiemVu : Form {
+		#region log tooltip và các hàm không quan trọng
 		public fmQLyNhiemVu() {
 			InitializeComponent();
 		}
 
-		private void fmQLyNhiemVu_Load(object sender, EventArgs e) {
-			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString(), new SqlParameter("@LoaiNhiemVu", 1));//1 là nvụ chính
+		private void btnThoat_Click(object sender, EventArgs e) {
+			Close();
+		}
+
+		#endregion
+
+		private void fmQLyNhiemVu_Load(object sender, EventArgs e)
+		{
+			//load list nhiệm vụ
+			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
 			listDSNhiemVu.DataSource = tableNhiemVu;
 			listDSNhiemVu.ValueMember = "MaNhiemVu";
 			listDSNhiemVu.DisplayMember = "TenNhiemVu";
@@ -69,13 +78,7 @@ namespace ChamCong_v04.UI.XepLich {
 			}
 			
 			//3. reload GUI
-			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
-			listDSNhiemVu.SelectedIndexChanged -= listDSNhiemVu_SelectedIndexChanged;
-			listDSNhiemVu.DataSource = tableNhiemVu;
-			listDSNhiemVu.SelectedIndexChanged += listDSNhiemVu_SelectedIndexChanged;
-			listDSNhiemVu.ValueMember = "MaNhiemVu";
-			listDSNhiemVu.DisplayMember = "TenNhiemVu";
-			listDSNhiemVu.ClearSelected();
+			ReloadListNhiemVu();
 
 			btnTaoNhiemVu.Enabled = true;
 			tbTenNhiemVu.Clear();
@@ -102,7 +105,10 @@ namespace ChamCong_v04.UI.XepLich {
 			int maNhiemVu = (int) lbMaNhiemVu.Tag;
 			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.sp_NhiemVu_Del.ToString(), new SqlParameter("@MaNhiemVu", maNhiemVu));
 			if (kq == 0) MessageBox.Show(Resources.Text_CoLoi, Resources.Caption_ThongBao);
-			else ACMessageBox.Show(Resources.Text_DaThucHienXong, Resources.Caption_ThongBao, 2000);
+			else ACMessageBox.Show(Resources.Text_DaThucHienXong, Resources.Caption_ThongBao, 1500);
+
+			//reload GUI
+			this.ReloadListNhiemVu();
 		}
 
 
@@ -116,5 +122,14 @@ namespace ChamCong_v04.UI.XepLich {
 			tbTenNhiemVu.Text = rowView["TenNhiemVu"].ToString();
 		}
 
+		private void ReloadListNhiemVu() {
+			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
+			listDSNhiemVu.SelectedIndexChanged -= listDSNhiemVu_SelectedIndexChanged;
+			listDSNhiemVu.DataSource = tableNhiemVu;
+			listDSNhiemVu.SelectedIndexChanged += listDSNhiemVu_SelectedIndexChanged;
+			listDSNhiemVu.ValueMember = "MaNhiemVu";
+			listDSNhiemVu.DisplayMember = "TenNhiemVu";
+			listDSNhiemVu.ClearSelected();
+		}
 	}
 }

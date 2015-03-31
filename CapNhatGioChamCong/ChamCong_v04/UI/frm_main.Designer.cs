@@ -43,6 +43,9 @@
 			this.SubMenu_TaoTK = new System.Windows.Forms.ToolStripMenuItem();
 			this.SubMenu_Setting = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuThoat = new System.Windows.Forms.ToolStripMenuItem();
+			this.SubMenu_XemTKeCongVaPCTheoNVu = new System.Windows.Forms.ToolStripMenuItem();
+			this.SubMenu_QLNhiemVuNhanVien = new System.Windows.Forms.ToolStripMenuItem();
+			this.SubMenu_XemDSNhiemVu = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -109,7 +112,10 @@
 			// 
 			this.MenuHoatDong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SubMenu_SuaGioHangLoat,
-            this.SubMenu_XemHistory});
+            this.SubMenu_XemHistory,
+            this.SubMenu_QLNhiemVuNhanVien,
+            this.SubMenu_XemTKeCongVaPCTheoNVu,
+            this.SubMenu_XemDSNhiemVu});
 			this.MenuHoatDong.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.MenuHoatDong.ForeColor = System.Drawing.Color.Black;
 			this.MenuHoatDong.Name = "MenuHoatDong";
@@ -119,14 +125,14 @@
 			// SubMenu_SuaGioHangLoat
 			// 
 			this.SubMenu_SuaGioHangLoat.Name = "SubMenu_SuaGioHangLoat";
-			this.SubMenu_SuaGioHangLoat.Size = new System.Drawing.Size(249, 22);
+			this.SubMenu_SuaGioHangLoat.Size = new System.Drawing.Size(316, 22);
 			this.SubMenu_SuaGioHangLoat.Text = "Sửa giờ hàng loạt";
 			this.SubMenu_SuaGioHangLoat.Click += new System.EventHandler(this.SubMenu_SuaGioHangLoat_Click);
 			// 
 			// SubMenu_XemHistory
 			// 
 			this.SubMenu_XemHistory.Name = "SubMenu_XemHistory";
-			this.SubMenu_XemHistory.Size = new System.Drawing.Size(249, 22);
+			this.SubMenu_XemHistory.Size = new System.Drawing.Size(316, 22);
 			this.SubMenu_XemHistory.Text = "Xem lịch sử sửa giờ chấm công";
 			this.SubMenu_XemHistory.Click += new System.EventHandler(this.SubMenu_xemHistory_Click);
 			// 
@@ -219,6 +225,27 @@
 			this.MenuThoat.Text = "Thoát";
 			this.MenuThoat.Click += new System.EventHandler(this.MenuThoat_Click);
 			// 
+			// SubMenu_XemTKeCongVaPCTheoNVu
+			// 
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Name = "SubMenu_XemTKeCongVaPCTheoNVu";
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Size = new System.Drawing.Size(316, 22);
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Text = "Xem thống kê công, PC, phép theo nhiệm vụ";
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Click += new System.EventHandler(this.SubMenu_XemTKeCongVaPCTheoNVu_Click);
+			// 
+			// SubMenu_QLNhiemVuNhanVien
+			// 
+			this.SubMenu_QLNhiemVuNhanVien.Name = "SubMenu_QLNhiemVuNhanVien";
+			this.SubMenu_QLNhiemVuNhanVien.Size = new System.Drawing.Size(316, 22);
+			this.SubMenu_QLNhiemVuNhanVien.Text = "Quản lý nhiệm vụ của nhân viên";
+			this.SubMenu_QLNhiemVuNhanVien.Click += new System.EventHandler(this.SubMenu_QLNhiemVu_Click);
+			// 
+			// SubMenu_XemDSNhiemVu
+			// 
+			this.SubMenu_XemDSNhiemVu.Name = "SubMenu_XemDSNhiemVu";
+			this.SubMenu_XemDSNhiemVu.Size = new System.Drawing.Size(316, 22);
+			this.SubMenu_XemDSNhiemVu.Text = "Xem danh sách nhiệm vụ";
+			this.SubMenu_XemDSNhiemVu.Click += new System.EventHandler(this.SubMenu_XemDSNhiemVu_Click);
+			// 
 			// frm_main
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -260,6 +287,9 @@
 		private System.Windows.Forms.ToolStripMenuItem SubMenu_PhanQuyen;
 		private System.Windows.Forms.ToolStripMenuItem SubMenu_TaoTK;
 		private System.Windows.Forms.ToolStripMenuItem SubMenu_Setting;
+		private System.Windows.Forms.ToolStripMenuItem SubMenu_XemTKeCongVaPCTheoNVu;
+		private System.Windows.Forms.ToolStripMenuItem SubMenu_QLNhiemVuNhanVien;
+		private System.Windows.Forms.ToolStripMenuItem SubMenu_XemDSNhiemVu;
 
     }
 }

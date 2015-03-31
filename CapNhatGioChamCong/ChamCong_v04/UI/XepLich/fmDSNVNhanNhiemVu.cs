@@ -86,7 +86,7 @@ namespace ChamCong_v04.UI.XepLich {
 			treePhongBan.AfterSelect += treePhongBan_AfterSelect;
 			treePhongBan.SelectedNode = XL.TopNode(treePhongBan.TopNode);
 
-			#region 			//load danh sách nhiệm vụ
+			#region 			//load danh sách nhiệm vụ, có add thêm cột check
 
 			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
 			DataColumn columnCheck = tableNhiemVu.Columns.Add("check", typeof(bool));
@@ -129,15 +129,23 @@ namespace ChamCong_v04.UI.XepLich {
 		}
 
 		private void checkListNhiemVu_ItemCheck(object sender, ItemCheckEventArgs e) {
-			LoadGridNhanVienNhanNhiemVu();
+
+			List<int> listMaNhiemVu = (from DataRowView rowView in checkListNhiemVu.CheckedItems select (int)rowView["MaNhiemVu"]).ToList();
+			// vì sau khi check xong thì hàm này mới đc gọi (checked) nên chỉ cần xét giá trị hiện tại là biết đc giá trị sắp tới
+			if (e.CurrentValue == CheckState.Unchecked) listMaNhiemVu.Add((int)((DataRowView)checkListNhiemVu.SelectedItem)["MaNhiemVu"]);
+			else if (e.CurrentValue == CheckState.Checked) listMaNhiemVu.Remove((int)((DataRowView)checkListNhiemVu.SelectedItem)["MaNhiemVu"]);
+			DataTable tableDSNVCoNhiemVu = this.tableNhanVienNhanNhiemVu(m_listIDPhongBan, listMaNhiemVu);
+			dgrdDSNVNhanNhiemVu.DataSource = new DataView(tableDSNVCoNhiemVu);
 		}
 
 		private void btnDangKyNhiemVu_Click(object sender, EventArgs e) {
 			//tbd test
 			frmDangKyNhiemVuChoNV frm = new frmDangKyNhiemVuChoNV();
 			frm.m_listIDPhongBan = this.m_listIDPhongBan;
-			frm.Show();
+			frm.ShowDialog();
 
+			//sau khi đăng ký xong thì load lại GUI datagrid
+			LoadGridNhanVienNhanNhiemVu();
 		}
 
 		private void btnHuyNhiemVu_Click(object sender, EventArgs e) {
@@ -153,13 +161,15 @@ namespace ChamCong_v04.UI.XepLich {
 			var listNhiemVuCuaNhanVien = (from DataGridViewRow gridViewRow in dgrdDSNVNhanNhiemVu.Rows
 										   let rowView = (DataRowView)gridViewRow.DataBoundItem
 										   where rowView["check"] != DBNull.Value && (bool)rowView["check"]
-										   select rowView.Row).ToList();
+										   select rowView).ToList();
 			if (listNhiemVuCuaNhanVien.Count == 0) return;
 			this.HuyNhiemVuCuaNhanVien(listNhiemVuCuaNhanVien, ref haveOtherError, ref otherError);
 			if (haveOtherError) {
 				MessageBox.Show(otherError, Resources.Caption_Loi);
 			}
 			ACMessageBox.Show(Resources.Text_DaThucHienXong, Resources.Caption_ThongBao, 2000);
+			//reload gui
+			LoadGridNhanVienNhanNhiemVu();
 		}
 
 		private void LoadGridNhanVienNhanNhiemVu() {
@@ -169,7 +179,7 @@ namespace ChamCong_v04.UI.XepLich {
 			List<int> listMaNhiemVu = (from DataRowView rowView in checkListNhiemVu.CheckedItems select (int)rowView["MaNhiemVu"]).ToList();
 
 			DataTable tableDSNVCoNhiemVu = this.tableNhanVienNhanNhiemVu(m_listIDPhongBan, listMaNhiemVu);
-			dgrdDSNVNhanNhiemVu.DataSource = tableDSNVCoNhiemVu;
+			dgrdDSNVNhanNhiemVu.DataSource = new DataView(tableDSNVCoNhiemVu);
 		}
 
 		/// <summary>
@@ -187,20 +197,19 @@ namespace ChamCong_v04.UI.XepLich {
 			sqlParamArrMaNhiemVu.Value = tableMaNhiemVu;
 			DataTable kq = SqlDataAccessHelper.ExecSPQuery(SPName.sp_UserInfo_DocNhanVienNhanNhiemVu.ToString(),
 				sqlParamArrUserIDD, sqlParamArrMaNhiemVu);
-			DataColumn columnCheck = kq.Columns.Add("check", typeof(bool));
-			columnCheck.DefaultValue = false;
+			kq.Columns.Add(new DataColumn("check", typeof(bool)) { DefaultValue= false});
 
 			return kq;
 		}
 
-		private void HuyNhiemVuCuaNhanVien(List<DataRow> listNhiemVuCuaNhanVien, ref bool haveOtherError, ref string otherError) {
+		private void HuyNhiemVuCuaNhanVien(List<DataRowView> listNhiemVuCuaNhanVien, ref bool haveOtherError, ref string otherError) {
 			string templateStr = "Nhiệm vụ [{0}] của nhân viên [{1}], mã NV [{2}].\n";
-			foreach (var row in listNhiemVuCuaNhanVien) {
-				var uen = (int)row["UserEnrollNumber"];
-				var tenNhanVien = row["UserFullName"].ToString();
-				var maNhanVien = row["UserFullCode"].ToString();
-				var maNhiemVu = (int)row["MaNhiemVu"];
-				var tenNhiemVu = row["TenNhiemVu"].ToString();
+			foreach (var rowView in listNhiemVuCuaNhanVien) {
+				var uen = (int)rowView["UserEnrollNumber"];
+				var tenNhanVien = rowView["UserFullName"].ToString();
+				var maNhanVien = rowView["UserFullCode"].ToString();
+				var maNhiemVu = (int)rowView["MaNhiemVu"];
+				var tenNhiemVu = rowView["TenNhiemVu"].ToString();
 				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.sp_NhiemVu_NhanVien_DEL.ToString(),
 															 new SqlParameter("@UserEnrollNumber", uen),
 															 new SqlParameter("@MaNhiemVu", maNhiemVu));

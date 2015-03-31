@@ -1,5 +1,5 @@
 ﻿namespace ChamCong_v04.UI.XepLich {
-	partial class frmDangKyNhiemVuChoNV {
+	partial class fmExcludeNV {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -23,40 +23,37 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gp1 = new System.Windows.Forms.GroupBox();
 			this.dgrdDSNVTrgPhg = new System.Windows.Forms.DataGridView();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tbSearch = new System.Windows.Forms.TextBox();
 			this.btnTim = new System.Windows.Forms.Button();
 			this.linkHienThiTatCaNV = new System.Windows.Forms.LinkLabel();
-			this.btnThoat = new System.Windows.Forms.Button();
-			this.checkListNhiemVu = new System.Windows.Forms.CheckedListBox();
-			this.btnDangKy = new System.Windows.Forms.Button();
-			this.toolTipHint = new System.Windows.Forms.ToolTip(this.components);
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnDongY = new System.Windows.Forms.Button();
+			this.btnCancel = new System.Windows.Forms.Button();
 			this.gp1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdDSNVTrgPhg)).BeginInit();
 			this.panel1.SuspendLayout();
-			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gp1
 			// 
 			this.gp1.Controls.Add(this.dgrdDSNVTrgPhg);
 			this.gp1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.gp1.Location = new System.Drawing.Point(2, 59);
+			this.gp1.Location = new System.Drawing.Point(2, 54);
 			this.gp1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.gp1.Name = "gp1";
 			this.gp1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.gp1.Size = new System.Drawing.Size(260, 388);
-			this.gp1.TabIndex = 2;
+			this.gp1.Size = new System.Drawing.Size(385, 388);
+			this.gp1.TabIndex = 1;
 			this.gp1.TabStop = false;
 			this.gp1.Text = "Danh sách Nhân viên";
 			// 
@@ -65,21 +62,23 @@
 			this.dgrdDSNVTrgPhg.AllowUserToAddRows = false;
 			this.dgrdDSNVTrgPhg.AllowUserToDeleteRows = false;
 			this.dgrdDSNVTrgPhg.AllowUserToResizeRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.dgrdDSNVTrgPhg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.dgrdDSNVTrgPhg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgrdDSNVTrgPhg.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdDSNVTrgPhg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn9});
 			this.dgrdDSNVTrgPhg.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgrdDSNVTrgPhg.Location = new System.Drawing.Point(3, 16);
 			this.dgrdDSNVTrgPhg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.dgrdDSNVTrgPhg.Name = "dgrdDSNVTrgPhg";
 			this.dgrdDSNVTrgPhg.RowHeadersVisible = false;
 			this.dgrdDSNVTrgPhg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdDSNVTrgPhg.Size = new System.Drawing.Size(254, 370);
+			this.dgrdDSNVTrgPhg.Size = new System.Drawing.Size(379, 370);
 			this.dgrdDSNVTrgPhg.TabIndex = 0;
 			// 
 			// dataGridViewCheckBoxColumn1
@@ -114,14 +113,31 @@
 			// dataGridViewTextBoxColumn3
 			// 
 			this.dataGridViewTextBoxColumn3.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
-			this.dataGridViewTextBoxColumn3.HeaderText = "Mã CC";
+			dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
+			this.dataGridViewTextBoxColumn3.HeaderText = "Mã CC_hide";
 			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
 			this.dataGridViewTextBoxColumn3.ReadOnly = true;
-			this.dataGridViewTextBoxColumn3.ToolTipText = "Mã Chấm công_hide";
+			this.dataGridViewTextBoxColumn3.ToolTipText = "Mã Chấm công";
 			this.dataGridViewTextBoxColumn3.Visible = false;
 			this.dataGridViewTextBoxColumn3.Width = 55;
+			// 
+			// dataGridViewTextBoxColumn7
+			// 
+			this.dataGridViewTextBoxColumn7.DataPropertyName = "TenPhong";
+			this.dataGridViewTextBoxColumn7.HeaderText = "Phòng ban";
+			this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+			this.dataGridViewTextBoxColumn7.ReadOnly = true;
+			this.dataGridViewTextBoxColumn7.ToolTipText = "Phòng ban";
+			this.dataGridViewTextBoxColumn7.Width = 120;
+			// 
+			// dataGridViewTextBoxColumn9
+			// 
+			this.dataGridViewTextBoxColumn9.DataPropertyName = "MaPhong";
+			this.dataGridViewTextBoxColumn9.HeaderText = "Mã Phòng ban";
+			this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+			this.dataGridViewTextBoxColumn9.ReadOnly = true;
+			this.dataGridViewTextBoxColumn9.Visible = false;
 			// 
 			// panel1
 			// 
@@ -131,8 +147,8 @@
 			this.panel1.Location = new System.Drawing.Point(2, 2);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(260, 53);
-			this.panel1.TabIndex = 48;
+			this.panel1.Size = new System.Drawing.Size(385, 48);
+			this.panel1.TabIndex = 2;
 			// 
 			// tbSearch
 			// 
@@ -140,13 +156,14 @@
 			this.tbSearch.Location = new System.Drawing.Point(3, 2);
 			this.tbSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tbSearch.Name = "tbSearch";
-			this.tbSearch.Size = new System.Drawing.Size(205, 21);
+			this.tbSearch.Size = new System.Drawing.Size(206, 21);
 			this.tbSearch.TabIndex = 0;
+			this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
 			// 
 			// btnTim
 			// 
 			this.btnTim.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.btnTim.Location = new System.Drawing.Point(214, 2);
+			this.btnTim.Location = new System.Drawing.Point(215, 2);
 			this.btnTim.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnTim.Name = "btnTim";
 			this.btnTim.Size = new System.Drawing.Size(40, 23);
@@ -166,78 +183,48 @@
 			this.linkHienThiTatCaNV.Text = "Hiển thị tất cả nhân viên trong phòng";
 			this.linkHienThiTatCaNV.Click += new System.EventHandler(this.linkHienThiTatCaNV_Click);
 			// 
-			// btnThoat
+			// btnDongY
 			// 
-			this.btnThoat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.btnThoat.ForeColor = System.Drawing.Color.Blue;
-			this.btnThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnThoat.Location = new System.Drawing.Point(471, 450);
-			this.btnThoat.Name = "btnThoat";
-			this.btnThoat.Size = new System.Drawing.Size(85, 27);
-			this.btnThoat.TabIndex = 46;
-			this.btnThoat.Text = "Đóng";
-			this.btnThoat.UseVisualStyleBackColor = true;
-			this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+			this.btnDongY.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
+			this.btnDongY.ForeColor = System.Drawing.Color.Blue;
+			this.btnDongY.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnDongY.Location = new System.Drawing.Point(211, 445);
+			this.btnDongY.Name = "btnDongY";
+			this.btnDongY.Size = new System.Drawing.Size(85, 27);
+			this.btnDongY.TabIndex = 47;
+			this.btnDongY.Text = "Đồng ý";
+			this.btnDongY.UseVisualStyleBackColor = true;
+			this.btnDongY.Click += new System.EventHandler(this.btnDongY_Click);
 			// 
-			// checkListNhiemVu
+			// btnCancel
 			// 
-			this.checkListNhiemVu.CheckOnClick = true;
-			this.checkListNhiemVu.FormattingEnabled = true;
-			this.checkListNhiemVu.HorizontalScrollbar = true;
-			this.checkListNhiemVu.Items.AddRange(new object[] {
-            "1fghfdghfdhfdgh fgdh fgdh f hfdhfg",
-            "2f d gdhdfgh fhfd df fhfgd f fg fdffdh",
-            "3fd h fdfghgfd gf fhdfh fgh fdhfg fg"});
-			this.checkListNhiemVu.Location = new System.Drawing.Point(0, 22);
-			this.checkListNhiemVu.Name = "checkListNhiemVu";
-			this.checkListNhiemVu.ScrollAlwaysVisible = true;
-			this.checkListNhiemVu.Size = new System.Drawing.Size(288, 420);
-			this.checkListNhiemVu.TabIndex = 50;
+			this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
+			this.btnCancel.ForeColor = System.Drawing.Color.Blue;
+			this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnCancel.Location = new System.Drawing.Point(302, 445);
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.Size = new System.Drawing.Size(85, 27);
+			this.btnCancel.TabIndex = 48;
+			this.btnCancel.Text = "Huỷ bỏ";
+			this.btnCancel.UseVisualStyleBackColor = true;
+			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
-			// btnDangKy
-			// 
-			this.btnDangKy.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.btnDangKy.ForeColor = System.Drawing.Color.Blue;
-			this.btnDangKy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnDangKy.Location = new System.Drawing.Point(380, 450);
-			this.btnDangKy.Name = "btnDangKy";
-			this.btnDangKy.Size = new System.Drawing.Size(85, 27);
-			this.btnDangKy.TabIndex = 46;
-			this.btnDangKy.Text = "Đăng ký";
-			this.btnDangKy.UseVisualStyleBackColor = true;
-			this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.checkListNhiemVu);
-			this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.groupBox1.Location = new System.Drawing.Point(268, 2);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox1.Size = new System.Drawing.Size(288, 445);
-			this.groupBox1.TabIndex = 2;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Danh sách Nhiệm vụ";
-			// 
-			// frmDangKyNhiemVuChoNV
+			// fmExcludeNV
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(560, 481);
+			this.ClientSize = new System.Drawing.Size(396, 479);
+			this.Controls.Add(this.btnDongY);
+			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.btnDangKy);
-			this.Controls.Add(this.btnThoat);
-			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.gp1);
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.Name = "frmDangKyNhiemVuChoNV";
-			this.Text = "Đăng ký nhiệm vụ cho Nhân viên";
-			this.Load += new System.EventHandler(this.frmDangKyNhiemVuChoNV_Load);
+			this.Name = "fmExcludeNV";
+			this.Text = "Danh sách Nhân viên loại trừ";
+			this.Load += new System.EventHandler(this.fmExcludeNV_Load);
 			this.gp1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgrdDSNVTrgPhg)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -250,14 +237,13 @@
 		private System.Windows.Forms.TextBox tbSearch;
 		private System.Windows.Forms.Button btnTim;
 		private System.Windows.Forms.LinkLabel linkHienThiTatCaNV;
-		private System.Windows.Forms.Button btnThoat;
-		private System.Windows.Forms.CheckedListBox checkListNhiemVu;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-		private System.Windows.Forms.Button btnDangKy;
-		private System.Windows.Forms.ToolTip toolTipHint;
-		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+		private System.Windows.Forms.Button btnDongY;
+		private System.Windows.Forms.Button btnCancel;
 	}
 }

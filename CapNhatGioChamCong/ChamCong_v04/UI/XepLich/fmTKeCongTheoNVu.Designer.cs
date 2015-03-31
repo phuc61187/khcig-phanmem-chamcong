@@ -31,6 +31,9 @@
             treeNode1,
             treeNode3});
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
 			this.treePhongBan = new System.Windows.Forms.TreeView();
 			this.radDate = new System.Windows.Forms.RadioButton();
@@ -47,19 +50,19 @@
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.dgrdThongKe = new System.Windows.Forms.DataGridView();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.listExcludeNV = new System.Windows.Forms.ListBox();
+			this.btnRemoveExcludeNV = new System.Windows.Forms.Button();
+			this.btnAddExcludeNV = new System.Windows.Forms.Button();
+			this.btnXem = new System.Windows.Forms.Button();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.btnThoat = new System.Windows.Forms.Button();
 			this.g4colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1tennv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1c4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1c5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1c9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g2macc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.listExcludeNV = new System.Windows.Forms.ListBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.btnXem = new System.Windows.Forms.Button();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.btnThoat = new System.Windows.Forms.Button();
 			this.gpChonPhongBan.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numQuy)).BeginInit();
 			this.groupBox1.SuspendLayout();
@@ -108,36 +111,37 @@
 			// radDate
 			// 
 			this.radDate.AutoSize = true;
+			this.radDate.Checked = true;
 			this.radDate.Location = new System.Drawing.Point(7, 20);
 			this.radDate.Name = "radDate";
-			this.radDate.Size = new System.Drawing.Size(72, 19);
+			this.radDate.Size = new System.Drawing.Size(81, 20);
 			this.radDate.TabIndex = 34;
 			this.radDate.TabStop = true;
 			this.radDate.Text = "Từ ngày ";
 			this.radDate.UseVisualStyleBackColor = true;
-			this.radDate.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+			this.radDate.CheckedChanged += new System.EventHandler(this.radDate_CheckedChanged);
 			// 
 			// radMonth
 			// 
 			this.radMonth.AutoSize = true;
 			this.radMonth.Location = new System.Drawing.Point(6, 64);
 			this.radMonth.Name = "radMonth";
-			this.radMonth.Size = new System.Drawing.Size(60, 19);
+			this.radMonth.Size = new System.Drawing.Size(64, 20);
 			this.radMonth.TabIndex = 34;
-			this.radMonth.TabStop = true;
 			this.radMonth.Text = "Tháng";
 			this.radMonth.UseVisualStyleBackColor = true;
+			this.radMonth.CheckedChanged += new System.EventHandler(this.radMonth_CheckedChanged);
 			// 
 			// radQuarter
 			// 
 			this.radQuarter.AutoSize = true;
 			this.radQuarter.Location = new System.Drawing.Point(6, 85);
 			this.radQuarter.Name = "radQuarter";
-			this.radQuarter.Size = new System.Drawing.Size(46, 19);
+			this.radQuarter.Size = new System.Drawing.Size(53, 20);
 			this.radQuarter.TabIndex = 34;
-			this.radQuarter.TabStop = true;
 			this.radQuarter.Text = "Quý";
 			this.radQuarter.UseVisualStyleBackColor = true;
+			this.radQuarter.CheckedChanged += new System.EventHandler(this.radQuarter_CheckedChanged);
 			// 
 			// dtpNgayBD
 			// 
@@ -156,7 +160,7 @@
 			this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.label2.Location = new System.Drawing.Point(22, 45);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(59, 15);
+			this.label2.Size = new System.Drawing.Size(63, 16);
 			this.label2.TabIndex = 36;
 			this.label2.Text = "Đến ngày";
 			// 
@@ -174,6 +178,7 @@
 			// dtpThang
 			// 
 			this.dtpThang.CustomFormat = "MM/yyyy";
+			this.dtpThang.Enabled = false;
 			this.dtpThang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.dtpThang.Location = new System.Drawing.Point(88, 63);
 			this.dtpThang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -186,6 +191,7 @@
 			// dtpQuyNam
 			// 
 			this.dtpQuyNam.CustomFormat = "yyyy";
+			this.dtpQuyNam.Enabled = false;
 			this.dtpQuyNam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.dtpQuyNam.Location = new System.Drawing.Point(195, 85);
 			this.dtpQuyNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -202,12 +208,13 @@
 			this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.label3.Location = new System.Drawing.Point(157, 87);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(32, 15);
+			this.label3.Size = new System.Drawing.Size(33, 16);
 			this.label3.TabIndex = 36;
 			this.label3.Text = "năm";
 			// 
 			// numQuy
 			// 
+			this.numQuy.Enabled = false;
 			this.numQuy.Location = new System.Drawing.Point(88, 85);
 			this.numQuy.Maximum = new decimal(new int[] {
             4,
@@ -289,7 +296,6 @@
 			this.dgrdThongKe.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.g4colMaNV,
             this.g1tennv,
-            this.g1c6,
             this.g1c4,
             this.g1c5,
             this.g1c9,
@@ -299,8 +305,92 @@
 			this.dgrdThongKe.Name = "dgrdThongKe";
 			this.dgrdThongKe.RowHeadersVisible = false;
 			this.dgrdThongKe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdThongKe.Size = new System.Drawing.Size(744, 588);
+			this.dgrdThongKe.Size = new System.Drawing.Size(446, 561);
 			this.dgrdThongKe.TabIndex = 42;
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.listExcludeNV);
+			this.groupBox4.Controls.Add(this.btnRemoveExcludeNV);
+			this.groupBox4.Controls.Add(this.btnAddExcludeNV);
+			this.groupBox4.Location = new System.Drawing.Point(2, 430);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(263, 125);
+			this.groupBox4.TabIndex = 43;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "Ngoại trừ các nhân viên";
+			// 
+			// listExcludeNV
+			// 
+			this.listExcludeNV.FormattingEnabled = true;
+			this.listExcludeNV.ItemHeight = 15;
+			this.listExcludeNV.Items.AddRange(new object[] {
+            "K222 Lê Hoàng Phúc",
+            "K333 Nguyễn Khắc Điệp"});
+			this.listExcludeNV.Location = new System.Drawing.Point(3, 40);
+			this.listExcludeNV.Name = "listExcludeNV";
+			this.listExcludeNV.Size = new System.Drawing.Size(260, 79);
+			this.listExcludeNV.TabIndex = 0;
+			// 
+			// btnRemoveExcludeNV
+			// 
+			this.btnRemoveExcludeNV.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+			this.btnRemoveExcludeNV.ForeColor = System.Drawing.Color.Blue;
+			this.btnRemoveExcludeNV.Location = new System.Drawing.Point(198, 0);
+			this.btnRemoveExcludeNV.Name = "btnRemoveExcludeNV";
+			this.btnRemoveExcludeNV.Size = new System.Drawing.Size(34, 34);
+			this.btnRemoveExcludeNV.TabIndex = 44;
+			this.btnRemoveExcludeNV.Text = "-";
+			this.btnRemoveExcludeNV.UseVisualStyleBackColor = true;
+			this.btnRemoveExcludeNV.Click += new System.EventHandler(this.btnRemoveExcludeNV_Click);
+			// 
+			// btnAddExcludeNV
+			// 
+			this.btnAddExcludeNV.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+			this.btnAddExcludeNV.ForeColor = System.Drawing.Color.Blue;
+			this.btnAddExcludeNV.Location = new System.Drawing.Point(160, 0);
+			this.btnAddExcludeNV.Name = "btnAddExcludeNV";
+			this.btnAddExcludeNV.Size = new System.Drawing.Size(34, 34);
+			this.btnAddExcludeNV.TabIndex = 44;
+			this.btnAddExcludeNV.Text = "+";
+			this.btnAddExcludeNV.UseVisualStyleBackColor = true;
+			this.btnAddExcludeNV.Click += new System.EventHandler(this.btnAddExcludeNV_Click);
+			// 
+			// btnXem
+			// 
+			this.btnXem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
+			this.btnXem.ForeColor = System.Drawing.Color.Blue;
+			this.btnXem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnXem.Location = new System.Drawing.Point(2, 561);
+			this.btnXem.Name = "btnXem";
+			this.btnXem.Size = new System.Drawing.Size(107, 27);
+			this.btnXem.TabIndex = 44;
+			this.btnXem.Text = "Xem thống kê";
+			this.btnXem.UseVisualStyleBackColor = true;
+			this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.dgrdThongKe);
+			this.groupBox3.Location = new System.Drawing.Point(268, 3);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(449, 585);
+			this.groupBox3.TabIndex = 41;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Danh sách thống kê công, phụ cấp, ngày phép nhân viên thực hiện nhiệm vụ";
+			// 
+			// btnThoat
+			// 
+			this.btnThoat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
+			this.btnThoat.ForeColor = System.Drawing.Color.Blue;
+			this.btnThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnThoat.Location = new System.Drawing.Point(180, 561);
+			this.btnThoat.Name = "btnThoat";
+			this.btnThoat.Size = new System.Drawing.Size(85, 27);
+			this.btnThoat.TabIndex = 44;
+			this.btnThoat.Text = "Đóng";
+			this.btnThoat.UseVisualStyleBackColor = true;
+			this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
 			// 
 			// g4colMaNV
 			// 
@@ -319,27 +409,30 @@
 			this.g1tennv.ReadOnly = true;
 			this.g1tennv.Width = 150;
 			// 
-			// g1c6
-			// 
-			this.g1c6.HeaderText = "Nhiệm vụ";
-			this.g1c6.Name = "g1c6";
-			this.g1c6.Width = 250;
-			// 
 			// g1c4
 			// 
+			this.g1c4.DataPropertyName = "TongCong3";
+			dataGridViewCellStyle2.Format = "0.##";
+			this.g1c4.DefaultCellStyle = dataGridViewCellStyle2;
 			this.g1c4.HeaderText = "Tổng Công";
 			this.g1c4.Name = "g1c4";
 			this.g1c4.Width = 80;
 			// 
 			// g1c5
 			// 
+			this.g1c5.DataPropertyName = "TongPC3";
+			dataGridViewCellStyle3.Format = "0.##";
+			this.g1c5.DefaultCellStyle = dataGridViewCellStyle3;
 			this.g1c5.HeaderText = "Tổng PC";
 			this.g1c5.Name = "g1c5";
 			this.g1c5.Width = 65;
 			// 
 			// g1c9
 			// 
-			this.g1c9.HeaderText = "T. Phép";
+			this.g1c9.DataPropertyName = "TongPhep3";
+			dataGridViewCellStyle4.Format = "0.##";
+			this.g1c9.DefaultCellStyle = dataGridViewCellStyle4;
+			this.g1c9.HeaderText = "T.Phép";
 			this.g1c9.Name = "g1c9";
 			this.g1c9.Width = 55;
 			// 
@@ -352,79 +445,10 @@
 			this.g2macc.Visible = false;
 			this.g2macc.Width = 55;
 			// 
-			// groupBox4
-			// 
-			this.groupBox4.Controls.Add(this.listExcludeNV);
-			this.groupBox4.Controls.Add(this.button1);
-			this.groupBox4.Location = new System.Drawing.Point(2, 430);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(263, 152);
-			this.groupBox4.TabIndex = 43;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Ngoại trừ các nhân viên";
-			// 
-			// listExcludeNV
-			// 
-			this.listExcludeNV.FormattingEnabled = true;
-			this.listExcludeNV.ItemHeight = 15;
-			this.listExcludeNV.Items.AddRange(new object[] {
-            "K222 Lê Hoàng Phúc",
-            "K333 Nguyễn Khắc Điệp"});
-			this.listExcludeNV.Location = new System.Drawing.Point(3, 47);
-			this.listExcludeNV.Name = "listExcludeNV";
-			this.listExcludeNV.Size = new System.Drawing.Size(260, 94);
-			this.listExcludeNV.TabIndex = 0;
-			// 
-			// button1
-			// 
-			this.button1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.button1.ForeColor = System.Drawing.Color.Blue;
-			this.button1.Location = new System.Drawing.Point(230, 7);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(24, 34);
-			this.button1.TabIndex = 44;
-			this.button1.Text = "+";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// btnXem
-			// 
-			this.btnXem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.btnXem.ForeColor = System.Drawing.Color.Blue;
-			this.btnXem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnXem.Location = new System.Drawing.Point(2, 588);
-			this.btnXem.Name = "btnXem";
-			this.btnXem.Size = new System.Drawing.Size(94, 27);
-			this.btnXem.TabIndex = 44;
-			this.btnXem.Text = "Xem thống kê";
-			this.btnXem.UseVisualStyleBackColor = true;
-			this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.dgrdThongKe);
-			this.groupBox3.Location = new System.Drawing.Point(268, 3);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(747, 612);
-			this.groupBox3.TabIndex = 41;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Danh sách nhân viên thực hiện nhiệm vụ chính";
-			// 
-			// btnThoat
-			// 
-			this.btnThoat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.btnThoat.ForeColor = System.Drawing.Color.Blue;
-			this.btnThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnThoat.Location = new System.Drawing.Point(177, 588);
-			this.btnThoat.Name = "btnThoat";
-			this.btnThoat.Size = new System.Drawing.Size(85, 27);
-			this.btnThoat.TabIndex = 44;
-			this.btnThoat.Text = "Đóng";
-			this.btnThoat.UseVisualStyleBackColor = true;
-			// 
-			// Form2
+			// fmTKeCongTheoNVu
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(1018, 621);
+			this.ClientSize = new System.Drawing.Size(726, 592);
 			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.btnXem);
 			this.Controls.Add(this.groupBox4);
@@ -433,8 +457,8 @@
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.Name = "Form2";
-			this.Text = "Form2";
+			this.Name = "fmTKeCongTheoNVu";
+			this.Text = "Thống kê công, phụ cấp, số ngày nghỉ phép";
 			this.Load += new System.EventHandler(this.fmTKeCongTheoNVu_Load);
 			this.gpChonPhongBan.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numQuy)).EndInit();
@@ -469,12 +493,12 @@
 		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.Button btnXem;
 		private System.Windows.Forms.ListBox listExcludeNV;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnAddExcludeNV;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Button btnThoat;
+		private System.Windows.Forms.Button btnRemoveExcludeNV;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g4colMaNV;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1tennv;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1c6;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c4;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c9;

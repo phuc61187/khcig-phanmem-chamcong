@@ -200,6 +200,12 @@
     <Compile Include="UI\ChamCong\frm_XuatBBCongPC.Designer.cs">
       <DependentUpon>frm_XuatBBCongPC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\XepLich\fmExcludeNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\XepLich\fmExcludeNV.Designer.cs">
+      <DependentUpon>fmExcludeNV.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\XepLich\fmTKeCongTheoNVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -435,6 +441,9 @@
     <EmbeddedResource Include="UI\ChamCong\frm_XuatBBCongPC.resx">
       <DependentUpon>frm_XuatBBCongPC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\XepLich\fmExcludeNV.resx">
+      <DependentUpon>fmExcludeNV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\XepLich\fmTKeCongTheoNVu.resx">
       <DependentUpon>fmTKeCongTheoNVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -522,6 +531,8 @@
       <DependentUpon>frm_XN_PC50.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Compile Include="BUS\XLChamCong_v4.0.0.5.cs" />
+    <Compile Include="DAL\DAO_XuLyChamCong_v4.0.0.5.cs" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

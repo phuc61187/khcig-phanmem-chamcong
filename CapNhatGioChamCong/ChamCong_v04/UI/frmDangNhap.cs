@@ -61,17 +61,18 @@ namespace ChamCong_v04.UI {
 			else {
 
 				XL.SaveSetting(lastAccLogIn: currUserAccount);
+				XL.ChuanBiDSLichTrinhVaCa();
 
-				testForm frm = new testForm();
-				this.Hide();
-				frm.ShowDialog();
-				this.Close();
 /*
-				frm_main frm = new frm_main();
+				fmTKeCongTheoNVu frm = new fmTKeCongTheoNVu();
 				this.Hide();
 				frm.ShowDialog();
 				this.Close();
 */
+				frm_main frm = new frm_main();
+				this.Hide();
+				frm.ShowDialog();
+				this.Close();
 
 				// hiển thị form tài khoản thường
 			}

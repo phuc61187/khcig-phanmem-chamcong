@@ -10,6 +10,7 @@ using ChamCong_v04.UI.ChamCong;
 using ChamCong_v04.UI.KhaiBao;
 using ChamCong_v04.UI.QLNV;
 using ChamCong_v04.UI.TinhLuong;
+using ChamCong_v04.UI.XepLich;
 using log4net;
 
 
@@ -263,10 +264,6 @@ namespace ChamCong_v04.UI {
 		}
 
 
-		private void test4ToolStripMenuItem_Click(object sender, EventArgs e) {
-			SubMenu_PhanQuyen_Click(null, null);
-		}
-
 		private void SubMenu_HuyKetluong_Click(object sender, EventArgs e) {
 			if (XL2.QuyenThaoTac.Any(o => o == (int)Quyen.KetLuong) == false) {
 				ACMessageBox.Show(Resources.Text_KoCoQuyen, Resources.Caption_ThongBao, 3000);
@@ -285,6 +282,67 @@ namespace ChamCong_v04.UI {
 				frm1.Show();
 			}
 
+
+		}
+
+		private void SubMenu_QLNhiemVu_Click(object sender, EventArgs e) {
+			if (XL2.QuyenThaoTac.Any(o => o == (int)Quyen.QuanLyNhiemVuNhanVien) == false) {
+				ACMessageBox.Show(Resources.Text_KoCoQuyen, Resources.Caption_ThongBao, 3000);
+				return;
+			}
+
+			fmDSNVNhanNhiemVu frm1 = new fmDSNVNhanNhiemVu();
+			int indexForm = LayVitriForm(this, frm1.GetType());
+			if (indexForm != -1) {
+				frm1 = MdiChildren[indexForm] as fmDSNVNhanNhiemVu;
+				if (frm1 != null) frm1.BringToFront();
+			}
+			else {
+				frm1.MdiParent = this;
+				frm1.WindowState = FormWindowState.Normal;
+				frm1.Show();
+			}
+
+		}
+
+		private void SubMenu_XemTKeCongVaPCTheoNVu_Click(object sender, EventArgs e) {
+			if (XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XemTKeCongVaPCTheoNhiemVu) == false) {
+				ACMessageBox.Show(Resources.Text_KoCoQuyen, Resources.Caption_ThongBao, 3000);
+				return;
+			}
+
+			fmTKeCongTheoNVu frm1 = new fmTKeCongTheoNVu();
+			int indexForm = LayVitriForm(this, frm1.GetType());
+			if (indexForm != -1) {
+				frm1 = MdiChildren[indexForm] as fmTKeCongTheoNVu;
+				if (frm1 != null) frm1.BringToFront();
+			}
+			else {
+				frm1.MdiParent = this;
+				frm1.WindowState = FormWindowState.Normal;
+				frm1.Show();
+			}
+
+
+		}
+
+		private void SubMenu_XemDSNhiemVu_Click(object sender, EventArgs e) {
+			if (XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XemDSNhiemVu) == false) {
+				ACMessageBox.Show(Resources.Text_KoCoQuyen, Resources.Caption_ThongBao, 3000);
+				return;
+			}
+
+			fmQLyNhiemVu frm1 = new fmQLyNhiemVu();
+			int indexForm = LayVitriForm(this, frm1.GetType());
+			if (indexForm != -1) {
+				frm1 = MdiChildren[indexForm] as fmQLyNhiemVu;
+				if (frm1 != null) frm1.BringToFront();
+			}
+			else {
+				frm1.MdiParent = this;
+				frm1.WindowState = FormWindowState.Normal;
+				frm1.Show();
+			}
 
 		}
 

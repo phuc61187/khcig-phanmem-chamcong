@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ChamCong_v04.Helper;
 using ChamCong_v04.UI.XepLich;
 
 namespace ChamCong_v04 {
@@ -19,7 +20,7 @@ namespace ChamCong_v04 {
 			DateTime ngayBD = dtpBD.Value;
 			DateTime ngayKT = dtpKT.Value;
 			List<List<DateTime>> arr, tgDaKetCong, tgChuaKetCong;
-			fmTKeCongTheoNVu.ChiaDoanThoiGian(ngayBD, ngayKT, out arr);
+			MyUtility.ChiaDoanThoiGian(ngayBD, ngayKT, out arr);
 			fmTKeCongTheoNVu.TachKC_ChuaKC(arr, out tgChuaKetCong, out tgDaKetCong);
 			string template1 = "From [{0}] To [{1}]   = [{2}] -> [{3}]\n";
 			richTextBox1.Clear();
