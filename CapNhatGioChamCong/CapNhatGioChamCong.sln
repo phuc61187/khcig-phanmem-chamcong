@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamCong_v03", "ChamCong_v0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamCong_v04", "ChamCong_v04\ChamCong_v04.csproj", "{497096C7-DD93-449C-8790-B2E22F0B8208}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profile", "..\..\..\Dropbox\KHCigar\learning\Read-Write XML files, Config files, INI files, or the Registry\Read Write XML files, Config files, INI files, or the Registry ProfileSource\Profile.csproj", "{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,8 +75,24 @@ Global
 		{497096C7-DD93-449C-8790-B2E22F0B8208}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{497096C7-DD93-449C-8790-B2E22F0B8208}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{497096C7-DD93-449C-8790-B2E22F0B8208}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(NDepend) = preSolution
+		Project = ".\CapNhatGioChamCong.ndproj"
 	EndGlobalSection
 EndGlobal
