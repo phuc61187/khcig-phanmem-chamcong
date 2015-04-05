@@ -53,6 +53,14 @@
     <StartupObject>ChamCong_v04.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EPPlus">
       <HintPath>..\..\EPPlus.dll</HintPath>
     </Reference>
@@ -65,7 +73,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -85,6 +95,7 @@
     <Compile Include="DTO\cCaChuan.cs" />
     <Compile Include="DTO\cCheckInOut.cs" />
     <Compile Include="DTO\cNgayCong.cs" />
+    <Compile Include="DTO\cNhanVien45.cs" />
     <Compile Include="DTO\cUserInfo.cs" />
     <Compile Include="Helper\MyUtility.cs" />
     <Compile Include="Helper\SqlDataAccessHelper.cs" />
@@ -98,11 +109,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="testForm.cs">
+    <Compile Include="UI4.5\fmXemCong4.5.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="testForm.Designer.cs">
-      <DependentUpon>testForm.cs</DependentUpon>
+    <Compile Include="UI4.5\fmXemCong4.5.Designer.cs">
+      <DependentUpon>fmXemCong4.5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI4.5\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI4.5\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Admin\frmSetupShift.cs">
       <SubType>Form</SubType>
@@ -377,6 +394,7 @@
     <EmbeddedResource Include="Helper\WaitWindowGUI.resx">
       <DependentUpon>WaitWindowGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -387,8 +405,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="testForm.resx">
-      <DependentUpon>testForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI4.5\fmXemCong4.5.resx">
+      <DependentUpon>fmXemCong4.5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI4.5\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Admin\frmSetupShift.resx">
       <DependentUpon>frmSetupShift.cs</DependentUpon>

@@ -161,6 +161,7 @@ namespace ChamCong_v04.UI.XepLich {
 
 			#endregion
 
+			checkListNhiemVu.EndUpdate();
 			List<DataRow> listSelectedNhiemVuChinh = (from DataRowView checkedItem in checkListNhiemVu.CheckedItems select checkedItem.Row).ToList();
 
 			if (listSelectedNhiemVuChinh.Count == 0) {
@@ -178,6 +179,10 @@ namespace ChamCong_v04.UI.XepLich {
 					MessageBox.Show(otherError, Resources.Caption_Loi);
 				}
 				ACMessageBox.Show("Đã thực hiện xong.", Resources.Caption_ThongBao, 2000);
+				//reload GUI : clear check list nhiệm vụ và danh sách nhân viên
+				for (int i = 0; i < checkListNhiemVu.Items.Count; i++)
+					checkListNhiemVu.SetItemChecked(i, false);
+				checkAll_GridDSNV.Checked = false;
 			}
 		}
 

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using ChamCong_v04.BUS;
+using ChamCong_v04.Helper;
 using ChamCong_v04.Properties;
 using ChamCong_v04.UI.Admin;
 using ChamCong_v04.UI.ChamCong;
 using ChamCong_v04.UI.XepLich;
+using ChamCong_v04.UI4._5;
 using log4net;
 
 namespace ChamCong_v04.UI {
@@ -62,17 +64,21 @@ namespace ChamCong_v04.UI {
 
 				XL.SaveSetting(lastAccLogIn: currUserAccount);
 				XL.ChuanBiDSLichTrinhVaCa();
-
+				SqlDataAccessHelper.ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=WiseEyeV5Express;Integrated Security=true";
+				fmXemCong4 fm = new fmXemCong4();
+				fm.Show();
 /*
 				fmTKeCongTheoNVu frm = new fmTKeCongTheoNVu();
 				this.Hide();
 				frm.ShowDialog();
 				this.Close();
 */
+/*
 				frm_main frm = new frm_main();
 				this.Hide();
 				frm.ShowDialog();
 				this.Close();
+*/
 
 				// hiển thị form tài khoản thường
 			}
