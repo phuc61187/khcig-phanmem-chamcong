@@ -93,7 +93,7 @@ namespace ChamCong_v05.BUS {
 					GioLamViec5 = (TimeSpan)row["TGLamViec"],
 					LamTangCuong = (TimeSpan)row["TGLamThem"],
 					LamBanDem = (TimeSpan)row["TGLamDem"],
-					GioThuc5 = (TimeSpan)row["TGThuc"],//info  xem lai cac truong khac cua ngayCong.TG, vào trễ? ra sớm?--> do CIO lưu
+					GioThucTe5 = (TimeSpan)row["TGThuc"],//info  xem lai cac truong khac cua ngayCong.TG, vào trễ? ra sớm?--> do CIO lưu
 				};
 				ngayCong.DSVang = new List<cLoaiVang>(); //info danh sách vắng load ở hàm xử lý sau
 				ngayCong.DSVaoRa = new List<cCheckInOut>();
@@ -176,7 +176,7 @@ namespace ChamCong_v05.BUS {
 								 },
 								 TG = (haveINOUT < 0) ? null : new ThoiGian
 									 {
-										 GioThuc5 = (TimeSpan)row["TGThuc"],
+										 GioThucTe5 = (TimeSpan)row["TGThuc"],
 										 GioLamViec5 = (TimeSpan)row["TGLamViec"],
 										 LamBanDem = (TimeSpan)row["TGLamDem"],
 										 LamTangCuong = (TimeSpan)row["TGLamThem"],

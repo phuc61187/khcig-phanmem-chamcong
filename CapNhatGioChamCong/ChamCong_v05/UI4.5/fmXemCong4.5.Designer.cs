@@ -26,10 +26,10 @@
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
 			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-			treeNode2});
+            treeNode2});
 			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-			treeNode1,
-			treeNode3});
+            treeNode1,
+            treeNode3});
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -126,7 +126,7 @@
 			treeNode4.Name = "Node0";
 			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-			treeNode4});
+            treeNode4});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(223, 173);
 			this.treePhongBan.TabIndex = 0;
@@ -138,8 +138,8 @@
 			this.checkedDSNV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkedDSNV.Properties.Appearance.Options.UseFont = true;
 			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-			new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-			new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.checkedDSNV.Size = new System.Drawing.Size(189, 20);
 			this.checkedDSNV.TabIndex = 1;
 			// 
@@ -149,7 +149,7 @@
 			this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label1.Location = new System.Drawing.Point(236, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(107, 16);
+			this.label1.Size = new System.Drawing.Size(103, 14);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Chọn nhân viên";
 			// 
@@ -159,7 +159,7 @@
 			this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label2.Location = new System.Drawing.Point(236, 42);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(82, 16);
+			this.label2.Size = new System.Drawing.Size(80, 14);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Chọn tháng";
 			// 
@@ -188,49 +188,49 @@
 			this.dgrdTongHop.ColumnHeadersHeight = 45;
 			this.dgrdTongHop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgrdTongHop.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.g1c2,
-			this.g1c1,
-			this.g1c3,
-			this.g1cd1,
-			this.g1cd2,
-			this.g1cd3,
-			this.g1cd4,
-			this.g1cd5,
-			this.g1cd6,
-			this.g1cd7,
-			this.g1cd8,
-			this.g1cd9,
-			this.g1cd10,
-			this.g1cd11,
-			this.g1cd12,
-			this.g1cd13,
-			this.g1cd14,
-			this.g1cd15,
-			this.g1cd16,
-			this.g1cd17,
-			this.g1cd18,
-			this.g1cd19,
-			this.g1cd20,
-			this.g1cd21,
-			this.g1cd22,
-			this.g1cd23,
-			this.g1cd24,
-			this.g1cd25,
-			this.g1cd26,
-			this.g1cd27,
-			this.g1cd28,
-			this.g1cd29,
-			this.g1cd30,
-			this.g1cd31,
-			this.g1c24,
-			this.g1c25});
+            this.g1c2,
+            this.g1c1,
+            this.g1c3,
+            this.g1cd1,
+            this.g1cd2,
+            this.g1cd3,
+            this.g1cd4,
+            this.g1cd5,
+            this.g1cd6,
+            this.g1cd7,
+            this.g1cd8,
+            this.g1cd9,
+            this.g1cd10,
+            this.g1cd11,
+            this.g1cd12,
+            this.g1cd13,
+            this.g1cd14,
+            this.g1cd15,
+            this.g1cd16,
+            this.g1cd17,
+            this.g1cd18,
+            this.g1cd19,
+            this.g1cd20,
+            this.g1cd21,
+            this.g1cd22,
+            this.g1cd23,
+            this.g1cd24,
+            this.g1cd25,
+            this.g1cd26,
+            this.g1cd27,
+            this.g1cd28,
+            this.g1cd29,
+            this.g1cd30,
+            this.g1cd31,
+            this.g1c24,
+            this.g1c25});
 			this.dgrdTongHop.GridColor = System.Drawing.Color.White;
 			this.dgrdTongHop.Location = new System.Drawing.Point(1, 218);
 			this.dgrdTongHop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.dgrdTongHop.Name = "dgrdTongHop";
 			this.dgrdTongHop.RowHeadersVisible = false;
 			this.dgrdTongHop.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdTongHop.Size = new System.Drawing.Size(1342, 401);
+			this.dgrdTongHop.Size = new System.Drawing.Size(1342, 370);
 			this.dgrdTongHop.TabIndex = 27;
 			// 
 			// g1c2
@@ -471,7 +471,7 @@
 			this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label3.Location = new System.Drawing.Point(1, 200);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(155, 16);
+			this.label3.Size = new System.Drawing.Size(149, 14);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Bảng chấm công tháng";
 			// 
@@ -489,7 +489,7 @@
 			// fmXemCong4
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(1344, 622);
+			this.ClientSize = new System.Drawing.Size(1344, 592);
 			this.Controls.Add(this.btnChamCong);
 			this.Controls.Add(this.dgrdTongHop);
 			this.Controls.Add(this.dateNavigator1);

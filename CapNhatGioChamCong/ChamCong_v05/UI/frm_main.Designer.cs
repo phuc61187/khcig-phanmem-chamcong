@@ -32,6 +32,9 @@
 			this.MenuHoatDong = new System.Windows.Forms.ToolStripMenuItem();
 			this.SubMenu_SuaGioHangLoat = new System.Windows.Forms.ToolStripMenuItem();
 			this.SubMenu_XemHistory = new System.Windows.Forms.ToolStripMenuItem();
+			this.SubMenu_QLNhiemVuNhanVien = new System.Windows.Forms.ToolStripMenuItem();
+			this.SubMenu_XemTKeCongVaPCTheoNVu = new System.Windows.Forms.ToolStripMenuItem();
+			this.SubMenu_XemDSNhiemVu = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuQLNV = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuTinhLuong = new System.Windows.Forms.ToolStripMenuItem();
 			this.SubMenu_KetLuongThang = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,9 +46,6 @@
 			this.SubMenu_TaoTK = new System.Windows.Forms.ToolStripMenuItem();
 			this.SubMenu_Setting = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuThoat = new System.Windows.Forms.ToolStripMenuItem();
-			this.SubMenu_XemTKeCongVaPCTheoNVu = new System.Windows.Forms.ToolStripMenuItem();
-			this.SubMenu_QLNhiemVuNhanVien = new System.Windows.Forms.ToolStripMenuItem();
-			this.SubMenu_XemDSNhiemVu = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -63,7 +63,7 @@
             this.MenuThoat});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1144, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(1344, 24);
 			this.menuStrip1.TabIndex = 1;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -135,6 +135,27 @@
 			this.SubMenu_XemHistory.Size = new System.Drawing.Size(316, 22);
 			this.SubMenu_XemHistory.Text = "Xem lịch sử sửa giờ chấm công";
 			this.SubMenu_XemHistory.Click += new System.EventHandler(this.SubMenu_xemHistory_Click);
+			// 
+			// SubMenu_QLNhiemVuNhanVien
+			// 
+			this.SubMenu_QLNhiemVuNhanVien.Name = "SubMenu_QLNhiemVuNhanVien";
+			this.SubMenu_QLNhiemVuNhanVien.Size = new System.Drawing.Size(316, 22);
+			this.SubMenu_QLNhiemVuNhanVien.Text = "Quản lý nhiệm vụ của nhân viên";
+			this.SubMenu_QLNhiemVuNhanVien.Click += new System.EventHandler(this.SubMenu_QLNhiemVu_Click);
+			// 
+			// SubMenu_XemTKeCongVaPCTheoNVu
+			// 
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Name = "SubMenu_XemTKeCongVaPCTheoNVu";
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Size = new System.Drawing.Size(316, 22);
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Text = "Xem thống kê công, PC, phép theo nhiệm vụ";
+			this.SubMenu_XemTKeCongVaPCTheoNVu.Click += new System.EventHandler(this.SubMenu_XemTKeCongVaPCTheoNVu_Click);
+			// 
+			// SubMenu_XemDSNhiemVu
+			// 
+			this.SubMenu_XemDSNhiemVu.Name = "SubMenu_XemDSNhiemVu";
+			this.SubMenu_XemDSNhiemVu.Size = new System.Drawing.Size(316, 22);
+			this.SubMenu_XemDSNhiemVu.Text = "Xem danh sách nhiệm vụ";
+			this.SubMenu_XemDSNhiemVu.Click += new System.EventHandler(this.SubMenu_XemDSNhiemVu_Click);
 			// 
 			// MenuQLNV
 			// 
@@ -225,31 +246,10 @@
 			this.MenuThoat.Text = "Thoát";
 			this.MenuThoat.Click += new System.EventHandler(this.MenuThoat_Click);
 			// 
-			// SubMenu_XemTKeCongVaPCTheoNVu
-			// 
-			this.SubMenu_XemTKeCongVaPCTheoNVu.Name = "SubMenu_XemTKeCongVaPCTheoNVu";
-			this.SubMenu_XemTKeCongVaPCTheoNVu.Size = new System.Drawing.Size(316, 22);
-			this.SubMenu_XemTKeCongVaPCTheoNVu.Text = "Xem thống kê công, PC, phép theo nhiệm vụ";
-			this.SubMenu_XemTKeCongVaPCTheoNVu.Click += new System.EventHandler(this.SubMenu_XemTKeCongVaPCTheoNVu_Click);
-			// 
-			// SubMenu_QLNhiemVuNhanVien
-			// 
-			this.SubMenu_QLNhiemVuNhanVien.Name = "SubMenu_QLNhiemVuNhanVien";
-			this.SubMenu_QLNhiemVuNhanVien.Size = new System.Drawing.Size(316, 22);
-			this.SubMenu_QLNhiemVuNhanVien.Text = "Quản lý nhiệm vụ của nhân viên";
-			this.SubMenu_QLNhiemVuNhanVien.Click += new System.EventHandler(this.SubMenu_QLNhiemVu_Click);
-			// 
-			// SubMenu_XemDSNhiemVu
-			// 
-			this.SubMenu_XemDSNhiemVu.Name = "SubMenu_XemDSNhiemVu";
-			this.SubMenu_XemDSNhiemVu.Size = new System.Drawing.Size(316, 22);
-			this.SubMenu_XemDSNhiemVu.Text = "Xem danh sách nhiệm vụ";
-			this.SubMenu_XemDSNhiemVu.Click += new System.EventHandler(this.SubMenu_XemDSNhiemVu_Click);
-			// 
 			// frm_main
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(1144, 652);
+			this.ClientSize = new System.Drawing.Size(1344, 652);
 			this.Controls.Add(this.menuStrip1);
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
 			this.IsMdiContainer = true;

@@ -743,7 +743,7 @@
 			this.dgrdTongHop.Name = "dgrdTongHop";
 			this.dgrdTongHop.RowHeadersVisible = false;
 			this.dgrdTongHop.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdTongHop.Size = new System.Drawing.Size(876, 477);
+			this.dgrdTongHop.Size = new System.Drawing.Size(1084, 478);
 			this.dgrdTongHop.TabIndex = 26;
 			this.dgrdTongHop.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgrd_ColumnHeaderClick_ToSort);
 			// 
@@ -1021,7 +1021,7 @@
 			this.dgrdDSNVTrgPhg.Name = "dgrdDSNVTrgPhg";
 			this.dgrdDSNVTrgPhg.RowHeadersVisible = false;
 			this.dgrdDSNVTrgPhg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdDSNVTrgPhg.Size = new System.Drawing.Size(228, 416);
+			this.dgrdDSNVTrgPhg.Size = new System.Drawing.Size(228, 417);
 			this.dgrdDSNVTrgPhg.TabIndex = 0;
 			// 
 			// dataGridViewCheckBoxColumn1
@@ -1196,7 +1196,7 @@
 			this.gp1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.gp1.Name = "gp1";
 			this.gp1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.gp1.Size = new System.Drawing.Size(234, 434);
+			this.gp1.Size = new System.Drawing.Size(234, 435);
 			this.gp1.TabIndex = 0;
 			this.gp1.TabStop = false;
 			this.gp1.Text = "Danh sách Nhân viên";
@@ -1214,7 +1214,7 @@
 			this.tabControlChiTiet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabControlChiTiet.Name = "tabControlChiTiet";
 			this.tabControlChiTiet.SelectedIndex = 0;
-			this.tabControlChiTiet.Size = new System.Drawing.Size(890, 509);
+			this.tabControlChiTiet.Size = new System.Drawing.Size(1098, 510);
 			this.tabControlChiTiet.TabIndex = 11;
 			// 
 			// tabTongHop
@@ -1224,7 +1224,7 @@
 			this.tabTongHop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabTongHop.Name = "tabTongHop";
 			this.tabTongHop.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabTongHop.Size = new System.Drawing.Size(882, 481);
+			this.tabTongHop.Size = new System.Drawing.Size(1090, 482);
 			this.tabTongHop.TabIndex = 0;
 			this.tabTongHop.Text = "Tổng hợp";
 			this.tabTongHop.UseVisualStyleBackColor = true;
@@ -2266,7 +2266,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(240, 617);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(240, 618);
 			this.tableLayoutPanel1.TabIndex = 31;
 			// 
 			// panel1
@@ -2284,7 +2284,7 @@
 			// frm_XemCong
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(1136, 621);
+			this.ClientSize = new System.Drawing.Size(1344, 622);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.btnKetCongThang);
 			this.Controls.Add(this.btnXuatBB);

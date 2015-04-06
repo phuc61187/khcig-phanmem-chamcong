@@ -14,10 +14,10 @@ namespace ChamCong_v05.DTO {
 	}
 
 	public class ThoiGian {
-		public TimeSpan GioThuc5 = TimeSpan.Zero;
-		public TimeSpan GioLamViec5 = TimeSpan.Zero;
-		public TimeSpan GioLVTrongCa5 = TimeSpan.Zero;
-		public TimeSpan SoPhutLamThem5 = TimeSpan.Zero;// tương đương giờ làm việc ngoài ca, làm ngoài ca chưa chắc OT ví dụ nửa ca
+		public TimeSpan GioThucTe5 = TimeSpan.Zero;
+		public TimeSpan GioLamViec5 = TimeSpan.Zero; // tổng giờ làm việc đã bao gồm OT nếu có
+		public TimeSpan GioLVTrongCa5 = TimeSpan.Zero; // chỉ tính giờ làm việc nằm trong ca, ko tính OT
+		public TimeSpan SoPhutLamThem5 = TimeSpan.Zero;// tương đương giờ LV ngoài ca, tương đương OT đã xác nhận, làm ngoài ca chưa chắc OT ví dụ nửa ca
 		public TimeSpan LamBanDem = TimeSpan.Zero;
 		public TimeSpan LamTangCuong = TimeSpan.Zero; //trên 8 tiếng là tăng cường(ko xét ngày hay đêm)
 		//public TimeSpan Tinh100 = TimeSpan.Zero;
@@ -32,7 +32,7 @@ namespace ChamCong_v05.DTO {
 
 		public TimeSpan VaoTre = TimeSpan.Zero;
 		public TimeSpan RaaSom = TimeSpan.Zero;
-		public TimeSpan OLai = TimeSpan.Zero;
+		public TimeSpan OLai = TimeSpan.Zero; // 
 	}
 
 	public class ThoiDiem

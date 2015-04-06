@@ -122,7 +122,7 @@ namespace ChamCong_v05.UI.XacNhan {
 				tbTTGioRaa.Text = (CIO.Raa != null) ? CIO.Raa.Time.ToString("H:mm d/M") : string.Empty;
 				tbTTThuocCa.Text = CIO.CIOCodeFull();
 				tbTTGioLam.Text = (CIO.HaveINOUT == 0) ? CIO.TG.GioLamViec5.ToString(@"h\gmm\p") : string.Empty;
-				tbTTTongGio.Text = (CIO.HaveINOUT == 0) ? CIO.TG.GioThuc5.ToString(@"h\gmm\p") : string.Empty;
+				tbTTTongGio.Text = (CIO.HaveINOUT == 0) ? CIO.TG.GioThucTe5.ToString(@"h\gmm\p") : string.Empty;
 				tbTTTreSom.Text = (CIO.HaveINOUT == 0) ? (CIO.TG.VaoTre + CIO.TG.RaaSom).ToString(@"h\gmm\p") : string.Empty;
 				tbTTOLaiThem.Text = (CIO.HaveINOUT == 0) ? CIO.TG.OLai.ToString(@"h\gmm\p") : string.Empty;
 				tbTTLamThem.Text = (CIO.DaXN) ? CIO.TG.SoPhutLamThem5.ToString(@"h\gmm\p") : string.Empty;
@@ -172,7 +172,7 @@ namespace ChamCong_v05.UI.XacNhan {
 				tbTTGioRaa.Text = (CIO.Raa != null) ? CIO.Raa.Time.ToString("H:mm d/M") : string.Empty;
 				tbTTThuocCa.Text = CIO.CIOCodeFull();
 				tbTTGioLam.Text = (CIO.HaveINOUT == 0) ? CIO.TG.GioLamViec5.ToString(@"h\gmm\p") : string.Empty;
-				tbTTTongGio.Text = (CIO.HaveINOUT == 0) ? CIO.TG.GioThuc5.ToString(@"h\gmm\p") : string.Empty;
+				tbTTTongGio.Text = (CIO.HaveINOUT == 0) ? CIO.TG.GioThucTe5.ToString(@"h\gmm\p") : string.Empty;
 				tbTTTreSom.Text = (CIO.HaveINOUT == 0) ? (CIO.TG.VaoTre + CIO.TG.RaaSom).ToString(@"h\gmm\p") : string.Empty;
 				tbTTOLaiThem.Text = (CIO.HaveINOUT == 0) ? CIO.TG.OLai.ToString(@"h\gmm\p") : string.Empty;
 				tbTTLamThem.Text = (CIO.DaXN) ? CIO.TG.SoPhutLamThem5.ToString(@"h\gmm\p") : string.Empty;

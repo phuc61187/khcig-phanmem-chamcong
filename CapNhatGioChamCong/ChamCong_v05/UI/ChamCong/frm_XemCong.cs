@@ -215,9 +215,8 @@ namespace ChamCong_v05.UI.ChamCong {
 			DateTime mondayOfLastWeek = today.AddDays(-(int)today.DayOfWeek - 6);
 			var ngaybd = mondayOfLastWeek;
 			var ngaykt = today;
-			if (Settings.Default.LastStartDate != DateTime.MinValue) {
-				ngaybd = Settings.Default.LastStartDate;
-				ngaykt = Settings.Default.LastEndDate;
+			if (Settings.Default.LastStartDate != null && Settings.Default.LastStartDate != DateTime.MinValue) {
+				ngaybd = Settings.Default.LastStartDate;ngaykt = Settings.Default.LastEndDate;
 			}
 			dtpNgayBD.Value = ngaybd;
 			dtpNgayKT.Value = ngaykt;

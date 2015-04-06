@@ -117,8 +117,8 @@ namespace ChamCong_v05.UI.ChamCong {
 				row2["TimeStrThu"] = row2["TimeStrNgay"] = ngayCong.Ngay.Date;
 				row1["Loai"] = "Vào";
 				row2["Loai"] = "Ra";
-				row1["IsEdited"] = (ngayCong.IsEdited > 0);
-				row2["IsEdited"] = (ngayCong.IsEdited > 0);
+				row1["IsEdited"] = false;
+				row2["IsEdited"] = false;
 				row1["IsEnableEdit"] = isEnableEdit;
 				row2["IsEnableEdit"] = isEnableEdit;
 

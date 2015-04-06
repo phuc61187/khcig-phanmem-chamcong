@@ -11,7 +11,6 @@ namespace ChamCong_v05.DTO {
 		public cNgayCong prev;
 		public cNgayCong next;
 
-		public ushort IsEdited = 0;
 		public ThoiGian TG = new ThoiGian();
 
 		public float TongCong;

@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ChamCong_v04.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ChamCong_v05.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="ConnectionStringPath" Type="System.String" Scope="User">
@@ -18,10 +18,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastEndDate" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">2015-01-01</Value>
     </Setting>
     <Setting Name="LastStartDate" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">2015-01-01</Value>
     </Setting>
     <Setting Name="LastSanLuong" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10000000</Value>

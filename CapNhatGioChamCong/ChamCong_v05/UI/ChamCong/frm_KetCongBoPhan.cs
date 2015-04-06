@@ -286,7 +286,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								kq1 = DAO5.InsKetCongCa(nv.MaCC, ngayCong.Ngay, CIO.Vao.Time, CIO.Raa.Time,
 													   CIO.ThuocCa.ID, CIO.ThuocCa.Code, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
 													   CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,//ver 4.0.0.4	
-													   CIO.OTMin, CIO.QuaDem, CIO.ThuocCa.KyHieuCC, CIO.TG.GioLamViec5, CIO.TG.LamTangCuong, CIO.TG.LamBanDem, CIO.TG.GioThuc5,
+													   CIO.OTMin, CIO.QuaDem, CIO.ThuocCa.KyHieuCC, CIO.TG.GioLamViec5, CIO.TG.LamTangCuong, CIO.TG.LamBanDem, CIO.TG.GioThucTe5,
 													   CIO.TG.VaoTre, CIO.TG.RaaSom,
 													   CIO.TD.BD_LV, CIO.TD.KT_LV, thongtinCa, shiftParams,
 													   CIO.HaveINOUT, CIO.Cong);
@@ -298,7 +298,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 														 ngayCong.PhuCaps._100_LVNN_Ngay, ngayCong.PhuCaps._150_LVNN_Dem,
 														 ngayCong.PhuCaps._200_LeTet_Ngay, ngayCong.PhuCaps._250_LeTet_Dem,
 														 ngayCong.PhuCaps._Cus, ngayCong.TG.GioLamViec5, ngayCong.TG.LamTangCuong,
-														 ngayCong.TG.LamBanDem, ngayCong.TG.GioThuc5, ngayCong.QuaDem);
+														 ngayCong.TG.LamBanDem, ngayCong.TG.GioThucTe5, ngayCong.QuaDem);
 						}
 					}
 				}

@@ -100,9 +100,9 @@ namespace ChamCong_v05.BUS {
 				tre = TimeSpan.Zero;
 			}
 			else {
-                var timeInn_0second = new DateTime(timeinn.Year, timeinn.Month, timeinn.Day, timeinn.Hour, timeinn.Minute, 0);
+				var timeInn_0second = new DateTime(timeinn.Year, timeinn.Month, timeinn.Day, timeinn.Hour, timeinn.Minute, 0);
 				if (chopheptre < timeInn_0second) {
-                    td_batdau_lv = timeInn_0second;
+					td_batdau_lv = timeInn_0second;
 					tre = timeInn_0second - onnduty;
 				}
 				else {
@@ -118,7 +118,7 @@ namespace ChamCong_v05.BUS {
 				som = TimeSpan.Zero;
 			}
 			else {
-                var timeOut_0second = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
+				var timeOut_0second = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
 				if (timeOut_0second < chophepsom) {
 					td_ketthuc_lv_chuaOT = timeOut_0second;
 					som = offduty - timeOut_0second;
@@ -131,17 +131,14 @@ namespace ChamCong_v05.BUS {
 		}
 
 		public static void OLai(DateTime timeout, DateTime offduty, DateTime batdaulamthem, out TimeSpan olai) {
-            var timeOut_0second = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
-            if (batdaulamthem < timeOut_0second)
-            {
+			var timeOut_0second = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
+			if (batdaulamthem < timeOut_0second) {
 				olai = timeOut_0second - offduty;
 			}
 			else {
 				olai = TimeSpan.Zero;
 			}
 		}
-
-
 
 		public static void Tinh_TGLamViec(DateTime thoidiem_batdau_lamviec, DateTime thoidiem_ketthuc_lamviec_DaCoOT, TimeSpan LunchMin, out TimeSpan TGLamTinhCong) {
 			TGLamTinhCong = (thoidiem_ketthuc_lamviec_DaCoOT - thoidiem_batdau_lamviec).Subtract(LunchMin);
@@ -150,7 +147,6 @@ namespace ChamCong_v05.BUS {
 		public static void Tinh_TGLamViecTrongCa(DateTime tdBdLv, DateTime tdKtLvTrongCa, TimeSpan lunchMin, out TimeSpan tgGioLamViecTrongCa) {//ver 4.0.0.4	
 			tgGioLamViecTrongCa = (tdKtLvTrongCa - tdBdLv).Subtract(lunchMin);
 		}
-
 
 		public static void Tinh_TGLamViec_Ca3(DateTime bd_lv, DateTime kt_lv_DaCoOT, DateTime startNT, DateTime endddNT,
 			out DateTime bd_lv_ca3, out DateTime kt_lv_ca3, out TimeSpan TGLamDem, out bool QuaDem) {
@@ -189,7 +185,7 @@ namespace ChamCong_v05.BUS {
 				TGLamTC_Dem = TGLamDem;
 				TGLamTC_Ngay = TGLamTC - TGLamDem; // số giờ tính pctc
 			}
-			else  // 1 ca đêm nhưng 0.5 ca ko tính tăng cường, nửa ca tính tăng cường đêm
+			else  // 1 ThuocCa đêm nhưng 0.5 ThuocCa ko tính tăng cường, nửa ThuocCa tính tăng cường đêm
 			{
 				TGLamTC_Dem = TGLamTC;
 				TGLamDem_koTC = TGLamDem - TGLamTC;
@@ -242,7 +238,7 @@ namespace ChamCong_v05.BUS {
 											PhuCapTC = (tgTinh150.TotalHours / 8d) * heso_pctc;
 											TongPhuCap = PhuCapTC + PhuCapTCC3;
 										}
-										else  // 1 ca đêm nhưng 0.5 ca ko tính tăng cường, nửa ca tính tăng cường đêm
+										else  // 1 ThuocCa đêm nhưng 0.5 ThuocCa ko tính tăng cường, nửa ThuocCa tính tăng cường đêm
 										{
 											tgTinhTCC3 = SoGioLamThem;
 											tgTinh130 = SoGioLamDemmm - SoGioLamThem;
@@ -306,7 +302,7 @@ namespace ChamCong_v05.BUS {
 		public static void TaoCaTuDo(cCa Ca, DateTime CheckInTime, TimeSpan WorkingTime, TimeSpan SoPhutChoPhepTre, TimeSpan SoPhutChoPhepSomTS, TimeSpan SoPhutAfterOT, float WorkingDay, string kyhieu, bool add1Day = true) {
 			//var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
 			var temp = new TimeSpan(CheckInTime.TimeOfDay.Hours, CheckInTime.TimeOfDay.Minutes, 0);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
-			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.Onn.Add(XL2._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
+			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.Onn.Add(XL2._1ngay); //ThuocCa 3 , ThuocCa 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
 			Ca.Duty = new TS { Onn = temp, Off = temp.Add(WorkingTime) };
 			Ca.LateeMin = SoPhutChoPhepTre;
 			Ca.EarlyMin = SoPhutChoPhepSomTS;
@@ -324,7 +320,7 @@ namespace ChamCong_v05.BUS {
 		public static void TaoCaTuDo(cCa Ca, DateTime CheckInTime) {
 			//var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
 			var temp = new TimeSpan(CheckInTime.TimeOfDay.Hours, CheckInTime.TimeOfDay.Minutes, 0);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
-			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.Onn.Add(XL2._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
+			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.Onn.Add(XL2._1ngay); //ThuocCa 3 , ThuocCa 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
 			if (Ca.ID == int.MinValue + 0) {
 				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._08gio) };
 				Ca.WorkingTimeTS = XL2._08gio;
@@ -372,195 +368,24 @@ namespace ChamCong_v05.BUS {
 
 		//------------------------------------------------------------------------------------------------------------------------------------------
 		public static List<cUserInfo> KhoiTaoDSNV_ChamCong(List<cUserInfo> dsnv, List<int> m_listIDPhongBan, List<cPhongBan> dsphong) {
-			dsnv.Clear();
-			// lấy nv theo phòng ban, bỏ qua các nv ko có lịch trình, ko có phòng ban, ko enable
-			// bao gồm cả nv công nhật
-			if (m_listIDPhongBan.Count == 0) return dsnv;
-			var table = XL.LayDSNV(true, m_listIDPhongBan.ToArray()); // lấy theo phòng ban các nv Enabled, bao gồm cả công nhật
-			if (table.Rows.Count == 0) return dsnv;
-
-			// chấm công thì bỏ qua các NV ko được phép, vẫn giữ công nhật, 
-			dsnv.AddRange(from DataRow row in table.Rows
-						  //where row["UserEnabled"] != DBNull.Value && (bool)row["UserEnabled"]
-						  select
-						  KhoiTaoNV((int)row["UserEnrollNumber"], (string)row["UserFullName"], (string)row["UserFullCode"],
-						  null, null, null,
-						  dsphong,
-						  (row["SchID"] != DBNull.Value ? (int)row["SchID"] : -1),
-						  (row["IDChucVu"] != DBNull.Value) ? (int)row["IDChucVu"] : -1,
-						  (row["ChucVu"] != DBNull.Value) ? (string)row["ChucVu"] : null,
-						  (row["MaPhong"] == DBNull.Value || (int)row["MaPhong"] == 0 || (int)row["MaPhong"] == -1) ? -1 : (int)row["MaPhong"])); //info nếu mã phòng null hoặc 0 là chưa sắp xếp
-			return dsnv;
+			return new List<cUserInfo>();
 		}
 		public static List<cUserInfo> KhoiTaoDSNV_TinhLuong(List<cUserInfo> dsnv, List<cPhongBan> dsphong) {
-			dsnv.Clear();
-			// lấy danh sách tất cả nhân viên trừ các nhân viên công nhật ko tính lương
-			DataTable tableDSNV = XL.LayDSNV(UserEnabled: true); //[20140510_7]
-			if (tableDSNV.Rows.Count == 0) return dsnv;
-			foreach (var nhanvien in from DataRow row in tableDSNV.Rows
-									 select KhoiTaoNV((int)row["UserEnrollNumber"], (string)row["UserFullName"], (string)row["UserFullCode"],
-														(row["HeSoLuongCB"] != DBNull.Value) ? (float)row["HeSoLuongCB"] : 0f,
-														(row["HeSoLuongSP"] != DBNull.Value) ? (float)row["HeSoLuongSP"] : 0f,
-														(row["HSBHCongThem"] != DBNull.Value) ? (float)row["HSBHCongThem"] : 0f,
-														dsphong,
-														(row["SchID"] != DBNull.Value ? (int)row["SchID"] : (int?)null),
-														(row["IDChucVu"] != DBNull.Value) ? (int)row["IDChucVu"] : (int?)null,
-														(row["ChucVu"] != DBNull.Value) ? (string)row["ChucVu"] : null,
-														(row["MaPhong"] == DBNull.Value || (int)row["MaPhong"] == 0 || (int)row["MaPhong"] == -1)
-															? -1
-															: (int)row["MaPhong"])) //info nếu mã phòng null hoặc 0 là chưa sắp xếp
-			{
-				nhanvien.chiTietLuong = new ChiTietLuong();
-				nhanvien.ThongKeThang = new ThongKeCong_PC();
-
-				// tbd lưu ý chưa xét lương công nhật
-				dsnv.Add(nhanvien);
-			}
-			return dsnv;
+			return new List<cUserInfo>();
 		}
 
 		public static cUserInfo KhoiTaoNV(int uen, string ten, string manv,
 			float? hslCB, float? hslCV, float? hsBHcongthem, List<cPhongBan> phongBans,
 			int? schID = null, int? idChucVu = null, string ChucVu = null,
 			int? maphong = null) {
-			cUserInfo nhanvien = new cUserInfo {
-				MaCC = uen, TenNV = ten, MaNV = manv,
-				ChucVu = ChucVu,
-				HeSo = new HeSo(),
-			};
-			if (hslCB != null) nhanvien.HeSo.LuongCB = (float)hslCB;
-			if (hslCV != null) nhanvien.HeSo.LuongCV = (float)hslCV;
-			if (hsBHcongthem != null && hslCB != null) nhanvien.HeSo.BHCongThem_ChoGD_PGD = (float)hsBHcongthem;
-			if (idChucVu == null) nhanvien.IDChucVu = 0;
-			#region xét lịch trình cho nv
-			// chưa có lịch trình thì tạo lịch trình ko có ca
-			if (schID == null) {
-				nhanvien.LichTrinhLV = new cShiftSchedule {
-					SchID = int.MinValue,
-					TenLichTrinh = "Chưa SX",
-					DSCaThu = new List<List<cCa>>(7),
-					DSCaMRThu = new List<List<cCa>>(7)
-				};
-				for (int i = 0; i < 7; i++) {
-					nhanvien.LichTrinhLV.DSCaThu.Add(new List<cCa>());
-					nhanvien.LichTrinhLV.DSCaMRThu.Add(new List<cCa>());
-				}
-				nhanvien.LichTrinhLV.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;//ver 4.0.0.4
-			}
-			else {
-				// tìm lịch trình có ID, nếu ko tìm thấy thì mặc định là chưa sắp xếp
-				nhanvien.LichTrinhLV = DSLichTrinh.FirstOrDefault(o => o.SchID == schID);
-				if (nhanvien.LichTrinhLV == null) {
-					nhanvien.LichTrinhLV = new cShiftSchedule {
-						SchID = int.MinValue,
-						TenLichTrinh = "Chưa SX",
-						DSCaThu = new List<List<cCa>>(7),
-						DSCaMRThu = new List<List<cCa>>(7)
-					};
-					for (int i = 0; i < 7; i++) {
-						nhanvien.LichTrinhLV.DSCaThu.Add(new List<cCa>());
-						nhanvien.LichTrinhLV.DSCaMRThu.Add(new List<cCa>());
-					}
-					nhanvien.LichTrinhLV.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;//ver 4.0.0.4
-				}
-			}
-			if (nhanvien.LichTrinhLV.TGLamDemTheoQuyDinh == TGLamDemTheoQuyDinh._22h00) { nhanvien.StartNT = XL2._22h00; nhanvien.EndddNT = XL2._06h00; }
-			else { nhanvien.StartNT = XL2._21h45; nhanvien.EndddNT = XL2._05h45; }
-
-			#endregion
-			#region xét phòng ban
-
-			nhanvien.PhongBan = (maphong == -1) //info phòng có id -1 là chưa sắp xếp, parent null, idParent mặc định là 0 giống Nhà máy(relationID = 0)
-								  ? new cPhongBan { ID = -1, idParent = 0, parent = null, Ten = "Chưa sắp xếp", ViTri = int.MaxValue } //info vị trí max thì nằm ở cuối, 1 là nằm ở trên
-								  : phongBans.FirstOrDefault(item => item.ID == maphong);
-
-			#endregion
-
-			return nhanvien;
+			return new cUserInfo();
 		}
 
 
 		public static void DiemDanh_v08(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D, DateTime ngaydiemdanh, DateTime currentTime) {
-			//if (dsnv.Count == 0) return;
-
-			//var Arr_MaCC = (from nv in dsnv select nv.MaCC).ToArray();
-			//var tableCheck_A = DAO5.LayTableCIO_A(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D);
-			//var tableCheck_V = DAO5.LayTableCIO_V5(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D);
-			//var tableVang = DAO5.LayTableXPVang(ngayBD_Bef2D, ngayKT_Aft2D, Arr_MaCC);
-			//var tableXacNhanPC50 = DAO5.LayTableXacNhanPC50(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D);
-			//var tableXacNhanPCDB = DAO5.LayTableXacNhanPCDB(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D, Duyet: true);
-			//var tableNgayLe = DAO5.DocNgayLe(ngayBD_Bef2D, ngayKT_Aft2D);
-
-			//var DS_Check_KoHopLe_AllNV = new List<cCheck>();
-
-			//var ds_raa3_vao1 = new List<cCheck>();
-			//foreach (var nv in dsnv) {
-			//	var tempMaCC = nv.MaCC;
-			//	nv.NgayCongBD_Bef2D = ngayBD_Bef2D;
-			//	nv.NgayCongKT_Aft2D = ngayKT_Aft2D;
-			//	LoadDSCheck_A(tempMaCC, tableCheck_A, nv.DS_Check_A);
-			//	LoadDSCIO_V(tempMaCC, tableCheck_V, nv.DS_CIO_V);
-			//	LoadDSXPVang_Le(tempMaCC, tableVang, tableNgayLe, nv.DSVang);
-			//	LoadDSXNPC50(tempMaCC, tableXacNhanPC50, nv.DSXNPhuCap50);
-			//	LoadDSXNPCDB(tempMaCC, tableXacNhanPCDB, nv.DSXNPhuCapDB);
-			//	KhoiTaoDSNgayCong(nv.DSNgayCong, nv.NgayCongBD_Bef2D, nv.NgayCongKT_Aft2D);
-
-			//}
-
-			//foreach (var nv in dsnv) {
-			//	var DS_Check_KoHopLe_1NV = new List<cCheck>();
-			//	LoaiBoCheckKoHopLe1(nv.DS_Check_A, ref DS_Check_KoHopLe_1NV);// loại bỏ check cùng loại trong 30ph, IO 30 phút
-			//	DS_Check_KoHopLe_AllNV.AddRange(DS_Check_KoHopLe_1NV);// add vào ds ko hợp lệ của nhiều nhân viên để xóa sau
-			//	GhepCIO_A2(nv.DS_Check_A, nv.DS_CIO_A);
-
-			//	XetCa_ListCIO_A3(nv.DS_CIO_A, nv.LichTrinhLV, ds_raa3_vao1, nv.DS_Check_A);// xét thuộc ca, update thuộc ngày công, tách ca 3&1 nếu có, rồi tính công//nv.MacDinhTinhPC50, //[140615_4]
-			//	XetCa_ListCIO_V4(nv.DS_CIO_V, nv.LichTrinhLV);
-			//	TronDS_CIO_A_V5(nv.DS_CIO_A, nv.DS_CIO_V, nv.DSVaoRa);
-			//	PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
-			//	PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
-			//	DiemDanhTheoNgay(nv.DSNgayCong, ngaydiemdanh, currentTime);
-
-			//}
-			//if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
-			//if (ds_raa3_vao1.Count > 0) DAO5.ThemGio_ra3_vao1(ds_raa3_vao1);
 		}
 
 		public static void DiemDanhTheoNgay(List<cNgayCong> dsNgayCong, DateTime dateDiemDanh, DateTime currentTime) {
-
-			var ngayDiemDanh = dsNgayCong.FirstOrDefault(item => item.Ngay == dateDiemDanh);
-			if (ngayDiemDanh == null) return;
-			if (ngayDiemDanh.DSVaoRa.Count == 0) // ko chấm công -> vắng --> xac dinh vang nghi hay vang co ly do
-			{
-				ngayDiemDanh.TrangThaiDiemDanh = (ngayDiemDanh.DSVang.Count == 0)
-					? TrangThaiDiemDanh.VANG_NGHI // vang nghi neu ko co xin phep
-					: TrangThaiDiemDanh.VANG_LYDO; // vang xin phep
-			}
-			else // có chấm công 
-			{
-				var LastCIO = ngayDiemDanh.DSVaoRa[ngayDiemDanh.DSVaoRa.Count - 1];
-				if (LastCIO.HaveINOUT == -2) // có ra thiếu vào
-				{
-					ngayDiemDanh.TrangThaiDiemDanh = TrangThaiDiemDanh.DARAVE_THIEUCC; // có chấm công ra --> đã ra về
-				}
-				else if (LastCIO.HaveINOUT == -1) // có vào thiếu ra
-				{
-					if (ngayDiemDanh.next != null && ngayDiemDanh.next.DSVaoRa != null && ngayDiemDanh.next.DSVaoRa.Count > 0) {
-						ngayDiemDanh.TrangThaiDiemDanh = TrangThaiDiemDanh.DARAVE_THIEUCC; // có vào ko ra, ngày hôm sau tồn tại và có chấm công thì nghĩa là hôm trước về rồi quên chấm
-					}
-					else {
-						ngayDiemDanh.TrangThaiDiemDanh = (currentTime - LastCIO.TimeDaiDien >= XL2._24h00)
-							? TrangThaiDiemDanh.DARAVE_THIEUCC // có vào ko ra mà nếu quá 24h(1 ngày) kể từ hiện tại nghĩa là đã về mà thiếu chấm công
-							: TrangThaiDiemDanh.DANGLAMVIEC; // ko quá 24h có nghĩa vẫn đang làm
-					}
-				}
-				else if (LastCIO.HaveINOUT == 0) // đủ vào ra
-				{
-					ngayDiemDanh.TrangThaiDiemDanh = ngayDiemDanh.DSVaoRa.Exists(item => item.HaveINOUT < 0)
-						? TrangThaiDiemDanh.DARAVE_THIEUCC // lần cuối đủ vào ra thì những lần trước là nếu thiếu thì nghĩa là ngày đó thiếu chấm công
-						: TrangThaiDiemDanh.DARAVE;
-				}
-			}
-
 		}
 
 		public static void XemCong_v08(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
@@ -582,7 +407,7 @@ namespace ChamCong_v05.BUS {
 				nv.NgayCongBD_Bef2D = ngayBD_Bef2D;
 				nv.NgayCongKT_Aft2D = ngayKT_Aft2D;
 				LoadDSCheck_A5(tempMaCC, tableCheck_A, out nv.DS_Check_A);
-				LoadDSCIO_V5(tempMaCC, tableCheck_V,out nv.DS_CIO_V);
+				LoadDSCIO_V5(tempMaCC, tableCheck_V, out nv.DS_CIO_V);
 				LoadDSXPVang_Le(tempMaCC, tableXPVang, tableNgayLe, nv.DSVang);
 				LoadDSXNPC50(tempMaCC, tableXN_PCTC, nv.DSXNPhuCap50);
 				LoadDSXNPCDB(tempMaCC, tableXN_PCDB, nv.DSXNPhuCapDB);
@@ -600,8 +425,8 @@ namespace ChamCong_v05.BUS {
 				LoaiBoCheckKoHopLe15(nv.DS_Check_A, out DS_Check_KoHopLe_1NV);// loại bỏ check cùng loại trong 30ph, IO 30 phút
 				DS_Check_KoHopLe_AllNV.AddRange(DS_Check_KoHopLe_1NV);// add vào ds ko hợp lệ của nhiều nhân viên để xóa sau
 				GhepCIO_A2(nv.DS_Check_A, out nv.DS_CIO_A);
-				XetCa_ListCIO_A3(nv.DS_CIO_A, nv.LichTrinhLV, ds_raa3_vao1, nv.DS_Check_A);// xét thuộc ca, update thuộc ngày công, tách ca 3&1 nếu có, rồi tính công//nv.MacDinhTinhPC50, //[140615_4]
-				XetCa_ListCIO_V4(nv.DS_CIO_V, nv.LichTrinhLV);
+				XetCa_ListCIO_A3(nv.DS_CIO_A, nv.LichTrinhLV, ds_raa3_vao1, nv.DS_Check_A);// xét thuộc ThuocCa, update thuộc ngày công, tách ThuocCa 3&1 nếu có, rồi tính công//nv.MacDinhTinhPC50, //[140615_4]
+				XetCa_ListCIO_V4_5(nv.DS_CIO_V);
 				TronDS_CIO_A_V5(nv.DS_CIO_A, nv.DS_CIO_V, out nv.DSVaoRa);
 				PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
@@ -703,58 +528,9 @@ namespace ChamCong_v05.BUS {
 			}
 
 		}
-		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs) {
-			dsVangs.Clear();
-			var arrVangg = tableVang.Select("UserEnrollNumber = " + tempMaCC, "TimeDate asc");
-			//if (arrVangg.Length == 0) return;
-			dsVangs.AddRange(from DataRow row in arrVangg
-							 let TimeDate = (DateTime)row["TimeDate"]
-							 let absentCode = (string)row["AbsentCode"]
-							 let absentDesc = (string)row["AbsentDescription"]
-							 let wkdayy = (Single)row["Workingday"]
-							 select new cLoaiVang { WorkingDay = wkdayy, MaLV_Code = absentCode, MoTa = absentDesc, Ngay = TimeDate });
-			if (tableNgayLe.Rows.Count == 0) goto sort;
-			var dsNgayLe = (from DataRow row in tableNgayLe.Select(string.Empty, "HDate ASC")
-							let ngayle = (DateTime)row["HDate"]
-							let mota = row["Holiday"].ToString()
-							select new cLoaiVang { WorkingDay = 1f, MaLV_Code = "L", MoTa = mota, Ngay = ngayle }).ToList();
-
-			for (int i = 0; i < dsNgayLe.Count; i++) {
-				var ngayLe = dsNgayLe[i];
-				// các trường hợp ko tính 1 công lễ
-				if (dsVangs.Exists(o => o.Ngay == ngayLe.Ngay && o.MaLV_Code == "BD" || o.MaLV_Code == "TS")) {
-					dsNgayLe.RemoveAt(i);
-					i = i - 1;
-				}
-			}
-			dsVangs.AddRange(dsNgayLe);
-
-		sort: dsVangs.Sort(new cLoaiVangComparer());
-
-
-		}
-		public static void LoadDSXNPC50(int tempMaCC, DataTable tableXN_PCTC, List<structPCTC> dsXacNhanPC) {
-			var arrRows = tableXN_PCTC.Select("UserEnrollNumber = " + tempMaCC, "Ngay asc");
-			dsXacNhanPC.Clear();
-			if (arrRows.Length == 0) return;
-			dsXacNhanPC.AddRange(from row in arrRows
-								 let UserEnrollNumber = (int)row["UserEnrollNumber"]
-								 let ngay = (DateTime)row["Ngay"]
-								 let tinhpc50 = (row["TinhPC50"] != DBNull.Value) && (bool)row["TinhPC50"]
-								 select new structPCTC { Ngay = ngay, TinhPC50 = tinhpc50, });
-		}
-		public static void LoadDSXNPCDB(int tempMaCC, DataTable tableXN_PCDB, List<structPCDB> dsXacNhanPC) {
-			var arrRows = tableXN_PCDB.Select("UserEnrollNumber = " + tempMaCC, "Ngay asc");
-			dsXacNhanPC.Clear();
-			if (arrRows.Length == 0) return;
-			dsXacNhanPC.AddRange(from row in arrRows
-								 let UserEnrollNumber = (int)row["UserEnrollNumber"]
-								 let ngay = (DateTime)row["Ngay"]
-								 let LoaiPC = (int)row["LoaiPC"]
-								 let PCNgay = (row["PCNgay"] != DBNull.Value) ? (int)row["PCNgay"] : 0
-								 let PCDem = (row["PCDem"] != DBNull.Value) ? (int)row["PCDem"] : 0
-								 select new structPCDB { Ngay = ngay, LoaiPC = LoaiPC, PCNgay = PCNgay, PCDem = PCDem });
-		}
+		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs) {}
+		public static void LoadDSXNPC50(int tempMaCC, DataTable tableXN_PCTC, List<structPCTC> dsXacNhanPC) {}
+		public static void LoadDSXNPCDB(int tempMaCC, DataTable tableXN_PCDB, List<structPCDB> dsXacNhanPC) {}
 		public static void KhoiTaoDSNgayCong(List<cNgayCong> DSNgayCong, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
 			DSNgayCong.Clear();
 			var indexNgay = ngayBD_Bef2D.Date; // ngayBD_Bef2D là trước 2 ngày vd: xem ngày 3 thì lấy giờ từ ngày 1, nhưng khi tạo ngày công thì lấy từ ngày 2
@@ -788,14 +564,11 @@ namespace ChamCong_v05.BUS {
 		}
 
 
-		#region các bước để tính toán công và phụ cấp các loại
-
-
 		public static void LoaiBoCheckKoHopLe15(List<cCheck> ds_Check_A, out List<cCheck> ds_Check_Trong30ph) {
 			/* 1. lọc này phải dảm bảo sort trước khi vào hàm này xử lý
 			 * 2. cùng I hoặc cùng O của máy chấm công tron 30ph thì loại, check thêm từ PC thì giữ nguyên
 			 */
-			ds_Check_Trong30ph = new List<cCheck>(); 
+			ds_Check_Trong30ph = new List<cCheck>();
 			if (ds_Check_A == null || ds_Check_A.Count == 0 || ds_Check_A.Count == 1) return; //1 phần tử thì khỏi xử lý
 			var i = 0;
 			while (i + 1 < ds_Check_A.Count) {
@@ -882,141 +655,95 @@ namespace ChamCong_v05.BUS {
 			}
 		}
 
-		public static void XetCa_ListCIO_A3(List<cCheckInOut> ds_CIO_A, cShiftSchedule lichtrinh, List<cCheck> ds_raa3_vao1, List<cCheck> ds_check_A) {
-			//bool macdinh_tinhPC50, //[140615_4]
-			try {
-				var i = 0;
-				while (i < ds_CIO_A.Count) {
-					var CIO = ds_CIO_A[i];
+		public static void XetCa_ListCIO_A3(List<cCheckInOut> ds_CIO_A, cShiftSchedule lichtrinh, List<cCheck> ds_raa3_vao1, List<cCheck> ds_check_A) {}
 
-					#region nếu giờ quên check thì chỉ kiểm tra khoảng hiểu ca
+		public static void XetCa_ListCIO_A3_5(List<cCheckInOut> ds_CIO_A, cShiftSchedule lichtrinh, List<cCheck> ds_raa3_vao1, List<cCheck> ds_check_A) {
+			var i = 0;
+			while (i < ds_CIO_A.Count) {
+				var CIO = ds_CIO_A[i];
+				bool isTachCaDem = false;
+				cCheck checkRaa3, checkVao1;
+				cCheckInOut cio_ca3, cio_ca1;
+				cCa thuocCa_Ca3, thuocCa_Ca1;
+				XetCa_1_CIO_A5(CIO, lichtrinh, out CIO.ThuocNgayCong, out CIO.ThuocCa, out isTachCaDem, out CIO.DSCa,
+					out checkRaa3, out checkVao1, out cio_ca3, out cio_ca1, out thuocCa_Ca3, out thuocCa_Ca1);
 
-					int index;
-					if (CIO.HaveINOUT < 0) {
-						CIO.ThuocNgayCong = CIO.TimeDaiDien.Date;
-						index = GetIndex(CIO.ThuocNgayCong);
-						CIO.DSCa = Tim_DSCa_NhanDienDuoc(CIO.TimeDaiDien, CIO.ThuocNgayCong, CIO.HaveINOUT, lichtrinh.DSCaThu[index]);
-						i++;
-						continue;
-					}
+				if (isTachCaDem) {
+					ds_raa3_vao1.Add(checkRaa3);
+					ds_raa3_vao1.Add(checkVao1);//vaoca1
+					ds_check_A.Add(checkRaa3);//raaca3
+					ds_check_A.Add(checkVao1);
+					ds_check_A.Sort(new cCheckComparer());
 
-					#endregion
+					cio_ca3.ThuocCa = thuocCa_Ca3;
+					cio_ca1.ThuocCa = thuocCa_Ca1;
+					cio_ca3.ThuocNgayCong = new DateTime(CIO.ThuocNgayCong.Year, CIO.ThuocNgayCong.Month, CIO.ThuocNgayCong.Day);
+					cio_ca1.ThuocNgayCong = CIO.ThuocNgayCong.AddDays(1d);
+					ds_CIO_A[i] = cio_ca3; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
 
-					var ngay = ThuocNgayCong(CIO.TimeDaiDien);
-					CIO.ThuocNgayCong = ngay;
-					index = GetIndex(CIO.ThuocNgayCong);
-					var ca = KiemtraThuocCa(CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocNgayCong, lichtrinh.DSCaThu[index]);
-
-					#region nếu thuộc khoảng hiểu ca thì set ca
-
-					if (ca != null) {
-						if (ca.TachCaDem) {
-							//tbd thêm điều kiện ca.QuaDem
-							var ca3 = ca.catruoc;
-							var ca1 = ca.casauuu;
-
-							#region check inn, check out vao 3 ra 3, vao 1 ra 1
-
-							var vaoca3 = CIO.Vao;
-							var raaca3 = new cCheck {
-								ID = int.MinValue, Type = "O", MachineNo = 22, Source = "PC", Time = ngay.Add(ca3.Duty.Off), MaCC = CIO.Vao.MaCC,
-							}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
-							var vaoca1 = new cCheck {
-								ID = int.MinValue, Type = "I", MachineNo = 21, Source = "PC", Time = ngay.AddDays(1d).Date.Add(ca1.Duty.Onn).Add(XL2._01giay), MaCC = CIO.Raa.MaCC,
-							}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
-							var raaca1 = CIO.Raa;
-
-							#endregion
-
-							ds_raa3_vao1.Add(raaca3);
-							ds_raa3_vao1.Add(vaoca1);
-							ds_check_A.Add(raaca3);
-							ds_check_A.Add(vaoca1);
-							ds_check_A.Sort(new cCheckComparer());
-							ds_CIO_A[i] = new cCheckInOut { TD = new ThoiDiem(), ThuocCa = ca3, Vao = vaoca3, Raa = raaca3, ThuocNgayCong = ngay, TimeDaiDien = vaoca3.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
-
-							var newCIO = new cCheckInOut { TD = new ThoiDiem(), ThuocCa = ca1, Vao = vaoca1, Raa = raaca1, ThuocNgayCong = ngay.AddDays(1d), TimeDaiDien = vaoca1.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
-
-							// vì hàm insert ko cho phép chèn ở vị trí > số lượng phần tử
-							// => nên nếu i là phần tử cuối thì add vào cuối danh sách, ngược lại thì insert vào vị trí i+1
-							if (i == (ds_CIO_A.Count - 1)) ds_CIO_A.Add(newCIO);
-							else ds_CIO_A.Insert(i + 1, newCIO);
-							i = i + 2; // +2 vì i là ca3, i+1 là ca 1
-						}
-						else {
-							CIO.ThuocCa = ca;
-							i++;
-						}
-					}
-					#endregion
-					#region nếu ko thuộc khoảng hiểu thì đó tạo ca tự do, tính công theo ca tự do này
-
-					else {
-						//var catudo = new cCa { ID = Int32.MinValue, Code = Properties.Settings.Default.shiftCodeCa8h, Is_CaTuDo = true };
-						//TaoCaTuDo(catudo, CIO.Vao.Time);//ver 4.0.0.4	
-						cCa catudo;
-						TaoCaTuDo(CIO.Vao.Time, int.MinValue, out catudo);
-						CIO.ThuocCa = catudo;
-
-						i++;
-					}
-
-					#endregion
+					// vì hàm insert ko cho phép chèn ở vị trí > số lượng phần tử
+					// => nên nếu i là phần tử cuối thì add vào cuối danh sách, ngược lại thì insert vào vị trí i+1
+					if (i == (ds_CIO_A.Count - 1)) ds_CIO_A.Add(cio_ca1);
+					else ds_CIO_A.Insert(i + 1, cio_ca1);
+					i = i + 2; // +2 vì i là ThuocCa_Ca3, i+1 là ThuocCa 1
 				}
-
-			} catch (Exception e) {
-				lg.Error(string.Format("[{0}]_[{1}]\n", "XLChamCong", System.Reflection.MethodBase.GetCurrentMethod().Name), e);
+				else i++;
 			}
 		}
 
-		public static void XetCa_1_CIO_A_KoTachCa(cCheckInOut CIO, cShiftSchedule lichtrinh) {
-			int index;
-			#region nếu giờ quên check thì chỉ kiểm tra khoảng hiểu ca
+		public static void XetCa_1_CIO_A5(cCheckInOut CIO, cShiftSchedule lichtrinh,
+			out DateTime ThuocNgayCong, out cCa ThuocCa, out bool IsTachCaDem, out List<cCa> DSCa_KV_KR,
+			out cCheck CheckRaa3, out cCheck CheckVao1, out cCheckInOut CIO_Ca3, out cCheckInOut CIO_Ca1, out cCa ThuocCa_Ca3, out cCa ThuocCa_Ca1) {
+			IsTachCaDem = false;
+			DSCa_KV_KR = null;
+			CheckRaa3 = null;CheckVao1 = null;
+			CIO_Ca3 = null;CIO_Ca1 = null;
+			ThuocCa = null;ThuocCa_Ca3 = null;ThuocCa_Ca1 = null;
+			#region nếu giờ quên check thì chỉ kiểm tra khoảng hiểu ThuocCa
 
+			int index;
+			ThuocNgayCong = new DateTime(CIO.TimeDaiDien.Year, CIO.TimeDaiDien.Month, CIO.TimeDaiDien.Day);
+			index = MyUtility.GetIndexOf_DayInWeek(ThuocNgayCong);
 			if (CIO.HaveINOUT < 0) {
-				CIO.ThuocNgayCong = CIO.TimeDaiDien.Date;
-				index = XL.GetIndex(CIO.ThuocNgayCong);
-				CIO.DSCa = Tim_DSCa_NhanDienDuoc(CIO.TimeDaiDien, CIO.ThuocNgayCong, CIO.HaveINOUT, lichtrinh.DSCaThu[index]);
+				DSCa_KV_KR = Tim_DSCa_NhanDienDuoc(CIO.TimeDaiDien, ThuocNgayCong, CIO.HaveINOUT, lichtrinh.DSCaThu[index]); // nếu ko tìm đc thì bằng null
+				return;
 			}
 
 			#endregion
+			ThuocCa = KiemtraThuocCa(CIO.Vao.Time, CIO.Raa.Time, ThuocNgayCong, lichtrinh.DSCaThu[index]);
 
-			// ca có đủ vào ra
-			var ngay = ThuocNgayCong(CIO.TimeDaiDien);
-			CIO.ThuocNgayCong = ngay;
-			index = XL.GetIndex(CIO.ThuocNgayCong);
-			var ca = KiemtraThuocCa(CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocNgayCong, lichtrinh.DSCaThu[index]);
-			if (ca != null) { //nếu thuộc khoảng hiểu ca thì tính công
-				CIO.ThuocCa = ca;
+			#region nếu thuộc khoảng hiểu ThuocCa thì set ThuocCa
+
+			if (ThuocCa != null) {
+				if (ThuocCa.TachCaDem) {
+					//tbd thêm điều kiện ThuocCa.QuaDem
+					ThuocCa_Ca3 = ThuocCa.catruoc;
+					ThuocCa_Ca1 = ThuocCa.casauuu;
+
+					#region check inn, check out vao 3 ra 3, vao 1 ra 1
+
+					var vaoca3 = CIO.Vao;
+					CheckRaa3 = new cCheck {
+						ID = int.MinValue, Type = "O", MachineNo = 22, Source = "PC", Time = ThuocNgayCong.Add(ThuocCa_Ca3.Duty.Off), MaCC = CIO.Vao.MaCC,
+					}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
+					CheckVao1 = new cCheck {
+						ID = int.MinValue, Type = "I", MachineNo = 21, Source = "PC", Time = ThuocNgayCong.AddDays(1d).Date.Add(ThuocCa_Ca1.Duty.Onn).Add(XL2._01giay), MaCC = CIO.Raa.MaCC,
+					}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
+					var raaca1 = CIO.Raa;
+
+					#endregion
+
+					CIO_Ca3 = new cCheckInOut { TD = new ThoiDiem(), Vao = vaoca3, Raa = CheckRaa3, TimeDaiDien = vaoca3.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
+					CIO_Ca1 = new cCheckInOut { TD = new ThoiDiem(), Vao = CheckVao1, Raa = raaca1, TimeDaiDien = CheckVao1.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
+				}
 			}
-			else { //nếu ko thuộc khoảng hiểu thì đó tạo ca tự do, tính công theo ca tự do này
-				var catudo = new cCa { ID = Int32.MinValue, Code = Properties.Settings.Default.shiftCodeCa8h, Is_CaTuDo = true };
-				//TaoCaTuDo(catudo, CIO.Vao.Time, XL2._08gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1f, "8");
-				TaoCaTuDo(catudo, CIO.Vao.Time);
-				CIO.ThuocCa = catudo;
-			}
+			#endregion
+			else TaoCaTuDo(CIO.Vao.Time, int.MinValue, out ThuocCa);
+
 		}
 
-		public static int GetIndex(DateTime dateTime) {
-			switch (dateTime.DayOfWeek) {
-				case DayOfWeek.Sunday:
-					return 0;
-				case DayOfWeek.Monday:
-					return 1;
-				case DayOfWeek.Tuesday:
-					return 2;
-				case DayOfWeek.Wednesday:
-					return 3;
-				case DayOfWeek.Thursday:
-					return 4;
-				case DayOfWeek.Friday:
-					return 5;
-				case DayOfWeek.Saturday:
-					return 6;
+		public static void XetCa_1_CIO_A_KoTachCa(cCheckInOut CIO, cShiftSchedule lichtrinh) {}
 
-			}
-			return 0;
-		}
 
 		public static cCa KiemtraThuocCa(DateTime t_vao, DateTime t_raa, DateTime ngay, List<cCa> dsCa) {
 			return dsCa.FirstOrDefault(ca => t_vao >= ngay.Add(ca.NhanDienVao.Onn) && t_vao <= ngay.Add(ca.NhanDienVao.Off)
@@ -1037,40 +764,30 @@ namespace ChamCong_v05.BUS {
 
 
 
-		public static void XetCa_ListCIO_V4(List<cCheckInOut> ds_CIO_V, cShiftSchedule lichtrinh) {
+		public static void XetCa_ListCIO_V4_5(List<cCheckInOut> ds_CIO_V) {
 			foreach (cCheckInOut chkInOutV in ds_CIO_V) {
-				XetCa_1_CIO_V(chkInOutV, lichtrinh);
+				XetCa_1_CIO_V_5(chkInOutV, out chkInOutV.ThuocNgayCong, out chkInOutV.ThuocCa);
 			}
 
 		}
 
-		public static void XetCa_1_CIO_V(cCheckInOut chkInOutV, cShiftSchedule lichtrinh) {
-			cCa thuocCa = new cCa();
-			int index = GetIndex(chkInOutV.ThuocNgayCong);
+		public static void XetCa_1_CIO_V(cCheckInOut chkInOutV, cShiftSchedule lichtrinh) { }
+
+		public static void XetCa_1_CIO_V_5(cCheckInOut chkInOutV,
+			out DateTime ThuocNgayCong, out cCa ThuocCa) {
+			ThuocCa = new cCa();
+			ThuocNgayCong = new DateTime(chkInOutV.TimeDaiDien.Year, chkInOutV.TimeDaiDien.Month, chkInOutV.TimeDaiDien.Day);
 			var shiftID = chkInOutV.ShiftID;
 			if (shiftID > 0) {
-				// tìm trong ds ca chuẩn có trong lịch trình trước
-				thuocCa = ((lichtrinh.DSCaThu[index].FirstOrDefault(item => item.ID == shiftID)
-					?? lichtrinh.DSCaMRThu[index].FirstOrDefault(item => item.ID == shiftID))
-					?? XL.DSCa.FirstOrDefault(item => item.ID == shiftID))
+				// tìm trong ds ThuocCa chuẩn có trong lịch trình trước
+				ThuocCa = (XL.DSCa.FirstOrDefault(item => item.ID == shiftID))
 					?? XL.DSCaMoRong.FirstOrDefault(item => item.ID == shiftID);
 			}
-			else if (shiftID < Int32.MinValue + 100) // ca tự do (8 tiếng, ca dài 12 tiếng)
+			else if (shiftID < Int32.MinValue + 100) // ThuocCa tự do (8 tiếng, ThuocCa dài 12 tiếng)
 			{
-/*
-				if (shiftID == int.MinValue + 0) {
-					thuocCa = new cCa { ID = int.MinValue, Code = mySetting.Default.shiftCodeCa8h, KyHieuCC = "8", Is_CaTuDo = true };
-					TaoCaTuDo(thuocCa, chkInOutV.Vao.Time, XL2._08gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1f, "8");
-				}
-				else if (shiftID == int.MinValue + 1) {
-					thuocCa = new cCa { ID = int.MinValue, Code = mySetting.Default.shiftCodeCa12h, KyHieuCC = "D", Is_CaTuDo = true };
-					TaoCaTuDo(thuocCa, chkInOutV.Vao.Time, XL2._12gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1.5f, "D");
-				}
-*/
-				thuocCa = new cCa {ID = shiftID, Is_CaTuDo = true};
-				TaoCaTuDo(thuocCa, chkInOutV.Vao.Time);
+				ThuocCa = new cCa { ID = shiftID, Is_CaTuDo = true };
+				TaoCaTuDo(ThuocCa, chkInOutV.Vao.Time);
 			}
-			chkInOutV.ThuocCa = thuocCa;
 		}
 
 		public static void TronDS_CIO_A_V5(List<cCheckInOut> dsCIO_A, List<cCheckInOut> dsCIO_V, out List<cCheckInOut> kq) {
@@ -1080,19 +797,6 @@ namespace ChamCong_v05.BUS {
 			kq.Sort(new cCheckInOutComparer());
 		}
 
-		public static void TinhTG_LV_LVCa3_LamThem1Ca(cCheckInOut CIO, cCa ca, TimeSpan startNT, TimeSpan endddNT) {
-			bool tempQuaDem;
-			TinhTG_LV_LVCa3_LamThem1Ca(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
-				CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,//ver 4.0.0.4	
-				CIO.Vao.Time, CIO.Raa.Time, ca.Duty.Onn, ca.Duty.Off, ca.chophepTreTS, ca.chophepSomTS, ca.batdaulamthemTS, ca.LunchMin, CIO.TG.SoPhutLamThem5,
-				startNT, endddNT,//ver 4.0.0.4
-				out CIO.TD.BD_LV, out CIO.TD.KT_LV, out CIO.TD.KT_LV_ChuaOT, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
-				out CIO.TG.GioThuc5, out CIO.TG.GioLamViec5, out CIO.TG.VaoTre, out CIO.TG.RaaSom,
-				out CIO.TG.GioLVTrongCa5,//ver 4.0.0.4	
-				out CIO.TG.OLai, out CIO.TG.LamTangCuong, out tempQuaDem, out CIO.TG.LamBanDem);
-			CIO.QuaDem = tempQuaDem;// ko cho phép out CIO.QuaDem nên fix tạm bằng cách dùng biến trung gian cục bộ và gán lại
-		}
-
 		public static void TinhTG_LV_LVCa3_LamThem1Ca(DateTime ThuocNgayCong, int HaveINOUT, Boolean DaXN,
 			bool KoTruVaoTre, bool KoTruRaaSom,
 			bool VaotreTinhCV, bool RaaSomTinhCV, //ver 4.0.0.4	
@@ -1100,11 +804,13 @@ namespace ChamCong_v05.BUS {
 			TimeSpan DutyOnn, TimeSpan DutyOff, TimeSpan chophepTreTS, TimeSpan chophepSomTS, TimeSpan batdaulamthemTS,
 			TimeSpan LunchMin, TimeSpan SoPhutLamThem,
 			TimeSpan startNT, TimeSpan endddNT, //ver 4.0.0.4
-			out DateTime TD_BD_LV, out DateTime TD_KT_LV, out DateTime TD_KT_LV_TrongCa, 
+			out DateTime TD_BD_LV, out DateTime TD_KT_LV, out DateTime TD_KT_LV_TrongCa,
 			out DateTime TD_BD_LV_Ca3, out DateTime TD_KT_LV_Ca3,
 			out TimeSpan TGThucTe, out TimeSpan TGGioLamViec, out TimeSpan TGVaoTre, out TimeSpan TGRaaSom,
 			out TimeSpan TGGioLamViecTrongCa, //ver 4.0.0.4	
 			out TimeSpan TGOLai, out TimeSpan TGLamThem, out bool QuaDem, out TimeSpan TGLamBanDem) {
+
+			#region khởi tạo biến
 
 			TD_BD_LV = DateTime.MinValue;
 			TD_KT_LV_TrongCa = DateTime.MinValue; // chưa cộng OT
@@ -1116,10 +822,12 @@ namespace ChamCong_v05.BUS {
 			TGRaaSom = TimeSpan.Zero;
 			TGOLai = TimeSpan.Zero;
 			TGGioLamViec = TimeSpan.Zero; // tổng thời gian làm việc đã gồm OT
-			TGGioLamViecTrongCa = TimeSpan.Zero;//ver 4.0.0.4	
+			TGGioLamViecTrongCa = TimeSpan.Zero; //ver 4.0.0.4	
 			TGLamThem = TimeSpan.Zero;
 			TGLamBanDem = TimeSpan.Zero;
 			QuaDem = false;
+
+			#endregion
 
 			if (HaveINOUT < 0) return;
 
@@ -1134,7 +842,7 @@ namespace ChamCong_v05.BUS {
 			bool quadem;
 
 			TGThucTe = Raa - Vao;
-			// kiểm tra giờ ra ko được nhỏ hơn vào ca, giờ vào ko được nhỏ hơn ra ca
+			// kiểm tra giờ ra ko được nhỏ hơn vào ThuocCa, giờ vào ko được nhỏ hơn ra ThuocCa
 			if (Raa < TD_BD_Ca || Vao > TD_KT_Ca) {
 				return;
 			}
@@ -1143,64 +851,55 @@ namespace ChamCong_v05.BUS {
 			XL.OLai(Raa, TD_KT_Ca, thoidiem_BD_tinhOLai, out TGOLai);
 			Tinh_TGLamViecTrongCa(TD_BD_LV, TD_KT_LV_TrongCa, LunchMin, out TGGioLamViecTrongCa);
 			TD_KT_LV = TD_KT_LV_TrongCa; // giờ chưa qua xác nhận thì kt làm việc là chưa tính OT
-			if (DaXN) {
-                TD_KT_LV = TD_KT_LV_TrongCa.Add(SoPhutLamThem);
-			}
-			Tinh_TGLamViec(TD_BD_LV, TD_KT_LV, LunchMin, out TGGioLamViec);// lúc này TD_KT_LV là kết thúc ca nếu chưa XN, nếu đã XN thì = (TD_KT_LV + khoảng OT)
+			if (DaXN) TD_KT_LV = TD_KT_LV_TrongCa.Add(SoPhutLamThem);
+			
+			Tinh_TGLamViec(TD_BD_LV, TD_KT_LV, LunchMin, out TGGioLamViec);// lúc này TD_KT_LV là kết thúc ThuocCa nếu chưa XN, nếu đã XN thì = (TD_KT_LV + khoảng OT)
 			TGGioLamViec = TGGioLamViecTrongCa + SoPhutLamThem;//ver 4.0.0.4	
 			Tinh_TGLamViec_Ca3(TD_BD_LV, TD_KT_LV, tmpBDLamDem, tmpKTLamDem, out TD_BD_LV_Ca3, out  TD_KT_LV_Ca3, out TGLamBanDem, out quadem);
 			TGLamThem = Tinh_TGLamThem(TGGioLamViec);//(TGGioLamViec - XL2._08gio) >= XL2._01phut ? (TGGioLamViec - XL2._08gio) : TimeSpan.Zero;
 			QuaDem = quadem;
-
-
 		}
 
 
 
 		public static void TinhCong_ListNgayCong8(List<cNgayCong> dsNgayCong, TimeSpan startNT, TimeSpan endddNT) {
 			foreach (var ngayCong in dsNgayCong) {
-				TinhCong_HangNgay(ngayCong, startNT, endddNT);
+				TinhCong_HangNgay(ngayCong, startNT, endddNT, out ngayCong.TG, out ngayCong.PhuCaps, out ngayCong.TongCong, out ngayCong.TongNgayLV, out ngayCong.QuaDem);
 			}
 		}
 
-		public static void TinhCong_HangNgay(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT) {
-			ngayCong.TG = new ThoiGian();
-			ngayCong.PhuCaps = new PhuCap();
-			ngayCong.TongCong = 0f;
-			ngayCong.TongNgayLV = 0f; //ver4.0.0.1
-			ngayCong.QuaDem = false;
-			ngayCong.TinhPC50 = false;
-			ngayCong.TinhPCDB = false;
-			ngayCong.LoaiPCDB = 0;
+		public static void TinhCong_HangNgay(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT, 
+			out ThoiGian TG, out PhuCap PhuCaps, out float TongCong, out float TongNgayLV, out bool QuaDem) {
+			TG = new ThoiGian();
+			PhuCaps = new PhuCap();
+			TongCong = 0f;
+			TongNgayLV = 0f; //ver4.0.0.1
+			QuaDem = false;
 			ngayCong.TrangThaiDiemDanh = TrangThaiDiemDanh.VANG_NGHI;
-			// tính công của từng ca làm việc, sau đó tổng hợp Công làm việc của 1 ngày
+			// tính công của từng ThuocCa làm việc, sau đó tổng hợp Công làm việc của 1 ngày
 			if (ngayCong.DSVaoRa.Count == 0) return;
 			foreach (var CIO in ngayCong.DSVaoRa) {
-				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
-				if (CIO.QuaDem) ngayCong.QuaDem = true; // set qua đêm nếu có
-				float cong_trong_ca = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa5.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday) , 2));
-                float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.SoPhutLamThem5.TotalHours / 8f), 2));// tương đương giờ làm việc ngoài ca, làm ngoài ca chưa chắc OT ví dụ nửa ca
-				CIO.Cong = cong_trong_ca+cong_ngoai_ca;
-				ngayCong.TG.GioThuc5 += CIO.TG.GioThuc5;
-				ngayCong.TG.GioLamViec5 += CIO.TG.GioLamViec5;
-				ngayCong.TG.LamBanDem += CIO.TG.LamBanDem;
-				ngayCong.TG.VaoTre += CIO.TG.VaoTre;
-				ngayCong.TG.RaaSom += CIO.TG.RaaSom;
-				ngayCong.TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
-				//if (CIO.DuyetChoPhepVaoTre && CIO.DuyetChoPhepRaSom)//ver 4.0.0.4	
-				//{
-				//	ngayCong.TongNgayLV += Convert.ToSingle((CIO.ThuocCa.Workingday + (CIO.TG.OTCa.TotalHours / 8f)));
-				//}
-				//else {
-				//	var temp = CIO.TG.GioLVTrongCa;
-				//	if (CIO.VaoTreTinhCV == false) temp += CIO.TG.VaoTre;
-				//	if (CIO.RaaSomTinhCV == false) temp += CIO.TG.RaaSom;
-				//	ngayCong.TongNgayLV += Convert.ToSingle(((temp.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)
-				//													   + (CIO.TG.OTCa.TotalHours / 8f));
-				//}
+				TinhTG_LV_LVCa3_LamThem1Ca(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom, CIO.VaoTreTinhCV, CIO.RaaSomTinhCV, 
+                    CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.Duty.Onn, CIO.ThuocCa.Duty.Off, CIO.ThuocCa.chophepTreTS, CIO.ThuocCa.chophepSomTS,
+                    CIO.ThuocCa.batdaulamthemTS, CIO.ThuocCa.LunchMin, new TimeSpan(0, CIO.OTMin, 0), startNT, endddNT,
+					out CIO.TD.BD_LV, out CIO.TD.KT_LV, out CIO.TD.KT_LV_ChuaOT, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
+				out CIO.TG.GioThucTe5, out CIO.TG.GioLamViec5, out CIO.TG.VaoTre, out CIO.TG.RaaSom,
+				out CIO.TG.GioLVTrongCa5,//ver 4.0.0.4	
+				out CIO.TG.OLai, out CIO.TG.LamTangCuong, out CIO.QuaDem, out CIO.TG.LamBanDem);
+				//if (CIO.QuaDem) QuaDem = true; // set qua đêm nếu có
+				float cong_trong_ca = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa5.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday), 2));
+				float cong_bi_tru_TreSom = CIO.ThuocCa.Workingday - cong_trong_ca;
+				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.SoPhutLamThem5.TotalHours / 8f), 2));// tương đương giờ làm việc ngoài ThuocCa, làm ngoài ThuocCa chưa chắc OT ví dụ nửa ThuocCa
+				CIO.Cong = cong_trong_ca + cong_ngoai_ca;
+				TG.GioThucTe5 += CIO.TG.GioThucTe5;
+				TG.GioLamViec5 += CIO.TG.GioLamViec5;
+				TG.GioLVTrongCa5 += CIO.TG.GioLVTrongCa5;
+				TG.LamBanDem += CIO.TG.LamBanDem;
+				TG.VaoTre += CIO.TG.VaoTre;
+				TG.RaaSom += CIO.TG.RaaSom;
+				TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
 				if ((CIO.DuyetChoPhepVaoTre && CIO.DuyetChoPhepRaSom)
-					|| (CIO.DuyetChoPhepVaoTre == false && CIO.DuyetChoPhepRaSom == false && CIO.VaoTreTinhCV == false && CIO.RaaSomTinhCV == false))
-				{
+					|| (CIO.DuyetChoPhepVaoTre == false && CIO.DuyetChoPhepRaSom == false && CIO.VaoTreTinhCV == false && CIO.RaaSomTinhCV == false)) {
 					ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;
 				}
 				else {
@@ -1208,7 +907,7 @@ namespace ChamCong_v05.BUS {
 						ngayCong.TongNgayLV += cong_trong_ca;
 					else if (CIO.DuyetChoPhepRaSom == false && CIO.RaaSomTinhCV)
 						ngayCong.TongNgayLV += cong_trong_ca;
-					else ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;					
+					else ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;
 				}
 				ngayCong.TongNgayLV += cong_ngoai_ca;
 				//ngayCong.TongNgayLV += (CIO.Cong > CIO.ThuocCa.Workingday) ? CIO.Cong : CIO.ThuocCa.Workingday;//ver4.0.0.1
@@ -1269,7 +968,6 @@ namespace ChamCong_v05.BUS {
 				TinhPCDB_CuaNgay(ngayCong, DSXNPCDB[ngayTinhLaiPCDB].LoaiPC, DSXNPCDB[ngayTinhLaiPCDB].PCNgay, DSXNPCDB[ngayTinhLaiPCDB].PCDem);
 		}
 
-		#endregion
 
 		public static void ThemGioChoNV(int MaCC, cCheck check, List<cCheck> DS_Check_A, string pLydo, string pGhichu) {
 			//if (check.Time.Date <= XL2.NgayCuoiThangKetCong && XL2.NgayCuoiThangKetCong != DateTime.MinValue) return; //tbd temp patch
@@ -1473,7 +1171,6 @@ namespace ChamCong_v05.BUS {
 		internal static void HuyXN_GioChamCong(int ID) {
 			DAO5.HuyXN_GioChamCong(ID);
 		}
-
 	}
 
 }

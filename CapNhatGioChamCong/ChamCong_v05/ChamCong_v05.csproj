@@ -75,6 +75,7 @@
     <Compile Include="DTO\cNgayCong.cs" />
     <Compile Include="DTO\cNhanVien45.cs" />
     <Compile Include="DTO\cUserInfo.cs" />
+    <Compile Include="Helper\MyStruct.cs" />
     <Compile Include="Helper\MyUtility.cs" />
     <Compile Include="Helper\SqlDataAccessHelper.cs" />
     <Compile Include="Helper\WaitWindow.cs" />
@@ -87,6 +88,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI4.5\fmXemCongChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI4.5\fmXemCongChiTiet.Designer.cs">
+      <DependentUpon>fmXemCongChiTiet.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI4.5\fmXemCong4.5.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +389,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI4.5\fmXemCongChiTiet.resx">
+      <DependentUpon>fmXemCongChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI4.5\fmXemCong4.5.resx">
       <DependentUpon>fmXemCong4.5.cs</DependentUpon>
     </EmbeddedResource>

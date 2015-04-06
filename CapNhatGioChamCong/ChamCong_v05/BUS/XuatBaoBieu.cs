@@ -1762,7 +1762,7 @@ namespace ChamCong_v05.BUS {
 					}
 				}
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Convert.ToInt32(ngay.QuaDem));//qua đêm
-				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioThuc5, numFormat: @"[h]:mm");// bỏ :ss
+				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioThucTe5, numFormat: @"[h]:mm");// bỏ :ss
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioLamViec5, numFormat: @"[h]:mm");// bỏ :ss
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamTangCuong, numFormat: @"[h]:mm");// bỏ :ss
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamBanDem, numFormat: @"[h]:mm");// bỏ :ss
@@ -1871,7 +1871,7 @@ namespace ChamCong_v05.BUS {
 					}
 				}
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: Convert.ToInt32(ngay.QuaDem));//qua đêm
-				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioThuc5);
+				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioThucTe5);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioLamViec5);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamTangCuong);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamBanDem);

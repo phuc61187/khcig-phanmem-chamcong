@@ -171,10 +171,10 @@ namespace ChamCong_v05.BUS
 					row["TongTre"] = Math.Floor(ngayCong.TG.VaoTre.TotalMinutes);
 					row["TongSom"] = Math.Floor(ngayCong.TG.RaaSom.TotalMinutes);
 					row["TongGioLam"] = ngayCong.TG.GioLamViec5;//Danglam giophut
-					row["TongGioThuc"] = ngayCong.TG.GioThuc5;//Danglam giophut
+					row["TongGioThuc"] = ngayCong.TG.GioThucTe5;//Danglam giophut
 					row["TongCong"] = ngayCong.TongCong;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
-					row["IsEdited"] = (ngayCong.IsEdited > 0);
+					row["IsEdited"] = false;
 					row["TinhPCTC"] = ngayCong.TinhPC50;
 					if (ngayCong.DSVaoRa.Count == 0 && ngayCong.DSVang.Count == 0)
 						row["ShiftCode"] = "-";
@@ -232,10 +232,10 @@ namespace ChamCong_v05.BUS
 						row["UserFullCode"] = nhanvien.MaNV;
 						row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
 						row["TongGioLam"] = ngayCong.TG.GioLamViec5;//Danglam giophut
-						row["TongGioThuc"] = ngayCong.TG.GioThuc5;//Danglam giophut
+						row["TongGioThuc"] = ngayCong.TG.GioThucTe5;//Danglam giophut
 						row["TongCong"] = ngayCong.TongCong;
 						row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
-						row["IsEdited"] = (ngayCong.IsEdited > 0);
+						row["IsEdited"] = false;
 						var i = 1;
 						foreach (var CIO in ngayCong.DSVaoRa)
 						{
@@ -286,10 +286,10 @@ namespace ChamCong_v05.BUS
 					row["UserFullCode"] = nhanvien.MaNV;
 					row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
 					row["TongGioLam"] = ngayCong.TG.GioLamViec5;//Danglam giophut
-					row["TongGioThuc"] = ngayCong.TG.GioThuc5;//Danglam giophut
+					row["TongGioThuc"] = ngayCong.TG.GioThucTe5;//Danglam giophut
 					row["TongCong"] = ngayCong.TongCong;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
-					row["IsEdited"] = (ngayCong.IsEdited > 0);
+					row["IsEdited"] = false;
 					var i = 1;
 					foreach (var CIO in ngayCong.DSVaoRa)
 					{
@@ -340,12 +340,12 @@ namespace ChamCong_v05.BUS
 					row["UserFullCode"] = nhanvien.MaNV;
 					row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
 					row["TongGioLam"] = ngayCong.TG.GioLamViec5;
-					row["TongGioThuc"] = ngayCong.TG.GioThuc5;
+					row["TongGioThuc"] = ngayCong.TG.GioThucTe5;
 					row["TongCong"] = ngayCong.TongCong;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
 					row["TongTre"] = ngayCong.TG.VaoTre.TotalMinutes;
 					row["TongSom"] = ngayCong.TG.RaaSom.TotalMinutes;
-					row["IsEdited"] = (ngayCong.IsEdited > 0);
+					row["IsEdited"] = false;
 					var i = 1;
 					var flag_IsShow = false;
 					foreach (var CIO in ngayCong.DSVaoRa)
@@ -403,7 +403,7 @@ namespace ChamCong_v05.BUS
 					row["ShiftID"] = CIO.ThuocCa.ID; //9
 					row["Cong"] = CIO.Cong; //20
 					row["TongGioLam"] = CIO.TG.GioLamViec5;//Danglam giophut
-					row["TongGioThuc"] = CIO.TG.GioThuc5;//Danglam giophut
+					row["TongGioThuc"] = CIO.TG.GioThucTe5;//Danglam giophut
 					row["cUserInfo"] = nv;
 					row["cNgayCong"] = ngayCong;
 					row["cCheckInOut"] = CIO;
@@ -445,7 +445,7 @@ namespace ChamCong_v05.BUS
 						row["ShiftID"] = CIO.ThuocCa.ID; //9
 						row["Cong"] = CIO.Cong; //20
 						row["TongGioLam"] = CIO.TG.GioLamViec5;//Danglam giophut
-						row["TongGioThuc"] = CIO.TG.GioThuc5;//Danglam giophut
+						row["TongGioThuc"] = CIO.TG.GioThucTe5;//Danglam giophut
 						row["cUserInfo"] = nv;
 						row["cNgayCong"] = ngayCong;
 						row["cCheckInOut"] = CIO;
