@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ChamCong_v05.Helper;
 
 namespace ChamCong_v05.DTO {
 	public class cPhucHoi {
@@ -85,7 +86,7 @@ namespace ChamCong_v05.DTO {
 		public float Cong; 
 		public bool DaXN;
 		public int HaveINOUT;
-
+		public structCong Cong5;
 		public bool DuyetChoPhepVaoTre;
 		public bool DuyetChoPhepRaSom;
 		public bool VaoTreTinhCV; //ver 4.0.0.4	
