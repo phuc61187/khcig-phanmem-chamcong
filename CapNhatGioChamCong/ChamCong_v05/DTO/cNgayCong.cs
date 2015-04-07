@@ -12,7 +12,9 @@ namespace ChamCong_v05.DTO {
 		public cNgayCong next;
 
 		public ThoiGian TG = new ThoiGian();
-
+		public structThoiGian TG5 = new structThoiGian();
+		
+		public structCong Cong5;
 		public float TongCong;
 		public float TongNgayLV;//ver4.0.0.1
 		public bool QuaDem;

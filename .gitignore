@@ -43,7 +43,9 @@ Temporary Items
 .apdisk
 
 #Khong commit cac folder sau
-CapNhatGioChamCong/_ReSharper.CapNhatGioChamCong
+CapNhatGioChamCong/_ReSharper\.CapNhatGioChamCong
+CapNhatGioChamCong/ChamCong_v05/obj
+CapNhatGioChamCong/ChamCong_v05/bin
 CapNhatGioChamCong/ChamCong_v04/obj
 CapNhatGioChamCong/ChamCong_v04/bin
 CapNhatGioChamCong/ChamCong_v02/obj

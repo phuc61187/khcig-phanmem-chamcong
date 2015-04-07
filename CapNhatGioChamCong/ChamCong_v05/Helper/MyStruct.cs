@@ -22,6 +22,39 @@ namespace ChamCong_v05.Helper {
 			return string.Format(temp, BD.ToString("H:mm d/M"), KT.ToString("H:mm d/M"));
 		}
 	}
+	public struct structThoiGian
+	{
+		public TimeSpan GioThucTe5;
+		public TimeSpan GioLamViec5; // tổng giờ làm việc đã bao gồm OT nếu có
+		public TimeSpan GioLVTrongCa5; // chỉ tính giờ làm việc nằm trong ca, ko tính OT
+		public TimeSpan SoPhutLamThem5;// tương đương giờ LV ngoài ca, tương đương OT đã xác nhận, làm ngoài ca chưa chắc OT ví dụ nửa ca
+		public TimeSpan LamBanDem;
+		public TimeSpan LamTangCuong; //trên 8 tiếng là tăng cường(ko xét ngày hay đêm)
+		//public TimeSpan Tinh100;
+		public TimeSpan Tinh130;
+		public TimeSpan Tinh150;
+		public TimeSpan TinhTCC3;
+		public TimeSpan Tinh200;
+		public TimeSpan Tinh260;
+		public TimeSpan Tinh300;
+		public TimeSpan Tinh390;
+		public TimeSpan TinhPCCus;
+
+		public TimeSpan VaoTre;
+		public TimeSpan RaaSom;
+		public TimeSpan OLai; // 
+	}
+
+	public struct structThoiDiem
+	{
+		public DateTime BD_LV;// vào làm ca
+		public DateTime KT_LV;// 
+		public DateTime KT_LV_ChuaOT;
+		//public DateTime KT_LV_DaCoOT;
+		public DateTime BD_LV_Ca3;
+		public DateTime KT_LV_Ca3;
+	}
+
 
 	public struct structCong
 	{
