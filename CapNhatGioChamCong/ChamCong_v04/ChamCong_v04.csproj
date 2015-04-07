@@ -109,12 +109,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI4.5\fmXemCong4.5.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI4.5\fmXemCong4.5.Designer.cs">
-      <DependentUpon>fmXemCong4.5.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI4.5\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,9 +399,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI4.5\fmXemCong4.5.resx">
-      <DependentUpon>fmXemCong4.5.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI4.5\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

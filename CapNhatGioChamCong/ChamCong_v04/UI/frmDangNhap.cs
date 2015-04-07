@@ -64,21 +64,10 @@ namespace ChamCong_v04.UI {
 
 				XL.SaveSetting(lastAccLogIn: currUserAccount);
 				XL.ChuanBiDSLichTrinhVaCa();
-				SqlDataAccessHelper.ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=WiseEyeV5Express;Integrated Security=true";
-				fmXemCong4 fm = new fmXemCong4();
-				fm.Show();
-/*
-				fmTKeCongTheoNVu frm = new fmTKeCongTheoNVu();
-				this.Hide();
-				frm.ShowDialog();
-				this.Close();
-*/
-/*
 				frm_main frm = new frm_main();
 				this.Hide();
 				frm.ShowDialog();
 				this.Close();
-*/
 
 				// hiển thị form tài khoản thường
 			}
