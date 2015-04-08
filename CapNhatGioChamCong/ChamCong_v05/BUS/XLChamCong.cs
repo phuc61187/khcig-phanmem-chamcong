@@ -154,8 +154,8 @@ namespace ChamCong_v05.BUS {
 			var BDLamDem = DateTime.MinValue;
 			var KTLamDem = DateTime.MinValue;
 			if (kt_lv_DaCoOT > startNT) {
-				BDLamDem = bd_lv > (startNT + XL2.ChoPhepTre) ? bd_lv : startNT;
-				KTLamDem = kt_lv_DaCoOT < (endddNT - XL2.ChoPhepSom) ? kt_lv_DaCoOT : endddNT;
+				BDLamDem = bd_lv > startNT ? bd_lv : startNT;
+				KTLamDem = kt_lv_DaCoOT < endddNT ? kt_lv_DaCoOT : endddNT;
 				tempTGLamDem = KTLamDem - BDLamDem;
 			}
 			else tempTGLamDem = TimeSpan.Zero;
@@ -178,28 +178,41 @@ namespace ChamCong_v05.BUS {
 		}
 
 		public static void Tinh_TGLamTCC3(TimeSpan TongGioLamViec, TimeSpan TongGioTangCuong, TimeSpan TongGioLamDem, 
-			out TimeSpan TongGioLamNgay, out TimeSpan GioLamNgay_KoTC,
-			out TimeSpan HuongPC_TangCuongNgay, out TimeSpan HuongPC_Dem, out TimeSpan HuongPC_TangCuongDem) {
+			out TimeSpan TongGioLamNgay, out TimeSpan HuongPC_TangCuongNgay, out TimeSpan HuongPC_Dem, out TimeSpan HuongPC_TangCuongDem) {
 			HuongPC_Dem = TimeSpan.Zero;
 			HuongPC_TangCuongNgay = TimeSpan.Zero;
 			HuongPC_TangCuongDem = TimeSpan.Zero;
 			TongGioLamNgay = TimeSpan.Zero;
-			GioLamNgay_KoTC = TimeSpan.Zero;
-
-			if (TongGioLamViec <= XL2._08gio)
+			/* 1. ko làm đêm => toàn làm ngày -> tính tăng cường ngày nếu có
+			 * 2.có làm đêm => xét xem chỉ làm đêm ko hay có dính 1 phần là ngày
+			 * 2.1 toàn làm đêm thì hưởng pc đêm
+			 * 2.2 có dính làm ngày. xác định tổng làm ngày
+			 * 2.2.1 tổng ngày >8 thì chắc chắn có tc ngày, tăng cường đêm
+			 * 2.2.2 tổng ngày < 8 thì nếu tổng làm > 8 thì có ngày, đêm, tăng cường đêm
+			 */
+			if (TongGioLamViec <= TimeSpan.Zero) return;
+			if (TongGioLamDem == TimeSpan.Zero)
 			{
-				
+				TongGioLamNgay = TongGioLamViec;
+				if (TongGioLamNgay > XL2._08gio) HuongPC_TangCuongNgay = TongGioLamViec - XL2._08gio;
 			}
-
-			if (TongGioTangCuong >= TongGioLamDem) // trọn qua đêm là tăng cường đêm, còn lại là tăng cường ngày
+			else
 			{
-				HuongPC_TangCuongDem = TongGioLamDem;
-				HuongPC_TangCuongNgay = TongGioTangCuong - TongGioLamDem; // số giờ tính pctc
-			}
-			else  // 1 ThuocCa đêm nhưng 0.5 ThuocCa ko tính tăng cường, nửa ThuocCa tính tăng cường đêm
-			{
-				HuongPC_TangCuongDem = TongGioTangCuong;
-				HuongPC_Dem = TongGioLamDem - TongGioTangCuong;
+				if (TongGioLamViec == TongGioLamDem) HuongPC_Dem = TongGioLamDem; //tổng đêm > 0, tổng làm > 0, mà tổng làm = tổng đêm => làm trọn đêm
+				else //tổng đêm < tổng làm
+				{
+					TongGioLamNgay = TongGioLamViec - TongGioLamDem;
+					if (TongGioLamNgay > XL2._08gio)
+					{
+						HuongPC_TangCuongNgay = TongGioLamNgay - XL2._08gio;
+						HuongPC_TangCuongDem = TongGioLamDem;
+					}
+					else // tổng làm ngày < 8
+					{
+						HuongPC_TangCuongDem = TongGioLamViec - XL2._08gio;
+						HuongPC_Dem = TongGioLamDem - HuongPC_TangCuongDem;
+					}
+				}
 			}
 		}
 		public static void Tinh_PCTC5(bool TinhPC50, bool QuaDem, TimeSpan SoGioLamDemmm, TimeSpan SoGioLamThem,
