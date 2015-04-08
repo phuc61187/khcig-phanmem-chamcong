@@ -81,6 +81,8 @@ namespace ChamCong_v05.DTO {
 		public cCa ThuocCa;
 		public ThoiGian TG;
 		public ThoiDiem TD;
+		public structThoiGian TG5;
+		public structThoiDiem TD5;
 		public bool QuaDem;
 		public DateTime ThuocNgayCong;
 		public float Cong; 
