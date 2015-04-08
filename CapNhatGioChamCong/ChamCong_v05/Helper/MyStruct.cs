@@ -22,27 +22,33 @@ namespace ChamCong_v05.Helper {
 			return string.Format(temp, BD.ToString("H:mm d/M"), KT.ToString("H:mm d/M"));
 		}
 	}
-	public struct structThoiGian
+	public struct structThoiGianTheoNgayCong
 	{
 		public TimeSpan GioThucTe5;
-		public TimeSpan GioLamViec5; // tổng giờ làm việc đã bao gồm OT nếu có
-		public TimeSpan GioLVTrongCa5; // chỉ tính giờ làm việc nằm trong ca, ko tính OT
-		public TimeSpan SoPhutLamThem5;// tương đương giờ LV ngoài ca, tương đương OT đã xác nhận, làm ngoài ca chưa chắc OT ví dụ nửa ca
-		public TimeSpan LamBanDem;
-		public TimeSpan LamTangCuong; //trên 8 tiếng là tăng cường(ko xét ngày hay đêm)
-		//public TimeSpan Tinh100;
-		public TimeSpan Tinh130;
-		public TimeSpan Tinh150;
-		public TimeSpan TinhTCC3;
-		public TimeSpan Tinh200;
-		public TimeSpan Tinh260;
-		public TimeSpan Tinh300;
-		public TimeSpan Tinh390;
-		public TimeSpan TinhPCCus;
+		public TimeSpan TongGioLamViec5; // tổng giờ làm việc đã bao gồm OT nếu có
+		public TimeSpan TongGioLamDem; // tổng thời gian làm ban đêm
+		public TimeSpan TongGioLamNgay; // = 0 nếu giờ lv <= giờ làm đêm, >0 nếu giờ lv <= giờ làm đêm: giờ làm việc - tổng giờ làm ban đêm
+		public TimeSpan TongGioTangCuong; //tổng thời gian làm tăng cường(sau 8 tiếng,ko xét ngày hay đêm)
+		public TimeSpan GioLamNgay_KoTC;
+		public TimeSpan HuongPC_TangCuongNgay; // chỉ tính phần sau 8 tiếng ban ngày
+		public TimeSpan HuongPC_TangCuongDem; // chỉ tính thời gian làm ca3 được tính phụ cấp tăng cường ca 3 
+		public TimeSpan HuongPC_Dem;// giờ làm đêm chưa tính PCTC, chỉ tính thời gian làm đêm hưởng pc 30%
 
 		public TimeSpan VaoTre;
 		public TimeSpan RaaSom;
+	}
+
+	public struct structThoiGianTheoCIO
+	{
+		public TimeSpan GioThucTe5;
+		public TimeSpan TongGioLamViec5; // tổng giờ làm việc đã bao gồm OT nếu có
+		public TimeSpan TongGioLamDem; // tổng thời gian làm ban đêm
+		public TimeSpan GioLVTrongCa5; // chỉ tính giờ làm việc nằm trong ca, ko tính OT
+		public TimeSpan SoPhutLamThem5;// tương đương giờ LV ngoài ca, tương đương OT đã xác nhận, làm ngoài ca chưa chắc OT ví dụ nửa capublic TimeSpan VaoTre;
+		public TimeSpan VaoTre;
+		public TimeSpan RaaSom;
 		public TimeSpan OLai; // 
+		
 	}
 
 	public struct structThoiDiem

@@ -12,7 +12,7 @@ namespace ChamCong_v05.DTO {
 		public cNgayCong next;
 
 		public ThoiGian TG = new ThoiGian();
-		public structThoiGian TG5 = new structThoiGian();
+		public structThoiGianTheoNgayCong TG5 = new structThoiGianTheoNgayCong();
 		
 		public structCong Cong5;
 		public float TongCong;

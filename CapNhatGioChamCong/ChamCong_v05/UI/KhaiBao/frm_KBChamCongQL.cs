@@ -458,7 +458,7 @@ namespace ChamCong_v05.UI.KhaiBao {
 			XL.Tinh_TGLamViecTrongCa(td_batdau_lv, td_ketthuc_lv_chuaOT, ca.LunchMin, out TGGioLamViecTrongCa);
 			TGGioLamViec = TGGioLamViecTrongCa + OTCa;//ver 4.0.0.4	
 			XL.Tinh_TGLamViec_Ca3(td_batdau_lv, td_ketthuc_lv_daCoOT, ngay.Add(XL2._22h00), ngay.AddDays(1d).Add(XL2._06h00), out TD_BD_LV_Ca3, out  TD_KT_LV_Ca3, out TGLamBanDem, out QuaDem);
-			TimeSpan TGLamThem = XL.Tinh_TGLamThem(TGGioLamViec);//(TGGioLamViec - XL2._08gio) >= XL2._01phut ? (TGGioLamViec - XL2._08gio) : TimeSpan.Zero;
+			TimeSpan TGLamThem = XL.Tinh_TGLamTangCuong(TGGioLamViec);//(TGGioLamViec - XL2._08gio) >= XL2._01phut ? (TGGioLamViec - XL2._08gio) : TimeSpan.Zero;
 			float cong_trong_ca = Convert.ToSingle(Math.Round(((TGGioLamViecTrongCa.TotalHours / ca.WorkingTimeTS.TotalHours) * ca.Workingday), 2));
 			float cong_ngoai_ca = Convert.ToSingle(Math.Round((OTCa.TotalHours / 8f), 2));
 			Cong = cong_trong_ca + cong_ngoai_ca;
