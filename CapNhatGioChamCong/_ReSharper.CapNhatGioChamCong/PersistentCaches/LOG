@@ -1,5 +1,5 @@
-2015/04/08-07:21:43.949 b3c Recovering log #6
-2015/04/08-07:21:43.949 b3c Level-0 table #8: started
-2015/04/08-07:21:43.977 b3c Level-0 table #8: 22938 bytes OK
-2015/04/08-07:21:44.016 b3c Delete type=0 #6
-2015/04/08-07:21:44.017 b3c Delete type=3 #4
+2015/04/09-07:41:22.864 f14 Recovering log #9
+2015/04/09-07:41:22.865 f14 Level-0 table #11: started
+2015/04/09-07:41:22.917 f14 Level-0 table #11: 104562 bytes OK
+2015/04/09-07:41:22.975 f14 Delete type=0 #9
+2015/04/09-07:41:22.975 f14 Delete type=3 #7
