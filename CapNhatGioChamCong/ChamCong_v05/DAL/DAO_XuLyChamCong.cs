@@ -36,6 +36,16 @@ namespace ChamCong_v05.DAL {
 			return tableVang;
 		}
 
+
+		public static DataTable LayTableXacNhanPhuCap(DataTable ArrDSMaCC_Checked, DateTime ngayBD, DateTime ngayKT, bool? Duyet = null) {
+			var table = SqlDataAccessHelper.ExecSPQuery(SPName.XacNhanPhuCap5_DocBang.ToString()
+				, new SqlParameter("@ArrayMaCC", SqlDbType.Structured) { Value = ArrDSMaCC_Checked }
+				,new SqlParameter ("@NgayBD", ngayBD)
+				,new SqlParameter ("@NgayKT" , ngayKT )
+				,new SqlParameter("@Duyet", Duyet == null ? (object)DBNull.Value : Duyet));
+			return table;
+		}
+
 		public static DataTable LayTableXacNhanPC50_5(DataTable ArrDSMaCC_Checked, DateTime ngayBD, DateTime ngayKT) {
 			var table = SqlDataAccessHelper.ExecSPQuery(SPName.XacNhanPC50_DocXNPC50.ToString()
 				, new SqlParameter("@ArrayMaCC", SqlDbType.Structured) { Value = ArrDSMaCC_Checked }

@@ -138,90 +138,65 @@ namespace ChamCong_v05.BUS {
 
 
 		#endregion
-		public static void DocSetting() {
+		public static void DocServerSetting5() {
 			var table = SqlDataAccessHelper.ExecuteQueryString("select * from Setting", null, null);
 			for (int i = 0; i < table.Rows.Count; i++) {
 				var row = table.Rows[i];
 				var id = (int)row["ID"];
 				var code = row["Code"].ToString();
 				var value = row["Value"].ToString();
-				switch (code) {
-					#region phụ cấp
 
-					case "PC30":
-						var val30 = 0;
-						if (int.TryParse(value, out val30)) {
-							XL2.PC30 = val30;
-						}
-						break;
-					case "PC50":
-						var val50 = 0;
-						if (int.TryParse(value, out val50)) {
-							XL2.PC50 = val50;
-						}
-						break;
-					case "PCTCC3":
-						var valTCC3 = 0;
-						if (int.TryParse(value, out valTCC3)) {
-							XL2.PCTCC3 = valTCC3;
-						}
-						break;
-					case "PC100":
-						var val100 = 0;
-						if (int.TryParse(value, out val100)) {
-							XL2.PC100 = val100;
-						}
-						break;
-					case "PC160":
-						var val160 = 0;
-						if (int.TryParse(value, out val160)) {
-							XL2.PC160 = val160;
-						}
-						break;
-					case "PC200":
-						var val200 = 0;
-						if (int.TryParse(value, out val200)) {
-							XL2.PC200 = val200;
-						}
-						break;
-					case "PC290":
-						var val290 = 0;
-						if (int.TryParse(value, out val290)) {
-							XL2.PC290 = val290;
-						}
-						break;
+				#region setting phu cap
 
-					#endregion
-					case "TGLamDemToiThieu":
-						var valTGLamDemToiThieu = new TimeSpan(0, 0, 0);
-						if (TimeSpan.TryParse(value, out valTGLamDemToiThieu)) {
-							XL2.TGLamDemToiThieu = valTGLamDemToiThieu;
-						}
-						break;
-
-					#region số phút cho phép trễ sớm afterot ca tự do
-
-					case "ChoPhepTre":
-						var valChoPhepTre = 0;
-						if (int.TryParse(value, out valChoPhepTre)) {
-							XL2.ChoPhepTre = new TimeSpan(0, valChoPhepTre, 0);
-						}
-						break;
-					case "ChoPhepSom":
-						var valChoPhepSom = 0;
-						if (int.TryParse(value, out valChoPhepSom)) {
-							XL2.ChoPhepSom = new TimeSpan(0, valChoPhepSom, 0);
-						}
-						break;
-					case "LamThemAfterOT":
-						var valLamThemAfterOT = 0;
-						if (int.TryParse(value, out valLamThemAfterOT)) {
-							XL2.LamThemAfterOT = new TimeSpan(0, valLamThemAfterOT, 0);
-						}
-						break;
-
-					#endregion
+				if (code == SettingName.HSPCDem_NgayThuong.ToString()) {
+					XL2.HSPCDem_NgayThuong = int.Parse(value);
+					continue;
 				}
+				if (code == SettingName.HSPCTangCuongNgay_NgayThuong.ToString()) {
+					XL2.HSPCTangCuongNgay_NgayThuong = int.Parse(value);
+					continue;
+				}
+				if (code == SettingName.HSPCTangCuongDem_NgayThuong.ToString()) {
+					XL2.HSPCTangCuongDem_NgayThuong = int.Parse(value);
+					continue;
+				}
+				if (code == SettingName.HSPCNgay_NgayNghi.ToString()) {
+					XL2.HSPCNgay_NgayNghi = int.Parse(value);
+					continue;
+				}
+				if (code == SettingName.HSPCDem_NgayNghi.ToString()) {
+					XL2.HSPCDem_NgayNghi = int.Parse(value);
+					continue;
+				}
+				if (code == SettingName.HSPCNgay_NgayLe.ToString()) {
+					XL2.HSPCNgay_NgayNghi = int.Parse(value);
+					continue;
+				}
+				if (code == SettingName.HSPCDem_NgayLe.ToString()) {
+					XL2.HSPCDem_NgayNghi = int.Parse(value);
+					continue;
+				}
+
+				#endregion
+
+				#region số phút cho phép trễ sớm afterot ca tự do
+				if (code == SettingName.TGLamDemToiThieu.ToString()) {
+					XL2.TGLamDemToiThieu = TimeSpan.Parse(value);
+					continue;
+				}
+				if (code == SettingName.ChoPhepTre.ToString()) {
+					XL2.ChoPhepTre = new TimeSpan(0, int.Parse(value), 0);
+					continue;
+				}
+				if (code == SettingName.ChoPhepSom.ToString()) {
+					XL2.ChoPhepSom = new TimeSpan(0, int.Parse(value), 0);
+					continue;
+				}
+				if (code == SettingName.LamThemAfterOT.ToString()) {
+					XL2.LamThemAfterOT = new TimeSpan(0, int.Parse(value), 0);
+					continue;
+				}
+				#endregion
 			}
 
 		}
@@ -261,14 +236,12 @@ namespace ChamCong_v05.BUS {
 
 		#region cách làm không store procedure
 
-		public static TreeView loadTreePhgBan(TreeView tvDSPhongBan, List<cPhongBan> TatcaPhongban, List<cPhongBan> dsPhongduocThaotac)
-		{
+		public static TreeView loadTreePhgBan(TreeView tvDSPhongBan, List<cPhongBan> TatcaPhongban, List<cPhongBan> dsPhongduocThaotac) {
 			tvDSPhongBan.Nodes.Clear();
 
 			//load tất cả phòng ban vào tree
-			foreach (cPhongBan phong in TatcaPhongban.FindAll(item => item.idParent == 0).OrderBy(item => item.ViTri))
-			{
-				TreeNode parentNode = new TreeNode {Text = phong.Ten, Tag = phong};
+			foreach (cPhongBan phong in TatcaPhongban.FindAll(item => item.idParent == 0).OrderBy(item => item.ViTri)) {
+				TreeNode parentNode = new TreeNode { Text = phong.Ten, Tag = phong };
 				tvDSPhongBan.Nodes.Add(parentNode);
 				loadTreeSubNode(ref parentNode, phong.ID, TatcaPhongban);
 			}
@@ -280,8 +253,7 @@ namespace ChamCong_v05.BUS {
 			GetListNode_Thaotac(root, dsPhongduocThaotac, ref dsNodeThaotac); // lấy tất cả các node chứa phòng ban được thao tác
 
 			// thêm vào danh sách các node không được thao tác nhưng nằm trên đường dẫn đến node được thao tác
-			for (int i = 0; i < dsNodeThaotac.Count; i++)
-			{
+			for (int i = 0; i < dsNodeThaotac.Count; i++) {
 				TreeNode node = dsNodeThaotac[i];
 				GetNodesInPath(node.Parent, dsNodeThaotac);
 			}
@@ -292,18 +264,15 @@ namespace ChamCong_v05.BUS {
 			return tvDSPhongBan;
 		}
 
-		private static bool RemoveNodeNotInPath(ref TreeNode root, List<TreeNode> nodesInPath)
-		{
+		private static bool RemoveNodeNotInPath(ref TreeNode root, List<TreeNode> nodesInPath) {
 			if (root == null)
 				return false;
 
-			if (root.Nodes.Count > 0)
-			{
+			if (root.Nodes.Count > 0) {
 				int i = 0;
 				// sử dụng kiểu này vì khi xoá 1 node thì danh sách node bị thay đổi --> foreach ko cho phép
 				// sử dụng for i thì khi xoá node, node sau dồn lên, index i phải giữ nguyên ko được ++
-				while (i < root.Nodes.Count)
-				{
+				while (i < root.Nodes.Count) {
 					TreeNode node = root.Nodes[i];
 					bool kq = RemoveNodeNotInPath(ref node, nodesInPath);
 					if (kq == false) i++; // điều kiện tăng i là nếu xoá được node, ngược lại hết đường thì dừng, 
@@ -311,18 +280,15 @@ namespace ChamCong_v05.BUS {
 			}
 
 			bool found1 = false;
-			for (int i = 0; i < nodesInPath.Count; i++)
-			{
+			for (int i = 0; i < nodesInPath.Count; i++) {
 				TreeNode node = nodesInPath[i];
 				if (root != node) continue;
-				else
-				{
+				else {
 					found1 = true;
 					break;
 				}
 			}
-			if (found1 == false)
-			{
+			if (found1 == false) {
 				root.Remove();
 				return true;
 			}
@@ -330,14 +296,12 @@ namespace ChamCong_v05.BUS {
 
 		}
 
-		private static void GetNodesInPath(TreeNode root, List<TreeNode> nodes)
-		{
+		private static void GetNodesInPath(TreeNode root, List<TreeNode> nodes) {
 			if (root == null) return;
 
 			// nếu curr đã nằm trong ds node được thao tác thì trùng ko add thêm 
 			bool found = false;
-			for (int i = nodes.Count - 1; i >= 0; i--)
-			{
+			for (int i = nodes.Count - 1; i >= 0; i--) {
 				if (nodes[i] != root) continue;
 				found = true; //nodes[i] == root ==> đã tồn tại trong danh sách -> break vòng lặp, ko add mà tiếp tục 
 				break;
@@ -346,27 +310,22 @@ namespace ChamCong_v05.BUS {
 			GetNodesInPath(root.Parent, nodes); // tiếp tục kiểm tra node cha của node hiện tại
 		}
 
-		private static void GetListNode_Thaotac(TreeNode root, List<cPhongBan> dsPhongduocThaotac, ref List<TreeNode> nodes)
-		{
+		private static void GetListNode_Thaotac(TreeNode root, List<cPhongBan> dsPhongduocThaotac, ref List<TreeNode> nodes) {
 			if (root == null) return;
 
 			// nếu currNode được phép thao tác thì add current node
-			for (int i = 0; i < dsPhongduocThaotac.Count; i++)
-			{
+			for (int i = 0; i < dsPhongduocThaotac.Count; i++) {
 				cPhongBan phongDuocThaotac = dsPhongduocThaotac[i];
-				cPhongBan phongDangXet = (cPhongBan) root.Tag;
-				if (phongDangXet.ID == phongDuocThaotac.ID)
-				{
+				cPhongBan phongDangXet = (cPhongBan)root.Tag;
+				if (phongDangXet.ID == phongDuocThaotac.ID) {
 					phongDangXet.ChoPhep = true;
 					nodes.Add(root);
 				}
 			}
 
-			if (root.Nodes.Count > 0)
-			{
+			if (root.Nodes.Count > 0) {
 				// nếu có node con thì add các node con thoả điều kiện
-				for (int i = 0; i < root.Nodes.Count; i++)
-				{
+				for (int i = 0; i < root.Nodes.Count; i++) {
 					TreeNode node = root.Nodes[i];
 					GetListNode_Thaotac(node, dsPhongduocThaotac, ref nodes);
 				}
@@ -375,25 +334,23 @@ namespace ChamCong_v05.BUS {
 
 		}
 
-		public static void loadTreeSubNode(ref TreeNode ParentNode, int idPhongBanTrucThuoc, List<cPhongBan> dsphongban)
-		{
+		public static void loadTreeSubNode(ref TreeNode ParentNode, int idPhongBanTrucThuoc, List<cPhongBan> dsphongban) {
 			List<cPhongBan> childs = dsphongban.Where(item => item.idParent == idPhongBanTrucThuoc).OrderBy(item => item.ViTri).ToList();
-			foreach (cPhongBan phong in childs)
-			{
-				TreeNode child = new TreeNode {Text = phong.Ten, Tag = phong, ToolTipText = phong.Ten};
+			foreach (cPhongBan phong in childs) {
+				TreeNode child = new TreeNode { Text = phong.Ten, Tag = phong, ToolTipText = phong.Ten };
 				ParentNode.Nodes.Add(child);
 				loadTreeSubNode(ref child, phong.ID, dsphongban);
 			}
 		}
 
-		public static void GetIDNodeAndChildNode(TreeNode root, ref List<int> listID){
+		public static void GetIDNodeAndChildNode(TreeNode root, ref List<int> listID) {
 			if (root == null) return;
 
-			cPhongBan phong = (cPhongBan) root.Tag;
+			cPhongBan phong = (cPhongBan)root.Tag;
 			if (phong != null && phong.ChoPhep) listID.Add(phong.ID);
 
-			if (root.Nodes.Count > 0){
-				foreach (TreeNode node in root.Nodes){
+			if (root.Nodes.Count > 0) {
+				foreach (TreeNode node in root.Nodes) {
 					GetIDNodeAndChildNode(node, ref listID);
 				}
 			}
@@ -467,7 +424,7 @@ namespace ChamCong_v05.BUS {
 			// ko có node con thì dừng
 
 		}
-		
+
 		public static void GetIDNodeAndChildNode1(TreeNode root, ref List<int> listID) {
 			if (root == null) return;
 
@@ -855,7 +812,7 @@ namespace ChamCong_v05.BUS {
 			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
 		}
 
-		public static void XacNhan_CIO_V(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu, 
+		public static void XacNhan_CIO_V(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
 			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
 
 		}

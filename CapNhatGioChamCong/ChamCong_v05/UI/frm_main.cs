@@ -28,7 +28,7 @@ namespace ChamCong_v05.UI {
 
 		private void frm_main_Load(object sender, EventArgs e) {
 			XL.ChuanBiDSLichTrinhVaCa();
-			XL.DocSetting();
+			XL.DocServerSetting5();
 		}
 
 

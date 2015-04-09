@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 
 namespace ChamCong_v05.Helper {
-	#region STRUCT
 	public struct TS {
 		public TimeSpan Onn;
 		public TimeSpan Off;
@@ -85,6 +84,12 @@ namespace ChamCong_v05.Helper {
 		public float _150_LVNN_Dem;
 		public float _200_LeTet_Ngay;
 		public float _250_LeTet_Dem;
+
+		public float PCNgay5; 
+		public float PCTangCuongNgay5;
+		public float PCDem5;
+		public float PCTangCuongDem5;
+		public LoaiPhuCap LoaiPhuCap;
 		public float _Cus;
 		public float _TongPC;
 		public override string ToString() {
@@ -151,7 +156,6 @@ namespace ChamCong_v05.Helper {
 	}
 
 
-	#endregion
 
 
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using ChamCong_v05.Helper;
 
 namespace ChamCong_v05.DTO {
@@ -46,6 +47,7 @@ namespace ChamCong_v05.DTO {
 		public List<cNgayCong> DSNgayCong = new List<cNgayCong>();
 		public List<cLoaiVang> DSVang = new List<cLoaiVang>();
 		public List<structPCTC> DSXNPhuCap50 = new List<structPCTC>();
+		public List<DataRow> DSXNPC5 = new List<DataRow>();
 		public List<structPCDB> DSXNPhuCapDB = new List<structPCDB>();
 		public DateTime NgayCongBD_Bef2D;
 		public DateTime NgayCongKT_Aft2D;

@@ -75,6 +75,7 @@
     <Compile Include="DTO\cNgayCong.cs" />
     <Compile Include="DTO\cNhanVien45.cs" />
     <Compile Include="DTO\cUserInfo.cs" />
+    <Compile Include="Helper\MyEnum.cs" />
     <Compile Include="Helper\MyStruct.cs" />
     <Compile Include="Helper\MyUtility.cs" />
     <Compile Include="Helper\SqlDataAccessHelper.cs" />

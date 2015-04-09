@@ -177,38 +177,61 @@ namespace ChamCong_v05.BUS {
 			return (TGGioLamViec - XL2._08gio) >= XL2._01phut ? (TGGioLamViec - XL2._08gio) : TimeSpan.Zero;
 		}
 
-		public static void Tinh_TGLamTCC3(TimeSpan TongGioLamViec, TimeSpan TongGioTangCuong, TimeSpan TongGioLamDem, 
-			out TimeSpan TongGioLamNgay, out TimeSpan HuongPC_TangCuongNgay, out TimeSpan HuongPC_Dem, out TimeSpan HuongPC_TangCuongDem) {
-			HuongPC_Dem = TimeSpan.Zero;
+		public static void Tinh_TGLamTCC3_5(TimeSpan TongGioLamViec, TimeSpan TongGioTangCuong, TimeSpan TongGioLamDem, 
+			out TimeSpan TongGioLamNgay, out TimeSpan KoHuongPC_TangCuongNgay, out TimeSpan HuongPC_TangCuongNgay, out TimeSpan HuongPC_Dem, out TimeSpan HuongPC_TangCuongDem)
+		{
+			KoHuongPC_TangCuongNgay = TimeSpan.Zero;
 			HuongPC_TangCuongNgay = TimeSpan.Zero;
-			HuongPC_TangCuongDem = TimeSpan.Zero;
 			TongGioLamNgay = TimeSpan.Zero;
-			/* 1. ko làm đêm => toàn làm ngày -> tính tăng cường ngày nếu có
-			 * 2.có làm đêm => xét xem chỉ làm đêm ko hay có dính 1 phần là ngày
-			 * 2.1 toàn làm đêm thì hưởng pc đêm
-			 * 2.2 có dính làm ngày. xác định tổng làm ngày
-			 * 2.2.1 tổng ngày >8 thì chắc chắn có tc ngày, tăng cường đêm
-			 * 2.2.2 tổng ngày < 8 thì nếu tổng làm > 8 thì có ngày, đêm, tăng cường đêm
-			 */
+			HuongPC_Dem = TimeSpan.Zero;
+			HuongPC_TangCuongDem = TimeSpan.Zero;
 			if (TongGioLamViec <= TimeSpan.Zero) return;
-			if (TongGioLamDem == TimeSpan.Zero)
+
+			if (TongGioTangCuong == TimeSpan.Zero)
 			{
-				TongGioLamNgay = TongGioLamViec;
-				if (TongGioLamNgay > XL2._08gio) HuongPC_TangCuongNgay = TongGioLamViec - XL2._08gio;
+				if (TongGioLamDem == TimeSpan.Zero)
+				{
+					KoHuongPC_TangCuongNgay = TongGioLamViec;
+					//HuongPC_TangCuongNgay = 0;
+					TongGioLamNgay = TongGioLamViec;
+					//HuongPC_Dem = 0;
+					//HuongPC_TangCuongDem = 0;
+				}
+				else
+				{
+					KoHuongPC_TangCuongNgay = TongGioLamViec - TongGioLamDem;
+					//HuongPC_TangCuongNgay = 0;
+					TongGioLamNgay = KoHuongPC_TangCuongNgay;
+					HuongPC_Dem = TongGioLamDem;
+					//HuongPC_TangCuongDem = 0;
+				}
 			}
 			else
 			{
-				if (TongGioLamViec == TongGioLamDem) HuongPC_Dem = TongGioLamDem; //tổng đêm > 0, tổng làm > 0, mà tổng làm = tổng đêm => làm trọn đêm
-				else //tổng đêm < tổng làm
+				if (TongGioLamDem == TimeSpan.Zero)
+				{
+					KoHuongPC_TangCuongNgay = XL2._08gio;
+					HuongPC_TangCuongNgay = TongGioLamViec - XL2._08gio;
+					TongGioLamNgay = TongGioLamViec;
+					//HuongPC_Dem = 0;
+					//HuongPC_TangCuongDem = 0;
+				}
+				else
 				{
 					TongGioLamNgay = TongGioLamViec - TongGioLamDem;
 					if (TongGioLamNgay > XL2._08gio)
 					{
+						KoHuongPC_TangCuongNgay = XL2._08gio;
 						HuongPC_TangCuongNgay = TongGioLamNgay - XL2._08gio;
+						//TongGioLamNgay = TongGioLamViec - TongGioLamDem;
+						//HuongPC_Dem = 0;
 						HuongPC_TangCuongDem = TongGioLamDem;
 					}
-					else // tổng làm ngày < 8
+					else
 					{
+						KoHuongPC_TangCuongNgay = TongGioLamNgay;
+						//HuongPC_TangCuongNgay = 0;
+						//TongGioLamNgay = TongGioLamViec - TongGioLamDem;
 						HuongPC_TangCuongDem = TongGioLamViec - XL2._08gio;
 						HuongPC_Dem = TongGioLamDem - HuongPC_TangCuongDem;
 					}
@@ -386,6 +409,7 @@ namespace ChamCong_v05.BUS {
 				PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 				TinhCong_ListNgayCong8_5(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
+				//TinhPhuCap_ListNgayCong9_5(nv.DSNgayCong, nv.)
 				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong);
 				TinhPCDB_TrongListXNPCDB10(nv.DSXNPhuCapDB, nv.DSNgayCong);
 			}
@@ -487,6 +511,11 @@ namespace ChamCong_v05.BUS {
 
 		}
 		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs) { }
+		public static void LoadDSXNPC5(int tempMaCC, DataTable tableXN_PCTC, out List<DataRow> dsXacNhanPC)
+		{
+			dsXacNhanPC = new List<DataRow>();
+			dsXacNhanPC.AddRange(tableXN_PCTC.Select("UserEnrollNumber="+tempMaCC));
+		}
 		public static void LoadDSXNPC50(int tempMaCC, DataTable tableXN_PCTC, List<structPCTC> dsXacNhanPC) { }
 		public static void LoadDSXNPCDB(int tempMaCC, DataTable tableXN_PCDB, List<structPCDB> dsXacNhanPC) { }
 		public static void KhoiTaoDSNgayCong(List<cNgayCong> DSNgayCong, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
@@ -823,6 +852,7 @@ namespace ChamCong_v05.BUS {
 		public static void TinhCong_ListNgayCong8_5(List<cNgayCong> dsNgayCong, TimeSpan startNT, TimeSpan endddNT) {
 			foreach (var ngayCong in dsNgayCong) {
 				TinhCong_1Ngay5(ngayCong, startNT, endddNT, out ngayCong.TG5, out ngayCong.PhuCaps, out ngayCong.QuaDem);
+				TinhPhuCap_1NgayQuaDem5(ngayCong.TG5.TongGioLamDem, out ngayCong.PhuCaps._30_dem);
 			}
 		}
 
@@ -855,17 +885,9 @@ namespace ChamCong_v05.BUS {
 				CongDonThoiGian_1NgayCong(ref ngayCong.TG5, ref CIO.TG5);
 				CongDonCong_1NgayCong(ref ngayCong.Cong5, ref CIO.Cong5);
 			}
-/*
-		public TimeSpan TongGioLamNgay; // = giờ làm việc - tổng giờ làm ban đêm
-		public TimeSpan TongGioTangCuong; //tổng thời gian làm tăng cường(sau 8 tiếng,ko xét ngày hay đêm)
-		public TimeSpan GioLamNgay_KoTC;
-		public TimeSpan HuongPC_TangCuongNgay; // chỉ tính phần sau 8 tiếng ban ngày
-		public TimeSpan HuongPC_TangCuongDem; // chỉ tính thời gian làm ca3 được tính phụ cấp tăng cường ca 3 
-		public TimeSpan HuongPC_Dem;// giờ làm đêm chưa tính PCTC, chỉ tính thời gian làm đêm hưởng pc 30%
-*/
 
 			ngayCong.TG5.TongGioTangCuong = Tinh_TGLamTangCuong(ngayCong.TG5.TongGioLamViec5);
-			Tinh_TGLamTCC3(ngayCong.TG5.TongGioTangCuong, ngayCong.TG5.TongGioLamDem,
+			Tinh_TGLamTCC3_5(ngayCong.TG5.TongGioLamViec5, ngayCong.TG5.TongGioTangCuong, ngayCong.TG5.TongGioLamDem,
 				out ngayCong.TG5.TongGioLamNgay, out ngayCong.TG5.GioLamNgay_KoTC,
 				out ngayCong.TG5.HuongPC_TangCuongNgay, out ngayCong.TG5.HuongPC_Dem, out ngayCong.TG5.HuongPC_TangCuongDem);
 		}
@@ -921,6 +943,13 @@ namespace ChamCong_v05.BUS {
 			if (RaaSomTinhCV) TongCongBu += CongSom;
 			else TongCongTru += CongSom;
 		}
+
+		public static void TinhPhuCap_1NgayQuaDem5(TimeSpan TongQuaDem, out float phucapDem)
+		{
+			phucapDem = 0f;
+			phucapDem = Convert.ToSingle(Math.Round((TongQuaDem.TotalHours/8f), 2));
+		}
+
 
 		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong) {
 			foreach (var item in dsXacNhanPC) {

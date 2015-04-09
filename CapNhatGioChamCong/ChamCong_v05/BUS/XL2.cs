@@ -46,6 +46,19 @@ namespace ChamCong_v05.BUS {
 		public static int PC160;
 		public static int PC200;
 		public static int PC290;
+
+		#region he so phu cap moi
+
+		public static int HSPCDem_NgayThuong;
+		public static int HSPCTangCuongNgay_NgayThuong;
+		public static int HSPCTangCuongDem_NgayThuong;
+		public static int HSPCNgay_NgayNghi;
+		public static int HSPCDem_NgayNghi;
+		public static int HSPCNgay_NgayLe;
+		public static int HSPCDem_NgayLe;
+
+		#endregion
+
 		public static TimeSpan TGLamDemToiThieu;
 		public static TimeSpan ChoPhepTre;
 		public static TimeSpan ChoPhepSom;
