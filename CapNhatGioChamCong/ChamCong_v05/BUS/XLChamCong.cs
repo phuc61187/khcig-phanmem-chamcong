@@ -177,9 +177,8 @@ namespace ChamCong_v05.BUS {
 			return (TGGioLamViec - XL2._08gio) >= XL2._01phut ? (TGGioLamViec - XL2._08gio) : TimeSpan.Zero;
 		}
 
-		public static void Tinh_TGLamTCC3_5(TimeSpan TongGioLamViec, TimeSpan TongGioTangCuong, TimeSpan TongGioLamDem, 
-			out TimeSpan TongGioLamNgay, out TimeSpan KoHuongPC_TangCuongNgay, out TimeSpan HuongPC_TangCuongNgay, out TimeSpan HuongPC_Dem, out TimeSpan HuongPC_TangCuongDem)
-		{
+		public static void Tinh_TGLamTCC3_5(TimeSpan TongGioLamViec, TimeSpan TongGioTangCuong, TimeSpan TongGioLamDem,
+			out TimeSpan TongGioLamNgay, out TimeSpan KoHuongPC_TangCuongNgay, out TimeSpan HuongPC_TangCuongNgay, out TimeSpan HuongPC_Dem, out TimeSpan HuongPC_TangCuongDem) {
 			KoHuongPC_TangCuongNgay = TimeSpan.Zero;
 			HuongPC_TangCuongNgay = TimeSpan.Zero;
 			TongGioLamNgay = TimeSpan.Zero;
@@ -187,18 +186,15 @@ namespace ChamCong_v05.BUS {
 			HuongPC_TangCuongDem = TimeSpan.Zero;
 			if (TongGioLamViec <= TimeSpan.Zero) return;
 
-			if (TongGioTangCuong == TimeSpan.Zero)
-			{
-				if (TongGioLamDem == TimeSpan.Zero)
-				{
+			if (TongGioTangCuong == TimeSpan.Zero) {
+				if (TongGioLamDem == TimeSpan.Zero) {
 					KoHuongPC_TangCuongNgay = TongGioLamViec;
 					//HuongPC_TangCuongNgay = 0;
 					TongGioLamNgay = TongGioLamViec;
 					//HuongPC_Dem = 0;
 					//HuongPC_TangCuongDem = 0;
 				}
-				else
-				{
+				else {
 					KoHuongPC_TangCuongNgay = TongGioLamViec - TongGioLamDem;
 					//HuongPC_TangCuongNgay = 0;
 					TongGioLamNgay = KoHuongPC_TangCuongNgay;
@@ -206,29 +202,24 @@ namespace ChamCong_v05.BUS {
 					//HuongPC_TangCuongDem = 0;
 				}
 			}
-			else
-			{
-				if (TongGioLamDem == TimeSpan.Zero)
-				{
+			else {
+				if (TongGioLamDem == TimeSpan.Zero) {
 					KoHuongPC_TangCuongNgay = XL2._08gio;
 					HuongPC_TangCuongNgay = TongGioLamViec - XL2._08gio;
 					TongGioLamNgay = TongGioLamViec;
 					//HuongPC_Dem = 0;
 					//HuongPC_TangCuongDem = 0;
 				}
-				else
-				{
+				else {
 					TongGioLamNgay = TongGioLamViec - TongGioLamDem;
-					if (TongGioLamNgay > XL2._08gio)
-					{
+					if (TongGioLamNgay > XL2._08gio) {
 						KoHuongPC_TangCuongNgay = XL2._08gio;
 						HuongPC_TangCuongNgay = TongGioLamNgay - XL2._08gio;
 						//TongGioLamNgay = TongGioLamViec - TongGioLamDem;
 						//HuongPC_Dem = 0;
 						HuongPC_TangCuongDem = TongGioLamDem;
 					}
-					else
-					{
+					else {
 						KoHuongPC_TangCuongNgay = TongGioLamNgay;
 						//HuongPC_TangCuongNgay = 0;
 						//TongGioLamNgay = TongGioLamViec - TongGioLamDem;
@@ -276,10 +267,9 @@ namespace ChamCong_v05.BUS {
 		public static void TinhPCDB(bool TinhPCDB, TimeSpan SoGioTinhCong, TimeSpan SoGioLamDemmm, bool QuaDem,
 			int loaiPC, float heso_pc_banNgay, float heso_pc_banDem,
 			out TimeSpan tgTinh200, out TimeSpan tgTinh260, out TimeSpan tgTinh300, out TimeSpan tgTinh390, out TimeSpan tgTinhCus,
-			out float PhuCap100, out float PhuCap160, out float PhuCap200, out float PhuCap290, out float PhuCapCus, ref float TongPhuCap)
-		{
+			out float PhuCap100, out float PhuCap160, out float PhuCap200, out float PhuCap290, out float PhuCapCus, ref float TongPhuCap) {
 
-			tgTinh200 = tgTinh260 = tgTinh300 = tgTinh390 = tgTinhCus= TimeSpan.Zero;
+			tgTinh200 = tgTinh260 = tgTinh300 = tgTinh390 = tgTinhCus = TimeSpan.Zero;
 			PhuCap100 = 0f;
 			PhuCap160 = 0f;
 			PhuCap200 = 0f;
@@ -511,10 +501,9 @@ namespace ChamCong_v05.BUS {
 
 		}
 		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs) { }
-		public static void LoadDSXNPC5(int tempMaCC, DataTable tableXN_PCTC, out List<DataRow> dsXacNhanPC)
-		{
+		public static void LoadDSXNPC5(int tempMaCC, DataTable tableXN_PCTC, out List<DataRow> dsXacNhanPC) {
 			dsXacNhanPC = new List<DataRow>();
-			dsXacNhanPC.AddRange(tableXN_PCTC.Select("UserEnrollNumber="+tempMaCC));
+			dsXacNhanPC.AddRange(tableXN_PCTC.Select("UserEnrollNumber=" + tempMaCC));
 		}
 		public static void LoadDSXNPC50(int tempMaCC, DataTable tableXN_PCTC, List<structPCTC> dsXacNhanPC) { }
 		public static void LoadDSXNPCDB(int tempMaCC, DataTable tableXN_PCDB, List<structPCDB> dsXacNhanPC) { }
@@ -851,16 +840,15 @@ namespace ChamCong_v05.BUS {
 
 		public static void TinhCong_ListNgayCong8_5(List<cNgayCong> dsNgayCong, TimeSpan startNT, TimeSpan endddNT) {
 			foreach (var ngayCong in dsNgayCong) {
-				TinhCong_1Ngay5(ngayCong, startNT, endddNT, out ngayCong.TG5, out ngayCong.PhuCaps, out ngayCong.QuaDem);
-				TinhPhuCap_1NgayQuaDem5(ngayCong.TG5.TongGioLamDem, out ngayCong.PhuCaps._30_dem);
+				TinhCong_1Ngay5(ngayCong, startNT, endddNT, out ngayCong.TG5, out ngayCong.QuaDem);
+				TinhPhuCap_1NgayQuaDem5(ngayCong.TG5.TongGioLamDem, out ngayCong.PhuCaps.PCDem5);
 			}
 		}
 
 
 		public static void TinhCong_1Ngay5(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT,
-			out structThoiGianTheoNgayCong TG, out PhuCap PhuCaps, out bool QuaDem) {
+			out structThoiGianTheoNgayCong TG, out bool QuaDem) {
 			TG = new structThoiGianTheoNgayCong();
-			PhuCaps = new PhuCap();
 			QuaDem = false;
 			ngayCong.TrangThaiDiemDanh = TrangThaiDiemDanh.VANG_NGHI;
 			// tính công của từng ThuocCa làm việc, sau đó tổng hợp Công làm việc của 1 ngày
@@ -868,16 +856,17 @@ namespace ChamCong_v05.BUS {
 			foreach (var CIO in ngayCong.DSVaoRa) {
 				CIO.TD5 = new structThoiDiem();
 				CIO.TG5 = new structThoiGianTheoCIO();
+				if (CIO.HaveINOUT < 0) continue;
 				TinhTG_LV_LVCa3_LamThem_1CIO5(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
 					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.Duty.Onn, CIO.ThuocCa.Duty.Off, CIO.ThuocCa.chophepTreTS, CIO.ThuocCa.chophepSomTS,
 					CIO.ThuocCa.batdaulamthemTS, CIO.ThuocCa.LunchMin, new TimeSpan(0, CIO.OTMin, 0), startNT, endddNT,
 					out CIO.TD5.BD_LV, out CIO.TD5.KT_LV, out CIO.TD5.KT_LV_ChuaOT, out CIO.TD5.BD_LV_Ca3, out CIO.TD5.KT_LV_Ca3,
 					out CIO.TG5.GioThucTe5, out CIO.TG5.TongGioLamViec5, out CIO.TG5.VaoTre, out CIO.TG5.RaaSom,
 					out CIO.TG5.GioLVTrongCa5,//ver 4.0.0.4	
-					out CIO.TG5.OLai, out CIO.QuaDem, out CIO.TG.LamBanDem);
+					out CIO.TG5.OLai, out CIO.QuaDem, out CIO.TG5.TongGioLamDem);
 
-				TinhCong_1_CIO_5(CIO.ThuocCa.Workingday, CIO.ThuocCa.WorkingTimeTS, CIO.TG.VaoTre, CIO.TG.RaaSom,
-					CIO.VaoTreTinhCV, CIO.RaaSomTinhCV, CIO.TG.SoPhutLamThem5,
+				TinhCong_1_CIO_5(CIO.ThuocCa.Workingday, CIO.ThuocCa.WorkingTimeTS, CIO.TG5.VaoTre, CIO.TG5.RaaSom,
+					CIO.VaoTreTinhCV, CIO.RaaSomTinhCV, CIO.TG5.SoPhutLamThem5,
 								 out CIO.Cong5.CaQuyDinh, out CIO.Cong5.TTCongTre, out CIO.Cong5.TTCongSom,
 								 out CIO.Cong5.TTTrongCa, out CIO.Cong5.TTNgoaiCa, out CIO.Cong5.ThucTe,
 								 out CIO.Cong5.TongCongBu, out CIO.Cong5.TongCongTru, out CIO.Cong5.DinhMuc);
@@ -944,10 +933,9 @@ namespace ChamCong_v05.BUS {
 			else TongCongTru += CongSom;
 		}
 
-		public static void TinhPhuCap_1NgayQuaDem5(TimeSpan TongQuaDem, out float phucapDem)
-		{
+		public static void TinhPhuCap_1NgayQuaDem5(TimeSpan TongQuaDem, out float phucapDem) {
 			phucapDem = 0f;
-			phucapDem = Convert.ToSingle(Math.Round((TongQuaDem.TotalHours/8f), 2));
+			phucapDem = Convert.ToSingle(Math.Round((TongQuaDem.TotalHours / 8f), 2));
 		}
 
 

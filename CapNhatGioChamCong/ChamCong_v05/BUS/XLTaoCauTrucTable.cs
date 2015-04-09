@@ -37,12 +37,8 @@ namespace ChamCong_v05.BUS
 				row["UserFullName"] = nhanvien.TenNV;
 				row["SchID"] = nhanvien.LichTrinhLV.SchID;
 				row["SchName"] = nhanvien.LichTrinhLV.TenLichTrinh;
-				row["ChucVu"] = nhanvien.ChucVu;
-				row["MaPhong"] = nhanvien.PhongBan.ID;
-				row["TenPhong"] = nhanvien.PhongBan.Ten;
-				row["HeSoLuongCB"] = nhanvien.HeSo.LuongCB;
-				row["HeSoLuongSP"] = nhanvien.HeSo.LuongCV;
-				row["HSBHCongThem"] = nhanvien.HeSo.BHCongThem_ChoGD_PGD;
+				row["cUserInfo"] = nhanvien;
+
 				m_tableDSNV.Rows.Add(row);
 			}
 		}
@@ -168,14 +164,20 @@ namespace ChamCong_v05.BUS
 					row["UserFullName"] = nhanvien.TenNV;
 					row["UserFullCode"] = nhanvien.MaNV;
 					row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
-					row["TongTre"] = Math.Floor(ngayCong.TG.VaoTre.TotalMinutes);
-					row["TongSom"] = Math.Floor(ngayCong.TG.RaaSom.TotalMinutes);
-					row["TongGioLam"] = ngayCong.TG.GioLamViec5;//Danglam giophut
-					row["TongGioThuc"] = ngayCong.TG.GioThucTe5;//Danglam giophut
-					row["TongCong"] = ngayCong.TongCong;
-					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
-					row["IsEdited"] = false;
-					row["TinhPCTC"] = ngayCong.TinhPC50;
+					row["GioThucTe5"] = ngayCong.TG5.GioThucTe5;
+					row["TongGioLamViec5"] = ngayCong.TG5.TongGioLamViec5;
+					row["TongGioLamDem"] = ngayCong.TG5.TongGioLamDem;
+					row["TongGioLamNgay"] = ngayCong.TG5.TongGioLamNgay;
+					row["TongGioTangCuong"] = ngayCong.TG5.TongGioTangCuong;
+					row["GioLamNgay_KoTC"] = ngayCong.TG5.GioLamNgay_KoTC;
+					row["TongGioTangCuong"] = ngayCong.TG5.TongGioTangCuong;
+					row["GioLamNgay_KoTC"] = ngayCong.TG5.GioLamNgay_KoTC;
+					row["HuongPC_TangCuongNgay"] = ngayCong.TG5.HuongPC_TangCuongNgay;
+					row["HuongPC_TangCuongDem"] = ngayCong.TG5.HuongPC_TangCuongDem;
+					row["HuongPC_Dem"] = ngayCong.TG5.HuongPC_Dem;
+					row["VaoTre"] = ngayCong.TG5.VaoTre;
+					row["RaaSom"] = ngayCong.TG5.RaaSom;
+
 					if (ngayCong.DSVaoRa.Count == 0 && ngayCong.DSVang.Count == 0)
 						row["ShiftCode"] = "-";
 					else

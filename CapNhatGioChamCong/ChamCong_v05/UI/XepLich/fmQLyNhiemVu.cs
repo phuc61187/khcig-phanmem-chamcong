@@ -21,7 +21,7 @@ namespace ChamCong_v05.UI.XepLich {
 		private void fmQLyNhiemVu_Load(object sender, EventArgs e)
 		{
 			//load list nhiệm vụ
-			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
+			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.NhiemVu_DocBang.ToString());
 			listDSNhiemVu.DataSource = tableNhiemVu;
 			listDSNhiemVu.ValueMember = "MaNhiemVu";
 			listDSNhiemVu.DisplayMember = "TenNhiemVu";
@@ -64,14 +64,14 @@ namespace ChamCong_v05.UI.XepLich {
 			{
 				if (lbMaNhiemVu.Tag == null) return; // đang cập nhật mà ko chọn item nào thì thoát
 				int maNvu = (int)lbMaNhiemVu.Tag;
-				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.sp_NhiemVu_InsUpd.ToString(),
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.NhiemVu_InsUpd.ToString(),
 															 new SqlParameter("@MaNhiemVu", maNvu),
 															 new SqlParameter("@TenNhiemVu", tbTenNhiemVu.Text));
 				if (kq == 0) MessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, MessageBoxButtons.OK);
 			}
 			else // đang chế độ thêm mới
 			{
-				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.sp_NhiemVu_InsUpd.ToString(),
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.NhiemVu_InsUpd.ToString(),
 															 new SqlParameter("@MaNhiemVu", DBNull.Value),
 															 new SqlParameter("@TenNhiemVu", tbTenNhiemVu.Text));
 				if (kq == 0) MessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, MessageBoxButtons.OK);
@@ -103,7 +103,7 @@ namespace ChamCong_v05.UI.XepLich {
 
 			//đã đồng ý thực hiện
 			int maNhiemVu = (int) lbMaNhiemVu.Tag;
-			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.sp_NhiemVu_Del.ToString(), new SqlParameter("@MaNhiemVu", maNhiemVu));
+			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.NhiemVu_Del.ToString(), new SqlParameter("@MaNhiemVu", maNhiemVu));
 			if (kq == 0) MessageBox.Show(Resources.Text_CoLoi, Resources.Caption_ThongBao);
 			else ACMessageBox.Show(Resources.Text_DaThucHienXong, Resources.Caption_ThongBao, 1500);
 
@@ -123,7 +123,7 @@ namespace ChamCong_v05.UI.XepLich {
 		}
 
 		private void ReloadListNhiemVu() {
-			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
+			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.NhiemVu_DocBang.ToString());
 			listDSNhiemVu.SelectedIndexChanged -= listDSNhiemVu_SelectedIndexChanged;
 			listDSNhiemVu.DataSource = tableNhiemVu;
 			listDSNhiemVu.SelectedIndexChanged += listDSNhiemVu_SelectedIndexChanged;

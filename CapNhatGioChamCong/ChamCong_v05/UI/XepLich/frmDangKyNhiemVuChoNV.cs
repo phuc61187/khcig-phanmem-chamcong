@@ -83,7 +83,7 @@ namespace ChamCong_v05.UI.XepLich {
 			//lấy danh sách tất cả nhân viên trong phòng được thao tác và load vào datagrid
 			DataTable tableMaPhongBan = MyUtility.Array_To_DataTable("tableMaPhongBan", m_listIDPhongBan);
 			SqlParameter sqlParamArrUserIDD = new SqlParameter("@ArrUserIDD", SqlDbType.Structured) { Value = tableMaPhongBan };
-			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.sp_UserInfo_DocDSNVThaoTac.ToString(), sqlParamArrUserIDD);
+			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.UserInfo_DocDSNVThaoTac.ToString(), sqlParamArrUserIDD);
 			DataView viewNhanVien = new DataView(tableNhanVien);
 			dgrdDSNVTrgPhg.DataSource = viewNhanVien;
 
@@ -95,7 +95,7 @@ namespace ChamCong_v05.UI.XepLich {
 			tbSearch.AutoCompleteCustomSource = Source;
 
 			//load nhiệm vụ cho checkList
-			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
+			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.NhiemVu_DocBang.ToString());
 			checkListNhiemVu.DataSource = tableNhiemVu;
 			checkListNhiemVu.ValueMember = "MaNhiemVu";
 			checkListNhiemVu.DisplayMember = "TenNhiemVu";
@@ -127,7 +127,7 @@ namespace ChamCong_v05.UI.XepLich {
 				var tenNhanVien = NhanVien["UserLastName"].ToString();
 				var maNhanVien = NhanVien["UserFullCode"].ToString();
 				SqlParameter outPutParamKetQua = new SqlParameter("@KetQua", SqlDbType.Int) { Direction = ParameterDirection.Output, };
-				var rowAffect = SqlDataAccessHelper.ExecSPNoneQuery(SPName.sp_NhiemVu_NhanVien_INS.ToString(),
+				var rowAffect = SqlDataAccessHelper.ExecSPNoneQuery(SPName.NhiemVu_NhanVien_INS.ToString(),
 															 new SqlParameter("@MaNhiemVu", maNhiemVu),
 															 new SqlParameter("@UserEnrollNumber", maChamCong),
 															 outPutParamKetQua);

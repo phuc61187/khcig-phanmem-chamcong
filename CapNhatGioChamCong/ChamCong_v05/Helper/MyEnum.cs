@@ -253,31 +253,31 @@ namespace ChamCong_v05.Helper {
 		#endregion
 		#region TableNhiemVu
 
-		sp_NhiemVu_DocBang,
-		sp_NhiemVu_InsUpd,
-		sp_NhiemVu_Del,
+		NhiemVu_DocBang,
+		NhiemVu_InsUpd,
+		NhiemVu_Del,
 
 		#endregion
 		#region RelationDept
-		sp_RelationDept_DocTatCaPhongBan,
-		sp_RelationDept_DocDSPhongDuocThaoTac,
+		RelationDept_DocTatCaPhongBan,
+		RelationDept_DocDSPhongDuocThaoTac,
 		#endregion
 
 		#region userinfo
-		sp_UserInfo_DocDSNVThaoTac,
-		sp_UserInfo_DocDSNVDkyNhiemVu,
-		sp_UserInfo_DocNhanVienNhanNhiemVu,
-		sp_UserInfo_DocDSNVThongKeCongVaPC,
+		UserInfo_DocDSNVThaoTac,
+		UserInfo_DocDSNVDkyNhiemVu,
+		UserInfo_DocNhanVienNhanNhiemVu,
+		UserInfo_DocDSNVThongKeCongVaPC,
 		#endregion
 
 		#region NhiemVu_NhanVien
-		sp_NhiemVu_NhanVien_INS,
-		sp_NhiemVu_NhanVien_DEL,
+		NhiemVu_NhanVien_INS,
+		NhiemVu_NhanVien_DEL,
 		#endregion
 
 		#region other sp
-		sp_KiemTraKetLuongThang,
-		sp_ThongKeCongVaPhuCap,
+		KiemTraKetLuongThang,
+		ThongKeCongVaPhuCap,
 		#endregion
 	}
 	#endregion

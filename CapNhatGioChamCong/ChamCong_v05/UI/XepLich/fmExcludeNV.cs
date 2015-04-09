@@ -30,7 +30,7 @@ namespace ChamCong_v05.UI.XepLich {
 		private void fmExcludeNV_Load(object sender, EventArgs e)
 		{
 			DataTable tableArrarMaPhong = MyUtility.Array_To_DataTable("TableArrayMaPhong", mListMaPhong);
-			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.sp_UserInfo_DocDSNVThaoTac.ToString(),
+			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.UserInfo_DocDSNVThaoTac.ToString(),
 			                                                          new SqlParameter("@ArrUserIDD", SqlDbType.Structured) {Value = tableArrarMaPhong});
 
 			#region tạo datasourcr cho autocomplete

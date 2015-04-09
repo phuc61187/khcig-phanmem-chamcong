@@ -1,5 +1,5 @@
 ﻿ALTER PROCEDURE XacNhanPhuCap5_DocBang
-(@ArrUserIDD as IntArray readonly,
+(@ArrMaCC as IntArray readonly,
 @NgayBD datetime,
 @NgayKT datetime,
 @Duyet bit)
@@ -8,13 +8,13 @@ BEGIN
 	IF (@Duyet is NULL) begin
     	select	*
         from	XacNhanPhuCap5
-        where	UserEnrollNumber in (select * from @ArrUserIDD)
+        where	UserEnrollNumber in (select * from @ArrMaCC)
         		and Ngay >= @NgayBD and Ngay <= @NgayKT 
     end
     else begin
     	select	*
         from 	XacNhanPhuCap5
-        where	UserEnrollNumber in (select * from @ArrUserIDD)
+        where	UserEnrollNumber in (select * from @ArrMaCC)
         		and Ngay >= @NgayBD and Ngay <= @NgayKT 
                 and Duyet = @Duyet    
     end

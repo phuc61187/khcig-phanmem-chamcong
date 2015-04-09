@@ -280,6 +280,8 @@
 			this.btnKetCongThang = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdTongHop)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdDSNVTrgPhg)).BeginInit();
 			this.gpChonPhongBan.SuspendLayout();
@@ -294,6 +296,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.dgrdThKTreSom)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grid2check
@@ -641,7 +645,7 @@
 			this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.label1.Location = new System.Drawing.Point(245, 13);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(53, 15);
+			this.label1.Size = new System.Drawing.Size(60, 16);
 			this.label1.TabIndex = 20;
 			this.label1.Text = "Từ ngày";
 			// 
@@ -652,7 +656,7 @@
 			this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.label2.Location = new System.Drawing.Point(238, 47);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(60, 15);
+			this.label2.Size = new System.Drawing.Size(68, 16);
 			this.label2.TabIndex = 21;
 			this.label2.Text = "Đến ngày";
 			// 
@@ -1180,7 +1184,7 @@
 			this.linkHienThiTatCaNV.AutoSize = true;
 			this.linkHienThiTatCaNV.Location = new System.Drawing.Point(3, 28);
 			this.linkHienThiTatCaNV.Name = "linkHienThiTatCaNV";
-			this.linkHienThiTatCaNV.Size = new System.Drawing.Size(206, 15);
+			this.linkHienThiTatCaNV.Size = new System.Drawing.Size(219, 16);
 			this.linkHienThiTatCaNV.TabIndex = 2;
 			this.linkHienThiTatCaNV.TabStop = true;
 			this.linkHienThiTatCaNV.Text = "Hiển thị tất cả nhân viên trong phòng";
@@ -1210,6 +1214,7 @@
 			this.tabControlChiTiet.Controls.Add(this.tabGioKDQD);
 			this.tabControlChiTiet.Controls.Add(this.tabGioThieuCheck);
 			this.tabControlChiTiet.Controls.Add(this.tabThK_TreSom);
+			this.tabControlChiTiet.Controls.Add(this.tabPage1);
 			this.tabControlChiTiet.Location = new System.Drawing.Point(244, 109);
 			this.tabControlChiTiet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabControlChiTiet.Name = "tabControlChiTiet";
@@ -1232,11 +1237,11 @@
 			// tabGioKDQD
 			// 
 			this.tabGioKDQD.Controls.Add(this.dgrdGioKDQD);
-			this.tabGioKDQD.Location = new System.Drawing.Point(4, 22);
+			this.tabGioKDQD.Location = new System.Drawing.Point(4, 24);
 			this.tabGioKDQD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabGioKDQD.Name = "tabGioKDQD";
 			this.tabGioKDQD.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabGioKDQD.Size = new System.Drawing.Size(882, 483);
+			this.tabGioKDQD.Size = new System.Drawing.Size(1090, 482);
 			this.tabGioKDQD.TabIndex = 1;
 			this.tabGioKDQD.Text = "Giờ vào ra không đúng quy định";
 			this.tabGioKDQD.UseVisualStyleBackColor = true;
@@ -1284,7 +1289,7 @@
 			this.dgrdGioKDQD.Name = "dgrdGioKDQD";
 			this.dgrdGioKDQD.RowHeadersVisible = false;
 			this.dgrdGioKDQD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdGioKDQD.Size = new System.Drawing.Size(876, 479);
+			this.dgrdGioKDQD.Size = new System.Drawing.Size(1084, 478);
 			this.dgrdGioKDQD.TabIndex = 27;
 			this.dgrdGioKDQD.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgrd_ColumnHeaderClick_ToSort);
 			// 
@@ -1531,11 +1536,11 @@
 			// tabGioThieuCheck
 			// 
 			this.tabGioThieuCheck.Controls.Add(this.dgrdGioThieuCheck);
-			this.tabGioThieuCheck.Location = new System.Drawing.Point(4, 22);
+			this.tabGioThieuCheck.Location = new System.Drawing.Point(4, 24);
 			this.tabGioThieuCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabGioThieuCheck.Name = "tabGioThieuCheck";
 			this.tabGioThieuCheck.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabGioThieuCheck.Size = new System.Drawing.Size(882, 483);
+			this.tabGioThieuCheck.Size = new System.Drawing.Size(1090, 482);
 			this.tabGioThieuCheck.TabIndex = 2;
 			this.tabGioThieuCheck.Text = "Giờ vào ra thiếu chấm công";
 			this.tabGioThieuCheck.UseVisualStyleBackColor = true;
@@ -1583,7 +1588,7 @@
 			this.dgrdGioThieuCheck.Name = "dgrdGioThieuCheck";
 			this.dgrdGioThieuCheck.RowHeadersVisible = false;
 			this.dgrdGioThieuCheck.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdGioThieuCheck.Size = new System.Drawing.Size(876, 479);
+			this.dgrdGioThieuCheck.Size = new System.Drawing.Size(1084, 478);
 			this.dgrdGioThieuCheck.TabIndex = 28;
 			this.dgrdGioThieuCheck.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgrd_ColumnHeaderClick_ToSort);
 			// 
@@ -1830,11 +1835,11 @@
 			// tabThK_TreSom
 			// 
 			this.tabThK_TreSom.Controls.Add(this.dgrdThKTreSom);
-			this.tabThK_TreSom.Location = new System.Drawing.Point(4, 22);
+			this.tabThK_TreSom.Location = new System.Drawing.Point(4, 24);
 			this.tabThK_TreSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabThK_TreSom.Name = "tabThK_TreSom";
 			this.tabThK_TreSom.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabThK_TreSom.Size = new System.Drawing.Size(882, 483);
+			this.tabThK_TreSom.Size = new System.Drawing.Size(1090, 482);
 			this.tabThK_TreSom.TabIndex = 3;
 			this.tabThK_TreSom.Text = "Ngày đi trễ, về sớm";
 			this.tabThK_TreSom.UseVisualStyleBackColor = true;
@@ -1882,7 +1887,7 @@
 			this.dgrdThKTreSom.Name = "dgrdThKTreSom";
 			this.dgrdThKTreSom.RowHeadersVisible = false;
 			this.dgrdThKTreSom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdThKTreSom.Size = new System.Drawing.Size(876, 479);
+			this.dgrdThKTreSom.Size = new System.Drawing.Size(1084, 478);
 			this.dgrdThKTreSom.TabIndex = 29;
 			this.dgrdThKTreSom.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgrd_ColumnHeaderClick_ToSort);
 			// 
@@ -2281,6 +2286,26 @@
 			this.panel1.Size = new System.Drawing.Size(234, 53);
 			this.panel1.TabIndex = 1;
 			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.dataGridView1);
+			this.tabPage1.Location = new System.Drawing.Point(4, 24);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(1090, 482);
+			this.tabPage1.TabIndex = 4;
+			this.tabPage1.Text = "tabPage1";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.Size = new System.Drawing.Size(1084, 476);
+			this.dataGridView1.TabIndex = 0;
+			// 
 			// frm_XemCong
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2322,6 +2347,8 @@
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.tabPage1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2504,6 +2531,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn54;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn55;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn56;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.DataGridView dataGridView1;
 
     }
 }

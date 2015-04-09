@@ -57,7 +57,7 @@ namespace ChamCong_v05.UI4._5 {
 			 */
 //			checkedComboBoxEdit1.Properties.Items.Clear();
 			DataTable tableMaPhong = MyUtility.Array_To_DataTable("ArrUserIDD", m_listCurrentIDPhg);
-			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.sp_UserInfo_DocDSNVThaoTac.ToString(), new SqlParameter("@ArrUserIDD", SqlDbType.Structured){Value = tableMaPhong});
+			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.UserInfo_DocDSNVThaoTac.ToString(), new SqlParameter("@ArrUserIDD", SqlDbType.Structured){Value = tableMaPhong});
 			checkedDSNV.Properties.DataSource = tableNhanVien;
 			checkedDSNV.Properties.DisplayMember = "DisplayItem";
 			checkedDSNV.Properties.ValueMember = "UserEnrollNumber";

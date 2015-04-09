@@ -19,6 +19,9 @@ namespace ChamCong_v05.BUS {
 		public static List<cUserInfo> KhoiTaoDSNV_ChamCong(List<cUserInfo> dsnv, List<int> m_listIDPhongBan, List<cPhongBan> dsphong) {
 			return new List<cUserInfo>();
 		}
+		public static List<cUserInfo> KhoiTaoDSNV_ChamCong(List<cUserInfo> dsnv, List<int> m_listIDPhongBan) {
+			return new List<cUserInfo>();
+		}
 		public static List<cUserInfo> KhoiTaoDSNV_TinhLuong(List<cUserInfo> dsnv, List<cPhongBan> dsphong) {
 			return new List<cUserInfo>();
 		}
@@ -362,8 +365,8 @@ namespace ChamCong_v05.BUS {
 		#region cách làm có store procedure
 		public static TreeView loadTreePhgBan(TreeView tvDSPhongBan) {
 			tvDSPhongBan.Nodes.Clear();
-			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName.sp_RelationDept_DocTatCaPhongBan.ToString());
-			DataTable tableDSPhongThacTac = SqlDataAccessHelper.ExecSPQuery(SPName.sp_RelationDept_DocDSPhongDuocThaoTac.ToString(),
+			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName.RelationDept_DocTatCaPhongBan.ToString());
+			DataTable tableDSPhongThacTac = SqlDataAccessHelper.ExecSPQuery(SPName.RelationDept_DocDSPhongDuocThaoTac.ToString(),
 				new SqlParameter("@UserID", XL2.currUserID));
 
 			var rowsPhong = (from DataRow row in tableDSPhong.Rows select row).OrderBy(s => (int)s["ViTri"]);

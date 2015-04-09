@@ -12,6 +12,7 @@ using ChamCong_v05.UI.QLNV;
 using ChamCong_v05.UI.TinhLuong;
 using ChamCong_v05.UI.XepLich;
 using log4net;
+using ChamCong_v05.UI4._5;
 
 
 namespace ChamCong_v05.UI {
@@ -65,10 +66,10 @@ namespace ChamCong_v05.UI {
 				return;
 			}
 
-			frm_XemCong frm1 = new frm_XemCong();
+			fmXemCong4 frm1 = new fmXemCong4();
 			int indexForm = LayVitriForm(this, frm1.GetType());
 			if (indexForm != -1) {
-				frm1 = MdiChildren[indexForm] as frm_XemCong;
+				frm1 = MdiChildren[indexForm] as fmXemCong4;
 				if (frm1 != null) frm1.BringToFront();
 			}
 			else {

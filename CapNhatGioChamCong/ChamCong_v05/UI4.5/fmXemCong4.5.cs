@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ChamCong_v05.BUS;
 using ChamCong_v05.Helper;
 using ChamCong_v05.Properties;
+using ChamCong_v05.DTO;
 
 namespace ChamCong_v05.UI4._5 {
 	public partial class fmXemCong4 : Form {
@@ -57,7 +58,7 @@ namespace ChamCong_v05.UI4._5 {
 			 */
 //			checkedComboBoxEdit1.Properties.Items.Clear();
 			DataTable tableMaPhong = MyUtility.Array_To_DataTable("ArrUserIDD", m_listCurrentIDPhg);
-			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.sp_UserInfo_DocDSNVThaoTac.ToString(), new SqlParameter("@ArrUserIDD", SqlDbType.Structured){Value = tableMaPhong});
+			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.UserInfo_DocDSNVThaoTac.ToString(), new SqlParameter("@ArrUserIDD", SqlDbType.Structured){Value = tableMaPhong});
 			checkedDSNV.Properties.DataSource = tableNhanVien;
 			checkedDSNV.Properties.DisplayMember = "DisplayItem";
 			checkedDSNV.Properties.ValueMember = "UserEnrollNumber";
@@ -78,7 +79,86 @@ namespace ChamCong_v05.UI4._5 {
 			List<int> arrMaCC = new List<int>();
 			strChecked_ArrMaCC.Split(new char[]{','}).ToList().ForEach(item=>arrMaCC.Add(int.Parse(item)));
 
+			List<cUserInfo> listNhanVien = new List<cUserInfo>();
+			DataTable tableDSNV = checkedDSNV.Properties.DataSource as DataTable;
+			if (tableDSNV == null) return;
+			foreach (int maCC in arrMaCC) {
+				DataRow[] row = tableDSNV.Select("UserEnrollNumber=" + maCC);
+				cUserInfo nhanvien = new cUserInfo{
+					MaCC = (int)row[0]["UserEnrollNumber"],
+					MaNV = row[0]["UserFullCode"].ToString(),
+					TenNV = row[0]["UserFullName"].ToString(),
+				};
+				XL.GetLichTrinhNV(nhanvien, row[0]["SchID"] != DBNull.Value ? (int)row[0]["SchID"] : (int?)null);
+				listNhanVien.Add(nhanvien);
+			}
+			DateTime ngaybd = MyUtility.FirstDayOfMonth(dateNavigator1.DateTime);
+			DateTime ngaykt = MyUtility.LastDayOfMonth(ngaybd);
+
+			XL.XemCongThoiGianChuaKetLuong(listNhanVien, ngaybd, ngaykt);
+			DataTable table = tao();
+			populatedata(listNhanVien, table);
+			dataGridView1.DataSource = table;
 		}
 
+		private void populatedata(List<cUserInfo> dsnv, DataTable table) {
+			foreach (var nhanvien in dsnv) {
+				foreach(cNgayCong ngayCong in nhanvien.DSNgayCong){
+				DataRow row = table.NewRow();
+				row["UserEnrollNumber"] = nhanvien.MaCC ;
+				row["UserFullCode"] = nhanvien.MaNV ;
+				row["UserLastName"] = nhanvien.TenNV ;
+					row["Ngay"] = ngayCong.Ngay ;
+					row["Thu"] = ngayCong.Ngay ;
+					row["GioThucTe5"] = ngayCong.TG5.GioThucTe5 ;
+					row["TongGioLamViec5"] = ngayCong.TG5.TongGioLamViec5 ;
+					row["TongGioLamNgay"] = ngayCong.TG5.TongGioLamNgay ;
+					row["TongGioLamDem"] = ngayCong.TG5.TongGioLamDem ;
+					row["TongGioTangCuong"] = ngayCong.TG5.TongGioTangCuong ;
+					row["GioLamNgay_KoTC"] = ngayCong.TG5.GioLamNgay_KoTC ;
+					row["HuongPC_TangCuongNgay"] = ngayCong.TG5.HuongPC_TangCuongNgay ;
+					row["HuongPC_Dem"] = ngayCong.TG5.HuongPC_Dem ;
+					row["HuongPC_TangCuongDem"] = ngayCong.TG5.HuongPC_TangCuongDem ;
+					row["PCNgay5"] = ngayCong.PhuCaps.PCNgay5 ;
+					row["PCTangCuongNgay5"] = ngayCong.PhuCaps.PCTangCuongNgay5 ;
+					row["PCDem5"] = ngayCong.PhuCaps.PCDem5 ;
+					row["PCTangCuongDem5"] = ngayCong.PhuCaps.PCTangCuongDem5 ;
+					row["_TongPC"] = ngayCong.PhuCaps._TongPC ;
+					row["LoaiPhuCap"] = ngayCong.PhuCaps.LoaiPhuCap ;
+					table.Rows.Add(row);
+
+				}
+
+			}
+		}
+
+		public DataTable tao() { 
+			DataTable table = new DataTable();
+			table.Columns.Add("UserEnrollNumber", typeof(int));
+			table.Columns.Add("UserFullCode", typeof(string));
+			table.Columns.Add("UserLastName", typeof(string));
+			table.Columns.Add("Ngay", typeof(DateTime));
+			table.Columns.Add("Thu", typeof(DateTime));
+			table.Columns.Add("GioThucTe5", typeof(TimeSpan));
+			table.Columns.Add("TongGioLamViec5", typeof(TimeSpan));
+			table.Columns.Add("TongGioLamNgay", typeof(TimeSpan));
+			table.Columns.Add("TongGioLamDem", typeof(TimeSpan));
+			table.Columns.Add("TongGioTangCuong", typeof(TimeSpan));
+			table.Columns.Add("GioLamNgay_KoTC", typeof(TimeSpan));
+			table.Columns.Add("HuongPC_TangCuongNgay", typeof(TimeSpan));
+			table.Columns.Add("HuongPC_Dem", typeof(TimeSpan));
+			table.Columns.Add("HuongPC_TangCuongDem", typeof(TimeSpan));
+			table.Columns.Add("PCNgay5", typeof(float));
+			table.Columns.Add("PCTangCuongNgay5", typeof(float));
+			table.Columns.Add("PCDem5", typeof(float));
+			table.Columns.Add("PCTangCuongDem5", typeof(float));
+			table.Columns.Add("_TongPC", typeof(float));
+			table.Columns.Add("LoaiPhuCap", typeof(int));
+			//table.Columns.Add("", typeof(float));
+			//table.Columns.Add("", typeof(float));
+			//table.Columns.Add("", typeof());
+
+			return table;
+		}
 	}
 }

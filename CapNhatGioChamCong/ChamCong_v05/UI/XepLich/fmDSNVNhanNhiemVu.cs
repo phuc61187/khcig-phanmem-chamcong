@@ -88,7 +88,7 @@ namespace ChamCong_v05.UI.XepLich {
 
 			#region 			//load danh sách nhiệm vụ, có add thêm cột check
 
-			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
+			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.NhiemVu_DocBang.ToString());
 			DataColumn columnCheck = tableNhiemVu.Columns.Add("check", typeof(bool));
 			columnCheck.DefaultValue = false;
 			checkListNhiemVu.DataSource = tableNhiemVu;
@@ -195,7 +195,7 @@ namespace ChamCong_v05.UI.XepLich {
 			DataTable tableMaNhiemVu = MyUtility.Array_To_DataTable("tableMaNhiemVu", listMaNhiemVu);
 			SqlParameter sqlParamArrMaNhiemVu = new SqlParameter("@ArrMaNhiemVu", SqlDbType.Structured);
 			sqlParamArrMaNhiemVu.Value = tableMaNhiemVu;
-			DataTable kq = SqlDataAccessHelper.ExecSPQuery(SPName.sp_UserInfo_DocNhanVienNhanNhiemVu.ToString(),
+			DataTable kq = SqlDataAccessHelper.ExecSPQuery(SPName.UserInfo_DocNhanVienNhanNhiemVu.ToString(),
 				sqlParamArrUserIDD, sqlParamArrMaNhiemVu);
 			kq.Columns.Add(new DataColumn("check", typeof(bool)) { DefaultValue= false});
 
@@ -210,7 +210,7 @@ namespace ChamCong_v05.UI.XepLich {
 				var maNhanVien = rowView["UserFullCode"].ToString();
 				var maNhiemVu = (int)rowView["MaNhiemVu"];
 				var tenNhiemVu = rowView["TenNhiemVu"].ToString();
-				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.sp_NhiemVu_NhanVien_DEL.ToString(),
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName.NhiemVu_NhanVien_DEL.ToString(),
 															 new SqlParameter("@UserEnrollNumber", uen),
 															 new SqlParameter("@MaNhiemVu", maNhiemVu));
 				if (kq == 0) {

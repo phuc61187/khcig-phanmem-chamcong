@@ -39,7 +39,7 @@ namespace ChamCong_v05.UI.XepLich {
 			treePhongBan.AfterSelect += treePhongBan_AfterSelect;
 
 			//load danh sách nhiệm vụ
-			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.sp_NhiemVu_DocBang.ToString());
+			DataTable tableNhiemVu = SqlDataAccessHelper.ExecSPQuery(SPName.NhiemVu_DocBang.ToString());
 			checkedListNhiemVu.DataSource = tableNhiemVu;
 			checkedListNhiemVu.ValueMember = "MaNhiemVu";
 			checkedListNhiemVu.DisplayMember = "TenNhiemVu";
@@ -185,7 +185,7 @@ namespace ChamCong_v05.UI.XepLich {
 
 			if (arrDoanTGDaKetCong.Count != 0) {
 				DataTable tableArrUEN = MyUtility.Array_To_DataTable("TableArrUserEnrollNumber", (from cUserInfo item in listNhanVien select item.MaCC).ToList());
-				DataTable tableTKeDaKetCong = SqlDataAccessHelper.ExecSPQuery(SPName.sp_ThongKeCongVaPhuCap.ToString(),
+				DataTable tableTKeDaKetCong = SqlDataAccessHelper.ExecSPQuery(SPName.ThongKeCongVaPhuCap.ToString(),
 																			  new SqlParameter("@ArrUserEnrollNumber", SqlDbType.Structured) { Value = tableArrUEN },
 																			  new SqlParameter("@NgayBatDau", arrDoanTGDaKetCong[0][0]),
 																			  new SqlParameter("@NgayKetThuc", arrDoanTGDaKetCong[arrDoanTGDaKetCong.Count - 1][1]));
@@ -213,7 +213,7 @@ namespace ChamCong_v05.UI.XepLich {
 			SqlParameter sqlParamArrUserIDD = new SqlParameter("@ArrUserIDD", SqlDbType.Structured) { Value = TableUserIDD };
 			DataTable tableExcludeNV = MyUtility.Array_To_DataTable("TableExcludeNV", dsExcludeMaCC);
 			DataTable tableArrMaNhiemVu = MyUtility.Array_To_DataTable("TableMaNhiemVu", dsNhiemVuDangChon);
-			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.sp_UserInfo_DocDSNVThongKeCongVaPC.ToString(),
+			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.UserInfo_DocDSNVThongKeCongVaPC.ToString(),
 				sqlParamArrUserIDD,
 				new SqlParameter("@ArrExcludeMaCC", SqlDbType.Structured) { Value = tableExcludeNV },
 				new SqlParameter("@ArrMaNhiemVu", SqlDbType.Structured) { Value = tableArrMaNhiemVu });
@@ -228,7 +228,7 @@ namespace ChamCong_v05.UI.XepLich {
 				DateTime ngaydauthang = MyUtility.FirstDayOfMonth(x[0]);
 				SqlParameter paramNgayDauThang = new SqlParameter { ParameterName = "@NgayDauThang", Value = ngaydauthang };
 				SqlParameter outParamKetQua = new SqlParameter { Direction = ParameterDirection.ReturnValue };
-				SqlDataAccessHelper.ExecSPQuery(SPName.sp_KiemTraKetLuongThang.ToString(), paramNgayDauThang, outParamKetQua);
+				SqlDataAccessHelper.ExecSPQuery(SPName.KiemTraKetLuongThang.ToString(), paramNgayDauThang, outParamKetQua);
 				int kq = (int)outParamKetQua.Value;
 				if (kq == 1) arrDoanTGDaKetCong.Add(x);
 				else arrDoanTGChuaKetCong.Add(x);

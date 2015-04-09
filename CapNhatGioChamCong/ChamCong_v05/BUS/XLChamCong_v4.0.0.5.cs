@@ -181,7 +181,7 @@ namespace ChamCong_v05.BUS {
 				LoadDSXPVang_Le(tempMaCC, tableXPVang, tableNgayLe, nv.DSVang);
 				LoadDSXNPC5(tempMaCC, tableXNPC, out nv.DSXNPC5);
 				// khởi tạo danh sách ngày công
-				KhoiTaoDSNgayCong(nv.DSNgayCong, ngayBD, ngayKT);
+				KhoiTaoDSNgayCong(nv.DSNgayCong, ngayBD.AddDays(-2d), ngayKT.AddDays(2d));
 
 			}
 
@@ -209,6 +209,12 @@ namespace ChamCong_v05.BUS {
 
 		public static void TinhPhuCap_ListNgayCong9_5(List<cNgayCong> DSNgayCong, List<DataRow> DSXacNhanPhuCap) {
 			float HSPCNgay, HSPCTangCuongNgay, HSPCDem, HSPCTangCuongDem;
+			// tính phụ cấp đêm trước
+			foreach (var ngayCong in DSNgayCong.Where(item=>item.QuaDem)) {
+				ngayCong.PhuCaps.PCDem5 = Convert.ToSingle(Math.Round ((ngayCong.TG5.HuongPC_Dem.TotalHours/8d) * (XL2.HSPCDem_NgayThuong / 100f),2));
+				ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong;
+				ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
+			}
 			foreach (DataRow row in DSXacNhanPhuCap) {
 				var ngay = (DateTime)row["Ngay"];
 				var loaiPhuCap = (int)row["LoaiPhuCap"];

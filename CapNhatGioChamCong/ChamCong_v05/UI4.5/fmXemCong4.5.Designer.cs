@@ -79,11 +79,13 @@
 			this.g1c25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnChamCong = new DevExpress.XtraEditors.SimpleButton();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.panel1.SuspendLayout();
 			this.gpChonPhongBan.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdTongHop)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -149,7 +151,7 @@
 			this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label1.Location = new System.Drawing.Point(236, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(103, 14);
+			this.label1.Size = new System.Drawing.Size(107, 16);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Chọn nhân viên";
 			// 
@@ -159,7 +161,7 @@
 			this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label2.Location = new System.Drawing.Point(236, 42);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 14);
+			this.label2.Size = new System.Drawing.Size(82, 16);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Chọn tháng";
 			// 
@@ -471,7 +473,7 @@
 			this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label3.Location = new System.Drawing.Point(1, 200);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(149, 14);
+			this.label3.Size = new System.Drawing.Size(155, 16);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Bảng chấm công tháng";
 			// 
@@ -486,10 +488,20 @@
 			this.btnChamCong.Text = "Chấm công";
 			this.btnChamCong.Click += new System.EventHandler(this.btnChamCong_Click);
 			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Location = new System.Drawing.Point(12, 218);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowTemplate.Height = 24;
+			this.dataGridView1.Size = new System.Drawing.Size(1215, 362);
+			this.dataGridView1.TabIndex = 29;
+			// 
 			// fmXemCong4
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(1344, 592);
+			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnChamCong);
 			this.Controls.Add(this.dgrdTongHop);
 			this.Controls.Add(this.dateNavigator1);
@@ -507,6 +519,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdTongHop)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -560,5 +573,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c24;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c25;
 		private DevExpress.XtraEditors.SimpleButton btnChamCong;
+		private System.Windows.Forms.DataGridView dataGridView1;
 	}
 }

@@ -12,6 +12,7 @@ using ChamCong_v05.Properties;
 using ChamCong_v05.UI.KhaiBao;
 using ChamCong_v05.UI.XacNhan;
 using log4net;
+using System.Data.SqlClient;
 
 namespace ChamCong_v05.UI.ChamCong {
 	public partial class frm_XemCong : Form {
@@ -72,16 +73,19 @@ namespace ChamCong_v05.UI.ChamCong {
 			kq.Columns.Add("cCheckInOut1", typeof(cCheckInOut));
 			kq.Columns.Add("cCheckInOut2", typeof(cCheckInOut));
 			kq.Columns.Add("cCheckInOut3", typeof(cCheckInOut));
-			kq.Columns.Add("TongTre", typeof(int)); //18
-			kq.Columns.Add("TongSom", typeof(int)); //19
-			kq.Columns.Add("TongCong", typeof(Single)); //20
-			kq.Columns.Add("TongPhuCap", typeof(Single)); //22
-			kq.Columns.Add("TongGioLam", typeof(TimeSpan));
-			kq.Columns.Add("TongGioThuc", typeof(TimeSpan));
-			kq.Columns.Add("cNgayCong", typeof(cNgayCong));
-			kq.Columns.Add("cUserInfo", typeof(cUserInfo));
-			kq.Columns.Add("IsEdited", typeof(bool));
-			kq.Columns.Add("TinhPCTC", typeof(bool));
+			kq.Columns.Add("GioThucTe5", typeof(TimeSpan)); //18
+			kq.Columns.Add("TongGioLamViec5", typeof(TimeSpan)); //18
+			kq.Columns.Add("TongGioLamDem", typeof(TimeSpan)); //18
+			kq.Columns.Add("TongGioLamNgay", typeof(TimeSpan)); //18
+			kq.Columns.Add("TongGioTangCuong", typeof(TimeSpan)); //18
+			kq.Columns.Add("GioLamNgay_KoTC", typeof(TimeSpan)); //18
+			kq.Columns.Add("HuongPC_TangCuongNgay", typeof(TimeSpan)); //18
+			kq.Columns.Add("HuongPC_TangCuongDem", typeof(TimeSpan)); //18
+			kq.Columns.Add("HuongPC_Dem", typeof(TimeSpan)); //18
+			kq.Columns.Add("VaoTre", typeof(TimeSpan)); //18
+			kq.Columns.Add("RaaSom", typeof(TimeSpan)); //18
+			//kq.Columns.Add("", typeof(TimeSpan)); //18
+
 			return kq;
 		}
 
@@ -189,7 +193,7 @@ namespace ChamCong_v05.UI.ChamCong {
 
 			#region không cho autogen các column khi bind dữ liệu: 4 cái
 
-			dgrdTongHop.AutoGenerateColumns = dgrdGioKDQD.AutoGenerateColumns
+			dgrdGioKDQD.AutoGenerateColumns
 			= dgrdGioThieuCheck.AutoGenerateColumns = dgrdThKTreSom.AutoGenerateColumns
 			= dgrdDSNVTrgPhg.AutoGenerateColumns = false;
 
@@ -197,13 +201,13 @@ namespace ChamCong_v05.UI.ChamCong {
 
 			#region gán template vào các dataSource, hoặc dataView vào các dataSource
 
-			dgrdTongHop.DataSource = m_Bang_TongHopXemCong;
+			//dgrdTongHop.DataSource = m_Bang_TongHopXemCong;
+			dataGridView1.DataSource = m_Bang_TongHopXemCong;
 			dgrdGioKDQD.DataSource = m_Bang_GioKDQD;
 			dgrdGioThieuCheck.DataSource = m_Bang_GioThieuCheck;
 			dgrdThKTreSom.DataSource = m_Bang_ThK_TreSom;
 			DataView dataView = new DataView(m_Bang_DSNV);
 			dgrdDSNVTrgPhg.DataSource = dataView;
-
 			#endregion
 
 			//3. vẽ 3 checkbox checkall cho DSNV trong phòng
@@ -246,7 +250,7 @@ namespace ChamCong_v05.UI.ChamCong {
 				Close();
 				return;
 			}
-			XL.loadTreePhgBan(treePhongBan, XL2.TatcaPhongban, m_DSPhg);
+			XL.loadTreePhgBan(treePhongBan);
 
 			#endregion
 
@@ -273,12 +277,13 @@ namespace ChamCong_v05.UI.ChamCong {
 			#region mỗi lần chọn node thì lấy ID node hiện tại và tất cả node con
 
 			m_listIDPhongBan.Clear();
-			if (e.Node.FirstNode != null) XL.GetIDNodeAndChildNode(e.Node, ref m_listIDPhongBan);
-			else {
-				var temp = ((cPhongBan)e.Node.Tag);
-				if (temp.ChoPhep) m_listIDPhongBan.Add(temp.ID);
-			}
 			e.Node.Expand();
+			TreeNode topnode = XL.TopNode(e.Node); //đưa về root để thực hiện từ trên xuống
+			if (topnode != null) XL.GetIDNodeAndChildNode1(e.Node, ref m_listIDPhongBan); // chỉ lấy các phòng ban được phép, 
+			else {
+				var temp = ((DataRow)e.Node.Tag);
+				if ((int)temp["IsYes"] == 1) m_listIDPhongBan.Add((int)temp["ID"]);
+			}
 
 			#endregion
 
@@ -291,9 +296,18 @@ namespace ChamCong_v05.UI.ChamCong {
 			}
 
 			#endregion
-
-
-			XL.KhoiTaoDSNV_ChamCong(m_DSNV, m_listIDPhongBan, this.m_DSPhg);
+			DataTable tableMaPhong = MyUtility.Array_To_DataTable("ArrUserIDD", m_listIDPhongBan);
+			DataTable tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName.UserInfo_DocDSNVThaoTac.ToString(), new SqlParameter("@ArrUserIDD", SqlDbType.Structured) { Value = tableMaPhong });
+			List<cUserInfo> listNhanVien = new List<cUserInfo>();
+			foreach (DataRow row in tableNhanVien.Rows) {
+				cUserInfo nhanvien = new cUserInfo {
+					MaCC = (int)row["UserEnrollNumber"],
+					MaNV = row["UserFullCode"].ToString(),
+					TenNV = row["UserFullName"].ToString(),
+				};
+				XL.GetLichTrinhNV(nhanvien, row["SchID"] != DBNull.Value ? (int)row["SchID"] : (int?)null);
+				listNhanVien.Add(nhanvien);
+			}
 
 			XL.TaoTableDSNV(m_DSNV, m_Bang_DSNV);
 
@@ -307,9 +321,7 @@ namespace ChamCong_v05.UI.ChamCong {
 
 			#endregion
 
-			var dataView = dgrdDSNVTrgPhg.DataSource as DataView;
-			if (dataView != null) dataView.RowFilter = string.Empty;
-
+			dgrdDSNVTrgPhg.DataSource = m_Bang_DSNV;
 			m_Bang_TongHopXemCong.Rows.Clear();
 			m_Bang_GioKDQD.Rows.Clear();
 			m_Bang_GioThieuCheck.Rows.Clear();
@@ -348,8 +360,8 @@ namespace ChamCong_v05.UI.ChamCong {
 			#region //2. lấy danh sách nhân viên check, nếu chưa có nv nào check thì thông báo
 
 			var listNV = (from DataGridViewRow dataGridViewRow in dgrdDSNVTrgPhg.Rows
-						  let rowView = dataGridViewRow.DataBoundItem as DataRowView
-						  where (rowView["check"] != DBNull.Value && (bool)rowView["check"])
+						  let rowView = dataGridViewRow.DataBoundItem as DataRow
+						  //where (rowView["check"] != DBNull.Value && (bool)rowView["check"])
 						  select (cUserInfo)rowView["cUserInfo"])
 						  .ToList();
 
@@ -364,11 +376,11 @@ namespace ChamCong_v05.UI.ChamCong {
 			//3. lấy dữ liệu chấm công của các nhân viên
 			try {
 				if (XL.KiemtraDulieuCapnhatTuServer(DateTime.Now) == false) {
-					ACMessageBox.Show(Resources.Text_DuLieuChamCongChuaUpdate, Resources.Caption_ThongBao, 4000);
+					//ACMessageBox.Show(Resources.Text_DuLieuChamCongChuaUpdate, Resources.Caption_ThongBao, 4000);
 				}
 				WaitWindow.Show(this.XuLyXemCong, "Đang xử lý, vui lòng đợi trong giây lát...", new object[] { listNV, ngayBD_Bef2D, ngayKT_Aft2D });
 				//XL.XemCong_v08(listNV, ngayBD_Bef2D, ngayKT_Aft2D);
-				Reload4DataGrid(listNV);
+				//Reload4DataGrid(listNV);
 			} catch (Exception exception) {
 				lg.Error(string.Format("[{0}]_[{1}]\n", this.Name, System.Reflection.MethodBase.GetCurrentMethod().Name), exception);
 				MessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi);
@@ -381,7 +393,9 @@ namespace ChamCong_v05.UI.ChamCong {
 			List<cUserInfo> listNV = (List<cUserInfo>)e.Arguments[0];
 			DateTime ngayBD_Bef2D = (DateTime)e.Arguments[1];
 			DateTime ngayKT_Aft2D = (DateTime)e.Arguments[2];
-			XL.XemCong_v08(listNV, ngayBD_Bef2D, ngayKT_Aft2D);
+			XL.XemCongThoiGianChuaKetLuong(listNV, ngayBD_Bef2D, ngayKT_Aft2D);
+			XL.TaoTableXemCong(listNV, m_Bang_TongHopXemCong);
+
 			//Reload4DataGrid(listNV);
 
 		}
