@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ChamCong_v05.Helper;
 
 namespace ChamCong_v05.DTO {
 	public class cPhucHoi {
@@ -82,15 +81,10 @@ namespace ChamCong_v05.DTO {
 		public cCheck Vao;
 		public cCheck Raa;
 		public int ShiftID;
-		public cCa ThuocCa;
-		public List<cCa> DSCa;
-		public structThoiGianTheoCIO TG5;
-		public structThoiDiem TD5;
 		public bool QuaDem;
 		public DateTime ThuocNgayCong;
 		public bool DaXN;
 		public int HaveINOUT;
-		public structCong Cong5;
 		public bool DuyetChoPhepVaoTre;
 		public bool DuyetChoPhepRaSom;
 		public bool VaoTreTinhCV; //ver 4.0.0.4	
@@ -105,60 +99,6 @@ namespace ChamCong_v05.DTO {
 		public float Cong;
 
 		#endregion
-
-		public override string ToString()
-		{
-			var temp = "HaveIO:{0} XN:{1} V:{2} R:{3} Ca:{4} Ngay:{5}";
-
-			return string.Format(temp, HaveINOUT, DaXN,
-			                     (Vao != null) ? Vao.Time.ToString("H:mm") : "", (Raa != null) ? Raa.Time.ToString("H:mm") : "",
-			                     (ThuocCa != null) ? ThuocCa.Code : "", ThuocNgayCong.ToString("d/M"));
-		}
-
-		public string CIOCodeComp(string chuoiTruoc = null) {
-			var kq = string.Empty;
-			if (HaveINOUT == -2) kq = "KV";
-			else if (HaveINOUT == -1) kq = "KR";
-			else kq = ((DaXN) ? "XN-":"")+ThuocCa.Code;
-			return (chuoiTruoc == null)
-					   ? kq
-					   : chuoiTruoc + ";" + kq;
-		}
-
-		public string CIOCodeFull(string chuoiTruoc = null) {
-			var kq = string.Empty;
-			if (HaveINOUT == -2) {
-				kq += "KV(";
-				if (DSCa != null) {
-					var result = string.Empty;
-					foreach (var abs in DSCa)
-						if (result == string.Empty)
-							result += abs.Code;
-						else result += ";" + abs.Code;
-					kq += result;
-				}
-				kq += ")";
-			}
-			else if (HaveINOUT == -1) {
-				kq += "KR(";
-				if (DSCa != null) {
-					var result = string.Empty;
-					foreach (var abs in DSCa)
-						if (result == string.Empty)
-							result += abs.Code;
-						else result += ";" + abs.Code;
-					kq += result;
-				}
-				kq += ")";
-			}
-			else {
-				kq += ((DaXN) ? "XN-" : "") + ThuocCa.Code;
-			}
-			return (chuoiTruoc == null)
-								   ? kq
-								   : chuoiTruoc + ";" + kq;
-
-		}
 
 		public cCheckInOut() {
 		}

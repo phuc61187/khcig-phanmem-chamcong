@@ -13,7 +13,7 @@ namespace StudynTestNewTech {
 		static void Main() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new demo_loadTree());
+			Application.Run(new test_cell_merging_datagrid());
 		}
 	}
 }

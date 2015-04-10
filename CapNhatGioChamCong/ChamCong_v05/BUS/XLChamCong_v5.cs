@@ -201,8 +201,7 @@ namespace ChamCong_v05.BUS {
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 				TinhCong_ListNgayCong8_5(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
 				TinhPhuCap_ListNgayCong9_5(nv.DSNgayCong, nv.DSXNPC5);
-			}
-			if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
+			}if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
 			if (ds_raa3_vao1.Count > 0) DAO5.ThemGio_ra3_vao1(ds_raa3_vao1);
 			#endregion
 		}
@@ -212,8 +211,7 @@ namespace ChamCong_v05.BUS {
 			// tính phụ cấp đêm trước
 			foreach (var ngayCong in DSNgayCong.Where(item=>item.QuaDem)) {
 				ngayCong.PhuCaps.PCDem5 = Convert.ToSingle(Math.Round ((ngayCong.TG5.HuongPC_Dem.TotalHours/8d) * (XL2.HSPCDem_NgayThuong / 100f),2));
-				ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong;
-				ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
+				ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong;ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
 			}
 			foreach (DataRow row in DSXacNhanPhuCap) {
 				var ngay = (DateTime)row["Ngay"];

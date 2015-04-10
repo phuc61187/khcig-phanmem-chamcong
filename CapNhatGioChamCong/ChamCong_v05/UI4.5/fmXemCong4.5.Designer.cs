@@ -23,16 +23,16 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode3});
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode14});
+			System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode15});
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
 			this.treePhongBan = new System.Windows.Forms.TreeView();
@@ -41,9 +41,24 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
 			this.dgrdTongHop = new System.Windows.Forms.DataGridView();
+			this.label3 = new System.Windows.Forms.Label();
+			this.btnChamCong = new DevExpress.XtraEditors.SimpleButton();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
 			this.g1c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1cd1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1cd2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1cd3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,15 +92,19 @@
 			this.g1cd31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1c24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.g1c25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.label3 = new System.Windows.Forms.Label();
-			this.btnChamCong = new DevExpress.XtraEditors.SimpleButton();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.panel1.SuspendLayout();
 			this.gpChonPhongBan.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdTongHop)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -119,16 +138,16 @@
 			this.treePhongBan.Location = new System.Drawing.Point(3, 21);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
-			treeNode1.Name = "Node2";
-			treeNode1.Text = "px thành phẩm";
-			treeNode2.Name = "Node5";
-			treeNode2.Text = "bảo vệ";
-			treeNode3.Name = "Node4";
-			treeNode3.Text = "văn phòng";
-			treeNode4.Name = "Node0";
-			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
+			treeNode13.Name = "Node2";
+			treeNode13.Text = "px thành phẩm";
+			treeNode14.Name = "Node5";
+			treeNode14.Text = "bảo vệ";
+			treeNode15.Name = "Node4";
+			treeNode15.Text = "văn phòng";
+			treeNode16.Name = "Node0";
+			treeNode16.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode16});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(223, 173);
 			this.treePhongBan.TabIndex = 0;
@@ -141,7 +160,7 @@
 			this.checkedDSNV.Properties.Appearance.Options.UseFont = true;
 			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.checkedDSNV.Size = new System.Drawing.Size(189, 20);
 			this.checkedDSNV.TabIndex = 1;
 			// 
@@ -151,7 +170,7 @@
 			this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label1.Location = new System.Drawing.Point(236, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(107, 16);
+			this.label1.Size = new System.Drawing.Size(103, 14);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Chọn nhân viên";
 			// 
@@ -161,15 +180,16 @@
 			this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label2.Location = new System.Drawing.Point(236, 42);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(82, 16);
+			this.label2.Size = new System.Drawing.Size(80, 14);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Chọn tháng";
 			// 
 			// dateNavigator1
 			// 
 			this.dateNavigator1.DateTime = new System.DateTime(2015, 4, 3, 0, 0, 0, 0);
+			this.dateNavigator1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.dateNavigator1.HotDate = null;
-			this.dateNavigator1.Location = new System.Drawing.Point(239, 61);
+			this.dateNavigator1.Location = new System.Drawing.Point(236, 61);
 			this.dateNavigator1.Name = "dateNavigator1";
 			this.dateNavigator1.ShowTodayButton = false;
 			this.dateNavigator1.ShowWeekNumbers = false;
@@ -181,18 +201,20 @@
 			this.dgrdTongHop.AllowUserToAddRows = false;
 			this.dgrdTongHop.AllowUserToDeleteRows = false;
 			this.dgrdTongHop.AllowUserToResizeRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-			this.dgrdTongHop.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+			this.dgrdTongHop.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+			this.dgrdTongHop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.dgrdTongHop.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdTongHop.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
 			this.dgrdTongHop.ColumnHeadersHeight = 45;
 			this.dgrdTongHop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgrdTongHop.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.g1c2,
-            this.g1c1,
             this.g1c3,
+            this.g1c1,
             this.g1cd1,
             this.g1cd2,
             this.g1cd3,
@@ -232,29 +254,193 @@
 			this.dgrdTongHop.Name = "dgrdTongHop";
 			this.dgrdTongHop.RowHeadersVisible = false;
 			this.dgrdTongHop.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdTongHop.Size = new System.Drawing.Size(1342, 370);
+			this.dgrdTongHop.Size = new System.Drawing.Size(1342, 442);
 			this.dgrdTongHop.TabIndex = 27;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label3.Location = new System.Drawing.Point(1, 200);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(149, 14);
+			this.label3.TabIndex = 2;
+			this.label3.Text = "Bảng chấm công tháng";
+			// 
+			// btnChamCong
+			// 
+			this.btnChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnChamCong.Appearance.Options.UseFont = true;
+			this.btnChamCong.Location = new System.Drawing.Point(431, 5);
+			this.btnChamCong.Name = "btnChamCong";
+			this.btnChamCong.Size = new System.Drawing.Size(103, 46);
+			this.btnChamCong.TabIndex = 28;
+			this.btnChamCong.Text = "Chấm công";
+			this.btnChamCong.Click += new System.EventHandler(this.btnChamCong_Click);
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Location = new System.Drawing.Point(6, 120);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowTemplate.Height = 24;
+			this.dataGridView1.Size = new System.Drawing.Size(71, 48);
+			this.dataGridView1.TabIndex = 29;
+			// 
+			// labelControl1
+			// 
+			this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl1.LineColor = System.Drawing.Color.Transparent;
+			this.labelControl1.Location = new System.Drawing.Point(6, 24);
+			this.labelControl1.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl1.Name = "labelControl1";
+			this.labelControl1.Size = new System.Drawing.Size(157, 14);
+			this.labelControl1.TabIndex = 30;
+			this.labelControl1.Text = "Thiếu chấm công: [20] TH";
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Controls.Add(this.labelControl5);
+			this.groupBox1.Controls.Add(this.labelControl4);
+			this.groupBox1.Controls.Add(this.dataGridView1);
+			this.groupBox1.Controls.Add(this.labelControl3);
+			this.groupBox1.Controls.Add(this.labelControl1);
+			this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupBox1.Location = new System.Drawing.Point(801, 12);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(268, 185);
+			this.groupBox1.TabIndex = 31;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Các trường hợp chưa xử lý";
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.labelControl10);
+			this.groupBox2.Controls.Add(this.labelControl8);
+			this.groupBox2.Controls.Add(this.labelControl6);
+			this.groupBox2.Controls.Add(this.labelControl7);
+			this.groupBox2.Controls.Add(this.labelControl9);
+			this.groupBox2.Controls.Add(this.labelControl2);
+			this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupBox2.Location = new System.Drawing.Point(1075, 12);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(268, 185);
+			this.groupBox2.TabIndex = 31;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Các trường hợp đã qua xử lý";
+			// 
+			// labelControl2
+			// 
+			this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl2.Location = new System.Drawing.Point(8, 48);
+			this.labelControl2.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl2.Name = "labelControl2";
+			this.labelControl2.Size = new System.Drawing.Size(146, 14);
+			this.labelControl2.TabIndex = 30;
+			this.labelControl2.Text = "Đã xác nhận ca: [20] TH";
+			// 
+			// labelControl3
+			// 
+			this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl3.Location = new System.Drawing.Point(6, 48);
+			this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl3.Name = "labelControl3";
+			this.labelControl3.Size = new System.Drawing.Size(211, 14);
+			this.labelControl3.TabIndex = 30;
+			this.labelControl3.Text = "Không nhận diện được ca: [20] TH";
+			// 
+			// labelControl4
+			// 
+			this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl4.Location = new System.Drawing.Point(6, 72);
+			this.labelControl4.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl4.Name = "labelControl4";
+			this.labelControl4.Size = new System.Drawing.Size(201, 14);
+			this.labelControl4.TabIndex = 30;
+			this.labelControl4.Text = "Ở lại chưa qua xác nhận: [20] TH";
+			// 
+			// labelControl5
+			// 
+			this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl5.Location = new System.Drawing.Point(6, 96);
+			this.labelControl5.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl5.Name = "labelControl5";
+			this.labelControl5.Size = new System.Drawing.Size(148, 14);
+			this.labelControl5.TabIndex = 30;
+			this.labelControl5.Text = "Vào trễ, ra sớm: [20] TH";
+			// 
+			// labelControl6
+			// 
+			this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl6.Location = new System.Drawing.Point(8, 96);
+			this.labelControl6.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl6.Name = "labelControl6";
+			this.labelControl6.Size = new System.Drawing.Size(210, 14);
+			this.labelControl6.TabIndex = 30;
+			this.labelControl6.Text = "Cho phép vào trễ, ra sớm: [20] TH";
+			// 
+			// labelControl7
+			// 
+			this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl7.Location = new System.Drawing.Point(8, 72);
+			this.labelControl7.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl7.Name = "labelControl7";
+			this.labelControl7.Size = new System.Drawing.Size(213, 14);
+			this.labelControl7.TabIndex = 30;
+			this.labelControl7.Text = "Đã xác nhận làm thêm giờ: [20] TH";
+			// 
+			// labelControl8
+			// 
+			this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl8.Location = new System.Drawing.Point(8, 120);
+			this.labelControl8.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl8.Name = "labelControl8";
+			this.labelControl8.Size = new System.Drawing.Size(211, 14);
+			this.labelControl8.TabIndex = 30;
+			this.labelControl8.Text = "Vào trễ, ra sớm có làm bù: [20] TH";
+			// 
+			// labelControl9
+			// 
+			this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl9.Location = new System.Drawing.Point(8, 24);
+			this.labelControl9.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl9.Name = "labelControl9";
+			this.labelControl9.Size = new System.Drawing.Size(250, 14);
+			this.labelControl9.TabIndex = 30;
+			this.labelControl9.Text = "Giờ vào hoặc ra bị chỉnh sửa: [20000] TH";
+			// 
+			// labelControl10
+			// 
+			this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.labelControl10.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.labelControl10.Location = new System.Drawing.Point(8, 144);
+			this.labelControl10.Margin = new System.Windows.Forms.Padding(5);
+			this.labelControl10.Name = "labelControl10";
+			this.labelControl10.Size = new System.Drawing.Size(142, 14);
+			this.labelControl10.TabIndex = 30;
+			this.labelControl10.Text = "Xin phép vắng: [20] TH";
 			// 
 			// g1c2
 			// 
 			this.g1c2.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.g1c2.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.g1c2.DefaultCellStyle = dataGridViewCellStyle8;
+			this.g1c2.Frozen = true;
 			this.g1c2.HeaderText = "Mã CC_hide";
 			this.g1c2.Name = "g1c2";
 			this.g1c2.ReadOnly = true;
 			this.g1c2.ToolTipText = "Mã chấm công";
 			this.g1c2.Visible = false;
 			this.g1c2.Width = 45;
-			// 
-			// g1c1
-			// 
-			this.g1c1.DataPropertyName = "UserFullCode";
-			this.g1c1.HeaderText = "Mã NV";
-			this.g1c1.Name = "g1c1";
-			this.g1c1.ReadOnly = true;
-			this.g1c1.ToolTipText = "Mã Nhân viên";
-			this.g1c1.Width = 55;
 			// 
 			// g1c3
 			// 
@@ -264,6 +450,15 @@
 			this.g1c3.ReadOnly = true;
 			this.g1c3.ToolTipText = "Tên Nhân viên";
 			this.g1c3.Width = 150;
+			// 
+			// g1c1
+			// 
+			this.g1c1.DataPropertyName = "UserFullCode";
+			this.g1c1.HeaderText = "Mã NV";
+			this.g1c1.Name = "g1c1";
+			this.g1c1.ReadOnly = true;
+			this.g1c1.ToolTipText = "Mã Nhân viên";
+			this.g1c1.Width = 55;
 			// 
 			// g1cd1
 			// 
@@ -467,41 +662,39 @@
 			this.g1c25.ReadOnly = true;
 			this.g1c25.Visible = false;
 			// 
-			// label3
+			// checkBox1
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.label3.Location = new System.Drawing.Point(1, 200);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(155, 16);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "Bảng chấm công tháng";
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(441, 71);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(85, 18);
+			this.checkBox1.TabIndex = 32;
+			this.checkBox1.Text = "checkBox1";
+			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
-			// btnChamCong
+			// gridControl1
 			// 
-			this.btnChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.btnChamCong.Appearance.Options.UseFont = true;
-			this.btnChamCong.Location = new System.Drawing.Point(434, 61);
-			this.btnChamCong.Name = "btnChamCong";
-			this.btnChamCong.Size = new System.Drawing.Size(103, 46);
-			this.btnChamCong.TabIndex = 28;
-			this.btnChamCong.Text = "Chấm công";
-			this.btnChamCong.Click += new System.EventHandler(this.btnChamCong_Click);
+			this.gridControl1.Location = new System.Drawing.Point(1, 217);
+			this.gridControl1.MainView = this.gridView1;
+			this.gridControl1.Name = "gridControl1";
+			this.gridControl1.Size = new System.Drawing.Size(1315, 238);
+			this.gridControl1.TabIndex = 33;
+			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
 			// 
-			// dataGridView1
+			// gridView1
 			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(12, 218);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.RowTemplate.Height = 24;
-			this.dataGridView1.Size = new System.Drawing.Size(1215, 362);
-			this.dataGridView1.TabIndex = 29;
+			this.gridView1.GridControl = this.gridControl1;
+			this.gridView1.Name = "gridView1";
 			// 
 			// fmXemCong4
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(1344, 592);
-			this.Controls.Add(this.dataGridView1);
+			this.ClientSize = new System.Drawing.Size(1344, 662);
+			this.Controls.Add(this.gridControl1);
+			this.Controls.Add(this.checkBox1);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnChamCong);
 			this.Controls.Add(this.dgrdTongHop);
 			this.Controls.Add(this.dateNavigator1);
@@ -520,6 +713,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdTongHop)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -536,9 +735,23 @@
 		private DevExpress.XtraScheduler.DateNavigator dateNavigator1;
 		private System.Windows.Forms.DataGridView dgrdTongHop;
 		private System.Windows.Forms.Label label3;
+		private DevExpress.XtraEditors.SimpleButton btnChamCong;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private DevExpress.XtraEditors.LabelControl labelControl1;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private DevExpress.XtraEditors.LabelControl labelControl5;
+		private DevExpress.XtraEditors.LabelControl labelControl4;
+		private DevExpress.XtraEditors.LabelControl labelControl3;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private DevExpress.XtraEditors.LabelControl labelControl10;
+		private DevExpress.XtraEditors.LabelControl labelControl8;
+		private DevExpress.XtraEditors.LabelControl labelControl6;
+		private DevExpress.XtraEditors.LabelControl labelControl7;
+		private DevExpress.XtraEditors.LabelControl labelControl9;
+		private DevExpress.XtraEditors.LabelControl labelControl2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1c1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn g1c1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd3;
@@ -572,7 +785,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd31;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c24;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c25;
-		private DevExpress.XtraEditors.SimpleButton btnChamCong;
-		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.CheckBox checkBox1;
+		private DevExpress.XtraGrid.GridControl gridControl1;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
 	}
 }

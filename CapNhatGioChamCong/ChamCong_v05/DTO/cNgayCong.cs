@@ -11,19 +11,23 @@ namespace ChamCong_v05.DTO {
 		public cNgayCong prev;
 		public cNgayCong next;
 
-		public ThoiGian TG = new ThoiGian();
-		public structThoiGianTheoNgayCong TG5 = new structThoiGianTheoNgayCong();
-		
+		public structThoiGianTheoNgayCong TG5;
 		public structCong Cong5;
-		public float TongCong;
-		public float TongNgayLV;//ver4.0.0.1
+		public PhuCap PhuCaps;
 		public bool QuaDem;
+		public TrangThaiDiemDanh TrangThaiDiemDanh;
+
+		#region v4
+
+		public ThoiGian TG = new ThoiGian();
+		public float TongCong;
+		public float TongNgayLV; //ver4.0.0.1
 		public bool TinhPC50;
 		public bool TinhPCDB;
 		public int LoaiPCDB;
-		public PhuCap PhuCaps;
 
-		public TrangThaiDiemDanh TrangThaiDiemDanh;
+		#endregion
+
 
 		public override string ToString() {
 			var temp = Ngay.ToString("d/M") + "; " + "; " + "; TongLam: " + TG.GioLamViec5.TotalHours.ToString("##.##") + "; LamDem" +
@@ -171,23 +175,33 @@ namespace ChamCong_v05.DTO {
 		}
 	}
 
-	public struct structPCDB {
+	#region v4
+
+	public struct structPCDB
+	{
 		public DateTime Ngay;
 		public int LoaiPC;
 		public bool Duyet;
 		public int PCNgay;
 		public int PCDem;
-		public override string ToString() {
+
+		public override string ToString()
+		{
 			return LoaiPC + "; " + PCNgay.ToString("##0.0#") + "; " + Ngay.ToString("d/M") + Duyet;
 		}
 	}
 
-	public struct structPCTC {
+	public struct structPCTC
+	{
 		public DateTime Ngay;
 		public bool TinhPC50;
-		public override string ToString() {
+
+		public override string ToString()
+		{
 			return TinhPC50 + "; " + Ngay.ToString("d/M");
 		}
 
 	}
+
+	#endregion
 }

@@ -46,9 +46,15 @@ namespace ChamCong_v05.DTO {
 		public List<cCheckInOut> DSVaoRa = new List<cCheckInOut>();
 		public List<cNgayCong> DSNgayCong = new List<cNgayCong>();
 		public List<cLoaiVang> DSVang = new List<cLoaiVang>();
-		public List<structPCTC> DSXNPhuCap50 = new List<structPCTC>();
 		public List<DataRow> DSXNPC5 = new List<DataRow>();
+
+		#region v4
+
+		public List<structPCTC> DSXNPhuCap50 = new List<structPCTC>();
 		public List<structPCDB> DSXNPhuCapDB = new List<structPCDB>();
+
+		#endregion
+
 		public DateTime NgayCongBD_Bef2D;
 		public DateTime NgayCongKT_Aft2D;
 		public TimeSpan StartNT;//ver 4.0.0.4

@@ -56,4 +56,5 @@ CapNhatGioChamCong/StudynTestNewTech/obj
 CapNhatGioChamCong/StudynTestNewTech/bin
 CapNhatGioChamCong/CapNhatGioChamCong/obj
 CapNhatGioChamCong/GiuLaiCacFileCu/obj
+*.log
 *.suo

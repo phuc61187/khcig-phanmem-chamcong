@@ -12,76 +12,6 @@ using mySetting = ChamCong_v05.Properties.Settings;
 namespace ChamCong_v05.BUS {
 	public static partial class XL {
 		#region ko còn sử dụng, chỉ để tham khảo
-		/*
-		public static void ArrayRowsToDS_CIO_V(DataRow[] arrRows, cShiftSchedule lichtrinh, List<cCheckInOut> DS_CIO_V) {
-			// cấu trúc là cấu trúc ghép 2 bảng checkinout và xác nhận
-			DS_CIO_V.Clear();
-
-			if (arrRows.Length == 0 || arrRows.Length == 1) return;
-			for (int x = 0, y = 1; x < arrRows.Length; ) {
-				//i là index rowInn, j là index row out
-
-				var rowInn = arrRows[x];
-				if (y >= arrRows.Length) break; // ko có phần tử kế tiếp để xét
-				var rowOut = arrRows[y];
-				var UserEnrollNumber = (int)rowInn["UserEnrollNumber"];
-				var IDinn = (int)rowInn["ID"];
-				var IDout = (int)rowOut["ID"];
-				var SourceInn = (string)rowInn["Source"];
-				var SourceOut = (string)rowOut["Source"];
-				var MachineNoInn = (int)rowInn["MachineNo"];
-				var MachineNoOut = (int)rowOut["MachineNo"];
-				var timeInn = (DateTime)rowInn["TimeStr"];
-				var timeOut = (DateTime)rowOut["TimeStr"];
-				var shiftID = (int)rowInn["ShiftID"];
-				var checkThemInn = (rowInn["Them"] != DBNull.Value) && (bool)rowInn["Them"];
-				var checkXoaaInn = (rowInn["Xoa"] != DBNull.Value) && (bool)rowInn["Xoa"];
-				var IDGioGoc_Inn = (rowInn["IDGioGoc"] != DBNull.Value) ? (int)rowInn["IDGioGoc"] : -1;
-				var checkThemOut = (rowOut["Them"] != DBNull.Value) && (bool)rowOut["Them"];
-				var checkXoaaOut = (rowOut["Xoa"] != DBNull.Value) && (bool)rowOut["Xoa"];
-				var IDGioGoc_Out = (rowOut["IDGioGoc"] != DBNull.Value) ? (int)rowOut["IDGioGoc"] : -1;
-				var DuyetChoPhepVaoTre = (rowInn["DuyetChoPhepVaoTre"] != DBNull.Value) && (bool)rowInn["DuyetChoPhepVaoTre"];
-				var DuyetChoPhepRaSom = (rowInn["DuyetChoPhepRaSom"] != DBNull.Value) && (bool)rowInn["DuyetChoPhepRaSom"];
-				var pOTMin = (int)rowInn["OTMin"];
-
-				if (IDinn != IDout) // bị mất cặp -> bỏ qua đến cặp kế tiếp, phải tăng x, y vì x+1=y ==> y+1
-				{
-					x = x + 1;
-					y = y + 1;
-					continue;
-				}
-				// cùng id --> xét có gần nhau ko
-				if (MachineNoInn % 2 == MachineNoOut % 2) {
-					y = y + 1;
-					continue;
-				}
-				// đủ điều kiện ghép  cặp
-
-				#region ghép
-
-				var chkInnV = new cCheck { ID = IDinn, MachineNo = MachineNoInn, Source = SourceInn, Time = timeInn, Type = "I", PhucHoi = new cPhucHoi { Them = checkThemInn, IDGioGoc = IDGioGoc_Inn, Xoaa = checkXoaaInn }, MaCC = UserEnrollNumber };
-				var chkOutV = new cCheck { ID = IDout, MachineNo = MachineNoOut, Source = SourceOut, Time = timeOut, Type = "O", PhucHoi = new cPhucHoi { Them = checkThemOut, IDGioGoc = IDGioGoc_Out, Xoaa = checkXoaaOut }, MaCC = UserEnrollNumber };
-				var chkInOutV = new cCheckInOut {
-					ID = IDinn, Vao = chkInnV, Raa = chkOutV, TimeDaiDien = chkInnV.Time,
-					ShiftID = shiftID,
-					DaXN = true,//HaveINOUT = 0, mặc định = 0
-					DuyetChoPhepVaoTre = DuyetChoPhepVaoTre,
-					DuyetChoPhepRaSom = DuyetChoPhepRaSom,
-					ThuocNgayCong = ThuocNgayCong(chkInnV.Time),
-					TG = new ThoiGian { OTCa = new TimeSpan(0, pOTMin, 0) },
-					TD = new ThoiDiem { Vao = timeInn, Raa = timeOut }
-				};
-				DS_CIO_V.Add(chkInOutV);
-				#endregion
-
-				// sau khi thực hiện xong thì tăng 
-				x = x + 2;
-				y = y + 2;
-			}
-
-
-		}
-*/
 
 		#endregion
 		private static readonly ILog log = LogManager.GetLogger("XL");
@@ -229,81 +159,6 @@ namespace ChamCong_v05.BUS {
 				}
 			}
 		}
-		public static void Tinh_PCTC5(bool TinhPC50, bool QuaDem, TimeSpan SoGioLamDemmm, TimeSpan SoGioLamThem,
-			TimeSpan tgTinh130, TimeSpan tgTinh150, TimeSpan tgTinhTCC3,
-			out float PhuCap30, out float PhuCapTC, out float PhuCapTCC3, out float TongPhuCap) {
-			var heso_pctc = Convert.ToSingle(XL2.PC50) / 100f;
-			var heso_pcdem = Convert.ToSingle(XL2.PC30) / 100f; //tbd
-			var heso_pctcc3 = (Convert.ToSingle(XL2.PCTCC3)) / 100f;
-
-			PhuCap30 = 0f;
-			PhuCapTC = 0f;
-			PhuCapTCC3 = 0f;
-			TongPhuCap = 0f;
-			if (QuaDem == false) // ko qua đêm, tính pctc 50 % bình thường
-			{
-				if (TinhPC50 && (SoGioLamThem > XL2._01phut)) {
-					PhuCapTC = Convert.ToSingle(Math.Round((SoGioLamThem.TotalHours / 8d) * heso_pctc, 2, MidpointRounding.ToEven));
-					TongPhuCap = PhuCapTC;
-				}
-			}
-			else // có thể có qua đêm, có thể tính pctcc3 100%
-			{
-				if (TinhPC50 == false || (SoGioLamThem <= XL2._01phut))	  // ko có tăng cường thì chỉ tính pc đêm
-				{
-					PhuCap30 = (Convert.ToSingle(SoGioLamDemmm.TotalHours / 8d)) * heso_pcdem;
-					TongPhuCap = PhuCap30;
-				}
-				else {
-					PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3, 2, MidpointRounding.ToEven));
-					PhuCapTC = Convert.ToSingle(Math.Round((tgTinh150.TotalHours / 8d) * heso_pctc, 2, MidpointRounding.ToEven));
-					PhuCap30 = Convert.ToSingle(Math.Round((tgTinh130.TotalHours / 8d) * heso_pcdem, 2, MidpointRounding.ToEven));
-					TongPhuCap = PhuCap30 + PhuCapTC + PhuCapTCC3;
-				}
-			}
-		}
-
-
-		public static void TinhPCDB(bool TinhPCDB, TimeSpan SoGioTinhCong, TimeSpan SoGioLamDemmm, bool QuaDem,
-			int loaiPC, float heso_pc_banNgay, float heso_pc_banDem,
-			out TimeSpan tgTinh200, out TimeSpan tgTinh260, out TimeSpan tgTinh300, out TimeSpan tgTinh390, out TimeSpan tgTinhCus,
-			out float PhuCap100, out float PhuCap160, out float PhuCap200, out float PhuCap290, out float PhuCapCus, ref float TongPhuCap) {
-
-			tgTinh200 = tgTinh260 = tgTinh300 = tgTinh390 = tgTinhCus = TimeSpan.Zero;
-			PhuCap100 = 0f;
-			PhuCap160 = 0f;
-			PhuCap200 = 0f;
-			PhuCap290 = 0f;
-			PhuCapCus = 0f;
-			if (TinhPCDB) {
-				switch (loaiPC) {
-					case 200:
-						tgTinh200 = SoGioTinhCong - SoGioLamDemmm; // số giờ làm việc ban ngày
-						tgTinh260 = SoGioLamDemmm; // số giờ làm việc ban đêm
-						PhuCap100 = Convert.ToSingle(Math.Round((tgTinh200.TotalHours / 8d) * (heso_pc_banNgay / 100f), 2, MidpointRounding.ToEven)); // phụ cấp 100% số giờ làm việc ban ngày
-						PhuCap160 = Convert.ToSingle(Math.Round((tgTinh260.TotalHours / 8d) * (heso_pc_banDem / 100f), 2, MidpointRounding.ToEven)); // phụ cấp 150% số giờ làm việc ban đêm
-						TongPhuCap = PhuCap100 + PhuCap160;
-						break;
-					case 300:
-						tgTinh300 = SoGioTinhCong - SoGioLamDemmm;
-						tgTinh390 = SoGioLamDemmm;
-						PhuCap200 = Convert.ToSingle(Math.Round((tgTinh300.TotalHours / 8d) * (heso_pc_banNgay / 100f), 2, MidpointRounding.ToEven)); // phụ cấp 200% số giờ làm việc ban ngày
-						PhuCap290 = Convert.ToSingle(Math.Round((tgTinh390.TotalHours / 8d) * (heso_pc_banDem / 100f), 2, MidpointRounding.ToEven)); // phụ cấp 250% số giờ làm việc ban đêm
-						TongPhuCap = PhuCap200 + PhuCap290;
-						break;
-					case 1:
-						tgTinhCus = Tinh_TGLamTangCuong(SoGioTinhCong);//((SoGioTinhCong - XL2._08gio > XL2._01phut) ? (SoGioTinhCong - XL2._08gio) : TimeSpan.Zero);
-						PhuCapCus = Convert.ToSingle(Math.Round((tgTinhCus.TotalHours / 8d) * (heso_pc_banNgay / 100f), 2, MidpointRounding.ToEven));
-						TongPhuCap = PhuCapCus;
-						break;
-					case 2:
-						tgTinhCus = SoGioTinhCong;
-						PhuCapCus = Convert.ToSingle(Math.Round((tgTinhCus.TotalHours / 8d) * (heso_pc_banNgay / 100f), 2, MidpointRounding.ToEven));
-						TongPhuCap = PhuCapCus;
-						break;
-				}
-			}
-		}
 
 
 		public static void TaoCaTuDo(cCa Ca, DateTime CheckInTime) {
@@ -356,58 +211,6 @@ namespace ChamCong_v05.BUS {
 
 
 		//------------------------------------------------------------------------------------------------------------------------------------------
-		public static void XemCong_v08(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
-			XmlConfigurator.Configure();
-			if (dsnv.Count == 0) return;
-			#region nạp dữ liệu từ database
-			var Arr_MaCC = (from nv in dsnv select nv.MaCC).ToArray(); // tạo mảng danh sách mã chấm công để viết chuỗi query : or.. or
-			var tableCheck_A = DAO5.LayTableCIO_A(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D);
-			var tableCheck_V = DAO5.LayTableCIO_V5(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D);
-			var tableXPVang = DAO5.LayTableXPVang(ngayBD_Bef2D, ngayKT_Aft2D, Arr_MaCC);
-			var tableXN_PCTC = DAO5.LayTableXacNhanPC50(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D);
-			var tableXN_PCDB = DAO5.LayTableXacNhanPCDB(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D, Duyet: true);
-			var tableNgayLe = DAO5.DocNgayLe(ngayBD_Bef2D, ngayKT_Aft2D);
-			#endregion
-
-			#region transfer dữ liệu sang object
-			foreach (var nv in dsnv) {
-				var tempMaCC = nv.MaCC;
-				nv.NgayCongBD_Bef2D = ngayBD_Bef2D;
-				nv.NgayCongKT_Aft2D = ngayKT_Aft2D;
-				LoadDSCheck_A5(tempMaCC, tableCheck_A, out nv.DS_Check_A);
-				LoadDSCIO_V5(tempMaCC, tableCheck_V, out nv.DS_CIO_V);
-				LoadDSXPVang_Le(tempMaCC, tableXPVang, tableNgayLe, nv.DSVang);
-				LoadDSXNPC50(tempMaCC, tableXN_PCTC, nv.DSXNPhuCap50);
-				LoadDSXNPCDB(tempMaCC, tableXN_PCDB, nv.DSXNPhuCapDB);
-				// khởi tạo danh sách ngày công
-				KhoiTaoDSNgayCong(nv.DSNgayCong, ngayBD_Bef2D, ngayKT_Aft2D);
-
-			}
-
-			#endregion
-			#region xử lý
-			var DS_Check_KoHopLe_AllNV = new List<cCheck>();
-			var ds_raa3_vao1 = new List<cCheck>();
-			foreach (var nv in dsnv) {
-				List<cCheck> DS_Check_KoHopLe_1NV;
-				LoaiBoCheckKoHopLe15(nv.DS_Check_A, out DS_Check_KoHopLe_1NV);// loại bỏ check cùng loại trong 30ph, IO 30 phút
-				DS_Check_KoHopLe_AllNV.AddRange(DS_Check_KoHopLe_1NV);// add vào ds ko hợp lệ của nhiều nhân viên để xóa sau
-				GhepCIO_A2(nv.DS_Check_A, out nv.DS_CIO_A);
-				XetCa_ListCIO_A3_5(nv.DS_CIO_A, nv.LichTrinhLV, ds_raa3_vao1, nv.DS_Check_A);// xét thuộc ThuocCa, update thuộc ngày công, tách ThuocCa 3&1 nếu có, rồi tính công//nv.MacDinhTinhPC50, //[140615_4]
-				XetCa_ListCIO_V4_5(nv.DS_CIO_V);
-				TronDS_CIO_A_V5(nv.DS_CIO_A, nv.DS_CIO_V, out nv.DSVaoRa);
-				PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
-				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
-				TinhCong_ListNgayCong8_5(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
-				//TinhPhuCap_ListNgayCong9_5(nv.DSNgayCong, nv.)
-				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong);
-				TinhPCDB_TrongListXNPCDB10(nv.DSXNPhuCapDB, nv.DSNgayCong);
-			}
-			if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
-			if (ds_raa3_vao1.Count > 0) DAO5.ThemGio_ra3_vao1(ds_raa3_vao1);
-			#endregion
-		}
-
 		public static void LoadDSCheck_A5(int MaCC, DataTable tableCheck_A, out List<cCheck> ds_Check_A) {
 			var arrRows = tableCheck_A.Select("UserEnrollNumber = " + MaCC, "TimeStr asc");
 			ds_Check_A = new List<cCheck>();
@@ -490,6 +293,7 @@ namespace ChamCong_v05.BUS {
 					VaoTreTinhCV = vaoTreTinhCV,
 					RaaSomTinhCV = raaSomTinhCV,//ver 4.0.0.4	
 					ThuocNgayCong = ThuocNgayCong(chkInnV.Time),
+					OTMin =  otMin
 				};
 				DS_CIO_V.Add(chkInOutV);
 				#endregion
@@ -500,13 +304,10 @@ namespace ChamCong_v05.BUS {
 			}
 
 		}
-		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs) { }
 		public static void LoadDSXNPC5(int tempMaCC, DataTable tableXN_PCTC, out List<DataRow> dsXacNhanPC) {
 			dsXacNhanPC = new List<DataRow>();
 			dsXacNhanPC.AddRange(tableXN_PCTC.Select("UserEnrollNumber=" + tempMaCC));
 		}
-		public static void LoadDSXNPC50(int tempMaCC, DataTable tableXN_PCTC, List<structPCTC> dsXacNhanPC) { }
-		public static void LoadDSXNPCDB(int tempMaCC, DataTable tableXN_PCDB, List<structPCDB> dsXacNhanPC) { }
 		public static void KhoiTaoDSNgayCong(List<cNgayCong> DSNgayCong, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
 			DSNgayCong.Clear();
 			var indexNgay = ngayBD_Bef2D.Date; // ngayBD_Bef2D là trước 2 ngày vd: xem ngày 3 thì lấy giờ từ ngày 1, nhưng khi tạo ngày công thì lấy từ ngày 2
@@ -841,10 +642,12 @@ namespace ChamCong_v05.BUS {
 		public static void TinhCong_ListNgayCong8_5(List<cNgayCong> dsNgayCong, TimeSpan startNT, TimeSpan endddNT) {
 			foreach (var ngayCong in dsNgayCong) {
 				TinhCong_1Ngay5(ngayCong, startNT, endddNT, out ngayCong.TG5, out ngayCong.QuaDem);
-				TinhPhuCap_1NgayQuaDem5(ngayCong.TG5.TongGioLamDem, out ngayCong.PhuCaps.PCDem5);
+				if (ngayCong.QuaDem)
+				{
+					TinhPhuCap_1NgayQuaDem5(ngayCong.TG5.TongGioLamDem, XL2.HSPCDem_NgayThuong, out ngayCong.PhuCaps.PCDem5);
+					ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;}
 			}
 		}
-
 
 		public static void TinhCong_1Ngay5(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT,
 			out structThoiGianTheoNgayCong TG, out bool QuaDem) {
@@ -857,14 +660,16 @@ namespace ChamCong_v05.BUS {
 				CIO.TD5 = new structThoiDiem();
 				CIO.TG5 = new structThoiGianTheoCIO();
 				if (CIO.HaveINOUT < 0) continue;
+				if (CIO.DaXN) CIO.TG5.SoPhutLamThem5 = new TimeSpan(0, CIO.OTMin, 0);
 				TinhTG_LV_LVCa3_LamThem_1CIO5(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
 					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.Duty.Onn, CIO.ThuocCa.Duty.Off, CIO.ThuocCa.chophepTreTS, CIO.ThuocCa.chophepSomTS,
-					CIO.ThuocCa.batdaulamthemTS, CIO.ThuocCa.LunchMin, new TimeSpan(0, CIO.OTMin, 0), startNT, endddNT,
+					CIO.ThuocCa.batdaulamthemTS, CIO.ThuocCa.LunchMin, CIO.TG5.SoPhutLamThem5, startNT, endddNT,
 					out CIO.TD5.BD_LV, out CIO.TD5.KT_LV, out CIO.TD5.KT_LV_ChuaOT, out CIO.TD5.BD_LV_Ca3, out CIO.TD5.KT_LV_Ca3,
 					out CIO.TG5.GioThucTe5, out CIO.TG5.TongGioLamViec5, out CIO.TG5.VaoTre, out CIO.TG5.RaaSom,
 					out CIO.TG5.GioLVTrongCa5,//ver 4.0.0.4	
 					out CIO.TG5.OLai, out CIO.QuaDem, out CIO.TG5.TongGioLamDem);
-
+				if (CIO.QuaDem) 
+					QuaDem = true;
 				TinhCong_1_CIO_5(CIO.ThuocCa.Workingday, CIO.ThuocCa.WorkingTimeTS, CIO.TG5.VaoTre, CIO.TG5.RaaSom,
 					CIO.VaoTreTinhCV, CIO.RaaSomTinhCV, CIO.TG5.SoPhutLamThem5,
 								 out CIO.Cong5.CaQuyDinh, out CIO.Cong5.TTCongTre, out CIO.Cong5.TTCongSom,
@@ -902,14 +707,14 @@ namespace ChamCong_v05.BUS {
 			NgayCong.TTNgoaiCa += CIO.TTNgoaiCa;
 			NgayCong.TTTrongCa += CIO.TTTrongCa;
 		}
-		public static float TinhCongTre5(TimeSpan GioLam_CaQuyDinh, TimeSpan GioVaoTre, int LamTronConSo) {
-			return ((GioLam_CaQuyDinh.TotalHours - GioVaoTre.TotalHours) / GioLam_CaQuyDinh.TotalHours).Truncate(LamTronConSo); // làm tròn xuống 2 con số
+		public static float TinhCongTre5(TimeSpan GioVaoTre, TimeSpan GioLam_CaQuyDinh, float Cong_DoCaQuyDinh, int LamTronConSo) {
+			return ((GioVaoTre.TotalHours / GioLam_CaQuyDinh.TotalHours) * Cong_DoCaQuyDinh).Truncate(LamTronConSo); // làm tròn xuống 2 con số
 		}
-		public static float TinhCongSom5(TimeSpan GioLam_CaQuyDinh, TimeSpan GioRaaSom, int LamTronConSo) {
-			return ((GioLam_CaQuyDinh.TotalHours - GioRaaSom.TotalHours) / GioLam_CaQuyDinh.TotalHours).Truncate(LamTronConSo); // làm tròn xuống 2 con số
+		public static float TinhCongSom5(TimeSpan GioRaaSom, TimeSpan GioLam_CaQuyDinh, float Cong_DoCaQuyDinh, int LamTronConSo) {
+			return ((GioRaaSom.TotalHours / GioLam_CaQuyDinh.TotalHours) * Cong_DoCaQuyDinh).Truncate(LamTronConSo); // làm tròn xuống 2 con số
 		}
-		public static float TinhCongThucTeTrongCa(float CongCaQuyDinh, float CongTre, float CongSom) {
-			return CongCaQuyDinh - CongTre - CongSom; // làm tròn xuống 2 con số
+		public static float TinhCongThucTeTrongCa(float Cong_DoCaQuyDinh, float CongTre, float CongSom) {
+			return Cong_DoCaQuyDinh - CongTre - CongSom; // làm tròn xuống 2 con số
 		}
 		public static void TinhCong_1_CIO_5(float Cong_DoCaQuyDinh, TimeSpan GioLam_CaQuyDinh, TimeSpan GioVaoTre, TimeSpan GioRaaSom,
 			bool VaoTreTinhCV, bool RaaSomTinhCV, TimeSpan SoPhutLamThem5,
@@ -917,74 +722,34 @@ namespace ChamCong_v05.BUS {
 			out float CongThucTeTrongCa, out float CongThucTeNgoaiCa, out float CongThucTe,
 			out float TongCongBu, out float TongCongTru, out float DinhMucCong) {
 			CongCaQuyDinh = Cong_DoCaQuyDinh;
-			CongTre = XL.TinhCongTre5(GioLam_CaQuyDinh, GioVaoTre, 2);// làm tròn xuống 2 con số
-			CongSom = XL.TinhCongSom5(GioLam_CaQuyDinh, GioRaaSom, 2);// làm tròn xuống 2 con số
-			CongThucTeTrongCa = XL.TinhCongThucTeTrongCa(CongCaQuyDinh, CongTre, CongSom);
-			CongThucTeNgoaiCa = Convert.ToSingle(Math.Round((SoPhutLamThem5.TotalHours / 8f), 2));// tương đương giờ làm việc ngoài ThuocCa, làm ngoài ThuocCa chưa chắc OT ví dụ nửa ThuocCa
+			CongTre = XL.TinhCongTre5(GioVaoTre, GioLam_CaQuyDinh, Cong_DoCaQuyDinh, 2);// làm tròn xuống 2 con số
+			CongSom = XL.TinhCongSom5(GioRaaSom, GioLam_CaQuyDinh, Cong_DoCaQuyDinh, 2);// làm tròn xuống 2 con số
+			CongThucTeTrongCa = XL.TinhCongThucTeTrongCa(Cong_DoCaQuyDinh, CongTre, CongSom);
+			CongThucTeNgoaiCa = Convert.ToSingle(Math.Round((SoPhutLamThem5.TotalHours / 8d), 2));// tương đương giờ làm việc ngoài ThuocCa, làm ngoài ThuocCa chưa chắc OT ví dụ nửa ThuocCa
 			CongThucTe = CongThucTeTrongCa + CongThucTeNgoaiCa;
-			DinhMucCong = CongThucTe;
+			DinhMucCong = Cong_DoCaQuyDinh + CongThucTeNgoaiCa;
 			//nếu đã duyệt cho phép vào trễ rồi thì giờ vào trễ = 0, công vào trễ =0
 			TongCongBu = 0f;
 			TongCongTru = 0f;
-			if (VaoTreTinhCV) TongCongBu += CongTre;
+			if (VaoTreTinhCV)
+			{
+				TongCongBu += CongTre;
+				DinhMucCong -= CongTre;
+			}
 			else TongCongTru += CongTre;
 
-			if (RaaSomTinhCV) TongCongBu += CongSom;
+			if (RaaSomTinhCV)
+			{
+				TongCongBu += CongSom;
+				DinhMucCong -= CongSom;}
 			else TongCongTru += CongSom;
 		}
 
-		public static void TinhPhuCap_1NgayQuaDem5(TimeSpan TongQuaDem, out float phucapDem) {
-			phucapDem = 0f;
-			phucapDem = Convert.ToSingle(Math.Round((TongQuaDem.TotalHours / 8f), 2));
+		public static void TinhPhuCap_1NgayQuaDem5(TimeSpan TongQuaDem, int HSPCDem_NgayThuong, out float phucapDem) {
+			phucapDem = Convert.ToSingle(Math.Round((TongQuaDem.TotalHours / 8d) * (HSPCDem_NgayThuong/100f), 2));
 		}
 
 
-		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong) {
-			foreach (var item in dsXacNhanPC) {
-				var ngayCong = dsNgayCong.Find(o => o.Ngay == item.Ngay);
-				TinhPCTC_CuaNgay(ngayCong, item.TinhPC50);
-			}
-		}
-
-		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, List<structPCTC> DSXNPhuCap50) {
-			var IndexngayTinhLaiPCTC1 = DSXNPhuCap50.FindIndex(item => item.Ngay == ngayCong.Ngay);
-			var kq1 = (IndexngayTinhLaiPCTC1 >= 0) && (DSXNPhuCap50[IndexngayTinhLaiPCTC1].TinhPC50);
-			TinhPCTC_CuaNgay(ngayCong, kq1);
-		}
-
-		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, bool choPhepTinhTC) {
-			ngayCong.TinhPC50 = choPhepTinhTC;
-			Tinh_PCTC5(choPhepTinhTC, ngayCong.QuaDem, ngayCong.TG5.TongGioLamDem, ngayCong.TG5.TongGioTangCuong,
-							   ngayCong.TG5.HuongPC_Dem, ngayCong.TG5.HuongPC_TangCuongNgay, ngayCong.TG5.HuongPC_TangCuongDem,
-							   out ngayCong.PhuCaps._30_dem, out ngayCong.PhuCaps._50_TC, out ngayCong.PhuCaps._100_TCC3, out ngayCong.PhuCaps._TongPC);
-		}
-
-		public static void TinhPCDB_TrongListXNPCDB10(List<structPCDB> dsXacNhanPC, List<cNgayCong> dsNgayCong) {
-			foreach (var item in dsXacNhanPC) {
-				var ngayCong = dsNgayCong.Find(o => o.Ngay == item.Ngay);
-
-				ngayCong.TinhPCDB = true;
-				ngayCong.PhuCaps._30_dem = 0f;
-				ngayCong.PhuCaps._50_TC = 0f;
-				ngayCong.PhuCaps._100_TCC3 = 0f;
-				TinhPCDB_CuaNgay(ngayCong, item.LoaiPC, item.PCNgay, item.PCDem);
-			}
-		}
-
-		public static void TinhPCDB_CuaNgay(cNgayCong ngayCong, int loaiPCDB, float PCNgay, float PCDem) {
-			ngayCong.TinhPCDB = true;
-			ngayCong.LoaiPCDB = loaiPCDB;
-			TinhPCDB(ngayCong.TinhPCDB, ngayCong.TG.GioLamViec5, ngayCong.TG.LamBanDem, ngayCong.QuaDem, ngayCong.LoaiPCDB, PCNgay, PCDem, //tbd
-		 out ngayCong.TG.Tinh200, out ngayCong.TG.Tinh260, out ngayCong.TG.Tinh300, out ngayCong.TG.Tinh390, out ngayCong.TG.TinhPCCus,
-		 out ngayCong.PhuCaps._100_LVNN_Ngay, out ngayCong.PhuCaps._150_LVNN_Dem, out ngayCong.PhuCaps._200_LeTet_Ngay, out ngayCong.PhuCaps._250_LeTet_Dem, out ngayCong.PhuCaps._Cus, ref ngayCong.PhuCaps._TongPC);
-
-		}
-
-		public static void TinhPCDB_CuaNgay(cNgayCong ngayCong, List<structPCDB> DSXNPCDB) {
-			var ngayTinhLaiPCDB = DSXNPCDB.FindIndex(item => item.Ngay == ngayCong.Ngay);
-			if (ngayTinhLaiPCDB >= 0)
-				TinhPCDB_CuaNgay(ngayCong, DSXNPCDB[ngayTinhLaiPCDB].LoaiPC, DSXNPCDB[ngayTinhLaiPCDB].PCNgay, DSXNPCDB[ngayTinhLaiPCDB].PCDem);
-		}
 
 
 		public static void ThemGioChoNV(int MaCC, cCheck check, List<cCheck> DS_Check_A, string pLydo, string pGhichu) {

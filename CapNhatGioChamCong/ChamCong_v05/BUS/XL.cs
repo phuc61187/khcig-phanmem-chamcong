@@ -102,7 +102,7 @@ namespace ChamCong_v05.BUS {
 				//if (CIO.QuaDem) QuaDem = true; // set qua đêm nếu có
 				float cong_trong_ca = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa5.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday), 2));
 				float cong_bi_tru_TreSom = CIO.ThuocCa.Workingday - cong_trong_ca;
-				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.SoPhutLamThem5.TotalHours / 8f), 2));// tương đương giờ làm việc ngoài ThuocCa, làm ngoài ThuocCa chưa chắc OT ví dụ nửa ThuocCa
+				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.SoPhutLamThem5.TotalHours / 8d), 2));// tương đương giờ làm việc ngoài ThuocCa, làm ngoài ThuocCa chưa chắc OT ví dụ nửa ThuocCa
 				CIO.Cong = cong_trong_ca + cong_ngoai_ca;
 				TG.GioThucTe5 += CIO.TG.GioThucTe5;
 				TG.GioLamViec5 += CIO.TG.GioLamViec5;

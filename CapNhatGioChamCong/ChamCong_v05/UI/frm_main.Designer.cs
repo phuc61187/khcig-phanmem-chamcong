@@ -249,7 +249,7 @@
 			// frm_main
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(1344, 652);
+			this.ClientSize = new System.Drawing.Size(1344, 682);
 			this.Controls.Add(this.menuStrip1);
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
 			this.IsMdiContainer = true;
