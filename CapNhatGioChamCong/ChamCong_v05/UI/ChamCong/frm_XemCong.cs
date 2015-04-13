@@ -73,8 +73,8 @@ namespace ChamCong_v05.UI.ChamCong {
 			kq.Columns.Add("cCheckInOut1", typeof(cCheckInOut));
 			kq.Columns.Add("cCheckInOut2", typeof(cCheckInOut));
 			kq.Columns.Add("cCheckInOut3", typeof(cCheckInOut));
-			kq.Columns.Add("GioThucTe5", typeof(TimeSpan)); //18
-			kq.Columns.Add("TongGioLamViec5", typeof(TimeSpan)); //18
+			kq.Columns.Add("TongGioThucTe", typeof(TimeSpan)); //18
+			kq.Columns.Add("TongGioLamViec", typeof(TimeSpan)); //18
 			kq.Columns.Add("TongGioLamDem", typeof(TimeSpan)); //18
 			kq.Columns.Add("TongGioLamNgay", typeof(TimeSpan)); //18
 			kq.Columns.Add("TongGioTangCuong", typeof(TimeSpan)); //18

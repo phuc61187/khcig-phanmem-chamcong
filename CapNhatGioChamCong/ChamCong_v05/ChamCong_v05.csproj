@@ -565,6 +565,9 @@
     <Content Include="SQL\alter proc XacNhanPhuCap5_DocBang.sql" />
     <Content Include="SQL\create table XacNhanPhuCap5.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="zMisc\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

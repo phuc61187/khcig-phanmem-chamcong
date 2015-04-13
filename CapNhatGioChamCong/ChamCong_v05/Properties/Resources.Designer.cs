@@ -98,6 +98,87 @@ namespace ChamCong_v05.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KR.
+        /// </summary>
+        public static string SymKhongRa {
+            get {
+                return ResourceManager.GetString("SymKhongRa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KV.
+        /// </summary>
+        public static string SymKhongVao {
+            get {
+                return ResourceManager.GetString("SymKhongVao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c3.
+        /// </summary>
+        public static string SymPhuCapDem {
+            get {
+                return ResourceManager.GetString("SymPhuCapDem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to x3.
+        /// </summary>
+        public static string SymPhuCapNgayLe {
+            get {
+                return ResourceManager.GetString("SymPhuCapNgayLe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to x2.
+        /// </summary>
+        public static string SymPhuCapNgayNghi {
+            get {
+                return ResourceManager.GetString("SymPhuCapNgayNghi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TC.
+        /// </summary>
+        public static string SymPhuCapTangCuong {
+            get {
+                return ResourceManager.GetString("SymPhuCapTangCuong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T3.
+        /// </summary>
+        public static string SymPhuCapTangCuongDem {
+            get {
+                return ResourceManager.GetString("SymPhuCapTangCuongDem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to xK.
+        /// </summary>
+        public static string SymPhuCapTuyChinhNgayDem {
+            get {
+                return ResourceManager.GetString("SymPhuCapTuyChinhNgayDem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to xK.
+        /// </summary>
+        public static string SymPhuCapTuyChinhTatCa {
+            get {
+                return ResourceManager.GetString("SymPhuCapTuyChinhTatCa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tài khoản hoặc mật khẩu chưa đúng. Vui lòng điền lại..
         /// </summary>
         public static string Text_Acc_Pass_incorrect {

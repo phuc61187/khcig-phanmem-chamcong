@@ -378,4 +378,31 @@ Bạn muốn Xoá nhiệm vụ?</value>
   <data name="Text_DaThucHienXong" xml:space="preserve">
     <value>Đã thực hiện xong.</value>
   </data>
+  <data name="SymKhongRa" xml:space="preserve">
+    <value>KR</value>
+  </data>
+  <data name="SymKhongVao" xml:space="preserve">
+    <value>KV</value>
+  </data>
+  <data name="SymPhuCapDem" xml:space="preserve">
+    <value>c3</value>
+  </data>
+  <data name="SymPhuCapNgayLe" xml:space="preserve">
+    <value>x3</value>
+  </data>
+  <data name="SymPhuCapNgayNghi" xml:space="preserve">
+    <value>x2</value>
+  </data>
+  <data name="SymPhuCapTangCuong" xml:space="preserve">
+    <value>TC</value>
+  </data>
+  <data name="SymPhuCapTangCuongDem" xml:space="preserve">
+    <value>T3</value>
+  </data>
+  <data name="SymPhuCapTuyChinhNgayDem" xml:space="preserve">
+    <value>xK</value>
+  </data>
+  <data name="SymPhuCapTuyChinhTatCa" xml:space="preserve">
+    <value>xK</value>
+  </data>
 </root>

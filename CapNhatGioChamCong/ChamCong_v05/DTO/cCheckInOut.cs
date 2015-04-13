@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using ChamCong_v05.Helper;
+using ChamCong_v05.Properties;
+using DevExpress.XtraScheduler;
 
 namespace ChamCong_v05.DTO {
 	public class cPhucHoi {
@@ -158,6 +160,18 @@ namespace ChamCong_v05.DTO {
 								   ? kq
 								   : chuoiTruoc + ";" + kq;
 
+		}
+
+		public string ExportKyHieuChamCongThuocCa1_5()
+		{
+			if (ThuocCa == null) return string.Empty;
+			if (HaveINOUT == 0)
+			{
+				if (DuyetChoPhepVaoTre == false && TG5.VaoTre > TimeSpan.Zero && VaoTreTinhCV == false) return ";[-T] " + ThuocCa.Code
+			}
+			else if (HaveINOUT == -1) return ";" + Resources.SymKhongVao;
+			else if (HaveINOUT == -2) return ";" + Resources.SymKhongRa;
+			else return "#Name";
 		}
 
 		public cCheckInOut() {

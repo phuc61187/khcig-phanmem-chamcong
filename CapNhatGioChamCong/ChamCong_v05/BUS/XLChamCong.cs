@@ -680,16 +680,16 @@ namespace ChamCong_v05.BUS {
 				CongDonCong_1NgayCong(ref ngayCong.Cong5, ref CIO.Cong5);
 			}
 
-			ngayCong.TG5.TongGioTangCuong = Tinh_TGLamTangCuong(ngayCong.TG5.TongGioLamViec5);
-			Tinh_TGLamTCC3_5(ngayCong.TG5.TongGioLamViec5, ngayCong.TG5.TongGioTangCuong, ngayCong.TG5.TongGioLamDem,
+			ngayCong.TG5.TongGioTangCuong = Tinh_TGLamTangCuong(ngayCong.TG5.TongGioLamViec);
+			Tinh_TGLamTCC3_5(ngayCong.TG5.TongGioLamViec, ngayCong.TG5.TongGioTangCuong, ngayCong.TG5.TongGioLamDem,
 				out ngayCong.TG5.TongGioLamNgay, out ngayCong.TG5.GioLamNgay_KoTC,
 				out ngayCong.TG5.HuongPC_TangCuongNgay, out ngayCong.TG5.HuongPC_Dem, out ngayCong.TG5.HuongPC_TangCuongDem);
 		}
 
 		public static void CongDonThoiGian_1NgayCong(ref structThoiGianTheoNgayCong ngayCong, ref structThoiGianTheoCIO CIO) {
-			ngayCong.TongGioLamViec5 += CIO.TongGioLamViec5;
+			ngayCong.TongGioLamViec += CIO.TongGioLamViec5;
 			//ngayCong.GioLVTrongCa5 += CIO.GioLVTrongCa5;
-			ngayCong.GioThucTe5 += CIO.GioThucTe5;
+			ngayCong.TongGioThucTe += CIO.GioThucTe5;
 			ngayCong.TongGioLamDem += CIO.TongGioLamDem;
 			//ngayCong.TongGioTangCuong += CIO.TongGioTangCuong;
 			//ngayCong.OLai += CIO.OLai;

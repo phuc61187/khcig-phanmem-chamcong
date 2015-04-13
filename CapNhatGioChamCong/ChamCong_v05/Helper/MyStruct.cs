@@ -23,8 +23,8 @@ namespace ChamCong_v05.Helper {
 	}
 	public struct structThoiGianTheoNgayCong
 	{
-		public TimeSpan GioThucTe5;
-		public TimeSpan TongGioLamViec5; // tổng giờ làm việc đã bao gồm OT nếu có
+		public TimeSpan TongGioThucTe;
+		public TimeSpan TongGioLamViec; // tổng giờ làm việc đã bao gồm OT nếu có
 		public TimeSpan TongGioLamDem; // tổng thời gian làm ban đêm
 		public TimeSpan TongGioLamNgay; // = 0 nếu giờ lv <= giờ làm đêm, >0 nếu giờ lv <= giờ làm đêm: giờ làm việc - tổng giờ làm ban đêm
 		public TimeSpan TongGioTangCuong; //tổng thời gian làm tăng cường(sau 8 tiếng,ko xét ngày hay đêm)

@@ -164,8 +164,8 @@ namespace ChamCong_v05.BUS
 					row["UserFullName"] = nhanvien.TenNV;
 					row["UserFullCode"] = nhanvien.MaNV;
 					row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
-					row["GioThucTe5"] = ngayCong.TG5.GioThucTe5;
-					row["TongGioLamViec5"] = ngayCong.TG5.TongGioLamViec5;
+					row["TongGioThucTe"] = ngayCong.TG5.TongGioThucTe;
+					row["TongGioLamViec"] = ngayCong.TG5.TongGioLamViec;
 					row["TongGioLamDem"] = ngayCong.TG5.TongGioLamDem;
 					row["TongGioLamNgay"] = ngayCong.TG5.TongGioLamNgay;
 					row["TongGioTangCuong"] = ngayCong.TG5.TongGioTangCuong;

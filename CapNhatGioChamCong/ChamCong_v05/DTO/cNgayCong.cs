@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ChamCong_v05.Helper;
+using ChamCong_v05.Properties;
 
 namespace ChamCong_v05.DTO {
 	public class cNgayCong {
@@ -151,6 +152,34 @@ namespace ChamCong_v05.DTO {
 			}
 			return kq;
 		}
+		public string ExportKyHieuPhuCap5()
+		{
+			if (this.TG5.TongGioLamViec == TimeSpan.Zero) return string.Empty;
+			string kq = string.Empty;
+			if (this.LoaiPCDB == (int)LoaiPhuCap.NgayThuong) {//chỉ có c3, tc, t3
+				if (TG5.HuongPC_Dem > TimeSpan.Zero) kq += ";" + Resources.SymPhuCapDem;
+				if (TG5.HuongPC_TangCuongNgay > TimeSpan.Zero) kq += ";" + Resources.SymPhuCapTangCuong;
+				if (TG5.HuongPC_TangCuongDem > TimeSpan.Zero) kq += ";" + Resources.SymPhuCapTangCuongDem;
+			}
+			else if (this.LoaiPCDB == (int)LoaiPhuCap.NgayNghi) {// x2
+				kq += ";" + Resources.SymPhuCapNgayNghi;
+			}
+			else if (this.LoaiPCDB == (int)LoaiPhuCap.NgayLe) {//x3
+				kq += ";" + Resources.SymPhuCapNgayLe;
+			}
+			else if (this.LoaiPCDB == (int)LoaiPhuCap.TuyChinhNgayDem) kq += ";" + Resources.SymPhuCapTuyChinhNgayDem;
+			else if (this.LoaiPCDB == (int)LoaiPhuCap.TuyChinhTatCa) kq +=";" + Resources.SymPhuCapTuyChinhTatCa;
+			return kq;
+		}
+
+		public string ExportKyHieuThuocCa()
+		{
+			if (this.DSVaoRa == null || this.DSVaoRa.Count == 0) return string.Empty;
+
+			string kq = string.Empty;
+			return kq;
+		}
+
 		public cNgayCong() { }
 
 	}
