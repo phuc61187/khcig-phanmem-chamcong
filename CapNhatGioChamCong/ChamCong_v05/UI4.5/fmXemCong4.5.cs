@@ -141,6 +141,7 @@ namespace ChamCong_v05.UI4._5 {
 					row["TTCongSom"] = ngayCong.Cong5.TTCongSom;
 					row["TongCongBu"] = ngayCong.Cong5.TongCongBu; row["TongCongTru"] = ngayCong.Cong5.TongCongTru;
 					row["DinhMuc"] = ngayCong.Cong5.DinhMuc;
+					row["KyHieuCa"] = ngayCong.ExportKyHieuThuocCa();
 					//row[""] = ngayCong.Cong5. ;
 					//row[""] = ngayCong.Cong5. ;
 
@@ -184,6 +185,7 @@ namespace ChamCong_v05.UI4._5 {
 			table.Columns.Add("TongCongBu", typeof(float));
 			table.Columns.Add("TongCongTru", typeof(float));
 			table.Columns.Add("DinhMuc", typeof(float));
+			table.Columns.Add("KyHieuCa", typeof(string));
 			//table.Columns.Add("", typeof(float));
 			//table.Columns.Add("", typeof(float));
 			//table.Columns.Add("", typeof());

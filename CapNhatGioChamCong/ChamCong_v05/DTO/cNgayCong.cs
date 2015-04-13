@@ -177,6 +177,8 @@ namespace ChamCong_v05.DTO {
 			if (this.DSVaoRa == null || this.DSVaoRa.Count == 0) return string.Empty;
 
 			string kq = string.Empty;
+			kq = this.DSVaoRa.Aggregate(kq, (current, @out) => current +  @out.ExportKyHieu5_1(ShowDSCa_KV_KR: false)); // out empty | ;ca1[-T]
+			kq.XoaKyTuPhanCachDauTien();
 			return kq;
 		}
 

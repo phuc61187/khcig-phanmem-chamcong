@@ -179,6 +179,42 @@ namespace ChamCong_v05.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to -S.
+        /// </summary>
+        public static string SymSomBiTru {
+            get {
+                return ResourceManager.GetString("SymSomBiTru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BS.
+        /// </summary>
+        public static string SymSomPhaiLamBu {
+            get {
+                return ResourceManager.GetString("SymSomPhaiLamBu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -T.
+        /// </summary>
+        public static string SymTreBiTru {
+            get {
+                return ResourceManager.GetString("SymTreBiTru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BT.
+        /// </summary>
+        public static string SymTrePhaiLamBu {
+            get {
+                return ResourceManager.GetString("SymTrePhaiLamBu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tài khoản hoặc mật khẩu chưa đúng. Vui lòng điền lại..
         /// </summary>
         public static string Text_Acc_Pass_incorrect {
