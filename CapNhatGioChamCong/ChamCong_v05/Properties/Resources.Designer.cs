@@ -98,6 +98,96 @@ namespace ChamCong_v05.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cho phép vào trễ, ra sớm: [{0}] TH.
+        /// </summary>
+        public static string LabelText_ChoPhepTreSom {
+            get {
+                return ResourceManager.GetString("LabelText_ChoPhepTreSom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đã xác nhận ca: [{0}] TH.
+        /// </summary>
+        public static string LabelText_DaXacNhanCa {
+            get {
+                return ResourceManager.GetString("LabelText_DaXacNhanCa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đã xác nhận làm thêm giờ: [{0}] TH.
+        /// </summary>
+        public static string LabelText_DaXacNhanLamThemGio {
+            get {
+                return ResourceManager.GetString("LabelText_DaXacNhanLamThemGio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không nhận diện được ca: [{0}] TH.
+        /// </summary>
+        public static string LabelText_KoNhanDienCa {
+            get {
+                return ResourceManager.GetString("LabelText_KoNhanDienCa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ở lại chưa qua xác nhận: [{0}] TH.
+        /// </summary>
+        public static string LabelText_OLaiChuaXN {
+            get {
+                return ResourceManager.GetString("LabelText_OLaiChuaXN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thiếu chấm công: [{0}] TH.
+        /// </summary>
+        public static string LabelText_ThieuChamCong {
+            get {
+                return ResourceManager.GetString("LabelText_ThieuChamCong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vào trễ, ra sớm có làm bù: [{0}] TH.
+        /// </summary>
+        public static string LabelText_TreSomCoLamBu {
+            get {
+                return ResourceManager.GetString("LabelText_TreSomCoLamBu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giờ vào hoặc ra bị chỉnh sửa: [{0}] TH.
+        /// </summary>
+        public static string LabelText_VaoRaBiChinhSua {
+            get {
+                return ResourceManager.GetString("LabelText_VaoRaBiChinhSua", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vào trễ, ra sớm: [{0}] TH.
+        /// </summary>
+        public static string LabelText_VaoTreRaSom {
+            get {
+                return ResourceManager.GetString("LabelText_VaoTreRaSom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xin phép vắng: [{0}] TH.
+        /// </summary>
+        public static string LabelText_XinPhepVang {
+            get {
+                return ResourceManager.GetString("LabelText_XinPhepVang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KR.
         /// </summary>
         public static string SymKhongRa {

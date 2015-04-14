@@ -12,6 +12,8 @@ using ChamCong_v05.Helper;
 using ChamCong_v05.Properties;
 using ChamCong_v05.DTO;
 using DevExpress.Utils;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace ChamCong_v05.UI4._5 {
 	public partial class fmXemCong4 : Form {
@@ -101,11 +103,69 @@ namespace ChamCong_v05.UI4._5 {
 			DateTime ngaybd = MyUtility.FirstDayOfMonth(dateNavigator1.DateTime);
 			DateTime ngaykt = MyUtility.LastDayOfMonth(ngaybd);
 			XL.XemCongThoiGianChuaKetLuong(listNhanVien, ngaybd, ngaykt);
+			int soTH_ThieuChamCong,
+				soTH_KoNhanDienCa,
+				soTH_OLaiChuaXN,
+				soTH_VaoTreRaSom,
+				soTH_VaoRaEdited,
+				soTH_DaXN,
+				soTH_DaXN_LamThem,
+				soTH_ChoPhepTreSom,
+				soTH_VaoTre_RaSom_CoLamBu,
+				soTH_XinPhepVang;
+			this.GhiNhanThongBao(listNhanVien, ngaybd, ngaykt,
+								 out soTH_ThieuChamCong, out soTH_KoNhanDienCa, out soTH_OLaiChuaXN, out soTH_VaoTreRaSom,
+								 out soTH_VaoRaEdited, out soTH_DaXN, out soTH_DaXN_LamThem, out soTH_ChoPhepTreSom, out soTH_VaoTre_RaSom_CoLamBu,
+								 out soTH_XinPhepVang);
+			lbThieuChamCong.Text = string.Format(Resources.LabelText_ThieuChamCong, soTH_ThieuChamCong);
+			lbKhongNhanDienCa.Text = string.Format(Resources.LabelText_KoNhanDienCa, soTH_KoNhanDienCa);
+			lbOLaiChuaXN.Text = string.Format(Resources.LabelText_OLaiChuaXN, soTH_OLaiChuaXN);
+			lbVaoTreRaSom.Text = string.Format(Resources.LabelText_VaoTreRaSom, soTH_VaoTreRaSom);
+			lbVaoRaBiChinhSua.Text = string.Format(Resources.LabelText_VaoRaBiChinhSua, soTH_VaoRaEdited);
+			lbDaXacNhanCa.Text = string.Format(Resources.LabelText_DaXacNhanCa, soTH_DaXN);
+			lbDaXacNhanLamThem.Text = string.Format(Resources.LabelText_DaXacNhanLamThemGio, soTH_DaXN_LamThem);
+			lbChoPhepTreSom.Text = string.Format(Resources.LabelText_ChoPhepTreSom, soTH_ChoPhepTreSom);
+			lbTreSomCoLamBu.Text = string.Format(Resources.LabelText_TreSomCoLamBu, soTH_VaoTre_RaSom_CoLamBu);lbXinPhepVang.Text = string.Format(Resources.LabelText_XinPhepVang, soTH_XinPhepVang);
 			DataTable table = tao();
 			populatedata(listNhanVien, table);
 			//dataGridView1.DataSource = table;
 			gridControl1.DataSource = table;
+			gridColumn8.ToolTip = "hoàng phúc";}
 
+		private void GhiNhanThongBao(List<cUserInfo> listNhanVien, DateTime ngaybd, DateTime ngaykt, out int soTH_ThieuChamCong, out int soTH_KoNhanDienCa, out int soTH_OLaiChuaXN, out int soTH_VaoTreRaSom, out int soTH_VaoRaEdited, out int soTH_DaXN, out int soTH_DaXN_LamThem, out int soTH_ChoPhepTreSom, out int soTH_VaoTre_RaSom_CoLamBu, out int soTH_XinPhepVang) {
+			#region init int =0
+
+			soTH_ThieuChamCong = 0;
+			soTH_KoNhanDienCa = 0;
+			soTH_OLaiChuaXN = 0;
+			soTH_VaoTreRaSom = 0;
+			soTH_VaoRaEdited = 0;
+			soTH_DaXN = 0;
+			soTH_DaXN_LamThem = 0;
+			soTH_ChoPhepTreSom = 0;
+			soTH_VaoTre_RaSom_CoLamBu = 0;
+			soTH_XinPhepVang = 0;
+
+			#endregion
+
+			foreach (var nhanvien in listNhanVien) {
+				foreach (var ngayCong in nhanvien.DSNgayCong.Where(item => item.Ngay >= ngaybd && item.Ngay <= ngaykt).ToList())
+				{
+					soTH_ThieuChamCong += ngayCong.DSVaoRa.Count(item => item.HaveINOUT < 0);
+					soTH_KoNhanDienCa += ngayCong.DSVaoRa.Count(item => item.HaveINOUT >= 0 && item.DaXN == false && item.ThuocCa.ID < int.MinValue + 100);
+					soTH_OLaiChuaXN += ngayCong.DSVaoRa.Count(item => item.HaveINOUT >= 0 && item.DaXN == false && item.TG5.OLai > TimeSpan.Zero);
+					soTH_VaoTreRaSom += ngayCong.DSVaoRa.Count(item => item.HaveINOUT >= 0 && item.DaXN == false && (item.TG5.VaoTre > TimeSpan.Zero || item.TG5.RaaSom > TimeSpan.Zero));
+
+					soTH_VaoRaEdited += ngayCong.DSVaoRa.Count(item => (item.Vao != null && item.Vao.Source == "PC")
+																		|| (item.Raa != null && item.Raa.Source == "PC"));
+					soTH_DaXN += ngayCong.DSVaoRa.Count(item => item.DaXN);
+					soTH_DaXN_LamThem += ngayCong.DSVaoRa.Count(item => item.DaXN && item.TG5.SoPhutLamThem5 > TimeSpan.Zero);
+					soTH_ChoPhepTreSom += ngayCong.DSVaoRa.Count(item => item.DuyetChoPhepVaoTre || item.DuyetChoPhepRaSom);
+					soTH_VaoTre_RaSom_CoLamBu += ngayCong.DSVaoRa.Count(item => item.VaoTreTinhCV || item.RaaSomTinhCV);
+					soTH_XinPhepVang += ngayCong.DSVang.Count;
+
+				}
+			}
 		}
 
 		private void populatedata(List<cUserInfo> dsnv, DataTable table) {
@@ -141,7 +201,8 @@ namespace ChamCong_v05.UI4._5 {
 					row["TTCongSom"] = ngayCong.Cong5.TTCongSom;
 					row["TongCongBu"] = ngayCong.Cong5.TongCongBu; row["TongCongTru"] = ngayCong.Cong5.TongCongTru;
 					row["DinhMuc"] = ngayCong.Cong5.DinhMuc;
-					row["KyHieuCa"] = ngayCong.ExportKyHieuThuocCa();
+					row["KyHieuCa"] = ngayCong.ExportKyHieuThuocCa5();
+					row["DanhSachXPVang"] = ngayCong.ExportKyHieuVang();
 					//row[""] = ngayCong.Cong5. ;
 					//row[""] = ngayCong.Cong5. ;
 
@@ -185,12 +246,34 @@ namespace ChamCong_v05.UI4._5 {
 			table.Columns.Add("TongCongBu", typeof(float));
 			table.Columns.Add("TongCongTru", typeof(float));
 			table.Columns.Add("DinhMuc", typeof(float));
-			table.Columns.Add("KyHieuCa", typeof(string));
+			table.Columns.Add("KyHieuCa", typeof(string)); table.Columns.Add("DanhSachXPVang", typeof(string));
 			//table.Columns.Add("", typeof(float));
 			//table.Columns.Add("", typeof(float));
 			//table.Columns.Add("", typeof());
 
 			return table;
+		}
+
+		private void toolTipController1_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e) {
+			if (e.SelectedControl != gridControl1) return;
+			
+			ToolTipControlInfo info = null;
+			//Get the view at the current mouse position
+			GridView view = gridControl1.GetViewAt(e.ControlMousePosition) as GridView;
+			if (view == null) return;
+			//Get the view's element information that resides at the current position
+			GridHitInfo hi = view.CalcHitInfo(e.ControlMousePosition);
+			//Display a hint for row indicator cells
+			if (hi.HitTest == GridHitTest.RowCell) {
+				//An object that uniquely identifies a row indicator cell
+				object o = hi.HitTest.ToString() + hi.RowHandle.ToString();
+				string text = "Row " + hi.RowHandle.ToString();
+				info = new ToolTipControlInfo(o, text);
+			}
+			//Supply tooltip information if applicable, otherwise preserve default tooltip (if any)
+			if (info != null)
+				e.Info = info;
+
 		}
 	}
 }

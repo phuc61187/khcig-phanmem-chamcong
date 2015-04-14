@@ -23,6 +23,7 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
 			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
@@ -33,6 +34,7 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
 			this.treePhongBan = new System.Windows.Forms.TreeView();
@@ -80,18 +82,18 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnChamCong = new DevExpress.XtraEditors.SimpleButton();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+			this.lbThieuChamCong = new DevExpress.XtraEditors.LabelControl();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+			this.lbVaoTreRaSom = new DevExpress.XtraEditors.LabelControl();
+			this.lbOLaiChuaXN = new DevExpress.XtraEditors.LabelControl();
+			this.lbKhongNhanDienCa = new DevExpress.XtraEditors.LabelControl();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+			this.lbXinPhepVang = new DevExpress.XtraEditors.LabelControl();
+			this.lbTreSomCoLamBu = new DevExpress.XtraEditors.LabelControl();
+			this.lbChoPhepTreSom = new DevExpress.XtraEditors.LabelControl();
+			this.lbDaXacNhanLamThem = new DevExpress.XtraEditors.LabelControl();
+			this.lbVaoRaBiChinhSua = new DevExpress.XtraEditors.LabelControl();
+			this.lbDaXacNhanCa = new DevExpress.XtraEditors.LabelControl();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -109,6 +111,8 @@
 			this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.gpChonPhongBan.SuspendLayout();
@@ -120,6 +124,7 @@
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(repositoryItemCheckEdit1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -151,7 +156,7 @@
 			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.treePhongBan.Indent = 18;
 			this.treePhongBan.ItemHeight = 20;
-			this.treePhongBan.Location = new System.Drawing.Point(3, 25);
+			this.treePhongBan.Location = new System.Drawing.Point(3, 21);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
 			treeNode1.Name = "Node2";
@@ -165,7 +170,7 @@
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
 			this.treePhongBan.ShowNodeToolTips = true;
-			this.treePhongBan.Size = new System.Drawing.Size(223, 169);
+			this.treePhongBan.Size = new System.Drawing.Size(223, 173);
 			this.treePhongBan.TabIndex = 0;
 			// 
 			// checkedDSNV
@@ -177,7 +182,7 @@
 			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-			this.checkedDSNV.Size = new System.Drawing.Size(189, 24);
+			this.checkedDSNV.Size = new System.Drawing.Size(189, 20);
 			this.checkedDSNV.TabIndex = 1;
 			// 
 			// label1
@@ -186,7 +191,7 @@
 			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.label1.Location = new System.Drawing.Point(236, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(121, 18);
+			this.label1.Size = new System.Drawing.Size(103, 14);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Chọn nhân viên";
 			// 
@@ -196,7 +201,7 @@
 			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.label2.Location = new System.Drawing.Point(236, 42);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(91, 18);
+			this.label2.Size = new System.Drawing.Size(80, 14);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Chọn tháng";
 			// 
@@ -265,12 +270,12 @@
             this.g1c24,
             this.g1c25});
 			this.dgrdTongHop.GridColor = System.Drawing.Color.White;
-			this.dgrdTongHop.Location = new System.Drawing.Point(1, 218);
+			this.dgrdTongHop.Location = new System.Drawing.Point(565, 30);
 			this.dgrdTongHop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.dgrdTongHop.Name = "dgrdTongHop";
 			this.dgrdTongHop.RowHeadersVisible = false;
 			this.dgrdTongHop.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdTongHop.Size = new System.Drawing.Size(1342, 442);
+			this.dgrdTongHop.Size = new System.Drawing.Size(192, 68);
 			this.dgrdTongHop.TabIndex = 27;
 			// 
 			// g1c2
@@ -512,7 +517,7 @@
 			this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.label3.Location = new System.Drawing.Point(1, 200);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(173, 18);
+			this.label3.Size = new System.Drawing.Size(149, 14);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Bảng chấm công tháng";
 			// 
@@ -530,31 +535,30 @@
 			// dataGridView1
 			// 
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(6, 120);
+			this.dataGridView1.Location = new System.Drawing.Point(616, 132);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowTemplate.Height = 24;
 			this.dataGridView1.Size = new System.Drawing.Size(71, 48);
 			this.dataGridView1.TabIndex = 29;
 			// 
-			// labelControl1
+			// lbThieuChamCong
 			// 
-			this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl1.LineColor = System.Drawing.Color.Transparent;
-			this.labelControl1.Location = new System.Drawing.Point(6, 24);
-			this.labelControl1.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl1.Name = "labelControl1";
-			this.labelControl1.Size = new System.Drawing.Size(190, 18);
-			this.labelControl1.TabIndex = 30;
-			this.labelControl1.Text = "Thiếu chấm công: [20] TH";
+			this.lbThieuChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbThieuChamCong.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbThieuChamCong.LineColor = System.Drawing.Color.Transparent;
+			this.lbThieuChamCong.Location = new System.Drawing.Point(6, 24);
+			this.lbThieuChamCong.Margin = new System.Windows.Forms.Padding(5);
+			this.lbThieuChamCong.Name = "lbThieuChamCong";
+			this.lbThieuChamCong.Size = new System.Drawing.Size(157, 14);
+			this.lbThieuChamCong.TabIndex = 30;
+			this.lbThieuChamCong.Text = "Thiếu chấm công: [20] TH";
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.labelControl5);
-			this.groupBox1.Controls.Add(this.labelControl4);
-			this.groupBox1.Controls.Add(this.dataGridView1);
-			this.groupBox1.Controls.Add(this.labelControl3);
-			this.groupBox1.Controls.Add(this.labelControl1);
+			this.groupBox1.Controls.Add(this.lbVaoTreRaSom);
+			this.groupBox1.Controls.Add(this.lbOLaiChuaXN);
+			this.groupBox1.Controls.Add(this.lbKhongNhanDienCa);
+			this.groupBox1.Controls.Add(this.lbThieuChamCong);
 			this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.groupBox1.Location = new System.Drawing.Point(801, 12);
 			this.groupBox1.Name = "groupBox1";
@@ -563,47 +567,47 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Các trường hợp chưa xử lý";
 			// 
-			// labelControl5
+			// lbVaoTreRaSom
 			// 
-			this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl5.Location = new System.Drawing.Point(6, 96);
-			this.labelControl5.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl5.Name = "labelControl5";
-			this.labelControl5.Size = new System.Drawing.Size(180, 18);
-			this.labelControl5.TabIndex = 30;
-			this.labelControl5.Text = "Vào trễ, ra sớm: [20] TH";
+			this.lbVaoTreRaSom.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbVaoTreRaSom.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbVaoTreRaSom.Location = new System.Drawing.Point(6, 96);
+			this.lbVaoTreRaSom.Margin = new System.Windows.Forms.Padding(5);
+			this.lbVaoTreRaSom.Name = "lbVaoTreRaSom";
+			this.lbVaoTreRaSom.Size = new System.Drawing.Size(148, 14);
+			this.lbVaoTreRaSom.TabIndex = 30;
+			this.lbVaoTreRaSom.Text = "Vào trễ, ra sớm: [20] TH";
 			// 
-			// labelControl4
+			// lbOLaiChuaXN
 			// 
-			this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl4.Location = new System.Drawing.Point(6, 72);
-			this.labelControl4.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl4.Name = "labelControl4";
-			this.labelControl4.Size = new System.Drawing.Size(244, 18);
-			this.labelControl4.TabIndex = 30;
-			this.labelControl4.Text = "Ở lại chưa qua xác nhận: [20] TH";
+			this.lbOLaiChuaXN.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbOLaiChuaXN.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbOLaiChuaXN.Location = new System.Drawing.Point(6, 72);
+			this.lbOLaiChuaXN.Margin = new System.Windows.Forms.Padding(5);
+			this.lbOLaiChuaXN.Name = "lbOLaiChuaXN";
+			this.lbOLaiChuaXN.Size = new System.Drawing.Size(201, 14);
+			this.lbOLaiChuaXN.TabIndex = 30;
+			this.lbOLaiChuaXN.Text = "Ở lại chưa qua xác nhận: [20] TH";
 			// 
-			// labelControl3
+			// lbKhongNhanDienCa
 			// 
-			this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl3.Location = new System.Drawing.Point(6, 48);
-			this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl3.Name = "labelControl3";
-			this.labelControl3.Size = new System.Drawing.Size(250, 18);
-			this.labelControl3.TabIndex = 30;
-			this.labelControl3.Text = "Không nhận diện được ca: [20] TH";
+			this.lbKhongNhanDienCa.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbKhongNhanDienCa.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbKhongNhanDienCa.Location = new System.Drawing.Point(6, 48);
+			this.lbKhongNhanDienCa.Margin = new System.Windows.Forms.Padding(5);
+			this.lbKhongNhanDienCa.Name = "lbKhongNhanDienCa";
+			this.lbKhongNhanDienCa.Size = new System.Drawing.Size(211, 14);
+			this.lbKhongNhanDienCa.TabIndex = 30;
+			this.lbKhongNhanDienCa.Text = "Không nhận diện được ca: [20] TH";
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.labelControl10);
-			this.groupBox2.Controls.Add(this.labelControl8);
-			this.groupBox2.Controls.Add(this.labelControl6);
-			this.groupBox2.Controls.Add(this.labelControl7);
-			this.groupBox2.Controls.Add(this.labelControl9);
-			this.groupBox2.Controls.Add(this.labelControl2);
+			this.groupBox2.Controls.Add(this.lbXinPhepVang);
+			this.groupBox2.Controls.Add(this.lbTreSomCoLamBu);
+			this.groupBox2.Controls.Add(this.lbChoPhepTreSom);
+			this.groupBox2.Controls.Add(this.lbDaXacNhanLamThem);
+			this.groupBox2.Controls.Add(this.lbVaoRaBiChinhSua);
+			this.groupBox2.Controls.Add(this.lbDaXacNhanCa);
 			this.groupBox2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.groupBox2.Location = new System.Drawing.Point(1075, 12);
 			this.groupBox2.Name = "groupBox2";
@@ -612,71 +616,71 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Các trường hợp đã qua xử lý";
 			// 
-			// labelControl10
+			// lbXinPhepVang
 			// 
-			this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl10.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl10.Location = new System.Drawing.Point(8, 144);
-			this.labelControl10.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl10.Name = "labelControl10";
-			this.labelControl10.Size = new System.Drawing.Size(171, 18);
-			this.labelControl10.TabIndex = 30;
-			this.labelControl10.Text = "Xin phép vắng: [20] TH";
+			this.lbXinPhepVang.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbXinPhepVang.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbXinPhepVang.Location = new System.Drawing.Point(8, 144);
+			this.lbXinPhepVang.Margin = new System.Windows.Forms.Padding(5);
+			this.lbXinPhepVang.Name = "lbXinPhepVang";
+			this.lbXinPhepVang.Size = new System.Drawing.Size(142, 14);
+			this.lbXinPhepVang.TabIndex = 30;
+			this.lbXinPhepVang.Text = "Xin phép vắng: [20] TH";
 			// 
-			// labelControl8
+			// lbTreSomCoLamBu
 			// 
-			this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl8.Location = new System.Drawing.Point(8, 120);
-			this.labelControl8.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl8.Name = "labelControl8";
-			this.labelControl8.Size = new System.Drawing.Size(254, 18);
-			this.labelControl8.TabIndex = 30;
-			this.labelControl8.Text = "Vào trễ, ra sớm có làm bù: [20] TH";
+			this.lbTreSomCoLamBu.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbTreSomCoLamBu.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbTreSomCoLamBu.Location = new System.Drawing.Point(8, 120);
+			this.lbTreSomCoLamBu.Margin = new System.Windows.Forms.Padding(5);
+			this.lbTreSomCoLamBu.Name = "lbTreSomCoLamBu";
+			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(211, 14);
+			this.lbTreSomCoLamBu.TabIndex = 30;
+			this.lbTreSomCoLamBu.Text = "Vào trễ, ra sớm có làm bù: [20] TH";
 			// 
-			// labelControl6
+			// lbChoPhepTreSom
 			// 
-			this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl6.Location = new System.Drawing.Point(8, 96);
-			this.labelControl6.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl6.Name = "labelControl6";
-			this.labelControl6.Size = new System.Drawing.Size(251, 18);
-			this.labelControl6.TabIndex = 30;
-			this.labelControl6.Text = "Cho phép vào trễ, ra sớm: [20] TH";
+			this.lbChoPhepTreSom.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbChoPhepTreSom.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbChoPhepTreSom.Location = new System.Drawing.Point(8, 96);
+			this.lbChoPhepTreSom.Margin = new System.Windows.Forms.Padding(5);
+			this.lbChoPhepTreSom.Name = "lbChoPhepTreSom";
+			this.lbChoPhepTreSom.Size = new System.Drawing.Size(210, 14);
+			this.lbChoPhepTreSom.TabIndex = 30;
+			this.lbChoPhepTreSom.Text = "Cho phép vào trễ, ra sớm: [20] TH";
 			// 
-			// labelControl7
+			// lbDaXacNhanLamThem
 			// 
-			this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl7.Location = new System.Drawing.Point(8, 72);
-			this.labelControl7.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl7.Name = "labelControl7";
-			this.labelControl7.Size = new System.Drawing.Size(257, 18);
-			this.labelControl7.TabIndex = 30;
-			this.labelControl7.Text = "Đã xác nhận làm thêm giờ: [20] TH";
+			this.lbDaXacNhanLamThem.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbDaXacNhanLamThem.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbDaXacNhanLamThem.Location = new System.Drawing.Point(8, 72);
+			this.lbDaXacNhanLamThem.Margin = new System.Windows.Forms.Padding(5);
+			this.lbDaXacNhanLamThem.Name = "lbDaXacNhanLamThem";
+			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(213, 14);
+			this.lbDaXacNhanLamThem.TabIndex = 30;
+			this.lbDaXacNhanLamThem.Text = "Đã xác nhận làm thêm giờ: [20] TH";
 			// 
-			// labelControl9
+			// lbVaoRaBiChinhSua
 			// 
-			this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl9.Location = new System.Drawing.Point(8, 24);
-			this.labelControl9.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl9.Name = "labelControl9";
-			this.labelControl9.Size = new System.Drawing.Size(305, 18);
-			this.labelControl9.TabIndex = 30;
-			this.labelControl9.Text = "Giờ vào hoặc ra bị chỉnh sửa: [20000] TH";
+			this.lbVaoRaBiChinhSua.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbVaoRaBiChinhSua.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbVaoRaBiChinhSua.Location = new System.Drawing.Point(8, 24);
+			this.lbVaoRaBiChinhSua.Margin = new System.Windows.Forms.Padding(5);
+			this.lbVaoRaBiChinhSua.Name = "lbVaoRaBiChinhSua";
+			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(250, 14);
+			this.lbVaoRaBiChinhSua.TabIndex = 30;
+			this.lbVaoRaBiChinhSua.Text = "Giờ vào hoặc ra bị chỉnh sửa: [20000] TH";
 			// 
-			// labelControl2
+			// lbDaXacNhanCa
 			// 
-			this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.labelControl2.Location = new System.Drawing.Point(8, 48);
-			this.labelControl2.Margin = new System.Windows.Forms.Padding(5);
-			this.labelControl2.Name = "labelControl2";
-			this.labelControl2.Size = new System.Drawing.Size(179, 18);
-			this.labelControl2.TabIndex = 30;
-			this.labelControl2.Text = "Đã xác nhận ca: [20] TH";
+			this.lbDaXacNhanCa.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbDaXacNhanCa.Appearance.ForeColor = System.Drawing.Color.Blue;
+			this.lbDaXacNhanCa.Location = new System.Drawing.Point(8, 48);
+			this.lbDaXacNhanCa.Margin = new System.Windows.Forms.Padding(5);
+			this.lbDaXacNhanCa.Name = "lbDaXacNhanCa";
+			this.lbDaXacNhanCa.Size = new System.Drawing.Size(146, 14);
+			this.lbDaXacNhanCa.TabIndex = 30;
+			this.lbDaXacNhanCa.Text = "Đã xác nhận ca: [20] TH";
 			// 
 			// checkBox1
 			// 
@@ -684,7 +688,7 @@
 			this.checkBox1.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.checkBox1.Location = new System.Drawing.Point(441, 71);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(100, 22);
+			this.checkBox1.Size = new System.Drawing.Size(85, 18);
 			this.checkBox1.TabIndex = 32;
 			this.checkBox1.Text = "checkBox1";
 			this.checkBox1.UseVisualStyleBackColor = true;
@@ -696,13 +700,16 @@
 			this.gridControl1.Location = new System.Drawing.Point(1, 217);
 			this.gridControl1.MainView = this.gridView1;
 			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.Size = new System.Drawing.Size(1315, 238);
+			this.gridControl1.Size = new System.Drawing.Size(1342, 442);
 			this.gridControl1.TabIndex = 33;
+			this.gridControl1.ToolTipController = this.toolTipController1;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
 			// 
 			// gridView1
 			// 
+			this.gridView1.Appearance.Empty.BackColor = System.Drawing.Color.Silver;
+			this.gridView1.Appearance.Empty.Options.UseBackColor = true;
 			this.gridView1.Appearance.EvenRow.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.gridView1.Appearance.EvenRow.Options.UseFont = true;
 			this.gridView1.Appearance.FilterPanel.Font = new System.Drawing.Font("Tahoma", 9F);
@@ -723,7 +730,9 @@
 			this.gridView1.Appearance.GroupPanel.Options.UseFont = true;
 			this.gridView1.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.gridView1.Appearance.GroupRow.Options.UseFont = true;
+			this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Silver;
 			this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
 			this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
 			this.gridView1.Appearance.HideSelectionRow.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.gridView1.Appearance.HideSelectionRow.Options.UseFont = true;
@@ -731,12 +740,16 @@
 			this.gridView1.Appearance.OddRow.Options.UseFont = true;
 			this.gridView1.Appearance.Preview.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.gridView1.Appearance.Preview.Options.UseFont = true;
+			this.gridView1.Appearance.Row.BackColor = System.Drawing.Color.Silver;
 			this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
+			this.gridView1.Appearance.Row.Options.UseBackColor = true;
 			this.gridView1.Appearance.Row.Options.UseFont = true;
 			this.gridView1.Appearance.RowSeparator.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.gridView1.Appearance.RowSeparator.Options.UseFont = true;
 			this.gridView1.Appearance.SelectedRow.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.gridView1.Appearance.SelectedRow.Options.UseFont = true;
+			this.gridView1.Appearance.TopNewRow.BackColor = System.Drawing.Color.Silver;
+			this.gridView1.Appearance.TopNewRow.Options.UseBackColor = true;
 			this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn14,
             this.gridColumn1,
@@ -751,7 +764,8 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn12,
-            this.gridColumn13});
+            this.gridColumn13,
+            this.gridColumn15});
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.Name = "gridView1";
 			// 
@@ -785,7 +799,7 @@
 			this.gridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn2.Visible = true;
 			this.gridColumn2.VisibleIndex = 1;
-			this.gridColumn2.Width = 165;
+			this.gridColumn2.Width = 150;
 			// 
 			// gridColumn3
 			// 
@@ -800,7 +814,7 @@
 			this.gridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn3.Visible = true;
 			this.gridColumn3.VisibleIndex = 2;
-			this.gridColumn3.Width = 95;
+			this.gridColumn3.Width = 125;
 			// 
 			// gridColumn4
 			// 
@@ -813,19 +827,20 @@
 			this.gridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn4.Visible = true;
 			this.gridColumn4.VisibleIndex = 3;
-			this.gridColumn4.Width = 95;
+			this.gridColumn4.Width = 150;
 			// 
 			// gridColumn5
 			// 
 			this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 			this.gridColumn5.AppearanceCell.Options.UseFont = true;
 			this.gridColumn5.Caption = "Vắng";
+			this.gridColumn5.FieldName = "DanhSachXPVang";
 			this.gridColumn5.Name = "gridColumn5";
 			this.gridColumn5.OptionsColumn.AllowEdit = false;
 			this.gridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn5.Visible = true;
 			this.gridColumn5.VisibleIndex = 4;
-			this.gridColumn5.Width = 95;
+			this.gridColumn5.Width = 60;
 			// 
 			// gridColumn6
 			// 
@@ -855,7 +870,6 @@
 			this.gridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn7.Visible = true;
 			this.gridColumn7.VisibleIndex = 6;
-			this.gridColumn7.Width = 60;
 			// 
 			// gridColumn8
 			// 
@@ -870,7 +884,7 @@
 			this.gridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn8.Visible = true;
 			this.gridColumn8.VisibleIndex = 7;
-			this.gridColumn8.Width = 60;
+			this.gridColumn8.Width = 80;
 			// 
 			// gridColumn9
 			// 
@@ -885,7 +899,7 @@
 			this.gridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn9.Visible = true;
 			this.gridColumn9.VisibleIndex = 8;
-			this.gridColumn9.Width = 60;
+			this.gridColumn9.Width = 80;
 			// 
 			// gridColumn10
 			// 
@@ -900,7 +914,7 @@
 			this.gridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn10.Visible = true;
 			this.gridColumn10.VisibleIndex = 9;
-			this.gridColumn10.Width = 60;
+			this.gridColumn10.Width = 80;
 			// 
 			// gridColumn11
 			// 
@@ -915,7 +929,7 @@
 			this.gridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn11.Visible = true;
 			this.gridColumn11.VisibleIndex = 10;
-			this.gridColumn11.Width = 60;
+			this.gridColumn11.Width = 80;
 			// 
 			// gridColumn12
 			// 
@@ -930,7 +944,7 @@
 			this.gridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn12.Visible = true;
 			this.gridColumn12.VisibleIndex = 11;
-			this.gridColumn12.Width = 60;
+			this.gridColumn12.Width = 80;
 			// 
 			// gridColumn13
 			// 
@@ -939,32 +953,49 @@
 			this.gridColumn13.Caption = "T.Giờ >8h";
 			this.gridColumn13.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.gridColumn13.FieldName = "TongGioTangCuong";
 			this.gridColumn13.Name = "gridColumn13";
 			this.gridColumn13.OptionsColumn.AllowEdit = false;
 			this.gridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn13.Visible = true;
 			this.gridColumn13.VisibleIndex = 12;
-			this.gridColumn13.Width = 60;
+			this.gridColumn13.Width = 80;
+			// 
+			// gridColumn15
+			// 
+			this.gridColumn15.Caption = "gridColumn15";
+			repositoryItemCheckEdit1.AutoHeight = false;
+			repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+			repositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+			this.gridColumn15.ColumnEdit = repositoryItemCheckEdit1;
+			this.gridColumn15.Name = "gridColumn15";
+			this.gridColumn15.Width = 142;
+			// 
+			// toolTipController1
+			// 
+			this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
 			// 
 			// textBox1
 			// 
 			this.textBox1.Location = new System.Drawing.Point(457, 116);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 28);
+			this.textBox1.Size = new System.Drawing.Size(100, 24);
 			this.textBox1.TabIndex = 34;
 			// 
 			// fmXemCong4
 			// 
 			this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.ClientSize = new System.Drawing.Size(1344, 662);
 			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.dgrdTongHop);
+			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.gridControl1);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnChamCong);
-			this.Controls.Add(this.dgrdTongHop);
 			this.Controls.Add(this.dateNavigator1);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
@@ -987,6 +1018,7 @@
 			this.groupBox2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(repositoryItemCheckEdit1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1005,18 +1037,18 @@
 		private System.Windows.Forms.Label label3;
 		private DevExpress.XtraEditors.SimpleButton btnChamCong;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private DevExpress.XtraEditors.LabelControl labelControl1;
+		private DevExpress.XtraEditors.LabelControl lbThieuChamCong;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private DevExpress.XtraEditors.LabelControl labelControl5;
-		private DevExpress.XtraEditors.LabelControl labelControl4;
-		private DevExpress.XtraEditors.LabelControl labelControl3;
+		private DevExpress.XtraEditors.LabelControl lbVaoTreRaSom;
+		private DevExpress.XtraEditors.LabelControl lbOLaiChuaXN;
+		private DevExpress.XtraEditors.LabelControl lbKhongNhanDienCa;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private DevExpress.XtraEditors.LabelControl labelControl10;
-		private DevExpress.XtraEditors.LabelControl labelControl8;
-		private DevExpress.XtraEditors.LabelControl labelControl6;
-		private DevExpress.XtraEditors.LabelControl labelControl7;
-		private DevExpress.XtraEditors.LabelControl labelControl9;
-		private DevExpress.XtraEditors.LabelControl labelControl2;
+		private DevExpress.XtraEditors.LabelControl lbXinPhepVang;
+		private DevExpress.XtraEditors.LabelControl lbTreSomCoLamBu;
+		private DevExpress.XtraEditors.LabelControl lbChoPhepTreSom;
+		private DevExpress.XtraEditors.LabelControl lbDaXacNhanLamThem;
+		private DevExpress.XtraEditors.LabelControl lbVaoRaBiChinhSua;
+		private DevExpress.XtraEditors.LabelControl lbDaXacNhanCa;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c1;
@@ -1071,5 +1103,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
 		private System.Windows.Forms.TextBox textBox1;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+		private DevExpress.Utils.ToolTipController toolTipController1;
 	}
 }

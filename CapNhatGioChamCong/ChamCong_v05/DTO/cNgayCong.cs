@@ -152,8 +152,9 @@ namespace ChamCong_v05.DTO {
 			}
 			return kq;
 		}
-		public string ExportKyHieuPhuCap5()
-		{
+
+
+		public string ExportKyHieuPhuCap5() {
 			if (this.TG5.TongGioLamViec == TimeSpan.Zero) return string.Empty;
 			string kq = string.Empty;
 			if (this.LoaiPCDB == (int)LoaiPhuCap.NgayThuong) {//chỉ có c3, tc, t3
@@ -168,22 +169,31 @@ namespace ChamCong_v05.DTO {
 				kq += ";" + Resources.SymPhuCapNgayLe;
 			}
 			else if (this.LoaiPCDB == (int)LoaiPhuCap.TuyChinhNgayDem) kq += ";" + Resources.SymPhuCapTuyChinhNgayDem;
-			else if (this.LoaiPCDB == (int)LoaiPhuCap.TuyChinhTatCa) kq +=";" + Resources.SymPhuCapTuyChinhTatCa;
+			else if (this.LoaiPCDB == (int)LoaiPhuCap.TuyChinhTatCa) kq += ";" + Resources.SymPhuCapTuyChinhTatCa;
+			kq = kq.XoaKyTuPhanCachDauTien();
 			return kq;
 		}
 
-		public string ExportKyHieuThuocCa()
-		{
+		public string ExportKyHieuThuocCa5(bool ShowDSCa_KV_KR = false) {
 			if (this.DSVaoRa == null || this.DSVaoRa.Count == 0) return string.Empty;
 
 			string kq = string.Empty;
-			kq = this.DSVaoRa.Aggregate(kq, (current, @out) => current +  @out.ExportKyHieu5_1(ShowDSCa_KV_KR: false)); // out empty | ;ca1[-T]
-			kq.XoaKyTuPhanCachDauTien();
+			kq = this.DSVaoRa.Aggregate(kq, (current, @out) => current + @out.ExportKyHieu5_1(ShowDSCa_KV_KR)); // out empty | ;ca1[-T]
+			kq = kq.XoaKyTuPhanCachDauTien();
+			return kq;
+		}
+
+		public string ExportKyHieuVang()
+		{
+			if (this.DSVang == null || this.DSVang.Count == 0) return string.Empty;
+
+			string kq = string.Empty;
+			kq = DSVang.Aggregate(string.Empty, (current, loaiVang) => current + ";" + loaiVang.LayKyHieu());
+			kq = kq.XoaKyTuPhanCachDauTien();
 			return kq;
 		}
 
 		public cNgayCong() { }
-
 	}
 
 
@@ -200,35 +210,30 @@ namespace ChamCong_v05.DTO {
 			return kq;
 		}
 
-		public cLoaiVang()
-		{
-			
+		public cLoaiVang() {
+
 		}
 	}
 
 	#region v4
 
-	public struct structPCDB
-	{
+	public struct structPCDB {
 		public DateTime Ngay;
 		public int LoaiPC;
 		public bool Duyet;
 		public int PCNgay;
 		public int PCDem;
 
-		public override string ToString()
-		{
+		public override string ToString() {
 			return LoaiPC + "; " + PCNgay.ToString("##0.0#") + "; " + Ngay.ToString("d/M") + Duyet;
 		}
 	}
 
-	public struct structPCTC
-	{
+	public struct structPCTC {
 		public DateTime Ngay;
 		public bool TinhPC50;
 
-		public override string ToString()
-		{
+		public override string ToString() {
 			return TinhPC50 + "; " + Ngay.ToString("d/M");
 		}
 

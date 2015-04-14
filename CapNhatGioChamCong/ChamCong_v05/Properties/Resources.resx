@@ -417,4 +417,34 @@ Bạn muốn Xoá nhiệm vụ?</value>
   <data name="SymTrePhaiLamBu" xml:space="preserve">
     <value>BT</value>
   </data>
+  <data name="LabelText_ChoPhepTreSom" xml:space="preserve">
+    <value>Cho phép vào trễ, ra sớm: [{0}] TH</value>
+  </data>
+  <data name="LabelText_DaXacNhanCa" xml:space="preserve">
+    <value>Đã xác nhận ca: [{0}] TH</value>
+  </data>
+  <data name="LabelText_DaXacNhanLamThemGio" xml:space="preserve">
+    <value>Đã xác nhận làm thêm giờ: [{0}] TH</value>
+  </data>
+  <data name="LabelText_KoNhanDienCa" xml:space="preserve">
+    <value>Không nhận diện được ca: [{0}] TH</value>
+  </data>
+  <data name="LabelText_OLaiChuaXN" xml:space="preserve">
+    <value>Ở lại chưa qua xác nhận: [{0}] TH</value>
+  </data>
+  <data name="LabelText_ThieuChamCong" xml:space="preserve">
+    <value>Thiếu chấm công: [{0}] TH</value>
+  </data>
+  <data name="LabelText_TreSomCoLamBu" xml:space="preserve">
+    <value>Vào trễ, ra sớm có làm bù: [{0}] TH</value>
+  </data>
+  <data name="LabelText_VaoRaBiChinhSua" xml:space="preserve">
+    <value>Giờ vào hoặc ra bị chỉnh sửa: [{0}] TH</value>
+  </data>
+  <data name="LabelText_VaoTreRaSom" xml:space="preserve">
+    <value>Vào trễ, ra sớm: [{0}] TH</value>
+  </data>
+  <data name="LabelText_XinPhepVang" xml:space="preserve">
+    <value>Xin phép vắng: [{0}] TH</value>
+  </data>
 </root>

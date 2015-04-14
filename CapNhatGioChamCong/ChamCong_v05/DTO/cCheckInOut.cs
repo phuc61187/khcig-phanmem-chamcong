@@ -159,20 +159,19 @@ namespace ChamCong_v05.DTO {
 		}
 
 		public string ExportKyHieuThuocCa1_5(bool ShowDSCa_KV_KR = false) {
-			if (this.ThuocCa == null) return string.Empty;
 			if (this.HaveINOUT == 0) return ";" + this.ThuocCa.Code;//@out empty | ;ca1  | ;ca2
 			else if (HaveINOUT == -1) {
 				string dsca = string.Empty;
 				dsca = this.DSCa.Aggregate(dsca, (current, @out) => current + "," + @out.Code); 
 				if (ShowDSCa_KV_KR) return "," + dsca;//@out empty | ,ca1 | ,2
-				dsca.XoaKyTuPhanCachDauTien();
+				dsca = dsca.XoaKyTuPhanCachDauTien();
 				return string.Format(";{0}({1})", Resources.SymKhongVao, dsca);//@out empty | ;KV(ca1,ca2) | ;2
 			}
 			else if (HaveINOUT == -2) {
 				string dsca = string.Empty;
 				dsca = this.DSCa.Aggregate(dsca, (current, @out) => current + ";" + @out.Code);
 				if (ShowDSCa_KV_KR) return ";" + dsca;
-				dsca.XoaKyTuPhanCachDauTien();
+				dsca = dsca.XoaKyTuPhanCachDauTien();
 				return string.Format(";{0}({1})", Resources.SymKhongRa, dsca);//@out empty | ;KV(ca1,ca2) | ;2
 			}
 			else return ";#Name";
@@ -184,25 +183,25 @@ namespace ChamCong_v05.DTO {
 
 			string kq = string.Empty;
 			if (this.TG5.VaoTre > TimeSpan.Zero) {//@out empty | ;BT | ;-T
-				if (this.VaoTreTinhCV) kq += ";" + Resources.SymTrePhaiLamBu;
-				else kq += ";" + Resources.SymTreBiTru;
+				if (this.VaoTreTinhCV) kq += "," + Resources.SymTrePhaiLamBu;
+				else kq += "," + Resources.SymTreBiTru;
 			}
 
 			if (this.TG5.RaaSom > TimeSpan.Zero) {//@out empty | ;BS | ;-S
-				if (this.RaaSomTinhCV) kq += ";" + Resources.SymSomPhaiLamBu;
-				else kq += ";" + Resources.SymSomBiTru;
+				if (this.RaaSomTinhCV) kq += "," + Resources.SymSomPhaiLamBu;
+				else kq += "," + Resources.SymSomBiTru;
 			}
-			return kq.XoaKyTuPhanCachDauTien();//final result @out empty | ;BT;-S | ;-T;BS 
+			return kq;//final result @out empty | ;BT;-S | ;-T;BS 
 		}
 
 		public string ExportKyHieu5_1(bool ShowDSCa_KV_KR = false) {
 			string kq1 = string.Empty;
 			kq1 += ExportKyHieuTreSom5(); //--> @out = empty hoặc ;-T;BT
-			kq1.XoaKyTuPhanCachDauTien(); // bỏ ; --> -T;BT
+			kq1 = kq1.XoaKyTuPhanCachDauTien(); // bỏ ; --> -T;BT
 			if (kq1 != string.Empty) kq1 = string.Format("[{0}]", kq1); // @out empty [-T;BS]
 			string kq2 = ExportKyHieuThuocCa1_5(ShowDSCa_KV_KR); //--> @out = empty | ;1;3 hoặc 
 
-			return string.Format("{0}{1}", kq2, kq1);// @out empty | ;Ca1[-T;BS]
+			return string.Format("{0}{1}", kq2, kq1);// @out empty | ;Ca1 [-T;BS]
 		}
 
 		public cCheckInOut() {

@@ -678,8 +678,7 @@ namespace ChamCong_v05.Helper {
 		/// <param name="chuoi"></param>
 		/// <returns></returns>
 		public static string XoaKyTuPhanCachDauTien(this string chuoi){
-			string result = string.Empty;
-result = (chuoi != string.Empty) ? chuoi.Remove(0, 1) : chuoi;
+			string result = (chuoi != string.Empty) ? chuoi.Remove(0, 1) : chuoi;
 			return result ;
 		}
 	}

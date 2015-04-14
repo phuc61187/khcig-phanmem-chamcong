@@ -382,6 +382,12 @@
     <Compile Include="UI\XepLich\frmDangKyNhiemVuChoNV.Designer.cs">
       <DependentUpon>frmDangKyNhiemVuChoNV.cs</DependentUpon>
     </Compile>
+    <Compile Include="zMisc\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="zMisc\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Helper\WaitWindowGUI.resx">
       <DependentUpon>WaitWindowGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -545,8 +551,11 @@
     <EmbeddedResource Include="UI\XepLich\frmDangKyNhiemVuChoNV.resx">
       <DependentUpon>frmDangKyNhiemVuChoNV.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="zMisc\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="Book1.xlsx" />
+    <None Include="zMisc\Book1.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -566,7 +575,7 @@
     <Content Include="SQL\create table XacNhanPhuCap5.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="zMisc\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
