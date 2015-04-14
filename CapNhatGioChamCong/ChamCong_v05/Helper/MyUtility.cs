@@ -671,6 +671,17 @@ namespace ChamCong_v05.Helper {
 			// ra khỏi vòng lặp là tháng cuối có thể bị dang dở cursorDate.Month = NgayKT.Month . VD: 01/01/2015 -16/01/2015
 			ArrDoanThoigian.Add(new List<DateTime> { cursorDate, NgayKt });
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="chuoi"></param>
+		/// <returns></returns>
+		public static string XoaKyTuPhanCachDauTien(this string chuoi){
+			string result = string.Empty;
+result = (chuoi != string.Empty) ? chuoi.Remove(0, 1) : chuoi;
+			return result ;
+		}
 	}
 
 	public class ACMessageBox {

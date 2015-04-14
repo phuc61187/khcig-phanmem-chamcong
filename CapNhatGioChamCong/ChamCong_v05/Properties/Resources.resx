@@ -405,4 +405,16 @@ Bạn muốn Xoá nhiệm vụ?</value>
   <data name="SymPhuCapTuyChinhTatCa" xml:space="preserve">
     <value>xK</value>
   </data>
+  <data name="SymSomBiTru" xml:space="preserve">
+    <value>-S</value>
+  </data>
+  <data name="SymSomPhaiLamBu" xml:space="preserve">
+    <value>BS</value>
+  </data>
+  <data name="SymTreBiTru" xml:space="preserve">
+    <value>-T</value>
+  </data>
+  <data name="SymTrePhaiLamBu" xml:space="preserve">
+    <value>BT</value>
+  </data>
 </root>

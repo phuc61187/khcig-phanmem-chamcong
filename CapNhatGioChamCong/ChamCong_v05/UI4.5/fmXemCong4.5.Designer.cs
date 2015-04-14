@@ -95,6 +95,7 @@
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -109,7 +110,6 @@
 			this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.panel1.SuspendLayout();
 			this.gpChonPhongBan.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).BeginInit();
@@ -151,7 +151,7 @@
 			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.treePhongBan.Indent = 18;
 			this.treePhongBan.ItemHeight = 20;
-			this.treePhongBan.Location = new System.Drawing.Point(3, 21);
+			this.treePhongBan.Location = new System.Drawing.Point(3, 25);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
 			treeNode1.Name = "Node2";
@@ -165,7 +165,7 @@
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
 			this.treePhongBan.ShowNodeToolTips = true;
-			this.treePhongBan.Size = new System.Drawing.Size(223, 173);
+			this.treePhongBan.Size = new System.Drawing.Size(223, 169);
 			this.treePhongBan.TabIndex = 0;
 			// 
 			// checkedDSNV
@@ -177,7 +177,7 @@
 			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-			this.checkedDSNV.Size = new System.Drawing.Size(189, 20);
+			this.checkedDSNV.Size = new System.Drawing.Size(189, 24);
 			this.checkedDSNV.TabIndex = 1;
 			// 
 			// label1
@@ -186,7 +186,7 @@
 			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.label1.Location = new System.Drawing.Point(236, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(103, 14);
+			this.label1.Size = new System.Drawing.Size(121, 18);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Chọn nhân viên";
 			// 
@@ -196,7 +196,7 @@
 			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.label2.Location = new System.Drawing.Point(236, 42);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 14);
+			this.label2.Size = new System.Drawing.Size(91, 18);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Chọn tháng";
 			// 
@@ -512,7 +512,7 @@
 			this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
 			this.label3.Location = new System.Drawing.Point(1, 200);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(149, 14);
+			this.label3.Size = new System.Drawing.Size(173, 18);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Bảng chấm công tháng";
 			// 
@@ -544,7 +544,7 @@
 			this.labelControl1.Location = new System.Drawing.Point(6, 24);
 			this.labelControl1.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl1.Name = "labelControl1";
-			this.labelControl1.Size = new System.Drawing.Size(157, 14);
+			this.labelControl1.Size = new System.Drawing.Size(190, 18);
 			this.labelControl1.TabIndex = 30;
 			this.labelControl1.Text = "Thiếu chấm công: [20] TH";
 			// 
@@ -570,7 +570,7 @@
 			this.labelControl5.Location = new System.Drawing.Point(6, 96);
 			this.labelControl5.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl5.Name = "labelControl5";
-			this.labelControl5.Size = new System.Drawing.Size(148, 14);
+			this.labelControl5.Size = new System.Drawing.Size(180, 18);
 			this.labelControl5.TabIndex = 30;
 			this.labelControl5.Text = "Vào trễ, ra sớm: [20] TH";
 			// 
@@ -581,7 +581,7 @@
 			this.labelControl4.Location = new System.Drawing.Point(6, 72);
 			this.labelControl4.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl4.Name = "labelControl4";
-			this.labelControl4.Size = new System.Drawing.Size(201, 14);
+			this.labelControl4.Size = new System.Drawing.Size(244, 18);
 			this.labelControl4.TabIndex = 30;
 			this.labelControl4.Text = "Ở lại chưa qua xác nhận: [20] TH";
 			// 
@@ -592,7 +592,7 @@
 			this.labelControl3.Location = new System.Drawing.Point(6, 48);
 			this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl3.Name = "labelControl3";
-			this.labelControl3.Size = new System.Drawing.Size(211, 14);
+			this.labelControl3.Size = new System.Drawing.Size(250, 18);
 			this.labelControl3.TabIndex = 30;
 			this.labelControl3.Text = "Không nhận diện được ca: [20] TH";
 			// 
@@ -619,7 +619,7 @@
 			this.labelControl10.Location = new System.Drawing.Point(8, 144);
 			this.labelControl10.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl10.Name = "labelControl10";
-			this.labelControl10.Size = new System.Drawing.Size(142, 14);
+			this.labelControl10.Size = new System.Drawing.Size(171, 18);
 			this.labelControl10.TabIndex = 30;
 			this.labelControl10.Text = "Xin phép vắng: [20] TH";
 			// 
@@ -630,7 +630,7 @@
 			this.labelControl8.Location = new System.Drawing.Point(8, 120);
 			this.labelControl8.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl8.Name = "labelControl8";
-			this.labelControl8.Size = new System.Drawing.Size(211, 14);
+			this.labelControl8.Size = new System.Drawing.Size(254, 18);
 			this.labelControl8.TabIndex = 30;
 			this.labelControl8.Text = "Vào trễ, ra sớm có làm bù: [20] TH";
 			// 
@@ -641,7 +641,7 @@
 			this.labelControl6.Location = new System.Drawing.Point(8, 96);
 			this.labelControl6.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl6.Name = "labelControl6";
-			this.labelControl6.Size = new System.Drawing.Size(210, 14);
+			this.labelControl6.Size = new System.Drawing.Size(251, 18);
 			this.labelControl6.TabIndex = 30;
 			this.labelControl6.Text = "Cho phép vào trễ, ra sớm: [20] TH";
 			// 
@@ -652,7 +652,7 @@
 			this.labelControl7.Location = new System.Drawing.Point(8, 72);
 			this.labelControl7.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl7.Name = "labelControl7";
-			this.labelControl7.Size = new System.Drawing.Size(213, 14);
+			this.labelControl7.Size = new System.Drawing.Size(257, 18);
 			this.labelControl7.TabIndex = 30;
 			this.labelControl7.Text = "Đã xác nhận làm thêm giờ: [20] TH";
 			// 
@@ -663,7 +663,7 @@
 			this.labelControl9.Location = new System.Drawing.Point(8, 24);
 			this.labelControl9.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl9.Name = "labelControl9";
-			this.labelControl9.Size = new System.Drawing.Size(250, 14);
+			this.labelControl9.Size = new System.Drawing.Size(305, 18);
 			this.labelControl9.TabIndex = 30;
 			this.labelControl9.Text = "Giờ vào hoặc ra bị chỉnh sửa: [20000] TH";
 			// 
@@ -674,7 +674,7 @@
 			this.labelControl2.Location = new System.Drawing.Point(8, 48);
 			this.labelControl2.Margin = new System.Windows.Forms.Padding(5);
 			this.labelControl2.Name = "labelControl2";
-			this.labelControl2.Size = new System.Drawing.Size(146, 14);
+			this.labelControl2.Size = new System.Drawing.Size(179, 18);
 			this.labelControl2.TabIndex = 30;
 			this.labelControl2.Text = "Đã xác nhận ca: [20] TH";
 			// 
@@ -684,7 +684,7 @@
 			this.checkBox1.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.checkBox1.Location = new System.Drawing.Point(441, 71);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(85, 18);
+			this.checkBox1.Size = new System.Drawing.Size(100, 22);
 			this.checkBox1.TabIndex = 32;
 			this.checkBox1.Text = "checkBox1";
 			this.checkBox1.UseVisualStyleBackColor = true;
@@ -755,6 +755,12 @@
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.Name = "gridView1";
 			// 
+			// gridColumn14
+			// 
+			this.gridColumn14.Caption = "MãCC_hide";
+			this.gridColumn14.FieldName = "UserEnrollNumber";
+			this.gridColumn14.Name = "gridColumn14";
+			// 
 			// gridColumn1
 			// 
 			this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -801,6 +807,7 @@
 			this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 			this.gridColumn4.AppearanceCell.Options.UseFont = true;
 			this.gridColumn4.Caption = "Ký hiệu ca";
+			this.gridColumn4.FieldName = "KyHieuCa";
 			this.gridColumn4.Name = "gridColumn4";
 			this.gridColumn4.OptionsColumn.AllowEdit = false;
 			this.gridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
@@ -943,14 +950,8 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(457, 116);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 24);
+			this.textBox1.Size = new System.Drawing.Size(100, 28);
 			this.textBox1.TabIndex = 34;
-			// 
-			// gridColumn14
-			// 
-			this.gridColumn14.Caption = "MãCC_hide";
-			this.gridColumn14.FieldName = "UserEnrollNumber";
-			this.gridColumn14.Name = "gridColumn14";
 			// 
 			// fmXemCong4
 			// 
