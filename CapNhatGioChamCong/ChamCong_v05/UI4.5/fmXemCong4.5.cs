@@ -253,6 +253,7 @@ namespace ChamCong_v05.UI4._5 {
 		}
 
 		private void toolTipController1_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e) {
+/*
 			if (e.SelectedControl != gridControl1) return;
 			
 			ToolTipControlInfo info = null;
@@ -271,6 +272,7 @@ namespace ChamCong_v05.UI4._5 {
 			//Supply tooltip information if applicable, otherwise preserve default tooltip (if any)
 			if (info != null)
 				e.Info = info;
+*/
 
 		}
 

@@ -24,16 +24,16 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode3});
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode7});
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
@@ -165,16 +165,16 @@
 			this.treePhongBan.Location = new System.Drawing.Point(3, 21);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
-			treeNode1.Name = "Node2";
-			treeNode1.Text = "px thành phẩm";
-			treeNode2.Name = "Node5";
-			treeNode2.Text = "bảo vệ";
-			treeNode3.Name = "Node4";
-			treeNode3.Text = "văn phòng";
-			treeNode4.Name = "Node0";
-			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
+			treeNode5.Name = "Node2";
+			treeNode5.Text = "px thành phẩm";
+			treeNode6.Name = "Node5";
+			treeNode6.Text = "bảo vệ";
+			treeNode7.Name = "Node4";
+			treeNode7.Text = "văn phòng";
+			treeNode8.Name = "Node0";
+			treeNode8.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode8});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(223, 173);
 			this.treePhongBan.TabIndex = 0;
@@ -187,7 +187,7 @@
 			this.checkedDSNV.Properties.Appearance.Options.UseFont = true;
 			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.checkedDSNV.Size = new System.Drawing.Size(189, 20);
 			this.checkedDSNV.TabIndex = 1;
 			// 
@@ -228,10 +228,10 @@
 			this.dgrdTongHop.AllowUserToAddRows = false;
 			this.dgrdTongHop.AllowUserToDeleteRows = false;
 			this.dgrdTongHop.AllowUserToResizeRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-			this.dgrdTongHop.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+			this.dgrdTongHop.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgrdTongHop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.dgrdTongHop.BackgroundColor = System.Drawing.SystemColors.Window;
@@ -287,8 +287,8 @@
 			// g1c2
 			// 
 			this.g1c2.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.g1c2.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.g1c2.DefaultCellStyle = dataGridViewCellStyle4;
 			this.g1c2.Frozen = true;
 			this.g1c2.HeaderText = "Mã CC_hide";
 			this.g1c2.Name = "g1c2";
@@ -775,6 +775,7 @@
             this.gridColumn15});
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.Name = "gridView1";
+			this.gridView1.OptionsView.AllowCellMerge = true;
 			// 
 			// gridColumn14
 			// 
@@ -903,7 +904,7 @@
 			this.gridColumn9.FieldName = "TongGioThucTe";
 			this.gridColumn9.Name = "gridColumn9";
 			this.gridColumn9.OptionsColumn.AllowEdit = false;
-			this.gridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+			this.gridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumn9.Visible = true;
 			this.gridColumn9.VisibleIndex = 8;
 			this.gridColumn9.Width = 80;

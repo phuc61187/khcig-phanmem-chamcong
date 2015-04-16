@@ -161,18 +161,18 @@ namespace ChamCong_v05.DTO {
 		public string ExportKyHieuThuocCa1_5(bool ShowDSCa_KV_KR = false) {
 			if (this.HaveINOUT == 0) return ";" + this.ThuocCa.Code;//@out empty | ;ca1  | ;ca2
 			else if (HaveINOUT == -1) {
-				string dsca = string.Empty;
-				dsca = this.DSCa.Aggregate(dsca, (current, @out) => current + "," + @out.Code); 
-				if (ShowDSCa_KV_KR) return "," + dsca;//@out empty | ,ca1 | ,2
-				dsca = dsca.XoaKyTuPhanCachDauTien();
-				return string.Format(";{0}({1})", Resources.SymKhongVao, dsca);//@out empty | ;KV(ca1,ca2) | ;2
+				//string dsca = string.Empty;
+				string dsca = this.DSCa.Aggregate(string.Empty, (current, @out) => current + "," + @out.Code);  //@out ,hc,hca
+				dsca = dsca.XoaKyTuPhanCachDauTien();// hc,hca
+				if (ShowDSCa_KV_KR == false) return ";" + Resources.SymKhongRa;//@out empty | ,ca1 | ,2
+				return string.Format(";{0}({1})", Resources.SymKhongRa, dsca);//@out empty | ;KV(ca1,ca2) | ;2
 			}
 			else if (HaveINOUT == -2) {
-				string dsca = string.Empty;
-				dsca = this.DSCa.Aggregate(dsca, (current, @out) => current + ";" + @out.Code);
-				if (ShowDSCa_KV_KR) return ";" + dsca;
+				//string dsca = string.Empty;
+				string dsca = this.DSCa.Aggregate(string.Empty, (current, @out) => current + "," + @out.Code);
 				dsca = dsca.XoaKyTuPhanCachDauTien();
-				return string.Format(";{0}({1})", Resources.SymKhongRa, dsca);//@out empty | ;KV(ca1,ca2) | ;2
+				if (ShowDSCa_KV_KR == false) return ";" + Resources.SymKhongVao;
+				return string.Format(";{0}({1})", Resources.SymKhongVao, dsca);//@out empty | ;KV(ca1,ca2) | ;2
 			}
 			else return ";#Name";
 			//final result @out empty | ;KV(ca1,ca2) | ;2

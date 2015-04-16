@@ -98,6 +98,7 @@ namespace ChamCong_v05.Helper {
 		}
 	}
 
+
 	public struct SUMLUONG {
 		public float hslcb4;
 		public float hslsp5;

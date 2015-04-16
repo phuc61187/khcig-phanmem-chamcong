@@ -208,6 +208,11 @@ namespace ChamCong_v05.Helper {
 		TuyChinhTatCa = 4,
 	}
 
+	public enum MayCheck
+	{
+		I = 21, O = 22,
+	}
+
 	public enum SettingName {
 		PC30, PC100, PC200, PC160, PC50, PC290, PCTCC3,
 
@@ -236,6 +241,10 @@ namespace ChamCong_v05.Helper {
 		/// 	@ArrayMaCC IntArray readonly,	@BDVao datetime,	@KTVao datetime,	@BDRaa datetime,	@KTRaa datetime
 		/// </summary>
 		CheckInOut_DocCheckDaCoXN, // đọc các check vân tay chưa qua xác nhận
+		/// <summary>
+		/// @UserEnrollNumber, @TimeDate, @TimeStr, @OriginType, @MachineNo, @Source, workcode in sp =0, them in sp = 1
+		/// </summary>
+		CheckInOut_Ins,
 		#endregion
 		#region Absent
 		/// <summary>
