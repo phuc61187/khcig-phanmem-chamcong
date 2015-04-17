@@ -32,8 +32,6 @@
             treeNode5,
             treeNode7});
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
@@ -42,46 +40,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
-			this.dgrdTongHop = new System.Windows.Forms.DataGridView();
-			this.g1c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cd31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnChamCong = new DevExpress.XtraEditors.SimpleButton();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.lbThieuChamCong = new DevExpress.XtraEditors.LabelControl();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.lbVaoTreRaSom = new DevExpress.XtraEditors.LabelControl();
@@ -113,14 +73,11 @@
 			this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
-			this.textBox1 = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.gpChonPhongBan.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dgrdTongHop)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -223,300 +180,6 @@
 			this.dateNavigator1.Size = new System.Drawing.Size(189, 136);
 			this.dateNavigator1.TabIndex = 4;
 			// 
-			// dgrdTongHop
-			// 
-			this.dgrdTongHop.AllowUserToAddRows = false;
-			this.dgrdTongHop.AllowUserToDeleteRows = false;
-			this.dgrdTongHop.AllowUserToResizeRows = false;
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-			this.dgrdTongHop.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-			this.dgrdTongHop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-			this.dgrdTongHop.BackgroundColor = System.Drawing.SystemColors.Window;
-			this.dgrdTongHop.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-			this.dgrdTongHop.ColumnHeadersHeight = 45;
-			this.dgrdTongHop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-			this.dgrdTongHop.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.g1c2,
-            this.g1c3,
-            this.g1c1,
-            this.g1cd1,
-            this.g1cd2,
-            this.g1cd3,
-            this.g1cd4,
-            this.g1cd5,
-            this.g1cd6,
-            this.g1cd7,
-            this.g1cd8,
-            this.g1cd9,
-            this.g1cd10,
-            this.g1cd11,
-            this.g1cd12,
-            this.g1cd13,
-            this.g1cd14,
-            this.g1cd15,
-            this.g1cd16,
-            this.g1cd17,
-            this.g1cd18,
-            this.g1cd19,
-            this.g1cd20,
-            this.g1cd21,
-            this.g1cd22,
-            this.g1cd23,
-            this.g1cd24,
-            this.g1cd25,
-            this.g1cd26,
-            this.g1cd27,
-            this.g1cd28,
-            this.g1cd29,
-            this.g1cd30,
-            this.g1cd31,
-            this.g1c24,
-            this.g1c25});
-			this.dgrdTongHop.GridColor = System.Drawing.Color.White;
-			this.dgrdTongHop.Location = new System.Drawing.Point(565, 30);
-			this.dgrdTongHop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dgrdTongHop.Name = "dgrdTongHop";
-			this.dgrdTongHop.RowHeadersVisible = false;
-			this.dgrdTongHop.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgrdTongHop.Size = new System.Drawing.Size(192, 68);
-			this.dgrdTongHop.TabIndex = 27;
-			// 
-			// g1c2
-			// 
-			this.g1c2.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.g1c2.DefaultCellStyle = dataGridViewCellStyle4;
-			this.g1c2.Frozen = true;
-			this.g1c2.HeaderText = "Mã CC_hide";
-			this.g1c2.Name = "g1c2";
-			this.g1c2.ReadOnly = true;
-			this.g1c2.ToolTipText = "Mã chấm công";
-			this.g1c2.Visible = false;
-			this.g1c2.Width = 45;
-			// 
-			// g1c3
-			// 
-			this.g1c3.DataPropertyName = "UserFullName";
-			this.g1c3.HeaderText = "Tên NV";
-			this.g1c3.Name = "g1c3";
-			this.g1c3.ReadOnly = true;
-			this.g1c3.ToolTipText = "Tên Nhân viên";
-			this.g1c3.Width = 150;
-			// 
-			// g1c1
-			// 
-			this.g1c1.DataPropertyName = "UserFullCode";
-			this.g1c1.HeaderText = "Mã NV";
-			this.g1c1.Name = "g1c1";
-			this.g1c1.ReadOnly = true;
-			this.g1c1.ToolTipText = "Mã Nhân viên";
-			this.g1c1.Width = 55;
-			// 
-			// g1cd1
-			// 
-			this.g1cd1.HeaderText = "Bảy 1/4";
-			this.g1cd1.Name = "g1cd1";
-			this.g1cd1.Width = 45;
-			// 
-			// g1cd2
-			// 
-			this.g1cd2.HeaderText = "Bảy 2/4";
-			this.g1cd2.Name = "g1cd2";
-			this.g1cd2.Width = 45;
-			// 
-			// g1cd3
-			// 
-			this.g1cd3.HeaderText = "Bảy 3/4";
-			this.g1cd3.Name = "g1cd3";
-			this.g1cd3.Width = 45;
-			// 
-			// g1cd4
-			// 
-			this.g1cd4.HeaderText = "Bảy 4/4";
-			this.g1cd4.Name = "g1cd4";
-			this.g1cd4.Width = 45;
-			// 
-			// g1cd5
-			// 
-			this.g1cd5.HeaderText = "Bảy 5/4";
-			this.g1cd5.Name = "g1cd5";
-			this.g1cd5.Width = 45;
-			// 
-			// g1cd6
-			// 
-			this.g1cd6.HeaderText = "Bảy 6/4";
-			this.g1cd6.Name = "g1cd6";
-			this.g1cd6.Width = 45;
-			// 
-			// g1cd7
-			// 
-			this.g1cd7.HeaderText = "Bảy 7/4";
-			this.g1cd7.Name = "g1cd7";
-			this.g1cd7.Width = 45;
-			// 
-			// g1cd8
-			// 
-			this.g1cd8.HeaderText = "Bảy 8/4";
-			this.g1cd8.Name = "g1cd8";
-			this.g1cd8.Width = 45;
-			// 
-			// g1cd9
-			// 
-			this.g1cd9.HeaderText = "Bảy 9/4";
-			this.g1cd9.Name = "g1cd9";
-			this.g1cd9.Width = 45;
-			// 
-			// g1cd10
-			// 
-			this.g1cd10.HeaderText = "Bảy 10/4";
-			this.g1cd10.Name = "g1cd10";
-			this.g1cd10.Width = 45;
-			// 
-			// g1cd11
-			// 
-			this.g1cd11.HeaderText = "Bảy 11/4";
-			this.g1cd11.Name = "g1cd11";
-			this.g1cd11.Width = 45;
-			// 
-			// g1cd12
-			// 
-			this.g1cd12.HeaderText = "Bảy 12/4";
-			this.g1cd12.Name = "g1cd12";
-			this.g1cd12.Width = 45;
-			// 
-			// g1cd13
-			// 
-			this.g1cd13.HeaderText = "Bảy 13/4";
-			this.g1cd13.Name = "g1cd13";
-			this.g1cd13.Width = 45;
-			// 
-			// g1cd14
-			// 
-			this.g1cd14.HeaderText = "Bảy 14/4";
-			this.g1cd14.Name = "g1cd14";
-			this.g1cd14.Width = 45;
-			// 
-			// g1cd15
-			// 
-			this.g1cd15.HeaderText = "Bảy 15/4";
-			this.g1cd15.Name = "g1cd15";
-			this.g1cd15.Width = 45;
-			// 
-			// g1cd16
-			// 
-			this.g1cd16.HeaderText = "Bảy 16/4";
-			this.g1cd16.Name = "g1cd16";
-			this.g1cd16.Width = 45;
-			// 
-			// g1cd17
-			// 
-			this.g1cd17.HeaderText = "Bảy 17/4";
-			this.g1cd17.Name = "g1cd17";
-			this.g1cd17.Width = 45;
-			// 
-			// g1cd18
-			// 
-			this.g1cd18.HeaderText = "Bảy 18/4";
-			this.g1cd18.Name = "g1cd18";
-			this.g1cd18.Width = 45;
-			// 
-			// g1cd19
-			// 
-			this.g1cd19.HeaderText = "Bảy 19/4";
-			this.g1cd19.Name = "g1cd19";
-			this.g1cd19.Width = 45;
-			// 
-			// g1cd20
-			// 
-			this.g1cd20.HeaderText = "Bảy 20/4";
-			this.g1cd20.Name = "g1cd20";
-			this.g1cd20.Width = 45;
-			// 
-			// g1cd21
-			// 
-			this.g1cd21.HeaderText = "Bảy 21/4";
-			this.g1cd21.Name = "g1cd21";
-			this.g1cd21.Width = 45;
-			// 
-			// g1cd22
-			// 
-			this.g1cd22.HeaderText = "Bảy 22/4";
-			this.g1cd22.Name = "g1cd22";
-			this.g1cd22.Width = 45;
-			// 
-			// g1cd23
-			// 
-			this.g1cd23.HeaderText = "Bảy 23/4";
-			this.g1cd23.Name = "g1cd23";
-			this.g1cd23.Width = 45;
-			// 
-			// g1cd24
-			// 
-			this.g1cd24.HeaderText = "Bảy 24/4";
-			this.g1cd24.Name = "g1cd24";
-			this.g1cd24.Width = 45;
-			// 
-			// g1cd25
-			// 
-			this.g1cd25.HeaderText = "Bảy 25/4";
-			this.g1cd25.Name = "g1cd25";
-			this.g1cd25.Width = 45;
-			// 
-			// g1cd26
-			// 
-			this.g1cd26.HeaderText = "Bảy 26/4";
-			this.g1cd26.Name = "g1cd26";
-			this.g1cd26.Width = 45;
-			// 
-			// g1cd27
-			// 
-			this.g1cd27.HeaderText = "Bảy 27/4";
-			this.g1cd27.Name = "g1cd27";
-			this.g1cd27.Width = 45;
-			// 
-			// g1cd28
-			// 
-			this.g1cd28.HeaderText = "Bảy 28/4";
-			this.g1cd28.Name = "g1cd28";
-			this.g1cd28.Width = 45;
-			// 
-			// g1cd29
-			// 
-			this.g1cd29.HeaderText = "Bảy 29/4";
-			this.g1cd29.Name = "g1cd29";
-			this.g1cd29.Width = 45;
-			// 
-			// g1cd30
-			// 
-			this.g1cd30.HeaderText = "Bảy 30/4";
-			this.g1cd30.Name = "g1cd30";
-			this.g1cd30.Width = 45;
-			// 
-			// g1cd31
-			// 
-			this.g1cd31.HeaderText = "Bảy 31/4";
-			this.g1cd31.Name = "g1cd31";
-			this.g1cd31.Width = 45;
-			// 
-			// g1c24
-			// 
-			this.g1c24.DataPropertyName = "cUserInfo";
-			this.g1c24.HeaderText = "cUserInfo_hide";
-			this.g1c24.Name = "g1c24";
-			this.g1c24.ReadOnly = true;
-			this.g1c24.Visible = false;
-			// 
-			// g1c25
-			// 
-			this.g1c25.DataPropertyName = "IsEdited";
-			this.g1c25.HeaderText = "IsEdited_hide";
-			this.g1c25.Name = "g1c25";
-			this.g1c25.ReadOnly = true;
-			this.g1c25.Visible = false;
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
@@ -538,15 +201,6 @@
 			this.btnChamCong.Text = "Chấm công";
 			this.btnChamCong.Click += new System.EventHandler(this.btnChamCong_Click);
 			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(616, 132);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.RowTemplate.Height = 24;
-			this.dataGridView1.Size = new System.Drawing.Size(71, 48);
-			this.dataGridView1.TabIndex = 29;
-			// 
 			// lbThieuChamCong
 			// 
 			this.lbThieuChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
@@ -555,9 +209,9 @@
 			this.lbThieuChamCong.Location = new System.Drawing.Point(6, 24);
 			this.lbThieuChamCong.Margin = new System.Windows.Forms.Padding(5);
 			this.lbThieuChamCong.Name = "lbThieuChamCong";
-			this.lbThieuChamCong.Size = new System.Drawing.Size(157, 14);
+			this.lbThieuChamCong.Size = new System.Drawing.Size(149, 14);
 			this.lbThieuChamCong.TabIndex = 30;
-			this.lbThieuChamCong.Text = "Thiếu chấm công: [20] TH";
+			this.lbThieuChamCong.Text = "Thiếu chấm công: [0] TH";
 			this.lbThieuChamCong.Click += new System.EventHandler(this.lbThieuChamCong_Click);
 			// 
 			// groupBox1
@@ -581,9 +235,9 @@
 			this.lbVaoTreRaSom.Location = new System.Drawing.Point(6, 96);
 			this.lbVaoTreRaSom.Margin = new System.Windows.Forms.Padding(5);
 			this.lbVaoTreRaSom.Name = "lbVaoTreRaSom";
-			this.lbVaoTreRaSom.Size = new System.Drawing.Size(148, 14);
+			this.lbVaoTreRaSom.Size = new System.Drawing.Size(140, 14);
 			this.lbVaoTreRaSom.TabIndex = 30;
-			this.lbVaoTreRaSom.Text = "Vào trễ, ra sớm: [20] TH";
+			this.lbVaoTreRaSom.Text = "Vào trễ, ra sớm: [0] TH";
 			// 
 			// lbOLaiChuaXN
 			// 
@@ -592,9 +246,9 @@
 			this.lbOLaiChuaXN.Location = new System.Drawing.Point(6, 72);
 			this.lbOLaiChuaXN.Margin = new System.Windows.Forms.Padding(5);
 			this.lbOLaiChuaXN.Name = "lbOLaiChuaXN";
-			this.lbOLaiChuaXN.Size = new System.Drawing.Size(201, 14);
+			this.lbOLaiChuaXN.Size = new System.Drawing.Size(193, 14);
 			this.lbOLaiChuaXN.TabIndex = 30;
-			this.lbOLaiChuaXN.Text = "Ở lại chưa qua xác nhận: [20] TH";
+			this.lbOLaiChuaXN.Text = "Ở lại chưa qua xác nhận: [0] TH";
 			// 
 			// lbKhongNhanDienCa
 			// 
@@ -603,9 +257,9 @@
 			this.lbKhongNhanDienCa.Location = new System.Drawing.Point(6, 48);
 			this.lbKhongNhanDienCa.Margin = new System.Windows.Forms.Padding(5);
 			this.lbKhongNhanDienCa.Name = "lbKhongNhanDienCa";
-			this.lbKhongNhanDienCa.Size = new System.Drawing.Size(211, 14);
+			this.lbKhongNhanDienCa.Size = new System.Drawing.Size(203, 14);
 			this.lbKhongNhanDienCa.TabIndex = 30;
-			this.lbKhongNhanDienCa.Text = "Không nhận diện được ca: [20] TH";
+			this.lbKhongNhanDienCa.Text = "Không nhận diện được ca: [0] TH";
 			// 
 			// groupBox2
 			// 
@@ -632,7 +286,7 @@
 			this.lbXinPhepVang.Name = "lbXinPhepVang";
 			this.lbXinPhepVang.Size = new System.Drawing.Size(142, 14);
 			this.lbXinPhepVang.TabIndex = 30;
-			this.lbXinPhepVang.Text = "Xin phép vắng: [20] TH";
+			this.lbXinPhepVang.Text = "Xin phép vắng: [0] TH";
 			// 
 			// lbTreSomCoLamBu
 			// 
@@ -643,7 +297,7 @@
 			this.lbTreSomCoLamBu.Name = "lbTreSomCoLamBu";
 			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(211, 14);
 			this.lbTreSomCoLamBu.TabIndex = 30;
-			this.lbTreSomCoLamBu.Text = "Vào trễ, ra sớm có làm bù: [20] TH";
+			this.lbTreSomCoLamBu.Text = "Vào trễ, ra sớm có làm bù: [0] TH";
 			// 
 			// lbChoPhepTreSom
 			// 
@@ -654,7 +308,7 @@
 			this.lbChoPhepTreSom.Name = "lbChoPhepTreSom";
 			this.lbChoPhepTreSom.Size = new System.Drawing.Size(210, 14);
 			this.lbChoPhepTreSom.TabIndex = 30;
-			this.lbChoPhepTreSom.Text = "Cho phép vào trễ, ra sớm: [20] TH";
+			this.lbChoPhepTreSom.Text = "Cho phép vào trễ, ra sớm: [0] TH";
 			// 
 			// lbDaXacNhanLamThem
 			// 
@@ -665,7 +319,7 @@
 			this.lbDaXacNhanLamThem.Name = "lbDaXacNhanLamThem";
 			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(213, 14);
 			this.lbDaXacNhanLamThem.TabIndex = 30;
-			this.lbDaXacNhanLamThem.Text = "Đã xác nhận làm thêm giờ: [20] TH";
+			this.lbDaXacNhanLamThem.Text = "Đã xác nhận làm thêm giờ: [0] TH";
 			// 
 			// lbVaoRaBiChinhSua
 			// 
@@ -676,7 +330,7 @@
 			this.lbVaoRaBiChinhSua.Name = "lbVaoRaBiChinhSua";
 			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(250, 14);
 			this.lbVaoRaBiChinhSua.TabIndex = 30;
-			this.lbVaoRaBiChinhSua.Text = "Giờ vào hoặc ra bị chỉnh sửa: [20000] TH";
+			this.lbVaoRaBiChinhSua.Text = "Giờ vào hoặc ra bị chỉnh sửa: [0] TH";
 			// 
 			// lbDaXacNhanCa
 			// 
@@ -687,7 +341,7 @@
 			this.lbDaXacNhanCa.Name = "lbDaXacNhanCa";
 			this.lbDaXacNhanCa.Size = new System.Drawing.Size(146, 14);
 			this.lbDaXacNhanCa.TabIndex = 30;
-			this.lbDaXacNhanCa.Text = "Đã xác nhận ca: [20] TH";
+			this.lbDaXacNhanCa.Text = "Đã xác nhận ca: [0] TH";
 			// 
 			// checkBox1
 			// 
@@ -980,22 +634,12 @@
 			// 
 			this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
 			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(457, 116);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 24);
-			this.textBox1.TabIndex = 34;
-			// 
 			// fmXemCong4
 			// 
 			this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.ClientSize = new System.Drawing.Size(1344, 662);
-			this.Controls.Add(this.textBox1);
-			this.Controls.Add(this.dgrdTongHop);
-			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.gridControl1);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.groupBox2);
@@ -1016,8 +660,6 @@
 			this.gpChonPhongBan.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dgrdTongHop)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
@@ -1038,10 +680,8 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private DevExpress.XtraScheduler.DateNavigator dateNavigator1;
-		private System.Windows.Forms.DataGridView dgrdTongHop;
 		private System.Windows.Forms.Label label3;
 		private DevExpress.XtraEditors.SimpleButton btnChamCong;
-		private System.Windows.Forms.DataGridView dataGridView1;
 		private DevExpress.XtraEditors.LabelControl lbThieuChamCong;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private DevExpress.XtraEditors.LabelControl lbVaoTreRaSom;
@@ -1054,42 +694,6 @@
 		private DevExpress.XtraEditors.LabelControl lbDaXacNhanLamThem;
 		private DevExpress.XtraEditors.LabelControl lbVaoRaBiChinhSua;
 		private DevExpress.XtraEditors.LabelControl lbDaXacNhanCa;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1c2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1c3;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1c1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd3;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd4;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd6;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd7;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd8;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd9;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd10;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd11;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd12;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd13;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd14;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd15;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd16;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd17;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd18;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd19;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd20;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd21;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd22;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd23;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd24;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd25;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd26;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd27;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd28;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd29;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd30;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1cd31;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1c24;
-		private System.Windows.Forms.DataGridViewTextBoxColumn g1c25;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private DevExpress.XtraGrid.GridControl gridControl1;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -1106,7 +710,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
-		private System.Windows.Forms.TextBox textBox1;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
 		private DevExpress.Utils.ToolTipController toolTipController1;

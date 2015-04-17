@@ -207,6 +207,32 @@ namespace ChamCong_v05.DTO {
 		public cCheckInOut() {
 		}
 
+		/// <summary>
+		/// VÀO 13:50:00 -> 16:00:00 RA
+		/// </summary>
+		/// <returns></returns>
+		public string ExportKyHieu5_2() {
+			/* 1. kiểm haveinout =0 : có thể mới tạo chưa có nên cần kiểm tra vào hoặc ra null thì trường hợp chưa có, ngược lại luôn có VR
+			 * 2. HaveIO < 0 : TỨC có gán giá trị tức luôn có vào hoặc ra
+			 * 2.1 vào null : ko vào, có ra
+			 */
+			string kq = string.Empty;
+			string template = "{0} {1} -> {2} {3}";
+
+			if (HaveINOUT == 0) {
+				if (Vao == null || Raa == null) return string.Empty;
+				kq = string.Format(template, "VÀO", Vao.Time.ToString("H:mm:ss dd/MM"), Raa.Time.ToString("H:mm:ss dd/MM"), "RA");
+			}
+			else {
+				if (Vao != null) {
+					kq = string.Format(template, "VÀO", Vao.Time.ToString("H:mm:ss dd/MM"), "--", "KO RA");
+				}
+				if (Raa != null) {
+					kq = string.Format(template, "KO VÀO", "--", Raa.Time.ToString("H:mm:ss dd/MM"), "RA");
+				}
+			}
+			return kq;
+		}
 	}
 
 

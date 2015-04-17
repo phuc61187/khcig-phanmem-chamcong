@@ -1,5 +1,5 @@
 ﻿namespace ChamCong_v05.zMisc {
-	partial class Form1 {
+	partial class fmChiTietThieuChamCong {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -23,6 +23,7 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -31,39 +32,42 @@
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.btnBoSung = new System.Windows.Forms.Button();
+			this.timeEditBoSungRaa = new DevExpress.XtraEditors.TimeEdit();
+			this.timeEditBoSungVao = new DevExpress.XtraEditors.TimeEdit();
 			this.checkBoxBoSungRaa = new System.Windows.Forms.CheckBox();
 			this.checkBoxBoSungVao = new System.Windows.Forms.CheckBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.checkBox7 = new System.Windows.Forms.CheckBox();
-			this.checkBox6 = new System.Windows.Forms.CheckBox();
+			this.checkBoxXoaVao = new System.Windows.Forms.CheckBox();
+			this.btnXoaGio = new System.Windows.Forms.Button();
+			this.checkBoxXoaRaa = new System.Windows.Forms.CheckBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.checkBox4 = new System.Windows.Forms.CheckBox();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.timeEditBoSungVao = new DevExpress.XtraEditors.TimeEdit();
-			this.timeEditBoSungRaa = new DevExpress.XtraEditors.TimeEdit();
+			this.timeEditSuaRaa = new DevExpress.XtraEditors.TimeEdit();
+			this.btnSuaGio = new System.Windows.Forms.Button();
+			this.checkBoxSuaVao = new System.Windows.Forms.CheckBox();
 			this.timeEditSuaVao = new DevExpress.XtraEditors.TimeEdit();
-			this.timeEditSuaRa = new DevExpress.XtraEditors.TimeEdit();
-			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.btnBoSung = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
+			this.checkBoxSuaRaa = new System.Windows.Forms.CheckBox();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.btnDaoGioChamCong = new System.Windows.Forms.Button();
+			this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungRaa.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungVao.Properties)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			this.groupBox4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungVao.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungRaa.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.timeEditSuaRaa.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeEditSuaVao.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.timeEditSuaRa.Properties)).BeginInit();
+			this.groupBox4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridControl1
@@ -76,8 +80,9 @@
 			this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemCheckEdit2});
-			this.gridControl1.Size = new System.Drawing.Size(659, 451);
+			this.gridControl1.Size = new System.Drawing.Size(677, 451);
 			this.gridControl1.TabIndex = 34;
+			this.gridControl1.ToolTipController = this.toolTipController1;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
 			// 
@@ -132,7 +137,6 @@
 			this.gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
 			this.gridView1.OptionsSelection.MultiSelect = true;
 			this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
-			this.gridView1.OptionsView.AllowCellMerge = true;
 			this.gridView1.OptionsView.ColumnAutoWidth = false;
 			// 
 			// gridColumn14
@@ -150,6 +154,7 @@
 			this.gridColumn1.Name = "gridColumn1";
 			this.gridColumn1.OptionsColumn.AllowEdit = false;
 			this.gridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+			this.gridColumn1.OptionsColumn.ReadOnly = true;
 			this.gridColumn1.Visible = true;
 			this.gridColumn1.VisibleIndex = 1;
 			this.gridColumn1.Width = 60;
@@ -163,6 +168,7 @@
 			this.gridColumn2.Name = "gridColumn2";
 			this.gridColumn2.OptionsColumn.AllowEdit = false;
 			this.gridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+			this.gridColumn2.OptionsColumn.ReadOnly = true;
 			this.gridColumn2.Visible = true;
 			this.gridColumn2.VisibleIndex = 2;
 			this.gridColumn2.Width = 160;
@@ -178,6 +184,7 @@
 			this.gridColumn3.Name = "gridColumn3";
 			this.gridColumn3.OptionsColumn.AllowEdit = false;
 			this.gridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+			this.gridColumn3.OptionsColumn.ReadOnly = true;
 			this.gridColumn3.Visible = true;
 			this.gridColumn3.VisibleIndex = 3;
 			this.gridColumn3.Width = 120;
@@ -185,7 +192,7 @@
 			// gridColumn4
 			// 
 			this.gridColumn4.Caption = "Vào";
-			this.gridColumn4.DisplayFormat.FormatString = "hh:mm";
+			this.gridColumn4.DisplayFormat.FormatString = "H:mm:ss";
 			this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
 			this.gridColumn4.FieldName = "GioVao";
 			this.gridColumn4.Name = "gridColumn4";
@@ -193,19 +200,36 @@
 			this.gridColumn4.OptionsColumn.ReadOnly = true;
 			this.gridColumn4.Visible = true;
 			this.gridColumn4.VisibleIndex = 4;
-			this.gridColumn4.Width = 50;
+			this.gridColumn4.Width = 65;
 			// 
 			// gridColumn5
 			// 
 			this.gridColumn5.Caption = "Ra";
-			this.gridColumn5.DisplayFormat.FormatString = "hh:mm";
+			this.gridColumn5.DisplayFormat.FormatString = "H:mm:ss";
 			this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
 			this.gridColumn5.FieldName = "GioRa";
 			this.gridColumn5.Name = "gridColumn5";
 			this.gridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn5.OptionsColumn.ReadOnly = true;
 			this.gridColumn5.Visible = true;
 			this.gridColumn5.VisibleIndex = 5;
-			this.gridColumn5.Width = 50;
+			this.gridColumn5.Width = 65;
+			// 
+			// gridColumn6
+			// 
+			this.gridColumn6.Caption = "Ca nhận diện";
+			this.gridColumn6.FieldName = "DSCa";
+			this.gridColumn6.Name = "gridColumn6";
+			this.gridColumn6.OptionsColumn.ReadOnly = true;
+			this.gridColumn6.Visible = true;
+			this.gridColumn6.VisibleIndex = 6;
+			this.gridColumn6.Width = 150;
+			// 
+			// gridColumn7
+			// 
+			this.gridColumn7.Caption = "CIO_hide";
+			this.gridColumn7.FieldName = "cCheckInOut";
+			this.gridColumn7.Name = "gridColumn7";
 			// 
 			// repositoryItemCheckEdit1
 			// 
@@ -227,12 +251,63 @@
 			this.groupBox1.Controls.Add(this.checkBoxBoSungRaa);
 			this.groupBox1.Controls.Add(this.checkBoxBoSungVao);
 			this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.groupBox1.Location = new System.Drawing.Point(677, 12);
+			this.groupBox1.Location = new System.Drawing.Point(691, 12);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(319, 139);
 			this.groupBox1.TabIndex = 35;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "BỔ SUNG GIỜ";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(42, 74);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(43, 14);
+			this.label1.TabIndex = 39;
+			this.label1.Text = "label1";
+			// 
+			// btnBoSung
+			// 
+			this.btnBoSung.Location = new System.Drawing.Point(139, 69);
+			this.btnBoSung.Name = "btnBoSung";
+			this.btnBoSung.Size = new System.Drawing.Size(92, 25);
+			this.btnBoSung.TabIndex = 1;
+			this.btnBoSung.Text = "Bổ Sung";
+			this.btnBoSung.UseVisualStyleBackColor = true;
+			this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);
+			// 
+			// timeEditBoSungRaa
+			// 
+			this.timeEditBoSungRaa.EditValue = new System.DateTime(2015, 4, 16, 0, 0, 0, 0);
+			this.timeEditBoSungRaa.Location = new System.Drawing.Point(139, 43);
+			this.timeEditBoSungRaa.Name = "timeEditBoSungRaa";
+			this.timeEditBoSungRaa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+			this.timeEditBoSungRaa.Properties.Appearance.Options.UseFont = true;
+			this.timeEditBoSungRaa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
+			this.timeEditBoSungRaa.Properties.DisplayFormat.FormatString = "H:mm";
+			this.timeEditBoSungRaa.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.timeEditBoSungRaa.Properties.Mask.EditMask = "H:mm";
+			this.timeEditBoSungRaa.Size = new System.Drawing.Size(92, 20);
+			this.timeEditBoSungRaa.TabIndex = 38;
+			// 
+			// timeEditBoSungVao
+			// 
+			this.timeEditBoSungVao.EditValue = new System.DateTime(2015, 4, 16, 0, 0, 0, 0);
+			this.timeEditBoSungVao.Location = new System.Drawing.Point(139, 18);
+			this.timeEditBoSungVao.Name = "timeEditBoSungVao";
+			this.timeEditBoSungVao.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+			this.timeEditBoSungVao.Properties.Appearance.Options.UseFont = true;
+			this.timeEditBoSungVao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
+			this.timeEditBoSungVao.Properties.DisplayFormat.FormatString = "H:mm";
+			this.timeEditBoSungVao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.timeEditBoSungVao.Properties.Mask.EditMask = "H:mm";
+			this.timeEditBoSungVao.Size = new System.Drawing.Size(92, 20);
+			this.timeEditBoSungVao.TabIndex = 38;
 			// 
 			// checkBoxBoSungRaa
 			// 
@@ -256,123 +331,97 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.checkBox7);
-			this.groupBox2.Controls.Add(this.checkBox6);
+			this.groupBox2.Controls.Add(this.checkBoxXoaVao);
+			this.groupBox2.Controls.Add(this.btnXoaGio);
+			this.groupBox2.Controls.Add(this.checkBoxXoaRaa);
 			this.groupBox2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.groupBox2.Location = new System.Drawing.Point(677, 363);
+			this.groupBox2.Location = new System.Drawing.Point(691, 363);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(319, 100);
 			this.groupBox2.TabIndex = 35;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "XÓA BỚT";
 			// 
-			// checkBox7
+			// checkBoxXoaVao
 			// 
-			this.checkBox7.AutoSize = true;
-			this.checkBox7.Location = new System.Drawing.Point(6, 21);
-			this.checkBox7.Name = "checkBox7";
-			this.checkBox7.Size = new System.Drawing.Size(102, 18);
-			this.checkBox7.TabIndex = 0;
-			this.checkBox7.Text = "Xóa giờ VÀO";
-			this.checkBox7.UseVisualStyleBackColor = true;
+			this.checkBoxXoaVao.AutoSize = true;
+			this.checkBoxXoaVao.Location = new System.Drawing.Point(6, 21);
+			this.checkBoxXoaVao.Name = "checkBoxXoaVao";
+			this.checkBoxXoaVao.Size = new System.Drawing.Size(102, 18);
+			this.checkBoxXoaVao.TabIndex = 0;
+			this.checkBoxXoaVao.Text = "Xóa giờ VÀO";
+			this.checkBoxXoaVao.UseVisualStyleBackColor = true;
 			// 
-			// checkBox6
+			// btnXoaGio
 			// 
-			this.checkBox6.AutoSize = true;
-			this.checkBox6.Location = new System.Drawing.Point(6, 45);
-			this.checkBox6.Name = "checkBox6";
-			this.checkBox6.Size = new System.Drawing.Size(94, 18);
-			this.checkBox6.TabIndex = 0;
-			this.checkBox6.Text = "Xóa giờ RA";
-			this.checkBox6.UseVisualStyleBackColor = true;
+			this.btnXoaGio.Location = new System.Drawing.Point(6, 69);
+			this.btnXoaGio.Name = "btnXoaGio";
+			this.btnXoaGio.Size = new System.Drawing.Size(92, 25);
+			this.btnXoaGio.TabIndex = 1;
+			this.btnXoaGio.Text = "Xóa giờ";
+			this.btnXoaGio.UseVisualStyleBackColor = true;
+			this.btnXoaGio.Click += new System.EventHandler(this.btnXoaGio_Click);
+			// 
+			// checkBoxXoaRaa
+			// 
+			this.checkBoxXoaRaa.AutoSize = true;
+			this.checkBoxXoaRaa.Location = new System.Drawing.Point(6, 45);
+			this.checkBoxXoaRaa.Name = "checkBoxXoaRaa";
+			this.checkBoxXoaRaa.Size = new System.Drawing.Size(94, 18);
+			this.checkBoxXoaRaa.TabIndex = 0;
+			this.checkBoxXoaRaa.Text = "Xóa giờ RA";
+			this.checkBoxXoaRaa.UseVisualStyleBackColor = true;
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.timeEditSuaRa);
-			this.groupBox3.Controls.Add(this.checkBox4);
+			this.groupBox3.Controls.Add(this.timeEditSuaRaa);
+			this.groupBox3.Controls.Add(this.btnSuaGio);
+			this.groupBox3.Controls.Add(this.checkBoxSuaVao);
 			this.groupBox3.Controls.Add(this.timeEditSuaVao);
-			this.groupBox3.Controls.Add(this.checkBox5);
+			this.groupBox3.Controls.Add(this.checkBoxSuaRaa);
 			this.groupBox3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.groupBox3.Location = new System.Drawing.Point(683, 243);
+			this.groupBox3.Location = new System.Drawing.Point(697, 243);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(319, 100);
 			this.groupBox3.TabIndex = 35;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "SỬA LẠI";
 			// 
-			// checkBox4
+			// timeEditSuaRaa
 			// 
-			this.checkBox4.AutoSize = true;
-			this.checkBox4.Location = new System.Drawing.Point(6, 21);
-			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(120, 18);
-			this.checkBox4.TabIndex = 0;
-			this.checkBox4.Text = "Sửa lại giờ VÀO";
-			this.checkBox4.UseVisualStyleBackColor = true;
-			// 
-			// checkBox5
-			// 
-			this.checkBox5.AutoSize = true;
-			this.checkBox5.Location = new System.Drawing.Point(6, 45);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(112, 18);
-			this.checkBox5.TabIndex = 0;
-			this.checkBox5.Text = "Sửa lại giờ RA";
-			this.checkBox5.UseVisualStyleBackColor = true;
-			// 
-			// groupBox4
-			// 
-			this.groupBox4.Controls.Add(this.button1);
-			this.groupBox4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.groupBox4.Location = new System.Drawing.Point(683, 177);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(319, 69);
-			this.groupBox4.TabIndex = 35;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "ĐẢO NGƯỢC KIỂU CHECK VÂN TAY";
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(6, 21);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(129, 41);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Đảo VÀO --> RA\r\nĐảo RA   --> VÀO";
-			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// timeEditBoSungVao
-			// 
-			this.timeEditBoSungVao.EditValue = new System.DateTime(2015, 4, 16, 0, 0, 0, 0);
-			this.timeEditBoSungVao.Location = new System.Drawing.Point(139, 18);
-			this.timeEditBoSungVao.Name = "timeEditBoSungVao";
-			this.timeEditBoSungVao.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-			this.timeEditBoSungVao.Properties.Appearance.Options.UseFont = true;
-			this.timeEditBoSungVao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.timeEditSuaRaa.EditValue = new System.DateTime(2015, 4, 16, 0, 0, 0, 0);
+			this.timeEditSuaRaa.Location = new System.Drawing.Point(140, 44);
+			this.timeEditSuaRaa.Name = "timeEditSuaRaa";
+			this.timeEditSuaRaa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+			this.timeEditSuaRaa.Properties.Appearance.Options.UseFont = true;
+			this.timeEditSuaRaa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
-			this.timeEditBoSungVao.Properties.DisplayFormat.FormatString = "H:mm";
-			this.timeEditBoSungVao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.timeEditBoSungVao.Properties.Mask.EditMask = "H:mm";
-			this.timeEditBoSungVao.Size = new System.Drawing.Size(92, 20);
-			this.timeEditBoSungVao.TabIndex = 38;
+			this.timeEditSuaRaa.Properties.DisplayFormat.FormatString = "H:mm";
+			this.timeEditSuaRaa.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.timeEditSuaRaa.Properties.Mask.EditMask = "H:mm";
+			this.timeEditSuaRaa.Size = new System.Drawing.Size(92, 20);
+			this.timeEditSuaRaa.TabIndex = 38;
 			// 
-			// timeEditBoSungRaa
+			// btnSuaGio
 			// 
-			this.timeEditBoSungRaa.EditValue = new System.DateTime(2015, 4, 16, 13, 0, 0, 0);
-			this.timeEditBoSungRaa.Location = new System.Drawing.Point(139, 43);
-			this.timeEditBoSungRaa.Name = "timeEditBoSungRaa";
-			this.timeEditBoSungRaa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-			this.timeEditBoSungRaa.Properties.Appearance.Options.UseFont = true;
-			this.timeEditBoSungRaa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
-			this.timeEditBoSungRaa.Properties.DisplayFormat.FormatString = "H:mm";
-			this.timeEditBoSungRaa.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.timeEditBoSungRaa.Properties.Mask.EditMask = "H:mm";
-			this.timeEditBoSungRaa.Size = new System.Drawing.Size(92, 20);
-			this.timeEditBoSungRaa.TabIndex = 38;
+			this.btnSuaGio.Location = new System.Drawing.Point(140, 69);
+			this.btnSuaGio.Name = "btnSuaGio";
+			this.btnSuaGio.Size = new System.Drawing.Size(92, 25);
+			this.btnSuaGio.TabIndex = 1;
+			this.btnSuaGio.Text = "Sửa giờ";
+			this.btnSuaGio.UseVisualStyleBackColor = true;
+			this.btnSuaGio.Click += new System.EventHandler(this.btnSuaGio_Click);
+			// 
+			// checkBoxSuaVao
+			// 
+			this.checkBoxSuaVao.AutoSize = true;
+			this.checkBoxSuaVao.Location = new System.Drawing.Point(6, 21);
+			this.checkBoxSuaVao.Name = "checkBoxSuaVao";
+			this.checkBoxSuaVao.Size = new System.Drawing.Size(120, 18);
+			this.checkBoxSuaVao.TabIndex = 0;
+			this.checkBoxSuaVao.Text = "Sửa lại giờ VÀO";
+			this.checkBoxSuaVao.UseVisualStyleBackColor = true;
 			// 
 			// timeEditSuaVao
 			// 
@@ -384,75 +433,61 @@
 			this.timeEditSuaVao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
-			this.timeEditSuaVao.Properties.DisplayFormat.FormatString = "%h:mm";
+			this.timeEditSuaVao.Properties.DisplayFormat.FormatString = "H:mm";
 			this.timeEditSuaVao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.timeEditSuaVao.Properties.Mask.EditMask = "H:mm";
-			this.timeEditSuaVao.Size = new System.Drawing.Size(150, 20);
+			this.timeEditSuaVao.Size = new System.Drawing.Size(92, 20);
 			this.timeEditSuaVao.TabIndex = 38;
 			// 
-			// timeEditSuaRa
+			// checkBoxSuaRaa
 			// 
-			this.timeEditSuaRa.EditValue = new System.DateTime(2015, 4, 16, 0, 0, 0, 0);
-			this.timeEditSuaRa.Location = new System.Drawing.Point(140, 44);
-			this.timeEditSuaRa.Name = "timeEditSuaRa";
-			this.timeEditSuaRa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-			this.timeEditSuaRa.Properties.Appearance.Options.UseFont = true;
-			this.timeEditSuaRa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
-			this.timeEditSuaRa.Properties.DisplayFormat.FormatString = "%h:mm";
-			this.timeEditSuaRa.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.timeEditSuaRa.Properties.Mask.EditMask = "H:mm";
-			this.timeEditSuaRa.Size = new System.Drawing.Size(150, 20);
-			this.timeEditSuaRa.TabIndex = 38;
+			this.checkBoxSuaRaa.AutoSize = true;
+			this.checkBoxSuaRaa.Location = new System.Drawing.Point(6, 45);
+			this.checkBoxSuaRaa.Name = "checkBoxSuaRaa";
+			this.checkBoxSuaRaa.Size = new System.Drawing.Size(112, 18);
+			this.checkBoxSuaRaa.TabIndex = 0;
+			this.checkBoxSuaRaa.Text = "Sửa lại giờ RA";
+			this.checkBoxSuaRaa.UseVisualStyleBackColor = true;
 			// 
-			// gridColumn6
+			// groupBox4
 			// 
-			this.gridColumn6.Caption = "Ca nhận diện";
-			this.gridColumn6.FieldName = "DSCa";
-			this.gridColumn6.Name = "gridColumn6";
-			this.gridColumn6.Visible = true;
-			this.gridColumn6.VisibleIndex = 6;
-			this.gridColumn6.Width = 150;
+			this.groupBox4.Controls.Add(this.btnDaoGioChamCong);
+			this.groupBox4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.groupBox4.Location = new System.Drawing.Point(691, 157);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(319, 69);
+			this.groupBox4.TabIndex = 35;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "ĐẢO NGƯỢC KIỂU CHECK VÂN TAY";
 			// 
-			// gridColumn7
+			// btnDaoGioChamCong
 			// 
-			this.gridColumn7.Caption = "CIO_hide";
-			this.gridColumn7.FieldName = "cCheckInOut";
-			this.gridColumn7.Name = "gridColumn7";
+			this.btnDaoGioChamCong.Location = new System.Drawing.Point(6, 21);
+			this.btnDaoGioChamCong.Name = "btnDaoGioChamCong";
+			this.btnDaoGioChamCong.Size = new System.Drawing.Size(129, 41);
+			this.btnDaoGioChamCong.TabIndex = 0;
+			this.btnDaoGioChamCong.Text = "Đảo VÀO --> RA\r\nĐảo RA   --> VÀO";
+			this.btnDaoGioChamCong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnDaoGioChamCong.UseVisualStyleBackColor = true;
+			this.btnDaoGioChamCong.Click += new System.EventHandler(this.btnDaoGioChamCong_Click);
 			// 
-			// btnBoSung
+			// toolTipController1
 			// 
-			this.btnBoSung.Location = new System.Drawing.Point(139, 69);
-			this.btnBoSung.Name = "btnBoSung";
-			this.btnBoSung.Size = new System.Drawing.Size(92, 25);
-			this.btnBoSung.TabIndex = 1;
-			this.btnBoSung.Text = "Bổ Sung";
-			this.btnBoSung.UseVisualStyleBackColor = true;
-			this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);
+			this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(60, 107);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(43, 14);
-			this.label1.TabIndex = 39;
-			this.label1.Text = "label1";
-			// 
-			// Form1
+			// fmChiTietThieuChamCong
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Silver;
-			this.ClientSize = new System.Drawing.Size(1273, 475);
+			this.ClientSize = new System.Drawing.Size(1027, 475);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.gridControl1);
 			this.Font = new System.Drawing.Font("Tahoma", 9F);
-			this.Name = "Form1";
+			this.Name = "fmChiTietThieuChamCong";
 			this.Text = "Danh sách các ngày thiếu chấm công";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -461,15 +496,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungRaa.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungVao.Properties)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.groupBox4.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungVao.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.timeEditBoSungRaa.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.timeEditSuaRaa.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeEditSuaVao.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.timeEditSuaRa.Properties)).EndInit();
+			this.groupBox4.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -490,20 +525,23 @@
 		private System.Windows.Forms.CheckBox checkBoxBoSungVao;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.CheckBox checkBox4;
-		private System.Windows.Forms.CheckBox checkBox5;
+		private System.Windows.Forms.CheckBox checkBoxSuaVao;
+		private System.Windows.Forms.CheckBox checkBoxSuaRaa;
 		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.CheckBox checkBox7;
-		private System.Windows.Forms.CheckBox checkBox6;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.CheckBox checkBoxXoaVao;
+		private System.Windows.Forms.CheckBox checkBoxXoaRaa;
+		private System.Windows.Forms.Button btnDaoGioChamCong;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
 		private DevExpress.XtraEditors.TimeEdit timeEditBoSungVao;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
 		private System.Windows.Forms.Button btnBoSung;
 		private DevExpress.XtraEditors.TimeEdit timeEditBoSungRaa;
-		private DevExpress.XtraEditors.TimeEdit timeEditSuaRa;
+		private DevExpress.XtraEditors.TimeEdit timeEditSuaRaa;
 		private DevExpress.XtraEditors.TimeEdit timeEditSuaVao;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button btnXoaGio;
+		private System.Windows.Forms.Button btnSuaGio;
+		private DevExpress.Utils.ToolTipController toolTipController1;
 	}
 }

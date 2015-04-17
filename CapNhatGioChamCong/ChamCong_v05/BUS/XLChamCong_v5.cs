@@ -201,7 +201,8 @@ namespace ChamCong_v05.BUS {
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 				TinhCong_ListNgayCong8_5(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
 				TinhPhuCap_ListNgayCong9_5(nv.DSNgayCong, nv.DSXNPC5);
-			}if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
+			}
+			if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
 			if (ds_raa3_vao1.Count > 0) DAO5.ThemGio_ra3_vao1(ds_raa3_vao1);
 			#endregion
 		}
@@ -252,5 +253,19 @@ namespace ChamCong_v05.BUS {
 			TongPC = PCTangCuongNgay5 + PCDem5 + PCTangCuongDem5;
 		}
 
+
+		public static string TaoTooltip5(cNgayCong ngayCong)
+		{
+			if (ngayCong == null) return string.Empty;
+			//string kq = "{0}\n{1}\n{2}\n{3}\n{4}\n{5}";
+			string template = "{0}\n{1}\n{2}";
+			string kq = string.Empty;
+			string vaoRaHomTruoc = string.Empty, vaoRaHomNay = string.Empty, vaoRaHomSau = string.Empty;
+			if (ngayCong.prev != null) vaoRaHomTruoc = ngayCong.prev.ExportString5();
+			vaoRaHomNay = ngayCong.ExportString5();
+			if (ngayCong.next != null) vaoRaHomSau = ngayCong.next.ExportString5();
+			kq = string.Format(template, vaoRaHomTruoc , vaoRaHomNay, vaoRaHomSau);
+			return kq;
+		}
 	}
 }

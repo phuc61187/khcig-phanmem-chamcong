@@ -675,7 +675,7 @@ namespace ChamCong_v05.UI.ChamCong {
 
 			// xác định đang chọn datagrid nào để lấy các datarow của các datagrid đó
 			DataGridView currDataGrid = XacDinhDataGridViewDangChon();
-
+			
 			// lọc lấy các datarow được check, nếu không có row nào được check thì chế độ view all, ngược lại thì xem các ngày được check
 			if (currDataGrid.SelectedRows.Count != 0) {
 				var arrRecord = (from DataGridViewRow row in currDataGrid.SelectedRows

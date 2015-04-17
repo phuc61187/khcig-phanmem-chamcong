@@ -245,6 +245,18 @@ namespace ChamCong_v05.Helper {
 		/// @UserEnrollNumber, @TimeDate, @TimeStr, @OriginType, @MachineNo, @Source, workcode in sp =0, them in sp = 1
 		/// </summary>
 		CheckInOut_Ins,
+		/// <summary>
+		/// @UserEnrollNumber, @TimeDate, @TimeStr, @MachineNoOld, @SourceOld, @MachineNoNew , @SourceNew
+		/// </summary>
+		CheckInOut_InvertKieuChamCong,
+		/// <summary>
+		/// @UserEnrollNumber, @TimeStrOld, @MachineNoOld, @SourceOld, @OriginTypeNew, @TimeDateNew, @MachineNoNew, @SourceNew
+		/// </summary>
+		CheckInOut_Update,
+		/// <summary>
+		/// 
+		/// </summary>
+		CheckInOut_Delete,
 		#endregion
 		#region Absent
 		/// <summary>

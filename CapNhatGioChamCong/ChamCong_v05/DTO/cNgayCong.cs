@@ -194,6 +194,18 @@ namespace ChamCong_v05.DTO {
 		}
 
 		public cNgayCong() { }
+
+		/// <summary>
+		/// Thứ Hai 03/04:\n vào 13:50:00 -> 16:00:00 ra
+		/// </summary>
+		/// <returns></returns>
+		public string ExportString5()
+		{
+			string kq = Ngay.ToString("dddd dd/MM:");
+			if (DSVaoRa == null) return kq;
+			kq += DSVaoRa.Aggregate(string.Empty, (current, @out) => current + "\n" + @out.ExportKyHieu5_2());
+			return kq;
+		}
 	}
 
 

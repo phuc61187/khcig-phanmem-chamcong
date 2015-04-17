@@ -68,10 +68,6 @@ namespace ChamCong_v05.UI4._5 {
 			checkedDSNV.Properties.DisplayMember = "DisplayItem";
 			checkedDSNV.Properties.ValueMember = "UserEnrollNumber";
 
-			for (int i = 3; i < 34; i++) // bắt đầu từ 3 vì 1 mã cc, 2 mã nv, 3 tên nv
-			{
-				dgrdTongHop.Columns[i].HeaderText = string.Empty;
-			}
 		}
 
 		private void btnChamCong_Click(object sender, EventArgs e) {
@@ -277,7 +273,7 @@ namespace ChamCong_v05.UI4._5 {
 		}
 
 		private void lbThieuChamCong_Click(object sender, EventArgs e) {
-			zMisc.Form1 frm = new zMisc.Form1();
+			zMisc.fmChiTietThieuChamCong frm = new zMisc.fmChiTietThieuChamCong();
 			frm.m_DSNV = (List<cUserInfo>) lbThieuChamCong.Tag;
 			frm.m_NgayBD = 			 MyUtility.FirstDayOfMonth(dateNavigator1.DateTime);
 			frm.m_NgayKT = 	 MyUtility.LastDayOfMonth(frm.m_NgayBD);

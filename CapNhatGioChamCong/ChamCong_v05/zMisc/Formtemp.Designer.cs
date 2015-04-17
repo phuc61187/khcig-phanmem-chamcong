@@ -1,5 +1,5 @@
 ﻿namespace ChamCong_v05.UI4._5 {
-	partial class Form1 {
+	partial class Formtemp {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>

@@ -29,9 +29,7 @@ namespace ChamCong_v05.UI.ChamCong {
 			temp.Width += 4;
 			temp.Height += 4;
 			e.ToolTipSize = temp;
-		}
-
-		public frm_KetCongBoPhan() {
+		}public frm_KetCongBoPhan() {
 			InitializeComponent();
 			if (Settings.Default.LastThangKetCong == null || Settings.Default.LastThangKetCong == DateTime.MinValue) dtpThang.Value = MyUtility.FirstDayOfMonth(DateTime.Today);
 			else dtpThang.Value = Settings.Default.LastThangKetCong;
