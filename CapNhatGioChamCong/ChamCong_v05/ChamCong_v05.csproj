@@ -576,7 +576,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icondesktop.ico" />
+    <Content Include="SQL\alter proc CheckInOut_Delete.sql" />
     <Content Include="SQL\alter proc XacNhanPhuCap5_DocBang.sql" />
+    <Content Include="SQL\ALTER proc [dbo].[CheckInOut_Ins].sql" />
+    <Content Include="SQL\ALTER PROCEDURE [dbo].[CheckInOut_InvertKieuChamCong].sql" />
+    <Content Include="SQL\ALTER PROCEDURE [dbo].[CheckInOut_Update].sql" />
     <Content Include="SQL\create table XacNhanPhuCap5.sql" />
   </ItemGroup>
   <ItemGroup />
