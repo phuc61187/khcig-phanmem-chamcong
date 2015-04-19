@@ -347,5 +347,20 @@ namespace ChamCong_v05.UI {
 
 		}
 
+		private void test01ToolStripMenuItem_Click(object sender, EventArgs e) {
+			fmDSCa frm1 = new fmDSCa();
+			int indexForm = LayVitriForm(this, frm1.GetType());
+			if (indexForm != -1) {
+				frm1 = MdiChildren[indexForm] as fmDSCa;
+				if (frm1 != null) frm1.BringToFront();
+			}
+			else {
+				frm1.MdiParent = this;
+				frm1.WindowState = FormWindowState.Normal;
+				frm1.Show();
+			}
+
+		}
+
 	}
 }

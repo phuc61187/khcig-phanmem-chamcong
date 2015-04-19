@@ -36,6 +36,7 @@
 			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnBoSung = new System.Windows.Forms.Button();
@@ -55,7 +56,6 @@
 			this.checkBoxSuaRaa = new System.Windows.Forms.CheckBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.btnDaoGioChamCong = new System.Windows.Forms.Button();
-			this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -133,6 +133,7 @@
             this.gridColumn7});
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.Name = "gridView1";
+			this.gridView1.OptionsBehavior.Editable = false;
 			this.gridView1.OptionsBehavior.ReadOnly = true;
 			this.gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
 			this.gridView1.OptionsSelection.MultiSelect = true;
@@ -242,6 +243,10 @@
 			this.repositoryItemCheckEdit2.AutoHeight = false;
 			this.repositoryItemCheckEdit2.Name = "repositoryItemCheckEdit2";
 			// 
+			// toolTipController1
+			// 
+			this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
+			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.label1);
@@ -263,7 +268,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(42, 74);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(43, 14);
+			this.label1.Size = new System.Drawing.Size(55, 18);
 			this.label1.TabIndex = 39;
 			this.label1.Text = "label1";
 			// 
@@ -290,7 +295,7 @@
 			this.timeEditBoSungRaa.Properties.DisplayFormat.FormatString = "H:mm";
 			this.timeEditBoSungRaa.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.timeEditBoSungRaa.Properties.Mask.EditMask = "H:mm";
-			this.timeEditBoSungRaa.Size = new System.Drawing.Size(92, 20);
+			this.timeEditBoSungRaa.Size = new System.Drawing.Size(92, 24);
 			this.timeEditBoSungRaa.TabIndex = 38;
 			// 
 			// timeEditBoSungVao
@@ -306,7 +311,7 @@
 			this.timeEditBoSungVao.Properties.DisplayFormat.FormatString = "H:mm";
 			this.timeEditBoSungVao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.timeEditBoSungVao.Properties.Mask.EditMask = "H:mm";
-			this.timeEditBoSungVao.Size = new System.Drawing.Size(92, 20);
+			this.timeEditBoSungVao.Size = new System.Drawing.Size(92, 24);
 			this.timeEditBoSungVao.TabIndex = 38;
 			// 
 			// checkBoxBoSungRaa
@@ -314,7 +319,7 @@
 			this.checkBoxBoSungRaa.AutoSize = true;
 			this.checkBoxBoSungRaa.Location = new System.Drawing.Point(6, 45);
 			this.checkBoxBoSungRaa.Name = "checkBoxBoSungRaa";
-			this.checkBoxBoSungRaa.Size = new System.Drawing.Size(121, 18);
+			this.checkBoxBoSungRaa.Size = new System.Drawing.Size(140, 22);
 			this.checkBoxBoSungRaa.TabIndex = 0;
 			this.checkBoxBoSungRaa.Text = "Bổ sung giờ RA";
 			this.checkBoxBoSungRaa.UseVisualStyleBackColor = true;
@@ -324,7 +329,7 @@
 			this.checkBoxBoSungVao.AutoSize = true;
 			this.checkBoxBoSungVao.Location = new System.Drawing.Point(6, 21);
 			this.checkBoxBoSungVao.Name = "checkBoxBoSungVao";
-			this.checkBoxBoSungVao.Size = new System.Drawing.Size(129, 18);
+			this.checkBoxBoSungVao.Size = new System.Drawing.Size(151, 22);
 			this.checkBoxBoSungVao.TabIndex = 0;
 			this.checkBoxBoSungVao.Text = "Bổ sung giờ VÀO";
 			this.checkBoxBoSungVao.UseVisualStyleBackColor = true;
@@ -347,7 +352,7 @@
 			this.checkBoxXoaVao.AutoSize = true;
 			this.checkBoxXoaVao.Location = new System.Drawing.Point(6, 21);
 			this.checkBoxXoaVao.Name = "checkBoxXoaVao";
-			this.checkBoxXoaVao.Size = new System.Drawing.Size(102, 18);
+			this.checkBoxXoaVao.Size = new System.Drawing.Size(121, 22);
 			this.checkBoxXoaVao.TabIndex = 0;
 			this.checkBoxXoaVao.Text = "Xóa giờ VÀO";
 			this.checkBoxXoaVao.UseVisualStyleBackColor = true;
@@ -367,7 +372,7 @@
 			this.checkBoxXoaRaa.AutoSize = true;
 			this.checkBoxXoaRaa.Location = new System.Drawing.Point(6, 45);
 			this.checkBoxXoaRaa.Name = "checkBoxXoaRaa";
-			this.checkBoxXoaRaa.Size = new System.Drawing.Size(94, 18);
+			this.checkBoxXoaRaa.Size = new System.Drawing.Size(110, 22);
 			this.checkBoxXoaRaa.TabIndex = 0;
 			this.checkBoxXoaRaa.Text = "Xóa giờ RA";
 			this.checkBoxXoaRaa.UseVisualStyleBackColor = true;
@@ -400,7 +405,7 @@
 			this.timeEditSuaRaa.Properties.DisplayFormat.FormatString = "H:mm";
 			this.timeEditSuaRaa.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.timeEditSuaRaa.Properties.Mask.EditMask = "H:mm";
-			this.timeEditSuaRaa.Size = new System.Drawing.Size(92, 20);
+			this.timeEditSuaRaa.Size = new System.Drawing.Size(92, 24);
 			this.timeEditSuaRaa.TabIndex = 38;
 			// 
 			// btnSuaGio
@@ -418,7 +423,7 @@
 			this.checkBoxSuaVao.AutoSize = true;
 			this.checkBoxSuaVao.Location = new System.Drawing.Point(6, 21);
 			this.checkBoxSuaVao.Name = "checkBoxSuaVao";
-			this.checkBoxSuaVao.Size = new System.Drawing.Size(120, 18);
+			this.checkBoxSuaVao.Size = new System.Drawing.Size(145, 22);
 			this.checkBoxSuaVao.TabIndex = 0;
 			this.checkBoxSuaVao.Text = "Sửa lại giờ VÀO";
 			this.checkBoxSuaVao.UseVisualStyleBackColor = true;
@@ -436,7 +441,7 @@
 			this.timeEditSuaVao.Properties.DisplayFormat.FormatString = "H:mm";
 			this.timeEditSuaVao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.timeEditSuaVao.Properties.Mask.EditMask = "H:mm";
-			this.timeEditSuaVao.Size = new System.Drawing.Size(92, 20);
+			this.timeEditSuaVao.Size = new System.Drawing.Size(92, 24);
 			this.timeEditSuaVao.TabIndex = 38;
 			// 
 			// checkBoxSuaRaa
@@ -444,7 +449,7 @@
 			this.checkBoxSuaRaa.AutoSize = true;
 			this.checkBoxSuaRaa.Location = new System.Drawing.Point(6, 45);
 			this.checkBoxSuaRaa.Name = "checkBoxSuaRaa";
-			this.checkBoxSuaRaa.Size = new System.Drawing.Size(112, 18);
+			this.checkBoxSuaRaa.Size = new System.Drawing.Size(134, 22);
 			this.checkBoxSuaRaa.TabIndex = 0;
 			this.checkBoxSuaRaa.Text = "Sửa lại giờ RA";
 			this.checkBoxSuaRaa.UseVisualStyleBackColor = true;
@@ -471,13 +476,9 @@
 			this.btnDaoGioChamCong.UseVisualStyleBackColor = true;
 			this.btnDaoGioChamCong.Click += new System.EventHandler(this.btnDaoGioChamCong_Click);
 			// 
-			// toolTipController1
-			// 
-			this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
-			// 
 			// fmChiTietThieuChamCong
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Silver;
 			this.ClientSize = new System.Drawing.Size(1027, 475);
