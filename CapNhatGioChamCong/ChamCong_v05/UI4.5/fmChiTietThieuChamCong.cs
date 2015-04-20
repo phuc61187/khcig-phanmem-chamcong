@@ -10,7 +10,9 @@ using System.Windows.Forms;
 using ChamCong_v05.BUS;
 using ChamCong_v05.DTO;
 using ChamCong_v05.Helper;
+using ChamCong_v05.UI4._5;
 using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Localization;
 using DevExpress.XtraGrid.Views.Grid;
@@ -57,7 +59,7 @@ namespace ChamCong_v05.zMisc {
 				foreach (cNgayCong ngayCong in nhanvien.DSNgayCong.Where(item => item.Ngay >= m_NgayBD && item.Ngay <= m_NgayKT).ToList()) {
 					foreach (cCheckInOut CIO in ngayCong.DSVaoRa.Where(item => item.HaveINOUT < 0)) {
 						DataRow newRow = this.CreateDataRow_CIO_ThieuChamCong(this.m_TableGioThieuChamCong, nhanvien, ngayCong, CIO);
-						m_TableGioThieuChamCong.Rows.InsertAt(newRow,0);
+						m_TableGioThieuChamCong.Rows.InsertAt(newRow, 0);
 					}
 				}
 			}
@@ -107,7 +109,7 @@ namespace ChamCong_v05.zMisc {
 			this.RemoveDSNVCanReload(ref DSNVReload);
 			XL.XemCongThoiGianChuaKetLuong(DSNVReload, m_NgayBD, m_NgayKT);
 			m_DSNV.AddRange(DSNVReload);
-			
+
 			//reload GUI
 			RemoveDataRowHaveDSNVReload(ref table, DSNVReload);
 			XacDinhGioThieuChamCong(DSNVReload);
@@ -384,7 +386,7 @@ namespace ChamCong_v05.zMisc {
 			else {
 			}
 		}
-		
+
 		private void SuaGio(cCheckInOut CIO, MayCheck LoaiCheck, TimeSpan gioMoi, int UEN) {
 			if (CIO.HaveINOUT == -1 && LoaiCheck.ToString() == MayCheck.O.ToString()) return; // sửa giờ cùng loại, khác loại bỏ qua
 			if (CIO.HaveINOUT == -2 && LoaiCheck.ToString() == MayCheck.I.ToString()) return;// sửa giờ cùng loại, khác loại bỏ qua
@@ -450,7 +452,7 @@ namespace ChamCong_v05.zMisc {
 
 		private void toolTipController1_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e) {
 			if (e.SelectedControl != gridControl1) return;
-			
+
 			ToolTipControlInfo info = null;
 			//Get the view at the current mouse position
 			GridView view = gridControl1.GetViewAt(e.ControlMousePosition) as GridView;
@@ -461,7 +463,7 @@ namespace ChamCong_v05.zMisc {
 			if (hi.HitTest == GridHitTest.RowCell) {
 				//An object that uniquely identifies a row indicator cell
 				DataRow dataRow = view.GetDataRow(hi.RowHandle);
-				cNgayCong ngayCong = (cNgayCong) dataRow["cNgayCong"];
+				cNgayCong ngayCong = (cNgayCong)dataRow["cNgayCong"];
 				if (ngayCong == null) return;
 				string text = XL.TaoTooltip5(ngayCong);
 				object o = hi.HitTest.ToString() + hi.RowHandle.ToString();
@@ -472,6 +474,60 @@ namespace ChamCong_v05.zMisc {
 			if (info != null)
 				e.Info = info;
 
+		}
+
+		private void timeEditBoSungVao_Properties_ButtonClick(object sender, ButtonPressedEventArgs e) {
+			/* 1. xác định CIO nào đang chọn để lấy thời gian vào hoặc ra
+			 * 2. trường hợp đặc biệt thỏa các điều kiện : 
+			 *    - đang chọn 1 row, chọn ca tự do, chế độ nhập bổ sung thì tự động thêm
+			 */
+			if (e.Button.Kind == ButtonPredefines.Search) {
+				fmDSCa formDSCa = new fmDSCa();
+				formDSCa.ShowDialog();
+				if (formDSCa.m_YesNoCancel == YesNoCancel.Yes) {
+					dynamic selectedCa = formDSCa.selectedCa;
+					TimeSpan timeVao, timeRaa;
+					this.GetThoigianVaoraCa(selectedCa, out timeVao, out timeRaa);
+					int[] selectingRowHandle = gridView1.GetSelectedRows();
+					if ((TimeEdit)sender == timeEditBoSungVao || (TimeEdit)sender == timeEditBoSungRaa) {
+						if (selectingRowHandle.Count() == 1 && selectedCa.ca.ID < 0) {
+							cCheckInOut selectingCheckInOut = (gridView1.GetDataRow(selectingRowHandle[0]) != null)
+												? (cCheckInOut)(gridView1.GetDataRow(selectingRowHandle[0])["cCheckInOut"]) : null;
+							if (selectingCheckInOut == null) goto point1;
+							if (selectingCheckInOut.HaveINOUT == -1) {
+								timeVao = TimeSpan.Zero;
+								DateTime dateTimeVao = (selectingCheckInOut.Vao.Time.Add(selectedCa.WorkingTime));
+								timeRaa = dateTimeVao.TimeOfDay;
+							}
+							else if (selectingCheckInOut.HaveINOUT == -2) {
+								timeRaa = TimeSpan.Zero;
+								DateTime dateTimeRaa = (selectingCheckInOut.Raa.Time.Add(-selectedCa.WorkingTime));
+								timeVao = dateTimeRaa.TimeOfDay;
+							}
+						}
+					point1:
+						timeEditBoSungVao.Time = DateTime.Today.Date.Add(timeVao);
+						timeEditBoSungRaa.Time = DateTime.Today.Date.Add(timeRaa);
+					}
+					else if ((TimeEdit)sender == timeEditSuaVao || (TimeEdit)sender == timeEditSuaRaa) {
+
+						timeEditSuaVao.Time = DateTime.Today.Date.Add(timeVao);
+						timeEditSuaRaa.Time = DateTime.Today.Date.Add(timeRaa);
+					}
+				}
+			}
+		}
+
+		private void GetThoigianVaoraCa(dynamic selectedCa, out TimeSpan timeVao, out TimeSpan timeRaa) {
+			if (selectedCa.ID < 0) {//ca tự do
+				timeVao = TimeSpan.Zero;
+				timeRaa = TimeSpan.Zero;
+			}
+			else {//ca chuẩn
+				cCa ca = selectedCa.ca;
+				timeVao = ca.Duty.Onn;
+				timeRaa = ca.Duty.Off;
+			}
 		}
 
 

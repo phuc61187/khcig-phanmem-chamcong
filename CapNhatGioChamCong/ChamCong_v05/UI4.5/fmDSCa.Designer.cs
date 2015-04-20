@@ -36,6 +36,7 @@
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnThoat = new System.Windows.Forms.Button();
 			this.btnOK = new System.Windows.Forms.Button();
+			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.radioChonTGLV.Properties)).BeginInit();
@@ -44,10 +45,10 @@
 			// gridControl1
 			// 
 			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControl1.Location = new System.Drawing.Point(12, 146);
+			this.gridControl1.Location = new System.Drawing.Point(12, 122);
 			this.gridControl1.MainView = this.gridView1;
 			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.Size = new System.Drawing.Size(610, 340);
+			this.gridControl1.Size = new System.Drawing.Size(610, 364);
 			this.gridControl1.TabIndex = 0;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -150,7 +151,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(4, "4 tiếng làm việc hay 0.5 công"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(12, "12 tiếng làm việc hay 1.5 công"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(16, "16 tiếng làm việc hay 2 công")});
-			this.radioChonTGLV.Size = new System.Drawing.Size(610, 80);
+			this.radioChonTGLV.Size = new System.Drawing.Size(610, 64);
 			this.radioChonTGLV.TabIndex = 1;
 			this.radioChonTGLV.SelectedIndexChanged += new System.EventHandler(this.radioChonTGLV_SelectedIndexChanged);
 			// 
@@ -160,7 +161,7 @@
 			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(12, 9);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(256, 18);
+			this.label1.Size = new System.Drawing.Size(214, 14);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Lựa chọn thời gian làm việc/Công";
 			// 
@@ -168,9 +169,9 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(9, 125);
+			this.label2.Location = new System.Drawing.Point(9, 101);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(66, 18);
+			this.label2.Size = new System.Drawing.Size(56, 14);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Chọn ca";
 			// 
@@ -210,12 +211,21 @@
 			this.btnOK.UseVisualStyleBackColor = true;
 			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
 			// 
+			// richTextBox1
+			// 
+			this.richTextBox1.Location = new System.Drawing.Point(486, 492);
+			this.richTextBox1.Name = "richTextBox1";
+			this.richTextBox1.Size = new System.Drawing.Size(137, 35);
+			this.richTextBox1.TabIndex = 6;
+			this.richTextBox1.Text = "";
+			// 
 			// fmDSCa
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Silver;
 			this.ClientSize = new System.Drawing.Size(635, 531);
+			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.btnOK);
@@ -251,5 +261,6 @@
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Button btnThoat;
 		private System.Windows.Forms.Button btnOK;
+		private System.Windows.Forms.RichTextBox richTextBox1;
 	}
 }

@@ -83,21 +83,20 @@ namespace ChamCong_v05.UI.ChamCong {
 				loadRow(NgayCong_goc.next, false);
 			}
 
-			
+
 
 			#region kiểm tra ngày công gốc có CIO nào bị mất check ko? nếu có thì chọn mặc định check bị khuyết, ko thì chọn check vào đầu tiên của CIO đầu tiên
 
 			var dataGridViewRows = (from DataGridViewRow dataGridViewRow in dgrdGioKDQD.Rows
-			                        let rowView = (DataRowView) dataGridViewRow.DataBoundItem
-			                        where ((cNgayCong) rowView["cNgayCong"]).Ngay == NgayCong_goc.Ngay
-			                              && rowView["cCheck"] == DBNull.Value
-			                        select dataGridViewRow).FirstOrDefault();
-			if (dataGridViewRows == null)
-			{
+									let rowView = (DataRowView)dataGridViewRow.DataBoundItem
+									where ((cNgayCong)rowView["cNgayCong"]).Ngay == NgayCong_goc.Ngay
+										  && rowView["cCheck"] == DBNull.Value
+									select dataGridViewRow).FirstOrDefault();
+			if (dataGridViewRows == null) {
 				dataGridViewRows = (from DataGridViewRow dataGridViewRow in dgrdGioKDQD.Rows
-				                    let rowView = (DataRowView) dataGridViewRow.DataBoundItem
-				                    where ((cNgayCong) rowView["cNgayCong"]).Ngay == NgayCong_goc.Ngay
-				                    select dataGridViewRow).FirstOrDefault();
+									let rowView = (DataRowView)dataGridViewRow.DataBoundItem
+									where ((cNgayCong)rowView["cNgayCong"]).Ngay == NgayCong_goc.Ngay
+									select dataGridViewRow).FirstOrDefault();
 			}
 			if (dataGridViewRows != null) dataGridViewRows.Selected = true;
 
@@ -553,7 +552,7 @@ namespace ChamCong_v05.UI.ChamCong {
 			var currShift = (cCa)tbCa_Them.Tag;
 			frmDSCa frm = new frmDSCa {
 				StartPosition = FormStartPosition.CenterParent,
-				SelectedShift = currShift 
+				SelectedShift = currShift
 			};
 			frm.ShowDialog();
 			// sau khi showdialog và nhận được ca từ form xác nhận thì tiến hành fill và tính toán
@@ -561,17 +560,16 @@ namespace ChamCong_v05.UI.ChamCong {
 			currShift = frm.SelectedShift;
 			tbCa_Them.Tag = currShift;
 			tbCa_Them.Text = (currShift != null) ? currShift.Code : string.Empty;
-			DataRowView rowView = (DataRowView) dgrdGioKDQD.SelectedRows[0].DataBoundItem;
+			DataRowView rowView = (DataRowView)dgrdGioKDQD.SelectedRows[0].DataBoundItem;
 			var ngayCong = (cNgayCong)rowView["cNgayCong"];
-			var CIO = (rowView["cCheckInOut"] == DBNull.Value) ? null : (cCheckInOut) rowView["cCheckInOut"];
+			var CIO = (rowView["cCheckInOut"] == DBNull.Value) ? null : (cCheckInOut)rowView["cCheckInOut"];
 			var ngay = ngayCong.Ngay;
 			if (currShift == null || currShift.ID < int.MinValue + 100)//ver 4.0.0.4	// ko có ca hoặc ca tự do thì lấy mặc định 00:00
 			{
 				dtpVao_Them.Value = ngay;
 				dtpRaa_Them.Value = ngay;
 			}
-			else
-			{
+			else {
 				if (currShift.QuaDem && CIO != null && CIO.HaveINOUT == -2) // có vào ko có ra thì cứ add theo ngày công
 				{
 					ngay = ngay.AddDays(-1d);
@@ -586,9 +584,9 @@ namespace ChamCong_v05.UI.ChamCong {
 		private void btnChonCa_Suaa_Click(object sender, EventArgs e) {
 			// kiểm tra xem nếu tồn tại 1 ca nào đó rồi thì gửi ca đó đi, nếu chưa tồn tại ca ( chế độ hàng loạt, tbXNCa null thì gửi đi null
 			var currShift = (cCa)tbCa_Suaa.Tag;
-			frmDSCa frm = new frmDSCa { 
+			frmDSCa frm = new frmDSCa {
 				StartPosition = FormStartPosition.CenterParent,
-				SelectedShift = currShift 
+				SelectedShift = currShift
 			};
 			frm.ShowDialog();
 			// sau khi showdialog và nhận được ca từ form xác nhận thì tiến hành fill và tính toán
@@ -602,15 +600,14 @@ namespace ChamCong_v05.UI.ChamCong {
 			var check = (cCheck)rowView["cCheck"];
 			var ngay = ngayCong.Ngay;
 			//if (currShift == null || currShift.ID == int.MinValue) { 
-			if (currShift == null || currShift.ID < int.MinValue +100) { //ver 4.0.0.4	// ko có ca hoặc ca tự do thì lấy mặc định 00:00
+			if (currShift == null || currShift.ID < int.MinValue + 100) { //ver 4.0.0.4	// ko có ca hoặc ca tự do thì lấy mặc định 00:00
 				dtpGioMoi_Sua.Value = ngay;
 			}
 			else {
 				// nếu ko có check thì nút chọn ca đã bị disable nên nếu click được thì chắc chắn đang thuộc 1 check-> chắc chắn thuộc 1CIO
-				dtpGioMoi_Sua.Value = (check.Type == "I") ? ngay.Add(currShift.Duty.Onn): ngay.Add(currShift.Duty.Off);
-				if (check.Type == "O" && currShift.QuaDem && CIO != null && CIO.HaveINOUT == -2)
-				{
-					dtpGioMoi_Sua.Value = ngay.AddDays(-1d).Add(currShift.Duty.Off) ;
+				dtpGioMoi_Sua.Value = (check.Type == "I") ? ngay.Add(currShift.Duty.Onn) : ngay.Add(currShift.Duty.Off);
+				if (check.Type == "O" && currShift.QuaDem && CIO != null && CIO.HaveINOUT == -2) {
+					dtpGioMoi_Sua.Value = ngay.AddDays(-1d).Add(currShift.Duty.Off);
 				}
 			}
 
