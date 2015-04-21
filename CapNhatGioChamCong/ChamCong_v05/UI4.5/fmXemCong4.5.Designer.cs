@@ -24,14 +24,14 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("px thành phẩm");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("bảo vệ");
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode3});
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.gpChonPhongBan = new System.Windows.Forms.GroupBox();
@@ -122,16 +122,16 @@
 			this.treePhongBan.Location = new System.Drawing.Point(3, 21);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
-			treeNode5.Name = "Node2";
-			treeNode5.Text = "px thành phẩm";
-			treeNode6.Name = "Node5";
-			treeNode6.Text = "bảo vệ";
-			treeNode7.Name = "Node4";
-			treeNode7.Text = "văn phòng";
-			treeNode8.Name = "Node0";
-			treeNode8.Text = "Nhà máy thuốc lá khánh hội";
+			treeNode1.Name = "Node2";
+			treeNode1.Text = "px thành phẩm";
+			treeNode2.Name = "Node5";
+			treeNode2.Text = "bảo vệ";
+			treeNode3.Name = "Node4";
+			treeNode3.Text = "văn phòng";
+			treeNode4.Name = "Node0";
+			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8});
+            treeNode4});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(223, 173);
 			this.treePhongBan.TabIndex = 0;
@@ -144,7 +144,7 @@
 			this.checkedDSNV.Properties.Appearance.Options.UseFont = true;
 			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.checkedDSNV.Size = new System.Drawing.Size(189, 20);
 			this.checkedDSNV.TabIndex = 1;
 			// 
@@ -284,7 +284,7 @@
 			this.lbXinPhepVang.Location = new System.Drawing.Point(8, 144);
 			this.lbXinPhepVang.Margin = new System.Windows.Forms.Padding(5);
 			this.lbXinPhepVang.Name = "lbXinPhepVang";
-			this.lbXinPhepVang.Size = new System.Drawing.Size(142, 14);
+			this.lbXinPhepVang.Size = new System.Drawing.Size(134, 14);
 			this.lbXinPhepVang.TabIndex = 30;
 			this.lbXinPhepVang.Text = "Xin phép vắng: [0] TH";
 			// 
@@ -295,7 +295,7 @@
 			this.lbTreSomCoLamBu.Location = new System.Drawing.Point(8, 120);
 			this.lbTreSomCoLamBu.Margin = new System.Windows.Forms.Padding(5);
 			this.lbTreSomCoLamBu.Name = "lbTreSomCoLamBu";
-			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(211, 14);
+			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(203, 14);
 			this.lbTreSomCoLamBu.TabIndex = 30;
 			this.lbTreSomCoLamBu.Text = "Vào trễ, ra sớm có làm bù: [0] TH";
 			// 
@@ -306,7 +306,7 @@
 			this.lbChoPhepTreSom.Location = new System.Drawing.Point(8, 96);
 			this.lbChoPhepTreSom.Margin = new System.Windows.Forms.Padding(5);
 			this.lbChoPhepTreSom.Name = "lbChoPhepTreSom";
-			this.lbChoPhepTreSom.Size = new System.Drawing.Size(210, 14);
+			this.lbChoPhepTreSom.Size = new System.Drawing.Size(202, 14);
 			this.lbChoPhepTreSom.TabIndex = 30;
 			this.lbChoPhepTreSom.Text = "Cho phép vào trễ, ra sớm: [0] TH";
 			// 
@@ -317,7 +317,7 @@
 			this.lbDaXacNhanLamThem.Location = new System.Drawing.Point(8, 72);
 			this.lbDaXacNhanLamThem.Margin = new System.Windows.Forms.Padding(5);
 			this.lbDaXacNhanLamThem.Name = "lbDaXacNhanLamThem";
-			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(213, 14);
+			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(205, 14);
 			this.lbDaXacNhanLamThem.TabIndex = 30;
 			this.lbDaXacNhanLamThem.Text = "Đã xác nhận làm thêm giờ: [0] TH";
 			// 
@@ -328,7 +328,7 @@
 			this.lbVaoRaBiChinhSua.Location = new System.Drawing.Point(8, 24);
 			this.lbVaoRaBiChinhSua.Margin = new System.Windows.Forms.Padding(5);
 			this.lbVaoRaBiChinhSua.Name = "lbVaoRaBiChinhSua";
-			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(250, 14);
+			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(218, 14);
 			this.lbVaoRaBiChinhSua.TabIndex = 30;
 			this.lbVaoRaBiChinhSua.Text = "Giờ vào hoặc ra bị chỉnh sửa: [0] TH";
 			// 
@@ -339,7 +339,7 @@
 			this.lbDaXacNhanCa.Location = new System.Drawing.Point(8, 48);
 			this.lbDaXacNhanCa.Margin = new System.Windows.Forms.Padding(5);
 			this.lbDaXacNhanCa.Name = "lbDaXacNhanCa";
-			this.lbDaXacNhanCa.Size = new System.Drawing.Size(146, 14);
+			this.lbDaXacNhanCa.Size = new System.Drawing.Size(138, 14);
 			this.lbDaXacNhanCa.TabIndex = 30;
 			this.lbDaXacNhanCa.Text = "Đã xác nhận ca: [0] TH";
 			// 
@@ -430,6 +430,7 @@
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.Name = "gridView1";
 			this.gridView1.OptionsView.AllowCellMerge = true;
+			this.gridView1.OptionsView.ColumnAutoWidth = false;
 			// 
 			// gridColumn14
 			// 
@@ -448,7 +449,7 @@
 			this.gridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn1.Visible = true;
 			this.gridColumn1.VisibleIndex = 0;
-			this.gridColumn1.Width = 55;
+			this.gridColumn1.Width = 60;
 			// 
 			// gridColumn2
 			// 
@@ -461,7 +462,7 @@
 			this.gridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn2.Visible = true;
 			this.gridColumn2.VisibleIndex = 1;
-			this.gridColumn2.Width = 150;
+			this.gridColumn2.Width = 160;
 			// 
 			// gridColumn3
 			// 
@@ -502,7 +503,7 @@
 			this.gridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn5.Visible = true;
 			this.gridColumn5.VisibleIndex = 4;
-			this.gridColumn5.Width = 60;
+			this.gridColumn5.Width = 80;
 			// 
 			// gridColumn6
 			// 
@@ -537,7 +538,7 @@
 			// 
 			this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 			this.gridColumn8.AppearanceCell.Options.UseFont = true;
-			this.gridColumn8.Caption = "T.Giờ làm";
+			this.gridColumn8.Caption = "T.Giờ làm việc";
 			this.gridColumn8.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.gridColumn8.FieldName = "TongGioLamViec";
@@ -546,7 +547,7 @@
 			this.gridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn8.Visible = true;
 			this.gridColumn8.VisibleIndex = 7;
-			this.gridColumn8.Width = 80;
+			this.gridColumn8.Width = 90;
 			// 
 			// gridColumn9
 			// 
@@ -561,7 +562,7 @@
 			this.gridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumn9.Visible = true;
 			this.gridColumn9.VisibleIndex = 8;
-			this.gridColumn9.Width = 80;
+			this.gridColumn9.Width = 90;
 			// 
 			// gridColumn10
 			// 

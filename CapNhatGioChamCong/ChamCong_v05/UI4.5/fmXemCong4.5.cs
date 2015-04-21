@@ -273,12 +273,11 @@ namespace ChamCong_v05.UI4._5 {
 		}
 
 		private void lbThieuChamCong_Click(object sender, EventArgs e) {
-			zMisc.fmChiTietThieuChamCong frm = new zMisc.fmChiTietThieuChamCong();
+			zMisc.fmXacNhanCa frm = new zMisc.fmXacNhanCa();
 			frm.m_DSNV = (List<cUserInfo>) lbThieuChamCong.Tag;
 			frm.m_NgayBD = 			 MyUtility.FirstDayOfMonth(dateNavigator1.DateTime);
 			frm.m_NgayKT = 	 MyUtility.LastDayOfMonth(frm.m_NgayBD);
 
-			frm.Show();
-		}
+			frm.Show();}
 	}
 }

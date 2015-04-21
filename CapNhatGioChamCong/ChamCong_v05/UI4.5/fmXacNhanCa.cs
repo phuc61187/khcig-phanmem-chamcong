@@ -11,6 +11,7 @@ using ChamCong_v05.BUS;
 using ChamCong_v05.DTO;
 using ChamCong_v05.Helper;
 using ChamCong_v05.UI4._5;
+using ChamCong_v05.Properties;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -24,6 +25,7 @@ namespace ChamCong_v05.zMisc {
 		public DateTime m_NgayBD;
 		public DateTime m_NgayKT;
 		public DataTable m_TableGioThieuChamCong;
+		public bool m_DaChonCaKhac = false;
 
 		public fmXacNhanCa() {
 			InitializeComponent();
@@ -57,7 +59,7 @@ namespace ChamCong_v05.zMisc {
 			if (listNhanVien == null) return;
 			foreach (cUserInfo nhanvien in listNhanVien) {
 				foreach (cNgayCong ngayCong in nhanvien.DSNgayCong.Where(item => item.Ngay >= m_NgayBD && item.Ngay <= m_NgayKT).ToList()) {
-					foreach (cCheckInOut CIO in ngayCong.DSVaoRa.Where(item => item.HaveINOUT < 0)) {
+					foreach (cCheckInOut CIO in ngayCong.DSVaoRa.Where(item => item.HaveINOUT == 0)) {
 						DataRow newRow = this.CreateDataRow_CIO_ThieuChamCong(this.m_TableGioThieuChamCong, nhanvien, ngayCong, CIO);
 						m_TableGioThieuChamCong.Rows.InsertAt(newRow, 0);
 					}
@@ -126,16 +128,103 @@ namespace ChamCong_v05.zMisc {
 		}
 
 
-		private void buttonEdit1_Properties_ButtonClick(object sender, ButtonPressedEventArgs e) {
-			if (e.Button.Kind == ButtonPredefines.Search) {
-				fmDSCa formDSCa = new fmDSCa();
-				formDSCa.ShowDialog();
-				if (formDSCa.m_YesNoCancel == YesNoCancel.Yes) {
-					dynamic selectedCa = formDSCa.selectedCa;
+		private void btnChonCa_Properties_ButtonClick(object sender, ButtonPressedEventArgs e) {
+			if (e.Button.Kind != ButtonPredefines.Search) return; // không phải bấm button chọn ca thì thoát
+
+			/* thực hiện xử lý
+			 1. xác định ca được
+			 */
+			fmDSCa formDSCa = new fmDSCa();
+			formDSCa.ShowDialog();
+			if (formDSCa.m_YesNoCancel == YesNoCancel.Yes) {
+				dynamic selectedCa = formDSCa.selectedCa;
+			}
+
+
+		}
+
+		private void timeEditBoSungVao_Properties_ButtonClick(object sender, ButtonPressedEventArgs e) {
+
+		}
+
+		private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e) {
+			tbXNGhiChu.Text += string.Format("{0} {1} [action {2}] [controlerRow {3}]", "\n\n", "selection change ",
+											 e.Action.ToString(), e.ControllerRow.ToString());
+
+
+			int[] arrayRowHandle = gridView1.GetSelectedRows();
+			if (arrayRowHandle.Count() == 0) {
+				btnChonCa.Tag = null;
+				btnChonCa.Text = string.Empty;
+				this.m_DaChonCaKhac = false;
+				this.ResetDataOfControl();
+			}
+			else if (arrayRowHandle.Count() == 1) {
+				if (this.m_DaChonCaKhac == false) // chưa có fill thông tin cũ
+				{
+					DataRow dataRow = gridView1.GetDataRow(arrayRowHandle[0]);
+					cCheckInOut currentCIO = (cCheckInOut)dataRow["cCheckInOut"];//luôn luôn là CIO đủ vào ra
+					btnChonCa.Tag = currentCIO.ThuocCa;
+					btnChonCa.Text = currentCIO.ThuocCa.Code;
+					lbGioLV.Tag = currentCIO.TG5.TongGioLamViec5;
+					lbGioLV.Text = currentCIO.TG5.TongGioLamViec5.ToString(@"h\:mm");
+					lbGioCheckVT.Tag = currentCIO.TG5.GioThucTe5;
+					lbGioCheckVT.Text = currentCIO.TG5.GioThucTe5.ToString(@"h\:mm");
+					lbVaoTre.Tag = currentCIO.TG5.VaoTre;
+					lbVaoTre.Text = currentCIO.TG5.VaoTre.ToString(@"h\:mm");
+					lbRaaSom.Tag = currentCIO.TG5.RaaSom;
+					lbRaaSom.Text = currentCIO.TG5.RaaSom.ToString(@"h\:mm");
+					checkChoPhepTre.Checked = currentCIO.DuyetChoPhepVaoTre;
+					checkChoPhepSom.Checked = currentCIO.DuyetChoPhepRaSom;
+					checkVaoTreTinhCV.Checked = currentCIO.VaoTreTinhCV;
+					checkRaaSomTinhCV.Checked = currentCIO.RaaSomTinhCV;
+					lbOLaiChuaXN.Tag = currentCIO.TG5.OLai;
+					lbOLaiChuaXN.Text = currentCIO.TG5.OLai.ToString(@"h\:mm");
+					if (currentCIO.DaXN && currentCIO.TG5.SoPhutLamThem5 > TimeSpan.Zero) {
+						checkXNLamThem.Checked = true;
+						timeEditXacNhanOT.Tag = currentCIO.TG5.OLai;// giữ object số phút ở lại như là max thời gian làm thêm
+						timeEditXacNhanOT.Time = DateTime.Today.Date.Add(currentCIO.TG5.SoPhutLamThem5); //hiển thị OTMin nếu đã xác nhận, chưa xác nhận thì lấy max ở lại
+					}
+					else {
+						checkXNLamThem.Checked = false;
+						timeEditXacNhanOT.Tag = currentCIO.TG5.OLai;// giữ object số phút ở lại như là max thời gian làm thêm
+						timeEditXacNhanOT.Time = DateTime.Today.Date.Add(currentCIO.TG5.OLai); //hiển thị OTMin nếu đã xác nhận, chưa xác nhận thì lấy max ở lại
+					}
+					tbThongTinKhac.Clear(); //tbd ghi thông khác như công trong ngày.....
 				}
+				else {// đã có dùng thông tin ca mới để tính toán
+					dynamic CaDuocChon = btnChonCa.Tag;
+					float congCaQuyDinh, congTre, congSom, congThucTeTrongCa,
+					TimeSpan soPhutLamThemDaXN = (checkXNLamThem.Checked) ? timeEditXacNhanOT.Time.TimeOfDay : TimeSpan.Zero;
+					XL.TinhCong_1_CIO_5(CaDuocChon.Workingday, CaDuocChon.WorkingTime, XL2.ChoPhepTre, XL2.ChoPhepSom,
+						checkVaoTreTinhCV.Checked, checkRaaSomTinhCV.Checked, soPhutLamThemDaXN, out congCaQuyDinh, out congTre, out congSom,
+						out congThucTeTrongCa, out congThucTeNgoaiCa, out congThucTe, out tongCongBu, out tongCongTru, out dinhMucCong);
+				}
+			}
+			else {// chọn multirow, khó tính toán tại chỗ, nên reset hết data và cho phép xem trước trước khi xác nhận
+				ResetDataOfControl();
 			}
 
 		}
+		private void ResetDataOfControl() {
+			//chú ý ko xóa tag của button Chọn ca
+			lbGioLV.Tag = null;
+			lbGioCheckVT.Tag = null;
+			lbVaoTre.Tag = null;
+			lbRaaSom.Tag = null;
+			lbOLaiChuaXN.Tag = null;
+			lbCurrentCIO.Tag = null;// ẩn ko hiển thị text
+			lbCurrentNgayCong.Tag = null; // ẩn ko hiển thị text
+			timeEditXacNhanOT.Tag = null;
+
+			MyUtility.CheckedCheckBox(false, checkChoPhepTre, checkChoPhepSom, checkVaoTreTinhCV, checkRaaSomTinhCV, checkXNLamThem);
+			MyUtility.ClearControlText(lbGioLV, lbGioCheckVT, lbVaoTre, lbRaaSom, lbOLaiChuaXN, tbThongTinKhac, cbXNLyDo, tbXNGhiChu);
+
+			timeEditXacNhanOT.Time = DateTime.Today.Date; //reset về timezero 0:00
+		}
+
+
+
 
 
 	}
