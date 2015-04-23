@@ -278,6 +278,7 @@ namespace ChamCong_v05.UI4._5 {
 			frm.m_NgayBD = 			 MyUtility.FirstDayOfMonth(dateNavigator1.DateTime);
 			frm.m_NgayKT = 	 MyUtility.LastDayOfMonth(frm.m_NgayBD);
 
-			frm.Show();}
+			frm.Show();
+		}
 	}
 }

@@ -96,6 +96,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI4.5\fmPreviewXNCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI4.5\fmPreviewXNCa.Designer.cs">
+      <DependentUpon>fmPreviewXNCa.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI4.5\fmXacNhanCa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -416,6 +422,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI4.5\fmPreviewXNCa.resx">
+      <DependentUpon>fmPreviewXNCa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI4.5\fmXacNhanCa.resx">
       <DependentUpon>fmXacNhanCa.cs</DependentUpon>
     </EmbeddedResource>

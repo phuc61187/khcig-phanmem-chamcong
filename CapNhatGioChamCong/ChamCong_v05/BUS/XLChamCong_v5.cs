@@ -64,6 +64,7 @@ namespace ChamCong_v05.BUS {
 				Ca.Code = mySetting.Default.shiftCodeCa8h;
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 8);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa8h;
+				Ca.AfterOTMin = XL2.LamThemAfterOT;
 			}
 			else if (LoaiCaTuDo == int.MinValue + 1) {
 				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._12gio) };
@@ -89,6 +90,14 @@ namespace ChamCong_v05.BUS {
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 16);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa16h;
 			}
+			Ca.LateeMin = XL2.ChoPhepTre;
+			Ca.EarlyMin = XL2.ChoPhepSom;
+			Ca.chophepTreTS = Ca.Duty.Onn + Ca.LateeMin;
+			Ca.chophepSomTS = Ca.Duty.Off - Ca.EarlyMin;
+			Ca.batdaulamthemTS = Ca.Duty.Off + Ca.AfterOTMin;
+			Ca.Is_CaTuDo = true;
+			Ca.StartNT = XL2._22h00;
+			Ca.EndddNT = XL2._06h00;
 		}
 
 		public static void XemCong_v08_2(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
@@ -210,9 +219,9 @@ namespace ChamCong_v05.BUS {
 		public static void TinhPhuCap_ListNgayCong9_5(List<cNgayCong> DSNgayCong, List<DataRow> DSXacNhanPhuCap) {
 			float HSPCNgay, HSPCTangCuongNgay, HSPCDem, HSPCTangCuongDem;
 			// tính phụ cấp đêm trước
-			foreach (var ngayCong in DSNgayCong.Where(item=>item.QuaDem)) {
-				ngayCong.PhuCaps.PCDem5 = Convert.ToSingle(Math.Round ((ngayCong.TG5.HuongPC_Dem.TotalHours/8d) * (XL2.HSPCDem_NgayThuong / 100f),2));
-				ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong;ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
+			foreach (var ngayCong in DSNgayCong.Where(item => item.QuaDem)) {
+				ngayCong.PhuCaps.PCDem5 = Convert.ToSingle(Math.Round((ngayCong.TG5.HuongPC_Dem.TotalHours / 8d) * (XL2.HSPCDem_NgayThuong / 100f), 2));
+				ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong; ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
 			}
 			foreach (DataRow row in DSXacNhanPhuCap) {
 				var ngay = (DateTime)row["Ngay"];
@@ -225,14 +234,14 @@ namespace ChamCong_v05.BUS {
 					ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong;
 
 					TinhPhuCap_1NgayCong(LoaiPhuCap.NgayThuong, ngayCong.TG5.HuongPC_Dem, ngayCong.TG5.HuongPC_TangCuongNgay, ngayCong.TG5.HuongPC_TangCuongDem,
-						HSPCDem,HSPCTangCuongNgay, HSPCTangCuongDem, 
+						HSPCDem, HSPCTangCuongNgay, HSPCTangCuongDem,
 						out ngayCong.PhuCaps.PCTangCuongNgay5, out ngayCong.PhuCaps.PCDem5, out ngayCong.PhuCaps.PCTangCuongDem5, out ngayCong.PhuCaps._TongPC);
 				}
 				else if (loaiPhuCap == (int)LoaiPhuCap.NgayNghi || loaiPhuCap == (int)LoaiPhuCap.NgayLe || loaiPhuCap == (int)LoaiPhuCap.TuyChinhNgayDem) {
 					HSPCNgay = (int)row["HSPCNgay"];
 					HSPCDem = (int)row["HSPCDem"];
 					ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayNghi;
-					TinhPhuCap_1NgayCong(LoaiPhuCap.NgayNghi, ngayCong.TG5.TongGioLamNgay, ngayCong.TG5.TongGioLamDem, HSPCNgay,HSPCDem,
+					TinhPhuCap_1NgayCong(LoaiPhuCap.NgayNghi, ngayCong.TG5.TongGioLamNgay, ngayCong.TG5.TongGioLamDem, HSPCNgay, HSPCDem,
 						out ngayCong.PhuCaps.PCNgay5, out ngayCong.PhuCaps.PCDem5, out ngayCong.PhuCaps._TongPC);
 				}
 			}
@@ -254,8 +263,7 @@ namespace ChamCong_v05.BUS {
 		}
 
 
-		public static string TaoTooltip5(cNgayCong ngayCong)
-		{
+		public static string TaoTooltip5(cNgayCong ngayCong) {
 			if (ngayCong == null) return string.Empty;
 			//string kq = "{0}\n{1}\n{2}\n{3}\n{4}\n{5}";
 			string template = "{0}\n{1}\n{2}";
@@ -264,7 +272,7 @@ namespace ChamCong_v05.BUS {
 			if (ngayCong.prev != null) vaoRaHomTruoc = ngayCong.prev.ExportString5();
 			vaoRaHomNay = ngayCong.ExportString5();
 			if (ngayCong.next != null) vaoRaHomSau = ngayCong.next.ExportString5();
-			kq = string.Format(template, vaoRaHomTruoc , vaoRaHomNay, vaoRaHomSau);
+			kq = string.Format(template, vaoRaHomTruoc, vaoRaHomNay, vaoRaHomSau);
 			return kq;
 		}
 	}

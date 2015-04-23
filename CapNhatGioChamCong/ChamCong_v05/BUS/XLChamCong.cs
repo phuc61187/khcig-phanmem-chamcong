@@ -293,7 +293,7 @@ namespace ChamCong_v05.BUS {
 					VaoTreTinhCV = vaoTreTinhCV,
 					RaaSomTinhCV = raaSomTinhCV,//ver 4.0.0.4	
 					ThuocNgayCong = ThuocNgayCong(chkInnV.Time),
-					OTMin =  otMin
+					OTMin = otMin
 				};
 				DS_CIO_V.Add(chkInOutV);
 				#endregion
@@ -642,10 +642,10 @@ namespace ChamCong_v05.BUS {
 		public static void TinhCong_ListNgayCong8_5(List<cNgayCong> dsNgayCong, TimeSpan startNT, TimeSpan endddNT) {
 			foreach (var ngayCong in dsNgayCong) {
 				TinhCong_1Ngay5(ngayCong, startNT, endddNT, out ngayCong.TG5, out ngayCong.QuaDem);
-				if (ngayCong.QuaDem)
-				{
+				if (ngayCong.QuaDem) {
 					TinhPhuCap_1NgayQuaDem5(ngayCong.TG5.TongGioLamDem, XL2.HSPCDem_NgayThuong, out ngayCong.PhuCaps.PCDem5);
-					ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;}
+					ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
+				}
 			}
 		}
 
@@ -668,7 +668,7 @@ namespace ChamCong_v05.BUS {
 					out CIO.TG5.GioThucTe5, out CIO.TG5.TongGioLamViec5, out CIO.TG5.VaoTre, out CIO.TG5.RaaSom,
 					out CIO.TG5.GioLVTrongCa5,//ver 4.0.0.4	
 					out CIO.TG5.OLai, out CIO.QuaDem, out CIO.TG5.TongGioLamDem);
-				if (CIO.QuaDem) 
+				if (CIO.QuaDem)
 					QuaDem = true;
 				TinhCong_1_CIO_5(CIO.ThuocCa.Workingday, CIO.ThuocCa.WorkingTimeTS, CIO.TG5.VaoTre, CIO.TG5.RaaSom,
 					CIO.VaoTreTinhCV, CIO.RaaSomTinhCV, CIO.TG5.SoPhutLamThem5,
@@ -731,22 +731,21 @@ namespace ChamCong_v05.BUS {
 			//nếu đã duyệt cho phép vào trễ rồi thì giờ vào trễ = 0, công vào trễ =0
 			TongCongBu = 0f;
 			TongCongTru = 0f;
-			if (VaoTreTinhCV)
-			{
+			if (VaoTreTinhCV) {
 				TongCongBu += CongTre;
 				DinhMucCong -= CongTre;
 			}
 			else TongCongTru += CongTre;
 
-			if (RaaSomTinhCV)
-			{
+			if (RaaSomTinhCV) {
 				TongCongBu += CongSom;
-				DinhMucCong -= CongSom;}
+				DinhMucCong -= CongSom;
+			}
 			else TongCongTru += CongSom;
 		}
 
 		public static void TinhPhuCap_1NgayQuaDem5(TimeSpan TongQuaDem, int HSPCDem_NgayThuong, out float phucapDem) {
-			phucapDem = Convert.ToSingle(Math.Round((TongQuaDem.TotalHours / 8d) * (HSPCDem_NgayThuong/100f), 2));
+			phucapDem = Convert.ToSingle(Math.Round((TongQuaDem.TotalHours / 8d) * (HSPCDem_NgayThuong / 100f), 2));
 		}
 
 

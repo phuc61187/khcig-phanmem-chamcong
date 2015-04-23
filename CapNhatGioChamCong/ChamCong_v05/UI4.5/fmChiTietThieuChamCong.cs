@@ -485,23 +485,23 @@ namespace ChamCong_v05.zMisc {
 				fmDSCa formDSCa = new fmDSCa();
 				formDSCa.ShowDialog();
 				if (formDSCa.m_YesNoCancel == YesNoCancel.Yes) {
-					dynamic selectedCa = formDSCa.selectedCa;
+					cCa selectedCa = formDSCa.selectedCa;
 					TimeSpan timeVao, timeRaa;
 					this.GetThoigianVaoraCa(selectedCa, out timeVao, out timeRaa);
 					int[] selectingRowHandle = gridView1.GetSelectedRows();
 					if ((TimeEdit)sender == timeEditBoSungVao || (TimeEdit)sender == timeEditBoSungRaa) {
-						if (selectingRowHandle.Count() == 1 && selectedCa.ca.ID < 0) {
+						if (selectingRowHandle.Count() == 1 && selectedCa.ID < 0) {
 							cCheckInOut selectingCheckInOut = (gridView1.GetDataRow(selectingRowHandle[0]) != null)
 												? (cCheckInOut)(gridView1.GetDataRow(selectingRowHandle[0])["cCheckInOut"]) : null;
 							if (selectingCheckInOut == null) goto point1;
 							if (selectingCheckInOut.HaveINOUT == -1) {
 								timeVao = TimeSpan.Zero;
-								DateTime dateTimeVao = (selectingCheckInOut.Vao.Time.Add(selectedCa.WorkingTime));
+								DateTime dateTimeVao = (selectingCheckInOut.Vao.Time.Add(selectedCa.WorkingTimeTS));
 								timeRaa = dateTimeVao.TimeOfDay;
 							}
 							else if (selectingCheckInOut.HaveINOUT == -2) {
 								timeRaa = TimeSpan.Zero;
-								DateTime dateTimeRaa = (selectingCheckInOut.Raa.Time.Add(-selectedCa.WorkingTime));
+								DateTime dateTimeRaa = (selectingCheckInOut.Raa.Time.Add(-selectedCa.WorkingTimeTS));
 								timeVao = dateTimeRaa.TimeOfDay;
 							}
 						}
@@ -518,13 +518,13 @@ namespace ChamCong_v05.zMisc {
 			}
 		}
 
-		private void GetThoigianVaoraCa(dynamic selectedCa, out TimeSpan timeVao, out TimeSpan timeRaa) {
+		private void GetThoigianVaoraCa(cCa selectedCa, out TimeSpan timeVao, out TimeSpan timeRaa) {
 			if (selectedCa.ID < 0) {//ca tự do
 				timeVao = TimeSpan.Zero;
 				timeRaa = TimeSpan.Zero;
 			}
 			else {//ca chuẩn
-				cCa ca = selectedCa.ca;
+				cCa ca = selectedCa;
 				timeVao = ca.Duty.Onn;
 				timeRaa = ca.Duty.Off;
 			}

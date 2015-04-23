@@ -49,6 +49,9 @@ namespace ChamCong_v05.zMisc {
 			kq.Columns.Add("GioVao", typeof(DateTime));
 			kq.Columns.Add("GioRa", typeof(DateTime));
 			kq.Columns.Add("DSCa", typeof(string));
+			kq.Columns.Add("TongGioLamViec", typeof(TimeSpan));
+			kq.Columns.Add("TongGioCheck", typeof(TimeSpan));
+			kq.Columns.Add("Cong", typeof(float));
 			kq.Columns.Add("cCheckInOut", typeof(cCheckInOut));
 			kq.Columns.Add("cNgayCong", typeof(cNgayCong));
 			kq.Columns.Add("cUserInfo", typeof(cUserInfo));
@@ -76,6 +79,9 @@ namespace ChamCong_v05.zMisc {
 			kq["GioVao"] = CIO.Vao != null ? CIO.Vao.Time : (object)DBNull.Value;
 			kq["GioRa"] = CIO.Raa != null ? CIO.Raa.Time : (object)DBNull.Value;
 			kq["DSCa"] = CIO.ExportKyHieuThuocCa1_5(true).XoaKyTuPhanCachDauTien();
+			kq["TongGioLamViec"] = CIO.TG5.TongGioLamViec5;
+			kq["TongGioCheck"] = CIO.TG5.GioThucTe5;
+			kq["Cong"] = CIO.Cong5.ThucTe;
 			kq["cCheckInOut"] = CIO;
 			kq["cUserInfo"] = Nhanvien;
 			kq["cNgayCong"] = NgayCong;
@@ -137,7 +143,10 @@ namespace ChamCong_v05.zMisc {
 			fmDSCa formDSCa = new fmDSCa();
 			formDSCa.ShowDialog();
 			if (formDSCa.m_YesNoCancel == YesNoCancel.Yes) {
-				dynamic selectedCa = formDSCa.selectedCa;
+				cCa selectedCa = formDSCa.selectedCa;
+				btnChonCa.Tag = selectedCa;
+				btnChonCa.Text = selectedCa.Code;
+				m_DaChonCaKhac = true;
 			}
 
 
@@ -194,7 +203,7 @@ namespace ChamCong_v05.zMisc {
 				}
 				else {// đã có dùng thông tin ca mới để tính toán
 					dynamic CaDuocChon = btnChonCa.Tag;
-					float congCaQuyDinh, congTre, congSom, congThucTeTrongCa,
+					float congCaQuyDinh, congTre, congSom, congThucTeTrongCa, congThucTeNgoaiCa, congThucTe, tongCongBu, tongCongTru, dinhMucCong;
 					TimeSpan soPhutLamThemDaXN = (checkXNLamThem.Checked) ? timeEditXacNhanOT.Time.TimeOfDay : TimeSpan.Zero;
 					XL.TinhCong_1_CIO_5(CaDuocChon.Workingday, CaDuocChon.WorkingTime, XL2.ChoPhepTre, XL2.ChoPhepSom,
 						checkVaoTreTinhCV.Checked, checkRaaSomTinhCV.Checked, soPhutLamThemDaXN, out congCaQuyDinh, out congTre, out congSom,
@@ -203,6 +212,13 @@ namespace ChamCong_v05.zMisc {
 			}
 			else {// chọn multirow, khó tính toán tại chỗ, nên reset hết data và cho phép xem trước trước khi xác nhận
 				ResetDataOfControl();
+				if (m_DaChonCaKhac) {
+					return;
+				}
+				else {
+					btnChonCa.Tag = null;
+					btnChonCa.Text = string.Empty;
+				}
 			}
 
 		}
@@ -221,6 +237,35 @@ namespace ChamCong_v05.zMisc {
 			MyUtility.ClearControlText(lbGioLV, lbGioCheckVT, lbVaoTre, lbRaaSom, lbOLaiChuaXN, tbThongTinKhac, cbXNLyDo, tbXNGhiChu);
 
 			timeEditXacNhanOT.Time = DateTime.Today.Date; //reset về timezero 0:00
+		}
+
+		private void button1_Click(object sender, EventArgs e) {
+			int[] arrayRowHandle = gridView1.GetSelectedRows();
+
+			if (arrayRowHandle.Count() == 0) return;
+			else if (arrayRowHandle.Count() == 1) { 				
+				fmPreviewXNCa frm = new fmPreviewXNCa();
+				frm.m_Ca = (cCa)btnChonCa.Tag;
+				frm.m_CheckVaoTreTinhCV = checkVaoTreTinhCV.Checked;
+				frm.m_CheckRaaSomTinhCV = checkRaaSomTinhCV.Checked;
+				frm.m_ChoPhepVaoTre = checkChoPhepTre.Checked;
+				frm.m_ChoPhepRaaSom = checkChoPhepSom.Checked;
+				frm.m_SoPhutLamThem = timeEditXacNhanOT.Time.TimeOfDay;
+				int kq = frm.ValidateCIO(gridView1.GetDataRow(arrayRowHandle[0]), frm.m_Ca, frm.m_CheckVaoTreTinhCV, frm.m_CheckRaaSomTinhCV, frm.m_ChoPhepVaoTre, frm.m_ChoPhepRaaSom, frm.m_SoPhutLamThem);
+				MessageBox.Show(kq.ToString());
+			}
+			else
+			{
+
+				fmPreviewXNCa frm = new fmPreviewXNCa();
+				frm.m_Ca = (cCa)btnChonCa.Tag;
+				frm.m_CheckVaoTreTinhCV = checkVaoTreTinhCV.Checked;
+				frm.m_CheckRaaSomTinhCV = checkRaaSomTinhCV.Checked;
+				frm.m_ChoPhepVaoTre = checkChoPhepTre.Checked;
+				frm.m_ChoPhepRaaSom = checkChoPhepSom.Checked;
+				frm.m_SoPhutLamThem = timeEditXacNhanOT.Time.TimeOfDay;
+				//frm.ValidateCIO()
+			}
 		}
 
 

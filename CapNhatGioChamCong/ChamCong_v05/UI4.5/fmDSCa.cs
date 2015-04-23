@@ -15,7 +15,7 @@ namespace ChamCong_v05.UI4._5 {
 	public partial class fmDSCa : Form {
 		public List<dynamic> DSTatCaCacCa;
 		public YesNoCancel m_YesNoCancel = YesNoCancel.Cancel;
-		public dynamic selectedCa = null;
+		public cCa selectedCa = null;
 		public fmDSCa() {
 			InitializeComponent();
 		}
@@ -92,7 +92,7 @@ namespace ChamCong_v05.UI4._5 {
 
 			dynamic objectCa = gridView1.GetRow(selectedRowHandle[0]);
 			if (objectCa == null || objectCa.ca == null) return;
-			selectedCa = objectCa;
+			selectedCa = objectCa.ca;
 			m_YesNoCancel = YesNoCancel.Yes;
 			Close();
 		}

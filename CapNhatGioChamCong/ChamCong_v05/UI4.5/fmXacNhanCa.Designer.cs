@@ -48,8 +48,11 @@
 			this.cbXNLyDo = new System.Windows.Forms.ComboBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
+			this.lbGioCheckVT = new System.Windows.Forms.Label();
 			this.lbRaaSom = new System.Windows.Forms.Label();
 			this.lbVaoTre = new System.Windows.Forms.Label();
+			this.lbCurrentNgayCong = new System.Windows.Forms.Label();
+			this.lbCurrentCIO = new System.Windows.Forms.Label();
 			this.lbOLaiChuaXN = new System.Windows.Forms.Label();
 			this.lbGioLV = new System.Windows.Forms.Label();
 			this.checkRaaSomTinhCV = new System.Windows.Forms.CheckBox();
@@ -58,6 +61,7 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.checkXNLamThem = new System.Windows.Forms.CheckBox();
@@ -65,10 +69,7 @@
 			this.checkChoPhepSom = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnChonCa = new DevExpress.XtraEditors.ButtonEdit();
-			this.label2 = new System.Windows.Forms.Label();
-			this.lbGioCheckVT = new System.Windows.Forms.Label();
-			this.lbCurrentCIO = new System.Windows.Forms.Label();
-			this.lbCurrentNgayCong = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -231,6 +232,9 @@
 			// gridColumn8
 			// 
 			this.gridColumn8.Caption = "T.Giờ LV";
+			this.gridColumn8.DisplayFormat.FormatString = "%h\\:mm";
+			this.gridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.gridColumn8.FieldName = "TongGioLamViec";
 			this.gridColumn8.Name = "gridColumn8";
 			this.gridColumn8.Visible = true;
 			this.gridColumn8.VisibleIndex = 6;
@@ -240,6 +244,9 @@
 			this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Bold);
 			this.gridColumn9.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn9.Caption = "T.Giờ check";
+			this.gridColumn9.DisplayFormat.FormatString = "%h\\:mm";
+			this.gridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.gridColumn9.FieldName = "TongGioCheck";
 			this.gridColumn9.Name = "gridColumn9";
 			this.gridColumn9.Visible = true;
 			this.gridColumn9.VisibleIndex = 7;
@@ -247,6 +254,8 @@
 			// gridColumn10
 			// 
 			this.gridColumn10.Caption = "Công";
+			this.gridColumn10.DisplayFormat.FormatString = "#0.0#";
+			this.gridColumn10.FieldName = "Cong";
 			this.gridColumn10.Name = "gridColumn10";
 			this.gridColumn10.Visible = true;
 			this.gridColumn10.VisibleIndex = 8;
@@ -286,6 +295,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.button1);
 			this.groupBox1.Controls.Add(this.timeEditXacNhanOT);
 			this.groupBox1.Controls.Add(this.tbThongTinKhac);
 			this.groupBox1.Controls.Add(this.tbXNGhiChu);
@@ -353,7 +363,7 @@
 			this.tbXNGhiChu.Location = new System.Drawing.Point(104, 290);
 			this.tbXNGhiChu.Multiline = true;
 			this.tbXNGhiChu.Name = "tbXNGhiChu";
-			this.tbXNGhiChu.Size = new System.Drawing.Size(198, 145);
+			this.tbXNGhiChu.Size = new System.Drawing.Size(198, 114);
 			this.tbXNGhiChu.TabIndex = 38;
 			// 
 			// cbXNLyDo
@@ -393,6 +403,16 @@
 			this.label12.TabIndex = 36;
 			this.label12.Text = "Ghi chú (nếu có)";
 			// 
+			// lbGioCheckVT
+			// 
+			this.lbGioCheckVT.AutoSize = true;
+			this.lbGioCheckVT.Location = new System.Drawing.Point(249, 50);
+			this.lbGioCheckVT.Margin = new System.Windows.Forms.Padding(6, 6, 6, 0);
+			this.lbGioCheckVT.Name = "lbGioCheckVT";
+			this.lbGioCheckVT.Size = new System.Drawing.Size(43, 14);
+			this.lbGioCheckVT.TabIndex = 34;
+			this.lbGioCheckVT.Text = "label2";
+			// 
 			// lbRaaSom
 			// 
 			this.lbRaaSom.AutoSize = true;
@@ -412,6 +432,28 @@
 			this.lbVaoTre.Size = new System.Drawing.Size(43, 14);
 			this.lbVaoTre.TabIndex = 34;
 			this.lbVaoTre.Text = "label2";
+			// 
+			// lbCurrentNgayCong
+			// 
+			this.lbCurrentNgayCong.AutoSize = true;
+			this.lbCurrentNgayCong.Location = new System.Drawing.Point(9, 237);
+			this.lbCurrentNgayCong.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
+			this.lbCurrentNgayCong.Name = "lbCurrentNgayCong";
+			this.lbCurrentNgayCong.Size = new System.Drawing.Size(161, 14);
+			this.lbCurrentNgayCong.TabIndex = 34;
+			this.lbCurrentNgayCong.Text = "lbCurrentNgayCong_hide";
+			this.lbCurrentNgayCong.Visible = false;
+			// 
+			// lbCurrentCIO
+			// 
+			this.lbCurrentCIO.AutoSize = true;
+			this.lbCurrentCIO.Location = new System.Drawing.Point(162, 3);
+			this.lbCurrentCIO.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
+			this.lbCurrentCIO.Name = "lbCurrentCIO";
+			this.lbCurrentCIO.Size = new System.Drawing.Size(121, 14);
+			this.lbCurrentCIO.TabIndex = 34;
+			this.lbCurrentCIO.Text = "lbCurrentCIO_hide";
+			this.lbCurrentCIO.Visible = false;
 			// 
 			// lbOLaiChuaXN
 			// 
@@ -503,6 +545,17 @@
 			this.label4.TabIndex = 20;
 			this.label4.Text = "Ra sớm";
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.label2.Location = new System.Drawing.Point(180, 50);
+			this.label2.Margin = new System.Windows.Forms.Padding(6);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(64, 14);
+			this.label2.TabIndex = 20;
+			this.label2.Text = "Giờ check";
+			// 
 			// label11
 			// 
 			this.label11.AutoSize = true;
@@ -583,48 +636,15 @@
 			this.btnChonCa.Size = new System.Drawing.Size(200, 20);
 			this.btnChonCa.TabIndex = 0;
 			// 
-			// label2
+			// button1
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.label2.Location = new System.Drawing.Point(180, 50);
-			this.label2.Margin = new System.Windows.Forms.Padding(6);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(64, 14);
-			this.label2.TabIndex = 20;
-			this.label2.Text = "Giờ check";
-			// 
-			// lbGioCheckVT
-			// 
-			this.lbGioCheckVT.AutoSize = true;
-			this.lbGioCheckVT.Location = new System.Drawing.Point(249, 50);
-			this.lbGioCheckVT.Margin = new System.Windows.Forms.Padding(6, 6, 6, 0);
-			this.lbGioCheckVT.Name = "lbGioCheckVT";
-			this.lbGioCheckVT.Size = new System.Drawing.Size(43, 14);
-			this.lbGioCheckVT.TabIndex = 34;
-			this.lbGioCheckVT.Text = "label2";
-			// 
-			// lbCurrentCIO
-			// 
-			this.lbCurrentCIO.AutoSize = true;
-			this.lbCurrentCIO.Location = new System.Drawing.Point(162, 3);
-			this.lbCurrentCIO.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
-			this.lbCurrentCIO.Name = "lbCurrentCIO";
-			this.lbCurrentCIO.Size = new System.Drawing.Size(121, 14);
-			this.lbCurrentCIO.TabIndex = 34;
-			this.lbCurrentCIO.Text = "lbCurrentCIO_hide";
-			this.lbCurrentCIO.Visible = false;
-			// 
-			// lbCurrentNgayCong
-			// 
-			this.lbCurrentNgayCong.AutoSize = true;
-			this.lbCurrentNgayCong.Location = new System.Drawing.Point(9, 237);
-			this.lbCurrentNgayCong.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
-			this.lbCurrentNgayCong.Name = "lbCurrentNgayCong";
-			this.lbCurrentNgayCong.Size = new System.Drawing.Size(161, 14);
-			this.lbCurrentNgayCong.TabIndex = 34;
-			this.lbCurrentNgayCong.Text = "lbCurrentNgayCong_hide";
-			this.lbCurrentNgayCong.Visible = false;
+			this.button1.Location = new System.Drawing.Point(104, 422);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 40;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// fmXacNhanCa
 			// 
@@ -696,5 +716,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lbCurrentNgayCong;
 		private System.Windows.Forms.Label lbCurrentCIO;
+		private System.Windows.Forms.Button button1;
 	}
 }
