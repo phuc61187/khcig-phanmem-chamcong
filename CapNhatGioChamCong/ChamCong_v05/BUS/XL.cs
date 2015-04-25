@@ -77,7 +77,7 @@ namespace ChamCong_v05.BUS {
 
 			#endregion
 		}
-		public static void TinhCong_ListNgayCong8(List<cNgayCong> dsNgayCong, TimeSpan startNT, TimeSpan endddNT) {
+		public static void TinhCong_ListNgayCong8(List<cNgayCong> dsNgayCong) {
 		}
 		public static void TinhCong_HangNgay(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT,
 			out ThoiGian TG, out PhuCap PhuCaps, out float TongCong, out float TongNgayLV, out bool QuaDem) {
@@ -93,7 +93,7 @@ namespace ChamCong_v05.BUS {
 				CIO.TD = new ThoiDiem();
 				CIO.TG = new ThoiGian();
 				TinhTG_LV_LVCa3_LamThem1Ca(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom, CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,
-					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.Duty.Onn, CIO.ThuocCa.Duty.Off, CIO.ThuocCa.chophepTreTS, CIO.ThuocCa.chophepSomTS,
+					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.Duty.Onn, CIO.ThuocCa.Duty.Off, CIO.ThuocCa.GioiHanChoPhepTreSom.Onn, CIO.ThuocCa.GioiHanChoPhepTreSom.Off,
 					CIO.ThuocCa.batdaulamthemTS, CIO.ThuocCa.LunchMin, new TimeSpan(0, CIO.OTMin, 0), startNT, endddNT,
 					out CIO.TD.BD_LV, out CIO.TD.KT_LV, out CIO.TD.KT_LV_ChuaOT, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
 				out CIO.TG.GioThucTe5, out CIO.TG.GioLamViec5, out CIO.TG.VaoTre, out CIO.TG.RaaSom,
@@ -183,16 +183,17 @@ namespace ChamCong_v05.BUS {
 				#endregion
 
 				#region số phút cho phép trễ sớm afterot ca tự do
+				XL2.GioiHanChoPhepTreSom = new TS();
 				if (code == SettingName.TGLamDemToiThieu.ToString()) {
 					XL2.TGLamDemToiThieu = TimeSpan.Parse(value);
 					continue;
 				}
 				if (code == SettingName.ChoPhepTre.ToString()) {
-					XL2.ChoPhepTre = new TimeSpan(0, int.Parse(value), 0);
+					XL2.GioiHanChoPhepTreSom.Onn = new TimeSpan(0, int.Parse(value), 0);
 					continue;
 				}
 				if (code == SettingName.ChoPhepSom.ToString()) {
-					XL2.ChoPhepSom = new TimeSpan(0, int.Parse(value), 0);
+					XL2.GioiHanChoPhepTreSom.Off = new TimeSpan(0, int.Parse(value), 0);
 					continue;
 				}
 				if (code == SettingName.LamThemAfterOT.ToString()) {
@@ -502,13 +503,12 @@ namespace ChamCong_v05.BUS {
 					NhanDienVao = new TS { Onn = tOnTimeIn, Off = tCutIn },
 					NhanDienRaa = new TS { Onn = tOnTimeOut, Off = tCutOut },
 					AfterOTMin = tAfterOT,
-					LateeMin = tLateGrace,
-					EarlyMin = tEarlyGrace,
+					//LateeMin = tLateGrace,
+					//EarlyMin = tEarlyGrace,
 					Workingday = (Single)row["Workingday"],
 					WorkingTimeTS = new TimeSpan(0, tempWorkingTime, 0),
 					ShowPosition = iShowPosition,
-					chophepTreTS = tsOnDuty + (tLateGrace),
-					chophepSomTS = tOffDuty - tEarlyGrace,
+					GioiHanChoPhepTreSom = new TS { Onn = tsOnDuty + (tLateGrace), Off = tOffDuty - tEarlyGrace },
 					batdaulamthemTS = tOffDuty + tAfterOT,
 					LunchMin = tOffLunch.Subtract(tOnLunch),
 					TachCaDem = tachcadem,
@@ -518,8 +518,7 @@ namespace ChamCong_v05.BUS {
 					MoTa = row["Description"].ToString(),
 					IsExtended = isextend,
 					Is_CaTuDo = false,
-					StartNT = timespanStartNightTime,
-					EndddNT = timespanEndddNightTime
+					NightTime = new TS { Onn = timespanStartNightTime, Off = timespanEndddNightTime }
 				};
 				#endregion
 
@@ -582,10 +581,10 @@ namespace ChamCong_v05.BUS {
 						lichtrinh.DSCaMRThu[i].Add(ca);
 					}
 				}
-				var ca3 = lichtrinh.DSCaThu[0].FirstOrDefault(o => o.QuaDem && Math.Abs(o.Workingday - 1f) < 0.01f);//ver 4.0.0.4 //xác định ca 3 có giờ qua đêm 21h45 hay 22 giờ để gán
-				if (ca3 == null) lichtrinh.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;//ver 4.0.0.4
-				else if (ca3.StartNT == XL2._21h45) lichtrinh.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._21h45;//ver 4.0.0.4
-				else lichtrinh.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;//ver 4.0.0.4
+				//var ca3 = lichtrinh.DSCaThu[0].FirstOrDefault(o => o.QuaDem && Math.Abs(o.Workingday - 1f) < 0.01f);//ver 4.0.0.4 //xác định ca 3 có giờ qua đêm 21h45 hay 22 giờ để gán
+				//if (ca3 == null) lichtrinh.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;//ver 4.0.0.4
+				//else if (ca3.StartNT == XL2._21h45) lichtrinh.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._21h45;//ver 4.0.0.4
+				//else lichtrinh.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;//ver 4.0.0.4
 				XL.DSLichTrinh.Add(lichtrinh);
 			}
 
@@ -637,8 +636,7 @@ namespace ChamCong_v05.BUS {
 			var kqDocFile = KiemtraDocFileKetnoiDL(Settings.Default.ConnectionStringPath, ref tmpConnStr);
 			var kq = false;
 
-			if (!kqDocFile) // ko đọc được file thì trả về false
-			{
+			if (!kqDocFile)  {// ko đọc được file thì trả về false
 				return false;
 			}
 
@@ -749,8 +747,7 @@ namespace ChamCong_v05.BUS {
 			var tableNV = DAO5.LayDSNV(arrIDPhongBan);
 			var tableKQ = tableNV.Clone();
 			foreach (DataRow dataRow in tableNV.Rows) {
-				if (UserEnabled != null) // nếu có truyền trạng thái thì lấy theo trạng thái
-				{
+				if (UserEnabled != null) { // nếu có truyền trạng thái thì lấy theo trạng thái
 					if (dataRow["UserEnabled"] == DBNull.Value || (bool)dataRow["UserEnabled"] != UserEnabled)
 						continue;
 				}
@@ -763,13 +760,11 @@ namespace ChamCong_v05.BUS {
 			var tableNV = DAO5.LayDSNV();
 			var tableKQ = tableNV.Clone();
 			foreach (DataRow dataRow in tableNV.Rows) {
-				if (UserEnabled != null) // nếu có truyền trạng thái thì
-				{
+				if (UserEnabled != null) { // nếu có truyền trạng thái thì
 					if (dataRow["UserEnabled"] == DBNull.Value || (bool)dataRow["UserEnabled"] != UserEnabled)
 						continue;
 				}
-				if (dataRow["MaPhong"] == DBNull.Value || (int)dataRow["MaPhong"] == 0) // chỉ lấy các nhân viên mới, ko lấy các nv khác
-				{
+				if (dataRow["MaPhong"] == DBNull.Value || (int)dataRow["MaPhong"] == 0) { // chỉ lấy các nhân viên mới, ko lấy các nv khác
 					tableKQ.ImportRow(dataRow);
 				}
 			}
@@ -780,48 +775,48 @@ namespace ChamCong_v05.BUS {
 
 		public static void XacNhanCa(cUserInfo nv, cCheckInOut CIO, cCa currShift,
 			bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TS NightTime) {//ver 4.0.0.4	
 
 			//if (CIO.Vao.Time <= XL2.NgayCuoiThangKetCong) return;
 
 			if (currShift.TachCaDem) {
 				if (CIO.DaXN) {
 					XacNhan_CIO_V_CoTachCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV, NightTime);//ver 4.0.0.4	
 				}
 				else {
 					XacNhan_CIO_A_CoTachCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV, NightTime);//ver 4.0.0.4	
 				}
 			}
 
 			else {
 				if (CIO.DaXN) {
 					XacNhan_CIO_V(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV,  NightTime);//ver 4.0.0.4	
 				}
 				else {
 					XacNhan_CIO_A(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV,  NightTime);//ver 4.0.0.4	
 				}
 
 			}
 		}
 
 		public static void XacNhan_CIO_A_CoTachCa(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TS NightTime) {//ver 4.0.0.4	
 		}
 		public static void XacNhan_CIO_V_CoTachCa(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TS NightTime) {//ver 4.0.0.4	
 		}
 
 		public static void XacNhan_CIO_V(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TS NightTime) {//ver 4.0.0.4	
 
 		}
 
 		public static void XacNhan_CIO_A(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TS NightTime) {//ver 4.0.0.4	
 
 		}
 		public static void XacNhan_CIO_A(int MaCC, DateTime timevao, DateTime timeraa, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,

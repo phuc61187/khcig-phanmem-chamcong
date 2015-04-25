@@ -447,10 +447,10 @@ namespace ChamCong_v05.UI.KhaiBao {
 
 			tongGiothuc = timeKT - timeBD;
 			TimeSpan TGGioLamViecTrongCa;
-			XL.Vao(timeBD, ngay.Add(ca.Duty.Onn), ngay.Add(ca.chophepTreTS), false, out td_batdau_lv, out tre);
-			XL.Raa(timeKT, ngay.Add(ca.Duty.Off), ngay.Add(ca.chophepSomTS), false, out td_ketthuc_lv_chuaOT, out som);
-            td_ketthuc_lv_daCoOT = td_ketthuc_lv_chuaOT + new TimeSpan(0, sophutOT, 0);
-            if (timeKT < td_ketthuc_lv_daCoOT)
+			XL.Vao(timeBD, ngay.Add(ca.Duty.Onn), ngay.Add(ca.GioiHanChoPhepTreSom.Onn), out td_batdau_lv, out tre);
+			XL.Raa(timeKT, ngay.Add(ca.Duty.Off), ngay.Add(ca.GioiHanChoPhepTreSom.Off), out td_ketthuc_lv_chuaOT, out som);
+			td_ketthuc_lv_daCoOT = td_ketthuc_lv_chuaOT + new TimeSpan(0, sophutOT, 0);
+			if (timeKT < td_ketthuc_lv_daCoOT)
 			{
 				timeKT = ngay.Add(ca.Duty.Off).Add(new TimeSpan(0, sophutOT, 0));
 				dtpKTLam.Value = timeKT;

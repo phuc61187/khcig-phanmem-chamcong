@@ -57,8 +57,8 @@ namespace ChamCong_v05.DTO {
 
 		public DateTime NgayCongBD_Bef2D;
 		public DateTime NgayCongKT_Aft2D;
-		public TimeSpan StartNT;//ver 4.0.0.4
-		public TimeSpan EndddNT;//ver 4.0.0.4
+		//public TimeSpan StartNT;//ver 4.0.0.4
+		//public TimeSpan EndddNT;//ver 4.0.0.4
 
 		public HeSo HeSo;
 		public ChiTietLuong chiTietLuong;

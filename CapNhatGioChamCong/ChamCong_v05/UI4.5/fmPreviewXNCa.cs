@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ChamCong_v05.BUS;
 using ChamCong_v05.DTO;
+using ChamCong_v05.Helper;
 
 namespace ChamCong_v05.UI4._5 {
 	public partial class fmPreviewXNCa : Form {
@@ -36,11 +37,15 @@ namespace ChamCong_v05.UI4._5 {
 			int kq = 0;
 			cCheckInOut cio = (cCheckInOut)row["cCheckInOut"];
 			if (soPhutLamThemDaXN > cio.TG5.OLai) return -1; // 
-			TimeSpan OnnDuty = TimeSpan.Zero,OffDuty = TimeSpan.Zero;
+			TS duty, gioiHanChoPhepTreSom;
 			if (cio.ShiftID < 0)
 			{
-				OnnDuty = new TimeSpan(cio.Vao.Time.TimeOfDay.Hours, cio.Vao.Time.TimeOfDay.Minutes, 0);
-				
+				duty.Onn = new TimeSpan(cio.Vao.Time.TimeOfDay.Hours, cio.Vao.Time.TimeOfDay.Minutes, 0);
+				duty.Off = duty.Onn.Add(CaDuocChon.WorkingTimeTS);
+
+				//gioiHanChoPhepTreSom.Onn = duty.Onn.Add(XL2.ChoPhepTre);
+				//gioiHanChoPhepTreSom.Onn = duty.Off.Subtract(XL2.ChoPhepSom);
+//batdaulamthemTS LunchMin 
 			}
 			//var temp1 = cio.ShiftID < 0 ? cio.Vao.Time.TimeOfDay cio.ThuocNgayCong.Add(CaDuocChon.Duty.Onn);
 			var temp2 = cio.ThuocNgayCong.Add(CaDuocChon.Duty.Off);
@@ -49,9 +54,9 @@ namespace ChamCong_v05.UI4._5 {
 			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGGioLamViecTrongCa, TGOLai, TGLamBanDem;
 
 			XL.TinhTG_LV_LVCa3_LamThem_1CIO5(cio.ThuocNgayCong, cio.HaveINOUT, true, CheckChoPhepTre, CheckChoPhepSom, cio.Vao.Time, cio.Raa.Time,
-				CaDuocChon.Duty.Onn, CaDuocChon.Duty.Off, CaDuocChon.chophepTreTS, CaDuocChon.chophepSomTS, CaDuocChon.batdaulamthemTS, CaDuocChon.LunchMin,
+				CaDuocChon.Duty.Onn, CaDuocChon.Duty.Off, CaDuocChon.GioiHanChoPhepTreSom, CaDuocChon.batdaulamthemTS, CaDuocChon.LunchMin,
 				soPhutLamThemDaXN,
-				XL2._22h00, XL2._06h00, //tbd start NT, endNT
+				XL2.NightTime22h, //tbd start NT, endNT
 				out TD_BD_LV, out TD_KT_LV, out  TD_KT_LV_TrongCa, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3, out TGThucTe, out TGGioLamViec,
 				out TGVaoTre, out TGRaaSom, out TGGioLamViecTrongCa, out TGOLai, out QuaDem, out TGLamBanDem
 			);

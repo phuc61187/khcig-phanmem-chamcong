@@ -45,8 +45,8 @@ namespace ChamCong_v05.BUS {
 					nhanvien.LichTrinhLV.TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;//ver 4.0.0.4
 				}
 			}
-			if (nhanvien.LichTrinhLV.TGLamDemTheoQuyDinh == TGLamDemTheoQuyDinh._22h00) { nhanvien.StartNT = XL2._22h00; nhanvien.EndddNT = XL2._06h00; }
-			else { nhanvien.StartNT = XL2._21h45; nhanvien.EndddNT = XL2._05h45; }
+			//if (nhanvien.LichTrinhLV.TGLamDemTheoQuyDinh == TGLamDemTheoQuyDinh._22h00) { nhanvien.StartNT = XL2._22h00; nhanvien.EndddNT = XL2._06h00; }
+			//else { nhanvien.StartNT = XL2._21h45; nhanvien.EndddNT = XL2._05h45; }
 
 			#endregion
 
@@ -90,14 +90,11 @@ namespace ChamCong_v05.BUS {
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 16);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa16h;
 			}
-			Ca.LateeMin = XL2.ChoPhepTre;
-			Ca.EarlyMin = XL2.ChoPhepSom;
-			Ca.chophepTreTS = Ca.Duty.Onn + Ca.LateeMin;
-			Ca.chophepSomTS = Ca.Duty.Off - Ca.EarlyMin;
+			Ca.GioiHanChoPhepTreSom.Onn = Ca.Duty.Onn + XL2.GioiHanChoPhepTreSom.Onn;
+			Ca.GioiHanChoPhepTreSom.Off = Ca.Duty.Off - XL2.GioiHanChoPhepTreSom.Off;
 			Ca.batdaulamthemTS = Ca.Duty.Off + Ca.AfterOTMin;
 			Ca.Is_CaTuDo = true;
-			Ca.StartNT = XL2._22h00;
-			Ca.EndddNT = XL2._06h00;
+			Ca.NightTime = XL2.NightTime22h;
 		}
 
 		public static void XemCong_v08_2(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
@@ -208,7 +205,7 @@ namespace ChamCong_v05.BUS {
 				TronDS_CIO_A_V5(nv.DS_CIO_A, nv.DS_CIO_V, out nv.DSVaoRa);
 				PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
-				TinhCong_ListNgayCong8_5(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
+				TinhCong_ListNgayCong8_5(nv.DSNgayCong);//ver 4.0.0.4
 				TinhPhuCap_ListNgayCong9_5(nv.DSNgayCong, nv.DSXNPC5);
 			}
 			if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);

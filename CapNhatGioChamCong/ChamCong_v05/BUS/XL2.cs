@@ -39,6 +39,7 @@ namespace ChamCong_v05.BUS {
 		public static readonly TimeSpan _21h45 = new TimeSpan(21, 45, 0);
 		public static readonly TimeSpan _22h00 = new TimeSpan(22, 0, 0);
 		public static readonly TimeSpan _24h00 = new TimeSpan(24, 0, 0);
+		public static readonly TS NightTime22h = new TS { Onn = XL2._22h00, Off = XL2._06h00 };
 		public static int PC30;
 		public static int PC50;
 		public static int PCTCC3;
@@ -60,8 +61,8 @@ namespace ChamCong_v05.BUS {
 		#endregion
 
 		public static TimeSpan TGLamDemToiThieu;
-		public static TimeSpan ChoPhepTre;
-		public static TimeSpan ChoPhepSom;
+		public static TS GioiHanChoPhepTreSom;
+		//public static TimeSpan ChoPhepSom;
 		public static TimeSpan LamThemAfterOT;
 		public static List<cPhongBan> TatcaPhongban = new List<cPhongBan>();
 		public static List<int> QuyenThaoTac;
@@ -85,19 +86,17 @@ namespace ChamCong_v05.BUS {
 
 
 
-		public static void TachThang(DateTime ngayBd, DateTime ngayKt, out List<DateTime> arrNgayBd, out List<DateTime> arrNgayKt)
-		{
-			arrNgayBd=new List<DateTime>();
-			arrNgayKt= new List<DateTime>();
+		public static void TachThang(DateTime ngayBd, DateTime ngayKt, out List<DateTime> arrNgayBd, out List<DateTime> arrNgayKt) {
+			arrNgayBd = new List<DateTime>();
+			arrNgayKt = new List<DateTime>();
 			var indexNgay = ngayBd;
 			var indexThang = new DateTime(indexNgay.Year, indexNgay.Month, 1);
 			var ThangKT = new DateTime(ngayKt.Year, ngayKt.Month, 1);
-			while (indexThang < ThangKT)
-			{
+			while (indexThang < ThangKT) {
 				var ngayktthang = new DateTime(indexNgay.Year, indexNgay.Month, DateTime.DaysInMonth(indexNgay.Year, indexNgay.Month));
 				arrNgayBd.Add(indexNgay);
 				arrNgayKt.Add(ngayktthang);
-				indexNgay = new DateTime(indexNgay.Year, indexNgay.Month,1); // trả về ngày đầu tháng
+				indexNgay = new DateTime(indexNgay.Year, indexNgay.Month, 1); // trả về ngày đầu tháng
 				indexNgay = indexNgay.AddMonths(1);// index ngày giữ ngày đầu tiên của tháng (trừ lần đầu tiên giữ ngày bd)
 				indexThang = indexThang.AddMonths(1); // thực tế là tăng tháng
 			}
@@ -106,8 +105,7 @@ namespace ChamCong_v05.BUS {
 			arrNgayKt.Add(ngayKt);
 		}
 
-		public static bool KiemtraKetnoiCSDL()
-		{
+		public static bool KiemtraKetnoiCSDL() {
 			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
 				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 3000);
 				return false;
@@ -115,9 +113,8 @@ namespace ChamCong_v05.BUS {
 			return true;
 		}
 
-		public static Point GetCenterLocation(int MdiParentWidth, int MdiParentHeight, int formWidth, int formHeight)
-		{
-			return new Point((int)((MdiParentWidth - formWidth) / 2f),(int)((MdiParentHeight - formHeight) / 2f));
+		public static Point GetCenterLocation(int MdiParentWidth, int MdiParentHeight, int formWidth, int formHeight) {
+			return new Point((int)((MdiParentWidth - formWidth) / 2f), (int)((MdiParentHeight - formHeight) / 2f));
 		}
 
 		internal static List<XL2.cChucNang> TaoChucNang() {
@@ -136,9 +133,9 @@ namespace ChamCong_v05.BUS {
 
 			lstChucNang.Add(new cChucNang() { ID = 30011, MoTa = "Sửa giờ hàng loạt" });
 			lstChucNang.Add(new cChucNang() { ID = 30012, MoTa = "Xem lịch sử thao tác" });
-			lstChucNang.Add(new cChucNang() { ID = 30013, MoTa = "Quản lý nhiệm vụ của nhân viên"});
-			lstChucNang.Add(new cChucNang() { ID = 30014, MoTa = "Xem thống kê công, PC, phép theo nhiệm vụ"});
-			lstChucNang.Add(new cChucNang() { ID = 30015, MoTa = "Xem danh sách nhiệm vụ"});
+			lstChucNang.Add(new cChucNang() { ID = 30013, MoTa = "Quản lý nhiệm vụ của nhân viên" });
+			lstChucNang.Add(new cChucNang() { ID = 30014, MoTa = "Xem thống kê công, PC, phép theo nhiệm vụ" });
+			lstChucNang.Add(new cChucNang() { ID = 30015, MoTa = "Xem danh sách nhiệm vụ" });
 
 			lstChucNang.Add(new cChucNang() { ID = 40011, MoTa = "Quản lý Nhân viên" });
 

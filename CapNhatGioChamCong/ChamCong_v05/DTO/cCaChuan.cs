@@ -28,8 +28,9 @@ namespace ChamCong_v05.DTO {
 
 	public class cCa
 	{
-		public TimeSpan chophepTreTS { get; set; }
-		public TimeSpan chophepSomTS { get; set; }
+		//public TimeSpan chophepTreTS { get; set; }
+		//public TimeSpan chophepSomTS { get; set; }
+		public TS GioiHanChoPhepTreSom;
 		public TimeSpan batdaulamthemTS { get; set; }
 		public int ID { get; set; }
 		public string Code { get; set; }
@@ -45,8 +46,9 @@ namespace ChamCong_v05.DTO {
 		public int ShowPosition { get; set; }
 		public int DayCount { get; set; }
 		public bool QuaDem { get; set; }
-		public TimeSpan StartNT;//ver 4.0.0.4	start night time
-		public TimeSpan EndddNT;//ver 4.0.0.4	enddd night time
+		//public TimeSpan StartNT;//ver 4.0.0.4	start night time
+		//public TimeSpan EndddNT;//ver 4.0.0.4	enddd night time
+		public TS NightTime;
 
 		public string MoTa;
 		public string KyHieuCC;

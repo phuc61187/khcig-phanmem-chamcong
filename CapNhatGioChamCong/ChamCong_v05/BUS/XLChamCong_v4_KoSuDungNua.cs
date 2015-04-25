@@ -125,7 +125,7 @@ namespace ChamCong_v05.BUS {
 				TronDS_CIO_A_V5(nv.DS_CIO_A, nv.DS_CIO_V, out nv.DSVaoRa);
 				PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
-				TinhCong_ListNgayCong8_5(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
+				TinhCong_ListNgayCong8_5(nv.DSNgayCong);//ver 4.0.0.4
 				//TinhPhuCap_ListNgayCong9_5(nv.DSNgayCong, nv.)
 				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong);
 				TinhPCDB_TrongListXNPCDB10(nv.DSXNPhuCapDB, nv.DSNgayCong);

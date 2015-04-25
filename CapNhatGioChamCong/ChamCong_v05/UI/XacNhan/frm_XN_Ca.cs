@@ -302,10 +302,8 @@ namespace ChamCong_v05.UI.XacNhan {
 				DateTime td_bd_ca1 = td_bd_ca3.Add(currShift.catruoc.WorkingTimeTS).Add(XL2._01giay);
 				DateTime td_kt_ca3va1 = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
 
-				XL.Vao(timevao, td_bd_ca3, CIO.ThuocNgayCong.Add(currShift.chophepTreTS),
-					bDuyetCPTre, out td_bd_lv, out tempTre);
-				XL.Raa(timeraa, td_kt_ca3va1, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, out td_kt_lv_chuaOT, out tempSom);
+				XL.Vao(timevao, td_bd_ca3, CIO.ThuocNgayCong.Add(currShift.GioiHanChoPhepTreSom.Onn),out td_bd_lv, out tempTre);
+				XL.Raa(timeraa, td_kt_ca3va1, CIO.ThuocNgayCong.Add(currShift.GioiHanChoPhepTreSom.Off),out td_kt_lv_chuaOT, out tempSom);
                 td_kt_lv_DaCoOT = td_kt_lv_chuaOT + new TimeSpan(0, soPhutLamThem, 0);
                 if (td_bd_lv > td_bd_ca3 + XL2._04gio || td_kt_lv_DaCoOT < td_bd_ca1 + XL2._02gio)
                 {
@@ -313,20 +311,19 @@ namespace ChamCong_v05.UI.XacNhan {
 				}
 				else {
 					XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV,  currShift.NightTime);//ver 4.0.0.4	
 				}
 			}
 			else {
 				DateTime td_kt_lv_chuaOT;
 				TimeSpan tempSom, tempOLai;
 
-				XL.Raa(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, out td_kt_lv_chuaOT, out tempSom);
+				XL.Raa(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.GioiHanChoPhepTreSom.Off), out td_kt_lv_chuaOT, out tempSom);
 				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.batdaulamthemTS), out tempOLai);
 				if (soPhutLamThem > tempOLai.TotalMinutes)
 					soPhutLamThem = Convert.ToInt32(tempOLai.TotalMinutes);
 				XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-					bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT);//ver 4.0.0.4	
+					bVaoTreLaCV, bRaaSomLaCV, currShift.NightTime);//ver 4.0.0.4	
 			}
 
 		}
@@ -415,8 +412,8 @@ namespace ChamCong_v05.UI.XacNhan {
 			XL.TinhTG_LV_LVCa3_LamThem1Ca(Ngay, 0, true, bDuyetVaoTre, bDuyetRaaSom,
 				bVaoTreLaCV, bRaaSomLaCV,//ver 4.0.0.4	
 				timevao, timeraa, selectedShift.Duty.Onn, selectedShift.Duty.Off,
-				selectedShift.chophepTreTS, selectedShift.chophepSomTS, selectedShift.batdaulamthemTS, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
-				nv.StartNT, nv.EndddNT,
+				selectedShift.GioiHanChoPhepTreSom.Onn, selectedShift.GioiHanChoPhepTreSom.Off, selectedShift.batdaulamthemTS, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
+				selectedShift.NightTime.Onn,  selectedShift.NightTime.Off,
 				out TD_BD_LV, out TD_KT_LV, out TD_KT_LV_ChuaOT, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3,
 				out TGThucTe, out TGGioLamViec, out TGVaoTre, out TGRaaSom,
 				out TGLamViecTrongCa,
