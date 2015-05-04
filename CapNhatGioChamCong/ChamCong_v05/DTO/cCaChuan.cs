@@ -18,7 +18,7 @@ namespace ChamCong_v05.DTO {
 		public override string ToString() {
 
 			return "\t" + Code + " \t" + ID + ";\ton:" + OnnTS.ToString() + "\toff:" + OffTS.ToString() + "\tOnIN:" + OnnInnTS + "\tCutIN:" + CutInnTS
-				+ "\tOnOUT" + OnnOutTS + "\tCutOUT" + CutOutTS + "\tTRE" + chophepTreTS + "\tSOM" + chophepSomTS + "\tOT" + batdaulamthemTS;
+				+ "\tOnOUT" + OnnOutTS + "\tCutOUT" + CutOutTS + "\tTRE" + chophepTreTS + "\tSOM" + chophepSomTS + "\tOT" + TOD_batdaulamthem;
 
 			//return MyUtility.GetAllValueOfObject(this);
 		}
@@ -30,13 +30,13 @@ namespace ChamCong_v05.DTO {
 	{
 		//public TimeSpan chophepTreTS { get; set; }
 		//public TimeSpan chophepSomTS { get; set; }
-		public TS GioiHanChoPhepTreSom;
-		public TimeSpan batdaulamthemTS { get; set; }
+		public TS TOD_ChoPhepTreSom;
+		public TimeSpan TOD_batdaulamthem { get; set; }
 		public int ID { get; set; }
 		public string Code { get; set; }
-		public TS Duty { get; set; }
-		public TS NhanDienVao { get; set; }
-		public TS NhanDienRaa { get; set; }
+		public TS TOD_Duty { get; set; }
+		public TS TOD_NhanDienVao { get; set; }
+		public TS TOD_NhanDienRaa { get; set; }
 		public TimeSpan LateeMin { get; set; }
 		public TimeSpan EarlyMin { get; set; }
 		public TimeSpan AfterOTMin { get; set; }
@@ -48,7 +48,7 @@ namespace ChamCong_v05.DTO {
 		public bool QuaDem { get; set; }
 		//public TimeSpan StartNT;//ver 4.0.0.4	start night time
 		//public TimeSpan EndddNT;//ver 4.0.0.4	enddd night time
-		public TS NightTime;
+		public TS TOD_NightTime;
 
 		public string MoTa;
 		public string KyHieuCC;
@@ -64,9 +64,9 @@ namespace ChamCong_v05.DTO {
 		public override string ToString()
 		{
 			var temp = "Code:{0}; Onn:{1} Off:{2} [{3} - {4}] [{5} - {6}]";
-			return string.Format(temp,Code, Duty.Onn.ToString(@"d\ hh\:mm"), Duty.Off.ToString(@"d\ hh\:mm"), 
-				NhanDienVao.Onn.ToString(@"d\ hh\:mm"), NhanDienVao.Off.ToString(@"d\ hh\:mm"),
-				NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), NhanDienRaa.Off.ToString(@"d\ hh\:mm"));
+			return string.Format(temp,Code, TOD_Duty.Onn.ToString(@"d\ hh\:mm"), TOD_Duty.Off.ToString(@"d\ hh\:mm"), 
+				TOD_NhanDienVao.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienVao.Off.ToString(@"d\ hh\:mm"),
+				TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm"));
 		}
 		public cCa(){}
 	}

@@ -24,7 +24,7 @@ namespace ChamCong_v05.UI4._5 {
 			#region gán datasource cho các datagrid
 
 			var dscaThuong = (from ca in XL.DSCa
-							  select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.Duty.Onn, RaaCa = ca.Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa, WorkingTime = ca.WorkingTimeTS }).ToList();
+							  select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.TOD_Duty.Onn, RaaCa = ca.TOD_Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa, WorkingTime = ca.WorkingTimeTS }).ToList();
 			var dsCaTuDo = new List<dynamic>();
 			cCa ca8h = new cCa { ID = int.MinValue + 0, Code = Properties.Settings.Default.shiftCodeCa8h, MoTa = string.Format(Settings.Default.MoTaCaTuDo, 8), Workingday = 1f };
 			cCa ca12h = new cCa { ID = int.MinValue + 1, Code = Properties.Settings.Default.shiftCodeCa12h, MoTa = string.Format(Settings.Default.MoTaCaTuDo, 12), Workingday = 1.5f };

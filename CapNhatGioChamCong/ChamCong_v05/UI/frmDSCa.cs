@@ -24,19 +24,19 @@ namespace ChamCong_v05.UI {
 			dgrd4h.AutoGenerateColumns = dgrd8h.AutoGenerateColumns = dgrd16h.AutoGenerateColumns = dgrdCaTuDo.AutoGenerateColumns = false;
 			var dsca4h = (from ca in XL.DSCa
 						  where Math.Abs(ca.Workingday - 0.5f) < 0.01f
-						  select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.Duty.Onn, RaaCa = ca.Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
+						  select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.TOD_Duty.Onn, RaaCa = ca.TOD_Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
 			//select ca).ToList();
 			var dsca8h = (from ca in XL.DSCa
 						  where Math.Abs(ca.Workingday - 1f) < 0.01f
-						  select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.Duty.Onn, RaaCa = ca.Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
+						  select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.TOD_Duty.Onn, RaaCa = ca.TOD_Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
 			//select ca).ToList();
 			var dsca12h = (from ca in XL.DSCa
 						   where Math.Abs(ca.Workingday - 1.5f) < 0.01f
-						   select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.Duty.Onn, RaaCa = ca.Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
+						   select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.TOD_Duty.Onn, RaaCa = ca.TOD_Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
 			//select ca).ToList();
 			var dsca16h = (from ca in XL.DSCa
 						   where Math.Abs(ca.Workingday - 2f) < 0.01f
-						   select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.Duty.Onn, RaaCa = ca.Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
+						   select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.TOD_Duty.Onn, RaaCa = ca.TOD_Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
 			//select ca).ToList();
 			var dsCaTuDo = new List<dynamic>();
 			cCa ca8h = new cCa { ID = int.MinValue + 0, Code = Properties.Settings.Default.shiftCodeCa8h, MoTa = string.Format(Settings.Default.MoTaCaTuDo, 8) };

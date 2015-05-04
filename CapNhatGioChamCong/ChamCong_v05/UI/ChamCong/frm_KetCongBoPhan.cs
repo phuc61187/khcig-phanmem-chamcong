@@ -263,18 +263,18 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								#region tạo shiftParams
 
 								var sp = CIO.ThuocCa;
-								shiftParams = string.Format(TemplateShiftParams, sp.Code, sp.ID, sp.Duty.Onn.ToString(@"d\ hh\:mm"), sp.Duty.Off.ToString(@"d\ hh\:mm"),
-															sp.NhanDienVao.Onn.ToString(@"d\ hh\:mm"), sp.NhanDienVao.Off.ToString(@"d\ hh\:mm"),
-															sp.NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), sp.NhanDienRaa.Off.ToString(@"d\ hh\:mm"),
-															sp.LateeMin.Minutes, sp.GioiHanChoPhepTreSom.Onn.ToString(@"d\ hh\:mm"),
-															sp.EarlyMin.Minutes, sp.GioiHanChoPhepTreSom.Off.ToString(@"d\ hh\:mm"),
-															sp.AfterOTMin.Minutes, sp.batdaulamthemTS.ToString(@"d\ hh\:mm"),
+								shiftParams = string.Format(TemplateShiftParams, sp.Code, sp.ID, sp.TOD_Duty.Onn.ToString(@"d\ hh\:mm"), sp.TOD_Duty.Off.ToString(@"d\ hh\:mm"),
+															sp.TOD_NhanDienVao.Onn.ToString(@"d\ hh\:mm"), sp.TOD_NhanDienVao.Off.ToString(@"d\ hh\:mm"),
+															sp.TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), sp.TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm"),
+															sp.LateeMin.Minutes, sp.TOD_ChoPhepTreSom.Onn.ToString(@"d\ hh\:mm"),
+															sp.EarlyMin.Minutes, sp.TOD_ChoPhepTreSom.Off.ToString(@"d\ hh\:mm"),
+															sp.AfterOTMin.Minutes, sp.TOD_batdaulamthem.ToString(@"d\ hh\:mm"),
 															sp.LunchMin.Minutes, sp.WorkingTimeTS.TotalMinutes.ToString("#####"),
 															sp.Workingday.ToString("0.0"), sp.DayCount, Convert.ToInt32(sp.QuaDem),
 															Convert.ToInt32(sp.IsExtended), Convert.ToInt32(sp.Is_CaTuDo), Convert.ToInt32(sp.TachCaDem));
 
 								thongtinCa = string.Format(templateThongTinCa,
-														   sp.Duty.Onn.ToString(@"d\ hh\:mm"), sp.Duty.Off.ToString(@"d\ hh\:mm"), sp.Code, sp.WorkingTimeTS.TotalMinutes.ToString("#####"),
+														   sp.TOD_Duty.Onn.ToString(@"d\ hh\:mm"), sp.TOD_Duty.Off.ToString(@"d\ hh\:mm"), sp.Code, sp.WorkingTimeTS.TotalMinutes.ToString("#####"),
 														   sp.LunchMin.Minutes, sp.Workingday.ToString("0.0#"),
 														   sp.LateeMin.Minutes, sp.EarlyMin.Minutes, Convert.ToInt32(sp.AfterOTMin.TotalMinutes), CIO.DaXN ? "đã" : "chưa",
 														   sp.Code, sp.KyHieuCC);

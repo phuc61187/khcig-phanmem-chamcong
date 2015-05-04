@@ -37,24 +37,27 @@ namespace ChamCong_v05.UI4._5 {
 			int kq = 0;
 			cCheckInOut cio = (cCheckInOut)row["cCheckInOut"];
 			if (soPhutLamThemDaXN > cio.TG5.OLai) return -1; // 
-			TS duty, gioiHanChoPhepTreSom;
+			TS TOD_Duty, gioiHanChoPhepTreSom;
 			if (cio.ShiftID < 0)
-			{
-				duty.Onn = new TimeSpan(cio.Vao.Time.TimeOfDay.Hours, cio.Vao.Time.TimeOfDay.Minutes, 0);
-				duty.Off = duty.Onn.Add(CaDuocChon.WorkingTimeTS);
+			{//ca tự do
+				TOD_Duty.Onn = new TimeSpan(cio.Vao.Time.TimeOfDay.Hours, cio.Vao.Time.TimeOfDay.Minutes, 0);
+				TOD_Duty.Off = TOD_Duty.Onn.Add(CaDuocChon.WorkingTimeTS);
 
-				//gioiHanChoPhepTreSom.Onn = duty.Onn.Add(XL2.ChoPhepTre);
-				//gioiHanChoPhepTreSom.Onn = duty.Off.Subtract(XL2.ChoPhepSom);
-//batdaulamthemTS LunchMin 
+				gioiHanChoPhepTreSom = new TS { Onn = (XL2.GioiHanChoPhepTreSom.Onn), Off = XL2.GioiHanChoPhepTreSom.Off };
+
 			}
-			//var temp1 = cio.ShiftID < 0 ? cio.Vao.Time.TimeOfDay cio.ThuocNgayCong.Add(CaDuocChon.Duty.Onn);
-			var temp2 = cio.ThuocNgayCong.Add(CaDuocChon.Duty.Off);
+			else
+			{//ca chuẩn
+				
+			}
+			//var temp1 = cio.ShiftID < 0 ? cio.Vao.Time.TimeOfDay cio.ThuocNgayCong.Add(CaDuocChon.TOD_Duty.Onn);
+			var temp2 = cio.ThuocNgayCong.Add(CaDuocChon.TOD_Duty.Off);
 			DateTime TD_BD_LV, TD_KT_LV, TD_KT_LV_TrongCa, TD_BD_LV_Ca3, TD_KT_LV_Ca3;
 			bool QuaDem;
 			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGGioLamViecTrongCa, TGOLai, TGLamBanDem;
 
 			XL.TinhTG_LV_LVCa3_LamThem_1CIO5(cio.ThuocNgayCong, cio.HaveINOUT, true, CheckChoPhepTre, CheckChoPhepSom, cio.Vao.Time, cio.Raa.Time,
-				CaDuocChon.Duty.Onn, CaDuocChon.Duty.Off, CaDuocChon.GioiHanChoPhepTreSom, CaDuocChon.batdaulamthemTS, CaDuocChon.LunchMin,
+				CaDuocChon.TOD_Duty.Onn, CaDuocChon.TOD_Duty.Off, CaDuocChon.TOD_ChoPhepTreSom, CaDuocChon.TOD_batdaulamthem, CaDuocChon.LunchMin,
 				soPhutLamThemDaXN,
 				XL2.NightTime22h, //tbd start NT, endNT
 				out TD_BD_LV, out TD_KT_LV, out  TD_KT_LV_TrongCa, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3, out TGThucTe, out TGGioLamViec,

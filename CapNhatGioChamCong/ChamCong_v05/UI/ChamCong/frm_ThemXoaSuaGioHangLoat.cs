@@ -437,8 +437,8 @@ namespace ChamCong_v05.UI.ChamCong {
 			{
 				if (cbCa.SelectedItem == null)return;
 				var item = (cCa) cbCa.SelectedItem;
-				dtpVao.Value = DateTime.Today.Date.Add(item.Duty.Onn);
-				dtpRaa.Value = DateTime.Today.Date.Add(item.Duty.Off);
+				dtpVao.Value = DateTime.Today.Date.Add(item.TOD_Duty.Onn);
+				dtpRaa.Value = DateTime.Today.Date.Add(item.TOD_Duty.Off);
 			} catch (Exception ex) //general try catch
 			{
 				lg.Error(string.Format("[{0}]_[{1}]\n", this.Name, System.Reflection.MethodBase.GetCurrentMethod().Name), ex);

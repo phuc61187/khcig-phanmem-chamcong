@@ -205,7 +205,7 @@ namespace ChamCong_v05.zMisc {
 					dynamic CaDuocChon = btnChonCa.Tag;
 					float congCaQuyDinh, congTre, congSom, congThucTeTrongCa, congThucTeNgoaiCa, congThucTe, tongCongBu, tongCongTru, dinhMucCong;
 					TimeSpan soPhutLamThemDaXN = (checkXNLamThem.Checked) ? timeEditXacNhanOT.Time.TimeOfDay : TimeSpan.Zero;
-					XL.TinhCong_1_CIO_5(CaDuocChon.Workingday, CaDuocChon.WorkingTime, XL2.ChoPhepTre, XL2.ChoPhepSom,
+					XL.TinhCong_1_CIO_5(CaDuocChon.Workingday, CaDuocChon.WorkingTime, XL2.GioiHanChoPhepTreSom.Onn, XL2.GioiHanChoPhepTreSom.Off,
 						checkVaoTreTinhCV.Checked, checkRaaSomTinhCV.Checked, soPhutLamThemDaXN, out congCaQuyDinh, out congTre, out congSom,
 						out congThucTeTrongCa, out congThucTeNgoaiCa, out congThucTe, out tongCongBu, out tongCongTru, out dinhMucCong);
 				}

@@ -293,33 +293,33 @@ namespace ChamCong_v05.UI.XacNhan {
 				DateTime td_bd_lv, td_kt_lv_chuaOT, td_kt_lv_DaCoOT;
 				TimeSpan tempSom, tempTre;
 
-				DateTime td_bd_ca3 = CIO.ThuocNgayCong.Add(currShift.Duty.Onn);
+				DateTime td_bd_ca3 = CIO.ThuocNgayCong.Add(currShift.TOD_Duty.Onn);
 				DateTime td_kt_ca3 = td_bd_ca3.Add(currShift.catruoc.WorkingTimeTS);
 				DateTime td_bd_ca1 = td_bd_ca3.Add(currShift.catruoc.WorkingTimeTS).Add(XL2._01giay);
-				DateTime td_kt_ca3va1 = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
+				DateTime td_kt_ca3va1 = CIO.ThuocNgayCong.Add(currShift.TOD_Duty.Off);
 
-				XL.Vao(timevao, td_bd_ca3, CIO.ThuocNgayCong.Add(currShift.GioiHanChoPhepTreSom.Onn), out td_bd_lv, out tempTre);
-				XL.Raa(timeraa, td_kt_ca3va1, CIO.ThuocNgayCong.Add(currShift.GioiHanChoPhepTreSom.Off), out td_kt_lv_chuaOT, out tempSom);
+				XL.Vao(timevao, td_bd_ca3, CIO.ThuocNgayCong.Add(currShift.TOD_ChoPhepTreSom.Onn), out td_bd_lv, out tempTre);
+				XL.Raa(timeraa, td_kt_ca3va1, CIO.ThuocNgayCong.Add(currShift.TOD_ChoPhepTreSom.Off), out td_kt_lv_chuaOT, out tempSom);
 				td_kt_lv_DaCoOT = td_kt_lv_chuaOT + new TimeSpan(0, soPhutLamThem, 0);
 				if (td_bd_lv > td_bd_ca3 + XL2._04gio || td_kt_lv_DaCoOT < td_bd_ca1 + XL2._02gio) {
 					MessageBox.Show(Resources.Text_KhongTheXacNhanCaTach_KoDuDieuKienTach, Resources.Caption_ThongBao, MessageBoxButtons.OK);
 				}
 				else {
 					XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, currShift.NightTime);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV, currShift.TOD_NightTime);//ver 4.0.0.4	
 				}
 			}
 			else {
 				DateTime td_kt_lv_chuaOT;
 				TimeSpan tempSom, tempOLai;
 
-				XL.Raa(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.GioiHanChoPhepTreSom.Off), out td_kt_lv_chuaOT, out tempSom);
-				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.AfterOTMin), out tempOLai);
+				XL.Raa(timeraa, CIO.ThuocNgayCong.Add(currShift.TOD_Duty.Off), CIO.ThuocNgayCong.Add(currShift.TOD_ChoPhepTreSom.Off), out td_kt_lv_chuaOT, out tempSom);
+				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.TOD_Duty.Off), CIO.ThuocNgayCong.Add(currShift.AfterOTMin), out tempOLai);
 				if (soPhutLamThem > tempOLai.TotalMinutes)
 					soPhutLamThem = Convert.ToInt32(tempOLai.TotalMinutes);
 
 				XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-					bVaoTreLaCV, bRaaSomLaCV, currShift.NightTime);//ver 4.0.0.4	
+					bVaoTreLaCV, bRaaSomLaCV, currShift.TOD_NightTime);//ver 4.0.0.4	
 			}
 
 		}
@@ -407,9 +407,9 @@ namespace ChamCong_v05.UI.XacNhan {
 			bool QuaDem;
 			XL.TinhTG_LV_LVCa3_LamThem1Ca(Ngay, 0, true, bDuyetVaoTre, bDuyetRaaSom,
 				bVaoTreLaCV, bRaaSomLaCV, //ver 4.0.0.4	
-				timevao, timeraa, selectedShift.Duty.Onn, selectedShift.Duty.Off,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
-				selectedShift.GioiHanChoPhepTreSom.Onn, selectedShift.GioiHanChoPhepTreSom.Off, selectedShift.batdaulamthemTS, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
-				selectedShift.NightTime.Onn, selectedShift.NightTime.Off,//ver 4.0.0.4
+				timevao, timeraa, selectedShift.TOD_Duty.Onn, selectedShift.TOD_Duty.Off,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+				selectedShift.TOD_ChoPhepTreSom.Onn, selectedShift.TOD_ChoPhepTreSom.Off, selectedShift.TOD_batdaulamthem, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
+				selectedShift.TOD_NightTime.Onn, selectedShift.TOD_NightTime.Off,//ver 4.0.0.4
 				out TD_BD_LV, out TD_KT_LV, out TD_KT_LV_ChuaOT, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3,
 				out TGThucTe, out TGGioLamViec, out TGVaoTre, out TGRaaSom,
 				out TGGioLamViecTrongCa,
@@ -519,8 +519,8 @@ namespace ChamCong_v05.UI.XacNhan {
 										dsCaChon.RemoveAll(item => (
 											CIO.TG.GioThuc.TotalHours < (item.WorkingTimeTS.TotalHours / 3d)
 											|| TimeStrVao.TimeOfDay < XL2._04h30 // xem [140515_3] 
-											|| TimeStrRaa < ngaydangchon.Add(item.Duty.Onn).Add(XL2._30phut)
-											|| TimeStrVao > ngaydangchon.Add(item.Duty.Off).Subtract(XL2._30phut)));
+											|| TimeStrRaa < ngaydangchon.Add(item.TOD_Duty.Onn).Add(XL2._30phut)
+											|| TimeStrVao > ngaydangchon.Add(item.TOD_Duty.Off).Subtract(XL2._30phut)));
 										// sau khi loại bỏ mới thêm 2 ca tự do vào
 										dsCaChon.Insert(0, caKDQD);
 										dsCaChon.Insert(1, CaDaiA);
@@ -629,14 +629,14 @@ namespace ChamCong_v05.UI.XacNhan {
 						if (CaMoi.Is_CaTuDo && CaMoi.ID == int.MinValue + 1)
 							XL.TaoCaTuDo(CaMoi, item.CIO.Vao.Time, XL2._12gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1.5f, "D");
 
-						if (item.CIO.Vao.Time > item.CIO.ThuocNgayCong.Add(CaMoi.Duty.Off) || item.CIO.Raa.Time < item.CIO.ThuocNgayCong.Add(CaMoi.Duty.Onn)) {
+						if (item.CIO.Vao.Time > item.CIO.ThuocNgayCong.Add(CaMoi.TOD_Duty.Off) || item.CIO.Raa.Time < item.CIO.ThuocNgayCong.Add(CaMoi.TOD_Duty.Onn)) {
 							AutoClosingMessageBox.Show(
 								string.Format("Không thể xác nhận ca {0} cho Nhân viên {1} vì có vào sau khi ca kết thúc hoặc ra trước khi ca bắt đầu.", CaMoi.Code, nhanvien_goc.TenNV),
 								"Lỗi", 3000);
 							continue;
 						}
 						TimeSpan olaithem;
-						XL.OLai(item.CIO.Raa.Time, item.CIO.ThuocNgayCong.Add(CaMoi.Duty.Off), item.CIO.ThuocNgayCong.Add(CaMoi.batdaulamthemTS), out olaithem);
+						XL.OLai(item.CIO.Raa.Time, item.CIO.ThuocNgayCong.Add(CaMoi.TOD_Duty.Off), item.CIO.ThuocNgayCong.Add(CaMoi.TOD_batdaulamthem), out olaithem);
 
 						#region tính số phút làm thêm
 						if ((olaithem.TotalMinutes < soPhutLamThem && soPhutLamThem > 0)) continue; //tbd

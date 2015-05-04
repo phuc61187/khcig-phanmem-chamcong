@@ -201,11 +201,11 @@ namespace ChamCong_v05.UI.KhaiBao {
 
 			#region chọn mặc định ca hành chánh cho cấp quản lý
 
-			cCa defaultShift = XL.DSCa.Find(item => item.Duty.Onn == XL2._07h30 && item.Duty.Off == XL2._16gio && Math.Abs(item.Workingday - 1f) < 0.01f); //tbd
+			cCa defaultShift = XL.DSCa.Find(item => item.TOD_Duty.Onn == XL2._07h30 && item.TOD_Duty.Off == XL2._16gio && Math.Abs(item.Workingday - 1f) < 0.01f); //tbd
 			tbCa.Tag = defaultShift;
 			tbCa.Text = defaultShift.Code;
-			dtpBDLam.Value = DateTime.Today.Date.Add(defaultShift.Duty.Onn);
-			dtpKTLam.Value = DateTime.Today.Date.Add(defaultShift.Duty.Off);
+			dtpBDLam.Value = DateTime.Today.Date.Add(defaultShift.TOD_Duty.Onn);
+			dtpKTLam.Value = DateTime.Today.Date.Add(defaultShift.TOD_Duty.Off);
 
 			#endregion
 		}
@@ -364,8 +364,8 @@ namespace ChamCong_v05.UI.KhaiBao {
 						else if (ca.IsExtended || sophutOT > 0 || match == false) {
 							// các trường hợp phải xác nhận là ca tự do, ca mở rộng, ca có làm thêm và giờ nhập ko nằm trong khoảng nhận diện
 							if (ca.TachCaDem) {
-								var timeOutCa3 = ngay.Add(ca.catruoc.Duty.Off);
-								var timeInnCa1 = ngay.AddDays(1d).Add(ca.casauuu.Duty.Onn).Add(XL2._01giay);
+								var timeOutCa3 = ngay.Add(ca.catruoc.TOD_Duty.Off);
+								var timeInnCa1 = ngay.AddDays(1d).Add(ca.casauuu.TOD_Duty.Onn).Add(XL2._01giay);
 								DAO5.ThemGioChoNV(nv.MaCC, TimeStrInn, "I", 21, lydo, ghichu);
 								DAO5.ThemGioChoNV(nv.MaCC, timeOutCa3, "O", 22, "Hệ thống tự động thêm giờ đệm tách ca qua ngày", "Thực hiện tự động");
 								DAO5.ThemGioChoNV(nv.MaCC, timeInnCa1, "I", 21, "Hệ thống tự động thêm giờ đệm tách ca qua ngày", "Thực hiện tự động");
@@ -422,17 +422,17 @@ namespace ChamCong_v05.UI.KhaiBao {
 /*
 			if (ca.ID < 0 )
 			{
-				ca.Duty = new TS {Onn = timespanBD, Off = timeSpanKT};
+				ca.TOD_Duty = new TS {Onn = timespanBD, Off = timeSpanKT};
 				XL.TaoCaTuDo(ca, timeBD, XL2._08gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1f, "8", false);//fix lỗi 
 			}
 */
 			if (ca.ID < int.MinValue+100)
 			{
-				//ca.Duty = new TS {Onn = timespanBD, Off = timeSpanKT};
+				//ca.TOD_Duty = new TS {Onn = timespanBD, Off = timeSpanKT};
 				//XL.TaoCaTuDo(ca, timeBD, XL2._08gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1f, "8", false);//fix lỗi 
 				XL.TaoCaTuDo(ca, timeBD);
 			}
-			else if (timeBD > ngay.Add(ca.Duty.Off) || timeKT < ngay.Add(ca.Duty.Onn)) {
+			else if (timeBD > ngay.Add(ca.TOD_Duty.Off) || timeKT < ngay.Add(ca.TOD_Duty.Onn)) {
 				goto point;
 			}
 			//var sophutOT = (checkXNLamThem.Checked && numSoPhutOT.Value > 0) ? (int)numSoPhutOT.Value : 0;
@@ -447,12 +447,12 @@ namespace ChamCong_v05.UI.KhaiBao {
 
 			tongGiothuc = timeKT - timeBD;
 			TimeSpan TGGioLamViecTrongCa;
-			XL.Vao(timeBD, ngay.Add(ca.Duty.Onn), ngay.Add(ca.GioiHanChoPhepTreSom.Onn), out td_batdau_lv, out tre);
-			XL.Raa(timeKT, ngay.Add(ca.Duty.Off), ngay.Add(ca.GioiHanChoPhepTreSom.Off), out td_ketthuc_lv_chuaOT, out som);
+			XL.Vao(timeBD, ngay.Add(ca.TOD_Duty.Onn), ngay.Add(ca.TOD_ChoPhepTreSom.Onn), out td_batdau_lv, out tre);
+			XL.Raa(timeKT, ngay.Add(ca.TOD_Duty.Off), ngay.Add(ca.TOD_ChoPhepTreSom.Off), out td_ketthuc_lv_chuaOT, out som);
 			td_ketthuc_lv_daCoOT = td_ketthuc_lv_chuaOT + new TimeSpan(0, sophutOT, 0);
 			if (timeKT < td_ketthuc_lv_daCoOT)
 			{
-				timeKT = ngay.Add(ca.Duty.Off).Add(new TimeSpan(0, sophutOT, 0));
+				timeKT = ngay.Add(ca.TOD_Duty.Off).Add(new TimeSpan(0, sophutOT, 0));
 				dtpKTLam.Value = timeKT;
 			}
 			XL.Tinh_TGLamViecTrongCa(td_batdau_lv, td_ketthuc_lv_chuaOT, ca.LunchMin, out TGGioLamViecTrongCa);
@@ -488,8 +488,8 @@ namespace ChamCong_v05.UI.KhaiBao {
 			tbCa.Text = (currShift != null) ? currShift.Code : string.Empty;
 			//if (currShift != null && currShift.ID != int.MinValue) {
 			if (currShift != null && currShift.ID > int.MinValue + 100) {//ver 4.0.0.4	ko phải ca tự do thì điền giờ chuẩn theo quy định ca vào
-				dtpBDLam.Value = DateTime.Today.Date.Add(currShift.Duty.Onn);
-				dtpKTLam.Value = DateTime.Today.Date.Add(currShift.Duty.Off);
+				dtpBDLam.Value = DateTime.Today.Date.Add(currShift.TOD_Duty.Onn);
+				dtpKTLam.Value = DateTime.Today.Date.Add(currShift.TOD_Duty.Off);
 			}
 			else if (currShift != null && currShift.ID < int.MinValue + 100) // ca tự do thì mặc định check VaoTreLaCV, RaSomLaCV
 			{

@@ -93,8 +93,8 @@ namespace ChamCong_v05.BUS {
 				CIO.TD = new ThoiDiem();
 				CIO.TG = new ThoiGian();
 				TinhTG_LV_LVCa3_LamThem1Ca(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom, CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,
-					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.Duty.Onn, CIO.ThuocCa.Duty.Off, CIO.ThuocCa.GioiHanChoPhepTreSom.Onn, CIO.ThuocCa.GioiHanChoPhepTreSom.Off,
-					CIO.ThuocCa.batdaulamthemTS, CIO.ThuocCa.LunchMin, new TimeSpan(0, CIO.OTMin, 0), startNT, endddNT,
+					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.TOD_Duty.Onn, CIO.ThuocCa.TOD_Duty.Off, CIO.ThuocCa.TOD_ChoPhepTreSom.Onn, CIO.ThuocCa.TOD_ChoPhepTreSom.Off,
+					CIO.ThuocCa.TOD_batdaulamthem, CIO.ThuocCa.LunchMin, new TimeSpan(0, CIO.OTMin, 0), startNT, endddNT,
 					out CIO.TD.BD_LV, out CIO.TD.KT_LV, out CIO.TD.KT_LV_ChuaOT, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
 				out CIO.TG.GioThucTe5, out CIO.TG.GioLamViec5, out CIO.TG.VaoTre, out CIO.TG.RaaSom,
 				out CIO.TG.GioLVTrongCa5,//ver 4.0.0.4	
@@ -499,17 +499,17 @@ namespace ChamCong_v05.BUS {
 					Code = sShiftCode,
 					DayCount = iDayCount,
 					QuaDem = (iDayCount == 1),
-					Duty = new TS { Onn = tsOnDuty, Off = tOffDuty },
-					NhanDienVao = new TS { Onn = tOnTimeIn, Off = tCutIn },
-					NhanDienRaa = new TS { Onn = tOnTimeOut, Off = tCutOut },
+					TOD_Duty = new TS { Onn = tsOnDuty, Off = tOffDuty },
+					TOD_NhanDienVao = new TS { Onn = tOnTimeIn, Off = tCutIn },
+					TOD_NhanDienRaa = new TS { Onn = tOnTimeOut, Off = tCutOut },
 					AfterOTMin = tAfterOT,
 					//LateeMin = tLateGrace,
 					//EarlyMin = tEarlyGrace,
 					Workingday = (Single)row["Workingday"],
 					WorkingTimeTS = new TimeSpan(0, tempWorkingTime, 0),
 					ShowPosition = iShowPosition,
-					GioiHanChoPhepTreSom = new TS { Onn = tsOnDuty + (tLateGrace), Off = tOffDuty - tEarlyGrace },
-					batdaulamthemTS = tOffDuty + tAfterOT,
+					TOD_ChoPhepTreSom = new TS { Onn = tsOnDuty + (tLateGrace), Off = tOffDuty - tEarlyGrace },
+					TOD_batdaulamthem = tOffDuty + tAfterOT,
 					LunchMin = tOffLunch.Subtract(tOnLunch),
 					TachCaDem = tachcadem,
 					idCaTruoc = idCaTruoc,
@@ -518,7 +518,7 @@ namespace ChamCong_v05.BUS {
 					MoTa = row["Description"].ToString(),
 					IsExtended = isextend,
 					Is_CaTuDo = false,
-					NightTime = new TS { Onn = timespanStartNightTime, Off = timespanEndddNightTime }
+					TOD_NightTime = new TS { Onn = timespanStartNightTime, Off = timespanEndddNightTime }
 				};
 				#endregion
 

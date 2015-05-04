@@ -302,7 +302,7 @@ namespace ChamCong_v05.UI.Admin {
 					WorkingTimeTS = new TimeSpan(0, tempWorkingTime, 0),
 					chophepTreTS = tsOnDuty.Add(tLateGrace),
 					chophepSomTS = tOffDuty - tEarlyGrace,
-					batdaulamthemTS = tOffDuty + tAfterOT,//[TBD] thay tOffDuty + XL2._30phut thành tempOffDuty + tempAfterOT --> đã thay
+					TOD_batdaulamthem = tOffDuty + tAfterOT,//[TBD] thay tOffDuty + XL2._30phut thành tempOffDuty + tempAfterOT --> đã thay
 					LunchMin = tOffLunch.Subtract(tOnLunch),
 					KyHieuCC = kyhieucc,
 				};

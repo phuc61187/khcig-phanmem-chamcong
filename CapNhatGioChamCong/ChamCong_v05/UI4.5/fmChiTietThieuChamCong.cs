@@ -525,8 +525,8 @@ namespace ChamCong_v05.zMisc {
 			}
 			else {//ca chuẩn
 				cCa ca = selectedCa;
-				timeVao = ca.Duty.Onn;
-				timeRaa = ca.Duty.Off;
+				timeVao = ca.TOD_Duty.Onn;
+				timeRaa = ca.TOD_Duty.Off;
 			}
 		}
 

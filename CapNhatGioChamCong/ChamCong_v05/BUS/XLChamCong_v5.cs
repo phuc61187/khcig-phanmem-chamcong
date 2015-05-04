@@ -56,9 +56,9 @@ namespace ChamCong_v05.BUS {
 			//var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
 			Ca = new cCa { ID = LoaiCaTuDo, };
 			var temp = new TimeSpan(CheckInTime.TimeOfDay.Hours, CheckInTime.TimeOfDay.Minutes, 0);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
-			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.Onn.Add(XL2._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
+			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.TOD_Duty.Onn.Add(XL2._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
 			if (LoaiCaTuDo == int.MinValue + 0) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._08gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._08gio) };
 				Ca.WorkingTimeTS = XL2._08gio;
 				Ca.Workingday = 1f;
 				Ca.Code = mySetting.Default.shiftCodeCa8h;
@@ -67,7 +67,7 @@ namespace ChamCong_v05.BUS {
 				Ca.AfterOTMin = XL2.LamThemAfterOT;
 			}
 			else if (LoaiCaTuDo == int.MinValue + 1) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._12gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._12gio) };
 				Ca.WorkingTimeTS = XL2._12gio;
 				Ca.Workingday = 1.5f;
 				Ca.Code = mySetting.Default.shiftCodeCa12h;
@@ -75,7 +75,7 @@ namespace ChamCong_v05.BUS {
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa12h;
 			}
 			else if (LoaiCaTuDo == int.MinValue + 2) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._04gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._04gio) };
 				Ca.WorkingTimeTS = XL2._04gio;
 				Ca.Workingday = 0.5f;
 				Ca.Code = mySetting.Default.shiftCodeCa4h;
@@ -83,18 +83,18 @@ namespace ChamCong_v05.BUS {
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa4h;
 			}
 			else if (LoaiCaTuDo == int.MinValue + 3) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._16gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._16gio) };
 				Ca.WorkingTimeTS = XL2._16gio;
 				Ca.Workingday = 2f;
 				Ca.Code = mySetting.Default.shiftCodeCa16h;
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 16);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa16h;
 			}
-			Ca.GioiHanChoPhepTreSom.Onn = Ca.Duty.Onn + XL2.GioiHanChoPhepTreSom.Onn;
-			Ca.GioiHanChoPhepTreSom.Off = Ca.Duty.Off - XL2.GioiHanChoPhepTreSom.Off;
-			Ca.batdaulamthemTS = Ca.Duty.Off + Ca.AfterOTMin;
+			Ca.TOD_ChoPhepTreSom.Onn = Ca.TOD_Duty.Onn + XL2.GioiHanChoPhepTreSom.Onn;
+			Ca.TOD_ChoPhepTreSom.Off = Ca.TOD_Duty.Off - XL2.GioiHanChoPhepTreSom.Off;
+			Ca.TOD_batdaulamthem = Ca.TOD_Duty.Off + Ca.AfterOTMin;
 			Ca.Is_CaTuDo = true;
-			Ca.NightTime = XL2.NightTime22h;
+			Ca.TOD_NightTime = XL2.NightTime22h;
 		}
 
 		public static void XemCong_v08_2(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {

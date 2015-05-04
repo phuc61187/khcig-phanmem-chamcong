@@ -574,8 +574,8 @@ namespace ChamCong_v05.UI.ChamCong {
 				{
 					ngay = ngay.AddDays(-1d);
 				}
-				DateTime vao = ngay.Add(currShift.Duty.Onn);
-				DateTime raa = ngay.Add(currShift.Duty.Off);
+				DateTime vao = ngay.Add(currShift.TOD_Duty.Onn);
+				DateTime raa = ngay.Add(currShift.TOD_Duty.Off);
 				dtpVao_Them.Value = vao;
 				dtpRaa_Them.Value = raa;
 			}
@@ -605,9 +605,9 @@ namespace ChamCong_v05.UI.ChamCong {
 			}
 			else {
 				// nếu ko có check thì nút chọn ca đã bị disable nên nếu click được thì chắc chắn đang thuộc 1 check-> chắc chắn thuộc 1CIO
-				dtpGioMoi_Sua.Value = (check.Type == "I") ? ngay.Add(currShift.Duty.Onn) : ngay.Add(currShift.Duty.Off);
+				dtpGioMoi_Sua.Value = (check.Type == "I") ? ngay.Add(currShift.TOD_Duty.Onn) : ngay.Add(currShift.TOD_Duty.Off);
 				if (check.Type == "O" && currShift.QuaDem && CIO != null && CIO.HaveINOUT == -2) {
-					dtpGioMoi_Sua.Value = ngay.AddDays(-1d).Add(currShift.Duty.Off);
+					dtpGioMoi_Sua.Value = ngay.AddDays(-1d).Add(currShift.TOD_Duty.Off);
 				}
 			}
 

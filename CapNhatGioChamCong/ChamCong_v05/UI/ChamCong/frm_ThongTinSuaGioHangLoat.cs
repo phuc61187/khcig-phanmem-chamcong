@@ -39,7 +39,7 @@ namespace ChamCong_v05.UI.ChamCong {
 		void dateTimeGioMoi_ValueChanged(object sender, EventArgs e) {
 			cCa tmpCa = (cCa)cbCa.SelectedItem;
 			bool tmpCheckIn = radVao.Checked;
-			if (!((tmpCheckIn && dateTimeGioMoi.Value.TimeOfDay == tmpCa.Duty.Onn) || (tmpCheckIn == false && dateTimeGioMoi.Value.TimeOfDay == tmpCa.Duty.Off))) {
+			if (!((tmpCheckIn && dateTimeGioMoi.Value.TimeOfDay == tmpCa.TOD_Duty.Onn) || (tmpCheckIn == false && dateTimeGioMoi.Value.TimeOfDay == tmpCa.TOD_Duty.Off))) {
 				cbCa.SelectedIndexChanged -= cbCa_SelectedIndexChanged;
 				cbCa.SelectedIndex = 0;
 				cbCa.Refresh();
@@ -49,7 +49,7 @@ namespace ChamCong_v05.UI.ChamCong {
 
 		private void cbCa_SelectedIndexChanged(object sender, EventArgs e) {
 			cCa tmpCa = (cCa)cbCa.SelectedItem;
-			DateTime gio = (radVao.Checked) ? dateTimeGioMoi.Value.Date.Add(tmpCa.Duty.Onn) : dateTimeGioMoi.Value.Date.Add(tmpCa.Duty.Off);
+			DateTime gio = (radVao.Checked) ? dateTimeGioMoi.Value.Date.Add(tmpCa.TOD_Duty.Onn) : dateTimeGioMoi.Value.Date.Add(tmpCa.TOD_Duty.Off);
 
 			dateTimeGioMoi.Value = new DateTime(gio.Year, gio.Month, gio.Day, gio.Hour, gio.Minute, 0);
 
@@ -74,7 +74,7 @@ namespace ChamCong_v05.UI.ChamCong {
 		private void switchButton1_ValueChanged(object sender, EventArgs e) {
 			cCa tmpCa = (cCa)cbCa.SelectedItem;
 			bool tmpKieuGioVao = radVao.Checked;
-			if (!((tmpKieuGioVao && dateTimeGioMoi.Value.TimeOfDay == tmpCa.Duty.Onn) || (tmpKieuGioVao == false && dateTimeGioMoi.Value.TimeOfDay == tmpCa.Duty.Off))) {
+			if (!((tmpKieuGioVao && dateTimeGioMoi.Value.TimeOfDay == tmpCa.TOD_Duty.Onn) || (tmpKieuGioVao == false && dateTimeGioMoi.Value.TimeOfDay == tmpCa.TOD_Duty.Off))) {
 				cbCa.SelectedIndexChanged -= cbCa_SelectedIndexChanged;
 				cbCa.SelectedIndex = 0;
 				cbCa.Refresh();

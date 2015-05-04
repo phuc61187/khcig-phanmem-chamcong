@@ -152,9 +152,9 @@ namespace ChamCong_v05.BUS {
 		public static void TaoCaTuDo(cCa Ca, DateTime CheckInTime) {
 			//var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
 			var temp = new TimeSpan(CheckInTime.TimeOfDay.Hours, CheckInTime.TimeOfDay.Minutes, 0);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
-			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.Onn.Add(XL2._1ngay); //ThuocCa 3 , ThuocCa 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
+			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.TOD_Duty.Onn.Add(XL2._1ngay); //ThuocCa 3 , ThuocCa 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
 			if (Ca.ID == int.MinValue + 0) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._08gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._08gio) };
 				Ca.WorkingTimeTS = XL2._08gio;
 				Ca.Workingday = 1f;
 				Ca.Code = mySetting.Default.shiftCodeCa8h;
@@ -162,7 +162,7 @@ namespace ChamCong_v05.BUS {
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa8h;
 			}
 			else if (Ca.ID == int.MinValue + 1) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._12gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._12gio) };
 				Ca.WorkingTimeTS = XL2._12gio;
 				Ca.Workingday = 1.5f;
 				Ca.Code = mySetting.Default.shiftCodeCa12h;
@@ -170,7 +170,7 @@ namespace ChamCong_v05.BUS {
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa12h;
 			}
 			else if (Ca.ID == int.MinValue + 2) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._04gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._04gio) };
 				Ca.WorkingTimeTS = XL2._04gio;
 				Ca.Workingday = 0.5f;
 				Ca.Code = mySetting.Default.shiftCodeCa4h;
@@ -178,7 +178,7 @@ namespace ChamCong_v05.BUS {
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa4h;
 			}
 			else if (Ca.ID == int.MinValue + 3) {
-				Ca.Duty = new TS { Onn = temp, Off = temp.Add(XL2._16gio) };
+				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._16gio) };
 				Ca.WorkingTimeTS = XL2._16gio;
 				Ca.Workingday = 2f;
 				Ca.Code = mySetting.Default.shiftCodeCa16h;
@@ -187,11 +187,11 @@ namespace ChamCong_v05.BUS {
 			}
 
 			Ca.AfterOTMin = XL2.LamThemAfterOT;
-			Ca.GioiHanChoPhepTreSom.Onn = Ca.Duty.Onn.Add(XL2.GioiHanChoPhepTreSom.Onn);
-			Ca.GioiHanChoPhepTreSom.Off = Ca.Duty.Off.Subtract(XL2.GioiHanChoPhepTreSom.Off);
-			Ca.batdaulamthemTS = Ca.Duty.Off.Add(XL2.LamThemAfterOT);
-			Ca.DayCount = Ca.Duty.Off.Days;
-			Ca.QuaDem = (Ca.Duty.Off.Days == 1);
+			Ca.TOD_ChoPhepTreSom.Onn = Ca.TOD_Duty.Onn.Add(XL2.GioiHanChoPhepTreSom.Onn);
+			Ca.TOD_ChoPhepTreSom.Off = Ca.TOD_Duty.Off.Subtract(XL2.GioiHanChoPhepTreSom.Off);
+			Ca.TOD_batdaulamthem = Ca.TOD_Duty.Off.Add(XL2.LamThemAfterOT);
+			Ca.DayCount = Ca.TOD_Duty.Off.Days;
+			Ca.QuaDem = (Ca.TOD_Duty.Off.Days == 1);
 			Ca.LunchMin = XL2._0gio;
 		}
 
@@ -489,7 +489,7 @@ namespace ChamCong_v05.BUS {
 						Type = "O",
 						MachineNo = 22,
 						Source = "PC",
-						Time = ThuocNgayCong.Add(ThuocCa_Ca3.Duty.Off),
+						Time = ThuocNgayCong.Add(ThuocCa_Ca3.TOD_Duty.Off),
 						MaCC = CIO.Vao.MaCC,
 					}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
 					CheckVao1 = new cCheck {
@@ -497,7 +497,7 @@ namespace ChamCong_v05.BUS {
 						Type = "I",
 						MachineNo = 21,
 						Source = "PC",
-						Time = ThuocNgayCong.AddDays(1d).Date.Add(ThuocCa_Ca1.Duty.Onn).Add(XL2._01giay),
+						Time = ThuocNgayCong.AddDays(1d).Date.Add(ThuocCa_Ca1.TOD_Duty.Onn).Add(XL2._01giay),
 						MaCC = CIO.Raa.MaCC,
 					}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
 					var raaca1 = CIO.Raa;
@@ -514,19 +514,19 @@ namespace ChamCong_v05.BUS {
 
 
 		public static cCa KiemtraThuocCa(DateTime t_vao, DateTime t_raa, DateTime ngay, List<cCa> dsCa) {
-			return dsCa.FirstOrDefault(ca => t_vao >= ngay.Add(ca.NhanDienVao.Onn) && t_vao <= ngay.Add(ca.NhanDienVao.Off)
-											 && t_raa >= ngay.Add(ca.NhanDienRaa.Onn) && t_raa <= ngay.Add(ca.NhanDienRaa.Off));
+			return dsCa.FirstOrDefault(ca => t_vao >= ngay.Add(ca.TOD_NhanDienVao.Onn) && t_vao <= ngay.Add(ca.TOD_NhanDienVao.Off)
+											 && t_raa >= ngay.Add(ca.TOD_NhanDienRaa.Onn) && t_raa <= ngay.Add(ca.TOD_NhanDienRaa.Off));
 		}
 
 		public static bool KiemtraThuocCa(DateTime t_vao, DateTime t_raa, DateTime ngay, cCa ca) {
-			return (t_vao >= ngay.Add(ca.NhanDienVao.Onn) && t_vao <= ngay.Add(ca.NhanDienVao.Off)
-											 && t_raa >= ngay.Add(ca.NhanDienRaa.Onn) && t_raa <= ngay.Add(ca.NhanDienRaa.Off));
+			return (t_vao >= ngay.Add(ca.TOD_NhanDienVao.Onn) && t_vao <= ngay.Add(ca.TOD_NhanDienVao.Off)
+											 && t_raa >= ngay.Add(ca.TOD_NhanDienRaa.Onn) && t_raa <= ngay.Add(ca.TOD_NhanDienRaa.Off));
 		}
 
 		public static List<cCa> Tim_DSCa_NhanDienDuoc(DateTime time, DateTime ngay, int HaveINOUT, List<cCa> dsCa) {
 			var kq = (HaveINOUT == -1)
-						 ? dsCa.FindAll(ca => time >= ngay.Add(ca.NhanDienVao.Onn) && time <= ngay.Add(ca.NhanDienVao.Off))
-						 : dsCa.FindAll(ca => time >= ngay.Add(ca.NhanDienRaa.Onn) && time <= ngay.Add(ca.NhanDienRaa.Off));
+						 ? dsCa.FindAll(ca => time >= ngay.Add(ca.TOD_NhanDienVao.Onn) && time <= ngay.Add(ca.TOD_NhanDienVao.Off))
+						 : dsCa.FindAll(ca => time >= ngay.Add(ca.TOD_NhanDienRaa.Onn) && time <= ngay.Add(ca.TOD_NhanDienRaa.Off));
 			return kq;
 		}
 
@@ -567,9 +567,9 @@ namespace ChamCong_v05.BUS {
 		public static void TinhTG_LV_LVCa3_LamThem_1CIO5(DateTime ThuocNgayCong, int HaveINOUT, Boolean DaXN,
 			bool KoTruVaoTre, bool KoTruRaaSom,//bool VaotreTinhCV, bool RaaSomTinhCV, //ver 4.0.0.4	
 			DateTime Vao, DateTime Raa,
-			TimeSpan DutyOnn, TimeSpan DutyOff, TS GioiHanChoPhepTreSom, TimeSpan batdaulamthemTS,
+			TimeSpan TOD_DutyOnn, TimeSpan TOD_DutyOff, TS TOD_ChoPhepTreSom, TimeSpan TOD_BatDauOT,
 			TimeSpan LunchMin, TimeSpan SoPhutLamThemDaXN,
-			TS NightTime, //ver 4.0.0.4
+			TS TOD_NightTime, //ver 4.0.0.4
 			out DateTime TD_BD_LV, out DateTime TD_KT_LV, out DateTime TD_KT_LV_TrongCa,
 			out DateTime TD_BD_LV_Ca3, out DateTime TD_KT_LV_Ca3,
 			out TimeSpan TGThucTe, out TimeSpan TGGioLamViec, out TimeSpan TGVaoTre, out TimeSpan TGRaaSom,
@@ -596,13 +596,13 @@ namespace ChamCong_v05.BUS {
 
 			if (HaveINOUT < 0) return;
 
-			var TD_BD_Ca = ThuocNgayCong.Add(DutyOnn);
-			var TD_KT_Ca = ThuocNgayCong.Add(DutyOff);//off duty này đã bao gồm daycount được công bên trong
-			var thoidiem_BD_tinhtre = ThuocNgayCong.Add(GioiHanChoPhepTreSom.Onn);
-			var thoidiem_BD_tinhsom = ThuocNgayCong.Add(GioiHanChoPhepTreSom.Off);
-			var thoidiem_BD_tinhOLai = ThuocNgayCong.Add(batdaulamthemTS);
-			var tmpBDLamDem = ThuocNgayCong.Add(NightTime.Onn);//ver 4.0.0.4
-			var tmpKTLamDem = ThuocNgayCong.AddDays(1d).Add(NightTime.Off);//ver 4.0.0.4
+			var TD_BD_Ca = ThuocNgayCong.Add(TOD_DutyOnn);
+			var TD_KT_Ca = ThuocNgayCong.Add(TOD_DutyOff);//off duty này đã bao gồm daycount được công bên trong
+			var thoidiem_BD_tinhtre = ThuocNgayCong.Add(TOD_ChoPhepTreSom.Onn);
+			var thoidiem_BD_tinhsom = ThuocNgayCong.Add(TOD_ChoPhepTreSom.Off);
+			var thoidiem_BD_tinhOLai = ThuocNgayCong.Add(TOD_BatDauOT);
+			var tmpBDLamDem = ThuocNgayCong.Add(TOD_NightTime.Onn);//ver 4.0.0.4
+			var tmpKTLamDem = ThuocNgayCong.AddDays(1d).Add(TOD_NightTime.Off);//ver 4.0.0.4
 
 			bool quadem;
 
@@ -658,8 +658,8 @@ namespace ChamCong_v05.BUS {
 				if (CIO.HaveINOUT < 0) continue;
 				if (CIO.DaXN) CIO.TG5.SoPhutLamThem5 = new TimeSpan(0, CIO.OTMin, 0);
 				TinhTG_LV_LVCa3_LamThem_1CIO5(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
-					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.Duty.Onn, CIO.ThuocCa.Duty.Off, CIO.ThuocCa.GioiHanChoPhepTreSom,
-					CIO.ThuocCa.batdaulamthemTS, CIO.ThuocCa.LunchMin, CIO.TG5.SoPhutLamThem5, CIO.ThuocCa.NightTime,
+					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.TOD_Duty.Onn, CIO.ThuocCa.TOD_Duty.Off, CIO.ThuocCa.TOD_ChoPhepTreSom,
+					CIO.ThuocCa.TOD_batdaulamthem, CIO.ThuocCa.LunchMin, CIO.TG5.SoPhutLamThem5, CIO.ThuocCa.TOD_NightTime,
 					out CIO.TD5.BD_LV, out CIO.TD5.KT_LV, out CIO.TD5.KT_LV_ChuaOT, out CIO.TD5.BD_LV_Ca3, out CIO.TD5.KT_LV_Ca3,
 					out CIO.TG5.GioThucTe5, out CIO.TG5.TongGioLamViec5, out CIO.TG5.VaoTre, out CIO.TG5.RaaSom,
 					out CIO.TG5.GioLVTrongCa5,//ver 4.0.0.4	
