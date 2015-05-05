@@ -186,7 +186,8 @@ namespace ChamCong_v05.BUS {
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa16h;
 			}
 
-			Ca.AfterOTMin = XL2.LamThemAfterOT;
+			//Ca.AfterOTMin = XL2.LamThemAfterOT;
+			Ca.SoPhutToiThieuTinhOT = XL2.defaultAfterOTMin;
 			Ca.TOD_ChoPhepTreSom.Onn = Ca.TOD_Duty.Onn.Add(XL2.GioiHanChoPhepTreSom.Onn);
 			Ca.TOD_ChoPhepTreSom.Off = Ca.TOD_Duty.Off.Subtract(XL2.GioiHanChoPhepTreSom.Off);
 			Ca.TOD_batdaulamthem = Ca.TOD_Duty.Off.Add(XL2.LamThemAfterOT);

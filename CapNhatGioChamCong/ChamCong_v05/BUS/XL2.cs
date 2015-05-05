@@ -63,7 +63,11 @@ namespace ChamCong_v05.BUS {
 		public static TimeSpan TGLamDemToiThieu;
 		public static TS GioiHanChoPhepTreSom;
 		//public static TimeSpan ChoPhepSom;
-		public static TimeSpan LamThemAfterOT;
+		public static int defaultAfterOTMin = -1;
+		public static TimeSpan LamThemAfterOT
+		{
+			get { return defaultAfterOTMin == -1 ? TimeSpan.Zero : new TimeSpan(0, defaultAfterOTMin, 0); }
+		}
 		public static List<cPhongBan> TatcaPhongban = new List<cPhongBan>();
 		public static List<int> QuyenThaoTac;
 

@@ -9,38 +9,57 @@ namespace ChamCong_v05.DTO {
 		public List<List<cCa>> DSCaThu = new List<List<cCa>>(7);
 		public List<List<cCa>> DSCaMRThu = new List<List<cCa>>(7);
 		public TGLamDemTheoQuyDinh TGLamDemTheoQuyDinh = TGLamDemTheoQuyDinh._22h00;
-		public cShiftSchedule()
-		{
+		public cShiftSchedule() {
 		}
 
 	}
-/*
-		public override string ToString() {
+	/*
+			public override string ToString() {
 
-			return "\t" + Code + " \t" + ID + ";\ton:" + OnnTS.ToString() + "\toff:" + OffTS.ToString() + "\tOnIN:" + OnnInnTS + "\tCutIN:" + CutInnTS
-				+ "\tOnOUT" + OnnOutTS + "\tCutOUT" + CutOutTS + "\tTRE" + chophepTreTS + "\tSOM" + chophepSomTS + "\tOT" + TOD_batdaulamthem;
+				return "\t" + Code + " \t" + ID + ";\ton:" + OnnTS.ToString() + "\toff:" + OffTS.ToString() + "\tOnIN:" + OnnInnTS + "\tCutIN:" + CutInnTS
+					+ "\tOnOUT" + OnnOutTS + "\tCutOUT" + CutOutTS + "\tTRE" + chophepTreTS + "\tSOM" + chophepSomTS + "\tOT" + TOD_batdaulamthem;
 
-			//return MyUtility.GetAllValueOfObject(this);
-		}
-*/
+				//return MyUtility.GetAllValueOfObject(this);
+			}
+	*/
 
 
 
-	public class cCa
-	{
+	public class cCa {
 		//public TimeSpan chophepTreTS { get; set; }
 		//public TimeSpan chophepSomTS { get; set; }
 		public TS TOD_ChoPhepTreSom;
 		public TimeSpan TOD_batdaulamthem { get; set; }
 		public int ID { get; set; }
-		public string Code { get; set; }
-		public TS TOD_Duty { get; set; }
-		public TS TOD_NhanDienVao { get; set; }
-		public TS TOD_NhanDienRaa { get; set; }
-		public TimeSpan LateeMin { get; set; }
-		public TimeSpan EarlyMin { get; set; }
-		public TimeSpan AfterOTMin { get; set; }
-		public TimeSpan LunchMin { get; set; }
+		public string Code;
+		public TS TOD_Duty;
+		public TS TOD_NhanDienVao;
+		public TS TOD_NhanDienRaa;
+		public int SoPhutChoPhepVaoTre = -1;
+		public int SoPhutChoPhepRaaSom = -1;
+		public int SoPhutToiThieuTinhOT = -1;
+		public int SoPhutNghiTrua = -1;
+		public TimeSpan LateeMin {
+			get {
+				return SoPhutChoPhepVaoTre == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutChoPhepVaoTre, 0);
+			}
+		}
+		public TimeSpan EarlyMin {
+			get {
+				return SoPhutChoPhepRaaSom == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutChoPhepRaaSom, 0);
+			}
+		}
+		public TimeSpan AfterOTMin {
+			get {
+				return SoPhutToiThieuTinhOT == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutToiThieuTinhOT, 0);
+			}
+		}
+		public TimeSpan LunchMin {
+			get {
+				return SoPhutNghiTrua == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutNghiTrua, 0);
+			}
+		}
+
 		public TimeSpan WorkingTimeTS { get; set; }
 		public float Workingday { get; set; }
 		public int ShowPosition { get; set; }
@@ -60,15 +79,14 @@ namespace ChamCong_v05.DTO {
 		public cCa casauuu;
 
 		public bool Is_CaTuDo;
-		
-		public override string ToString()
-		{
+
+		public override string ToString() {
 			var temp = "Code:{0}; Onn:{1} Off:{2} [{3} - {4}] [{5} - {6}]";
-			return string.Format(temp,Code, TOD_Duty.Onn.ToString(@"d\ hh\:mm"), TOD_Duty.Off.ToString(@"d\ hh\:mm"), 
+			return string.Format(temp, Code, TOD_Duty.Onn.ToString(@"d\ hh\:mm"), TOD_Duty.Off.ToString(@"d\ hh\:mm"),
 				TOD_NhanDienVao.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienVao.Off.ToString(@"d\ hh\:mm"),
 				TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm"));
 		}
-		public cCa(){}
+		public cCa() { }
 	}
 
 

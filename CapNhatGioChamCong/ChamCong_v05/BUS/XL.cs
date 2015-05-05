@@ -197,7 +197,8 @@ namespace ChamCong_v05.BUS {
 					continue;
 				}
 				if (code == SettingName.LamThemAfterOT.ToString()) {
-					XL2.LamThemAfterOT = new TimeSpan(0, int.Parse(value), 0);
+					//XL2.LamThemAfterOT = new TimeSpan(0, int.Parse(value), 0);
+					XL2.defaultAfterOTMin = int.Parse(value);
 					continue;
 				}
 				#endregion
@@ -479,6 +480,9 @@ namespace ChamCong_v05.BUS {
 				var tAfterOT = new TimeSpan(0, (int)row["AfterOT"], 0);
 				var tLateGrace = new TimeSpan(0, (int)row["LateGrace"], 0);
 				var tEarlyGrace = new TimeSpan(0, (int)row["EarlyGrace"], 0);
+				var AfterOTMin =  (int)row["AfterOT"];
+				var LateGraceMin = (int)row["LateGrace"];
+				var EarlyGraceMin = (int)row["EarlyGrace"];
 
 				var tOnLunch = XL2._0gio;
 				var tOffLunch = XL2._0gio;
@@ -486,6 +490,8 @@ namespace ChamCong_v05.BUS {
 					TimeSpan.TryParse(row["OnLunch"].ToString(), out tOnLunch);
 					TimeSpan.TryParse(row["OffLunch"].ToString(), out tOffLunch);
 				}
+				var LunchMin = tOffLunch.Subtract(tOnLunch);
+				
 
 				var iShowPosition = (int)row["ShowPosition"];
 				var tempWorkingTime = int.Parse(row["WorkingTime"].ToString());
@@ -502,7 +508,9 @@ namespace ChamCong_v05.BUS {
 					TOD_Duty = new TS { Onn = tsOnDuty, Off = tOffDuty },
 					TOD_NhanDienVao = new TS { Onn = tOnTimeIn, Off = tCutIn },
 					TOD_NhanDienRaa = new TS { Onn = tOnTimeOut, Off = tCutOut },
-					AfterOTMin = tAfterOT,
+					SoPhutToiThieuTinhOT = AfterOTMin,
+					SoPhutChoPhepVaoTre = LateGraceMin,
+					SoPhutChoPhepRaaSom = EarlyGraceMin,
 					//LateeMin = tLateGrace,
 					//EarlyMin = tEarlyGrace,
 					Workingday = (Single)row["Workingday"],
@@ -510,7 +518,7 @@ namespace ChamCong_v05.BUS {
 					ShowPosition = iShowPosition,
 					TOD_ChoPhepTreSom = new TS { Onn = tsOnDuty + (tLateGrace), Off = tOffDuty - tEarlyGrace },
 					TOD_batdaulamthem = tOffDuty + tAfterOT,
-					LunchMin = tOffLunch.Subtract(tOnLunch),
+					SoPhutNghiTrua = (int)LunchMin.TotalMinutes,
 					TachCaDem = tachcadem,
 					idCaTruoc = idCaTruoc,
 					idCaSauuu = idCaSauuu,
