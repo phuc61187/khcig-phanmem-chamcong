@@ -86,48 +86,6 @@ namespace ChamCong_v05.BUS {
 			TongCong = 0f;
 			TongNgayLV = 0f; //ver4.0.0.1
 			QuaDem = false;
-			ngayCong.TrangThaiDiemDanh = TrangThaiDiemDanh.VANG_NGHI;
-			// tính công của từng ThuocCa làm việc, sau đó tổng hợp Công làm việc của 1 ngày
-			if (ngayCong.DSVaoRa.Count == 0) return;
-			foreach (var CIO in ngayCong.DSVaoRa) {
-				CIO.TD = new ThoiDiem();
-				CIO.TG = new ThoiGian();
-				TinhTG_LV_LVCa3_LamThem1Ca(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom, CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,
-					CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocCa.TOD_Duty.Onn, CIO.ThuocCa.TOD_Duty.Off, CIO.ThuocCa.TOD_ChoPhepTreSom.Onn, CIO.ThuocCa.TOD_ChoPhepTreSom.Off,
-					CIO.ThuocCa.TOD_batdaulamthem, CIO.ThuocCa.LunchMin, new TimeSpan(0, CIO.OTMin, 0), startNT, endddNT,
-					out CIO.TD.BD_LV, out CIO.TD.KT_LV, out CIO.TD.KT_LV_ChuaOT, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
-				out CIO.TG.GioThucTe5, out CIO.TG.GioLamViec5, out CIO.TG.VaoTre, out CIO.TG.RaaSom,
-				out CIO.TG.GioLVTrongCa5,//ver 4.0.0.4	
-				out CIO.TG.OLai, out CIO.TG.LamTangCuong, out CIO.QuaDem, out CIO.TG.LamBanDem);
-				//if (CIO.QuaDem) QuaDem = true; // set qua đêm nếu có
-				float cong_trong_ca = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa5.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday), 2));
-				float cong_bi_tru_TreSom = CIO.ThuocCa.Workingday - cong_trong_ca;
-				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.SoPhutLamThem5.TotalHours / 8d), 2));// tương đương giờ làm việc ngoài ThuocCa, làm ngoài ThuocCa chưa chắc OT ví dụ nửa ThuocCa
-				CIO.Cong = cong_trong_ca + cong_ngoai_ca;
-				TG.GioThucTe5 += CIO.TG.GioThucTe5;
-				TG.GioLamViec5 += CIO.TG.GioLamViec5;
-				TG.GioLVTrongCa5 += CIO.TG.GioLVTrongCa5;
-				TG.LamBanDem += CIO.TG.LamBanDem;
-				TG.VaoTre += CIO.TG.VaoTre;
-				TG.RaaSom += CIO.TG.RaaSom;
-				TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
-				if ((CIO.DuyetChoPhepVaoTre && CIO.DuyetChoPhepRaSom)
-					|| (CIO.DuyetChoPhepVaoTre == false && CIO.DuyetChoPhepRaSom == false && CIO.VaoTreTinhCV == false && CIO.RaaSomTinhCV == false)) {
-					ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;
-				}
-				else {
-					if (CIO.DuyetChoPhepVaoTre == false && CIO.VaoTreTinhCV)
-						ngayCong.TongNgayLV += cong_trong_ca;
-					else if (CIO.DuyetChoPhepRaSom == false && CIO.RaaSomTinhCV)
-						ngayCong.TongNgayLV += cong_trong_ca;
-					else ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;
-				}
-				ngayCong.TongNgayLV += cong_ngoai_ca;
-				//ngayCong.TongNgayLV += (CIO.Cong > CIO.ThuocCa.Workingday) ? CIO.Cong : CIO.ThuocCa.Workingday;//ver4.0.0.1
-			}
-			ngayCong.TG.LamTangCuong = Tinh_TGLamTangCuong(ngayCong.TG.GioLamViec5);// (ngayCong.TG.GioLamViec - XL2._08gio > XL2._01phut) ? ngayCong.TG.GioLamViec - XL2._08gio : TimeSpan.Zero;			
-			ngayCong.PhuCaps._30_dem = Convert.ToSingle(Math.Round((ngayCong.TG.LamBanDem.TotalHours / 8d) * (XL2.PC30 / 100f), 2, MidpointRounding.ToEven));
-			ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps._30_dem;
 		}
 		public static void Tinh_PCTC(bool TinhPC50, bool QuaDem, TimeSpan SoGioLamDemmm, TimeSpan SoGioLamThem,
 			out TimeSpan tgTinh130, out  TimeSpan tgTinh150, out  TimeSpan tgTinhTCC3,
@@ -183,22 +141,22 @@ namespace ChamCong_v05.BUS {
 				#endregion
 
 				#region số phút cho phép trễ sớm afterot ca tự do
-				XL2.GioiHanChoPhepTreSom = new TS();
 				if (code == SettingName.TGLamDemToiThieu.ToString()) {
-					XL2.TGLamDemToiThieu = TimeSpan.Parse(value);
+					TimeSpan temp = TimeSpan.Parse(value);
+					XL2.default_PhutLamDemToiThieu = (int)temp.TotalMinutes;
 					continue;
 				}
-				if (code == SettingName.ChoPhepTre.ToString()) {
-					XL2.GioiHanChoPhepTreSom.Onn = new TimeSpan(0, int.Parse(value), 0);
+				if (code == SettingName.ChoPhepTre.ToString())
+				{
+					XL2.default_PhutChoTre = int.Parse(value);
 					continue;
 				}
 				if (code == SettingName.ChoPhepSom.ToString()) {
-					XL2.GioiHanChoPhepTreSom.Off = new TimeSpan(0, int.Parse(value), 0);
+					XL2.default_PhutChoSom = int.Parse(value);
 					continue;
 				}
 				if (code == SettingName.LamThemAfterOT.ToString()) {
-					//XL2.LamThemAfterOT = new TimeSpan(0, int.Parse(value), 0);
-					XL2.defaultAfterOTMin = int.Parse(value);
+					XL2.default_PhutAfterOTMin = int.Parse(value);
 					continue;
 				}
 				#endregion
@@ -508,17 +466,15 @@ namespace ChamCong_v05.BUS {
 					TOD_Duty = new TS { Onn = tsOnDuty, Off = tOffDuty },
 					TOD_NhanDienVao = new TS { Onn = tOnTimeIn, Off = tCutIn },
 					TOD_NhanDienRaa = new TS { Onn = tOnTimeOut, Off = tCutOut },
-					SoPhutToiThieuTinhOT = AfterOTMin,
-					SoPhutChoPhepVaoTre = LateGraceMin,
-					SoPhutChoPhepRaaSom = EarlyGraceMin,
+					PhutToiThieuTinhOT = AfterOTMin,
+					PhutChoTre = LateGraceMin,
+					PhutChoSom = EarlyGraceMin,
 					//LateeMin = tLateGrace,
 					//EarlyMin = tEarlyGrace,
 					Workingday = (Single)row["Workingday"],
 					WorkingTimeTS = new TimeSpan(0, tempWorkingTime, 0),
 					ShowPosition = iShowPosition,
-					TOD_ChoPhepTreSom = new TS { Onn = tsOnDuty + (tLateGrace), Off = tOffDuty - tEarlyGrace },
-					TOD_batdaulamthem = tOffDuty + tAfterOT,
-					SoPhutNghiTrua = (int)LunchMin.TotalMinutes,
+					PhutNghiTrua = Convert.ToInt32(LunchMin.TotalMinutes),
 					TachCaDem = tachcadem,
 					idCaTruoc = idCaTruoc,
 					idCaSauuu = idCaSauuu,

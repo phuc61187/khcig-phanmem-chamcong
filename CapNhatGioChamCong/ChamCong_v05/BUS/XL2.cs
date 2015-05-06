@@ -39,7 +39,7 @@ namespace ChamCong_v05.BUS {
 		public static readonly TimeSpan _21h45 = new TimeSpan(21, 45, 0);
 		public static readonly TimeSpan _22h00 = new TimeSpan(22, 0, 0);
 		public static readonly TimeSpan _24h00 = new TimeSpan(24, 0, 0);
-		public static readonly TS NightTime22h = new TS { Onn = XL2._22h00, Off = XL2._06h00 };
+		public static readonly TS TOD_NightTime22h = new TS { Onn = XL2._22h00, Off = XL2._06h00 };
 		public static int PC30;
 		public static int PC50;
 		public static int PCTCC3;
@@ -60,14 +60,26 @@ namespace ChamCong_v05.BUS {
 
 		#endregion
 
-		public static TimeSpan TGLamDemToiThieu;
-		public static TS GioiHanChoPhepTreSom;
-		//public static TimeSpan ChoPhepSom;
-		public static int defaultAfterOTMin = -1;
-		public static TimeSpan LamThemAfterOT
-		{
-			get { return defaultAfterOTMin == -1 ? TimeSpan.Zero : new TimeSpan(0, defaultAfterOTMin, 0); }
+		public static int default_PhutAfterOTMin = -1;
+		public static TimeSpan TS_Default_LamThemAfterOT {
+			get { return default_PhutAfterOTMin == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutAfterOTMin, 0); }
 		}
+
+		public static int default_PhutLamDemToiThieu = -1;
+		public static TimeSpan TS_Default_LamDemToiThieu {
+			get { return default_PhutLamDemToiThieu == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutLamDemToiThieu, 0); }
+		}
+
+		public static int default_PhutChoTre = -1;
+		public static TimeSpan TS_Default_PhutChoTre {
+			get { return default_PhutChoTre == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutChoTre, 0); }
+		}
+
+		public static int default_PhutChoSom = -1;
+		public static TimeSpan TS_Default_PhutChoSom {
+			get { return default_PhutChoSom == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutChoSom, 0); }
+		}
+
 		public static List<cPhongBan> TatcaPhongban = new List<cPhongBan>();
 		public static List<int> QuyenThaoTac;
 

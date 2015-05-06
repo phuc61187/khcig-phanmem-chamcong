@@ -314,7 +314,7 @@ namespace ChamCong_v05.UI.XacNhan {
 				TimeSpan tempSom, tempOLai;
 
 				XL.Raa(timeraa, CIO.ThuocNgayCong.Add(currShift.TOD_Duty.Off), CIO.ThuocNgayCong.Add(currShift.TOD_ChoPhepTreSom.Off), out td_kt_lv_chuaOT, out tempSom);
-				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.TOD_Duty.Off), CIO.ThuocNgayCong.Add(currShift.AfterOTMin), out tempOLai);
+				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.TOD_Duty.Off), CIO.ThuocNgayCong.Add(currShift.TS_PhutAfterOT), out tempOLai);
 				if (soPhutLamThem > tempOLai.TotalMinutes)
 					soPhutLamThem = Convert.ToInt32(tempOLai.TotalMinutes);
 
@@ -408,7 +408,7 @@ namespace ChamCong_v05.UI.XacNhan {
 			XL.TinhTG_LV_LVCa3_LamThem1Ca(Ngay, 0, true, bDuyetVaoTre, bDuyetRaaSom,
 				bVaoTreLaCV, bRaaSomLaCV, //ver 4.0.0.4	
 				timevao, timeraa, selectedShift.TOD_Duty.Onn, selectedShift.TOD_Duty.Off,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
-				selectedShift.TOD_ChoPhepTreSom.Onn, selectedShift.TOD_ChoPhepTreSom.Off, selectedShift.TOD_batdaulamthem, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
+				selectedShift.TOD_ChoPhepTreSom.Onn, selectedShift.TOD_ChoPhepTreSom.Off, selectedShift.TOD_batdaulamthem, selectedShift.TS_PhutNghiTrua, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
 				selectedShift.TOD_NightTime.Onn, selectedShift.TOD_NightTime.Off,//ver 4.0.0.4
 				out TD_BD_LV, out TD_KT_LV, out TD_KT_LV_ChuaOT, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3,
 				out TGThucTe, out TGGioLamViec, out TGVaoTre, out TGRaaSom,

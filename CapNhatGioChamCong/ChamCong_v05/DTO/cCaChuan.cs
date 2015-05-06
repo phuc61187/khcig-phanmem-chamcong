@@ -28,35 +28,33 @@ namespace ChamCong_v05.DTO {
 	public class cCa {
 		//public TimeSpan chophepTreTS { get; set; }
 		//public TimeSpan chophepSomTS { get; set; }
-		public TS TOD_ChoPhepTreSom;
-		public TimeSpan TOD_batdaulamthem { get; set; }
 		public int ID { get; set; }
 		public string Code;
 		public TS TOD_Duty;
 		public TS TOD_NhanDienVao;
 		public TS TOD_NhanDienRaa;
-		public int SoPhutChoPhepVaoTre = -1;
-		public int SoPhutChoPhepRaaSom = -1;
-		public int SoPhutToiThieuTinhOT = -1;
-		public int SoPhutNghiTrua = -1;
-		public TimeSpan LateeMin {
+		public int PhutChoTre = -1;
+		public TimeSpan TS_PhutChoTre {
 			get {
-				return SoPhutChoPhepVaoTre == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutChoPhepVaoTre, 0);
+				return PhutChoTre == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutChoTre, 0);
 			}
 		}
-		public TimeSpan EarlyMin {
+		public int PhutChoSom = -1;
+		public TimeSpan TS_PhutChoSom {
 			get {
-				return SoPhutChoPhepRaaSom == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutChoPhepRaaSom, 0);
+				return PhutChoSom == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutChoSom, 0);
 			}
 		}
-		public TimeSpan AfterOTMin {
+		public int PhutToiThieuTinhOT = -1;
+		public TimeSpan TS_PhutAfterOT {
 			get {
-				return SoPhutToiThieuTinhOT == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutToiThieuTinhOT, 0);
+				return PhutToiThieuTinhOT == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutToiThieuTinhOT, 0);
 			}
 		}
-		public TimeSpan LunchMin {
+		public int PhutNghiTrua = -1;
+		public TimeSpan TS_PhutNghiTrua {
 			get {
-				return SoPhutNghiTrua == -1 ? TimeSpan.Zero : new TimeSpan(0, SoPhutNghiTrua, 0);
+				return PhutNghiTrua == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutNghiTrua, 0);
 			}
 		}
 

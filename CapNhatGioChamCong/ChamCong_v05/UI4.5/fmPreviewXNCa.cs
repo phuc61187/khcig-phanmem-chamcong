@@ -25,7 +25,7 @@ namespace ChamCong_v05.UI4._5 {
 			List_CIO_HaveError = new List<DataRow>();
 			List_CIO_HopLe = new List<DataRow>();
 			foreach (DataRow row in List_CIO_Input) {
-				int kq = ValidateCIO(row, ca, m_CheckVaoTreTinhCV, m_CheckRaaSomTinhCV, m_ChoPhepVaoTre,m_ChoPhepRaaSom,m_SoPhutLamThem);
+				int kq = ValidateCIO(row, ca, m_CheckVaoTreTinhCV, m_CheckRaaSomTinhCV, m_ChoPhepVaoTre, m_ChoPhepRaaSom, m_SoPhutLamThem);
 				if (kq < 0) List_CIO_HaveError.Add(row);
 				else List_CIO_HaveError.Add(row);
 			}
@@ -38,17 +38,15 @@ namespace ChamCong_v05.UI4._5 {
 			cCheckInOut cio = (cCheckInOut)row["cCheckInOut"];
 			if (soPhutLamThemDaXN > cio.TG5.OLai) return -1; // 
 			TS TOD_Duty, gioiHanChoPhepTreSom;
-			if (cio.ShiftID < 0)
-			{//ca tự do
+			if (cio.ShiftID < 0) {//ca tự do
 				TOD_Duty.Onn = new TimeSpan(cio.Vao.Time.TimeOfDay.Hours, cio.Vao.Time.TimeOfDay.Minutes, 0);
 				TOD_Duty.Off = TOD_Duty.Onn.Add(CaDuocChon.WorkingTimeTS);
 
-				gioiHanChoPhepTreSom = new TS { Onn = (XL2.GioiHanChoPhepTreSom.Onn), Off = XL2.GioiHanChoPhepTreSom.Off };
+				gioiHanChoPhepTreSom = new TS { Onn = (XL2.TS_Default_PhutChoTre), Off = XL2.TS_Default_PhutChoSom };
 
 			}
-			else
-			{//ca chuẩn
-				
+			else {//ca chuẩn
+
 			}
 			//var temp1 = cio.ShiftID < 0 ? cio.Vao.Time.TimeOfDay cio.ThuocNgayCong.Add(CaDuocChon.TOD_Duty.Onn);
 			var temp2 = cio.ThuocNgayCong.Add(CaDuocChon.TOD_Duty.Off);
@@ -57,9 +55,9 @@ namespace ChamCong_v05.UI4._5 {
 			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGGioLamViecTrongCa, TGOLai, TGLamBanDem;
 
 			XL.TinhTG_LV_LVCa3_LamThem_1CIO5(cio.ThuocNgayCong, cio.HaveINOUT, true, CheckChoPhepTre, CheckChoPhepSom, cio.Vao.Time, cio.Raa.Time,
-				CaDuocChon.TOD_Duty.Onn, CaDuocChon.TOD_Duty.Off, CaDuocChon.TOD_ChoPhepTreSom, CaDuocChon.TOD_batdaulamthem, CaDuocChon.LunchMin,
+				CaDuocChon.TOD_Duty.Onn, CaDuocChon.TOD_Duty.Off, CaDuocChon.TS_PhutChoTre, CaDuocChon.TS_PhutChoSom, CaDuocChon.TS_PhutAfterOT, CaDuocChon.TS_PhutNghiTrua,
 				soPhutLamThemDaXN,
-				XL2.NightTime22h, //tbd start NT, endNT
+				XL2.TOD_NightTime22h, //tbd start NT, endNT
 				out TD_BD_LV, out TD_KT_LV, out  TD_KT_LV_TrongCa, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3, out TGThucTe, out TGGioLamViec,
 				out TGVaoTre, out TGRaaSom, out TGGioLamViecTrongCa, out TGOLai, out QuaDem, out TGLamBanDem
 			);

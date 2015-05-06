@@ -64,7 +64,7 @@ namespace ChamCong_v05.BUS {
 				Ca.Code = mySetting.Default.shiftCodeCa8h;
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 8);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa8h;
-				Ca.AfterOTMin = XL2.LamThemAfterOT;
+				Ca.PhutToiThieuTinhOT = XL2.default_PhutAfterOTMin;
 			}
 			else if (LoaiCaTuDo == int.MinValue + 1) {
 				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._12gio) };
@@ -90,11 +90,11 @@ namespace ChamCong_v05.BUS {
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 16);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa16h;
 			}
-			Ca.TOD_ChoPhepTreSom.Onn = Ca.TOD_Duty.Onn + XL2.GioiHanChoPhepTreSom.Onn;
-			Ca.TOD_ChoPhepTreSom.Off = Ca.TOD_Duty.Off - XL2.GioiHanChoPhepTreSom.Off;
-			Ca.TOD_batdaulamthem = Ca.TOD_Duty.Off + Ca.AfterOTMin;
+			//Ca.TOD_ChoPhepTreSom.Onn = Ca.TOD_Duty.Onn + XL2.TS_Default_PhutChoTre;
+			//Ca.TOD_ChoPhepTreSom.Off = Ca.TOD_Duty.Off - XL2.TS_Default_PhutChoSom;
+			//Ca.TOD_batdaulamthem = Ca.TOD_Duty.Off + Ca.TS_PhutAfterOT;
 			Ca.Is_CaTuDo = true;
-			Ca.TOD_NightTime = XL2.NightTime22h;
+			Ca.TOD_NightTime = XL2.TOD_NightTime22h;
 		}
 
 		public static void XemCong_v08_2(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {

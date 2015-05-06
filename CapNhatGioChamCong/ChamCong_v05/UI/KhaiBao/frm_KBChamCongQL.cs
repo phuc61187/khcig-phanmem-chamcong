@@ -447,15 +447,15 @@ namespace ChamCong_v05.UI.KhaiBao {
 
 			tongGiothuc = timeKT - timeBD;
 			TimeSpan TGGioLamViecTrongCa;
-			XL.Vao(timeBD, ngay.Add(ca.TOD_Duty.Onn), ngay.Add(ca.TOD_ChoPhepTreSom.Onn), out td_batdau_lv, out tre);
-			XL.Raa(timeKT, ngay.Add(ca.TOD_Duty.Off), ngay.Add(ca.TOD_ChoPhepTreSom.Off), out td_ketthuc_lv_chuaOT, out som);
+			XL.Vao(timeBD, ngay.Add(ca.TOD_Duty.Onn), ngay.Add(ca.TOD_Duty.Onn.Add(ca.TS_PhutChoTre)), out td_batdau_lv, out tre);
+			XL.Raa(timeKT, ngay.Add(ca.TOD_Duty.Off), ngay.Add(ca.TOD_Duty.Off.Subtract(ca.TS_PhutChoSom)), out td_ketthuc_lv_chuaOT, out som);
 			td_ketthuc_lv_daCoOT = td_ketthuc_lv_chuaOT + new TimeSpan(0, sophutOT, 0);
 			if (timeKT < td_ketthuc_lv_daCoOT)
 			{
 				timeKT = ngay.Add(ca.TOD_Duty.Off).Add(new TimeSpan(0, sophutOT, 0));
 				dtpKTLam.Value = timeKT;
 			}
-			XL.Tinh_TGLamViecTrongCa(td_batdau_lv, td_ketthuc_lv_chuaOT, ca.LunchMin, out TGGioLamViecTrongCa);
+			XL.Tinh_TGLamViecTrongCa(td_batdau_lv, td_ketthuc_lv_chuaOT, ca.TS_PhutNghiTrua, out TGGioLamViecTrongCa);
 			TGGioLamViec = TGGioLamViecTrongCa + OTCa;//ver 4.0.0.4	
 			XL.Tinh_TGLamViec_Ca3(td_batdau_lv, td_ketthuc_lv_daCoOT, ngay.Add(XL2._22h00), ngay.AddDays(1d).Add(XL2._06h00), out TD_BD_LV_Ca3, out  TD_KT_LV_Ca3, out TGLamBanDem, out QuaDem);
 			TimeSpan TGLamThem = XL.Tinh_TGLamTangCuong(TGGioLamViec);//(TGGioLamViec - XL2._08gio) >= XL2._01phut ? (TGGioLamViec - XL2._08gio) : TimeSpan.Zero;
