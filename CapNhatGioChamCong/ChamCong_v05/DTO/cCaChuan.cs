@@ -85,6 +85,19 @@ namespace ChamCong_v05.DTO {
 				TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm"));
 		}
 		public cCa() { }
+
+		public DateTime ThoiDiemTre(DateTime Ngay)
+		{
+			return Ngay.Add(this.TOD_Duty.Onn.Add(this.TS_PhutChoTre));
+		}
+		public DateTime ThoiDiemSom(DateTime Ngay)
+		{
+			return Ngay.Add(this.TOD_Duty.Off.Subtract(this.TS_PhutChoSom));
+		}
+		public DateTime ThoiDiemTinhOT(DateTime Ngay	)
+		{
+			return Ngay.Add(this.TOD_Duty.Off.Add(this.TS_PhutAfterOT));
+		}
 	}
 
 
