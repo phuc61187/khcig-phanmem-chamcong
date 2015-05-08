@@ -95,16 +95,6 @@ namespace ChamCong_v05.DTO {
 		public bool RaaSomTinhCV; //ver 4.0.0.4	
 		public int OTMin;
 
-		#region v4
-
-		/*public int ID;*/
-		// info xem lại tình trạng sử dụng của ID này, suggest xóa nếu ko cần thiết
-		public ThoiGian TG;
-		public ThoiDiem TD;
-		public float Cong;
-
-		#endregion
-
 		public override string ToString() {
 			var temp = "HaveIO:{0} XN:{1} V:{2} R:{3} Ca:{4} Ngay:{5}";
 
@@ -112,6 +102,13 @@ namespace ChamCong_v05.DTO {
 								 (Vao != null) ? Vao.Time.ToString("H:mm") : "", (Raa != null) ? Raa.Time.ToString("H:mm") : "",
 								 (ThuocCa != null) ? ThuocCa.Code : "", ThuocNgayCong.ToString("d/M"));
 		}
+		#region v4
+
+		/*public int ID;*/
+		// info xem lại tình trạng sử dụng của ID này, suggest xóa nếu ko cần thiết
+		public ThoiGian TG;
+		public ThoiDiem TD;
+		public float Cong;
 
 		public string CIOCodeComp(string chuoiTruoc = null) {
 			var kq = string.Empty;
@@ -157,6 +154,9 @@ namespace ChamCong_v05.DTO {
 								   : chuoiTruoc + ";" + kq;
 
 		}
+
+		#endregion
+
 
 		public string ExportKyHieuThuocCa1_5(bool ShowDSCa_KV_KR = false) {
 			if (this.HaveINOUT == 0) return ";" + this.ThuocCa.Code;//@out empty | ;ca1  | ;ca2
@@ -233,6 +233,11 @@ namespace ChamCong_v05.DTO {
 			}
 			return kq;
 		}
+
+
+
+
+
 	}
 
 
