@@ -270,8 +270,8 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 															sp.TS_PhutChoSom.Minutes, string.Empty/*sp.TOD_ChoPhepTreSom.Off.ToString(@"d\ hh\:mm")*/,
 															sp.TS_PhutAfterOT.Minutes, string.Empty/*sp.TOD_batdaulamthem.ToString(@"d\ hh\:mm")*/,
 															sp.TS_PhutNghiTrua.Minutes, sp.WorkingTimeTS.TotalMinutes.ToString("#####"),
-															sp.Workingday.ToString("0.0"), sp.DayCount, Convert.ToInt32(sp.QuaDem),
-															Convert.ToInt32(sp.IsExtended), Convert.ToInt32(sp.Is_CaTuDo), Convert.ToInt32(sp.TachCaDem));
+															sp.Workingday.ToString("0.0"), /*sp.DayCount*/0, Convert.ToInt32(sp.QuaDem),
+															Convert.ToInt32(sp.IsExtended), /*Convert.ToInt32(sp.Is_CaTuDo)*/false, Convert.ToInt32(sp.TachCaDem));
 
 								thongtinCa = string.Format(templateThongTinCa,
 														   sp.TOD_Duty.Onn.ToString(@"d\ hh\:mm"), sp.TOD_Duty.Off.ToString(@"d\ hh\:mm"), sp.Code, sp.WorkingTimeTS.TotalMinutes.ToString("#####"),

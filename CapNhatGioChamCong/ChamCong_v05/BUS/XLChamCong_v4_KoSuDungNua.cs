@@ -84,6 +84,7 @@ namespace ChamCong_v05.BUS {
 
 
 		public static void XemCong_v08(List<cUserInfo> dsnv, DateTime ngayBD_Bef2D, DateTime ngayKT_Aft2D) {
+/*
 			XmlConfigurator.Configure();
 			if (dsnv.Count == 0) return;
 			#region nạp dữ liệu từ database
@@ -133,6 +134,7 @@ namespace ChamCong_v05.BUS {
 			if (DS_Check_KoHopLe_AllNV.Count > 0) DAO5.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
 			if (ds_raa3_vao1.Count > 0) DAO5.ThemGio_ra3_vao1(ds_raa3_vao1);
 			#endregion
+*/
 		}
 
 		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs) { }

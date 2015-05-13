@@ -185,15 +185,21 @@ namespace ChamCong_v05.BUS {
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 16);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa16h;
 			}
-			
+
 			//Ca.AfterOTMin = XL2.LamThemAfterOT;
 			Ca.PhutToiThieuTinhOT = XL2.default_PhutAfterOTMin;
-			//Ca.TOD_ChoPhepTreSom.Onn = Ca.TOD_Duty.Onn.Add(XL2.TS_Default_PhutChoTre);
-			//Ca.TOD_ChoPhepTreSom.Off = Ca.TOD_Duty.Off.Subtract(XL2.TS_Default_PhutChoSom);
-			//Ca.TOD_batdaulamthem = Ca.TOD_Duty.Off.Add(XL2.TS_Default_LamThemAfterOT);
-			Ca.DayCount = Ca.TOD_Duty.Off.Days;
-			Ca.QuaDem = (Ca.TOD_Duty.Off.Days == 1);
+			Ca.PhutChoTre = XL2.default_PhutChoTre;
+			Ca.PhutChoSom = XL2.default_PhutChoSom;
 			Ca.PhutNghiTrua = 0;
+			Ca.TOD_NightTime = new TS { Onn = XL2._22h00, Off = XL2._06h00 };
+			Ca.TOD_NhanDienVao = new TS { Onn = Ca.TOD_Duty.Onn.Subtract(XL2._10phut), Off = Ca.TOD_Duty.Onn.Add(XL2._10phut) };
+			Ca.TOD_NhanDienRaa = new TS { Onn = Ca.TOD_Duty.Off.Subtract(XL2._10phut), Off = Ca.TOD_Duty.Off.Add(XL2._10phut) };
+			Ca.idCaTruoc = -1;
+			Ca.idCaSauuu = -1;
+			//??? tbd Ca.DayCount
+			//??? tbd	QuaDem = (iDayCount == 1),
+			//??? tbd	TachCaDem = tachcadem,
+
 		}
 
 
@@ -423,17 +429,20 @@ namespace ChamCong_v05.BUS {
 			var i = 0;
 			while (i < ds_CIO_A.Count) {
 				var CIO = ds_CIO_A[i];
-				bool isTachCaDem = false;
+				bool isTachCaDem;
 				cCheck checkRaa3, checkVao1;
 				cCheckInOut cio_ca3, cio_ca1;
 				cCa thuocCa_Ca3, thuocCa_Ca1;
+				/* Xét ca 1 CIO , gặp trường hợp ca 3 ca 1 thì lưu lại danh sách check đệm giờ giao ca để thực hiện thêm dưới csdl*/
 				XetCa_1_CIO_A5(CIO, lichtrinh, out CIO.ThuocNgayCong, out CIO.ThuocCa, out isTachCaDem, out CIO.DSCa,
 					out checkRaa3, out checkVao1, out cio_ca3, out cio_ca1, out thuocCa_Ca3, out thuocCa_Ca1);
 
+				#region xử lý trường hợp tách ca 3 ca 1
+
 				if (isTachCaDem) {
 					ds_raa3_vao1.Add(checkRaa3);
-					ds_raa3_vao1.Add(checkVao1);//vaoca1
-					ds_check_A.Add(checkRaa3);//raaca3
+					ds_raa3_vao1.Add(checkVao1); //vaoca1
+					ds_check_A.Add(checkRaa3); //raaca3
 					ds_check_A.Add(checkVao1);
 					ds_check_A.Sort(new cCheckComparer());
 
@@ -450,6 +459,8 @@ namespace ChamCong_v05.BUS {
 					i = i + 2; // +2 vì i là ThuocCa_Ca3, i+1 là ThuocCa 1
 				}
 				else i++;
+
+				#endregion
 			}
 		}
 
@@ -540,8 +551,7 @@ namespace ChamCong_v05.BUS {
 
 		}
 
-		public static void XetCa_1_CIO_V_5(cCheckInOut chkInOutV,
-			out DateTime ThuocNgayCong, out cCa ThuocCa) {
+		public static void XetCa_1_CIO_V_5(cCheckInOut chkInOutV, out DateTime ThuocNgayCong, out cCa ThuocCa) {
 			ThuocCa = new cCa();
 			ThuocNgayCong = new DateTime(chkInOutV.TimeDaiDien.Year, chkInOutV.TimeDaiDien.Month, chkInOutV.TimeDaiDien.Day);
 			var shiftID = chkInOutV.ShiftID;
@@ -552,7 +562,7 @@ namespace ChamCong_v05.BUS {
 			}
 			else if (shiftID < Int32.MinValue + 100) // ThuocCa tự do (8 tiếng, ThuocCa dài 12 tiếng)
 			{
-				ThuocCa = new cCa { ID = shiftID, Is_CaTuDo = true };
+				ThuocCa = new cCa { ID = shiftID };
 				TaoCaTuDo(ThuocCa, chkInOutV.Vao.Time);
 			}
 		}
@@ -646,8 +656,7 @@ namespace ChamCong_v05.BUS {
 			}
 		}
 
-		public static void TinhCong_1Ngay5(cNgayCong ngayCong, 
-			out structThoiGianTheoNgayCong TG, out bool QuaDem) {
+		public static void TinhCong_1Ngay5(cNgayCong ngayCong, out structThoiGianTheoNgayCong TG, out bool QuaDem) {
 			TG = new structThoiGianTheoNgayCong();
 			QuaDem = false;
 			ngayCong.TrangThaiDiemDanh = TrangThaiDiemDanh.VANG_NGHI;
@@ -665,8 +674,7 @@ namespace ChamCong_v05.BUS {
 					out CIO.TG5.GioThucTe5, out CIO.TG5.TongGioLamViec5, out CIO.TG5.VaoTre, out CIO.TG5.RaaSom,
 					out CIO.TG5.GioLVTrongCa5,//ver 4.0.0.4	
 					out CIO.TG5.OLai, out CIO.QuaDem, out CIO.TG5.TongGioLamDem);
-				if (CIO.QuaDem)
-					QuaDem = true;
+				if (CIO.QuaDem) QuaDem = true;
 				TinhCong_1_CIO_5(CIO.ThuocCa.Workingday, CIO.ThuocCa.WorkingTimeTS, CIO.TG5.VaoTre, CIO.TG5.RaaSom,
 					CIO.VaoTreTinhCV, CIO.RaaSomTinhCV, CIO.TG5.SoPhutLamThem5,
 								 out CIO.Cong5.CaQuyDinh, out CIO.Cong5.TTCongTre, out CIO.Cong5.TTCongSom,

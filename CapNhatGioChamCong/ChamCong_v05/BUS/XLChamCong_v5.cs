@@ -64,7 +64,6 @@ namespace ChamCong_v05.BUS {
 				Ca.Code = mySetting.Default.shiftCodeCa8h;
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 8);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa8h;
-				Ca.PhutToiThieuTinhOT = XL2.default_PhutAfterOTMin;
 			}
 			else if (LoaiCaTuDo == int.MinValue + 1) {
 				Ca.TOD_Duty = new TS { Onn = temp, Off = temp.Add(XL2._12gio) };
@@ -90,10 +89,7 @@ namespace ChamCong_v05.BUS {
 				Ca.MoTa = string.Format(mySetting.Default.MoTaCaTuDo, 16);
 				Ca.KyHieuCC = mySetting.Default.kyHieuCCCa16h;
 			}
-			//Ca.TOD_ChoPhepTreSom.Onn = Ca.TOD_Duty.Onn + XL2.TS_Default_PhutChoTre;
-			//Ca.TOD_ChoPhepTreSom.Off = Ca.TOD_Duty.Off - XL2.TS_Default_PhutChoSom;
-			//Ca.TOD_batdaulamthem = Ca.TOD_Duty.Off + Ca.TS_PhutAfterOT;
-			Ca.Is_CaTuDo = true;
+			Ca.PhutToiThieuTinhOT = XL2.default_PhutAfterOTMin;
 			Ca.TOD_NightTime = XL2.TOD_NightTime22h;
 		}
 
@@ -218,7 +214,8 @@ namespace ChamCong_v05.BUS {
 			// tính phụ cấp đêm trước
 			foreach (var ngayCong in DSNgayCong.Where(item => item.QuaDem)) {
 				ngayCong.PhuCaps.PCDem5 = Convert.ToSingle(Math.Round((ngayCong.TG5.HuongPC_Dem.TotalHours / 8d) * (XL2.HSPCDem_NgayThuong / 100f), 2));
-				ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong; ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
+				ngayCong.PhuCaps.LoaiPhuCap = LoaiPhuCap.NgayThuong; 
+				ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps.PCDem5;
 			}
 			foreach (DataRow row in DSXacNhanPhuCap) {
 				var ngay = (DateTime)row["Ngay"];

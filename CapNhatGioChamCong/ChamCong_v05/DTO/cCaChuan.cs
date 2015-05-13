@@ -58,13 +58,12 @@ namespace ChamCong_v05.DTO {
 			}
 		}
 
-		public TimeSpan WorkingTimeTS { get; set; }
-		public float Workingday { get; set; }
-		public int ShowPosition { get; set; }
-		public int DayCount { get; set; }
-		public bool QuaDem { get; set; }
-		//public TimeSpan StartNT;//ver 4.0.0.4	start night time
-		//public TimeSpan EndddNT;//ver 4.0.0.4	enddd night time
+		public TimeSpan WorkingTimeTS;
+		public float Workingday;
+		public bool QuaDem
+		{
+			get { return (TOD_Duty.Off.Days > 0); }
+		}
 		public TS TOD_NightTime;
 
 		public string MoTa;
@@ -75,8 +74,6 @@ namespace ChamCong_v05.DTO {
 		public int idCaSauuu;
 		public cCa catruoc;
 		public cCa casauuu;
-
-		public bool Is_CaTuDo;
 
 		public override string ToString() {
 			var temp = "Code:{0}; Onn:{1} Off:{2} [{3} - {4}] [{5} - {6}]";

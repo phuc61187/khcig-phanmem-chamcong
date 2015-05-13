@@ -46,37 +46,6 @@ namespace ChamCong_v05.BUS {
 
 		public static void XetCa_1_CIO_V(cCheckInOut chkInOutV, cShiftSchedule lichtrinh) { }
 
-		public static void TinhTG_LV_LVCa3_LamThem1Ca(DateTime ThuocNgayCong, int HaveINOUT, Boolean DaXN,
-	bool KoTruVaoTre, bool KoTruRaaSom,
-	bool VaotreTinhCV, bool RaaSomTinhCV, //ver 4.0.0.4	
-	DateTime Vao, DateTime Raa,
-	TimeSpan DutyOnn, TimeSpan DutyOff, TimeSpan chophepTreTS, TimeSpan chophepSomTS, TimeSpan batdaulamthemTS,
-	TimeSpan LunchMin, TimeSpan SoPhutLamThem,
-	TimeSpan startNT, TimeSpan endddNT, //ver 4.0.0.4
-	out DateTime TD_BD_LV, out DateTime TD_KT_LV, out DateTime TD_KT_LV_TrongCa,
-	out DateTime TD_BD_LV_Ca3, out DateTime TD_KT_LV_Ca3,
-	out TimeSpan TGThucTe, out TimeSpan TGGioLamViec, out TimeSpan TGVaoTre, out TimeSpan TGRaaSom,
-	out TimeSpan TGGioLamViecTrongCa, //ver 4.0.0.4	
-	out TimeSpan TGOLai, out TimeSpan TGLamThem, out bool QuaDem, out TimeSpan TGLamBanDem) {
-			#region khởi tạo biến
-
-			TD_BD_LV = DateTime.MinValue;
-			TD_KT_LV_TrongCa = DateTime.MinValue; // chưa cộng OT
-			TD_KT_LV = DateTime.MinValue; // đã cộng OT
-			TD_BD_LV_Ca3 = DateTime.MinValue;
-			TD_KT_LV_Ca3 = DateTime.MinValue;
-			TGThucTe = TimeSpan.Zero;
-			TGVaoTre = TimeSpan.Zero;
-			TGRaaSom = TimeSpan.Zero;
-			TGOLai = TimeSpan.Zero;
-			TGGioLamViec = TimeSpan.Zero; // tổng thời gian làm việc đã gồm OT
-			TGGioLamViecTrongCa = TimeSpan.Zero; //ver 4.0.0.4	
-			TGLamThem = TimeSpan.Zero;
-			TGLamBanDem = TimeSpan.Zero;
-			QuaDem = false;
-
-			#endregion
-		}
 		public static void TinhCong_ListNgayCong8(List<cNgayCong> dsNgayCong) {
 		}
 		public static void TinhCong_HangNgay(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT,
@@ -428,16 +397,13 @@ namespace ChamCong_v05.BUS {
 				if (row["StartNT"] == DBNull.Value || TimeSpan.TryParse(row["StartNT"].ToString(), out timespanStartNightTime) == false) timespanStartNightTime = XL2._22h00;//ver 4.0.0.4	
 				if (row["EndNT"] == DBNull.Value || TimeSpan.TryParse(row["EndNT"].ToString(), out timespanEndddNightTime) == false) timespanEndddNightTime = XL2._06h00;//ver 4.0.0.4	
 
-				var tOnTimeIn = tsOnDuty.Subtract(new TimeSpan(0, (int)row["OnTimeIn"], 0));
-				var tCutIn = tsOnDuty.Add(new TimeSpan(0, (int)row["CutIn"], 0));
+				var tod_OnTimeIn = tsOnDuty.Subtract(new TimeSpan(0, (int)row["OnTimeIn"], 0));
+				var tod_CutIn = tsOnDuty.Add(new TimeSpan(0, (int)row["CutIn"], 0));
 
 				// phải add thêm 1 ngày daycount vì trong dữ liệu chỉ có chuỗi giờ thô : 05:45 không có ngày
-				var tOnTimeOut = tOffDuty.Subtract(new TimeSpan(0, (int)row["OnTimeOut"], 0));
-				var tCutOut = tOffDuty.Add(new TimeSpan(0, (int)row["CutOut"], 0));
+				var tod_OnTimeOut = tOffDuty.Subtract(new TimeSpan(0, (int)row["OnTimeOut"], 0));
+				var tod_CutOut = tOffDuty.Add(new TimeSpan(0, (int)row["CutOut"], 0));
 
-				var tAfterOT = new TimeSpan(0, (int)row["AfterOT"], 0);
-				var tLateGrace = new TimeSpan(0, (int)row["LateGrace"], 0);
-				var tEarlyGrace = new TimeSpan(0, (int)row["EarlyGrace"], 0);
 				var AfterOTMin =  (int)row["AfterOT"];
 				var LateGraceMin = (int)row["LateGrace"];
 				var EarlyGraceMin = (int)row["EarlyGrace"];
@@ -449,9 +415,7 @@ namespace ChamCong_v05.BUS {
 					TimeSpan.TryParse(row["OffLunch"].ToString(), out tOffLunch);
 				}
 				var LunchMin = tOffLunch.Subtract(tOnLunch);
-				
 
-				var iShowPosition = (int)row["ShowPosition"];
 				var tempWorkingTime = int.Parse(row["WorkingTime"].ToString());
 				var kyhieucc = row["KyHieuCC"].ToString();
 				var tachcadem = (row["IsSplited"] != DBNull.Value) && (bool)row["IsSplited"];
@@ -461,11 +425,9 @@ namespace ChamCong_v05.BUS {
 				var tempShift = new cCa {
 					ID = iShiftID,
 					Code = sShiftCode,
-					DayCount = iDayCount,
-					QuaDem = (iDayCount == 1),
 					TOD_Duty = new TS { Onn = tsOnDuty, Off = tOffDuty },
-					TOD_NhanDienVao = new TS { Onn = tOnTimeIn, Off = tCutIn },
-					TOD_NhanDienRaa = new TS { Onn = tOnTimeOut, Off = tCutOut },
+					TOD_NhanDienVao = new TS { Onn = tod_OnTimeIn, Off = tod_CutIn },
+					TOD_NhanDienRaa = new TS { Onn = tod_OnTimeOut, Off = tod_CutOut },
 					PhutToiThieuTinhOT = AfterOTMin,
 					PhutChoTre = LateGraceMin,
 					PhutChoSom = EarlyGraceMin,
@@ -473,7 +435,6 @@ namespace ChamCong_v05.BUS {
 					//EarlyMin = tEarlyGrace,
 					Workingday = (Single)row["Workingday"],
 					WorkingTimeTS = new TimeSpan(0, tempWorkingTime, 0),
-					ShowPosition = iShowPosition,
 					PhutNghiTrua = Convert.ToInt32(LunchMin.TotalMinutes),
 					TachCaDem = tachcadem,
 					idCaTruoc = idCaTruoc,
@@ -481,7 +442,6 @@ namespace ChamCong_v05.BUS {
 					KyHieuCC = kyhieucc,
 					MoTa = row["Description"].ToString(),
 					IsExtended = isextend,
-					Is_CaTuDo = false,
 					TOD_NightTime = new TS { Onn = timespanStartNightTime, Off = timespanEndddNightTime }
 				};
 				#endregion
