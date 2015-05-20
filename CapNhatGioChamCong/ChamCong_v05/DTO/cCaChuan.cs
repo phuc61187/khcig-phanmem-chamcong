@@ -31,37 +31,44 @@ namespace ChamCong_v05.DTO {
 		public int ID { get; set; }
 		public string Code;
 		public TS TOD_Duty;
-		public TS TOD_NhanDienVao;
-		public TS TOD_NhanDienRaa;
-		public int PhutChoTre = -1;
+		//public TS TOD_NhanDienVao;
+		//public TS TOD_NhanDienRaa;
+		public int PhutOnnInn;
+		public TimeSpan TS_PhutOnnInn { get { return new TimeSpan(0, PhutOnnInn, 0); } }
+		public int PhutCutInn;
+		public TimeSpan TS_PhutCutInn { get { return new TimeSpan(0, PhutCutInn, 0); } }
+		public int PhutOnnOut;
+		public TimeSpan TS_PhutOnnOut { get { return new TimeSpan(0, PhutOnnOut, 0); } }
+		public int PhutCutOut;
+		public TimeSpan TS_PhutCutOut { get { return new TimeSpan(0, PhutCutOut, 0); } }
+		public int PhutChoTre;
 		public TimeSpan TS_PhutChoTre {
 			get {
-				return PhutChoTre == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutChoTre, 0);
+				return new TimeSpan(0, PhutChoTre, 0);
 			}
 		}
-		public int PhutChoSom = -1;
+		public int PhutChoSom;
 		public TimeSpan TS_PhutChoSom {
 			get {
-				return PhutChoSom == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutChoSom, 0);
+				return new TimeSpan(0, PhutChoSom, 0);
 			}
 		}
-		public int PhutToiThieuTinhOT = -1;
+		public int PhutToiThieuTinhOT;
 		public TimeSpan TS_PhutAfterOT {
 			get {
-				return PhutToiThieuTinhOT == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutToiThieuTinhOT, 0);
+				return new TimeSpan(0, PhutToiThieuTinhOT, 0);
 			}
 		}
-		public int PhutNghiTrua = -1;
+		public int PhutNghiTrua;
 		public TimeSpan TS_PhutNghiTrua {
 			get {
-				return PhutNghiTrua == -1 ? TimeSpan.Zero : new TimeSpan(0, PhutNghiTrua, 0);
+				return new TimeSpan(0, PhutNghiTrua, 0);
 			}
 		}
 
 		public TimeSpan WorkingTimeTS;
 		public float Workingday;
-		public bool QuaDem
-		{
+		public bool QuaDem {
 			get { return (TOD_Duty.Off.Days > 0); }
 		}
 		public TS TOD_NightTime;
@@ -77,23 +84,32 @@ namespace ChamCong_v05.DTO {
 
 		public override string ToString() {
 			var temp = "Code:{0}; Onn:{1} Off:{2} [{3} - {4}] [{5} - {6}]";
-			return string.Format(temp, Code, TOD_Duty.Onn.ToString(@"d\ hh\:mm"), TOD_Duty.Off.ToString(@"d\ hh\:mm"),
+			return string.Format(temp, Code, TOD_Duty.Onn.ToString(@"d\ hh\:mm"), TOD_Duty.Off.ToString(@"d\ hh\:mm")/*,
 				TOD_NhanDienVao.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienVao.Off.ToString(@"d\ hh\:mm"),
-				TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm"));
+				TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm")*/);
 		}
 		public cCa() { }
 
-		public DateTime ThoiDiemTre(DateTime Ngay)
-		{
+		public DateTime ThoiDiemTre(DateTime Ngay) {
 			return Ngay.Add(this.TOD_Duty.Onn.Add(this.TS_PhutChoTre));
 		}
-		public DateTime ThoiDiemSom(DateTime Ngay)
-		{
+		public DateTime ThoiDiemSom(DateTime Ngay) {
 			return Ngay.Add(this.TOD_Duty.Off.Subtract(this.TS_PhutChoSom));
 		}
-		public DateTime ThoiDiemTinhOT(DateTime Ngay	)
-		{
+		public DateTime ThoiDiemTinhOT(DateTime Ngay) {
 			return Ngay.Add(this.TOD_Duty.Off.Add(this.TS_PhutAfterOT));
+		}
+		public DateTime ThoiDiemOnnInn(DateTime Ngay) {
+			return Ngay.Add(this.TOD_Duty.Onn.Subtract(this.TS_PhutOnnInn));
+		}
+		public DateTime ThoiDiemCutInn(DateTime Ngay) {
+			return Ngay.Add(this.TOD_Duty.Onn.Add(this.TS_PhutCutInn));
+		}
+		public DateTime ThoiDiemOnnOut(DateTime Ngay) {
+			return Ngay.Add(this.TOD_Duty.Off.Subtract(this.TS_PhutOnnOut));
+		}
+		public DateTime ThoiDiemCutOut(DateTime Ngay) {
+			return Ngay.Add(this.TOD_Duty.Off.Add(this.TS_PhutCutOut));
 		}
 	}
 

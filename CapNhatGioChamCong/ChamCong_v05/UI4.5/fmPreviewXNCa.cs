@@ -38,12 +38,13 @@ namespace ChamCong_v05.UI4._5 {
 			cCheckInOut cio = (cCheckInOut)row["cCheckInOut"];
 			if (soPhutLamThemDaXN > cio.TG5.OLai) return -1; // 
 			TS TOD_Duty, gioiHanChoPhepTreSom;
-			if (cio.ShiftID < 0) {//ca tự do
+			DateTime td_batdau_lv, td_ketthuc_lv;
+			TimeSpan tre, som;
+			if (CaDuocChon.ID < 0) {//ca tự do
 				TOD_Duty.Onn = new TimeSpan(cio.Vao.Time.TimeOfDay.Hours, cio.Vao.Time.TimeOfDay.Minutes, 0);
 				TOD_Duty.Off = TOD_Duty.Onn.Add(CaDuocChon.WorkingTimeTS);
-
-				gioiHanChoPhepTreSom = new TS { Onn = (XL2.TS_Default_PhutChoTre), Off = XL2.TS_Default_PhutChoSom };
-
+				XL.Vao(cio.Vao.Time, cio.ThuocNgayCong.Add(TOD_Duty.Onn), CaDuocChon.ThoiDiemTre(cio.ThuocNgayCong.Date), out td_batdau_lv, out tre);
+				XL.Raa(cio.Raa.Time, cio.ThuocNgayCong.Add(TOD_Duty.Off), CaDuocChon.ThoiDiemSom(cio.ThuocNgayCong.Date), out td_ketthuc_lv, out som);
 			}
 			else {//ca chuẩn
 

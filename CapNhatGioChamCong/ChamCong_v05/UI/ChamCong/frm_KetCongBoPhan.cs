@@ -264,8 +264,8 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 
 								var sp = CIO.ThuocCa;
 								shiftParams = string.Format(TemplateShiftParams, sp.Code, sp.ID, sp.TOD_Duty.Onn.ToString(@"d\ hh\:mm"), sp.TOD_Duty.Off.ToString(@"d\ hh\:mm"),
-															sp.TOD_NhanDienVao.Onn.ToString(@"d\ hh\:mm"), sp.TOD_NhanDienVao.Off.ToString(@"d\ hh\:mm"),
-															sp.TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), sp.TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm"),
+															//sp.TOD_NhanDienVao.Onn.ToString(@"d\ hh\:mm"), sp.TOD_NhanDienVao.Off.ToString(@"d\ hh\:mm"),
+															//sp.TOD_NhanDienRaa.Onn.ToString(@"d\ hh\:mm"), sp.TOD_NhanDienRaa.Off.ToString(@"d\ hh\:mm"),
 															sp.TS_PhutChoTre.Minutes, string.Empty/* sp.TOD_ChoPhepTreSom.Onn.ToString(@"d\ hh\:mm")*/,
 															sp.TS_PhutChoSom.Minutes, string.Empty/*sp.TOD_ChoPhepTreSom.Off.ToString(@"d\ hh\:mm")*/,
 															sp.TS_PhutAfterOT.Minutes, string.Empty/*sp.TOD_batdaulamthem.ToString(@"d\ hh\:mm")*/,

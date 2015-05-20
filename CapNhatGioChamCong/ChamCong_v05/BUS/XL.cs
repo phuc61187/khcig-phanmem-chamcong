@@ -397,17 +397,6 @@ namespace ChamCong_v05.BUS {
 				if (row["StartNT"] == DBNull.Value || TimeSpan.TryParse(row["StartNT"].ToString(), out timespanStartNightTime) == false) timespanStartNightTime = XL2._22h00;//ver 4.0.0.4	
 				if (row["EndNT"] == DBNull.Value || TimeSpan.TryParse(row["EndNT"].ToString(), out timespanEndddNightTime) == false) timespanEndddNightTime = XL2._06h00;//ver 4.0.0.4	
 
-				var tod_OnTimeIn = tsOnDuty.Subtract(new TimeSpan(0, (int)row["OnTimeIn"], 0));
-				var tod_CutIn = tsOnDuty.Add(new TimeSpan(0, (int)row["CutIn"], 0));
-
-				// phải add thêm 1 ngày daycount vì trong dữ liệu chỉ có chuỗi giờ thô : 05:45 không có ngày
-				var tod_OnTimeOut = tOffDuty.Subtract(new TimeSpan(0, (int)row["OnTimeOut"], 0));
-				var tod_CutOut = tOffDuty.Add(new TimeSpan(0, (int)row["CutOut"], 0));
-
-				var AfterOTMin =  (int)row["AfterOT"];
-				var LateGraceMin = (int)row["LateGrace"];
-				var EarlyGraceMin = (int)row["EarlyGrace"];
-
 				var tOnLunch = XL2._0gio;
 				var tOffLunch = XL2._0gio;
 				if (row["OnLunch"] != DBNull.Value && row["OffLunch"] != DBNull.Value) {
@@ -426,11 +415,13 @@ namespace ChamCong_v05.BUS {
 					ID = iShiftID,
 					Code = sShiftCode,
 					TOD_Duty = new TS { Onn = tsOnDuty, Off = tOffDuty },
-					TOD_NhanDienVao = new TS { Onn = tod_OnTimeIn, Off = tod_CutIn },
-					TOD_NhanDienRaa = new TS { Onn = tod_OnTimeOut, Off = tod_CutOut },
-					PhutToiThieuTinhOT = AfterOTMin,
-					PhutChoTre = LateGraceMin,
-					PhutChoSom = EarlyGraceMin,
+					PhutOnnInn = (int)row["OnTimeIn"],
+					PhutCutInn = (int)row["CutIn"],
+					PhutOnnOut = (int)row["OnTimeOut"],
+					PhutCutOut = (int)row["CutOut"],
+					PhutToiThieuTinhOT = (int)row["AfterOT"],
+					PhutChoTre = (int)row["LateGrace"],
+					PhutChoSom = (int)row["EarlyGrace"],
 					//LateeMin = tLateGrace,
 					//EarlyMin = tEarlyGrace,
 					Workingday = (Single)row["Workingday"],
@@ -444,6 +435,8 @@ namespace ChamCong_v05.BUS {
 					IsExtended = isextend,
 					TOD_NightTime = new TS { Onn = timespanStartNightTime, Off = timespanEndddNightTime }
 				};
+					//tempShift.TOD_NhanDienVao = new TS { Onn = tempShift.ThoiDiemOnnInn(), Off = tod_CutIn },
+					//tempShift.TOD_NhanDienRaa = new TS { Onn = tod_OnTimeOut, Off = tod_CutOut },
 				#endregion
 
 				tempList.Add(tempShift);

@@ -352,7 +352,7 @@ namespace ChamCong_v05.UI.KhaiBao {
 */
 						if (ca.ID < int.MinValue + 100) XL.TaoCaTuDo(ca, TimeStrInn);//ver 4.0.0.4	
 
-						bool match = XL.KiemtraThuocCa(TimeStrInn, TimeStrOut, ngay, ca);
+						bool match = XL.KiemtraThuocCa5(TimeStrInn, TimeStrOut, ngay, ca);
 						// trường hợp chỉ chấm công bình thường thì chỉ thêm giờ cho đơn giản
 						// các trường hợp xác nhận làm thêm x phút thì chuyển sang xác nhận
 						if (ca.ID < 0) {
