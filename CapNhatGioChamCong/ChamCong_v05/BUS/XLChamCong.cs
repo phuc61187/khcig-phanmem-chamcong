@@ -607,7 +607,7 @@ namespace ChamCong_v05.BUS {
 			TGOLai = TimeSpan.Zero;
 			TGGioLamViec = TimeSpan.Zero; // tổng thời gian làm việc đã gồm OT
 			TGGioLamViecTrongCa = TimeSpan.Zero; //ver 4.0.0.4	
-			TGGioLamViecNgoaiGio = TimeSpan.Zero;
+			
 			TGLamBanDem = TimeSpan.Zero;
 			QuaDem = false;
 

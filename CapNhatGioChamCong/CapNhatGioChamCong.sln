@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapNhatGioChamCong", "CapNhatGioChamCong\CapNhatGioChamCong.csproj", "{61B74C19-B9D3-49D9-B499-2F6D543215D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudynTestNewTech", "StudynTestNewTech\StudynTestNewTech.csproj", "{601DFEE0-DCCC-4CAF-A11E-DC6053E02584}"
@@ -16,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profile", "..\..\..\Dropbox\KHCigar\learning\Read-Write XML files, Config files, INI files, or the Registry\Read Write XML files, Config files, INI files, or the Registry ProfileSource\Profile.csproj", "{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamCong_v05", "ChamCong_v05\ChamCong_v05.csproj", "{2868D670-19A2-4BB5-B7A0-452DC707CAC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamCong_v06", "ChamCong_v06\ChamCong_v06.csproj", "{6538044B-BF04-40E3-AE56-ADDD94E0586C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +96,16 @@ Global
 		{2868D670-19A2-4BB5-B7A0-452DC707CAC2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2868D670-19A2-4BB5-B7A0-452DC707CAC2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2868D670-19A2-4BB5-B7A0-452DC707CAC2}.Release|x86.ActiveCfg = Release|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6538044B-BF04-40E3-AE56-ADDD94E0586C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
