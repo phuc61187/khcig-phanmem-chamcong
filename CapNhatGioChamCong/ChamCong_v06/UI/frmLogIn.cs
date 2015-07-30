@@ -55,6 +55,12 @@ namespace ChamCong_v06.UI {
 			//1.2 đăng nhập thành công thì bật cờ,đóng form này lại //todo 
 			string tmpConnStr = string.Empty, currUserAccount = string.Empty;
 			int loaiTK = 1, currUserID = 0;
+			if (Settings.Default.EncryptConnectionString == string.Empty)
+			{
+				ACMessageBox.Show("Chưa có kết nối CSDL.", Resources.Caption_Loi,2000);
+				return;
+			}
+			
 			tmpConnStr = MyUtility.giaima(Settings.Default.EncryptConnectionString);
 			var kq = XL.CheckLogIn(tempUsername, tempPassword, passroot,
 				ref tmpConnStr, ref loaiTK, ref currUserID, ref currUserAccount);

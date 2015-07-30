@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="BUS\XL.cs" />
     <Compile Include="BUS\XL2.cs" />
+    <Compile Include="DAL\DAOPhongBan_NhanVien.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,14 +83,32 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="UI\frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmXemCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmXemCong.Designer.cs">
+      <DependentUpon>frmXemCong.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmXemCong.resx">
+      <DependentUpon>frmXemCong.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\resources.designer.cs" />
     <Compile Include="UI\frmKetNoiCSDL.cs">
@@ -142,7 +161,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\" />
     <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>

@@ -40,7 +40,7 @@
 			this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label1.Location = new System.Drawing.Point(13, 15);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(69, 16);
+			this.label1.Size = new System.Drawing.Size(66, 14);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Tài khoản";
 			// 
@@ -50,7 +50,7 @@
 			this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label2.Location = new System.Drawing.Point(14, 41);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(68, 16);
+			this.label2.Size = new System.Drawing.Size(65, 14);
 			this.label2.TabIndex = 0;
 			this.label2.Text = "Mật khẩu";
 			// 

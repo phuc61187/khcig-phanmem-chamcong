@@ -299,6 +299,7 @@ namespace ChamCong_v06.Helper {
 		#region other sp
 		KiemTraKetLuongThang,
 		ThongKeCongVaPhuCap,
+		UserInfo_ChangePass,
 		#endregion
 	}
 	#endregion

@@ -26,19 +26,20 @@
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.chamCongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.taiKhoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.thoatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.resetPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.quanLyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.qLPhongBanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.qLNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.qLTaiKhoanDangNhapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.resetPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.localSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.thoatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
 			// 
+			this.menuStrip1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chamCongToolStripMenuItem,
@@ -47,14 +48,14 @@
             this.thoatToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1342, 28);
+			this.menuStrip1.Size = new System.Drawing.Size(1342, 24);
 			this.menuStrip1.TabIndex = 1;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
 			// chamCongToolStripMenuItem
 			// 
 			this.chamCongToolStripMenuItem.Name = "chamCongToolStripMenuItem";
-			this.chamCongToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
+			this.chamCongToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
 			this.chamCongToolStripMenuItem.Text = "ChamCong";
 			// 
 			// taiKhoanToolStripMenuItem
@@ -62,14 +63,15 @@
 			this.taiKhoanToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.resetPassToolStripMenuItem});
 			this.taiKhoanToolStripMenuItem.Name = "taiKhoanToolStripMenuItem";
-			this.taiKhoanToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+			this.taiKhoanToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
 			this.taiKhoanToolStripMenuItem.Text = "TaiKhoan";
 			// 
-			// thoatToolStripMenuItem
+			// resetPassToolStripMenuItem
 			// 
-			this.thoatToolStripMenuItem.Name = "thoatToolStripMenuItem";
-			this.thoatToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
-			this.thoatToolStripMenuItem.Text = "Thoát";
+			this.resetPassToolStripMenuItem.Name = "resetPassToolStripMenuItem";
+			this.resetPassToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+			this.resetPassToolStripMenuItem.Text = "ResetPassword";
+			this.resetPassToolStripMenuItem.Click += new System.EventHandler(this.resetPassToolStripMenuItem_Click);
 			// 
 			// quanLyToolStripMenuItem
 			// 
@@ -80,44 +82,45 @@
             this.settingToolStripMenuItem,
             this.localSettingToolStripMenuItem});
 			this.quanLyToolStripMenuItem.Name = "quanLyToolStripMenuItem";
-			this.quanLyToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+			this.quanLyToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
 			this.quanLyToolStripMenuItem.Text = "QuanLy";
 			// 
 			// qLPhongBanToolStripMenuItem
 			// 
 			this.qLPhongBanToolStripMenuItem.Name = "qLPhongBanToolStripMenuItem";
-			this.qLPhongBanToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+			this.qLPhongBanToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.qLPhongBanToolStripMenuItem.Text = "QLPhongBan";
 			// 
 			// qLNhanVienToolStripMenuItem
 			// 
 			this.qLNhanVienToolStripMenuItem.Name = "qLNhanVienToolStripMenuItem";
-			this.qLNhanVienToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+			this.qLNhanVienToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.qLNhanVienToolStripMenuItem.Text = "QLNhanVien";
 			// 
 			// qLTaiKhoanDangNhapToolStripMenuItem
 			// 
 			this.qLTaiKhoanDangNhapToolStripMenuItem.Name = "qLTaiKhoanDangNhapToolStripMenuItem";
-			this.qLTaiKhoanDangNhapToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+			this.qLTaiKhoanDangNhapToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.qLTaiKhoanDangNhapToolStripMenuItem.Text = "QLTaiKhoanDangNhap";
-			// 
-			// resetPassToolStripMenuItem
-			// 
-			this.resetPassToolStripMenuItem.Name = "resetPassToolStripMenuItem";
-			this.resetPassToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
-			this.resetPassToolStripMenuItem.Text = "ResetPassword";
 			// 
 			// settingToolStripMenuItem
 			// 
 			this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-			this.settingToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+			this.settingToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.settingToolStripMenuItem.Text = "ServerSetting";
 			// 
 			// localSettingToolStripMenuItem
 			// 
 			this.localSettingToolStripMenuItem.Name = "localSettingToolStripMenuItem";
-			this.localSettingToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+			this.localSettingToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.localSettingToolStripMenuItem.Text = "LocalSetting";
+			// 
+			// thoatToolStripMenuItem
+			// 
+			this.thoatToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.thoatToolStripMenuItem.Name = "thoatToolStripMenuItem";
+			this.thoatToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+			this.thoatToolStripMenuItem.Text = "Thoát";
 			// 
 			// frmMain
 			// 
