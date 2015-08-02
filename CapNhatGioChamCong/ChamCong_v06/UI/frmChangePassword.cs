@@ -17,11 +17,6 @@ namespace ChamCong_v06.UI {
 			InitializeComponent();
 		}
 
-		private void btnEdit_Clear_Click(object sender, EventArgs e)
-		{
-			ButtonEdit button = (ButtonEdit) sender;
-			button.Text = string.Empty;
-		}
 
 		private void btnThaydoi_Click(object sender, EventArgs e) {
 			if (XL2.KiemtraKetnoiCSDL() == false) return;
@@ -44,6 +39,11 @@ namespace ChamCong_v06.UI {
 
 		private void btnThoat_Click(object sender, EventArgs e) {
 			Close();
+		}
+
+		private void btnEdit_Clear_Click(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
+			ButtonEdit button = (ButtonEdit)sender;
+			button.Text = string.Empty;
 		}
 	}
 }

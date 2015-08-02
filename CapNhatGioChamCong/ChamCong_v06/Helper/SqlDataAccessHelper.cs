@@ -232,7 +232,7 @@ namespace ChamCong_v06.Helper {
 		#endregion
 
 		#region ExecuteNoneQuery
-		public static int ExecSPNoneQuery(String spName, params SqlParameter[] sqlParams) {
+		public static int ExecSPNoneQuery(String storeProcName, params SqlParameter[] sqlParams) {
 			int n;
 			try {
 				SqlConnection connect = new SqlConnection(ConnectionString);
@@ -240,7 +240,7 @@ namespace ChamCong_v06.Helper {
 				try {
 					SqlCommand command = connect.CreateCommand();
 					command.CommandType = CommandType.StoredProcedure;
-					command.CommandText = spName;
+					command.CommandText = storeProcName;
 					if (sqlParams != null) {
 						foreach (SqlParameter param in sqlParams) {
 							command.Parameters.Add(param);

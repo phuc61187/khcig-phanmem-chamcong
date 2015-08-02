@@ -25,12 +25,6 @@ namespace ChamCong_v06.UI {
 			InitializeComponent();
 		}
 
-		private void btnEdit_Clear_Click(object sender, EventArgs e)
-		{
-			ButtonEdit button = (ButtonEdit) sender;
-			button.Text = string.Empty;
-		}
-
 		private void btnThoat_Click(object sender, EventArgs e)
 		{
 			this.Close();
@@ -84,6 +78,12 @@ namespace ChamCong_v06.UI {
 					return;
 				}
 			}
+
+		}
+
+		private void btnEdit_Clear_Click(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
+			ButtonEdit button = (ButtonEdit)sender;
+			button.Text = string.Empty;
 
 		}
 	}

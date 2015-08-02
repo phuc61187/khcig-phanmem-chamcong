@@ -42,35 +42,35 @@
 			// btnEditUser
 			// 
 			this.btnEditUser.EditValue = "";
-			this.btnEditUser.Location = new System.Drawing.Point(81, 33);
+			this.btnEditUser.Location = new System.Drawing.Point(75, 33);
 			this.btnEditUser.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditUser.Name = "btnEditUser";
 			this.btnEditUser.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.btnEditUser.Properties.Appearance.Options.UseFont = true;
 			this.btnEditUser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
-			this.btnEditUser.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
 			this.btnEditUser.Size = new System.Drawing.Size(180, 20);
 			this.btnEditUser.TabIndex = 1;
+			this.btnEditUser.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
 			// 
 			// btnEditServer
 			// 
-			this.btnEditServer.Location = new System.Drawing.Point(81, 11);
+			this.btnEditServer.Location = new System.Drawing.Point(75, 11);
 			this.btnEditServer.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditServer.Name = "btnEditServer";
 			this.btnEditServer.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.btnEditServer.Properties.Appearance.Options.UseFont = true;
 			this.btnEditServer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
-			this.btnEditServer.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
 			this.btnEditServer.Size = new System.Drawing.Size(180, 20);
 			this.btnEditServer.TabIndex = 0;
+			this.btnEditServer.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
 			// 
 			// btnThoat
 			// 
 			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.btnThoat.Appearance.Options.UseFont = true;
-			this.btnThoat.Location = new System.Drawing.Point(173, 103);
+			this.btnThoat.Location = new System.Drawing.Point(167, 103);
 			this.btnThoat.Margin = new System.Windows.Forms.Padding(2);
 			this.btnThoat.Name = "btnThoat";
 			this.btnThoat.Size = new System.Drawing.Size(87, 25);
@@ -82,7 +82,7 @@
 			// 
 			this.btnKetnoiCSDL.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.btnKetnoiCSDL.Appearance.Options.UseFont = true;
-			this.btnKetnoiCSDL.Location = new System.Drawing.Point(82, 103);
+			this.btnKetnoiCSDL.Location = new System.Drawing.Point(76, 103);
 			this.btnKetnoiCSDL.Margin = new System.Windows.Forms.Padding(2);
 			this.btnKetnoiCSDL.Name = "btnKetnoiCSDL";
 			this.btnKetnoiCSDL.Size = new System.Drawing.Size(87, 25);
@@ -140,7 +140,7 @@
 			// 
 			// btnEditPassword
 			// 
-			this.btnEditPassword.Location = new System.Drawing.Point(81, 56);
+			this.btnEditPassword.Location = new System.Drawing.Point(75, 56);
 			this.btnEditPassword.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditPassword.Name = "btnEditPassword";
 			this.btnEditPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -148,28 +148,29 @@
 			this.btnEditPassword.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditPassword.Properties.UseSystemPasswordChar = true;
-			this.btnEditPassword.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
 			this.btnEditPassword.Size = new System.Drawing.Size(180, 20);
 			this.btnEditPassword.TabIndex = 2;
+			this.btnEditPassword.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
 			// 
 			// btnEditDatabase
 			// 
 			this.btnEditDatabase.EditValue = "";
-			this.btnEditDatabase.Location = new System.Drawing.Point(81, 79);
+			this.btnEditDatabase.Location = new System.Drawing.Point(75, 79);
 			this.btnEditDatabase.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditDatabase.Name = "btnEditDatabase";
 			this.btnEditDatabase.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.btnEditDatabase.Properties.Appearance.Options.UseFont = true;
 			this.btnEditDatabase.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
-			this.btnEditDatabase.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
 			this.btnEditDatabase.Size = new System.Drawing.Size(180, 20);
 			this.btnEditDatabase.TabIndex = 3;
+			this.btnEditDatabase.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
 			// 
 			// frmKetNoiCSDL
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(274, 138);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(267, 138);
 			this.Controls.Add(this.labelX3);
 			this.Controls.Add(this.labelX4);
 			this.Controls.Add(this.labelX2);
@@ -182,8 +183,6 @@
 			this.Controls.Add(this.btnKetnoiCSDL);
 			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Margin = new System.Windows.Forms.Padding(2);
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "frmKetNoiCSDL";
 			this.Text = "Kết nối CSDL";
 			((System.ComponentModel.ISupportInitialize)(this.btnEditUser.Properties)).EndInit();

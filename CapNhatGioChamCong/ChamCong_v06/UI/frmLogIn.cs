@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using ChamCong_v06.BUS;
 using ChamCong_v06.Helper;
 using ChamCong_v06.Properties;
+using ChamCong_v06.UI.QLPhong;
 
 namespace ChamCong_v06.UI {
 	public partial class frmLogIn : Form
@@ -57,10 +58,9 @@ namespace ChamCong_v06.UI {
 			int loaiTK = 1, currUserID = 0;
 			if (Settings.Default.EncryptConnectionString == string.Empty)
 			{
-				ACMessageBox.Show("Chưa có kết nối CSDL.", Resources.Caption_Loi,2000);
+				ACMessageBox.Show("Chưa có kết nối CSDL.", Resources.Caption_Loi, 2000);
 				return;
 			}
-			
 			tmpConnStr = MyUtility.giaima(Settings.Default.EncryptConnectionString);
 			var kq = XL.CheckLogIn(tempUsername, tempPassword, passroot,
 				ref tmpConnStr, ref loaiTK, ref currUserID, ref currUserAccount);
@@ -74,6 +74,7 @@ namespace ChamCong_v06.UI {
 			XL2.currUserAccount = currUserAccount;
 			this.m_LogInStatus = true;
 			this.Close();
+			return;
 			//XL.KhoiTaoDSPhongBan(XL2.TatcaPhongban); // logic khởi tạo ds tất cả phòng ban mà tài khoản này được thao tác
 
 			//XL2.QuyenThaoTac = XL.LayPhanQuyen();
@@ -106,9 +107,12 @@ namespace ChamCong_v06.UI {
 			//	frm.ShowDialog();
 			//	this.Close();
 
-				// hiển thị form tài khoản thường
-			//}
+				// hiển thị form tài khoản thường//}
 
+		}
+
+		private void btnEditTaikhoan_ButtonPressed(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
+			ACMessageBox.Show("button press", string.Empty, 1000);
 		}
 
 	}

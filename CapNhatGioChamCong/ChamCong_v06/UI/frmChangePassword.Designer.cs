@@ -46,7 +46,7 @@
 			this.btnEditMatkhauMoi1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditMatkhauMoi1.Properties.UseSystemPasswordChar = true;
-			this.btnEditMatkhauMoi1.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
+			this.btnEditMatkhauMoi1.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
 			this.btnEditMatkhauMoi1.Size = new System.Drawing.Size(206, 20);
 			this.btnEditMatkhauMoi1.TabIndex = 7;
 			// 
@@ -59,7 +59,7 @@
 			this.btnEditMatkhauCu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditMatkhauCu.Properties.UseSystemPasswordChar = true;
-			this.btnEditMatkhauCu.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
+			this.btnEditMatkhauCu.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
 			this.btnEditMatkhauCu.Size = new System.Drawing.Size(206, 20);
 			this.btnEditMatkhauCu.TabIndex = 4;
 			// 
@@ -125,7 +125,7 @@
 			this.btnEditMatkhauMoi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditMatkhauMoi2.Properties.UseSystemPasswordChar = true;
-			this.btnEditMatkhauMoi2.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
+			this.btnEditMatkhauMoi2.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
 			this.btnEditMatkhauMoi2.Size = new System.Drawing.Size(206, 20);
 			this.btnEditMatkhauMoi2.TabIndex = 7;
 			// 

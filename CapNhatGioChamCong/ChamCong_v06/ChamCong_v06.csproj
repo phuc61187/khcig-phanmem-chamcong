@@ -38,6 +38,8 @@
     <Reference Include="DevExpress.Utils.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\log4net.dll</HintPath>
@@ -66,6 +68,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\MyEnum.cs" />
+    <Compile Include="Helper\MyEnum_v06.cs" />
     <Compile Include="Helper\MyStruct.cs" />
     <Compile Include="Helper\MyUtility.cs" />
     <Compile Include="Helper\SqlDataAccessHelper.cs" />
@@ -95,6 +98,18 @@
     <Compile Include="UI\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\QLPhong\frmQLPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLPhong\frmQLPhongBan.Designer.cs">
+      <DependentUpon>frmQLPhongBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\QLPhong\frmNhapThongTinPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLPhong\frmNhapThongTinPhong.Designer.cs">
+      <DependentUpon>frmNhapThongTinPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmXemCong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLPhong\frmQLPhongBan.resx">
+      <DependentUpon>frmQLPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLPhong\frmNhapThongTinPhong.resx">
+      <DependentUpon>frmNhapThongTinPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmXemCong.resx">
       <DependentUpon>frmXemCong.cs</DependentUpon>
@@ -165,6 +186,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="QuyUoc.txt" />
+    <None Include="Resources\1438546670_Save.png" />
+    <None Include="Resources\1438546227_Log Out.png" />
+    <None Include="Resources\1438546065_Delete.png" />
+    <None Include="Resources\1438546263_Edit.png" />
+    <None Include="Resources\1438546384_Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

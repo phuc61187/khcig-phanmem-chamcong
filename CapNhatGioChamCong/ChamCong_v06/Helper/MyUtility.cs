@@ -608,6 +608,14 @@ namespace ChamCong_v06.Helper {
 				control.Text = String.Empty;
 		}
 
+		public static void ClearButtonEditText(params object[] controls)
+		{
+			foreach (var control in controls)
+			{
+				((DevExpress.XtraEditors.ButtonEdit)control).Text = string.Empty;
+			}
+		}
+
 		public static void UpdateControl(params Control[] controls) {
 			foreach (var control in controls) {
 				control.Update();

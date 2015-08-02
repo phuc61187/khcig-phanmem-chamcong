@@ -26,12 +26,12 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnDangnhap = new DevExpress.XtraEditors.SimpleButton();
-			this.btnEditTaikhoan = new DevExpress.XtraEditors.ButtonEdit();
 			this.btnEditMatkhau = new DevExpress.XtraEditors.ButtonEdit();
 			this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
 			this.btnKetnoiCSDL = new DevExpress.XtraEditors.SimpleButton();
-			((System.ComponentModel.ISupportInitialize)(this.btnEditTaikhoan.Properties)).BeginInit();
+			this.btnEditTaikhoan = new DevExpress.XtraEditors.ButtonEdit();
 			((System.ComponentModel.ISupportInitialize)(this.btnEditMatkhau.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.btnEditTaikhoan.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -64,18 +64,6 @@
 			this.btnDangnhap.TabIndex = 2;
 			this.btnDangnhap.Text = "Đăng nhập";
 			this.btnDangnhap.Click += new System.EventHandler(this.btnDangnhap_Click);
-			// 
-			// btnEditTaikhoan
-			// 
-			this.btnEditTaikhoan.Location = new System.Drawing.Point(88, 12);
-			this.btnEditTaikhoan.Name = "btnEditTaikhoan";
-			this.btnEditTaikhoan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.btnEditTaikhoan.Properties.Appearance.Options.UseFont = true;
-			this.btnEditTaikhoan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
-			this.btnEditTaikhoan.Properties.Click += new System.EventHandler(this.btnEdit_Clear_Click);
-			this.btnEditTaikhoan.Size = new System.Drawing.Size(206, 20);
-			this.btnEditTaikhoan.TabIndex = 0;
 			// 
 			// btnEditMatkhau
 			// 
@@ -113,23 +101,36 @@
 			this.btnKetnoiCSDL.Text = "Kết nối CSDL";
 			this.btnKetnoiCSDL.Click += new System.EventHandler(this.btnKetnoiCSDL_Click);
 			// 
+			// btnEditTaikhoan
+			// 
+			this.btnEditTaikhoan.EditValue = "";
+			this.btnEditTaikhoan.Location = new System.Drawing.Point(88, 12);
+			this.btnEditTaikhoan.Name = "btnEditTaikhoan";
+			this.btnEditTaikhoan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditTaikhoan.Properties.Appearance.Options.UseFont = true;
+			this.btnEditTaikhoan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
+			this.btnEditTaikhoan.Size = new System.Drawing.Size(206, 20);
+			this.btnEditTaikhoan.TabIndex = 0;
+			this.btnEditTaikhoan.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditTaikhoan_ButtonPressed);
+			// 
 			// frmLogIn
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(310, 139);
 			this.Controls.Add(this.btnEditMatkhau);
-			this.Controls.Add(this.btnEditTaikhoan);
 			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.btnKetnoiCSDL);
 			this.Controls.Add(this.btnDangnhap);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.btnEditTaikhoan);
 			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "frmLogIn";
 			this.Text = "Đăng nhập";
-			((System.ComponentModel.ISupportInitialize)(this.btnEditTaikhoan.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnEditMatkhau.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.btnEditTaikhoan.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -140,9 +141,9 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private DevExpress.XtraEditors.SimpleButton btnDangnhap;
-		private DevExpress.XtraEditors.ButtonEdit btnEditTaikhoan;
 		private DevExpress.XtraEditors.ButtonEdit btnEditMatkhau;
 		private DevExpress.XtraEditors.SimpleButton btnThoat;
 		private DevExpress.XtraEditors.SimpleButton btnKetnoiCSDL;
+		private DevExpress.XtraEditors.ButtonEdit btnEditTaikhoan;
 	}
 }
