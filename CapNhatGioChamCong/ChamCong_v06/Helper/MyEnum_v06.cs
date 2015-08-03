@@ -19,6 +19,9 @@ namespace ChamCong_v06.Helper
 		RelationDept_SuaPhong,
 		RelationDept_XoaPhong,
 		#endregion
+		#region
+		Shift_DocTatCaShift,
+		#endregion
 	}
 
 }

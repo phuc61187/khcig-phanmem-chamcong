@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ChamCong_v06.BUS;
 using ChamCong_v06.Helper;
+using ChamCong_v06.UI.QLLichTrinh;
 using ChamCong_v06.UI.QLPhong;
 
 namespace ChamCong_v06.UI {
@@ -29,7 +30,7 @@ namespace ChamCong_v06.UI {
 				if (frm.m_LogInStatus)
 				{
 					//todo 
-					frmQLPhongBan frm1 = new frmQLPhongBan();
+					frmQLCa frm1 = new frmQLCa();
 					frm1.MdiParent = this;
 					frm1.Show();
 				}
@@ -63,6 +64,10 @@ namespace ChamCong_v06.UI {
 				frm1.Show();
 			}
 
+		}
+
+		private void thoatToolStripMenuItem_Click(object sender, EventArgs e) {
+			Application.Exit();
 		}
 	}
 }

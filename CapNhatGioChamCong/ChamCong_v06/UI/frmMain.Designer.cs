@@ -121,6 +121,7 @@
 			this.thoatToolStripMenuItem.Name = "thoatToolStripMenuItem";
 			this.thoatToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
 			this.thoatToolStripMenuItem.Text = "Thoát";
+			this.thoatToolStripMenuItem.Click += new System.EventHandler(this.thoatToolStripMenuItem_Click);
 			// 
 			// frmMain
 			// 

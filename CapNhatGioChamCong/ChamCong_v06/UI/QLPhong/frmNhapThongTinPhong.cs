@@ -78,7 +78,7 @@ namespace ChamCong_v06.UI.QLPhong {
 				treePhongBan.SelectedNode = node;
 
 				btnTenPhong.Text = tenPhong;
-				tbVitriPhong.Text = VitriPhong.ToString();
+				tbVitriPhong.Text = vitriPhong.ToString();
 				checkEnable.Checked = enable;// chú ý ngược giá trị của disable
 			}
 			else if (this.Mode == ModeType.Them) { // chọn sẵn node cha, checked enable
