@@ -19,7 +19,7 @@ namespace ChamCong_v05.UI4._5 {
 		public fmDSCa() {
 			InitializeComponent();
 		}
-
+		//
 		private void fmDSCa_Load(object sender, EventArgs e) {
 			#region gán datasource cho các datagrid
 

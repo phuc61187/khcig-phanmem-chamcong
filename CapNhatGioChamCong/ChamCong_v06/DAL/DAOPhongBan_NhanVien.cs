@@ -105,5 +105,72 @@ namespace ChamCong_v06.DAL {
 			if (kq1 > 0) return true;
 			return false;
 		}
+
+		public static DataTable LoadDataSourceShift()
+		{
+			DataTable tableShift = SqlDataAccessHelper.ExecSPQuery(SPName6.Shift_DocTatCaShift.ToString());
+			DataTable kq = new DataTable();
+			kq.Columns.Add(new DataColumn("ShiftCode", typeof (string)));
+			kq.Columns.Add(new DataColumn("ShiftID", typeof (int)));
+			kq.Columns.Add(new DataColumn("Enable", typeof (bool)));
+			kq.Columns.Add(new DataColumn("OnDuty", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("OffDuty", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("WorkingTime", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("Workingday", typeof (float)));
+			kq.Columns.Add(new DataColumn("LateGrace", typeof (int)));
+			kq.Columns.Add(new DataColumn("EarlyGrace", typeof (int)));
+			kq.Columns.Add(new DataColumn("AfterOT", typeof (int)));
+			kq.Columns.Add(new DataColumn("OnTimeIn", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("CutIn", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("OnTimeOut", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("CutOut", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("KyHieuCC", typeof (string)));
+			
+			foreach (DataRow row in tableShift.Rows)
+			{
+				DataRow newRow = kq.NewRow();
+				bool disableCSDL = (row["Disable"] != DBNull.Value) ? (bool) row["Disable"] : false;
+				bool enableColumn = !disableCSDL; // row[""] ToString()
+				string shiftcode = row["ShiftCode"].ToString();
+				int shiftID = (int)row["ShiftID"];
+				TimeSpan onDuty = TimeSpan.Parse(row["OnDuty"].ToString());
+				int dayCount = (int) row["DayCount"];
+				TimeSpan offDuty = TimeSpan.Parse(row["OffDuty"].ToString());
+				offDuty = offDuty.Add(new TimeSpan(dayCount, 0, 0, 0));
+				TimeSpan tongGioLam = new TimeSpan(0, 0, Convert.ToInt32(row["WorkingTime"]), 0);
+				float chamCong = (float) (row["Workingday"]);
+				int trePhut = (int) row["LateGrace"];
+				int somPhut = (int) row["EarlyGrace"];
+				int lamThemToiThieu = (int) row["AfterOT"];
+				int OnTimeInMinute = (int) row["OnTimeIn"];
+				int CutInMinute = (int) row["CutIn"];
+				int OnTimeOutMinute = (int) row["OnTimeOut"];
+				int CutOutMinute = (int)row["CutOut"];
+				TimeSpan OnTimeIn = onDuty.Subtract(new TimeSpan(0, OnTimeInMinute, 0));
+				TimeSpan CutIn = onDuty.Add(new TimeSpan(0, CutInMinute, 0));
+				TimeSpan OnTimeOut = offDuty.Subtract(new TimeSpan(0, OnTimeOutMinute, 0));
+				TimeSpan CutOut = offDuty.Add(new TimeSpan(0, CutOutMinute, 0));
+
+				string kyHieuCC = row["KyHieuCC"].ToString();
+
+				newRow["ShiftCode"] = shiftcode;
+				newRow["ShiftID"] = shiftID;
+				newRow["Enable"] = enableColumn;
+				newRow["OnDuty"] = onDuty;
+				newRow["OffDuty"] = offDuty;
+				newRow["WorkingTime"] = tongGioLam;
+				newRow["Workingday"] = chamCong;
+				newRow["LateGrace"] = trePhut;
+				newRow["EarlyGrace"] = somPhut;
+				newRow["AfterOT"] = lamThemToiThieu;
+				newRow["OnTimeIn"] = OnTimeIn;
+				newRow["CutIn"] = CutIn;
+				newRow["OnTimeOut"] = OnTimeOut;
+				newRow["CutOut"] = CutOut;
+				newRow["KyHieuCC"] = kyHieuCC;
+				kq.Rows.Add(newRow);
+			}
+			return kq;
+		}
 	}
 }
