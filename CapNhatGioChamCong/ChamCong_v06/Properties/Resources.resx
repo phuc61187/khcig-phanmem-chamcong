@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Text_ConfirmXoaNhiemVu" xml:space="preserve">
+    <value>Nếu xoá nhiệm vụ này thì các nhân viên được giao nhiệm vụ trước đây sẽ không đảm nhận nhiệm vụ này nữa.
+Bạn muốn Xoá nhiệm vụ?</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="1438546227_Log Out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1438546227_Log Out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1438546384_Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1438546384_Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LabelText_XinPhepVang" xml:space="preserve">
+    <value>Xin phép vắng: [{0}] TH</value>
+  </data>
+  <data name="Text_xacNhanChuyenDoiGioDonGian" xml:space="preserve">
+    <value>Bạn muốn chuyển đổi giờ {0} {1} thành giờ {2} {3} cho {4}?</value>
+  </data>
+  <data name="Text_KoCoQuyenGhiFile" xml:space="preserve">
+    <value>Bạn chưa được cấp quyền ghi file vào folder.</value>
+  </data>
+  <data name="Text_XacNhanThemChamCongTayChoQL" xml:space="preserve">
+    <value>Bạn muốn thêm các giờ chấm công tay cho các nhân viên?
+Vui lòng kiểm tra kỹ thời gian nhập để không làm sai lệch công của nhân viên.</value>
+  </data>
+  <data name="Text_OnnOutKoHL" xml:space="preserve">
+    <value>Giờ bắt đầu nhận diện ra không hợp lệ</value>
+  </data>
+  <data name="Text_KoCoQuyenTruyCapFileX" xml:space="preserve">
+    <value>Không có quyền truy cập file {0}.</value>
+  </data>
+  <data name="LabelText_KoNhanDienCa" xml:space="preserve">
+    <value>Không nhận diện được ca: [{0}] TH</value>
+  </data>
+  <data name="Text_KhongTheGhiFile" xml:space="preserve">
+    <value>Không thể ghi được file báo biểu.</value>
+  </data>
+  <data name="LabelText_VaoRaBiChinhSua" xml:space="preserve">
+    <value>Giờ vào hoặc ra bị chỉnh sửa: [{0}] TH</value>
+  </data>
+  <data name="Text_FolderNotFound" xml:space="preserve">
+    <value>Không tìm thấy folder lưu trữ.</value>
+  </data>
+  <data name="Text_KoCoQuyen" xml:space="preserve">
+    <value>Bạn chưa được phân quyền thực hiện chức năng này.</value>
+  </data>
+  <data name="Text_OnnLunKoHL" xml:space="preserve">
+    <value>Giờ bắt đầu nghỉ trưa không hợp lệ</value>
+  </data>
+  <data name="LabelText_ChoPhepTreSom" xml:space="preserve">
+    <value>Cho phép vào trễ, ra sớm: [{0}] TH</value>
+  </data>
+  <data name="Text_xacNhanSuaGioRaaDonGian" xml:space="preserve">
+    <value>Bạn muốn sửa giờ ra {0} cho nhân viên {1}?
+Vui lòng xem kỹ ngày nếu là giờ qua đêm của ngày hôm sau.</value>
+  </data>
+  <data name="Text_GioVaoKoHL" xml:space="preserve">
+    <value>Giờ vào không hợp lệ</value>
+  </data>
+  <data name="SymPhuCapNgayNghi" xml:space="preserve">
+    <value>x2</value>
+  </data>
+  <data name="Text_KoCoQuyenGhiChuoiKetNoiCSDL" xml:space="preserve">
+    <value>Không có quyền ghi chuỗi kết nối vào Folder. Vui lòng thử lại.</value>
+  </data>
+  <data name="LabelText_TreSomCoLamBu" xml:space="preserve">
+    <value>Vào trễ, ra sớm có làm bù: [{0}] TH</value>
+  </data>
+  <data name="SymPhuCapNgayLe" xml:space="preserve">
+    <value>x3</value>
+  </data>
+  <data name="Text_CutOutKoHL" xml:space="preserve">
+    <value>Giờ kết thúc nhận diện ra không hợp lệ</value>
+  </data>
+  <data name="Text_xacNhanXoaGioHangLoat" xml:space="preserve">
+    <value>Bạn vui lòng xem kỹ giờ trước khi xoá giờ {0} để không làm sai lệch giờ chấm công của nhân viên.
+Tiếp tục xoá giờ {0} hàng loạt cho các nhân viên?</value>
+  </data>
+  <data name="LabelText_DaXacNhanCa" xml:space="preserve">
+    <value>Đã xác nhận ca: [{0}] TH</value>
+  </data>
+  <data name="Text_xacNhanXoaGioDonGian" xml:space="preserve">
+    <value>Bạn muốn xoá giờ {0} của nhân viên?
+Vui lòng xem kỹ ngày và thời gian trước khi xoá để không làm sai lệch thời gian tính công của Nhân viên.</value>
+  </data>
+  <data name="Text_LoiDocFileExcel" xml:space="preserve">
+    <value>Đọc file dữ liệu từ excel thất bại.
+Vui lòng thử lại hoặc liên hệ bộ phận kỹ thuật để được trợ giúp.</value>
+  </data>
+  <data name="Text_xacNhanSuaGioDonGian_dungmucdich" xml:space="preserve">
+    <value>Sửa giờ {0} {1} sang {2}?</value>
+  </data>
+  <data name="SymPhuCapTuyChinhNgayDem" xml:space="preserve">
+    <value>xK</value>
+  </data>
+  <data name="Text_KetNoiCSDLKoThanhCong" xml:space="preserve">
+    <value>Kết nối CSDL không thành công. Bấm Retry để thử lại. Bấm Cancel để thoát ứng dụng.</value>
+  </data>
+  <data name="Text_AfterOTKoHL" xml:space="preserve">
+    <value>Thời gian tối thiểu để xác nhận làm thêm không hợp lệ</value>
+  </data>
+  <data name="Text_ConfirmKetCongBoPhan" xml:space="preserve">
+    <value>Bạn muốn kết công THÁNG {0} cho các bộ phận?
+Bấm Yes để kết công cho bộ phận và đợi đến lúc có thông báo kết quả.
+Bấm No để quay trở lại.</value>
+  </data>
+  <data name="Text_xacNhanThemGioDonGian_dungmucdich" xml:space="preserve">
+    <value>Thêm giờ {0} {1} cho {2}?</value>
+  </data>
+  <data name="Text_KhoangThoiGianXemCongQuaDai" xml:space="preserve">
+    <value>Khoảng thời gian xem công quá dài, dữ liệu chấm công từ server lớn làm chậm ứng dụng, có thể xảy ra lỗi không đủ bộ nhớ RAM. 
+Bạn muốn tiếp tục?</value>
+  </data>
+  <data name="SymKhongRa" xml:space="preserve">
+    <value>KR</value>
+  </data>
+  <data name="Text_XacNhanXoaLuongCongNhat" xml:space="preserve">
+    <value>Xoá chi tiết lương công nhật của nhân viên?</value>
+  </data>
+  <data name="Text_Acc_Pass_incorrect" xml:space="preserve">
+    <value>Tài khoản hoặc mật khẩu chưa đúng. Vui lòng điền lại.</value>
+  </data>
+  <data name="Text_NhapThoiGianLamThemChuaHopLe" xml:space="preserve">
+    <value>Bạn nhập thời gian làm thêm chưa hợp lệ. 
+Vui lòng nhập lại đúng định dạng thời gian "hh:mm".</value>
+  </data>
+  <data name="Text_xacNhanThemGioRaaDonGian" xml:space="preserve">
+    <value>Bạn muốn thêm giờ ra {0} cho nhân viên {1}?
+Vui lòng xem kỹ ngày nếu là ca qua đêm của ngày hôm sau.</value>
+  </data>
+  <data name="Text_ChuaLuaChonCa" xml:space="preserve">
+    <value>Bạn chưa lựa chọn ca nào.</value>
+  </data>
+  <data name="Text_OnnInnKoHL" xml:space="preserve">
+    <value>Giờ bắt đầu nhận diện vào không hợp lệ</value>
+  </data>
+  <data name="SymSomPhaiLamBu" xml:space="preserve">
+    <value>BS</value>
+  </data>
+  <data name="Text_xacNhanThemGioVaoDonGian" xml:space="preserve">
+    <value>Bạn muốn thêm giờ vào {0} cho nhân viên {1}?
+Vui lòng xem kỹ ngày nếu là ca qua đêm của ngày hôm trước.</value>
+  </data>
+  <data name="1438546263_Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1438546263_Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SymTrePhaiLamBu" xml:space="preserve">
+    <value>BT</value>
+  </data>
+  <data name="Text_xacNhanSuaGioHangLoat" xml:space="preserve">
+    <value>Bạn vui lòng xem kỹ lại giờ {0} trước khi sửa giờ để không làm sai lệch giờ chấm công của nhân viên.
+Tiếp tục sửa giờ {0} {1} hàng loạt cho các nhân viên?</value>
+  </data>
+  <data name="Text_CPSOMKoHL" xml:space="preserve">
+    <value>Thời gian cho phép ra sớm không hợp lệ</value>
+  </data>
+  <data name="Text_CPTREKoHL" xml:space="preserve">
+    <value>Thời gian cho phép vào trễ không hợp lệ</value>
+  </data>
+  <data name="Text_xacNhanThemGioDonGian_saimucdic" xml:space="preserve">
+    <value>Bạn muốn thêm giờ {0} {1} cho {2}?
+Vui lòng xem kỹ NGÀY, GIỜ đã nhập! 
+CHÚ Ý: trường hợp LÀM QUA ĐÊM thì giờ ra sau giờ vào 1 ngày.
+Bấm Yes để tiếp tục. Bấm No để trở về.</value>
+  </data>
+  <data name="Text_XacNhanThemKhaiVang" xml:space="preserve">
+    <value>Bạn muốn thêm các khai báo vắng cho nhân viên?</value>
+  </data>
+  <data name="Text_XacNhanKhaiBaoThemCacNgayVang" xml:space="preserve">
+    <value>Các nhân viên đã xin phép vắng trong tháng các ngày như bên dưới.
+Bạn muốn khai báo thêm các ngày bạn vừa chọn?
+Bấm Yes để tiếp tục. Bấm No để quay trở lại.
+{0}</value>
+  </data>
+  <data name="Text_WKDayKoHL" xml:space="preserve">
+    <value>Công nhập không hợp lệ</value>
+  </data>
+  <data name="Text_KoTimThayFileX" xml:space="preserve">
+    <value>Không tìm thấy file {0}.</value>
+  </data>
+  <data name="Text_CoLoi" xml:space="preserve">
+    <value>Có lỗi trong quá trình thực hiện. Vui lòng thử lại.</value>
+  </data>
+  <data name="Text_MatKetNoiCSDL" xml:space="preserve">
+    <value>Mất kết nối với CSDL. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="SymPhuCapTangCuongDem" xml:space="preserve">
+    <value>T3</value>
+  </data>
+  <data name="Text_KhongTheXacNhanCaTach_KoDuDieuKienTach" xml:space="preserve">
+    <value>Không thể xác nhận ca làm việc này cho nhân viên.
+Vui lòng chọn ca phù hợp hoặc liên hệ bộ phận kỹ thuật để được trợ giúp.</value>
+  </data>
+  <data name="Text_KoTheKetNoiCSDL" xml:space="preserve">
+    <value>Không thể kết nối CSDL. 
+Lỗi:
+</value>
+  </data>
+  <data name="Text_ConfirmLuuNhiemVu" xml:space="preserve">
+    <value>Bạn muốn lưu nhiệm vụ này?</value>
+  </data>
+  <data name="Text_UnsupportedFile_PathTooLong" xml:space="preserve">
+    <value>Không hỗ trợ định dạng file hoặc đường dẫn file {0} quá dài.</value>
+  </data>
+  <data name="Text_xacNhanThemGioHangLoat" xml:space="preserve">
+    <value>Bạn vui lòng xem kỹ lại thời gian nhân viên thiếu giờ vào, giờ ra trước khi thêm giờ để không làm sai lệch giờ chấm công của nhân viên.
+Tiếp tục thêm giờ {0} {1} hàng loạt cho các nhân viên?</value>
+  </data>
+  <data name="Text_Vuilongthulai" xml:space="preserve">
+    <value>Vui lòng thử lại.</value>
+  </data>
+  <data name="Text_FileDangMoBoiUngDungKhac" xml:space="preserve">
+    <value>File đang mở bởi ứng dụng khác.</value>
+  </data>
+  <data name="Text_GioDaXacnhanKhongTheThayDoi" xml:space="preserve">
+    <value>Giờ chấm công này đã được xác nhận, không thể thay đổi.</value>
+  </data>
+  <data name="Caption_Loi" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="SymPhuCapTuyChinhTatCa" xml:space="preserve">
+    <value>xK</value>
+  </data>
+  <data name="Caption_XacNhan" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="Text_KoTheSuaXoaGioDaXN" xml:space="preserve">
+    <value>Không thể sửa hay xoá giờ đã qua xác nhận.</value>
+  </data>
+  <data name="Text_ChuaChonXXX" xml:space="preserve">
+    <value>Bạn chưa chọn {0}.</value>
+  </data>
+  <data name="Text_ChuaChonNV" xml:space="preserve">
+    <value>Bạn chưa chọn Nhân viên.</value>
+  </data>
+  <data name="Text_KhoangTGDaKetCong_KoChinhSuaGioCC" xml:space="preserve">
+    <value>Khoảng thời gian {0} CÓ NGÀY ĐÃ KẾT LƯƠNG THÁNG nên không thể {1}. 
+Vui lòng chọn lại các ngày {2} chưa kết lương tháng.</value>
+  </data>
+  <data name="SymSomBiTru" xml:space="preserve">
+    <value>-S</value>
+  </data>
+  <data name="LabelText_VaoTreRaSom" xml:space="preserve">
+    <value>Vào trễ, ra sớm: [{0}] TH</value>
+  </data>
+  <data name="SymKhongVao" xml:space="preserve">
+    <value>KV</value>
+  </data>
+  <data name="Text_XNPCTC50" xml:space="preserve">
+    <value>Bạn muốn xác nhận các ngày làm việc vừa chọn tính phụ cấp tăng cường 50% nếu làm làm việc trên 8 tiếng?</value>
+  </data>
+  <data name="Text_KoGhiDuocChuoiKetNoiCSDL" xml:space="preserve">
+    <value>Không thể thực hiện ghi chuỗi kết nối vào Folder lưu trữ. Vui lòng thử lại.</value>
+  </data>
+  <data name="LabelText_OLaiChuaXN" xml:space="preserve">
+    <value>Ở lại chưa qua xác nhận: [{0}] TH</value>
+  </data>
+  <data name="Text_GioRaaKoHL" xml:space="preserve">
+    <value>Giờ ra không hợp lệ</value>
+  </data>
+  <data name="Text_OffLunKoHL" xml:space="preserve">
+    <value>Giờ kết thúc nghỉ trưa không hợp lệ</value>
+  </data>
+  <data name="Text_xacNhanSuaGioDonGian_saimucdich" xml:space="preserve">
+    <value>Bạn muốn sửa giờ {0} {1} sang {2} cho {3}?
+Vui lòng xem kỹ NGÀY, GIỜ đã nhập! 
+CHÚ Ý: trường hợp LÀM QUA ĐÊM thì giờ ra sau giờ vào 1 ngày.
+Bấm Yes để tiếp tục. Bấm No để trở về.</value>
+  </data>
+  <data name="Text_LoiTrongQuaTrinhThucHien" xml:space="preserve">
+    <value>Xảy ra lỗi trong quá trình thực hiện. Vui lòng thử lại.</value>
+  </data>
+  <data name="Text_KoTimThayFolderX" xml:space="preserve">
+    <value>Không tìm thấy folder lưu trữ {0}.</value>
+  </data>
+  <data name="SymPhuCapDem" xml:space="preserve">
+    <value>c3</value>
+  </data>
+  <data name="Text_DaThucHienXong" xml:space="preserve">
+    <value>Đã thực hiện xong.</value>
+  </data>
+  <data name="Text_ConfirmDongY_XacNhan" xml:space="preserve">
+    <value>Vui lòng kiểm tra kỹ thời gian vào ra các nhân viên trước khi xác nhận để không làm sai lệch công của nhân viên. 
+Đồng ý xác nhận các giờ đã chọn?</value>
+  </data>
+  <data name="Text_XacNhanXoaKhaiBaoVang" xml:space="preserve">
+    <value>Bạn muốn xoá các khai báo vắng đang chọn?</value>
+  </data>
+  <data name="Text_KoTheThucHienXN" xml:space="preserve">
+    <value>Không thể thực hiện xác nhận này! Vui lòng liên hệ bộ phận kỹ thuật để được trợ giúp.</value>
+  </data>
+  <data name="Text_DuLieuChamCongChuaUpdate" xml:space="preserve">
+    <value>Máy chấm công CHƯA LẤY ĐƯỢC DỮ LIỆU MỚI NHẤT do mất kết nối với máy chủ. Vui lòng hạn chế chỉnh sửa giờ chấm công.</value>
+  </data>
+  <data name="Text_AccessDenied" xml:space="preserve">
+    <value>Bạn chưa được cấp quyền ghi file vào folder.</value>
+  </data>
+  <data name="Text_ChuaCapQuyenPhongBanThaoTac" xml:space="preserve">
+    <value>Bạn chưa được phân quyền thao tác.</value>
+  </data>
+  <data name="LabelText_DaXacNhanLamThemGio" xml:space="preserve">
+    <value>Đã xác nhận làm thêm giờ: [{0}] TH</value>
+  </data>
+  <data name="Text_XayRaLoiTrongQuaTrinhXuatBB" xml:space="preserve">
+    <value>Xảy ra lỗi trong quá trình xuất. Vui lòng liên hệ bộ phận kỹ thuật để được trợ giúp.</value>
+  </data>
+  <data name="LabelText_ThieuChamCong" xml:space="preserve">
+    <value>Thiếu chấm công: [{0}] TH</value>
+  </data>
+  <data name="Caption_ThongBao" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="Text_GioLamThemLonHonTGOLai" xml:space="preserve">
+    <value>Giờ làm thêm vượt ngưỡng thời gian ở lại.</value>
+  </data>
+  <data name="1438546065_Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1438546065_Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SymTreBiTru" xml:space="preserve">
+    <value>-T</value>
+  </data>
+  <data name="Text_HeSoLCB_CV_BHXH_ChuaHopLe" xml:space="preserve">
+    <value>Các hệ số lương, BHXH cộng thêm chưa hợp lệ.</value>
+  </data>
+  <data name="Text_CutInnKoHL" xml:space="preserve">
+    <value>Giờ kết thúc nhận diện vào không hợp lệ</value>
+  </data>
+  <data name="Text_XacNhanLuuThongTinNV" xml:space="preserve">
+    <value>Bạn muốn lưu thông tin nhân viên?</value>
+  </data>
+  <data name="SymPhuCapTangCuong" xml:space="preserve">
+    <value>TC</value>
+  </data>
+  <data name="Text_CancelXacNhan_PCTC50" xml:space="preserve">
+    <value>Bạn muốn huỷ xác nhận tính phụ cấp tăng cường 50%?</value>
+  </data>
+  <data name="Text_xacNhanSuaGioVaoDonGian" xml:space="preserve">
+    <value>Bạn muốn sửa giờ vào {0} cho nhân viên {1}?
+Vui lòng xem kỹ ngày nếu là giờ qua đêm của ngày hôm trước.</value>
+  </data>
+  <data name="1438546670_Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1438546670_Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
