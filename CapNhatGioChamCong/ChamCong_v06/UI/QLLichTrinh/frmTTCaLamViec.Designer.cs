@@ -84,7 +84,7 @@
 			// 
 			this.numAfterOT.Location = new System.Drawing.Point(158, 268);
 			this.numAfterOT.Maximum = new decimal(new int[] {
-            1000,
+            240,
             0,
             0,
             0});
@@ -97,7 +97,7 @@
 			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(3, 37);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(93, 14);
+			this.label4.Size = new System.Drawing.Size(97, 16);
 			this.label4.TabIndex = 1;
 			this.label4.Text = "Bắt đầu ăn trưa";
 			// 
@@ -106,7 +106,7 @@
 			this.lbShiftID.AutoSize = true;
 			this.lbShiftID.Location = new System.Drawing.Point(22, 9);
 			this.lbShiftID.Name = "lbShiftID";
-			this.lbShiftID.Size = new System.Drawing.Size(43, 14);
+			this.lbShiftID.Size = new System.Drawing.Size(46, 16);
 			this.lbShiftID.TabIndex = 1;
 			this.lbShiftID.Text = "shift id";
 			this.lbShiftID.Visible = false;
@@ -115,7 +115,7 @@
 			// 
 			this.numEarlyGrace.Location = new System.Drawing.Point(158, 247);
 			this.numEarlyGrace.Maximum = new decimal(new int[] {
-            1000,
+            240,
             0,
             0,
             0});
@@ -127,7 +127,7 @@
 			// 
 			this.numLateGrace.Location = new System.Drawing.Point(158, 226);
 			this.numLateGrace.Maximum = new decimal(new int[] {
-            1000,
+            240,
             0,
             0,
             0});
@@ -140,7 +140,7 @@
 			this.label5.AutoSize = true;
 			this.label5.Location = new System.Drawing.Point(3, 58);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(99, 14);
+			this.label5.Size = new System.Drawing.Size(100, 16);
 			this.label5.TabIndex = 1;
 			this.label5.Text = "Kết thúc ăn trưa";
 			// 
@@ -148,7 +148,7 @@
 			// 
 			this.numCutOut.Location = new System.Drawing.Point(158, 205);
 			this.numCutOut.Maximum = new decimal(new int[] {
-            1000,
+            240,
             0,
             0,
             0});
@@ -160,7 +160,7 @@
 			// 
 			this.numOnnOut.Location = new System.Drawing.Point(158, 184);
 			this.numOnnOut.Maximum = new decimal(new int[] {
-            1000,
+            240,
             0,
             0,
             0});
@@ -181,7 +181,7 @@
 			// 
 			this.numCutInn.Location = new System.Drawing.Point(158, 163);
 			this.numCutInn.Maximum = new decimal(new int[] {
-            1000,
+            240,
             0,
             0,
             0});
@@ -193,7 +193,7 @@
 			// 
 			this.numOnnInn.Location = new System.Drawing.Point(158, 142);
 			this.numOnnInn.Maximum = new decimal(new int[] {
-            1000,
+            240,
             0,
             0,
             0});
@@ -223,7 +223,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(9, 62);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(96, 14);
+			this.label2.Size = new System.Drawing.Size(102, 16);
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Bắt đầu làm việc";
 			// 
@@ -232,7 +232,7 @@
 			this.label19.AutoSize = true;
 			this.label19.Location = new System.Drawing.Point(205, 270);
 			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(33, 14);
+			this.label19.Size = new System.Drawing.Size(33, 16);
 			this.label19.TabIndex = 1;
 			this.label19.Text = "phút";
 			// 
@@ -241,7 +241,7 @@
 			this.label18.AutoSize = true;
 			this.label18.Location = new System.Drawing.Point(205, 249);
 			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(33, 14);
+			this.label18.Size = new System.Drawing.Size(33, 16);
 			this.label18.TabIndex = 1;
 			this.label18.Text = "phút";
 			// 
@@ -250,7 +250,7 @@
 			this.label17.AutoSize = true;
 			this.label17.Location = new System.Drawing.Point(205, 228);
 			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(33, 14);
+			this.label17.Size = new System.Drawing.Size(33, 16);
 			this.label17.TabIndex = 1;
 			this.label17.Text = "phút";
 			// 
@@ -259,7 +259,7 @@
 			this.label26.AutoSize = true;
 			this.label26.Location = new System.Drawing.Point(205, 207);
 			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(33, 14);
+			this.label26.Size = new System.Drawing.Size(33, 16);
 			this.label26.TabIndex = 1;
 			this.label26.Text = "phút";
 			// 
@@ -268,7 +268,7 @@
 			this.label25.AutoSize = true;
 			this.label25.Location = new System.Drawing.Point(205, 186);
 			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(33, 14);
+			this.label25.Size = new System.Drawing.Size(33, 16);
 			this.label25.TabIndex = 1;
 			this.label25.Text = "phút";
 			// 
@@ -277,7 +277,7 @@
 			this.label24.AutoSize = true;
 			this.label24.Location = new System.Drawing.Point(205, 165);
 			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(33, 14);
+			this.label24.Size = new System.Drawing.Size(33, 16);
 			this.label24.TabIndex = 1;
 			this.label24.Text = "phút";
 			// 
@@ -286,7 +286,7 @@
 			this.label23.AutoSize = true;
 			this.label23.Location = new System.Drawing.Point(206, 144);
 			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(33, 14);
+			this.label23.Size = new System.Drawing.Size(33, 16);
 			this.label23.TabIndex = 1;
 			this.label23.Text = "phút";
 			// 
@@ -295,7 +295,7 @@
 			this.label16.AutoSize = true;
 			this.label16.Location = new System.Drawing.Point(205, 104);
 			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(33, 14);
+			this.label16.Size = new System.Drawing.Size(33, 16);
 			this.label16.TabIndex = 1;
 			this.label16.Text = "phút";
 			// 
@@ -304,7 +304,7 @@
 			this.label15.AutoSize = true;
 			this.label15.Location = new System.Drawing.Point(9, 41);
 			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(47, 14);
+			this.label15.Size = new System.Drawing.Size(49, 16);
 			this.label15.TabIndex = 1;
 			this.label15.Text = "Ký hiệu";
 			// 
@@ -313,7 +313,7 @@
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(9, 83);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(102, 14);
+			this.label3.Size = new System.Drawing.Size(105, 16);
 			this.label3.TabIndex = 1;
 			this.label3.Text = "Kết thúc làm việc";
 			// 
@@ -322,7 +322,7 @@
 			this.label8.AutoSize = true;
 			this.label8.Location = new System.Drawing.Point(9, 144);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(132, 14);
+			this.label8.Size = new System.Drawing.Size(136, 16);
 			this.label8.TabIndex = 1;
 			this.label8.Text = "Check vào tối đa trước";
 			// 
@@ -331,7 +331,7 @@
 			this.label9.AutoSize = true;
 			this.label9.Location = new System.Drawing.Point(9, 165);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(120, 14);
+			this.label9.Size = new System.Drawing.Size(126, 16);
 			this.label9.TabIndex = 1;
 			this.label9.Text = "Check vào tối đa sau";
 			// 
@@ -340,7 +340,7 @@
 			this.label10.AutoSize = true;
 			this.label10.Location = new System.Drawing.Point(9, 186);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(123, 14);
+			this.label10.Size = new System.Drawing.Size(128, 16);
 			this.label10.TabIndex = 1;
 			this.label10.Text = "Check ra tối đa trước";
 			// 
@@ -349,7 +349,7 @@
 			this.label6.AutoSize = true;
 			this.label6.Location = new System.Drawing.Point(9, 104);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(103, 14);
+			this.label6.Size = new System.Drawing.Size(109, 16);
 			this.label6.TabIndex = 1;
 			this.label6.Text = "Tổng giờ làm việc";
 			// 
@@ -358,7 +358,7 @@
 			this.label11.AutoSize = true;
 			this.label11.Location = new System.Drawing.Point(9, 207);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(111, 14);
+			this.label11.Size = new System.Drawing.Size(118, 16);
 			this.label11.TabIndex = 1;
 			this.label11.Text = "Check ra tối đa sau";
 			// 
@@ -367,7 +367,7 @@
 			this.label12.AutoSize = true;
 			this.label12.Location = new System.Drawing.Point(9, 228);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(125, 14);
+			this.label12.Size = new System.Drawing.Size(130, 16);
 			this.label12.TabIndex = 1;
 			this.label12.Text = "Cho phép vào trễ sau";
 			// 
@@ -394,7 +394,7 @@
 			this.label7.AutoSize = true;
 			this.label7.Location = new System.Drawing.Point(9, 124);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(68, 14);
+			this.label7.Size = new System.Drawing.Size(72, 16);
 			this.label7.TabIndex = 1;
 			this.label7.Text = "Chấm công";
 			// 
@@ -412,7 +412,7 @@
 			this.label13.AutoSize = true;
 			this.label13.Location = new System.Drawing.Point(9, 249);
 			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(134, 14);
+			this.label13.Size = new System.Drawing.Size(140, 16);
 			this.label13.TabIndex = 1;
 			this.label13.Text = "Cho phép ra sớm trước";
 			// 
@@ -421,7 +421,7 @@
 			this.label14.AutoSize = true;
 			this.label14.Location = new System.Drawing.Point(9, 270);
 			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(112, 14);
+			this.label14.Size = new System.Drawing.Size(115, 16);
 			this.label14.TabIndex = 1;
 			this.label14.Text = "Làm thêm tối thiểu";
 			// 
@@ -439,7 +439,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(290, 62);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(38, 14);
+			this.label1.Size = new System.Drawing.Size(40, 16);
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Mô tả";
 			// 
@@ -458,7 +458,7 @@
 			this.checkBoxEnable.Location = new System.Drawing.Point(293, 230);
 			this.checkBoxEnable.Margin = new System.Windows.Forms.Padding(2);
 			this.checkBoxEnable.Name = "checkBoxEnable";
-			this.checkBoxEnable.Size = new System.Drawing.Size(62, 18);
+			this.checkBoxEnable.Size = new System.Drawing.Size(68, 20);
 			this.checkBoxEnable.TabIndex = 4;
 			this.checkBoxEnable.Text = "Enable";
 			this.checkBoxEnable.UseVisualStyleBackColor = true;
@@ -476,7 +476,7 @@
 			this.label22.AutoSize = true;
 			this.label22.Location = new System.Drawing.Point(290, 41);
 			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(142, 14);
+			this.label22.Size = new System.Drawing.Size(147, 16);
 			this.label22.TabIndex = 1;
 			this.label22.Text = "Ký hiệu bảng chấm công";
 			// 
@@ -486,7 +486,7 @@
 			this.label27.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.label27.Location = new System.Drawing.Point(194, 9);
 			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(156, 14);
+			this.label27.Size = new System.Drawing.Size(160, 16);
 			this.label27.TabIndex = 13;
 			this.label27.Text = "THÔNG TIN CA LÀM VIỆC";
 			// 
@@ -508,7 +508,7 @@
 			this.checkTinhThoigianNghiTrua.AutoSize = true;
 			this.checkTinhThoigianNghiTrua.Location = new System.Drawing.Point(6, 11);
 			this.checkTinhThoigianNghiTrua.Name = "checkTinhThoigianNghiTrua";
-			this.checkTinhThoigianNghiTrua.Size = new System.Drawing.Size(155, 18);
+			this.checkTinhThoigianNghiTrua.Size = new System.Drawing.Size(164, 20);
 			this.checkTinhThoigianNghiTrua.TabIndex = 0;
 			this.checkTinhThoigianNghiTrua.Text = "Tính thời gian nghỉ trưa";
 			this.checkTinhThoigianNghiTrua.UseVisualStyleBackColor = true;

@@ -30,6 +30,40 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			frmTTCaLamViec frm = new frmTTCaLamViec();
 			frm.Mode = ModeType.Them;
 			frm.ShowDialog();
+			string tempplate = @"ShiftCode:{0};
+ShiftID:{1};
+Enable:{2};
+OnDuty:{3};
+OffDuty:{4};
+WorkingTime:{5};
+Workingday:{6};
+LateGrace:{7};
+EarlyGrace:{8};
+AfterOT:{9};
+OnTimeIn:{10};
+CutIn:{11};
+OnTimeOut:{12};
+CutOut:{13};
+KyHieuCC:{14};
+OnLunch:{15};
+OffLunch:{16};
+";
+			MessageBox.Show(string.Format(tempplate, 
+				frm.m_ShiftCode,
+frm.m_ShiftID,
+frm.m_Enable,
+frm.m_OnDuty.ToString("hh:mm"),
+frm.m_OffDuty.ToString("hh:mm"),
+(frm.m_OffDuty - frm.m_OnDuty).ToString("hh:mm"),
+frm.m_ChamCong,
+frm.m_LateGraceMin,
+frm.m_EarlyGraceMin,
+frm.m_AfterOTMin,
+frm.m_KyHieuCC,
+frm.m_OnLunch.ToString("hh:mm"),
+frm.m_OffLunch.ToString("hh:mm")
+));
+			return;
 			LoadGrid();
 		}
 
@@ -42,6 +76,39 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			frm.Mode = ModeType.Sua;
 			frm.ShowDialog();
 
+			string tempplate = @"ShiftCode:{0};
+ShiftID:{1};
+Enable:{2};
+OnDuty:{3};
+OffDuty:{4};
+WorkingTime:{5};
+Workingday:{6};
+LateGrace:{7};
+EarlyGrace:{8};
+AfterOT:{9};
+OnTimeIn:{10};
+CutIn:{11};
+OnTimeOut:{12};
+CutOut:{13};
+KyHieuCC:{14};
+OnLunch:{15};
+OffLunch:{16};
+";
+			MessageBox.Show(string.Format(tempplate, 
+				frm.m_ShiftCode,
+frm.m_ShiftID,
+frm.m_Enable,
+frm.m_OnDuty.ToString("hh:mm"),
+frm.m_OffDuty.ToString("hh:mm"),
+(frm.m_OffDuty - frm.m_OnDuty).ToString("hh:mm"),
+frm.m_ChamCong,
+frm.m_LateGraceMin,
+frm.m_EarlyGraceMin,
+frm.m_AfterOTMin,
+frm.m_KyHieuCC,
+frm.m_OnLunch.ToString("hh:mm"),
+frm.m_OffLunch.ToString("hh:mm")
+));
 		}
 
 		private void btnXoa_Click(object sender, EventArgs e) {

@@ -125,6 +125,12 @@ namespace ChamCong_v06.DAL {
 			kq.Columns.Add(new DataColumn("OnTimeOut", typeof (TimeSpan)));
 			kq.Columns.Add(new DataColumn("CutOut", typeof (TimeSpan)));
 			kq.Columns.Add(new DataColumn("KyHieuCC", typeof (string)));
+			kq.Columns.Add(new DataColumn("OnTimeInMin", typeof(int)));
+			kq.Columns.Add(new DataColumn("CutInMin", typeof(int)));
+			kq.Columns.Add(new DataColumn("OnTimeOutMin", typeof(int)));
+			kq.Columns.Add(new DataColumn("CutOutMin", typeof(int)));
+			kq.Columns.Add(new DataColumn("OnLunch", typeof (TimeSpan)));
+			kq.Columns.Add(new DataColumn("OffLunch", typeof (TimeSpan)));
 			
 			foreach (DataRow row in tableShift.Rows)
 			{
@@ -150,7 +156,8 @@ namespace ChamCong_v06.DAL {
 				TimeSpan CutIn = onDuty.Add(new TimeSpan(0, CutInMinute, 0));
 				TimeSpan OnTimeOut = offDuty.Subtract(new TimeSpan(0, OnTimeOutMinute, 0));
 				TimeSpan CutOut = offDuty.Add(new TimeSpan(0, CutOutMinute, 0));
-
+				TimeSpan OnLunch = (row["OnLunch"] != DBNull.Value) ? TimeSpan.Parse(row["OnDuty"].ToString()) : TimeSpan.Zero;
+				TimeSpan OffLunch = (row["OffLunch"] != DBNull.Value) ? TimeSpan.Parse(row["OffDuty"].ToString()) : TimeSpan.Zero;
 				string kyHieuCC = row["KyHieuCC"].ToString();
 
 				newRow["ShiftCode"] = shiftcode;
@@ -168,6 +175,13 @@ namespace ChamCong_v06.DAL {
 				newRow["OnTimeOut"] = OnTimeOut;
 				newRow["CutOut"] = CutOut;
 				newRow["KyHieuCC"] = kyHieuCC;
+				newRow["OnTimeInMin"] = OnTimeInMinute;
+				newRow["CutInMin"] = CutInMinute;
+				newRow["OnTimeOutMin"] = OnTimeOutMinute;
+				newRow["CutOutMin"] = CutOutMinute;
+				newRow["OnLunch"] = OnLunch;
+				newRow["OffLunch"] = OffLunch;
+
 				kq.Rows.Add(newRow);
 			}
 			return kq;
