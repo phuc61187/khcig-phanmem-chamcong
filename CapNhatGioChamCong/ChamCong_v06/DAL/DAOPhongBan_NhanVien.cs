@@ -156,8 +156,11 @@ namespace ChamCong_v06.DAL {
 				TimeSpan CutIn = onDuty.Add(new TimeSpan(0, CutInMinute, 0));
 				TimeSpan OnTimeOut = offDuty.Subtract(new TimeSpan(0, OnTimeOutMinute, 0));
 				TimeSpan CutOut = offDuty.Add(new TimeSpan(0, CutOutMinute, 0));
-				TimeSpan OnLunch = (row["OnLunch"] != DBNull.Value) ? TimeSpan.Parse(row["OnDuty"].ToString()) : TimeSpan.Zero;
-				TimeSpan OffLunch = (row["OffLunch"] != DBNull.Value) ? TimeSpan.Parse(row["OffDuty"].ToString()) : TimeSpan.Zero;
+				TimeSpan OnLunch, OffLunch;
+				if (row["OnLunch"] == DBNull.Value || TimeSpan.TryParse(row["OnLunch"].ToString(), out OnLunch) == false)
+					OnLunch = TimeSpan.Zero;
+				if (row["OffLunch"] != DBNull.Value || TimeSpan.TryParse(row["OffLunch"].ToString(), out OffLunch) == false)
+					OffLunch = TimeSpan.Zero;
 				string kyHieuCC = row["KyHieuCC"].ToString();
 
 				newRow["ShiftCode"] = shiftcode;

@@ -21,6 +21,8 @@ namespace ChamCong_v06.Helper
 		#endregion
 		#region
 		Shift_DocTatCaShift,
+		Shift_DeleteShift,
+		Shift_InsertNewShift,
 		#endregion
 	}
 

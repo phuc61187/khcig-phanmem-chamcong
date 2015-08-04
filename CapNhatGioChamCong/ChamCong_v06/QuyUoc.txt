@@ -1,1 +1,5 @@
-﻿#comment_ver5 : những phần cũ từ version chuyển qua nhưng chưa được sử dụng, để trong comment, khi nào sử dụng thì xóa đi
+﻿visual studio :  @"hh\:mm"    -> @ để loại bỏ dấu \ trước dấu :, hh là 2 con số,  -> ko được @"H\:mm", @"HH\:mm", "H\:mm", 
+=> có dấu : phải có dấu \ trước và dấu @ ở đầu
+
+
+#comment_ver5 : những phần cũ từ version chuyển qua nhưng chưa được sử dụng, để trong comment, khi nào sử dụng thì xóa đi

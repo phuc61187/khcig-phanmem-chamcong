@@ -50,8 +50,8 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			else if (this.Mode == ModeType.Sua) {
 				lbShiftID.Tag = (int)m_CurrentRow["ShiftID"];
 				textBoxShiftcode.Text = m_CurrentRow["ShiftCode"].ToString();
-				maskedTextBoxVao.Text = ((TimeSpan)m_CurrentRow["OnDuty"]).ToString("H:mm");
-				maskedTextBoxRaa.Text = ((TimeSpan)m_CurrentRow["OffDuty"]).ToString("H:mm");
+				maskedTextBoxVao.Text = ((TimeSpan)m_CurrentRow["OnDuty"]).ToString(@"hh\:mm");
+				maskedTextBoxRaa.Text = ((TimeSpan)m_CurrentRow["OffDuty"]).ToString(@"hh\:mm");
 				textBoxWKTime.Text = ((TimeSpan)m_CurrentRow["WorkingTime"]).TotalMinutes.ToString("###0");
 				maskedTextBoxWKDay.Text = ((float)m_CurrentRow["Workingday"]).ToString("0.0");
 				numOnnInn.Value = (int)m_CurrentRow["OnTimeInMin"];
@@ -69,8 +69,8 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 					|| (OffLunch - OnLunch).Duration() < new TimeSpan(0, 0, 1, 0))
 					checkTinhThoigianNghiTrua.Checked = false;
 				else checkTinhThoigianNghiTrua.Checked = true;
-				maskedTextBoxBDLunch.Text = OnLunch.ToString("H:mm");
-				maskedTextBoxKTLunch.Text = OffLunch.ToString("H:mm");
+				maskedTextBoxBDLunch.Text = OnLunch.ToString(@"hh\:mm");
+				maskedTextBoxKTLunch.Text = OffLunch.ToString(@"hh\:mm");
 			}
 		}
 
@@ -111,6 +111,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			m_OffLunch = offLunch;
 			m_Enable = checkBoxEnable.Checked;
 
+			Close();
 		}
 
 		private bool ValidateValueForm(out string shiftCode, out TimeSpan onDuty, out TimeSpan offDuty, out int DayCount, out float chamCong,
@@ -130,8 +131,8 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			lateGraceMin = 0;
 			earlyGraceMin = 0;
 			afterOTMin = 0;
-			if (string.IsNullOrEmpty(textBoxKyhieu.Text)) return false;
-			else shiftCode = textBoxKyhieu.Text;
+			if (string.IsNullOrEmpty(textBoxShiftcode.Text)) return false;
+			else shiftCode = textBoxShiftcode.Text;
 			if (TimeSpan.TryParse(maskedTextBoxVao.Text, out onDuty) == false)
 				return false;
 			if (TimeSpan.TryParse(maskedTextBoxRaa.Text, out offDuty) == false)
@@ -140,8 +141,11 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			offDuty = offDuty.Add(new TimeSpan(DayCount, 0, 0, 0));
 			var tongGioLam = offDuty - onDuty;
 			if (tongGioLam < TimeSpan.Zero) return false;
-			if (float.TryParse(maskedTextBoxWKDay.ToString(), out chamCong) == false)
+			if (float.TryParse(maskedTextBoxWKDay.Text, out chamCong) == false)
 				return false;
+			lateGraceMin = (int)numLateGrace.Value;
+			earlyGraceMin = (int) numEarlyGrace.Value;
+			afterOTMin = (int) numAfterOT.Value;
 			onTimeInMin = (int)numOnnInn.Value;
 			cutInMin = (int)numCutInn.Value;
 			onTimeOutMin = (int)numOnnOut.Value;
