@@ -106,11 +106,23 @@
     <Compile Include="UI\QLLichTrinh\frmQLCa.Designer.cs">
       <DependentUpon>frmQLCa.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\QLLichTrinh\frmQLLichTrinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLLichTrinh\frmQLLichTrinh.Designer.cs">
+      <DependentUpon>frmQLLichTrinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\QLLichTrinh\frmTTCaLamViec.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\QLLichTrinh\frmTTCaLamViec.Designer.cs">
       <DependentUpon>frmTTCaLamViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\QLLichTrinh\frmTTLichTrinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLLichTrinh\frmTTLichTrinh.Designer.cs">
+      <DependentUpon>frmTTLichTrinh.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\QLPhong\frmQLPhongBan.cs">
       <SubType>Form</SubType>
@@ -140,8 +152,14 @@
     <EmbeddedResource Include="UI\QLLichTrinh\frmQLCa.resx">
       <DependentUpon>frmQLCa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLLichTrinh\frmQLLichTrinh.resx">
+      <DependentUpon>frmQLLichTrinh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\QLLichTrinh\frmTTCaLamViec.resx">
       <DependentUpon>frmTTCaLamViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLLichTrinh\frmTTLichTrinh.resx">
+      <DependentUpon>frmTTLichTrinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\QLPhong\frmQLPhongBan.resx">
       <DependentUpon>frmQLPhongBan.cs</DependentUpon>

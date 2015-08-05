@@ -30,7 +30,7 @@ namespace ChamCong_v06.UI {
 				if (frm.m_LogInStatus)
 				{
 					//todo 
-					frmQLCa frm1 = new frmQLCa();
+					frmQLLichTrinh frm1 = new frmQLLichTrinh();
 					frm1.MdiParent = this;
 					frm1.Show();
 				}

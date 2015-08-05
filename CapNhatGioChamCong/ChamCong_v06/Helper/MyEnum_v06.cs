@@ -24,6 +24,24 @@ namespace ChamCong_v06.Helper
 		Shift_DeleteShift,
 		Shift_InsertNewShift,
 		#endregion
+
+		#region
+
+		Schedule_ThemLichTrinh,
+		Schedule_DocLichTrinh,
+
+		#endregion
+
+		#region ShiftSch
+
+		ShiftSch_DocDSCa,
+
+
+		#endregion
+
+		#region làm nhiều thao tác, bảng kết hợp
+		Other_XoaLichTrinh,
+		#endregion
 	}
 
 }
