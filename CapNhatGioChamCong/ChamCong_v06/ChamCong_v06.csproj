@@ -63,6 +63,7 @@
     <Compile Include="BUS\XL.cs" />
     <Compile Include="BUS\XL2.cs" />
     <Compile Include="DAL\DAOPhongBan_NhanVien.cs" />
+    <Compile Include="DAL\DAO_Shift_Schedule.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +100,12 @@
     </Compile>
     <Compile Include="UI\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\QLLichTrinh\frmChonCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLLichTrinh\frmChonCa.Designer.cs">
+      <DependentUpon>frmChonCa.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\QLLichTrinh\frmQLCa.cs">
       <SubType>Form</SubType>
@@ -148,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLLichTrinh\frmChonCa.resx">
+      <DependentUpon>frmChonCa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\QLLichTrinh\frmQLCa.resx">
       <DependentUpon>frmQLCa.cs</DependentUpon>

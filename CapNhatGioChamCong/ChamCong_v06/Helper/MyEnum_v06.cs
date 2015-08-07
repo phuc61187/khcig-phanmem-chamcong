@@ -23,6 +23,7 @@ namespace ChamCong_v06.Helper
 		Shift_DocTatCaShift,
 		Shift_DeleteShift,
 		Shift_InsertNewShift,
+		Shift_DocDSCaEnable,
 		#endregion
 
 		#region
@@ -35,6 +36,7 @@ namespace ChamCong_v06.Helper
 		#region ShiftSch
 
 		ShiftSch_DocDSCa,
+		ShiftSch_ThemDSCaVaoLichTrinh,
 
 
 		#endregion

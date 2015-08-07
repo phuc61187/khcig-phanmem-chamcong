@@ -188,13 +188,13 @@ OffLunch:{16};
 				return;
 			}
 
-			bool disableCSDL = !frm.m_Enable;
+			bool enableCSDL = frm.m_Enable;
 			TimeSpan workingTime = (frm.m_OffDuty - frm.m_OnDuty);
 			int workingTimeMin = Convert.ToInt32(workingTime.TotalMinutes);
 			SqlParameter[] param = new SqlParameter[]
 				{
 					new SqlParameter("@ShiftCode", frm.m_ShiftCode),
-			                              new SqlParameter("@Disable", disableCSDL),
+			                              new SqlParameter("@Enable", enableCSDL),
 			                              new SqlParameter("@OnDuty", frm.m_OnDuty.ToString(@"hh\:mm")),
 			                              new SqlParameter("@OffDuty", frm.m_OffDuty.ToString(@"hh\:mm")),
 			                              new SqlParameter("@DayCount", frm.m_DayCount),

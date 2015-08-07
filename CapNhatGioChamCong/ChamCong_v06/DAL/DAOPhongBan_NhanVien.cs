@@ -135,8 +135,7 @@ namespace ChamCong_v06.DAL {
 			foreach (DataRow row in tableShift.Rows)
 			{
 				DataRow newRow = kq.NewRow();
-				bool disableCSDL = (row["Disable"] != DBNull.Value) ? (bool) row["Disable"] : false;
-				bool enableColumn = !disableCSDL; // row[""] ToString()
+				bool enable = (bool) row["Enable"];
 				string shiftcode = row["ShiftCode"].ToString();
 				int shiftID = (int)row["ShiftID"];
 				TimeSpan onDuty = TimeSpan.Parse(row["OnDuty"].ToString());
@@ -165,7 +164,7 @@ namespace ChamCong_v06.DAL {
 
 				newRow["ShiftCode"] = shiftcode;
 				newRow["ShiftID"] = shiftID;
-				newRow["Enable"] = enableColumn;
+				newRow["Enable"] = enable;
 				newRow["OnDuty"] = onDuty;
 				newRow["OffDuty"] = offDuty;
 				newRow["WorkingTime"] = tongGioLam;

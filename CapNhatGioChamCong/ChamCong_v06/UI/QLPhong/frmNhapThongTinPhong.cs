@@ -6,12 +6,12 @@ using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.UI.QLPhong {
 	public partial class frmNhapThongTinPhong : Form {
-		public DataRow CurrentDataRow = null; // nếu chế độ sửa: dùng CurrentDataRow
-		public DataRow ParentDataRow = null; // nếu chế độ thêm: dùng ParentDataRow 
-		public string TenPhong = string.Empty;
-		public int VitriPhong = 99999;
-		public bool Disable = false;
-		public ModeType Mode = ModeType.Cancel;
+		public DataRow m_CurrentDataRow = null; // nếu chế độ sửa: dùng CurrentDataRow
+		public DataRow m_ParentDataRow = null; // nếu chế độ thêm: dùng ParentDataRow 
+		public string m_TenPhong = string.Empty;
+		public int m_VitriPhong = 99999;
+		public bool m_Enable = false;
+		public ModeType m_Mode = ModeType.Cancel;
 
 		#region hàm ko quan trọng
 		public frmNhapThongTinPhong() {
@@ -26,7 +26,7 @@ namespace ChamCong_v06.UI.QLPhong {
 		}
 
 		private void btnHuy_Click(object sender, EventArgs e) {
-			Mode = Helper.ModeType.Cancel;
+			m_Mode = Helper.ModeType.Cancel;
 			Close();
 		}
 
@@ -66,23 +66,22 @@ namespace ChamCong_v06.UI.QLPhong {
 			loadTreePhgBan(treePhongBan);
 
 			//nếu chế độ sửa thì tự fill thông tin 
-			if (this.Mode == ModeType.Sua) {
-				string tenPhong = (this.CurrentDataRow["Description"] == DBNull.Value) ? string.Empty : this.CurrentDataRow["Description"].ToString();
-				var vitriPhong = (this.CurrentDataRow["ViTri"] == DBNull.Value) ? 0 : (int)this.CurrentDataRow["ViTri"];
-				var disable = (CurrentDataRow["Disable"] == DBNull.Value) ? false : ((bool)CurrentDataRow["Disable"]);
-				var enable = !disable;
+			if (this.m_Mode == ModeType.Sua) {
+				string tenPhong = (this.m_CurrentDataRow["Description"] == DBNull.Value) ? string.Empty : this.m_CurrentDataRow["Description"].ToString();
+				var vitriPhong = (this.m_CurrentDataRow["ViTri"] == DBNull.Value) ? 0 : (int)this.m_CurrentDataRow["ViTri"];
+				var enable = (bool) m_CurrentDataRow["Enable"];
 				//var idPhong = ((int) this.CurrentDataRow["ID"]);
-				var idRelation = ((int)this.CurrentDataRow["RelationID"]);
+				var idRelation = ((int)this.m_CurrentDataRow["RelationID"]);
 				TreeNode topNode = TopNode(treePhongBan.TopNode);
 				TreeNode node = FindNode(idRelation, topNode);
 				treePhongBan.SelectedNode = node;
 
 				btnTenPhong.Text = tenPhong;
 				tbVitriPhong.Text = vitriPhong.ToString();
-				checkEnable.Checked = enable;// chú ý ngược giá trị của disable
+				checkEnable.Checked = enable;
 			}
-			else if (this.Mode == ModeType.Them) { // chọn sẵn node cha, checked enable
-				var id = ((int)this.CurrentDataRow["ID"]);
+			else if (this.m_Mode == ModeType.Them) { // chọn sẵn node cha, checked enable
+				var id = ((int)this.m_CurrentDataRow["ID"]);
 				TreeNode topNode = TopNode(treePhongBan.TopNode);
 				TreeNode node = FindNode(id, topNode);
 				treePhongBan.SelectedNode = node;
@@ -116,16 +115,16 @@ namespace ChamCong_v06.UI.QLPhong {
 				ACMessageBox.Show("Tên phòng trống", Resources.Caption_Loi, 2000);
 				return;
 			}
-			if (int.TryParse(tbVitriPhong.Text, out VitriPhong) == false) {
+			if (int.TryParse(tbVitriPhong.Text, out m_VitriPhong) == false) {
 				ACMessageBox.Show("Vị trí phòng không hợp lệ", Resources.Caption_Loi, 2000);
 				return;
 			}
 
 			#endregion
 
-			this.TenPhong = btnTenPhong.Text;
-			this.ParentDataRow = (DataRow)treePhongBan.SelectedNode.Tag;
-			this.Disable = !checkEnable.Checked;//chú ý vì CSDL là disable nên ở đây là dấu !
+			this.m_TenPhong = btnTenPhong.Text;
+			this.m_ParentDataRow = (DataRow)treePhongBan.SelectedNode.Tag;
+			this.m_Enable = checkEnable.Checked;
 			//this.VitriPhong = VitriPhong;
 			this.Close();
 		}

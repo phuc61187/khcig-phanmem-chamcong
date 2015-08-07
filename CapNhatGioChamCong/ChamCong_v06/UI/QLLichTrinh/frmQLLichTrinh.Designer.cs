@@ -25,28 +25,26 @@
 		private void InitializeComponent() {
 			this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
 			this.btnThem = new DevExpress.XtraEditors.SimpleButton();
-			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridControlLichTrinh = new DevExpress.XtraGrid.GridControl();
+			this.gridViewLichTrinh = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-			this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridControlCa = new DevExpress.XtraGrid.GridControl();
+			this.gridViewCa = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.btnThemCa = new DevExpress.XtraEditors.SimpleButton();
 			this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
 			this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
 			this.btnDong = new DevExpress.XtraEditors.SimpleButton();
 			this.btnXoaCa = new DevExpress.XtraEditors.SimpleButton();
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlLichTrinh)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewLichTrinh)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlCa)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewCa)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
 			this.groupControl1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -79,27 +77,32 @@
 			this.btnThem.Text = "Thêm";
 			this.btnThem.Click += new System.EventHandler(this.btnThemLichTrinh_Click);
 			// 
-			// gridControl1
+			// gridControlLichTrinh
 			// 
-			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControl1.Location = new System.Drawing.Point(5, 54);
-			this.gridControl1.MainView = this.gridView1;
-			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.Size = new System.Drawing.Size(156, 371);
-			this.gridControl1.TabIndex = 8;
-			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+			this.gridControlLichTrinh.Cursor = System.Windows.Forms.Cursors.Default;
+			this.gridControlLichTrinh.Location = new System.Drawing.Point(5, 54);
+			this.gridControlLichTrinh.MainView = this.gridViewLichTrinh;
+			this.gridControlLichTrinh.Name = "gridControlLichTrinh";
+			this.gridControlLichTrinh.Size = new System.Drawing.Size(191, 371);
+			this.gridControlLichTrinh.TabIndex = 8;
+			this.gridControlLichTrinh.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewLichTrinh});
 			// 
-			// gridView1
+			// gridViewLichTrinh
 			// 
-			this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.gridViewLichTrinh.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2});
-			this.gridView1.GridControl = this.gridControl1;
-			this.gridView1.Name = "gridView1";
-			this.gridView1.OptionsBehavior.Editable = false;
-			this.gridView1.OptionsBehavior.ReadOnly = true;
-			this.gridView1.OptionsView.ShowGroupPanel = false;
+			this.gridViewLichTrinh.GridControl = this.gridControlLichTrinh;
+			this.gridViewLichTrinh.Name = "gridViewLichTrinh";
+			this.gridViewLichTrinh.OptionsBehavior.Editable = false;
+			this.gridViewLichTrinh.OptionsBehavior.ReadOnly = true;
+			this.gridViewLichTrinh.OptionsPrint.AutoWidth = false;
+			this.gridViewLichTrinh.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
+			this.gridViewLichTrinh.OptionsSelection.MultiSelect = true;
+			this.gridViewLichTrinh.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+			this.gridViewLichTrinh.OptionsView.ColumnAutoWidth = false;
+			this.gridViewLichTrinh.OptionsView.ShowGroupPanel = false;
 			// 
 			// gridColumn1
 			// 
@@ -108,6 +111,8 @@
 			this.gridColumn1.Caption = "ID_hide";
 			this.gridColumn1.FieldName = "SchID";
 			this.gridColumn1.Name = "gridColumn1";
+			this.gridColumn1.Visible = true;
+			this.gridColumn1.VisibleIndex = 2;
 			// 
 			// gridColumn2
 			// 
@@ -120,34 +125,36 @@
 			this.gridColumn2.Name = "gridColumn2";
 			this.gridColumn2.OptionsColumn.ReadOnly = true;
 			this.gridColumn2.Visible = true;
-			this.gridColumn2.VisibleIndex = 0;
+			this.gridColumn2.VisibleIndex = 1;
+			this.gridColumn2.Width = 125;
 			// 
-			// gridControl2
+			// gridControlCa
 			// 
-			this.gridControl2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControl2.Location = new System.Drawing.Point(5, 54);
-			this.gridControl2.MainView = this.gridView2;
-			this.gridControl2.Name = "gridControl2";
-			this.gridControl2.Size = new System.Drawing.Size(745, 371);
-			this.gridControl2.TabIndex = 8;
-			this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+			this.gridControlCa.Cursor = System.Windows.Forms.Cursors.Default;
+			this.gridControlCa.Location = new System.Drawing.Point(5, 54);
+			this.gridControlCa.MainView = this.gridViewCa;
+			this.gridControlCa.Name = "gridControlCa";
+			this.gridControlCa.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
+			this.gridControlCa.Size = new System.Drawing.Size(314, 371);
+			this.gridControlCa.TabIndex = 8;
+			this.gridControlCa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewCa});
 			// 
-			// gridView2
+			// gridViewCa
 			// 
-			this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.gridViewCa.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn9});
-			this.gridView2.GridControl = this.gridControl2;
-			this.gridView2.Name = "gridView2";
-			this.gridView2.OptionsBehavior.ReadOnly = true;
-			this.gridView2.OptionsView.ColumnAutoWidth = false;
-			this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridColumn5});
+			this.gridViewCa.GridControl = this.gridControlCa;
+			this.gridViewCa.Name = "gridViewCa";
+			this.gridViewCa.OptionsBehavior.ReadOnly = true;
+			this.gridViewCa.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
+			this.gridViewCa.OptionsSelection.MultiSelect = true;
+			this.gridViewCa.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+			this.gridViewCa.OptionsView.ColumnAutoWidth = false;
+			this.gridViewCa.OptionsView.ShowGroupPanel = false;
 			// 
 			// gridColumn3
 			// 
@@ -155,12 +162,13 @@
 			this.gridColumn3.AppearanceCell.Options.UseFont = true;
 			this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.gridColumn3.AppearanceHeader.Options.UseFont = true;
-			this.gridColumn3.Caption = "Thứ Hai";
+			this.gridColumn3.Caption = "Ca làm việc";
+			this.gridColumn3.FieldName = "ShiftCode";
 			this.gridColumn3.Name = "gridColumn3";
 			this.gridColumn3.OptionsColumn.ReadOnly = true;
 			this.gridColumn3.Visible = true;
-			this.gridColumn3.VisibleIndex = 0;
-			this.gridColumn3.Width = 100;
+			this.gridColumn3.VisibleIndex = 1;
+			this.gridColumn3.Width = 150;
 			// 
 			// gridColumn4
 			// 
@@ -168,77 +176,28 @@
 			this.gridColumn4.AppearanceCell.Options.UseFont = true;
 			this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.gridColumn4.AppearanceHeader.Options.UseFont = true;
-			this.gridColumn4.Caption = "Thứ Ba";
+			this.gridColumn4.Caption = "Đang sử dụng";
+			this.gridColumn4.ColumnEdit = this.repositoryItemCheckEdit1;
+			this.gridColumn4.FieldName = "Enable";
 			this.gridColumn4.Name = "gridColumn4";
 			this.gridColumn4.OptionsColumn.ReadOnly = true;
 			this.gridColumn4.Visible = true;
-			this.gridColumn4.VisibleIndex = 1;
+			this.gridColumn4.VisibleIndex = 2;
 			this.gridColumn4.Width = 100;
+			// 
+			// repositoryItemCheckEdit1
+			// 
+			this.repositoryItemCheckEdit1.AutoHeight = false;
+			this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
 			// 
 			// gridColumn5
 			// 
-			this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn5.AppearanceCell.Options.UseFont = true;
-			this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn5.AppearanceHeader.Options.UseFont = true;
-			this.gridColumn5.Caption = "Thứ Tư";
+			this.gridColumn5.Caption = "ShiftID_T1_Hide";
+			this.gridColumn5.FieldName = "T1";
 			this.gridColumn5.Name = "gridColumn5";
 			this.gridColumn5.OptionsColumn.ReadOnly = true;
 			this.gridColumn5.Visible = true;
-			this.gridColumn5.VisibleIndex = 2;
-			this.gridColumn5.Width = 100;
-			// 
-			// gridColumn6
-			// 
-			this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn6.AppearanceCell.Options.UseFont = true;
-			this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn6.AppearanceHeader.Options.UseFont = true;
-			this.gridColumn6.Caption = "Thứ Năm";
-			this.gridColumn6.Name = "gridColumn6";
-			this.gridColumn6.OptionsColumn.ReadOnly = true;
-			this.gridColumn6.Visible = true;
-			this.gridColumn6.VisibleIndex = 3;
-			this.gridColumn6.Width = 100;
-			// 
-			// gridColumn7
-			// 
-			this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn7.AppearanceCell.Options.UseFont = true;
-			this.gridColumn7.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn7.AppearanceHeader.Options.UseFont = true;
-			this.gridColumn7.Caption = "Thứ Sáu";
-			this.gridColumn7.Name = "gridColumn7";
-			this.gridColumn7.OptionsColumn.ReadOnly = true;
-			this.gridColumn7.Visible = true;
-			this.gridColumn7.VisibleIndex = 4;
-			this.gridColumn7.Width = 100;
-			// 
-			// gridColumn8
-			// 
-			this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn8.AppearanceCell.Options.UseFont = true;
-			this.gridColumn8.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn8.AppearanceHeader.Options.UseFont = true;
-			this.gridColumn8.Caption = "Thứ Bảy";
-			this.gridColumn8.Name = "gridColumn8";
-			this.gridColumn8.OptionsColumn.ReadOnly = true;
-			this.gridColumn8.Visible = true;
-			this.gridColumn8.VisibleIndex = 5;
-			this.gridColumn8.Width = 100;
-			// 
-			// gridColumn9
-			// 
-			this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn9.AppearanceCell.Options.UseFont = true;
-			this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.gridColumn9.AppearanceHeader.Options.UseFont = true;
-			this.gridColumn9.Caption = "Chủ Nhật";
-			this.gridColumn9.Name = "gridColumn9";
-			this.gridColumn9.OptionsColumn.ReadOnly = true;
-			this.gridColumn9.Visible = true;
-			this.gridColumn9.VisibleIndex = 6;
-			this.gridColumn9.Width = 100;
+			this.gridColumn5.VisibleIndex = 3;
 			// 
 			// btnThemCa
 			// 
@@ -258,12 +217,12 @@
 			// 
 			this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.groupControl1.AppearanceCaption.Options.UseFont = true;
-			this.groupControl1.Controls.Add(this.gridControl1);
+			this.groupControl1.Controls.Add(this.gridControlLichTrinh);
 			this.groupControl1.Controls.Add(this.btnThem);
 			this.groupControl1.Controls.Add(this.btnXoa);
 			this.groupControl1.Location = new System.Drawing.Point(12, 12);
 			this.groupControl1.Name = "groupControl1";
-			this.groupControl1.Size = new System.Drawing.Size(168, 430);
+			this.groupControl1.Size = new System.Drawing.Size(201, 430);
 			this.groupControl1.TabIndex = 9;
 			this.groupControl1.Text = "Lịch trình";
 			// 
@@ -272,12 +231,12 @@
 			this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.groupControl2.AppearanceCaption.Options.UseFont = true;
 			this.groupControl2.Controls.Add(this.btnDong);
-			this.groupControl2.Controls.Add(this.gridControl2);
+			this.groupControl2.Controls.Add(this.gridControlCa);
 			this.groupControl2.Controls.Add(this.btnThemCa);
 			this.groupControl2.Controls.Add(this.btnXoaCa);
-			this.groupControl2.Location = new System.Drawing.Point(186, 12);
+			this.groupControl2.Location = new System.Drawing.Point(219, 12);
 			this.groupControl2.Name = "groupControl2";
-			this.groupControl2.Size = new System.Drawing.Size(751, 430);
+			this.groupControl2.Size = new System.Drawing.Size(324, 430);
 			this.groupControl2.TabIndex = 10;
 			this.groupControl2.Text = "Danh sách ca theo lịch trình";
 			// 
@@ -309,17 +268,18 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(950, 453);
+			this.ClientSize = new System.Drawing.Size(555, 453);
 			this.Controls.Add(this.groupControl2);
 			this.Controls.Add(this.groupControl1);
 			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "frmQLLichTrinh";
 			this.Text = "Quản lý lịch trình";
 			this.Load += new System.EventHandler(this.frmQLLichTrinh_Load);
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlLichTrinh)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewLichTrinh)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlCa)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewCa)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
 			this.groupControl1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
@@ -332,23 +292,20 @@
 
 		private DevExpress.XtraEditors.SimpleButton btnXoa;
 		private DevExpress.XtraEditors.SimpleButton btnThem;
-		private DevExpress.XtraGrid.GridControl gridControl1;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+		private DevExpress.XtraGrid.GridControl gridControlLichTrinh;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridViewLichTrinh;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-		private DevExpress.XtraGrid.GridControl gridControl2;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+		private DevExpress.XtraGrid.GridControl gridControlCa;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridViewCa;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
 		private DevExpress.XtraEditors.SimpleButton btnThemCa;
 		private DevExpress.XtraEditors.GroupControl groupControl1;
 		private DevExpress.XtraEditors.GroupControl groupControl2;
 		private DevExpress.XtraEditors.SimpleButton btnXoaCa;
 		private DevExpress.XtraEditors.SimpleButton btnDong;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
 	}
 }

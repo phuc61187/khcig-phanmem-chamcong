@@ -28,8 +28,7 @@ namespace ChamCong_v06.UI.QLPhong {
 			var relationID_0 = rowsPhong.Where(o => (int)o["RelationID"] == 0).ToList().OrderBy(s => (int)s["ViTri"]);
 
 			foreach (var dataRowView in relationID_0) {
-				var disable = (dataRowView["Disable"] == DBNull.Value) ? false : (bool)(dataRowView["Disable"]);
-				var enable = !disable;
+				var enable = (bool)(dataRowView["Enable"]);
 				var string1 = enable == false ? "[Disable]" : string.Empty;
 				var string2 = dataRowView["Description"].ToString();
 				TreeNode parentNode = new TreeNode { Text = string1 + string2, Tag = dataRowView };
@@ -44,8 +43,7 @@ namespace ChamCong_v06.UI.QLPhong {
 		public static void loadTreeSubNode(ref TreeNode ParentNode, int idPhongBanTrucThuoc, IOrderedEnumerable<DataRow> dsphongban /*List<cPhongBan> dsphongban*/) {
 			IOrderedEnumerable<DataRow> childs = dsphongban.Where(item => (int)item["RelationID"] == idPhongBanTrucThuoc).ToList().OrderBy(item => (int)item["ViTri"]);
 			foreach (DataRow phong in childs) {
-				var disable = (phong["Disable"] == DBNull.Value) ? false : (bool)(phong["Disable"]);
-				var enable = !disable;
+				var enable = (bool)(phong["Enable"]);
 				var string1 = enable == false ? "[Disable]" : string.Empty;
 				var string2 = phong["Description"].ToString();
 
@@ -60,10 +58,10 @@ namespace ChamCong_v06.UI.QLPhong {
 		private void btnThem_Click(object sender, EventArgs e) {
 			//hiển thị form và nhận kết quả trả về
 			frmNhapThongTinPhong frm = new frmNhapThongTinPhong();
-			frm.CurrentDataRow = (DataRow)treePhongBan.SelectedNode.Tag;
-			frm.Mode = ModeType.Them;
+			frm.m_CurrentDataRow = (DataRow)treePhongBan.SelectedNode.Tag;
+			frm.m_Mode = ModeType.Them;
 			frm.ShowDialog();
-			if (frm.Mode == ModeType.Cancel) return;
+			if (frm.m_Mode == ModeType.Cancel) return;
 
 			//sử dụng kết quả trả về thêm vào CSDL
 			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
@@ -72,20 +70,20 @@ namespace ChamCong_v06.UI.QLPhong {
 			}
 			#region test
 			ACMessageBox.Show(string.Format("{0};RID {1};LID {2};VT {3};E {4}",
-				frm.TenPhong,
-				(int)frm.ParentDataRow["RelationID"],
-				 (int)frm.ParentDataRow["LevelID"] + 1,
-					frm.VitriPhong,			frm.Disable), "", 5000);
+				frm.m_TenPhong,
+				(int)frm.m_ParentDataRow["RelationID"],
+				 (int)frm.m_ParentDataRow["LevelID"] + 1,
+					frm.m_VitriPhong, frm.m_Enable), "", 5000);
 			loadTreePhgBan(treePhongBan);
 			//return;
 			#endregion
 
 			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_ThemPhong.ToString(),
-				new SqlParameter("@Description", frm.TenPhong),
-				new SqlParameter("@RelationID", (int)frm.ParentDataRow["ID"]),
-				new SqlParameter("@LevelID", (int)frm.ParentDataRow["LevelID"] + 1),//+1 vì là con của phòng trực thuộc
-				new SqlParameter("@ViTri", frm.VitriPhong),
-				new SqlParameter("@Disable", frm.Disable)) == 0) // chú ý: ngược của 
+				new SqlParameter("@Description", frm.m_TenPhong),
+				new SqlParameter("@RelationID", (int)frm.m_ParentDataRow["ID"]),
+				new SqlParameter("@LevelID", (int)frm.m_ParentDataRow["LevelID"] + 1),//+1 vì là con của phòng trực thuộc
+				new SqlParameter("@ViTri", frm.m_VitriPhong),
+				new SqlParameter("@Enable", frm.m_Enable)) == 0) // chú ý: ngược của 
 			{
 				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 				return;
@@ -99,10 +97,10 @@ namespace ChamCong_v06.UI.QLPhong {
 
 		private void btnSua_Click(object sender, EventArgs e) {
 			frmNhapThongTinPhong frm = new frmNhapThongTinPhong();
-			frm.Mode = ModeType.Sua;
-			frm.CurrentDataRow = (DataRow)treePhongBan.SelectedNode.Tag;
+			frm.m_Mode = ModeType.Sua;
+			frm.m_CurrentDataRow = (DataRow)treePhongBan.SelectedNode.Tag;
 			frm.ShowDialog();
-			if (frm.Mode == ModeType.Cancel) return;
+			if (frm.m_Mode == ModeType.Cancel) return;
 
 			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
 				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 3000);
@@ -110,22 +108,22 @@ namespace ChamCong_v06.UI.QLPhong {
 			}
 			#region test
 			ACMessageBox.Show(string.Format("{0};RID {1};LID {2};VT {3};E {4}, ID:{5}",
-				frm.TenPhong,
-				(int)frm.ParentDataRow["RelationID"],
-				 (int)frm.ParentDataRow["LevelID"] + 1,
-					frm.VitriPhong,
-			frm.Disable, (int)frm.CurrentDataRow["ID"]), "", 5000);
+				frm.m_TenPhong,
+				(int)frm.m_ParentDataRow["RelationID"],
+				 (int)frm.m_ParentDataRow["LevelID"] + 1,
+					frm.m_VitriPhong,
+			frm.m_Enable, (int)frm.m_CurrentDataRow["ID"]), "", 5000);
 			loadTreePhgBan(treePhongBan);
 			//return;
 			#endregion
 
 			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_SuaPhong.ToString(),
-				new SqlParameter("@ID", (int)frm.CurrentDataRow["ID"]),
-				new SqlParameter("@Description", frm.TenPhong),
-				new SqlParameter("@RelationID", (int)frm.ParentDataRow["ID"]),
-				new SqlParameter("@LevelID", (int)frm.ParentDataRow["LevelID"] + 1),//+1 vì là con của phòng trực thuộc
-				new SqlParameter("@ViTri", (int)frm.CurrentDataRow["ViTri"]),
-				new SqlParameter("@Disable", frm.Disable)) == 0) {
+				new SqlParameter("@ID", (int)frm.m_CurrentDataRow["ID"]),
+				new SqlParameter("@Description", frm.m_TenPhong),
+				new SqlParameter("@RelationID", (int)frm.m_ParentDataRow["ID"]),
+				new SqlParameter("@LevelID", (int)frm.m_ParentDataRow["LevelID"] + 1),//+1 vì là con của phòng trực thuộc
+				new SqlParameter("@ViTri", (int)frm.m_CurrentDataRow["ViTri"]),
+				new SqlParameter("@Enable", frm.m_Enable)) == 0) {
 				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 				return;
 			}
