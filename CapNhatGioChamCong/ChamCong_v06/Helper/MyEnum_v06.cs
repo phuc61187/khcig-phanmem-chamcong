@@ -37,6 +37,7 @@ namespace ChamCong_v06.Helper
 
 		ShiftSch_DocDSCa,
 		ShiftSch_ThemDSCaVaoLichTrinh,
+		ShiftSch_XoaDSCaKhoiLichTrinh,
 
 
 		#endregion

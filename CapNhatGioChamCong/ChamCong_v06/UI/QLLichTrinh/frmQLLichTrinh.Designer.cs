@@ -40,6 +40,7 @@
 			this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
 			this.btnDong = new DevExpress.XtraEditors.SimpleButton();
 			this.btnXoaCa = new DevExpress.XtraEditors.SimpleButton();
+			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLichTrinh)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewLichTrinh)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlCa)).BeginInit();
@@ -136,7 +137,7 @@
 			this.gridControlCa.Name = "gridControlCa";
 			this.gridControlCa.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-			this.gridControlCa.Size = new System.Drawing.Size(314, 371);
+			this.gridControlCa.Size = new System.Drawing.Size(380, 371);
 			this.gridControlCa.TabIndex = 8;
 			this.gridControlCa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewCa});
@@ -146,7 +147,8 @@
 			this.gridViewCa.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5});
+            this.gridColumn5,
+            this.gridColumn6});
 			this.gridViewCa.GridControl = this.gridControlCa;
 			this.gridViewCa.Name = "gridViewCa";
 			this.gridViewCa.OptionsBehavior.ReadOnly = true;
@@ -182,7 +184,7 @@
 			this.gridColumn4.Name = "gridColumn4";
 			this.gridColumn4.OptionsColumn.ReadOnly = true;
 			this.gridColumn4.Visible = true;
-			this.gridColumn4.VisibleIndex = 2;
+			this.gridColumn4.VisibleIndex = 3;
 			this.gridColumn4.Width = 100;
 			// 
 			// repositoryItemCheckEdit1
@@ -192,12 +194,14 @@
 			// 
 			// gridColumn5
 			// 
+			this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn5.AppearanceCell.Options.UseFont = true;
 			this.gridColumn5.Caption = "ShiftID_T1_Hide";
 			this.gridColumn5.FieldName = "T1";
 			this.gridColumn5.Name = "gridColumn5";
 			this.gridColumn5.OptionsColumn.ReadOnly = true;
 			this.gridColumn5.Visible = true;
-			this.gridColumn5.VisibleIndex = 3;
+			this.gridColumn5.VisibleIndex = 4;
 			// 
 			// btnThemCa
 			// 
@@ -236,7 +240,7 @@
 			this.groupControl2.Controls.Add(this.btnXoaCa);
 			this.groupControl2.Location = new System.Drawing.Point(219, 12);
 			this.groupControl2.Name = "groupControl2";
-			this.groupControl2.Size = new System.Drawing.Size(324, 430);
+			this.groupControl2.Size = new System.Drawing.Size(390, 430);
 			this.groupControl2.TabIndex = 10;
 			this.groupControl2.Text = "Danh sách ca theo lịch trình";
 			// 
@@ -264,11 +268,26 @@
 			this.btnXoaCa.Text = "Xóa ca";
 			this.btnXoaCa.Click += new System.EventHandler(this.btnXoaCa_Click);
 			// 
+			// gridColumn6
+			// 
+			this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn6.AppearanceCell.Options.UseFont = true;
+			this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn6.AppearanceHeader.Options.UseFont = true;
+			this.gridColumn6.Caption = "Công";
+			this.gridColumn6.DisplayFormat.FormatString = "#0.0#";
+			this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.gridColumn6.FieldName = "Workingday";
+			this.gridColumn6.Name = "gridColumn6";
+			this.gridColumn6.Visible = true;
+			this.gridColumn6.VisibleIndex = 2;
+			this.gridColumn6.Width = 60;
+			// 
 			// frmQLLichTrinh
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(555, 453);
+			this.ClientSize = new System.Drawing.Size(619, 453);
 			this.Controls.Add(this.groupControl2);
 			this.Controls.Add(this.groupControl1);
 			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -307,5 +326,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
 	}
 }

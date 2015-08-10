@@ -149,6 +149,12 @@
     <Compile Include="UI\frmXemCong.Designer.cs">
       <DependentUpon>frmXemCong.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\QLTaiKhoan\frmQLTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLTaiKhoan\frmQLTaiKhoan.Designer.cs">
+      <DependentUpon>frmQLTaiKhoan.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmXemCong.resx">
       <DependentUpon>frmXemCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLTaiKhoan\frmQLTaiKhoan.resx">
+      <DependentUpon>frmQLTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\resources.designer.cs" />
     <Compile Include="UI\frmKetNoiCSDL.cs">
@@ -231,7 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\" />
-    <Folder Include="UI\QLTaiKhoan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="QuyUoc.txt" />
