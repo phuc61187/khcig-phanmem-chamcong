@@ -41,6 +41,13 @@ namespace ChamCong_v06.Helper
 
 
 		#endregion
+		#region NewAccount
+		NewAccount_DocTatCaTaiKhoan,
+		#endregion
+
+		#region DeptPrivilege
+		DeptPrivilege_DocPhongBanThaoTac,
+		#endregion
 
 		#region làm nhiều thao tác, bảng kết hợp
 		Other_XoaLichTrinh,

@@ -23,22 +23,30 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode3});
 			this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
 			this.gridControlLichTrinh = new DevExpress.XtraGrid.GridControl();
 			this.gridViewLichTrinh = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.btnThem = new DevExpress.XtraEditors.SimpleButton();
-			this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
-			this.btnSua = new DevExpress.XtraEditors.SimpleButton();
-			this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
 			this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.btnThem = new DevExpress.XtraEditors.SimpleButton();
+			this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
+			this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
 			this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridControlTaiKhoan = new DevExpress.XtraGrid.GridControl();
+			this.gridViewTaiKhoan = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.treePhongBan = new System.Windows.Forms.TreeView();
+			this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
 			this.groupControl1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLichTrinh)).BeginInit();
@@ -46,9 +54,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
 			this.groupControl2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlTaiKhoan)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewTaiKhoan)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+			this.groupControl3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupControl1
@@ -56,7 +66,7 @@
 			this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.groupControl1.AppearanceCaption.Options.UseFont = true;
 			this.groupControl1.Controls.Add(this.gridControlLichTrinh);
-			this.groupControl1.Location = new System.Drawing.Point(393, 12);
+			this.groupControl1.Location = new System.Drawing.Point(582, 12);
 			this.groupControl1.Name = "groupControl1";
 			this.groupControl1.Size = new System.Drawing.Size(278, 430);
 			this.groupControl1.TabIndex = 10;
@@ -91,52 +101,6 @@
 			this.gridViewLichTrinh.OptionsView.ColumnAutoWidth = false;
 			this.gridViewLichTrinh.OptionsView.ShowGroupPanel = false;
 			// 
-			// btnThem
-			// 
-			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.btnThem.Appearance.Options.UseFont = true;
-			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.btnThem.Image = global::ChamCong_v06.Properties.Resources._1438546384_Add;
-			this.btnThem.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-			this.btnThem.Location = new System.Drawing.Point(5, 25);
-			this.btnThem.Name = "btnThem";
-			this.btnThem.Size = new System.Drawing.Size(75, 23);
-			this.btnThem.TabIndex = 7;
-			this.btnThem.Text = "Tạo mới";
-			// 
-			// btnXoa
-			// 
-			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.btnXoa.Appearance.Options.UseFont = true;
-			this.btnXoa.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
-			this.btnXoa.Location = new System.Drawing.Point(149, 25);
-			this.btnXoa.Name = "btnXoa";
-			this.btnXoa.Size = new System.Drawing.Size(57, 23);
-			this.btnXoa.TabIndex = 6;
-			this.btnXoa.Text = "Xóa";
-			// 
-			// btnSua
-			// 
-			this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.btnSua.Appearance.Options.UseFont = true;
-			this.btnSua.Image = global::ChamCong_v06.Properties.Resources._1438546263_Edit;
-			this.btnSua.Location = new System.Drawing.Point(86, 25);
-			this.btnSua.Name = "btnSua";
-			this.btnSua.Size = new System.Drawing.Size(57, 23);
-			this.btnSua.TabIndex = 11;
-			this.btnSua.Text = "Sửa";
-			// 
-			// simpleButton1
-			// 
-			this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.simpleButton1.Appearance.Options.UseFont = true;
-			this.simpleButton1.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
-			this.simpleButton1.Location = new System.Drawing.Point(212, 25);
-			this.simpleButton1.Name = "simpleButton1";
-			this.simpleButton1.Size = new System.Drawing.Size(61, 23);
-			this.simpleButton1.TabIndex = 6;
-			this.simpleButton1.Text = "Xóa";
-			// 
 			// gridColumn1
 			// 
 			this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -166,49 +130,83 @@
 			this.repositoryItemCheckEdit1.AutoHeight = false;
 			this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
 			// 
+			// btnThem
+			// 
+			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThem.Appearance.Options.UseFont = true;
+			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.btnThem.Image = global::ChamCong_v06.Properties.Resources._1438546384_Add;
+			this.btnThem.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+			this.btnThem.Location = new System.Drawing.Point(5, 25);
+			this.btnThem.Name = "btnThem";
+			this.btnThem.Size = new System.Drawing.Size(75, 23);
+			this.btnThem.TabIndex = 7;
+			this.btnThem.Text = "Tạo mới";
+			// 
+			// btnXoa
+			// 
+			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnXoa.Appearance.Options.UseFont = true;
+			this.btnXoa.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
+			this.btnXoa.Location = new System.Drawing.Point(86, 25);
+			this.btnXoa.Name = "btnXoa";
+			this.btnXoa.Size = new System.Drawing.Size(57, 23);
+			this.btnXoa.TabIndex = 6;
+			this.btnXoa.Text = "Xóa";
+			// 
+			// simpleButton1
+			// 
+			this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.simpleButton1.Appearance.Options.UseFont = true;
+			this.simpleButton1.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
+			this.simpleButton1.Location = new System.Drawing.Point(149, 25);
+			this.simpleButton1.Name = "simpleButton1";
+			this.simpleButton1.Size = new System.Drawing.Size(84, 23);
+			this.simpleButton1.TabIndex = 6;
+			this.simpleButton1.Text = "Disable";
+			// 
 			// groupControl2
 			// 
 			this.groupControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.groupControl2.Appearance.Options.UseFont = true;
 			this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.groupControl2.AppearanceCaption.Options.UseFont = true;
-			this.groupControl2.Controls.Add(this.btnSua);
 			this.groupControl2.Controls.Add(this.simpleButton1);
-			this.groupControl2.Controls.Add(this.gridControl1);
+			this.groupControl2.Controls.Add(this.gridControlTaiKhoan);
 			this.groupControl2.Controls.Add(this.btnXoa);
 			this.groupControl2.Controls.Add(this.btnThem);
 			this.groupControl2.Location = new System.Drawing.Point(12, 12);
 			this.groupControl2.Name = "groupControl2";
-			this.groupControl2.Size = new System.Drawing.Size(280, 430);
+			this.groupControl2.Size = new System.Drawing.Size(301, 430);
 			this.groupControl2.TabIndex = 11;
 			this.groupControl2.Text = "Danh sách tài khoản";
 			// 
-			// gridControl1
+			// gridControlTaiKhoan
 			// 
-			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControl1.Location = new System.Drawing.Point(5, 54);
-			this.gridControl1.MainView = this.gridView1;
-			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+			this.gridControlTaiKhoan.Cursor = System.Windows.Forms.Cursors.Default;
+			this.gridControlTaiKhoan.Location = new System.Drawing.Point(5, 54);
+			this.gridControlTaiKhoan.MainView = this.gridViewTaiKhoan;
+			this.gridControlTaiKhoan.Name = "gridControlTaiKhoan";
+			this.gridControlTaiKhoan.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit2});
-			this.gridControl1.Size = new System.Drawing.Size(268, 371);
-			this.gridControl1.TabIndex = 12;
-			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+			this.gridControlTaiKhoan.Size = new System.Drawing.Size(291, 374);
+			this.gridControlTaiKhoan.TabIndex = 12;
+			this.gridControlTaiKhoan.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewTaiKhoan});
 			// 
-			// gridView1
+			// gridViewTaiKhoan
 			// 
-			this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.gridViewTaiKhoan.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
             this.gridColumn4});
-			this.gridView1.GridControl = this.gridControl1;
-			this.gridView1.Name = "gridView1";
-			this.gridView1.OptionsBehavior.Editable = false;
-			this.gridView1.OptionsBehavior.ReadOnly = true;
-			this.gridView1.OptionsPrint.AutoWidth = false;
-			this.gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
-			this.gridView1.OptionsView.ColumnAutoWidth = false;
-			this.gridView1.OptionsView.ShowGroupPanel = false;
+			this.gridViewTaiKhoan.GridControl = this.gridControlTaiKhoan;
+			this.gridViewTaiKhoan.Name = "gridViewTaiKhoan";
+			this.gridViewTaiKhoan.OptionsBehavior.Editable = false;
+			this.gridViewTaiKhoan.OptionsBehavior.ReadOnly = true;
+			this.gridViewTaiKhoan.OptionsPrint.AutoWidth = false;
+			this.gridViewTaiKhoan.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
+			this.gridViewTaiKhoan.OptionsView.ColumnAutoWidth = false;
+			this.gridViewTaiKhoan.OptionsView.ShowGroupPanel = false;
 			// 
 			// gridColumn3
 			// 
@@ -238,15 +236,53 @@
 			this.repositoryItemCheckEdit2.AutoHeight = false;
 			this.repositoryItemCheckEdit2.Name = "repositoryItemCheckEdit2";
 			// 
+			// treePhongBan
+			// 
+			this.treePhongBan.CheckBoxes = true;
+			this.treePhongBan.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 9F);
+			this.treePhongBan.HideSelection = false;
+			this.treePhongBan.Indent = 18;
+			this.treePhongBan.ItemHeight = 20;
+			this.treePhongBan.Location = new System.Drawing.Point(2, 22);
+			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.treePhongBan.Name = "treePhongBan";
+			treeNode1.Name = "Node2";
+			treeNode1.Text = "px thành phẩm";
+			treeNode2.Name = "Node5";
+			treeNode2.Text = "bảo vệ";
+			treeNode3.Name = "Node4";
+			treeNode3.Text = "văn phòng";
+			treeNode4.Name = "Node0";
+			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
+			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+			this.treePhongBan.ShowNodeToolTips = true;
+			this.treePhongBan.Size = new System.Drawing.Size(255, 406);
+			this.treePhongBan.TabIndex = 0;
+			// 
+			// groupControl3
+			// 
+			this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupControl3.AppearanceCaption.Options.UseFont = true;
+			this.groupControl3.Controls.Add(this.treePhongBan);
+			this.groupControl3.Location = new System.Drawing.Point(317, 12);
+			this.groupControl3.Name = "groupControl3";
+			this.groupControl3.Size = new System.Drawing.Size(259, 430);
+			this.groupControl3.TabIndex = 13;
+			this.groupControl3.Text = "Danh sách phòng ban được thao tác";
+			// 
 			// frmQLTaiKhoan
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(1077, 504);
+			this.Controls.Add(this.groupControl3);
 			this.Controls.Add(this.groupControl2);
 			this.Controls.Add(this.groupControl1);
 			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "frmQLTaiKhoan";
 			this.Text = "frmQLTaiKhoan";
+			this.Load += new System.EventHandler(this.frmQLTaiKhoan_Load);
 			((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
 			this.groupControl1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLichTrinh)).EndInit();
@@ -254,9 +290,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
 			this.groupControl2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlTaiKhoan)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewTaiKhoan)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+			this.groupControl3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -268,16 +306,17 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewLichTrinh;
 		private DevExpress.XtraEditors.SimpleButton btnThem;
 		private DevExpress.XtraEditors.SimpleButton btnXoa;
-		private DevExpress.XtraEditors.SimpleButton btnSua;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
 		private DevExpress.XtraEditors.SimpleButton simpleButton1;
 		private DevExpress.XtraEditors.GroupControl groupControl2;
-		private DevExpress.XtraGrid.GridControl gridControl1;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+		private DevExpress.XtraGrid.GridControl gridControlTaiKhoan;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTaiKhoan;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
+		private System.Windows.Forms.TreeView treePhongBan;
+		private DevExpress.XtraEditors.GroupControl groupControl3;
 	}
 }
