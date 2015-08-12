@@ -10,6 +10,7 @@ using ChamCong_v06.BUS;
 using ChamCong_v06.Helper;
 using ChamCong_v06.UI.QLLichTrinh;
 using ChamCong_v06.UI.QLPhong;
+using ChamCong_v06.UI.QLTaiKhoan;
 
 namespace ChamCong_v06.UI {
 	public partial class frmMain : Form
@@ -30,7 +31,7 @@ namespace ChamCong_v06.UI {
 				if (frm.m_LogInStatus)
 				{
 					//todo 
-					frmQLLichTrinh frm1 = new frmQLLichTrinh();
+					frmQLTaiKhoan frm1 = new frmQLTaiKhoan();
 					frm1.MdiParent = this;
 					frm1.Show();
 				}

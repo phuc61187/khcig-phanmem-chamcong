@@ -37,7 +37,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 				return;
 			}
 
-			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Schedule_ThemLichTrinh.ToString(),
+			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Schedule_ThemLichTrinhV6.ToString(),
 				new SqlParameter("@SchName", frm.m_TenLichTrinh),
 				new SqlParameter("@InOutID", 2));
 			if (kq == 0) {
@@ -79,7 +79,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			}
 			// thực hiện xóa lịch trình => LOGIC xóa lịch trình cũng đồng nghĩa xóa luôn các ca làm việc theo lịch trình này.
 			foreach (int id in ListIDLichTrinh) {
-				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Other_XoaLichTrinh.ToString(), new SqlParameter("@SchID", id));
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Other_XoaLichTrinhV6.ToString(), new SqlParameter("@SchID", id));
 				if (kq == 0) {
 					ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 					return;
@@ -117,7 +117,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			}
 
 			foreach (int shiftID in listID_SelectedShift) {
-				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.ShiftSch_ThemDSCaVaoLichTrinh.ToString(),
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.ShiftSch_ThemDSCaVaoLichTrinhV6.ToString(),
 										 new SqlParameter("@SchID", idLichTrinh),
 										 new SqlParameter("@ShiftID", shiftID));
 				if (kq == 0) {
@@ -162,7 +162,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 
 			// thực hiện xóa ca
 			foreach (int id in listID_SelectedShift) {
-				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.ShiftSch_XoaDSCaKhoiLichTrinh.ToString(),
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.ShiftSch_XoaDSCaKhoiLichTrinhV6.ToString(),
 															 new SqlParameter("@SchID", scheduleID),
 															 new SqlParameter("@ShiftID", id));
 				if (kq == 0) {
@@ -180,7 +180,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 				return;
 			}
 
-			DataTable table = SqlDataAccessHelper.ExecSPQuery(SPName6.Schedule_DocLichTrinh.ToString());
+			DataTable table = SqlDataAccessHelper.ExecSPQuery(SPName6.Schedule_DocLichTrinhV6.ToString());
 			gridControlLichTrinh.DataSource = table;
 
 		}
@@ -189,7 +189,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 			DataRow dataRow = gridViewLichTrinh.GetDataRow(focusedRowChangedEventArgs.FocusedRowHandle);
 			if (dataRow == null) return;
 			int schID = (int)dataRow["SchID"];
-			DataTable tableDSCa = SqlDataAccessHelper.ExecSPQuery(SPName6.ShiftSch_DocDSCa.ToString(),
+			DataTable tableDSCa = SqlDataAccessHelper.ExecSPQuery(SPName6.ShiftSch_DocDSCaV6.ToString(),
 													  new SqlParameter("@SchID", schID));
 
 			gridControlCa.DataSource = tableDSCa;

@@ -111,9 +111,6 @@ namespace ChamCong_v06.UI {
 
 		}
 
-		private void btnEditTaikhoan_ButtonPressed(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
-			ACMessageBox.Show("button press", string.Empty, 1000);
-		}
 
 	}
 }

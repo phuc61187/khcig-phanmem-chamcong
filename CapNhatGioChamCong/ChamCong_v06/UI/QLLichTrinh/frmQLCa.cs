@@ -171,7 +171,7 @@ OffLunch:{16};
 			if (TODOKiemTra() == false) {
 			}
 			else {
-				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Shift_DeleteShift.ToString(),
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Shift_DeleteShiftV6.ToString(),
 															 new SqlParameter(@"ShiftID", shiftID));
 				if (kq == 0) {
 					ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
@@ -211,7 +211,7 @@ OffLunch:{16};
 			                              new SqlParameter("@OnLunch", frm.m_OnLunch.ToString(@"hh\:mm")),
 			                              new SqlParameter("@OffLunch", frm.m_OffLunch.ToString(@"hh\:mm"))
 				};
-			int kq = (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Shift_InsertNewShift.ToString(), param));
+			int kq = (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.Shift_InsertNewShiftV6.ToString(), param));
 			if (kq == 0) {
 				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 			}

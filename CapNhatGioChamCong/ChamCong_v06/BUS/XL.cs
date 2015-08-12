@@ -10,6 +10,12 @@ using ChamCong_v06.Properties;
 
 namespace ChamCong_v06.BUS {
 	public static partial class XL {
+		public static TreeNode ReturnRootNode(TreeNode root) {
+			if (root.Parent != null) return root.Parent;
+			if (root.PrevNode != null) return root.PrevNode;
+			return root;
+		}
+
 //		public static void DocServerSetting5() {
 //			var table = SqlDataAccessHelper.ExecuteQueryString("select * from Setting", null, null);
 //			for (int i = 0; i < table.Rows.Count; i++) {
@@ -261,11 +267,7 @@ namespace ChamCong_v06.BUS {
 //			return tvDSPhongBan;
 //		}
 
-//		public static TreeNode TopNode(TreeNode root) {
-//			if (root.Parent != null) return root.Parent;
-//			if (root.PrevNode != null) return root.PrevNode;
-//			return root;
-//		}
+
 
 //		public static void loadTreeSubNode(ref TreeNode ParentNode, int idPhongBanTrucThuoc, IOrderedEnumerable<DataRow> dsphongban /*List<cPhongBan> dsphongban*/) {
 //			IOrderedEnumerable<DataRow> childs = dsphongban.Where(item => (int)item["RelationID"] == idPhongBanTrucThuoc).ToList().OrderBy(item => (int)item["ViTri"]);

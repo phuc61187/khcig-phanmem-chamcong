@@ -70,6 +70,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ACMessageBox.cs" />
+    <Compile Include="Helper\ChuyenSoSangChu.cs" />
+    <Compile Include="Helper\EncryptDecrypt_Password.cs" />
     <Compile Include="Helper\MyEnum.cs" />
     <Compile Include="Helper\MyEnum_v06.cs" />
     <Compile Include="Helper\MyStruct.cs" />

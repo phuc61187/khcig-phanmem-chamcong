@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.DAL {
@@ -96,19 +97,29 @@ namespace ChamCong_v06.DAL {
 			return tablePhongBan;
 		}
 
-		public static bool ChangePassword(string OldPass, string NewPass, string Account)//v6
+		public static bool ChangePassword(string OldPass, string NewPass, string UserAccount, int UserID)//v6
 		{
-			int kq1 = SqlDataAccessHelper.ExecSPNoneQuery(SPName.UserInfo_ChangePass.ToString(), //todo viết store
-				new SqlParameter("OldPassword", OldPass), 
-				new SqlParameter("NewPassword", NewPass), 
-				new SqlParameter("UserAccount", Account));
+			string encryptOldPass = MyUtility.Mahoa(OldPass);
+			string encryptNEWPass = MyUtility.Mahoa(NewPass);
+			DataTable tableUserAccount = SqlDataAccessHelper.ExecSPQuery(SPName6.NewUserAccount_DocTatCaTaiKhoanV6.ToString(),
+				new SqlParameter("@Enable", true),
+				new SqlParameter("@UserAccount", UserAccount),
+				new SqlParameter("@EncryptPassword", encryptOldPass));
+			if (tableUserAccount.Rows.Count == 0)
+			{
+				MessageBox.Show("Mật khẩu cũ chưa đúng. Vui lòng nhập lại.", Resources.Caption_ThongBao, MessageBoxButtons.OK);
+				return false;
+			}
+			int kq1 = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_ChangePassV6.ToString(), //todo viết store
+				new SqlParameter("@NewEncryptPassword", encryptNEWPass), 
+				new SqlParameter("@UserID", UserID));
 			if (kq1 > 0) return true;
 			return false;
 		}
 
 		public static DataTable LoadDataSourceShift()
 		{
-			DataTable tableShift = SqlDataAccessHelper.ExecSPQuery(SPName6.Shift_DocTatCaShift.ToString());
+			DataTable tableShift = SqlDataAccessHelper.ExecSPQuery(SPName6.Shift_DocTatCaShiftV6.ToString());
 			DataTable kq = new DataTable();
 			kq.Columns.Add(new DataColumn("ShiftCode", typeof (string)));
 			kq.Columns.Add(new DataColumn("ShiftID", typeof (int)));

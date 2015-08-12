@@ -24,13 +24,14 @@ namespace ChamCong_v06.UI {
 			string oldPass = btnEditMatkhauCu.Text;
 			string newPass = btnEditMatkhauMoi1.Text;
 			string testPass = btnEditMatkhauMoi2.Text;
-			string account = XL2.currUserAccount;
+			string userAccount = XL2.currUserAccount;
+			int userID = XL2.currUserID;
 			if (newPass == testPass)
 			{
 				ACMessageBox.Show("Vui lòng nhập 2 mật khẩu mới giống nhau.", Resources.Caption_Loi, 2000);
 				return;
 			}
-			if (DAO5.ChangePassword(oldPass, newPass, account))
+			if (DAO5.ChangePassword(oldPass, newPass, userAccount, userID))
 			{
 				ACMessageBox.Show(Resources.Text_DaThucHienXong, Resources.Caption_ThongBao, 2000);
 				this.Close();

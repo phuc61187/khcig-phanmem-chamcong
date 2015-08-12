@@ -19,38 +19,42 @@ namespace ChamCong_v06.Helper
 		RelationDept_SuaPhong,
 		RelationDept_XoaPhong,
 		#endregion
-		#region
-		Shift_DocTatCaShift,
-		Shift_DeleteShift,
-		Shift_InsertNewShift,
-		Shift_DocDSCaEnable,
+		#region Shift
+		Shift_DocTatCaShiftV6,
+		Shift_DeleteShiftV6,
+		Shift_InsertNewShiftV6,
+		Shift_DocDSCaEnableV6,
 		#endregion
 
-		#region
+		#region Schedule
 
-		Schedule_ThemLichTrinh,
-		Schedule_DocLichTrinh,
+		Schedule_ThemLichTrinhV6,
+		Schedule_DocLichTrinhV6,
 
 		#endregion
 
 		#region ShiftSch
 
-		ShiftSch_DocDSCa,
-		ShiftSch_ThemDSCaVaoLichTrinh,
-		ShiftSch_XoaDSCaKhoiLichTrinh,
+		ShiftSch_DocDSCaV6,
+		ShiftSch_ThemDSCaVaoLichTrinhV6,
+		ShiftSch_XoaDSCaKhoiLichTrinhV6,
 
 
 		#endregion
 		#region NewAccount
-		NewAccount_DocTatCaTaiKhoan,
+		NewUserAccount_DocTatCaTaiKhoanV6,
+		NewUserAccount_XoaTaiKhoanV6,
 		#endregion
 
 		#region DeptPrivilege
-		DeptPrivilege_DocPhongBanThaoTac,
+		DeptPrivilege_DocPhongBanThaoTacV6,
 		#endregion
 
+		#region 	UserInfo	
+		NewUserAccount_ChangePassV6,
+		#endregion
 		#region làm nhiều thao tác, bảng kết hợp
-		Other_XoaLichTrinh,
+		Other_XoaLichTrinhV6,
 		#endregion
 	}
 

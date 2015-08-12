@@ -112,7 +112,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditTaikhoan.Size = new System.Drawing.Size(206, 20);
 			this.btnEditTaikhoan.TabIndex = 0;
-			this.btnEditTaikhoan.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditTaikhoan_ButtonPressed);
+			
 			// 
 			// frmLogIn
 			// 
