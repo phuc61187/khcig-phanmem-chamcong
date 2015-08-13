@@ -66,62 +66,33 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 
 		#endregion
 
-		private void frmQLTaiKhoan_Load(object sender, EventArgs e)
-		{
+		private void frmQLTaiKhoan_Load(object sender, EventArgs e) {
 			loadTreePhgBan(treePhongBan);
+			LoadDSPhanQuyen();
 			this.gridViewTaiKhoan.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewTaiKhoan_FocusedRowChanged);
 			LoadDSTaiKhoan();
 			//this.gridViewTaiKhoan.Focus();
-			//LoadDSPhanQuyen();
 		}
 
-		private void LoadDSTaiKhoan()
-		{
+		private void LoadDSPhanQuyen() {
+			DataTable tableChucNang = SqlDataAccessHelper.ExecSPQuery(SPName6.Function_DocChucNangV6.ToString());
+			checkedListChucNang.DataSource = tableChucNang;
+			checkedListChucNang.ValueMember = "ID";
+			checkedListChucNang.DisplayMember = "Description";
+		}
+
+		private void LoadDSTaiKhoan() {
 			DataTable tableTaiKhoan = SqlDataAccessHelper.ExecSPQuery(SPName6.NewUserAccount_DocTatCaTaiKhoanV6.ToString());
 			gridControlTaiKhoan.DataSource = tableTaiKhoan;
 		}
 
-		private DataTable LoadDataTable_PhanQuyenPhongBan(int UserID)
-		{
+		private DataTable LoadDataTable_PhanQuyenPhongBan(int UserID) {
 			DataTable tablePhongBanThaoTac = SqlDataAccessHelper.ExecSPQuery(SPName6.DeptPrivilege_DocPhongBanThaoTacV6.ToString(),
 				new SqlParameter("@UserID", UserID),
 				new SqlParameter("@IsYes", true),
 				new SqlParameter("@RelationDeptEnable", true));
 			// đọc lên UserID, ID phòng được thao tác [IDD]
 			return tablePhongBanThaoTac;
-		}
-
-		private void gridViewTaiKhoan_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
-			// nếu ko có focus vào dòng nào thì thoát form, nếu có thì xử lý load phòng ban thao tác và phân quyền
-			if (e.FocusedRowHandle == GridControl.InvalidRowHandle)
-			{
-				ACMessageBox.Show("Không có dòng dữ liệu nào được chọn. Form tự động đóng.", Resources.Caption_ThongBao, 2000);
-				Close();
-			}
-			if (e.FocusedRowHandle < 0) { return;}
-			//có focus, load phòng và phân quyền theo tài khoản này
-			//xác định userID 
-			DataRow dataRow = gridViewTaiKhoan.GetDataRow(e.FocusedRowHandle);
-			if (dataRow == null) {ACMessageBox.Show("DataRow Null", Resources.Caption_Loi, 2000); return;}
-			int userID = (int) dataRow["UserID"];
-			// load dữ liệu phân quyền phòng ban và thực hiện check
-			treePhongBan.AfterCheck -= treePhongBan_OnAfterCheck;
-			DataTable tablePhanQuyenPhongBan = LoadDataTable_PhanQuyenPhongBan(userID);
-			PopulateData_ToTreePhong(tablePhanQuyenPhongBan);
-			treePhongBan.AfterCheck += treePhongBan_OnAfterCheck;
-		}
-
-		private void treePhongBan_OnAfterCheck(object sender, TreeViewEventArgs treeViewEventArgs)
-		{
-			TreeNode root = treeViewEventArgs.Node;
-			DataRow dataRow = (DataRow) root.Tag;
-			var checkStatus = root.Checked;
-			int idPhong = (int) dataRow["ID"];
-			treePhongBan.AfterCheck -= treePhongBan_OnAfterCheck;
-			SetCheckStatus_AllTreeNode(root, checkStatus);
-			treePhongBan.AfterCheck += treePhongBan_OnAfterCheck;
-			root = XL.ReturnRootNode(root);
-			root = FindNode(idPhong, root);
 		}
 
 		private void PopulateData_ToTreePhong(DataTable tablePhanQuyenPhongBan) {
@@ -133,14 +104,76 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 			SetCheckNode_PhongBanThaoTac(root, tablePhanQuyenPhongBan);
 		}
 
-		private void SetCheckNode_PhongBanThaoTac(TreeNode root, DataTable tablePhanQuyenPhongBan)
-		{
-			foreach (DataRow dataRow in tablePhanQuyenPhongBan.Rows)
-			{
+		private DataTable LoadDataTable_PhanQuyenChucNang(int UserID) {
+			DataTable kq = SqlDataAccessHelper.ExecSPQuery(SPName6.FunctionPrivilege_DocPhanQuyenChucNangV6.ToString(),
+														   new SqlParameter("@UserID", UserID));
+			return kq;
+		}
+
+		private void PopulateData_ToCheckList(DataTable tablePhanQuyenChucNang) {
+			// ghi chú trước khi fill dữ liệu vào check list thì cần phải uncheckAll trước
+			checkedListChucNang.UnCheckAll();
+			foreach (DataRow dataRow in tablePhanQuyenChucNang.Rows) {
+				int idChucNangDuocPhanQuyen = (int)dataRow["FunctionID"];
+				bool enable = (bool)dataRow["Enable"];
+
+				for (int index = 0; index < checkedListChucNang.ItemCount; index++) // ghi chú ở đây ko dùng items.Count vì nó = 0, chưa hiểu, sử dụng ItemsCount và hàm GetItem
+				{
+					DataRowView dataRowView = (DataRowView)checkedListChucNang.GetItem(index);
+					int idChucNang = (int)dataRowView["ID"];
+					if (idChucNang == idChucNangDuocPhanQuyen) {
+						checkedListChucNang.SetItemChecked(index, enable);
+						break;
+					}
+				}
+			}
+		}
+
+		private void gridViewTaiKhoan_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
+			// nếu ko có focus vào dòng nào thì thoát form, nếu có thì xử lý load phòng ban thao tác và phân quyền
+			if (e.FocusedRowHandle == GridControl.InvalidRowHandle) {
+				ACMessageBox.Show("Không có dòng dữ liệu nào được chọn. Form tự động đóng.", Resources.Caption_ThongBao, 2000);
+				Close();
+			}
+			if (e.FocusedRowHandle < 0) { return; }
+			//có focus, load phòng và phân quyền theo tài khoản này
+			//xác định userID 
+			DataRow dataRow = gridViewTaiKhoan.GetDataRow(e.FocusedRowHandle);
+			if (dataRow == null) { return; }
+			int userID = (int)dataRow["UserID"];
+			// uncheck all treeNode Phòng ban
+			TreeNode root = XL.ReturnRootNode(treePhongBan.TopNode);
+			SetCheckStatus_AllTreeNode(root, false);
+			treePhongBan.Refresh();
+			// load dữ liệu phân quyền phòng ban và thực hiện check
+			treePhongBan.AfterCheck -= treePhongBan_OnAfterCheck;
+			DataTable tablePhanQuyenPhongBan = LoadDataTable_PhanQuyenPhongBan(userID);
+			PopulateData_ToTreePhong(tablePhanQuyenPhongBan);
+			treePhongBan.ExpandAll();
+			treePhongBan.AfterCheck += treePhongBan_OnAfterCheck;
+			//load dữ liệu phân quyền chức năng và thực hiện check
+			DataTable tablePhanQuyenChucNang = LoadDataTable_PhanQuyenChucNang(userID);
+			PopulateData_ToCheckList(tablePhanQuyenChucNang);
+		}
+
+		private void treePhongBan_OnAfterCheck(object sender, TreeViewEventArgs treeViewEventArgs) {
+			TreeNode root = treeViewEventArgs.Node;
+			DataRow dataRow = (DataRow)root.Tag;
+			var checkStatus = root.Checked;
+			int idPhong = (int)dataRow["ID"];
+			treePhongBan.AfterCheck -= treePhongBan_OnAfterCheck;
+			SetCheckStatus_AllTreeNode(root, checkStatus);
+			treePhongBan.AfterCheck += treePhongBan_OnAfterCheck;
+			root = XL.ReturnRootNode(root);
+			root = FindNode(idPhong, root);
+		}
+
+		private void SetCheckNode_PhongBanThaoTac(TreeNode root, DataTable tablePhanQuyenPhongBan) {
+			foreach (DataRow dataRow in tablePhanQuyenPhongBan.Rows) {
 				root = XL.ReturnRootNode(root);
-				int idPhong = (int) dataRow["IDD"];
+				int idPhong = (int)dataRow["IDD"];
 				TreeNode node = FindNode(idPhong, root);
-				if (node== null) continue; // ko tìm thấy  node thì đi tiếp
+				if (node == null) continue; // ko tìm thấy  node thì đi tiếp
 				node.Checked = true;
 			}
 
@@ -162,25 +195,231 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 		private void SetCheckStatus_AllTreeNode(TreeNode root, bool Status) {
 			if (root == null) return;
 			root.Checked = Status;
-			for (int i = 0; i < root.Nodes.Count; i++)
-			{
+			for (int i = 0; i < root.Nodes.Count; i++) {
 				SetCheckStatus_AllTreeNode(root.Nodes[i], Status);
 			}
 		}
 
 		#region xóa tài khoản
 		private void btnXoa_Click(object sender, EventArgs e) {
-			#region kiểm tra đang chọn dòng nào
-
-			if (gridViewTaiKhoan.FocusedRowHandle == GridControl.InvalidRowHandle)
-			{
-				ACMessageBox.Show("Không có tài khoản.", Resources.Caption_ThongBao, 2000);
+			DataRow dataRow = XacDinh_DataRowTaiKhoan_DangChon();
+			if (dataRow == null) return;
+			int userID = (int)dataRow["UserID"];
+			string userAccount = dataRow["UserAccount"].ToString();
+			string template = "Bạn muốn xóa tài khoản [{0}]?";
+			if (MessageBox.Show(string.Format(template, userAccount), Resources.Caption_XacNhan, MessageBoxButtons.YesNo) == DialogResult.No) {
 				return;
 			}
-			if (gridViewTaiKhoan.FocusedRowHandle < 0)
-			{
-				ACMessageBox.Show("Vui lòng chọn tài khoản.", Resources.Caption_ThongBao, 2000);
+			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_XoaTaiKhoanV6.ToString(),
+														 new SqlParameter("@UserID", userID));
+			if (kq == 0) {
+				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 				return;
+			}
+			//gridViewTaiKhoan.FocusedRowHandle = GridControl.InvalidRowHandle;
+			LoadDSTaiKhoan();
+		}
+		#endregion
+
+		private void btnDisable_Click(object sender, EventArgs e) {
+			DataRow dataRow = XacDinh_DataRowTaiKhoan_DangChon();
+			if (dataRow == null) return;
+			int userID = (int)dataRow["UserID"];
+			bool Status = (bool)dataRow["Enable"];
+			bool Status1 = !Status;
+			string userAccount = dataRow["UserAccount"].ToString();
+			string template = "Bạn muốn đổi trạng thái tài khoản [{0}]?";
+			if (MessageBox.Show(string.Format(template, userAccount), Resources.Caption_XacNhan, MessageBoxButtons.YesNo) == DialogResult.No) {
+				return;
+			}
+			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_DisableTaiKhoanV6.ToString(),
+														 new SqlParameter("@UserID", userID), new SqlParameter("@Enable", Status1));
+			if (kq == 0) {
+				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
+				return;
+			}
+			LoadDSTaiKhoan();
+		}
+
+		private void btnThem_Click(object sender, EventArgs e) {
+
+			frmNhapTTTaiKhoan frm = new frmNhapTTTaiKhoan();
+			frm.m_Mode = ModeType.Them;
+			frm.ShowDialog();
+			if (frm.m_Mode == ModeType.Cancel) return;
+
+			//kiểm tra kết nối csdl
+			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
+				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 3000);
+				return;
+			}
+
+			string encryptPass = MyUtility.Mahoa(frm.m_Password);
+			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_ThemTaiKhoanV6.ToString(),
+														 new SqlParameter("@UserAccount", frm.m_TenTaiKhoan),
+														 new SqlParameter("@Password", encryptPass),
+														 new SqlParameter("@Enable", frm.m_Enable));
+			if (kq == 0) {
+				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
+				return;
+			}
+			LoadDSTaiKhoan();
+		}
+
+		private void btnSua_Click(object sender, EventArgs e) {
+			DataRow dataRow = XacDinh_DataRowTaiKhoan_DangChon();
+			int userID = (int)dataRow["UserID"];
+
+			frmNhapTTTaiKhoan frm = new frmNhapTTTaiKhoan();
+			frm.m_Mode = ModeType.Sua;
+			frm.m_TenTaiKhoan = dataRow["UserAccount"].ToString();
+			frm.m_Enable = (bool)dataRow["Enable"];
+			frm.ShowDialog();
+
+			if (frm.m_Mode == ModeType.Cancel) return;
+
+			//kiểm tra kết nối csdl
+			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
+				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 3000);
+				return;
+			}
+
+			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_CapNhatTaiKhoanV6.ToString(),
+														 new SqlParameter("@UserID", userID),
+														 new SqlParameter("@UserAccount", frm.m_TenTaiKhoan),
+														 new SqlParameter("@Enable", frm.m_Enable));
+			if (kq == 0) {
+				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
+				return;
+			}
+			LoadDSTaiKhoan();
+
+		}
+
+		private void btnLuuChucNang_Click(object sender, EventArgs e) {
+			int focusRowHandle = gridViewTaiKhoan.FocusedRowHandle;
+			// kiểm tra focusRowHandle hợp lệ
+			if (focusRowHandle == GridControl.InvalidRowHandle || focusRowHandle < 0) {
+				ACMessageBox.Show("Bạn chưa chọn tài khoản để thao tác.", Resources.Caption_ThongBao, 2000);
+				return;
+			}
+
+			//kiểm tra kết nối csdl 
+			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
+				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 3000);
+				return;
+			}
+
+			DataRow selectedDataRow_TaiKhoan = gridViewTaiKhoan.GetDataRow(focusRowHandle);
+			int userID = (int)selectedDataRow_TaiKhoan["UserID"];
+			List<int> dsChucNang_DuocPhanQuyen = new List<int>();
+			List<int> dsChucNang_KoDuocPhanQuyen = new List<int>();
+			for (int i = 0; i < checkedListChucNang.ItemCount; i++) {
+				DataRowView dataRowView = (DataRowView)checkedListChucNang.GetItem(i);
+				int functionID = (int)dataRowView["ID"];
+				bool checkStatus = checkedListChucNang.GetItemChecked(i);
+				if (checkStatus) dsChucNang_DuocPhanQuyen.Add(functionID);
+				else dsChucNang_KoDuocPhanQuyen.Add(functionID);
+			}
+			LuuPhanQuyenChucNang(userID, dsChucNang_DuocPhanQuyen, true);
+			LuuPhanQuyenChucNang(userID, dsChucNang_KoDuocPhanQuyen, false);
+		}
+
+		private void LuuPhanQuyenChucNang(int UserID, List<int> DS_ChucNang, bool Enable) {
+			foreach (int functionID in DS_ChucNang) {
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.FunctionPrivilege_InsUpd_PhanQuyenV6.ToString(),
+															 new SqlParameter("@UserID", UserID),
+															 new SqlParameter("@FunctionID", functionID),
+															 new SqlParameter("@Enable", Enable));
+				if (kq == 0) {
+					ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
+					return;
+				}
+			}
+		}
+
+		private void btnLuuPhong_Click(object sender, EventArgs e) {
+			int focusRowHandle = gridViewTaiKhoan.FocusedRowHandle;
+			// kiểm tra focusRowHandle hợp lệ
+			if (focusRowHandle == GridControl.InvalidRowHandle || focusRowHandle < 0) {
+				ACMessageBox.Show("Bạn chưa chọn tài khoản để thao tác.", Resources.Caption_ThongBao, 2000);
+				return;
+			}
+
+			//kiểm tra kết nối csdl 
+			if (SqlDataAccessHelper.TestConnection(SqlDataAccessHelper.ConnectionString) == false) {
+				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 3000);
+				return;
+			}
+
+			DataRow selectedDataRow_TaiKhoan = gridViewTaiKhoan.GetDataRow(focusRowHandle);
+			int userID = (int)selectedDataRow_TaiKhoan["UserID"];
+
+			List<int> dsPhong_DuocThaoTac = new List<int>();
+			List<int> dsPhong_KoDuocThaoTac = new List<int>();
+			TreeNode root = XL.ReturnRootNode(treePhongBan.TopNode);
+			LayDSPhongBanDuocPhanQuyen(root, dsPhong_DuocThaoTac, dsPhong_KoDuocThaoTac);
+			LuuPhanQuyenPhongBan(userID, dsPhong_DuocThaoTac, true);
+			LuuPhanQuyenPhongBan(userID, dsPhong_KoDuocThaoTac, false);
+		}
+
+		private void LuuPhanQuyenPhongBan(int UserID, List<int> dsPhong_DuocThaoTac, bool Enable) {
+			foreach (int id in dsPhong_DuocThaoTac) {
+				int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.DeptPrivilege_InsUpdPhanQuyenV6.ToString(),
+															 new SqlParameter("@UserID", UserID),
+															 new SqlParameter("@IDDepartment", id),
+															 new SqlParameter("@Enable", Enable));
+				if (kq == 0) {
+					ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
+					return;
+				}
+			}
+		}
+
+		private void LayDSPhongBanDuocPhanQuyen(TreeNode root, List<int> dsPhong_DuocThaoTac, List<int> dsPhong_KoDuocThaoTac) {
+			if (root == null) return;
+			bool checkStatus = root.Checked;
+			DataRow dataRow = (DataRow)root.Tag;
+			int idPhong = (int)dataRow["ID"];
+			if (checkStatus) dsPhong_DuocThaoTac.Add(idPhong);
+			else dsPhong_KoDuocThaoTac.Add(idPhong);
+			for (int i = 0; i < root.Nodes.Count; i++) {
+				LayDSPhongBanDuocPhanQuyen(root.Nodes[i], dsPhong_DuocThaoTac, dsPhong_KoDuocThaoTac);
+			}
+		}
+
+		private void btnResetPassword_Click(object sender, EventArgs e) {
+			DataRow dataRow = XacDinh_DataRowTaiKhoan_DangChon();
+			int userID = (int)dataRow["UserID"];
+
+			frmNhapTTTaiKhoan frm = new frmNhapTTTaiKhoan();
+			frm.m_Mode = ModeType.Other;
+			frm.m_TenTaiKhoan = dataRow["UserAccount"].ToString();
+			frm.m_Enable = (bool)dataRow["Enable"];
+			frm.ShowDialog();
+
+			if (frm.m_Mode == ModeType.Cancel) return;
+			string encryptPassword = MyUtility.Mahoa(frm.m_Password);
+			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_ChangePassV6.ToString(),
+														 new SqlParameter("@UserID", userID),
+														 new SqlParameter("@NewEncryptPassword", encryptPassword));
+			if (kq == 0) {
+				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
+				return;
+			}
+
+		}
+
+		private DataRow XacDinh_DataRowTaiKhoan_DangChon() {
+			#region kiểm tra đang chọn dòng nào
+
+			if (gridViewTaiKhoan.FocusedRowHandle == GridControl.InvalidRowHandle) {
+				ACMessageBox.Show("Không có tài khoản.", Resources.Caption_ThongBao, 2000);
+				return null;
+			}
+			if (gridViewTaiKhoan.FocusedRowHandle < 0) {
+				ACMessageBox.Show("Vui lòng chọn tài khoản.", Resources.Caption_ThongBao, 2000);
+				return null;
 			}
 
 			#endregion
@@ -188,24 +427,8 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 			//xác định tài khoản sẽ xóa
 			int focusRowHandle = gridViewTaiKhoan.FocusedRowHandle;
 			DataRow dataRow = gridViewTaiKhoan.GetDataRow(focusRowHandle);
-			if (dataRow == null) return;
-			int userID = (int) dataRow["UserID"];
-			string userAccount = dataRow["UserAccount"].ToString();
-			string template = "Bạn muốn xóa tài khoản [{0}]?";
-			if (MessageBox.Show(string.Format(template, userAccount), Resources.Caption_XacNhan, MessageBoxButtons.YesNo) == DialogResult.No)
-			{
-				return;
-			}
-			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_XoaTaiKhoanV6.ToString(),
-			                                             new SqlParameter("@UserID", userID));
-			if (kq == 0)
-			{
-				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
-				return;
-			}
+			return dataRow;
 		}
-		#endregion
-
 
 	}
 }

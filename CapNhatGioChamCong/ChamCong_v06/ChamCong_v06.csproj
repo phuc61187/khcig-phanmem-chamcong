@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Helper\ACMessageBox.cs" />
     <Compile Include="Helper\ChuyenSoSangChu.cs" />
+    <Compile Include="Helper\DanhSachChucNang.cs" />
     <Compile Include="Helper\EncryptDecrypt_Password.cs" />
     <Compile Include="Helper\MyEnum.cs" />
     <Compile Include="Helper\MyEnum_v06.cs" />
@@ -152,6 +153,12 @@
     <Compile Include="UI\frmXemCong.Designer.cs">
       <DependentUpon>frmXemCong.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\QLTaiKhoan\frmNhapTTTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLTaiKhoan\frmNhapTTTaiKhoan.Designer.cs">
+      <DependentUpon>frmNhapTTTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\QLTaiKhoan\frmQLTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmXemCong.resx">
       <DependentUpon>frmXemCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLTaiKhoan\frmNhapTTTaiKhoan.resx">
+      <DependentUpon>frmNhapTTTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\QLTaiKhoan\frmQLTaiKhoan.resx">
       <DependentUpon>frmQLTaiKhoan.cs</DependentUpon>

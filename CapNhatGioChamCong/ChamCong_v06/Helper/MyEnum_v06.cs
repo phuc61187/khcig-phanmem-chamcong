@@ -11,6 +11,7 @@ namespace ChamCong_v06.Helper
 		Sua = 0,
 		Xoa = -1,
 		Cancel = -9,
+		Other = 2,
 	}
 
 	public enum SPName6 {
@@ -41,21 +42,45 @@ namespace ChamCong_v06.Helper
 
 
 		#endregion
-		#region NewAccount
+		#region NewUserAccount
 		NewUserAccount_DocTatCaTaiKhoanV6,
 		NewUserAccount_XoaTaiKhoanV6,
+		NewUserAccount_DisableTaiKhoanV6,
+		NewUserAccount_ChangePassV6,
+		NewUserAccount_ThemTaiKhoanV6,
+		NewUserAccount_CapNhatTaiKhoanV6,
+
 		#endregion
 
 		#region DeptPrivilege
 		DeptPrivilege_DocPhongBanThaoTacV6,
+		DeptPrivilege_InsUpdPhanQuyenV6,
+		#endregion
+		#region FunctionPrivilege
+		FunctionPrivilege_DocPhanQuyenChucNangV6,
+		FunctionPrivilege_InsUpd_PhanQuyenV6,
+
 		#endregion
 
-		#region 	UserInfo	
-		NewUserAccount_ChangePassV6,
+		#region 	UserInfo
 		#endregion
+
+		#region Function
+		Function_DocChucNangV6,
+
+		#endregion
+
+
 		#region làm nhiều thao tác, bảng kết hợp
 		Other_XoaLichTrinhV6,
 		#endregion
+	}
+
+	public enum FunctionListV6
+	{
+		Admin_QLLichTrinh = 1,
+		Admin_QLPhong = 2,
+		Admin_QLTaiKhoan = 3,
 	}
 
 }
