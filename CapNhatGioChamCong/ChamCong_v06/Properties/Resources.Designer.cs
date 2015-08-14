@@ -408,6 +408,15 @@ namespace ChamCong_v06.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bạn chưa được phân quyền thoa tác các phòng ban..
+        /// </summary>
+        internal static string Text_ChuaDuocPhanQuyenPhongBan {
+            get {
+                return ResourceManager.GetString("Text_ChuaDuocPhanQuyenPhongBan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bạn chưa lựa chọn ca nào..
         /// </summary>
         internal static string Text_ChuaLuaChonCa {

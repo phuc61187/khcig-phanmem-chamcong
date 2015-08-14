@@ -10,9 +10,16 @@ using ChamCong_v06.Properties;
 
 namespace ChamCong_v06.BUS {
 	public static partial class XL {
-		public static TreeNode ReturnRootNode(TreeNode root) {
+		public static TreeNode ReturnRootNode1(TreeNode root) {
 			if (root.Parent != null) return root.Parent;
 			if (root.PrevNode != null) return root.PrevNode;
+			return root;
+		}
+
+		public static TreeNode ReturnRootNode(TreeNode root) {
+			while (root.Parent != null) {
+				root = root.Parent;
+			}
 			return root;
 		}
 

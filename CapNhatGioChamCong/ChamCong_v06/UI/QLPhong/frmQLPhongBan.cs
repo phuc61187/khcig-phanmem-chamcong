@@ -22,7 +22,7 @@ namespace ChamCong_v06.UI.QLPhong {
 		#region cách làm có store procedure
 		public static TreeView loadTreePhgBan(TreeView tvDSPhongBan) {
 			tvDSPhongBan.Nodes.Clear();
-			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName.RelationDept_DocTatCaPhongBan.ToString());
+			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName6.RelationDept_DocPhongBanV6.ToString());
 
 			var rowsPhong = (from DataRow row in tableDSPhong.Rows select row).OrderBy(s => (int)s["ViTri"]);
 			var relationID_0 = rowsPhong.Where(o => (int)o["RelationID"] == 0).ToList().OrderBy(s => (int)s["ViTri"]);
@@ -78,12 +78,12 @@ namespace ChamCong_v06.UI.QLPhong {
 			//return;
 			#endregion
 
-			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_ThemPhong.ToString(),
+			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_ThemPhongV6.ToString(),
 				new SqlParameter("@Description", frm.m_TenPhong),
 				new SqlParameter("@RelationID", (int)frm.m_ParentDataRow["ID"]),
 				new SqlParameter("@LevelID", (int)frm.m_ParentDataRow["LevelID"] + 1),//+1 vì là con của phòng trực thuộc
 				new SqlParameter("@ViTri", frm.m_VitriPhong),
-				new SqlParameter("@Enable", frm.m_Enable)) == 0) // chú ý: ngược của 
+				new SqlParameter("@Enable", frm.m_Enable)) == 0) 
 			{
 				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 				return;
@@ -117,7 +117,7 @@ namespace ChamCong_v06.UI.QLPhong {
 			//return;
 			#endregion
 
-			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_SuaPhong.ToString(),
+			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_SuaPhongV6.ToString(),
 				new SqlParameter("@ID", (int)frm.m_CurrentDataRow["ID"]),
 				new SqlParameter("@Description", frm.m_TenPhong),
 				new SqlParameter("@RelationID", (int)frm.m_ParentDataRow["ID"]),
@@ -151,7 +151,7 @@ namespace ChamCong_v06.UI.QLPhong {
 			}
 
 			DataRow CurrentDataRow = (DataRow) treePhongBan.SelectedNode.Tag;
-			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_XoaPhong.ToString(),
+			if (SqlDataAccessHelper.ExecSPNoneQuery(SPName6.RelationDept_XoaPhongV6.ToString(),
 				new SqlParameter("@ID", (int)CurrentDataRow["ID"])) == 0) {
 				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 				return;

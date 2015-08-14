@@ -57,6 +57,7 @@
 			this.chamCongToolStripMenuItem.Name = "chamCongToolStripMenuItem";
 			this.chamCongToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
 			this.chamCongToolStripMenuItem.Text = "ChamCong";
+			this.chamCongToolStripMenuItem.Click += new System.EventHandler(this.chamCongToolStripMenuItem_Click);
 			// 
 			// taiKhoanToolStripMenuItem
 			// 
@@ -90,6 +91,7 @@
 			this.qLPhongBanToolStripMenuItem.Name = "qLPhongBanToolStripMenuItem";
 			this.qLPhongBanToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.qLPhongBanToolStripMenuItem.Text = "QLPhongBan";
+			this.qLPhongBanToolStripMenuItem.Click += new System.EventHandler(this.qLPhongBanToolStripMenuItem_Click);
 			// 
 			// qLNhanVienToolStripMenuItem
 			// 
@@ -102,6 +104,7 @@
 			this.qLTaiKhoanDangNhapToolStripMenuItem.Name = "qLTaiKhoanDangNhapToolStripMenuItem";
 			this.qLTaiKhoanDangNhapToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.qLTaiKhoanDangNhapToolStripMenuItem.Text = "QLTaiKhoanDangNhap";
+			this.qLTaiKhoanDangNhapToolStripMenuItem.Click += new System.EventHandler(this.qLTaiKhoanDangNhapToolStripMenuItem_Click);
 			// 
 			// settingToolStripMenuItem
 			// 

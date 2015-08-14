@@ -16,9 +16,10 @@ namespace ChamCong_v06.Helper
 
 	public enum SPName6 {
 		#region RelationDept
-		RelationDept_ThemPhong,
-		RelationDept_SuaPhong,
-		RelationDept_XoaPhong,
+		RelationDept_ThemPhongV6,
+		RelationDept_SuaPhongV6,
+		RelationDept_XoaPhongV6,
+		RelationDept_DocPhongBanV6,
 		#endregion
 		#region Shift
 		Shift_DocTatCaShiftV6,
@@ -63,6 +64,7 @@ namespace ChamCong_v06.Helper
 		#endregion
 
 		#region 	UserInfo
+		UserInfo_DocNhanVienChamCongV6,
 		#endregion
 
 		#region Function

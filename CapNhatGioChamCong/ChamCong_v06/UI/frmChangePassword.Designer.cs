@@ -25,12 +25,12 @@
 		private void InitializeComponent() {
 			this.btnEditMatkhauMoi1 = new DevExpress.XtraEditors.ButtonEdit();
 			this.btnEditMatkhauCu = new DevExpress.XtraEditors.ButtonEdit();
-			this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
-			this.btnThaydoi = new DevExpress.XtraEditors.SimpleButton();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnEditMatkhauMoi2 = new DevExpress.XtraEditors.ButtonEdit();
+			this.btnHuy = new DevExpress.XtraEditors.SimpleButton();
+			this.btnLuu = new DevExpress.XtraEditors.SimpleButton();
 			((System.ComponentModel.ISupportInitialize)(this.btnEditMatkhauMoi1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnEditMatkhauCu.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnEditMatkhauMoi2.Properties)).BeginInit();
@@ -47,7 +47,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditMatkhauMoi1.Properties.UseSystemPasswordChar = true;
 			this.btnEditMatkhauMoi1.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
-			this.btnEditMatkhauMoi1.Size = new System.Drawing.Size(206, 20);
+			this.btnEditMatkhauMoi1.Size = new System.Drawing.Size(156, 20);
 			this.btnEditMatkhauMoi1.TabIndex = 7;
 			// 
 			// btnEditMatkhauCu
@@ -60,30 +60,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditMatkhauCu.Properties.UseSystemPasswordChar = true;
 			this.btnEditMatkhauCu.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
-			this.btnEditMatkhauCu.Size = new System.Drawing.Size(206, 20);
+			this.btnEditMatkhauCu.Size = new System.Drawing.Size(156, 20);
 			this.btnEditMatkhauCu.TabIndex = 4;
-			// 
-			// btnThoat
-			// 
-			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.btnThoat.Appearance.Options.UseFont = true;
-			this.btnThoat.Location = new System.Drawing.Point(270, 90);
-			this.btnThoat.Name = "btnThoat";
-			this.btnThoat.Size = new System.Drawing.Size(100, 28);
-			this.btnThoat.TabIndex = 9;
-			this.btnThoat.Text = "Thoát";
-			this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-			// 
-			// btnThaydoi
-			// 
-			this.btnThaydoi.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.btnThaydoi.Appearance.Options.UseFont = true;
-			this.btnThaydoi.Location = new System.Drawing.Point(164, 90);
-			this.btnThaydoi.Name = "btnThaydoi";
-			this.btnThaydoi.Size = new System.Drawing.Size(100, 28);
-			this.btnThaydoi.TabIndex = 8;
-			this.btnThaydoi.Text = "Thay đổi";
-			this.btnThaydoi.Click += new System.EventHandler(this.btnThaydoi_Click);
 			// 
 			// label2
 			// 
@@ -126,20 +104,44 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
 			this.btnEditMatkhauMoi2.Properties.UseSystemPasswordChar = true;
 			this.btnEditMatkhauMoi2.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_Clear_Click);
-			this.btnEditMatkhauMoi2.Size = new System.Drawing.Size(206, 20);
+			this.btnEditMatkhauMoi2.Size = new System.Drawing.Size(156, 20);
 			this.btnEditMatkhauMoi2.TabIndex = 7;
+			// 
+			// btnHuy
+			// 
+			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnHuy.Appearance.Options.UseFont = true;
+			this.btnHuy.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
+			this.btnHuy.Location = new System.Drawing.Point(245, 90);
+			this.btnHuy.Name = "btnHuy";
+			this.btnHuy.Size = new System.Drawing.Size(75, 23);
+			this.btnHuy.TabIndex = 23;
+			this.btnHuy.Text = "Hủy";
+			this.btnHuy.Click += new System.EventHandler(this.btnThoat_Click);
+			// 
+			// btnLuu
+			// 
+			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnLuu.Appearance.Options.UseFont = true;
+			this.btnLuu.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
+			this.btnLuu.Location = new System.Drawing.Point(164, 90);
+			this.btnLuu.Name = "btnLuu";
+			this.btnLuu.Size = new System.Drawing.Size(75, 23);
+			this.btnLuu.TabIndex = 24;
+			this.btnLuu.Text = "Lưu";
+			this.btnLuu.Click += new System.EventHandler(this.btnThaydoi_Click);
 			// 
 			// frmChangePassword
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(383, 133);
+			this.ClientSize = new System.Drawing.Size(333, 127);
+			this.Controls.Add(this.btnHuy);
+			this.Controls.Add(this.btnLuu);
 			this.Controls.Add(this.btnEditMatkhauMoi2);
 			this.Controls.Add(this.btnEditMatkhauMoi1);
 			this.Controls.Add(this.btnEditMatkhauCu);
-			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.btnThaydoi);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -157,11 +159,11 @@
 
 		private DevExpress.XtraEditors.ButtonEdit btnEditMatkhauMoi1;
 		private DevExpress.XtraEditors.ButtonEdit btnEditMatkhauCu;
-		private DevExpress.XtraEditors.SimpleButton btnThoat;
-		private DevExpress.XtraEditors.SimpleButton btnThaydoi;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label3;
 		private DevExpress.XtraEditors.ButtonEdit btnEditMatkhauMoi2;
+		private DevExpress.XtraEditors.SimpleButton btnHuy;
+		private DevExpress.XtraEditors.SimpleButton btnLuu;
 	}
 }

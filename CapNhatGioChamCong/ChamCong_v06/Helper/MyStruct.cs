@@ -13,6 +13,7 @@ namespace ChamCong_v06.Helper {
 		}
 	}
 
+/*
 	public struct DT {
 		public DateTime BD;
 		public DateTime KT;
@@ -156,6 +157,7 @@ namespace ChamCong_v06.Helper {
 
 	}
 
+*/
 
 
 

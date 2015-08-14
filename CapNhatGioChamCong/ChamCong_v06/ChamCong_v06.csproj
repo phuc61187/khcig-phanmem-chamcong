@@ -60,10 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\BUS_ChamCong.cs" />
     <Compile Include="BUS\XL.cs" />
     <Compile Include="BUS\XL2.cs" />
     <Compile Include="DAL\DAOPhongBan_NhanVien.cs" />
     <Compile Include="DAL\DAO_Shift_Schedule.cs" />
+    <Compile Include="DTO\cUserInfo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +79,7 @@
     <Compile Include="Helper\MyEnum.cs" />
     <Compile Include="Helper\MyEnum_v06.cs" />
     <Compile Include="Helper\MyStruct.cs" />
+    <Compile Include="Helper\MyStructV6.cs" />
     <Compile Include="Helper\MyUtility.cs" />
     <Compile Include="Helper\SqlDataAccessHelper.cs" />
     <Compile Include="Helper\VietGlocalizer.cs" />
@@ -92,6 +95,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="UI\ChamCong\frmChamCongV6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ChamCong\frmChamCongV6.Designer.cs">
+      <DependentUpon>frmChamCongV6.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\frmChangePassword.cs">
       <SubType>Form</SubType>
@@ -166,6 +175,9 @@
       <DependentUpon>frmQLTaiKhoan.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UI\ChamCong\frmChamCongV6.resx">
+      <DependentUpon>frmChamCongV6.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,9 +263,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="QuyUoc.txt" />
     <None Include="Resources\1438546670_Save.png" />

@@ -23,13 +23,13 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("px thành phẩm");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("bảo vệ");
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode3});
 			this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
 			this.btnLuuChucNang = new DevExpress.XtraEditors.SimpleButton();
@@ -240,23 +240,23 @@
 			// treePhongBan
 			// 
 			this.treePhongBan.CheckBoxes = true;
-			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 9F);
+			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.treePhongBan.HideSelection = false;
 			this.treePhongBan.Indent = 18;
 			this.treePhongBan.ItemHeight = 20;
 			this.treePhongBan.Location = new System.Drawing.Point(2, 54);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
-			treeNode5.Name = "Node2";
-			treeNode5.Text = "px thành phẩm";
-			treeNode6.Name = "Node5";
-			treeNode6.Text = "bảo vệ";
-			treeNode7.Name = "Node4";
-			treeNode7.Text = "văn phòng";
-			treeNode8.Name = "Node0";
-			treeNode8.Text = "Nhà máy thuốc lá khánh hội";
+			treeNode1.Name = "Node2";
+			treeNode1.Text = "px thành phẩm";
+			treeNode2.Name = "Node5";
+			treeNode2.Text = "bảo vệ";
+			treeNode3.Name = "Node4";
+			treeNode3.Text = "văn phòng";
+			treeNode4.Name = "Node0";
+			treeNode4.Text = "Nhà máy thuốc lá khánh hội";
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8});
+            treeNode4});
 			this.treePhongBan.ShowNodeToolTips = true;
 			this.treePhongBan.Size = new System.Drawing.Size(269, 374);
 			this.treePhongBan.TabIndex = 0;

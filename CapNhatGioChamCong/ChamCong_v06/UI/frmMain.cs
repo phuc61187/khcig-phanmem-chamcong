@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ChamCong_v06.BUS;
 using ChamCong_v06.Helper;
+using ChamCong_v06.UI.ChamCong;
 using ChamCong_v06.UI.QLLichTrinh;
 using ChamCong_v06.UI.QLPhong;
 using ChamCong_v06.UI.QLTaiKhoan;
@@ -70,5 +71,51 @@ namespace ChamCong_v06.UI {
 		private void thoatToolStripMenuItem_Click(object sender, EventArgs e) {
 			Application.Exit();
 		}
+
+		private void qLTaiKhoanDangNhapToolStripMenuItem_Click(object sender, EventArgs e) {
+			frmQLTaiKhoan frm1 = new frmQLTaiKhoan();
+			int indexForm = LayVitriForm(this, frm1.GetType());
+			if (indexForm != -1) {
+				frm1 = MdiChildren[indexForm] as frmQLTaiKhoan;
+				if (frm1 != null) frm1.BringToFront();
+			}
+			else {
+				frm1.MdiParent = this;
+				frm1.WindowState = FormWindowState.Normal;
+				frm1.Show();
+			}
+
+		}
+
+		private void qLPhongBanToolStripMenuItem_Click(object sender, EventArgs e) {
+			frmQLPhongBan frm1 = new frmQLPhongBan();
+			int indexForm = LayVitriForm(this, frm1.GetType());
+			if (indexForm != -1) {
+				frm1 = MdiChildren[indexForm] as frmQLPhongBan;
+				if (frm1 != null) frm1.BringToFront();
+			}
+			else {
+				frm1.MdiParent = this;
+				frm1.WindowState = FormWindowState.Normal;
+				frm1.Show();
+			}
+			
+		}
+
+		private void chamCongToolStripMenuItem_Click(object sender, EventArgs e) {
+			frmChamCongV6 frm1 = new frmChamCongV6();
+			int indexForm = LayVitriForm(this, frm1.GetType());
+			if (indexForm != -1) {
+				frm1 = MdiChildren[indexForm] as frmChamCongV6;
+				if (frm1 != null) frm1.BringToFront();
+			}
+			else {
+				frm1.MdiParent = this;
+				frm1.WindowState = FormWindowState.Normal;
+				frm1.Show();
+			}
+
+		}
+
 	}
 }

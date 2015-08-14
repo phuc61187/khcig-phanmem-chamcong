@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using ChamCong_v06.Helper;
@@ -34,15 +35,18 @@ namespace ChamCong_v06.UI.QLPhong {
 
 		#region cách làm có store procedure
 		public TreeView loadTreePhgBan(TreeView tvDSPhongBan) {
-			// chỉ chọn các node được enable
+			// làm sạch danh sách node trước
 			tvDSPhongBan.Nodes.Clear();
-			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName.RelationDept_DocTatCaPhongBan.ToString());
-
-			var rowsPhong = (from DataRow row in tableDSPhong.Rows
-							 //where //todo chọn các phòng được enable
-							 select row).OrderBy(s => (int)s["ViTri"]);
+			// chỉ load những phòng ban được Enable, sắp xếp theo vị trí
+			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName6.RelationDept_DocPhongBanV6.ToString(),
+				new SqlParameter("@Enable", true));
+			var rowsPhong = (from DataRow row in tableDSPhong.Rows select row).OrderBy(s => (int)s["ViTri"]);
+			// xác định root node là Node luôn có RelationID = 0(IDCha = 0 tức là gốc ko có cha nữa)
+			// nếu ko tìm được node root này thì thoát form
 			var relationID_0 = rowsPhong.Where(o => (int)o["RelationID"] == 0).ToList().OrderBy(s => (int)s["ViTri"]);
+			if (!relationID_0.Any()) return null; // return null cho biết ko load được tree
 
+			// sau khi xác định root thì lần lượt load từng subNode vào và gán tag là dataRow phòng
 			foreach (var dataRow in relationID_0) {
 				TreeNode parentNode = new TreeNode { Text = dataRow["Description"].ToString(), Tag = dataRow };
 				tvDSPhongBan.Nodes.Add(parentNode);
@@ -63,7 +67,7 @@ namespace ChamCong_v06.UI.QLPhong {
 		#endregion
 
 		private void frmThemPhongBan_Load(object sender, EventArgs e) {
-			loadTreePhgBan(treePhongBan);
+			loadTreePhgBan(treePhongBan);// ko cần kiểm tra có root hay ko vì vào được form này thì đã kiểm tra rồi
 
 			//nếu chế độ sửa thì tự fill thông tin 
 			if (this.m_Mode == ModeType.Sua) {

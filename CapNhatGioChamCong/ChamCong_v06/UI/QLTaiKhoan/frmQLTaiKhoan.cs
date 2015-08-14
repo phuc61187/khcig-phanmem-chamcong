@@ -32,13 +32,18 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 
 		#region cách làm có store procedure
 		public static TreeView loadTreePhgBan(TreeView tvDSPhongBan) {
+			// làm sạch danh sách node trước
 			tvDSPhongBan.Nodes.Clear();
-			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName.RelationDept_DocTatCaPhongBan.ToString(),
+			// load những phòng ban được Enable, sắp xếp theo vị trí
+			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName6.RelationDept_DocPhongBanV6.ToString(),
 				new SqlParameter("@Enable", true));// ko load những phòng ban bị disable
-
 			var rowsPhong = (from DataRow row in tableDSPhong.Rows select row).OrderBy(s => (int)s["ViTri"]);
+			// xác định root node là Node luôn có RelationID = 0(IDCha = 0 tức là gốc ko có cha nữa)
+			// nếu ko tìm được node root này thì thoát form
 			var relationID_0 = rowsPhong.Where(o => (int)o["RelationID"] == 0).ToList().OrderBy(s => (int)s["ViTri"]);
+			if (!relationID_0.Any()) return null; // return null cho biết ko load được tree
 
+			// sau khi xác định root thì lần lượt load từng subNode vào và gán tag là dataRow phòng
 			foreach (var dataRowView in relationID_0) {
 				//var enable = (bool)(dataRowView["Enable"]);
 				//if (enable == false) continue; 
@@ -48,15 +53,12 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 				loadTreeSubNode(ref parentNode, (int)dataRowView["ID"], rowsPhong/*TatcaPhongban*/);
 			}
 
-
 			return tvDSPhongBan;
 		}
 
 		public static void loadTreeSubNode(ref TreeNode ParentNode, int idPhongBanTrucThuoc, IOrderedEnumerable<DataRow> dsphongban) {
 			IOrderedEnumerable<DataRow> childs = dsphongban.Where(item => (int)item["RelationID"] == idPhongBanTrucThuoc).ToList().OrderBy(item => (int)item["ViTri"]);
 			foreach (DataRow phong in childs) {
-				//var enable = (bool)(phong["Enable"]);
-				//if (enable == false) continue; // ko load những phòng ban bị disable
 				var string2 = phong["Description"].ToString();
 				TreeNode child = new TreeNode { Text = string2, Tag = phong };
 				ParentNode.Nodes.Add(child);
@@ -67,11 +69,18 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 		#endregion
 
 		private void frmQLTaiKhoan_Load(object sender, EventArgs e) {
-			loadTreePhgBan(treePhongBan);
+			// load tree phòng ban, nếu tree null thì báo và đóng form
+			treePhongBan = loadTreePhgBan(treePhongBan);
+			if (treePhongBan == null)
+			{
+				ACMessageBox.Show(Properties.Resources.Text_ChuaDuocPhanQuyenPhongBan, Resources.Caption_ThongBao, 2000);	
+				Close();
+			}
+			//Load danh sách phân quyền
 			LoadDSPhanQuyen();
 			this.gridViewTaiKhoan.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewTaiKhoan_FocusedRowChanged);
+			// load danh sách tất cả tài khoản (kể cả disable)
 			LoadDSTaiKhoan();
-			//this.gridViewTaiKhoan.Focus();
 		}
 
 		private void LoadDSPhanQuyen() {
@@ -87,24 +96,27 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 		}
 
 		private DataTable LoadDataTable_PhanQuyenPhongBan(int UserID) {
+			// đọc lên danh sách phòng được enable và user được phép thao tác
 			DataTable tablePhongBanThaoTac = SqlDataAccessHelper.ExecSPQuery(SPName6.DeptPrivilege_DocPhongBanThaoTacV6.ToString(),
 				new SqlParameter("@UserID", UserID),
-				new SqlParameter("@IsYes", true),
+				new SqlParameter("@ChoPhepThaoTac", true),
 				new SqlParameter("@RelationDeptEnable", true));
 			// đọc lên UserID, ID phòng được thao tác [IDD]
 			return tablePhongBanThaoTac;
 		}
 
 		private void PopulateData_ToTreePhong(DataTable tablePhanQuyenPhongBan) {
-			//logic: thực hiện xóa check toàn bộ 
+			//logic: thực hiện load trạng thái ban đầu (uncheck toàn bộ): đưa về root và thực hiện từ trên xuống
 			TreeNode root = XL.ReturnRootNode(treePhongBan.TopNode);
 			SetCheckStatus_AllTreeNode(root, false);
 			treePhongBan.Invalidate();
+			// duyệt từ root và check những phòng được thao tác, uncheck và phòng ko được thao tác
 			root = XL.ReturnRootNode(root);
 			SetCheckNode_PhongBanThaoTac(root, tablePhanQuyenPhongBan);
 		}
 
 		private DataTable LoadDataTable_PhanQuyenChucNang(int UserID) {
+			// có chức năng trong csdl là được phân quyề, ngược lại thì ko
 			DataTable kq = SqlDataAccessHelper.ExecSPQuery(SPName6.FunctionPrivilege_DocPhanQuyenChucNangV6.ToString(),
 														   new SqlParameter("@UserID", UserID));
 			return kq;
@@ -157,13 +169,16 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 		}
 
 		private void treePhongBan_OnAfterCheck(object sender, TreeViewEventArgs treeViewEventArgs) {
+			// xác định trạng thái node hiện hành để set trạng thái cho node con
 			TreeNode root = treeViewEventArgs.Node;
 			DataRow dataRow = (DataRow)root.Tag;
 			var checkStatus = root.Checked;
-			int idPhong = (int)dataRow["ID"];
+			int idPhong = (int)dataRow["ID"];// giữ lại id của node hiện tại để sau khi check xong thì chọn lại node này
+			// thực hiện set trạng thái cho các node con
 			treePhongBan.AfterCheck -= treePhongBan_OnAfterCheck;
 			SetCheckStatus_AllTreeNode(root, checkStatus);
 			treePhongBan.AfterCheck += treePhongBan_OnAfterCheck;
+			// sau khi set xong thì focus lại node hiện tại 
 			root = XL.ReturnRootNode(root);
 			root = FindNode(idPhong, root);
 		}
@@ -171,7 +186,7 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 		private void SetCheckNode_PhongBanThaoTac(TreeNode root, DataTable tablePhanQuyenPhongBan) {
 			foreach (DataRow dataRow in tablePhanQuyenPhongBan.Rows) {
 				root = XL.ReturnRootNode(root);
-				int idPhong = (int)dataRow["IDD"];
+				int idPhong = (int)dataRow["IDDepartment"];
 				TreeNode node = FindNode(idPhong, root);
 				if (node == null) continue; // ko tìm thấy  node thì đi tiếp
 				node.Checked = true;
@@ -202,6 +217,7 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 
 		#region xóa tài khoản
 		private void btnXoa_Click(object sender, EventArgs e) {
+			// xác định thông tin tài khoản đang chọn để thực hiện thao tác
 			DataRow dataRow = XacDinh_DataRowTaiKhoan_DangChon();
 			if (dataRow == null) return;
 			int userID = (int)dataRow["UserID"];
@@ -210,18 +226,20 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 			if (MessageBox.Show(string.Format(template, userAccount), Resources.Caption_XacNhan, MessageBoxButtons.YesNo) == DialogResult.No) {
 				return;
 			}
+			// thực hiện và reload lại danh sách tài khoản
 			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_XoaTaiKhoanV6.ToString(),
 														 new SqlParameter("@UserID", userID));
 			if (kq == 0) {
 				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 				return;
 			}
-			//gridViewTaiKhoan.FocusedRowHandle = GridControl.InvalidRowHandle;
+			//reload lại danh sách tài khoản
 			LoadDSTaiKhoan();
 		}
 		#endregion
 
 		private void btnDisable_Click(object sender, EventArgs e) {
+			// xác định thông tin tài khoản đang chọn để thực hiện thao tác
 			DataRow dataRow = XacDinh_DataRowTaiKhoan_DangChon();
 			if (dataRow == null) return;
 			int userID = (int)dataRow["UserID"];
@@ -232,12 +250,14 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 			if (MessageBox.Show(string.Format(template, userAccount), Resources.Caption_XacNhan, MessageBoxButtons.YesNo) == DialogResult.No) {
 				return;
 			}
+			// thực hiện và reload lại danh sách tài khoản
 			int kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.NewUserAccount_DisableTaiKhoanV6.ToString(),
 														 new SqlParameter("@UserID", userID), new SqlParameter("@Enable", Status1));
 			if (kq == 0) {
 				ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000);
 				return;
 			}
+			//reload lại danh sách tài khoản
 			LoadDSTaiKhoan();
 		}
 
@@ -267,6 +287,7 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 		}
 
 		private void btnSua_Click(object sender, EventArgs e) {
+			// xác định thông tin tài khoản đang chọn để thực hiện thao tác
 			DataRow dataRow = XacDinh_DataRowTaiKhoan_DangChon();
 			int userID = (int)dataRow["UserID"];
 

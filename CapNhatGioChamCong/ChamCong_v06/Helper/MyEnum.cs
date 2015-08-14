@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace ChamCong_v06.Helper {
+/*
 	#region ENUM xuat bao bieu
 	public enum CC {
 		STT = 6,
@@ -303,4 +304,5 @@ namespace ChamCong_v06.Helper {
 	}
 	#endregion
 
+*/
 }
