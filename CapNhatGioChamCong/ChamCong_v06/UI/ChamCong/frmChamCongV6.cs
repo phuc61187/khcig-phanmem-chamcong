@@ -51,10 +51,8 @@ namespace ChamCong_v06.UI.ChamCong {
 
 			// sau khi xác định root thì lần lượt load từng subNode vào và gán tag là dataRow phòng
 			foreach (var dataRowView in relationID_0) {
-				var enable = (bool)(dataRowView["Enable"]);
-				var string1 = enable == false ? "[Disable]" : string.Empty;
 				var string2 = dataRowView["Description"].ToString();
-				TreeNode parentNode = new TreeNode { Text = string1 + string2, Tag = dataRowView };
+				TreeNode parentNode = new TreeNode { Text = string2, Tag = dataRowView };
 				tvDSPhongBan.Nodes.Add(parentNode);
 				loadTreeSubNode(ref parentNode, (int)dataRowView["IDDepartment"], rowsPhong/*TatcaPhongban*/);
 			}
@@ -98,7 +96,7 @@ namespace ChamCong_v06.UI.ChamCong {
 			LayTableNhanVien(out tableNhanVien, this.m_SelectedPhong);
 			//			checkedComboBoxEdit1.Properties.Items.Clear();
 			checkedDSNV.Properties.DataSource = tableNhanVien;
-			checkedDSNV.Properties.DisplayMember = "UserFullName";
+			checkedDSNV.Properties.DisplayMember = "DisplayName_Code";// kết hợp của tên và mã nhân viên
 			checkedDSNV.Properties.ValueMember = "UserEnrollNumber";
 
 			#endregion

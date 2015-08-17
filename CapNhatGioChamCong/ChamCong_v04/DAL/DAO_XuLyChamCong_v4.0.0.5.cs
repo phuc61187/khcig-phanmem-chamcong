@@ -52,7 +52,7 @@ namespace ChamCong_v04.DAL
 			DataTable tableArrMaCC = MyUtility.Array_To_DataTable("TableMaCC", ArrDSMaCC_Checked);
 			SqlParameter paramArrMaCC = new SqlParameter("@ArrayMaCC", SqlDbType.Structured) { Value = tableArrMaCC };
 
-			DataTable result = SqlDataAccessHelper.ExecSPQuery(SPName.Absent_DocNVVang.ToString(),
+			DataTable result = SqlDataAccessHelper.ExecSPQuery(SPName.sp_Absent_DocNVVang.ToString(),
 				paramArrMaCC,
 				new SqlParameter("@NgayBD", ngayBD),
 				new SqlParameter("@NgayKT", ngayKT)

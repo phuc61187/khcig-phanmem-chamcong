@@ -198,7 +198,7 @@ namespace ChamCong_v04.Helper {
 		sp_CheckInOut_DocCheckDaCoXN, // đọc các check vân tay chưa qua xác nhận
 		#endregion
 		#region Absent
-		Absent_DocNVVang,
+		sp_Absent_DocNVVang,
 		#endregion
 		#region XacNhanPC50   va XacNhanPC
 		XacNhanPC50_DocXNPC50,
