@@ -9,5 +9,9 @@ namespace ChamCong_v06.BUS {
 		{
 
 		}
+
+		internal static void ChamCong(List<DTO.cUserInfo> listDSNV) {
+			throw new NotImplementedException();
+		}
 	}
 }

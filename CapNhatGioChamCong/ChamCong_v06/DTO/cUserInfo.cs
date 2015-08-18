@@ -4,6 +4,16 @@ using System.Data;
 using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.DTO {
+	public class cUserInfo
+	{
+		public string MaNV;
+		public string TenNV;
+		public int MaCC;
+		public bool IsUserEnabled;
+		public ID_Description ChucVu;
+		public ID_Description LichTrinh;
+		public DataRow PhongBan;
+	}
 
 /*
 	public class cUserInfo {

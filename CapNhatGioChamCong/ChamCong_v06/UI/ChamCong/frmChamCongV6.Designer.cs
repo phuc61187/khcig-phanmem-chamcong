@@ -199,6 +199,7 @@
 			this.btnChamCong.Size = new System.Drawing.Size(103, 46);
 			this.btnChamCong.TabIndex = 28;
 			this.btnChamCong.Text = "Chấm công";
+			this.btnChamCong.Click += new System.EventHandler(this.btnChamCong_Click);
 			// 
 			// lbThieuChamCong
 			// 
@@ -628,9 +629,6 @@
 			this.gridColumn15.ColumnEdit = this.repositoryItemCheckEdit1;
 			this.gridColumn15.Name = "gridColumn15";
 			this.gridColumn15.Width = 142;
-			// 
-			// toolTipController1
-			// 
 			// 
 			// frmChamCongV6
 			// 

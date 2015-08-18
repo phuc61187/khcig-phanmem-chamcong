@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using ChamCong_v06.UI;
@@ -11,6 +12,7 @@ namespace ChamCong_v06 {
 		/// </summary>
 		[STAThread]
 		static void Main() {
+			DevExpress.Utils.AppearanceObject.DefaultFont = new Font("Tahoma", 12, GraphicsUnit.Pixel);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new frmMain());

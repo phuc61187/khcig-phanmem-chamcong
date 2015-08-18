@@ -5,15 +5,17 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using ChamCong_v06.BUS;
+using ChamCong_v06.DTO;
 using ChamCong_v06.Helper;
 using DevExpress.Utils;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 
 namespace ChamCong_v06.UI.ChamCong {
 	public partial class frmChamCongV6 : Form
 	{
-		public int count = 0;
-		public List<int> m_listCurrentIDPhg = new List<int>();
 		public List<DataRow>  m_SelectedPhong = new List<DataRow>();
+		public List<DataRow> m_NhanVienTrongPhong = new List<DataRow>();
 
 		public frmChamCongV6() {
 			InitializeComponent();
@@ -94,6 +96,8 @@ namespace ChamCong_v06.UI.ChamCong {
 			XacDinhPhongDangChon(e.Node, ref this.m_SelectedPhong);
 			DataTable tableNhanVien;
 			LayTableNhanVien(out tableNhanVien, this.m_SelectedPhong);
+			this.m_NhanVienTrongPhong = (from DataRow dataRow in tableNhanVien.Rows select dataRow).ToList();
+
 			//			checkedComboBoxEdit1.Properties.Items.Clear();
 			checkedDSNV.Properties.DataSource = tableNhanVien;
 			checkedDSNV.Properties.DisplayMember = "DisplayName_Code";// kết hợp của tên và mã nhân viên
@@ -132,6 +136,27 @@ namespace ChamCong_v06.UI.ChamCong {
 			{
 				XacDinhPhongDangChon(root.Nodes[i], ref DSPhongBan);
 			}
+		}
+
+		private void btnChamCong_Click(object sender, EventArgs e)
+		{
+			DateTime Thang = dateNavigator1
+			//1. xác định danh sach nhan vien dang check
+			List<int> listUEN;
+			GetList_UEN_Checked(checkedDSNV, out listUEN);// lấy danh sách các mã nhân viên check vì checkcomboBox ko cho phép lấy datarowview
+			List<cUserInfo> listDSNV;
+			BUS_NhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienTrongPhong, this.m_SelectedPhong, out listDSNV);
+			
+			BUS_ChamCong.ChamCong(listDSNV);
+		}
+
+
+		private void GetList_UEN_Checked(CheckedComboBoxEdit checkedComboBox_NhanVien, out List<int> List_UEN)
+		{
+			// lấy danh sách các mã nhân viên check
+			List_UEN = (from CheckedListBoxItem item in checkedComboBox_NhanVien.Properties.Items
+			            where item.CheckState == CheckState.Checked
+			            select (int) item.Value).ToList();
 		}
 
 /*

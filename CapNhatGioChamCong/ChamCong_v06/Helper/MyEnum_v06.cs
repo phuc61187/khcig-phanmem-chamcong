@@ -78,6 +78,18 @@ namespace ChamCong_v06.Helper
 		#endregion
 	}
 
+	public enum Field {
+		UserEnrollNumber,
+		UserFullName,
+		UserFullCode,
+		IDChucVu,
+		ChucVu,
+		SchID,
+		SchName,
+		UserIDDepartment,
+		IDDepartment,
+
+	}
 	public enum FunctionListV6
 	{
 		Admin_QLLichTrinh = 1,
