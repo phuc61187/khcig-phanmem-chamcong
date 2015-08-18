@@ -140,14 +140,15 @@ namespace ChamCong_v06.UI.ChamCong {
 
 		private void btnChamCong_Click(object sender, EventArgs e)
 		{
-			DateTime Thang = dateNavigator1
+			DateTime Thang = dateNavigator1.DateTime;
+			Thang = MyUtility.FirstDayOfMonth(Thang);
 			//1. xác định danh sach nhan vien dang check
 			List<int> listUEN;
 			GetList_UEN_Checked(checkedDSNV, out listUEN);// lấy danh sách các mã nhân viên check vì checkcomboBox ko cho phép lấy datarowview
 			List<cUserInfo> listDSNV;
 			BUS_NhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienTrongPhong, this.m_SelectedPhong, out listDSNV);
 			
-			BUS_ChamCong.ChamCong(listDSNV);
+			BUS_ChamCong.ChamCong(listDSNV, Thang);
 		}
 
 

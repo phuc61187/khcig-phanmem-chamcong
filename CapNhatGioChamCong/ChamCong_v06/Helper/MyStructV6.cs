@@ -29,6 +29,14 @@ namespace ChamCong_v06.Helper {
 	}
 
 	#endregion
+	public class ThoiDiem {
+		public DateTime BD_LV;// vào làm ca
+		public DateTime KT_LV;// 
+		public DateTime KT_LV_ChuaOT;
+		public DateTime KT_LV_DaCoOT;
+		public DateTime BD_LV_Ca3;
+		public DateTime KT_LV_Ca3;
+	}
 
 	public struct StructTGCa
 	{
@@ -38,9 +46,11 @@ namespace ChamCong_v06.Helper {
 		public TimeSpan LamViec;
 		public TimeSpan LamDem;
 		public TimeSpan OLaiVR;
+		public TimeSpan LamTrongGio;
 		public TimeSpan LamNgoaiGio;
 		public TimeSpan VaoSauCa;
 		public TimeSpan RaTruocCa;
+
 	}
 	public struct StructTGNgay
 	{

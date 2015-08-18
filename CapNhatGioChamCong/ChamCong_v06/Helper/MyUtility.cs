@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DevExpress.XtraPrinting.Native;
 
 namespace ChamCong_v06.Helper {
 
@@ -433,7 +434,7 @@ namespace ChamCong_v06.Helper {
 			return (ngayVang.DayOfWeek == DayOfWeek.Sunday);
 		}
 
-		public static DataTable Array_To_DataTable(string tableName, List<int> intArray) {
+		public static DataTable Array_To_DataTable(string tableName, IEnumerable<int> intArray) {
 			DataTable tableIntArray = new DataTable(tableName);
 			tableIntArray.Columns.Add("IntArr", typeof(int));
 			intArray.ForEach(x => tableIntArray.Rows.Add(x));

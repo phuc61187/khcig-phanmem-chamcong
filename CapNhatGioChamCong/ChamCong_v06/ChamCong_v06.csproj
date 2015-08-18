@@ -62,10 +62,12 @@
   <ItemGroup>
     <Compile Include="BUS\BUS_ChamCong.cs" />
     <Compile Include="BUS\BUS_NhanVien.cs" />
+    <Compile Include="DTO\cCheck.cs" />
     <Compile Include="BUS\XL.cs" />
     <Compile Include="BUS\XL2.cs" />
     <Compile Include="DAL\DAOPhongBan_NhanVien.cs" />
     <Compile Include="DAL\DAO_Shift_Schedule.cs" />
+    <Compile Include="DTO\cCheckInOut.cs" />
     <Compile Include="DTO\cUserInfo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
