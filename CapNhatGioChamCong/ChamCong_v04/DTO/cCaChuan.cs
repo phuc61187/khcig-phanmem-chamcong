@@ -45,6 +45,8 @@ namespace ChamCong_v04.DTO {
 		public int ShowPosition { get; set; }
 		public int DayCount { get; set; }
 		public bool QuaDem { get; set; }
+		public TimeSpan StartNT;//ver 4.0.0.4	start night time
+		public TimeSpan EndddNT;//ver 4.0.0.4	enddd night time
 
 		public string MoTa;
 		public string KyHieuCC;

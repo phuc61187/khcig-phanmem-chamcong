@@ -16,8 +16,7 @@ namespace ChamCong_v04.BUS {
 	public static partial class XL {
 		public static readonly ILog lg = LogManager.GetLogger("XuatBB");
 
-		public static void EXP_Header(ExcelWorksheet ws, ref int top1,
-			int left1 = 1, int left2 = 2, int leftT = 3,
+		public static void EXP_Header(ExcelWorksheet ws, ref int top1,int left1 = 1, int left2 = 2, int leftT = 3,
 			int size1 = 12, int size2 = 12, int sizeT = 12,
 			DateTime? ngayLap = null,
 			string headerString = null,
@@ -29,6 +28,7 @@ namespace ChamCong_v04.BUS {
 			ic = left1;
 			XL.FormatCell_T(ws, ref ir, ref ic, size: size1, Bold: false, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerTCty);
 			XL.FormatCell_T(ws, ref ir, ref ic, size: size1, Bold: false, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerTNHH);
+			XL.FormatCell_T(ws, ref ir, ref ic, size: size1, Bold: false, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerCNS);
 			XL.FormatCell_T(ws, ref ir, ref ic, size: size1, Bold: true, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerNMTLKH);
 
 			ir = top1;
@@ -46,9 +46,11 @@ namespace ChamCong_v04.BUS {
 			top1 = ir;
 
 
+/*
 			var p = ws.Drawings.AddPicture(logoName, Resources.CNS);
 			p.SetPosition(0, 0, 0, 0);
 			p.SetSize(100);
+*/
 		}
 		public static void EXP_Footer(ExcelWorksheet ws, ref int top1,
 	int[] left, int[] size, string[] chucVu, string[] ten, int khoangCachTen_ChucVu = 5

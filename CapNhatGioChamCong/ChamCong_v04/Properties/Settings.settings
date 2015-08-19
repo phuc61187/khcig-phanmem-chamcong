@@ -91,7 +91,7 @@ CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastTenPhoGD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Trần Hồng Sơn</Value>
+      <Value Profile="(Default)">Nguyễn Chí Tân</Value>
     </Setting>
     <Setting Name="LastTenTruongBP" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -136,28 +136,28 @@ CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
       <Value Profile="(Default)">TemplateTamUng_MucDongBHXH.xlsx</Value>
     </Setting>
     <Setting Name="shiftCodeCa8h" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Ca8h</Value>
+      <Value Profile="(Default)">Ca8g</Value>
     </Setting>
     <Setting Name="shiftCodeCa12h" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Ca12h</Value>
+      <Value Profile="(Default)">Ca12g</Value>
     </Setting>
     <Setting Name="shiftCodeCa4h" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Ca4h</Value>
+      <Value Profile="(Default)">Ca4g</Value>
     </Setting>
     <Setting Name="shiftCodeCa16h" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Ca16h</Value>
+      <Value Profile="(Default)">Ca16g</Value>
     </Setting>
     <Setting Name="shiftCodeCaTD8h" Type="System.String" Scope="User">
       <Value Profile="(Default)">CaTựDo</Value>
     </Setting>
     <Setting Name="kyHieuCCCa4h" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4g</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="kyHieuCCCa8h" Type="System.String" Scope="User">
-      <Value Profile="(Default)">8g</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="kyHieuCCCa12h" Type="System.String" Scope="User">
-      <Value Profile="(Default)">12g</Value>
+      <Value Profile="(Default)">D</Value>
     </Setting>
     <Setting Name="kyHieuCCCa16h" Type="System.String" Scope="User">
       <Value Profile="(Default)">16g</Value>
@@ -188,6 +188,9 @@ CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
     </Setting>
     <Setting Name="LastThangKetCong" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="headerCNS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(CNS)</Value>
     </Setting>
   </Settings>
 </SettingsFile>

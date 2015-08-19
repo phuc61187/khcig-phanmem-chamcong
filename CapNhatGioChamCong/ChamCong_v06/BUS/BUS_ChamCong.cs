@@ -155,6 +155,7 @@ namespace ChamCong_v06.BUS {
 			}
 		}
 
+/*
 		public static void XetCa_ListCIO_A3(List<cCheckInOut> ds_CIO_A, cShiftSchedule lichtrinh, List<cCheck> ds_raa3_vao1, List<cCheck> ds_check_A) {
 			//bool macdinh_tinhPC50, //[140615_4]
 			try {
@@ -244,5 +245,6 @@ namespace ChamCong_v06.BUS {
 				lg.Error(string.Format("[{0}]_[{1}]\n", "XLChamCong", System.Reflection.MethodBase.GetCurrentMethod().Name), e);
 			}
 		}
+*/
 	}
 }
