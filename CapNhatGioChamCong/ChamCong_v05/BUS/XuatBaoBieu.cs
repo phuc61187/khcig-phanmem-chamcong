@@ -1669,6 +1669,7 @@ namespace ChamCong_v05.BUS {
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (int)tableThongSo.Rows[0]["HSPC300"]);
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (int)tableThongSo.Rows[0]["HSPC390"]);
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (double)tableThongSo.Rows[0]["TienLuong1HeSoSP"]);
+			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: Convert.ToInt32(XL.TinhCongChuanCuaThang(ngaydauthang)));
 		}
 
 

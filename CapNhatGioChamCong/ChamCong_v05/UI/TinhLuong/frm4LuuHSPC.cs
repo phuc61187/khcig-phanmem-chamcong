@@ -236,7 +236,7 @@ namespace ChamCong_v05.UI.TinhLuong {
 				// tính khấu trừ BHXH
 				nv.chiTietLuong.KhauTru.BHXH = Convert.ToDouble(nv.HeSo.BHXH_YT_TN * mucLuongToithieu * (nv.chiTietLuong.MucDongBHXH / 100f));
 				// tính tiền cơm trưa
-				var temp1 = DinhMuccomtrua - ((DinhMuccomtrua / 26d) * nv.ThongKeThang.NghiRo);
+				var temp1 = DinhMuccomtrua - ((DinhMuccomtrua / congChuanThang) * nv.ThongKeThang.NghiRo);
 				nv.chiTietLuong.TienComTrua = (temp1 >= 0d) ? temp1 : 0d;
 
 			}

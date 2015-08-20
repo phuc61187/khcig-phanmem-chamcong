@@ -33,11 +33,11 @@ namespace ChamCong_v04.BUS {
 
 			ir = top1;
 			ic = left2;
-			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: false, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerDiachi, hAlign: ExcelHorizontalAlignment.Right);
-			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: false, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerPhone, hAlign: ExcelHorizontalAlignment.Right);
-			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: false, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerMailWEB, hAlign: ExcelHorizontalAlignment.Right);
-			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: false, VeBorder: false, wrapText: false,
-				value: string.Format(Settings.Default.headerTPHCMNgaythangnam, ((DateTime)ngayLap).Day, ((DateTime)ngayLap).Month, ((DateTime)ngayLap).Year), hAlign: ExcelHorizontalAlignment.Right);
+			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: true, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerCHXHCNVN, hAlign: ExcelHorizontalAlignment.CenterContinuous);
+			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: true, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerDL_TD_HP, hAlign: ExcelHorizontalAlignment.CenterContinuous);
+			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: false, VeBorder: false, wrapText: false, plusRow: 1, value: string.Empty, hAlign: ExcelHorizontalAlignment.CenterContinuous);
+			XL.FormatCell_T(ws, ref ir, ref ic, size: size2, Bold: false, Italic:true, VeBorder: false, wrapText: false, 
+				value: string.Format(Settings.Default.headerTPHCMNgaythangnam, ((DateTime)ngayLap).Day, ((DateTime)ngayLap).Month, ((DateTime)ngayLap).Year), hAlign: ExcelHorizontalAlignment.CenterContinuous);
 
 			ir = ir + 2;// bỏ 2 row rồi bắt đầu ghi title
 			ic = leftT;
@@ -174,10 +174,10 @@ namespace ChamCong_v04.BUS {
 			#region // 1. ghi header
 
 			string headerString = string.Format(Settings.Default.titleBangLuongCongNhat, m_thang.ToString("MM/yyyy"));
-			int left1 = 3, left2 = 9, leftT = 5;
+			int left1 = 3, left2 = 7, leftT = 5;
 			ir = top;
 			EXP_Header(ws, ref ir, left1, left2, leftT, size1: 12, size2: 12, sizeT: 14,
-					   logoName: "logo", ngayLap: DateTime.Today, headerString: headerString);
+					   ngayLap: DateTime.Today, headerString: headerString);
 
 			#endregion
 			// sau khi ghi header thì ir là vị trí row đầu tiên ghi title
@@ -261,10 +261,10 @@ namespace ChamCong_v04.BUS {
 			#region // 1. ghi header
 
 			string headerString = string.Format(Settings.Default.titleBangLuongThang, m_thang.ToString("MM/yyyy"));
-			int left1 = 10, left2 = 34, leftT = 20;
+			int left1 = 6, left2 = 30, leftT = 20;
 			ir = top;
 			EXP_Header(ws, ref ir, left1, left2, leftT, size1: 22, size2: 22, sizeT: 22,
-					   logoName: "logo", ngayLap: DateTime.Today, headerString: headerString);
+					   ngayLap: DateTime.Today, headerString: headerString);
 
 			#endregion
 
@@ -614,7 +614,7 @@ namespace ChamCong_v04.BUS {
 
 			// 1. ghi header
 			ir = top;
-			EXP_Header(ws, ref ir, 6, 14, 8, ngayLap: DateTime.Today, logoName: "logo", headerString: string.Format(Settings.Default.titleBangTongHopChiThang, ngaydauthang.ToString("MM/yyyy")));
+			EXP_Header(ws, ref ir, 4, 12, 8, ngayLap: DateTime.Today, headerString: string.Format(Settings.Default.titleBangTongHopChiThang, ngaydauthang.ToString("MM/yyyy")));
 
 			ic = left;
 			// 2. ghi colTitle ( sản lương đơn giá)
@@ -710,7 +710,7 @@ namespace ChamCong_v04.BUS {
 			int left1 = Settings.Default.viTriOHeaderBKC_TCTCNSG, left2 = Settings.Default.viTriOHeaderBKC_DiaChi, leftT = Settings.Default.viTriOHeaderTitle;
 			ir = top;
 			EXP_Header(ws, ref ir, left1, left2, leftT, size1: Settings.Default.sizeHeaderBKC_TCTCNSG, size2: Settings.Default.sizeHeaderBKC_TCTCNSG, sizeT: Settings.Default.sizeTitleBKC,
-				logoName: "logo", ngayLap: DateTime.Today, headerString: headerString);
+				ngayLap: DateTime.Today, headerString: headerString);
 
 
 			#region // 2. ghi colTitle
@@ -1145,7 +1145,7 @@ namespace ChamCong_v04.BUS {
 
 			// 1. ghi header
 			string headerString = string.Format(Settings.Default.titleBangCC_THANG, ngaybd.ToString("MM/yyyy"));
-			int left1 = 10, left2 = 44, leftT = 24;
+			int left1 = 6, left2 = 40, leftT = 24;
 			ir = top;
 			EXP_Header(ws, ref ir, left1, left2, leftT, size1: 24, size2: 24, sizeT: 24,
 				logoName: "logo", ngayLap: DateTime.Today, headerString: headerString);
@@ -1671,6 +1671,7 @@ namespace ChamCong_v04.BUS {
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (int)tableThongSo.Rows[0]["HSPC300"]);
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (int)tableThongSo.Rows[0]["HSPC390"]);
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (double)tableThongSo.Rows[0]["TienLuong1HeSoSP"]);
+			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: Convert.ToInt32(XL.TinhCongChuanCuaThang(ngaydauthang)), numberFormat:"##");
 		}
 
 

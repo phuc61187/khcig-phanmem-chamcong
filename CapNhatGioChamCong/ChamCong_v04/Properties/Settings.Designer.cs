@@ -263,25 +263,25 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Lô 26, đường số 3, KCN Tân Tạo, Quận Bình Tân, Thành phố Hồ Chí Minh")]
-        public string headerDiachi {
+        [global::System.Configuration.DefaultSettingValueAttribute("CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM")]
+        public string headerCHXHCNVN {
             get {
-                return ((string)(this["headerDiachi"]));
+                return ((string)(this["headerCHXHCNVN"]));
             }
             set {
-                this["headerDiachi"] = value;
+                this["headerCHXHCNVN"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Tel: +848 37507282 - FAX: 37507784")]
-        public string headerPhone {
+        [global::System.Configuration.DefaultSettingValueAttribute("Độc lập - Tự do - Hạnh phúc")]
+        public string headerDL_TD_HP {
             get {
-                return ((string)(this["headerPhone"]));
+                return ((string)(this["headerDL_TD_HP"]));
             }
             set {
-                this["headerPhone"] = value;
+                this["headerDL_TD_HP"] = value;
             }
         }
         
@@ -707,7 +707,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int viTriOHeaderBKC_TCTCNSG {
             get {
                 return ((int)(this["viTriOHeaderBKC_TCTCNSG"]));
@@ -719,7 +719,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("42")]
+        [global::System.Configuration.DefaultSettingValueAttribute("34")]
         public int viTriOHeaderBKC_DiaChi {
             get {
                 return ((int)(this["viTriOHeaderBKC_DiaChi"]));
