@@ -295,18 +295,19 @@ namespace ChamCong_v04.Helper {
 		public float tongpc21;
 		public double luongcb22;
 		public double luongsp23;
-		public double dieuchinh24;
-		public double tongluong25;
-		public double pcluongcb26;
-		public double pcluongsp27;
-		public double boiduongdem28;
-		public double tongpcLuong29;
-		public double tongluongpc30;
-		public double tamung31;
-		public double bh32;
-		public double thuchikhac33;
-		public double tienComTrua34;
-		public double thuclanh35;
+		public double luongcv24;
+		public double dieuchinh25;
+		public double tongluong26;
+		public double pcluongcb27;
+		public double pcluongsp28;
+		public double boiduongdem29;
+		public double tongpcLuong30;
+		public double tongluongpc31;
+		public double tamung32;
+		public double bh33;
+		public double thuchikhac34;
+		public double tienComTrua35;
+		public double thuclanh36;
 
 	}
 

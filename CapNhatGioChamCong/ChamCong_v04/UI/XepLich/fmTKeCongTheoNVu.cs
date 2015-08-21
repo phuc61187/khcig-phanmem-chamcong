@@ -30,7 +30,7 @@ namespace ChamCong_v04.UI.XepLich {
 			dtpNgayBD.Value = ngayBD;
 			dtpNgayKT.Value = ngayKT;
 			dtpThang.Value = ngayBD;
-			numQuy.Value = (DateTime.Today.Month - (DateTime.Today.Month % 4) / 4);
+			numQuy.Value = ((DateTime.Today.Month - (DateTime.Today.Month % 3)) / 3)+1;
 			int thangDauQuy = (int)numQuy.Value;
 			dtpQuyNam.Value = new DateTime(DateTime.Today.Year, thangDauQuy, 1);
 

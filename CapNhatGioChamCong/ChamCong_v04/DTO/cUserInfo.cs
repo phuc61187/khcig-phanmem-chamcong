@@ -93,6 +93,11 @@ namespace ChamCong_v04.DTO {
 			get { return CongThucTe + CheDoNghi + CongCV + PhuCap; }
 			//set { TongCongCdCvPc = value; }
 		}
+
+		public double Cong_CD_PC
+		{
+			get { return CongThucTe + CheDoNghi + PhuCap; } //tính lương cơ bản theo công, phụ cấp, ngày nghỉ hưởng lương TRỪ CHỜ VIỆC
+		}
 	}
 	public struct LSP {
 		public double CongThucTe;

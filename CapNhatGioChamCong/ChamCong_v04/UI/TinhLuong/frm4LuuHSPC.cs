@@ -224,7 +224,8 @@ namespace ChamCong_v04.UI.TinhLuong {
 												out nv.chiTietLuong.LCB_Theo.CongThucTe, out nv.chiTietLuong.LCB_Theo.CheDoNghi, out nv.chiTietLuong.LCB_Theo.CongCV,
 												out nv.chiTietLuong.LCB_Theo.PhuCap);
 				tongQuyLuongCV += nv.chiTietLuong.LCB_Theo.CongCV;
-				tongQuyLuongNghiDinhCP += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC;
+				//tongQuyLuongNghiDinhCP += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC; // yêu cầu cũ (T1/2015) là có lương chờ việc
+				tongQuyLuongNghiDinhCP += nv.chiTietLuong.LCB_Theo.Cong_CD_PC;// yêu cầu mới (T8/2015) là tách lương chờ việc ra
 
 				XL.TinhBoiDuongQuaDemA512(nv.ThongKeThang.NgayQuaDem, donGiaBdCa3, out nv.chiTietLuong.BoiDuongQuaDem);
 				tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC + nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.LuongDieuChinh; //info tong_qlcb_2 bao gồm lương cb 1nv, bồi dưỡng ca 3 1nv, lương tháng trước 1 nv
