@@ -228,7 +228,8 @@ namespace ChamCong_v04.UI.TinhLuong {
 				tongQuyLuongNghiDinhCP += nv.chiTietLuong.LCB_Theo.Cong_CD_PC;// yêu cầu mới (T8/2015) là tách lương chờ việc ra
 
 				XL.TinhBoiDuongQuaDemA512(nv.ThongKeThang.NgayQuaDem, donGiaBdCa3, out nv.chiTietLuong.BoiDuongQuaDem);
-				tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC + nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.LuongDieuChinh; //info tong_qlcb_2 bao gồm lương cb 1nv, bồi dưỡng ca 3 1nv, lương tháng trước 1 nv
+				//tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC + nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.LuongDieuChinh; //yêu cầu mới (T8/2015) là tách lương chờ việc ra khỏi quỹ lương cơ bản đưa vào quỹ lương sản phẩm
+				tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.Cong_CD_PC + nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.LuongDieuChinh; //info tong_qlcb_2 bao gồm lương cb 1nv, bồi dưỡng ca 3 1nv, lương tháng trước 1 nv
 				tongChiKhacTuQuyLuong += nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.KhauTru.ThuChiKhac;
 
 				XL.TinhSPLamRa_CongVaPC_B102(nv.HeSo.LuongCV, nv.ThongKeThang.Cong, nv.ThongKeThang.PhuCaps._TongPC, nv.ThongKeThang.Phep, nv.ThongKeThang.H_CT_PT, nv.ThongKeThang.PTDT, nv.ThongKeThang.Le,//DANGLAM
@@ -243,7 +244,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 			}
 			var chitienGiacongNoibo = Convert.ToDouble(sanluongGiacongNoiBo) * Convert.ToDouble(dongiaGiacongNoiBo);
 			var chitienGiacongNgoai = Convert.ToDouble(sanluongGiacongNgoai) * Convert.ToDouble(dongiaGiacongNgoai);
-			var tong_qlSP_A71_1_VaGiaCong = (_80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai) - tong_qlcb_2 - TongLuongCongNhat_AllNV;
+			var tong_qlSP_A71_1_VaGiaCong = (_80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai) - tong_qlcb_2 - TongLuongCongNhat_AllNV; // yêu cầu mới (T8/2015) là tách lương chờ việc ra
 			double giaTri_1SP_B3_1 = tong_qlSP_A71_1_VaGiaCong / tong_SPLamRa_B2_2; // tính ra được 1 đơn vị sản phẩm có giá bao nhiêu
 			//double tong0 = 0d, tong1 = 0d, tong2 = 0d, tong3 = 0d, tong4 = 0d, tong5 = 0d, tong6 = 0d, tong7 = 0d, tong8 = 0d, tong9 = 0d, tong10 = 0d, tong11 = 0d, tong12 = 0d, tong13 = 0d, tong14 = 0d, tong15 = 0d, tong16 = 0d, tong17 = 0d, tong18 = 0d, tong19 = 0d, tong20 = 0d, tong21 = 0d, tong22 = 0d, tong23 = 0d, tong24 = 0d, tong25 = 0d, tong26 = 0d, tong27 = 0d, tong28 = 0d, tong29 = 0d, tong30 = 0d, tong31 = 0d, tong32 = 0d, tong33 = 0d, tong34 = 0d, tong35 = 0d, tong36 = 0d;
 

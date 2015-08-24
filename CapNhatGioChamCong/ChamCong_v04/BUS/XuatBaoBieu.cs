@@ -460,7 +460,8 @@ namespace ChamCong_v04.BUS {
 					   new int[] { 6, 20, 28 },
 					   new int[] { 22, 22, 22 },
 					   new string[] { "GIÁM ĐỐC", "KTT", "LẬP BIỂU" },
-					   new string[] { Settings.Default.LastTenGD, Settings.Default.LastTenKTT, tenNVLapBieu });
+					   new string[] { Settings.Default.LastTenGD, Settings.Default.LastTenKTT, tenNVLapBieu },
+					   khoangCachTen_ChucVu:8);
 
 			#endregion
 
