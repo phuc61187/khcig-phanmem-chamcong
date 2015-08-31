@@ -63,6 +63,7 @@
     <Compile Include="BUS\BUS_ChamCong.cs" />
     <Compile Include="BUS\BUS_NhanVien.cs" />
     <Compile Include="DAL\DAL_CheckInCheckOut.cs" />
+    <Compile Include="DAL\DAL_PhongBan_NhanVien.cs" />
     <Compile Include="DTO\cCheck.cs" />
     <Compile Include="BUS\XL.cs" />
     <Compile Include="BUS\XL2.cs" />
@@ -70,12 +71,17 @@
     <Compile Include="DAL\DAO_Shift_Schedule.cs" />
     <Compile Include="DTO\cCheckInOut.cs" />
     <Compile Include="DTO\cUserInfo.cs" />
+    <Compile Include="DTO\cLichTrinh.cs" />
+    <Compile Include="DTO\cPhongBan.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\SP\CheckInOut_DocCheckChuaXuLyV6.sql" />
+    <Compile Include="Helper\SP\Shift_DocTatCaShiftV6.sql" />
+    <Compile Include="Helper\SP\CheckInOut_Upd_Loai.sql" />
     <Compile Include="Helper\ACMessageBox.cs" />
     <Compile Include="Helper\ChuyenSoSangChu.cs" />
     <Compile Include="Helper\DanhSachChucNang.cs" />

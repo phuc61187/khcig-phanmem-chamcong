@@ -42,7 +42,7 @@ namespace ChamCong_v06.UI.QLLichTrinh {
 				return;
 			}
 
-			DataTable tableDSCa = SqlDataAccessHelper.ExecSPQuery(SPName6.Shift_DocDSCaEnableV6.ToString(), new SqlParameter("@Enable", true));
+			DataTable tableDSCa = SqlDataAccessHelper.ExecSPQuery(SPName6.Shift_DocTatCaShiftV6.ToString(), new SqlParameter("@Enable", true));
 			gridControl2.DataSource = tableDSCa;
 		}
 	}

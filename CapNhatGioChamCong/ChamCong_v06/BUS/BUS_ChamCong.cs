@@ -16,11 +16,18 @@ namespace ChamCong_v06.BUS {
 			FromToTime KhoangTG = new FromToTime();
 			List<cCheck> DSCheckInCheckOut;
 			List<cCheck> DSCheck_BiLoai_All;
-			DAL.DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
+			List<cUserInfo> DSNVChamCong;
+			LapDSNVChamCong(arrayUEN, out DSNVChamCong);
+			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
 			dal.GetCheckInCheckOutData(KhoangTG, arrayUEN, out DSCheckInCheckOut);
 
 			XuLy_Loai_CheckTrong30ph(arrayUEN, DSCheckInCheckOut, out DSCheck_BiLoai_All);
 
+		}
+
+		private void LapDSNVChamCong(List<int> arrayUEN, out List<cUserInfo> DSNVChamCong) {
+			DSNVChamCong = new List<cUserInfo>();
+			
 		}
 
 		private void XuLy_Loai_CheckTrong30ph(List<int> ArrayUEN, List<cCheck> DSCheckInCheckOut, out List<cCheck> DSCheck_BiLoai_All) {

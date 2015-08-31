@@ -14,8 +14,10 @@ using DevExpress.XtraEditors.Controls;
 namespace ChamCong_v06.UI.ChamCong {
 	public partial class frmChamCongV6 : Form
 	{
-		public List<DataRow>  m_SelectedPhong = new List<DataRow>();
-		public List<DataRow> m_NhanVienTrongPhong = new List<DataRow>();
+		private List<DataRow>  m_SelectedPhongDR = new List<DataRow>();
+		private List<DataRow> m_NhanVienDR = new List<DataRow>();// lưu danh sách nhân viên trong  tất cả phòng đang chọn
+		private List<cPhongBan> m_AllPhong = new List<cPhongBan>();
+		private List<cPhongBan> m_SelectedPhong = new List<cPhongBan>();
 
 		public frmChamCongV6() {
 			InitializeComponent();
@@ -39,40 +41,58 @@ namespace ChamCong_v06.UI.ChamCong {
 
 		}
 		#region cách làm có store procedure
-		public static TreeView loadTreePhgBan(TreeView tvDSPhongBan) {
+		private TreeView loadTreePhgBan(TreeView tvDSPhongBan) {
 			// load các phòng ban Enable được phép thao tác theo tài khoản hiện tại và sắp xếp theo vị trí
 			tvDSPhongBan.Nodes.Clear();
 			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName6.DeptPrivilege_DocPhongBanThaoTacV6.ToString(),
 				new SqlParameter("@UserID", XL2.currUserID), new SqlParameter("@ChoPhepThaoTac", true),
 				new SqlParameter("@RelationDeptEnable", true));
-			var rowsPhong = (from DataRow row in tableDSPhong.Rows select row).OrderBy(s => (int)s["ViTri"]);
+			var allPhongDR = (from DataRow row in tableDSPhong.Rows select row).OrderBy(s => (int)s["ViTri"]);
 			// xác định root node là Node luôn có RelationID = 0(IDCha = 0 tức là gốc ko có cha nữa)
 			// nếu ko tìm được node root này thì thoát form
-			var relationID_0 = rowsPhong.Where(o => (int)o["RelationID"] == 0).ToList().OrderBy(s => (int)s["ViTri"]);
-			if (!relationID_0.Any()) return null;
+			var relationID_0_DR = allPhongDR.Where(o => (int)o["RelationID"] == 0).ToList().OrderBy(s => (int)s["ViTri"]);
+			if (!relationID_0_DR.Any()) return null;
 
 			// sau khi xác định root thì lần lượt load từng subNode vào và gán tag là dataRow phòng
-			foreach (var dataRowView in relationID_0) {
-				var string2 = dataRowView["Description"].ToString();
-				TreeNode parentNode = new TreeNode { Text = string2, Tag = dataRowView };
+			m_AllPhong = new List<cPhongBan>();
+			foreach (var dataRow in relationID_0_DR) {
+				var string2 = dataRow["Description"].ToString();
+				var phongROOT = new cPhongBan
+				{
+					TrucThuoc = null,
+					Phong = new ID_Description {ID = (int) dataRow["IDDepartment"], Description = string2},
+					LevelID = (int) dataRow["LevelID"],
+					ViTri = (int) dataRow["ViTri"],
+					Enable = (bool) dataRow["Enable"]
+				};
+				TreeNode parentNode = new TreeNode { Text = string2, Tag = phongROOT };
 				tvDSPhongBan.Nodes.Add(parentNode);
-				loadTreeSubNode(ref parentNode, (int)dataRowView["IDDepartment"], rowsPhong/*TatcaPhongban*/);
+				m_AllPhong.Add(phongROOT);
+				loadTreeSubNode(ref parentNode, (int)dataRow["IDDepartment"], allPhongDR/*TatcaPhongban*/, phongROOT, m_AllPhong);
 			}
 
 
 			return tvDSPhongBan;
 		}
 
-		public static void loadTreeSubNode(ref TreeNode ParentNode, int idPhongBanTrucThuoc, IOrderedEnumerable<DataRow> dsphongban /*List<cPhongBan> dsphongban*/) {
-			IOrderedEnumerable<DataRow> childs = dsphongban.Where(item => (int)item["RelationID"] == idPhongBanTrucThuoc).ToList().OrderBy(item => (int)item["ViTri"]);
-			foreach (DataRow phong in childs) {
-				var enable = (bool)(phong["Enable"]);
+		private void loadTreeSubNode(ref TreeNode ParentNode, int idPhongBanTrucThuoc, IOrderedEnumerable<DataRow> dsphongban, cPhongBan PhongTrucThuoc, List<cPhongBan> DSTatCaPhong) {
+			IOrderedEnumerable<DataRow> childsDR = dsphongban.Where(item => (int)item["RelationID"] == idPhongBanTrucThuoc).ToList().OrderBy(item => (int)item["ViTri"]);
+			foreach (DataRow dataRow in childsDR) {
+				var enable = (bool)(dataRow["Enable"]);
 				var string1 = enable == false ? "[Disable]" : string.Empty;
-				var string2 = phong["Description"].ToString();
+				var string2 = dataRow["Description"].ToString();
 
-				TreeNode child = new TreeNode { Text = string1 + string2, Tag = phong };
+				var phongCon = new cPhongBan {
+					TrucThuoc = PhongTrucThuoc,
+					Phong = new ID_Description { ID = (int)dataRow["IDDepartment"], Description = string2 },
+					LevelID = (int)dataRow["LevelID"],
+					ViTri = (int)dataRow["ViTri"],
+					Enable = (bool)dataRow["Enable"]
+				};
+				TreeNode child = new TreeNode { Text = string1 + string2, Tag = phongCon };
 				ParentNode.Nodes.Add(child);
-				loadTreeSubNode(ref child, (int)phong["IDDepartment"], dsphongban);
+				DSTatCaPhong.Add(phongCon);
+				loadTreeSubNode(ref child, (int)dataRow["IDDepartment"], dsphongban, phongCon, DSTatCaPhong);
 			}
 		}
 
@@ -81,22 +101,14 @@ namespace ChamCong_v06.UI.ChamCong {
 		private void treePhongBan_AfterSelect(object sender, TreeViewEventArgs e) {
 			#region mỗi lần chọn node thì lấy ID node hiện tại và tất cả node con
 
-/*
-			m_listCurrentIDPhg.Clear();
-			e.Node.Expand();
-			TreeNode topnode = XL.ReturnRootNode(e.Node); //đưa về root để thực hiện từ trên xuống
-			if (topnode != null) XL.GetIDNodeAndChildNode1(e.Node, ref m_listCurrentIDPhg); // chỉ lấy các phòng ban được phép, 
-			else {
-				var temp = ((DataRow)e.Node.Tag);
-				if ((int)temp["IsYes"] == 1) m_listCurrentIDPhg.Add((int)temp["ID"]);
-			}
-*/
+			this.m_SelectedPhongDR.Clear();
 			this.m_SelectedPhong.Clear();
+			this.m_NhanVienDR.Clear();
 			e.Node.Expand();
-			XacDinhPhongDangChon(e.Node, ref this.m_SelectedPhong);
+			XacDinhPhongDangChon(e.Node, ref m_SelectedPhong);
 			DataTable tableNhanVien;
 			LayTableNhanVien(out tableNhanVien, this.m_SelectedPhong);
-			this.m_NhanVienTrongPhong = (from DataRow dataRow in tableNhanVien.Rows select dataRow).ToList();
+			m_NhanVienDR = (from DataRow dataRow in tableNhanVien.Rows select dataRow).ToList();
 
 			//			checkedComboBoxEdit1.Properties.Items.Clear();
 			checkedDSNV.Properties.DataSource = tableNhanVien;
@@ -115,13 +127,9 @@ namespace ChamCong_v06.UI.ChamCong {
 
 		}
 
-		private void LayTableNhanVien(out DataTable tableNhanVien, List<DataRow> selectedPhong)
+		private void LayTableNhanVien(out DataTable tableNhanVien, List<cPhongBan> SelectedPhong)
 		{
-			List<int> listIDPhong = new List<int>();
-			foreach (DataRow dataRow in selectedPhong)
-			{
-				listIDPhong.Add((int)dataRow["IDDepartment"]);
-			}
+			List<int> listIDPhong = (from cPhongBan phong in SelectedPhong select phong.Phong.ID).ToList();
 			DataTable tableArrayIDPhong = MyUtility.Array_To_DataTable("tableArrayIDD", listIDPhong);
 			tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName6.UserInfo_DocNhanVienChamCongV6.ToString(),
 			                                                new SqlParameter("@ArrayIDDepartment", SqlDbType.Structured) {Value = tableArrayIDPhong},
@@ -129,12 +137,14 @@ namespace ChamCong_v06.UI.ChamCong {
 			                                                new SqlParameter("@UserEnabled", true));
 		}
 
-		private void XacDinhPhongDangChon(TreeNode root, ref List<DataRow> DSPhongBan) {
+		private void XacDinhPhongDangChon(TreeNode root, ref List<cPhongBan> DSPhongDangChon) {
+			//logic, mỗi lần chọn 1 node là lấy danh sách phòng đang chọn và các phòng ban được phép thao tác bên dưới
 			if (root == null) return;
-			DSPhongBan.Add((DataRow)root.Tag);
+			//DSPhongChonDR.Add((DataRow)root.Tag); // 
+			DSPhongDangChon.Add((cPhongBan)root.Tag);
 			for (int i = 0; i < root.Nodes.Count; i++)
 			{
-				XacDinhPhongDangChon(root.Nodes[i], ref DSPhongBan);
+				XacDinhPhongDangChon(root.Nodes[i], ref DSPhongDangChon);
 			}
 		}
 
@@ -142,13 +152,20 @@ namespace ChamCong_v06.UI.ChamCong {
 		{
 			DateTime Thang = dateNavigator1.DateTime;
 			Thang = MyUtility.FirstDayOfMonth(Thang);
-			//1. xác định danh sach nhan vien dang check
+			// xác định lịch trình tổng quan
+			this.LayLichTrinhVaDSCa();
+			//1. xác định danh sach nhan vien dang check;  LẬP DS nhân viên đó để chấm công
 			List<int> listUEN;
 			GetList_UEN_Checked(checkedDSNV, out listUEN);// lấy danh sách các mã nhân viên check vì checkcomboBox ko cho phép lấy datarowview
 			List<cUserInfo> listDSNV;
-			BUS_NhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienTrongPhong, this.m_SelectedPhong, out listDSNV);
+			BUS_NhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienDR, this.m_SelectedPhongDR, out listDSNV);
 			
-			BUS_ChamCong.ChamCong(listDSNV, Thang);
+			//BUS_ChamCong.ChamCong(listDSNV, Thang);
+		}
+
+		private void LayLichTrinhVaDSCa()
+		{
+			//DataTable tableLichTrinh = DAL.DAO_LTR_Ca.LayAll
 		}
 
 

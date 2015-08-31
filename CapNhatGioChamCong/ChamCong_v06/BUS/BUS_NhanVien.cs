@@ -9,9 +9,9 @@ using ChamCong_v06.Helper;
 namespace ChamCong_v06.BUS {
 	public static partial class BUS_NhanVien {
 		public static void KhoiTaoDSNV_DuocChon(List<int> List_UEN, List<DataRow> ListDataRow_All_NV, 
-			List<DataRow> ListDataRow_All_Phong, out List<cUserInfo> ListDataRow_NhanVien)
+			List<DataRow> ListDataRow_All_Phong, out List<cUserInfo> List_NhanVien)
 		{
-			ListDataRow_NhanVien = new List<cUserInfo>();
+			List_NhanVien = new List<cUserInfo>();
 			foreach (int UEN in List_UEN)
 			{
 				DataRow row = (from DataRow dataRow in ListDataRow_All_NV where (int)dataRow[Field.UserEnrollNumber.ToString()] == UEN select dataRow).Single();
@@ -26,7 +26,7 @@ namespace ChamCong_v06.BUS {
 				user.PhongBan = XacDinhPhongBan((int)row[Field.UserIDDepartment.ToString()], ListDataRow_All_Phong);
 				
 
-				ListDataRow_NhanVien.Add(user);
+				List_NhanVien.Add(user);
 			}
 		}
 
