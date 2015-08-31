@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="BUS\BUS_ChamCong.cs" />
     <Compile Include="BUS\BUS_NhanVien.cs" />
+    <Compile Include="DAL\DAL_CheckInCheckOut.cs" />
     <Compile Include="DTO\cCheck.cs" />
     <Compile Include="BUS\XL.cs" />
     <Compile Include="BUS\XL2.cs" />

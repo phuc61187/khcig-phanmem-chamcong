@@ -6,7 +6,6 @@ using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.DTO {
 	public class cCheckInOut {
-		public ushort IsEdited;
 		public DateTime TimeDaiDien;
 		public cCheck Vao;
 		public cCheck Raa;

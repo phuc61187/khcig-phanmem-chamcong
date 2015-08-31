@@ -9,10 +9,10 @@ namespace ChamCong_v06.Helper {
 		public int ID;
 		public string Description;
 	}
-	public struct StartEnd
+	public struct FromToTime
 	{
-		public DateTime Start;
-		public DateTime End;
+		public DateTime From;
+		public DateTime To;
 	}
 
 	#region UserInfo
@@ -31,9 +31,8 @@ namespace ChamCong_v06.Helper {
 	#endregion
 	public class ThoiDiem {
 		public DateTime BD_LV;// vào làm ca
+		public DateTime KT_LV_TrongCa;
 		public DateTime KT_LV;// 
-		public DateTime KT_LV_ChuaOT;
-		public DateTime KT_LV_DaCoOT;
 		public DateTime BD_LV_Ca3;
 		public DateTime KT_LV_Ca3;
 	}
@@ -61,9 +60,9 @@ namespace ChamCong_v06.Helper {
 		public TimeSpan RaTruocCa;
 		public TimeSpan LamViec;
 		public TimeSpan LamDem;
-		public TimeSpan LamNgay;
-		public TimeSpan LamThem;
-		public TimeSpan LamTCDem;
+		public TimeSpan LamNgay;//= lamViec - lamDem
+		public TimeSpan LamThem;//= lamViec - 8
+		public TimeSpan LamTCDem;//lamViec >8, LamDem >0, = LamThem
 	}
 	public struct StructTGThang
 	{

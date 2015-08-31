@@ -4,33 +4,54 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using ChamCong_v06.DAL;
 using ChamCong_v06.DTO;
 using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.BUS {
 	public partial class BUS_ChamCong {
-		public void ChamCong()
+		public void ChamCong1()
 		{
+			List<int> arrayUEN = new List<int>();
+			FromToTime KhoangTG = new FromToTime();
+			List<cCheck> DSCheckInCheckOut;
+			List<cCheck> DSCheck_BiLoai_All;
+			DAL.DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
+			dal.GetCheckInCheckOutData(KhoangTG, arrayUEN, out DSCheckInCheckOut);
+
+			XuLy_Loai_CheckTrong30ph(arrayUEN, DSCheckInCheckOut, out DSCheck_BiLoai_All);
 
 		}
 
-		internal static void ChamCong(List<DTO.cUserInfo> listDSNV, DateTime Thang)
+		private void XuLy_Loai_CheckTrong30ph(List<int> ArrayUEN, List<cCheck> DSCheckInCheckOut, out List<cCheck> DSCheck_BiLoai_All) {
+			DSCheck_BiLoai_All = new List<cCheck>();
+			foreach (int uen in ArrayUEN) {
+				List<cCheck> DS_Check_By_UEN = (from cCheck check in DSCheckInCheckOut where check.MaCC == uen select check).ToList();
+				List<cCheck> DSCheck_BiLoai_By_UEN;
+				LoaiBoCheckKoHopLe1_V6(DS_Check_By_UEN, out DSCheck_BiLoai_By_UEN);
+				DSCheck_BiLoai_All.AddRange(DSCheck_BiLoai_By_UEN);
+			}
+			DAL.DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
+			dal.LoaiCheckTrong30ph(DSCheck_BiLoai_All);
+		}
+
+		internal void ChamCong(List<DTO.cUserInfo> listDSNV, DateTime Thang)
 		{
 			DataTable tableArrUEN = MyUtility.Array_To_DataTable("tableName",
 				(from cUserInfo user in listDSNV select user.MaCC).ToList());
 			// xác định tháng đã kết công chưa, nếu đã kết công thì lấy danh sách các ngày đã kết công
 			// chưa kết công thì tính công
-			StartEnd khoangTG_Check = new StartEnd();
-			DataTable tableCheck = SqlDataAccessHelper.ExecSPQuery(SPName6.CheckInOut_DocCheckChuaXL.ToString(),
-				new SqlParameter("@StartTime", khoangTG_Check.Start),
-				new SqlParameter("@EndTime", khoangTG_Check.End),
+			FromToTime khoangTG_Check = new FromToTime();
+			DataTable tableCheck = SqlDataAccessHelper.ExecSPQuery(SPName6.CheckInOut_DocCheckChuaXuLyV6.ToString(),
+				new SqlParameter("@StartTime", khoangTG_Check.From),
+				new SqlParameter("@EndTime", khoangTG_Check.To),
 				new SqlParameter("@ArrUserEnrollNumber", tableArrUEN));
 			XuLyCheck(listDSNV, tableCheck);
 
 			// lấy các check mới chưa ghép cặp được để ghép cặp lại
 		}
 
-		private static void XuLyCheck(List<cUserInfo> listDSNV, DataTable tableCheck) {
+		private void XuLyCheck(List<cUserInfo> listDSNV, DataTable tableCheck) {
 			if (tableCheck.Rows.Count == 0) return;
 
 			List<cCheck> dsCheck_Disable_All_NV = new List<cCheck>();
@@ -44,7 +65,7 @@ namespace ChamCong_v06.BUS {
 			}
 		}
 
-		private static void LoadDSCheck_A(int tempMaCC, DataTable tableCheck_A, List<cCheck> ds_Check_A) {
+		private void LoadDSCheck_A(int tempMaCC, DataTable tableCheck_A, List<cCheck> ds_Check_A) {
 			var arrRows = tableCheck_A.Select("UserEnrollNumber = " + tempMaCC, "TimeStr asc");
 			//reset lại các danh sách
 			ds_Check_A.Clear();
@@ -59,11 +80,11 @@ namespace ChamCong_v06.BUS {
 
 				cCheck check;
 				if (MachineNo % 2 == 1) {
-					var checkInn = new cCheck { ID = int.MinValue, MaCC = UserEnrollNumber, Time = TimeStr, Source = Source, MachineNo = MachineNo, Type = "I",};
+					var checkInn = new cCheck { MaCC = UserEnrollNumber, Time = TimeStr, Source = Source, MachineNo = MachineNo, Type = "I",};
 					check = checkInn;
 				}
 				else {
-					var checkOut = new cCheck { ID = int.MinValue, MaCC = UserEnrollNumber, Time = TimeStr, Source = Source, MachineNo = MachineNo, Type = "O",};
+					var checkOut = new cCheck { MaCC = UserEnrollNumber, Time = TimeStr, Source = Source, MachineNo = MachineNo, Type = "O",};
 					check = checkOut;
 				}
 				ds_Check_A.Add(check);
@@ -71,7 +92,7 @@ namespace ChamCong_v06.BUS {
 
 		}
 
-		private static void LoaiBoCheckKoHopLe1(List<cCheck> ds_Check_A, ref List<cCheck> ds_Check_Trong30ph) {
+		private void LoaiBoCheckKoHopLe1(List<cCheck> ds_Check_A, ref List<cCheck> ds_Check_Trong30ph) {
 			//clear ds_Check_Trong30ph trước vì nó còn giữ các check ko hl của nv trước
 			ds_Check_Trong30ph.Clear();
 			// lọc này phải dảm bảo sort trước
@@ -101,8 +122,38 @@ namespace ChamCong_v06.BUS {
 				else i++;
 			}
 		}
+		private void LoaiBoCheckKoHopLe1_V6(List<cCheck> ds_Check_A, out List<cCheck> ds_Check_Trong30ph) {
+			ds_Check_Trong30ph = new List<cCheck>();
+			// lọc này phải dảm bảo sort trước
+			if (ds_Check_A == null || ds_Check_A.Count == 0 || ds_Check_A.Count == 1) return;
+			var i = 0;
+			while (i + 1 < ds_Check_A.Count) {
+				var before = ds_Check_A[i];
+				var afterr = ds_Check_A[i + 1];
+				if ((before.Type == afterr.Type) && ((afterr.Time - before.Time) < XL2._10phut)) {
+					//info ver 4.0.0.1 // giữ vào đầu tiên, ra cuối cùng
+					if (before.Type == "I") {
+						ds_Check_Trong30ph.Add(afterr);
+						ds_Check_A.Remove(afterr);
+					}
+					else //out
+					{
+						ds_Check_Trong30ph.Add(before);
+						ds_Check_A.Remove(before);
+					}
+				}
+				else if (before.Type == "I" && afterr.Type == "O"
+					&& (afterr.Time - before.Time) < XL2._10phut) {
+					//IO trong 30 phút thì chỉ giữ O
+					ds_Check_Trong30ph.Add(before);
+					ds_Check_A.Remove(before);
+				}
+				else i++;
+			}
+		}
 
-		private static void GhepCIO_A2(List<cCheck> ds_Check_A, List<cCheckInOut> ds_CIO_A) {
+
+		private void GhepCIO_A2(List<cCheck> ds_Check_A, List<cCheckInOut> ds_CIO_A) {
 			ds_CIO_A.Clear();
 			var x = 0;
 			while (x + 1 < ds_Check_A.Count) {

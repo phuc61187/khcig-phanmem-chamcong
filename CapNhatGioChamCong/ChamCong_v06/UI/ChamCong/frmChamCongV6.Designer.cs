@@ -54,7 +54,6 @@
 			this.lbDaXacNhanLamThem = new DevExpress.XtraEditors.LabelControl();
 			this.lbVaoRaBiChinhSua = new DevExpress.XtraEditors.LabelControl();
 			this.lbDaXacNhanCa = new DevExpress.XtraEditors.LabelControl();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -342,17 +341,6 @@
 			this.lbDaXacNhanCa.TabIndex = 30;
 			this.lbDaXacNhanCa.Text = "Đã xác nhận ca: [0] TH";
 			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkBox1.Location = new System.Drawing.Point(441, 71);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(85, 18);
-			this.checkBox1.TabIndex = 32;
-			this.checkBox1.Text = "checkBox1";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			// 
 			// gridControl1
 			// 
 			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -637,7 +625,6 @@
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.ClientSize = new System.Drawing.Size(1344, 662);
 			this.Controls.Add(this.gridControl1);
-			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnChamCong);
@@ -690,7 +677,6 @@
 		private DevExpress.XtraEditors.LabelControl lbDaXacNhanLamThem;
 		private DevExpress.XtraEditors.LabelControl lbVaoRaBiChinhSua;
 		private DevExpress.XtraEditors.LabelControl lbDaXacNhanCa;
-		private System.Windows.Forms.CheckBox checkBox1;
 		private DevExpress.XtraGrid.GridControl gridControl1;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;

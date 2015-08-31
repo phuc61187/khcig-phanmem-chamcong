@@ -72,10 +72,14 @@ namespace ChamCong_v06.Helper
 
 		#endregion
 
+		#region CheckInCheckOut
+		CheckInOut_DocCheckChuaXuLyV6,
+		CheckInOut_UpdCheckV6,
+
+		#endregion
 
 		#region làm nhiều thao tác, bảng kết hợp
 		Other_XoaLichTrinhV6,
-		CheckInOut_DocCheckChuaXL,
 		#endregion
 	}
 
