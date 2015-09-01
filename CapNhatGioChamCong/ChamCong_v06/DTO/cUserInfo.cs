@@ -12,9 +12,10 @@ namespace ChamCong_v06.DTO {
 		public bool IsUserEnabled;
 		public ID_Description ChucVu;
 		public ID_Description LichTrinh;
-		public DataRow PhongBan;
+		public cPhongBan PhongBan;
 		public List<cCheck> DS_Check_A = new List<cCheck>();
 		public List<cCheckInOut> DS_CIO_A = new List<cCheckInOut>();
+		public cNhomCa NhomCa;
 		//public List<cCheckInOut> DS_CIO_V = new List<cCheckInOut>();
 	}
 

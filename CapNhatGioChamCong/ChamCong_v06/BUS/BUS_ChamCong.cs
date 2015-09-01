@@ -8,12 +8,13 @@ using ChamCong_v06.DAL;
 using ChamCong_v06.DTO;
 using ChamCong_v06.Helper;
 
+
 namespace ChamCong_v06.BUS {
 	public partial class BUS_ChamCong {
 		public void ChamCong1()
 		{
 			List<int> arrayUEN = new List<int>();
-			FromToTime KhoangTG = new FromToTime();
+			FromToDateTime KhoangTG = new FromToDateTime();
 			List<cCheck> DSCheckInCheckOut;
 			List<cCheck> DSCheck_BiLoai_All;
 			List<cUserInfo> DSNVChamCong;
@@ -25,6 +26,26 @@ namespace ChamCong_v06.BUS {
 
 		}
 
+		public void ChamCong2(List<cUserInfo> DSNV )
+		{
+			//ở cấp trên luôn kiểm tra có nhân viên mới chấm công
+			List<int> arrayUEN = (from cUserInfo item in DSNV select item.MaCC).ToList();
+
+			FromToDateTime KhoangTG = new FromToDateTime();
+			List<cCheck> DSCheckInCheckOut;
+			List<cCheck> DSCheck_BiLoai_All;
+			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
+			dal.GetCheckInCheckOutData(KhoangTG, arrayUEN, out DSCheckInCheckOut);
+			XuLy_Loai_CheckTrong30ph(arrayUEN, DSCheckInCheckOut, out DSCheck_BiLoai_All);// giữ check hợp lệ, loại check cùng loại, gần nhau, hoặc check nhầm IO trong 10ph
+
+			// ghép check in- check out
+			foreach (cUserInfo nhanVien in DSNV)
+			{
+				nhanVien.DS_Check_A = (from item in DSCheckInCheckOut where item.MaCC == nhanVien.MaCC select item).ToList();
+				GhepCIO_A2(nhanVien.DS_Check_A, nhanVien.DS_CIO_A);
+				XetCa_ListCIO_A3_V6(nhanVien.DS_CIO_A, nhanVien.NhomCa.DSCa);
+			}
+		}
 		private void LapDSNVChamCong(List<int> arrayUEN, out List<cUserInfo> DSNVChamCong) {
 			DSNVChamCong = new List<cUserInfo>();
 			
@@ -48,7 +69,7 @@ namespace ChamCong_v06.BUS {
 				(from cUserInfo user in listDSNV select user.MaCC).ToList());
 			// xác định tháng đã kết công chưa, nếu đã kết công thì lấy danh sách các ngày đã kết công
 			// chưa kết công thì tính công
-			FromToTime khoangTG_Check = new FromToTime();
+			FromToDateTime khoangTG_Check = new FromToDateTime();
 			DataTable tableCheck = SqlDataAccessHelper.ExecSPQuery(SPName6.CheckInOut_DocCheckChuaXuLyV6.ToString(),
 				new SqlParameter("@StartTime", khoangTG_Check.From),
 				new SqlParameter("@EndTime", khoangTG_Check.To),
@@ -213,9 +234,7 @@ namespace ChamCong_v06.BUS {
 			}
 		}
 
-/*
-		public static void XetCa_ListCIO_A3(List<cCheckInOut> ds_CIO_A, cShiftSchedule lichtrinh, List<cCheck> ds_raa3_vao1, List<cCheck> ds_check_A) {
-			//bool macdinh_tinhPC50, //[140615_4]
+		public void XetCa_ListCIO_A3_V6(List<cCheckInOut> ds_CIO_A, List<cCa> DSCa) {
 			try {
 				var i = 0;
 				while (i < ds_CIO_A.Count) {
@@ -223,11 +242,9 @@ namespace ChamCong_v06.BUS {
 
 					#region nếu giờ quên check thì chỉ kiểm tra khoảng hiểu ca
 
-					int index;
 					if (CIO.HaveINOUT < 0) {
 						CIO.ThuocNgayCong = CIO.TimeDaiDien.Date;
-						index = GetIndex(CIO.ThuocNgayCong);
-						CIO.DSCa = Tim_DSCa_NhanDienDuoc(CIO.TimeDaiDien, CIO.ThuocNgayCong, CIO.HaveINOUT, lichtrinh.DSCaThu[index]);
+						Tim_DSCa_NhanDienDuoc(CIO.TimeDaiDien, CIO.ThuocNgayCong, CIO.HaveINOUT, DSCa, out CIO.CaNhanDien);
 						i++;
 						continue;
 					}
@@ -236,41 +253,36 @@ namespace ChamCong_v06.BUS {
 
 					var ngay = ThuocNgayCong(CIO.TimeDaiDien);
 					CIO.ThuocNgayCong = ngay;
-					index = GetIndex(CIO.ThuocNgayCong);
-					var ca = KiemtraThuocCa(CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocNgayCong, lichtrinh.DSCaThu[index]);
+					var ca = KiemtraThuocCa(CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocNgayCong, DSCa);
 
 					#region nếu thuộc khoảng hiểu ca thì set ca
 
 					if (ca != null) {
 						if (ca.TachCaDem) {
-							//tbd thêm điều kiện ca.QuaDem
-							var ca3 = ca.catruoc;
-							var ca1 = ca.casauuu;
 
 							#region check inn, check out vao 3 ra 3, vao 1 ra 1
 
 							var vaoca3 = CIO.Vao;
 							var raaca3 = new cCheck {
-								ID = int.MinValue, Type = "O", MachineNo = 22, Source = "PC", Time = ngay.Add(ca3.Duty.Off), MaCC = CIO.Vao.MaCC,
-								PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false },
-							}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
+								Type = "O", MachineNo = 22, Source = "PC", MaCC = CIO.Vao.MaCC, TypeColumn = "O",  
+								Time = ngay.Add(GlobalVariables._22h00)
+							}; 
 							var vaoca1 = new cCheck {
-								ID = int.MinValue, Type = "I", MachineNo = 21, Source = "PC", Time = ngay.AddDays(1d).Date.Add(ca1.Duty.Onn).Add(XL2._01giay), MaCC = CIO.Raa.MaCC,
-								PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false },
-							}; // đáng lẽ IDgiờgốc là -1 vì giờ này mới thêm chưa bị sửa nhưng do đây là giờ đệm ko có trong csdl nên để max, ko cho update
+								Type = "I", MachineNo = 21, Source = "PC", MaCC = CIO.Raa.MaCC, TypeColumn = "I",
+								Time = ngay.AddDays(1d).Date.Add(GlobalVariables._06h00).Add(XL2._01giay), //todo lưu ý ở đây cộng thêm 1 ngày, 1 giây để ko bị trùng check cùng giờ 2 máy
+							}; 
 							var raaca1 = CIO.Raa;
 
 							#endregion
 
-							ds_raa3_vao1.Add(raaca3);
-							ds_raa3_vao1.Add(vaoca1);
-							ds_check_A.Add(raaca3);
-							ds_check_A.Add(vaoca1);
-							ds_check_A.Sort(new cCheckComparer());
 							// do tách ra thành 2 CIO mới nên phải gán lại IsEdited cho từng cái
-							ds_CIO_A[i] = new cCheckInOut { IsEdited = vaoca3.IsEdited, TG = new ThoiGian(), TD = new ThoiDiem(), ThuocCa = ca3, Vao = vaoca3, Raa = raaca3, ThuocNgayCong = ngay, TimeDaiDien = vaoca3.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
+							ds_CIO_A[i] = new cCheckInOut { TD = new ThoiDiem(), Vao = vaoca3, Raa = raaca3, ThuocNgayCong = ngay, TimeDaiDien = vaoca3.Time, };
+							var ca3 = KiemtraThuocCa(vaoca3.Time, raaca3.Time, ds_CIO_A[i].ThuocNgayCong, DSCa);
+							if (ca3 == null) { }
 
-							var newCIO = new cCheckInOut { IsEdited = raaca1.IsEdited, TG = new ThoiGian(), TD = new ThoiDiem(), ThuocCa = ca1, Vao = vaoca1, Raa = raaca1, ThuocNgayCong = ngay.AddDays(1d), TimeDaiDien = vaoca1.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
+							var newCIO = new cCheckInOut { TD = new ThoiDiem(), Vao = vaoca1, Raa = raaca1, ThuocNgayCong = ngay.AddDays(1d), TimeDaiDien = vaoca1.Time, };
+							var ca1 = KiemtraThuocCa(vaoca1.Time, raaca1.Time, newCIO.ThuocNgayCong, DSCa);
+							if (ca1 == null) { TaoCaTuDo(out cCa)}
 
 							// vì hàm insert ko cho phép chèn ở vị trí > số lượng phần tử
 							// => nên nếu i là phần tử cuối thì add vào cuối danh sách, ngược lại thì insert vào vị trí i+1
@@ -300,9 +312,60 @@ namespace ChamCong_v06.BUS {
 
 			}
 			catch (Exception e) {
-				lg.Error(string.Format("[{0}]_[{1}]\n", "XLChamCong", System.Reflection.MethodBase.GetCurrentMethod().Name), e);
+				//lg.Error(string.Format("[{0}]_[{1}]\n", "XLChamCong", System.Reflection.MethodBase.GetCurrentMethod().Name), e);
 			}
 		}
-*/
+
+		public void Tim_DSCa_NhanDienDuoc(DateTime time, DateTime ngay, int HaveINOUT, List<cCa> DSCa, out List<cCa> Result) {
+			Result = new List<cCa>();
+			Result = (HaveINOUT == -1)
+						 ? DSCa.FindAll(ca => time >= ngay.Add(ca.NhanDienVao.From) && time <= ngay.Add(ca.NhanDienVao.To))
+						 : DSCa.FindAll(ca => time >= ngay.Add(ca.NhanDienRaa.From) && time <= ngay.Add(ca.NhanDienRaa.To));
+			
+		}
+
+		public static DateTime ThuocNgayCong(DateTime chkinn)// lưu ý không dùng cho các giờ ra, giờ ra thiếu vào, giờ vào thiếu ra
+		{
+			return chkinn.TimeOfDay < XL2._03gio ? chkinn.Date.AddDays(-1) : chkinn.Date;
+		}
+
+		public static void KiemtraThuocCa(DateTime t_vao, DateTime t_raa, DateTime ngay, List<cCa> DSCa, out cCa Result) {
+			Result = DSCa.FirstOrDefault(ca => t_vao >= ngay.Add(ca.NhanDienVao.From) && t_vao <= ngay.Add(ca.NhanDienVao.To)
+											 && t_raa >= ngay.Add(ca.NhanDienRaa.From) && t_raa <= ngay.Add(ca.NhanDienRaa.To));
+			if (Result == null)
+			{
+				//Result = new cCa{ID = int.MinValue, }
+			}
+
+
+		}
+
+		public void TaoCaTuDo(int ID, DateTime CheckInTime, out cCa Ca)
+		{
+			//var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
+			Ca = new cCa();
+			var temp = new TimeSpan(CheckInTime.TimeOfDay.Hours, CheckInTime.TimeOfDay.Minutes, 0);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
+			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.From.Add(GlobalVariables._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
+			if (Ca.ID == int.MinValue + 0) {
+				Ca.Duty = new FromToTimeSpan { From = temp, To = temp.Add(GlobalVariables._08gio) };
+				Ca.WorkingTimeTS = XL2._08gio;
+				Ca.Workingday = 1f;
+				Ca.Code = Properties.Settings.Default.shiftCodeCa8h;
+				Ca.MoTa = string.Format(Properties.Settings.Default.MoTaCaTuDo, 8);
+				Ca.KyHieuCC = Properties.Settings.Default.kyHieuCCCa8h;
+			}
+
+
+			Ca.LateeMin = GlobalVariables._0gio;
+			Ca.EarlyMin = GlobalVariables._0gio;
+			Ca.AfterOTMin = GlobalVariables._0gio;
+			Ca.chophepTreTS = GlobalVariables._0gio;
+			Ca.chophepSomTS = GlobalVariables._0gio;
+			Ca.batdaulamthemTS = GlobalVariables._0gio;
+			Ca.DayCount = Ca.Duty.To.Days;
+			Ca.QuaDem = (Ca.Duty.To.Days == 1);
+			Ca.LunchMin = XL2._0gio;
+		}
+
 	}
 }

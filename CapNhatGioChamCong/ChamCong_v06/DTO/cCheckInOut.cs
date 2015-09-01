@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChamCong_v06.BUS;
 using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.DTO {
@@ -11,6 +12,8 @@ namespace ChamCong_v06.DTO {
 		public cCheck Raa;
 		public int ShiftID;
 		//public cCa ThuocCa;
+		public cCa ThuocCa;
+		public List<cCa> CaNhanDien;
 		public StructTGCa TG;
 		public ThoiDiem TD;
 		public bool QuaDem;

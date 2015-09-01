@@ -9,10 +9,16 @@ namespace ChamCong_v06.Helper {
 		public int ID;
 		public string Description;
 	}
-	public struct FromToTime
+	public struct FromToDateTime
 	{
 		public DateTime From;
 		public DateTime To;
+	}
+
+	public struct FromToTimeSpan
+	{
+		public TimeSpan From;
+		public TimeSpan To;
 	}
 
 	#region UserInfo

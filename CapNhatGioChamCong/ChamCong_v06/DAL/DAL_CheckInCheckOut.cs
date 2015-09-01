@@ -9,7 +9,7 @@ using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.DAL {
 	public partial class DAL_CheckInCheckOut {
-		public void GetCheckInCheckOutData(FromToTime KhoangThoiGian, List<int> ArrayUEN, out List<cCheck> ResultListCheck)
+		public void GetCheckInCheckOutData(FromToDateTime KhoangThoiGian, List<int> ArrayUEN, out List<cCheck> ResultListCheck)
 		{
 			DataTable tableArrayUEN = MyUtility.Array_To_DataTable("tableName", ArrayUEN);
 			DataTable tableCheck = SqlDataAccessHelper.ExecSPQuery(SPName6.CheckInOut_DocCheckChuaXuLyV6.ToString(),

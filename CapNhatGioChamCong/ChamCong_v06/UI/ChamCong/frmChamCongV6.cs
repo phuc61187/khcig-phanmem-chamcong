@@ -14,10 +14,10 @@ using DevExpress.XtraEditors.Controls;
 namespace ChamCong_v06.UI.ChamCong {
 	public partial class frmChamCongV6 : Form
 	{
-		private List<DataRow>  m_SelectedPhongDR = new List<DataRow>();
 		private List<DataRow> m_NhanVienDR = new List<DataRow>();// lưu danh sách nhân viên trong  tất cả phòng đang chọn
 		private List<cPhongBan> m_AllPhong = new List<cPhongBan>();
 		private List<cPhongBan> m_SelectedPhong = new List<cPhongBan>();
+		private List<cNhomCa> m_AllNhomCa = new List<cNhomCa>();
 
 		public frmChamCongV6() {
 			InitializeComponent();
@@ -38,6 +38,10 @@ namespace ChamCong_v06.UI.ChamCong {
 			 */
 			loadTreePhgBan(treePhongBan);
 			treePhongBan.AfterSelect += treePhongBan_AfterSelect;
+
+			// xác định lịch trình tổng quan
+			BUS_LichTrinh_Ca busLichTrinhCa = new BUS_LichTrinh_Ca();
+			busLichTrinhCa.LayTatCaLichTrinhVaCa(ref m_AllNhomCa);
 
 		}
 		#region cách làm có store procedure
@@ -101,7 +105,6 @@ namespace ChamCong_v06.UI.ChamCong {
 		private void treePhongBan_AfterSelect(object sender, TreeViewEventArgs e) {
 			#region mỗi lần chọn node thì lấy ID node hiện tại và tất cả node con
 
-			this.m_SelectedPhongDR.Clear();
 			this.m_SelectedPhong.Clear();
 			this.m_NhanVienDR.Clear();
 			e.Node.Expand();
@@ -152,21 +155,17 @@ namespace ChamCong_v06.UI.ChamCong {
 		{
 			DateTime Thang = dateNavigator1.DateTime;
 			Thang = MyUtility.FirstDayOfMonth(Thang);
-			// xác định lịch trình tổng quan
-			this.LayLichTrinhVaDSCa();
 			//1. xác định danh sach nhan vien dang check;  LẬP DS nhân viên đó để chấm công
 			List<int> listUEN;
 			GetList_UEN_Checked(checkedDSNV, out listUEN);// lấy danh sách các mã nhân viên check vì checkcomboBox ko cho phép lấy datarowview
 			List<cUserInfo> listDSNV;
-			BUS_NhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienDR, this.m_SelectedPhongDR, out listDSNV);
-			
+			BUS_NhanVien busNhanVien = new BUS_NhanVien();
+			busNhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienDR, this.m_SelectedPhong, this.m_AllNhomCa, out listDSNV);
+			BUS_ChamCong busChamCong = new BUS_ChamCong();
 			//BUS_ChamCong.ChamCong(listDSNV, Thang);
 		}
 
-		private void LayLichTrinhVaDSCa()
-		{
-			//DataTable tableLichTrinh = DAL.DAO_LTR_Ca.LayAll
-		}
+
 
 
 		private void GetList_UEN_Checked(CheckedComboBoxEdit checkedComboBox_NhanVien, out List<int> List_UEN)
