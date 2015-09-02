@@ -73,6 +73,7 @@
     <Compile Include="DAL\DAOPhongBan_NhanVien.cs" />
     <Compile Include="DAL\DAO_Shift_Schedule.cs" />
     <Compile Include="DTO\cCheckInOut.cs" />
+    <Compile Include="DTO\cNgayCong.cs" />
     <Compile Include="DTO\cNhomCa.cs" />
     <Compile Include="DTO\cUserInfo.cs" />
     <Compile Include="DTO\cLichTrinh.cs" />

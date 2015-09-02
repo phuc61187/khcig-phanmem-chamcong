@@ -55,7 +55,8 @@ namespace ChamCong_v06.UI {
 			//1.1 ko có kết nối hoặc tài khoản ko đúng thì ko bật flag login
 			//1.2 đăng nhập thành công thì bật cờ,đóng form này lại //todo 
 			string tmpConnStr = string.Empty, currUserAccount = string.Empty;
-			int loaiTK = 1, currUserID = 0;
+			int currUserID = 0;
+            LoaiTK loaiTK = LoaiTK.None;
 			if (Settings.Default.EncryptConnectionString == string.Empty)
 			{
 				ACMessageBox.Show("Chưa có kết nối CSDL.", Resources.Caption_Loi, 2000);
@@ -63,15 +64,22 @@ namespace ChamCong_v06.UI {
 			}
 			tmpConnStr = MyUtility.giaima(Settings.Default.EncryptConnectionString);
 			var kq = XL.CheckLogIn(tempUsername, tempPassword, passroot,
-				ref tmpConnStr, ref loaiTK, ref currUserID, ref currUserAccount);
+				ref tmpConnStr, out loaiTK, out currUserID, out currUserAccount);
 			if (!kq) {
 				btnEditMatkhau.Text = string.Empty;
 				return;
 			}
 
-			//1.2
-			XL2.currUserID = currUserID;
-			XL2.currUserAccount = currUserAccount;
+			//1.2 đang nhập thành công thì chuẩn bị các dữ liệu toàn cục
+            // nếu tài khoản LocalRoot thì được mở các form...//todo hiển thị các form nào?
+
+            // nếu tài khoản thường thì chuẩn bị các biến toàn cục: 
+            // a. danh sách phòng ban được phép thao tác, 
+            // b. thông tin ca tự do phần mềm thiết lập, áp dụng cho runtime
+			GlobalVariables.CurrentUserID = currUserID;
+			GlobalVariables.CurrentUserAccount = currUserAccount;
+            GlobalVariables.DocServerSetting5();
+            GlobalVariables.SettingCaTuDo();
 			this.m_LogInStatus = true;
 			this.Close();
 			return;

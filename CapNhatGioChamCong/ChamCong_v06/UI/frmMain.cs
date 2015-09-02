@@ -27,11 +27,11 @@ namespace ChamCong_v06.UI {
 			//1. nếu chưa login thì hiển thị form login
 			if (!this.m_LogInStatus)
 			{
-				frmLogIn frm = new frmLogIn();
+				frmLogIn frm = new frmLogIn();// hiển thị form login, nếu login thành công thì làm những thao tác bên dưới
 				frm.ShowDialog();
 				if (frm.m_LogInStatus)
 				{
-					//todo 
+					//todo test
 					frmQLTaiKhoan frm1 = new frmQLTaiKhoan();
 					frm1.MdiParent = this;
 					frm1.Show();
@@ -69,7 +69,7 @@ namespace ChamCong_v06.UI {
 		}
 
 		private void thoatToolStripMenuItem_Click(object sender, EventArgs e) {
-			Application.Exit();
+            Application.Exit();
 		}
 
 		private void qLTaiKhoanDangNhapToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -116,6 +116,22 @@ namespace ChamCong_v06.UI {
 			}
 
 		}
+
+        private void dangXuatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //1. nếu có form đang hoạt động thì đóng hết tất cả form đang hoạt động
+            if (this.MdiChildren.Length > 0) 
+            {
+                for (int i = 0; i < this.MdiChildren.Length; i++)
+                {
+                    this.MdiChildren[i].Close();
+                }
+            }
+            // 2. hiển thị lại form login để đăng nhập
+            frmLogIn frm = new frmLogIn();// hiển thị form login, nếu login thành công thì làm những thao tác bên dưới
+            frm.ShowDialog();
+
+        }
 
 	}
 }

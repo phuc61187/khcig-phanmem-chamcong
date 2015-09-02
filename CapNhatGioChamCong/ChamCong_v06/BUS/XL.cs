@@ -500,9 +500,12 @@ namespace ChamCong_v06.BUS {
 //			return kq;
 //		}
 		public static bool CheckLogIn(string tempUsername, string tempPassword, string passroot,
-			ref string tmpConnStr, ref int loaiTK, ref int currUserID, ref string currUserAccount)
+			ref string tmpConnStr, out LoaiTK loaiTK, out int currUserID, out string currUserAccount)
 		{
 			bool kq;
+		    loaiTK = LoaiTK.None;
+		    currUserID = 0;
+		    currUserAccount = string.Empty;
 			// đọc được file thành công, kiểm tra kết nối csdl
 			if (SqlDataAccessHelper.TestConnection(tmpConnStr) == false) {
 				ACMessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_Loi, 3000);
@@ -514,7 +517,7 @@ namespace ChamCong_v06.BUS {
 			if (tempUsername == "root" && tempPassword == passroot) { //log in bằng tài khoản root
 				currUserID = int.MaxValue;
 				currUserAccount = tempUsername;
-				loaiTK = 1;
+				loaiTK = LoaiTK.LocalRoot;
 				kq = true;
 			}
 			else {// kiểm tra login bằng tài khoản thường
@@ -523,7 +526,7 @@ namespace ChamCong_v06.BUS {
 				if (dt.Rows.Count != 0) { // tài khoản thường -> 
 					currUserID = (int)dt.Rows[0]["UserID"];
 					currUserAccount = dt.Rows[0]["UserAccount"].ToString();
-					loaiTK = 0;
+					loaiTK = LoaiTK.User;
 					kq = true;
 				}
 				else {
