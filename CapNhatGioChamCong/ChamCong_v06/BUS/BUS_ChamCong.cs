@@ -9,359 +9,429 @@ using ChamCong_v06.DTO;
 using ChamCong_v06.Helper;
 
 
-namespace ChamCong_v06.BUS
-{
-    public partial class BUS_ChamCong
-    {
+namespace ChamCong_v06.BUS {
+	public partial class BUS_ChamCong {
 
 
-        public void ChamCong2(List<cUserInfo> DSNV) {
-            //ở cấp trên luôn kiểm tra có nhân viên mới chấm công
-            List<int> arrayUEN = (from cUserInfo item in DSNV select item.MaCC).ToList();
+		public void ChamCong2(List<cUserInfo> DSNV) {
+			//ở cấp trên luôn kiểm tra có nhân viên mới chấm công
+			List<int> arrayUEN = (from cUserInfo item in DSNV select item.MaCC).ToList();
 
-            FromToDateTime KhoangTG = new FromToDateTime();
-            List<cCheck> DSCheckInCheckOut;
-            List<cCheck> DSCheck_BiLoai_All;
-            DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
-            dal.GetCheckInCheckOutData(KhoangTG, arrayUEN, out DSCheckInCheckOut);
-            XuLy_Loai_CheckTrong30ph(arrayUEN, DSCheckInCheckOut, out DSCheck_BiLoai_All);// giữ check hợp lệ, loại check cùng loại, gần nhau, hoặc check nhầm IO trong 10ph
+			FromToDateTime KhoangTG = new FromToDateTime();
+			List<cCheck> DSCheckInCheckOut;
+			List<cCheck> DSCheck_BiLoai_All;
+			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
+			dal.GetCheckInCheckOutData(KhoangTG, arrayUEN, out DSCheckInCheckOut);
+			XuLy_Loai_CheckTrong30ph(arrayUEN, DSCheckInCheckOut, out DSCheck_BiLoai_All);// giữ check hợp lệ, loại check cùng loại, gần nhau, hoặc check nhầm IO trong 10ph
 
-            // ghép check in- check out
-            foreach (cUserInfo nhanVien in DSNV) {
-                nhanVien.DS_Check_A = (from item in DSCheckInCheckOut where item.MaCC == nhanVien.MaCC select item).ToList();
-                GhepCIO_A2(nhanVien.DS_Check_A, nhanVien.DS_CIO_A);
-                XetCa_ListCIO_A3_V6(nhanVien.DS_CIO_A, nhanVien.NhomCa.DSCa);
-                PhanPhoi_DSVaoRa6_V6(nhanVien.DS_CIO_A, nhanVien.DSNgayCong);
-                
-            }
-        }
+			// ghép check in- check out
+			foreach (cUserInfo nhanVien in DSNV) {
+				nhanVien.DS_Check_A = (from item in DSCheckInCheckOut where item.MaCC == nhanVien.MaCC select item).ToList();
+				GhepCIO_A2(nhanVien.DS_Check_A, nhanVien.DS_CIO_A);
+				XetCa_ListCIO_A3_V6(nhanVien.DS_CIO_A, nhanVien.NhomCa.DSCa);
+				TinhTGLV(nhanVien.DS_CIO_A);
+			}
+		}
 
-        private void XuLy_Loai_CheckTrong30ph(IEnumerable<int> ArrayUEN, List<cCheck> DSCheckInCheckOut, out List<cCheck> DSCheck_BiLoai_All) {
-            DSCheck_BiLoai_All = new List<cCheck>();
-            foreach (int uen in ArrayUEN) {
-                List<cCheck> DS_Check_By_UEN = (from cCheck check in DSCheckInCheckOut where check.MaCC == uen select check).ToList();
-                List<cCheck> DSCheck_BiLoai_By_UEN;
-                LoaiBoCheckKoHopLe1_V6(DS_Check_By_UEN, out DSCheck_BiLoai_By_UEN);
-                DSCheck_BiLoai_All.AddRange(DSCheck_BiLoai_By_UEN);
-            }
-            DAL.DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
-            dal.LoaiCheckTrong30ph(DSCheck_BiLoai_All);
-        }
+		private void XuLy_Loai_CheckTrong30ph(IEnumerable<int> ArrayUEN, List<cCheck> DSCheckInCheckOut, out List<cCheck> DSCheck_BiLoai_All) {
+			DSCheck_BiLoai_All = new List<cCheck>();
+			foreach (int uen in ArrayUEN) {
+				List<cCheck> DS_Check_By_UEN = (from cCheck check in DSCheckInCheckOut where check.MaCC == uen select check).ToList();
+				List<cCheck> DSCheck_BiLoai_By_UEN;
+				LoaiBoCheckKoHopLe1_V6(DS_Check_By_UEN, out DSCheck_BiLoai_By_UEN);
+				DSCheck_BiLoai_All.AddRange(DSCheck_BiLoai_By_UEN);
+			}
+			DAL.DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
+			dal.LoaiCheckTrong30ph(DSCheck_BiLoai_All);
+		}
 
-        internal void ChamCong(List<DTO.cUserInfo> listDSNV, DateTime Thang) {
-            DataTable tableArrUEN = MyUtility.Array_To_DataTable("tableName",
-                (from cUserInfo user in listDSNV select user.MaCC).ToList());
-            // xác định tháng đã kết công chưa, nếu đã kết công thì lấy danh sách các ngày đã kết công
-            // chưa kết công thì tính công
-            FromToDateTime khoangTG_Check = new FromToDateTime();
-            DataTable tableCheck = SqlDataAccessHelper.ExecSPQuery(SPName6.CheckInOut_DocCheckChuaXuLyV6.ToString(),
-                new SqlParameter("@StartTime", khoangTG_Check.From),
-                new SqlParameter("@EndTime", khoangTG_Check.To),
-                new SqlParameter("@ArrUserEnrollNumber", tableArrUEN));
-            XuLyCheck(listDSNV, tableCheck);
-
-            // lấy các check mới chưa ghép cặp được để ghép cặp lại
-        }
-
-        private void XuLyCheck(List<cUserInfo> listDSNV, DataTable tableCheck) {
-            if (tableCheck.Rows.Count == 0) return;
-
-            List<cCheck> dsCheck_Disable_All_NV = new List<cCheck>();
-            foreach (cUserInfo user in listDSNV) {
-                LoadDSCheck_A(user.MaCC, tableCheck, user.DS_Check_A);
-                var dsCheck_Disable = new List<cCheck>();
-                LoaiBoCheckKoHopLe1(user.DS_Check_A, ref dsCheck_Disable);
-                dsCheck_Disable_All_NV.AddRange(dsCheck_Disable);
-                GhepCIO_A2(user.DS_Check_A, user.DS_CIO_A);
-            }
-        }
-
-        private void LoadDSCheck_A(int tempMaCC, DataTable tableCheck_A, List<cCheck> ds_Check_A) {
-            var arrRows = tableCheck_A.Select("UserEnrollNumber = " + tempMaCC, "TimeStr asc");
-            //reset lại các danh sách
-            ds_Check_A.Clear();
-
-            if (arrRows.Length == 0) return;
-
-            foreach (var row in arrRows) {
-                var UserEnrollNumber = (int)row["UserEnrollNumber"];
-                var MachineNo = (int)row["MachineNo"];
-                var Source = (string)row["Source"];
-                var TimeStr = (DateTime)row["TimeStr"];
-
-                cCheck check;
-                if (MachineNo % 2 == 1) {
-                    var checkInn = new cCheck { MaCC = UserEnrollNumber, Time = TimeStr, Source = Source, MachineNo = MachineNo, Type = "I", };
-                    check = checkInn;
-                }
-                else {
-                    var checkOut = new cCheck { MaCC = UserEnrollNumber, Time = TimeStr, Source = Source, MachineNo = MachineNo, Type = "O", };
-                    check = checkOut;
-                }
-                ds_Check_A.Add(check);
-            }
-
-        }
-
-        private void LoaiBoCheckKoHopLe1(List<cCheck> ds_Check_A, ref List<cCheck> ds_Check_Trong30ph) {
-            //clear ds_Check_Trong30ph trước vì nó còn giữ các check ko hl của nv trước
-            ds_Check_Trong30ph.Clear();
-            // lọc này phải dảm bảo sort trước
-            if (ds_Check_A == null || ds_Check_A.Count == 0 || ds_Check_A.Count == 1) return;
-            var i = 0;
-            while (i + 1 < ds_Check_A.Count) {
-                var before = ds_Check_A[i];
-                var afterr = ds_Check_A[i + 1];
-                if ((before.Type == afterr.Type) && ((afterr.Time - before.Time) < XL2._10phut)) {
-                    //info ver 4.0.0.1 // giữ vào đầu tiên, ra cuối cùng
-                    if (before.Type == "I") {
-                        ds_Check_Trong30ph.Add(afterr);
-                        ds_Check_A.Remove(afterr);
-                    }
-                    else //out
+		private void LoaiBoCheckKoHopLe1_V6(List<cCheck> ds_Check_A, out List<cCheck> ds_Check_Trong30ph) {
+			ds_Check_Trong30ph = new List<cCheck>();
+			// lọc này phải dảm bảo sort trước
+			if (ds_Check_A == null || ds_Check_A.Count == 0 || ds_Check_A.Count == 1) return;
+			var i = 0;
+			while (i + 1 < ds_Check_A.Count) {
+				var before = ds_Check_A[i];
+				var afterr = ds_Check_A[i + 1];
+				if ((before.Type == afterr.Type) && ((afterr.Time - before.Time) < XL2._10phut)) {
+					//info ver 4.0.0.1 // giữ vào đầu tiên, ra cuối cùng
+					if (before.Type == "I") {
+						ds_Check_Trong30ph.Add(afterr);
+						ds_Check_A.Remove(afterr);
+					}
+					else //out
 					{
-                        ds_Check_Trong30ph.Add(before);
-                        ds_Check_A.Remove(before);
-                    }
-                }
-                else if (before.Type == "I" && afterr.Type == "O"
-                    && (afterr.Time - before.Time) < XL2._10phut) {
-                    //IO trong 30 phút thì chỉ giữ O
-                    ds_Check_Trong30ph.Add(before);
-                    ds_Check_A.Remove(before);
-                }
-                else i++;
-            }
-        }
-        private void LoaiBoCheckKoHopLe1_V6(List<cCheck> ds_Check_A, out List<cCheck> ds_Check_Trong30ph) {
-            ds_Check_Trong30ph = new List<cCheck>();
-            // lọc này phải dảm bảo sort trước
-            if (ds_Check_A == null || ds_Check_A.Count == 0 || ds_Check_A.Count == 1) return;
-            var i = 0;
-            while (i + 1 < ds_Check_A.Count) {
-                var before = ds_Check_A[i];
-                var afterr = ds_Check_A[i + 1];
-                if ((before.Type == afterr.Type) && ((afterr.Time - before.Time) < XL2._10phut)) {
-                    //info ver 4.0.0.1 // giữ vào đầu tiên, ra cuối cùng
-                    if (before.Type == "I") {
-                        ds_Check_Trong30ph.Add(afterr);
-                        ds_Check_A.Remove(afterr);
-                    }
-                    else //out
-					{
-                        ds_Check_Trong30ph.Add(before);
-                        ds_Check_A.Remove(before);
-                    }
-                }
-                else if (before.Type == "I" && afterr.Type == "O"
-                    && (afterr.Time - before.Time) < XL2._10phut) {
-                    //IO trong 30 phút thì chỉ giữ O
-                    ds_Check_Trong30ph.Add(before);
-                    ds_Check_A.Remove(before);
-                }
-                else i++;
-            }
-        }
+						ds_Check_Trong30ph.Add(before);
+						ds_Check_A.Remove(before);
+					}
+				}
+				else if (before.Type == "I" && afterr.Type == "O"
+					&& (afterr.Time - before.Time) < XL2._10phut) {
+					//IO trong 30 phút thì chỉ giữ O
+					ds_Check_Trong30ph.Add(before);
+					ds_Check_A.Remove(before);
+				}
+				else i++;
+			}
+		}
 
 
-        private void GhepCIO_A2(List<cCheck> ds_Check_A, List<cCheckInOut> ds_CIO_A) {
-            ds_CIO_A.Clear();
-            var x = 0;
-            while (x + 1 < ds_Check_A.Count) {
-                var chk_1 = ds_Check_A[x];
-                var chk_2 = ds_Check_A[x + 1];
-                if (chk_1.Type == "O") {
-                    // đầu ds là checkOut --> ra ko vào
-                    var CIO = new cCheckInOut { Vao = null, Raa = chk_1, HaveINOUT = -2, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
-                    ds_CIO_A.Add(CIO);
-                    x++;
-                }
-                else {
-                    //đầu ds là checkInn-> kiểm tra kế nếu cũng là check In thì checkInn trước là vào ko ra
-                    if (chk_2.Type == "I") {
-                        var CIO = new cCheckInOut { Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
-                        ds_CIO_A.Add(CIO);
-                        x++;
-                    }
-                    else {
-                        // kế là checkOut --> kiểm tra nằm trong khoảng >30ph và dưới 21h45 thì ghép, ngược lại thì giờ vào ko ra, ra ko vào
-                        var duration = chk_2.Time - chk_1.Time;
-                        if (duration > XL2._22h00) {//ver 4.0.0.4	old:(duration > XL2._21h45)
-                            var CIO1 = new cCheckInOut { Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, TD = new ThoiDiem(), }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
-                            var CIO2 = new cCheckInOut { Vao = null, Raa = chk_2, HaveINOUT = -2, TimeDaiDien = chk_2.Time, TD = new ThoiDiem(), }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
-                            ds_CIO_A.Add(CIO1);
-                            x++;
-                            ds_CIO_A.Add(CIO2);
-                            x++;
-                        }
-                        else {
-                            var CIO = new cCheckInOut { Vao = chk_1, Raa = chk_2, HaveINOUT = 0, TimeDaiDien = chk_1.Time, TG = new StructTGCa(), TD = new ThoiDiem(), };
-                            ds_CIO_A.Add(CIO);
-                            x++;
-                            x++;
-                        }
-                    }
-                }
-            }
-            // xảy ra 2 TH, 1 là hết ds--> ko làm gì hết, 2 là còn lại 1 pt-> them vào
-            if (x < ds_Check_A.Count) {
-                var chk_1 = ds_Check_A[x];
-                if (chk_1.Type == "I") {
-                    var CIO1 = new cCheckInOut { Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
-                    ds_CIO_A.Add(CIO1);
-                }
-                else {
-                    var CIO2 = new cCheckInOut { Vao = null, Raa = chk_1, HaveINOUT = -2, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
-                    ds_CIO_A.Add(CIO2);
-                }
-            }
-        }
+		private void GhepCIO_A2(List<cCheck> ds_Check_A, List<cCheckInOut> ds_CIO_A) {
+			ds_CIO_A.Clear();
+			var x = 0;
+			while (x + 1 < ds_Check_A.Count) {
+				var chk_1 = ds_Check_A[x];
+				var chk_2 = ds_Check_A[x + 1];
+				if (chk_1.Type == "O") {
+					// đầu ds là checkOut --> ra ko vào
+					var CIO = new cCheckInOut { Vao = null, Raa = chk_1, CheckVT = TrangThaiCheck.ThieuVao, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+					ds_CIO_A.Add(CIO);
+					x++;
+				}
+				else {
+					//đầu ds là checkInn-> kiểm tra kế nếu cũng là check In thì checkInn trước là vào ko ra
+					if (chk_2.Type == "I") {
+						var CIO = new cCheckInOut { Vao = chk_1, Raa = null, CheckVT = TrangThaiCheck.ThieuRa, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+						ds_CIO_A.Add(CIO);
+						x++;
+					}
+					else {
+						// kế là checkOut --> kiểm tra nằm trong khoảng >30ph và dưới 21h45 thì ghép, ngược lại thì giờ vào ko ra, ra ko vào
+						var duration = chk_2.Time - chk_1.Time;
+						if (duration > XL2._22h00) {//ver 4.0.0.4	old:(duration > XL2._21h45)
+							var CIO1 = new cCheckInOut { Vao = chk_1, Raa = null, CheckVT = TrangThaiCheck.ThieuRa, TimeDaiDien = chk_1.Time, }; 
+							var CIO2 = new cCheckInOut { Vao = null, Raa = chk_2, CheckVT = TrangThaiCheck.ThieuVao, TimeDaiDien = chk_2.Time, }; 
+							ds_CIO_A.Add(CIO1);
+							x++;
+							ds_CIO_A.Add(CIO2);
+							x++;
+						}
+						else {
+							var CIO = new cCheckInOut { Vao = chk_1, Raa = chk_2, CheckVT = 0, TimeDaiDien = chk_1.Time,  };
+							ds_CIO_A.Add(CIO);
+							x++;
+							x++;
+						}
+					}
+				}
+			}
+			// xảy ra 2 TH, 1 là hết ds--> ko làm gì hết, 2 là còn lại 1 pt-> them vào
+			if (x < ds_Check_A.Count) {
+				var chk_1 = ds_Check_A[x];
+				if (chk_1.Type == "I") {
+					var CIO1 = new cCheckInOut { Vao = chk_1, Raa = null, CheckVT = TrangThaiCheck.ThieuRa, TimeDaiDien = chk_1.Time, }; 
+					ds_CIO_A.Add(CIO1);
+				}
+				else {
+					var CIO2 = new cCheckInOut { Vao = null, Raa = chk_1, CheckVT = TrangThaiCheck.ThieuVao, TimeDaiDien = chk_1.Time, }; 
+					ds_CIO_A.Add(CIO2);
+				}
+			}
+		}
 
-        public void XetCa_ListCIO_A3_V6(List<cCheckInOut> ds_CIO_A, List<cCa> DSCa) {
-            try {
-                var i = 0;
-                while (i < ds_CIO_A.Count) {
-                    var CIO = ds_CIO_A[i];
+		public void XetCa_ListCIO_A3_V6(List<cCheckInOut> ds_CIO_A, List<cCa> DSCa) {
+			try {
+				var i = 0;
+				while (i < ds_CIO_A.Count) {
+					var CIO = ds_CIO_A[i];
 
-                    #region nếu giờ quên check thì chỉ kiểm tra khoảng hiểu ca
+					#region nếu giờ quên check thì chỉ kiểm tra khoảng hiểu ca
 
-                    if (CIO.HaveINOUT < 0) {
-                        CIO.ThuocNgayCong = CIO.TimeDaiDien.Date;
-                        Tim_DSCa_NhanDienDuoc(CIO.TimeDaiDien, CIO.ThuocNgayCong, CIO.HaveINOUT, DSCa, out CIO.CaNhanDien);
-                        i++;
-                        continue;
-                    }
+					if (CIO.CheckVT < 0) {
+						CIO.ThuocNgayCong = ThuocNgayCong(CIO.TimeDaiDien);
+						Tim_DSCa_NhanDienDuoc(CIO.TimeDaiDien, CIO.ThuocNgayCong, CIO.CheckVT, DSCa, out CIO.CaNhanDien);
+						i++;
+						continue;
+					}
 
-                    #endregion
+					#endregion
 
-                    var ngay = ThuocNgayCong(CIO.TimeDaiDien);
-                    CIO.ThuocNgayCong = ngay;
-                    bool thuocDSCa;
-                    cCa thuocCa;
-                    KiemtraThuocCa(CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocNgayCong, DSCa, out thuocDSCa, out thuocCa);
+					var ngay = ThuocNgayCong(CIO.TimeDaiDien);
+					CIO.ThuocNgayCong = ngay;
+					bool thuocDSCa;
+					cCa thuocCa;
+					KiemtraThuocCa(CIO.Vao.Time, CIO.Raa.Time, CIO.ThuocNgayCong, DSCa, out thuocDSCa, out thuocCa);
 
-                    #region nếu thuộc khoảng hiểu ca thì set ca
+					#region nếu thuộc khoảng hiểu ca thì set ca
 
-                    if (thuocDSCa && thuocCa.TachCaDem == false) {
-                        CIO.ThuocCa = thuocCa;
-                        i++;
-                    }
-                    else if (thuocDSCa == false) {
-                        CIO.ThuocCa = GlobalVariables.caTuDo;
-                        i++;
-                    }
-                    else {
-                        #region check inn, check out vao 3 ra 3, vao 1 ra 1
+					if (thuocDSCa && thuocCa.TachCaDem == false) {
+						CIO.ThuocCa = thuocCa;
+						i++;
+					}
+					else if (thuocDSCa == false) {
+						CIO.ThuocCa = GlobalVariables.caTuDo;
+						i++;
+					}
+					else {
+						#region check inn, check out vao 3 ra 3, vao 1 ra 1
 
-                        var vaoca3 = CIO.Vao;
-                        var raaca3 = new cCheck {
-                            Type = "O",
-                            MachineNo = 22,
-                            Source = "PC",
-                            MaCC = CIO.Vao.MaCC,
-                            TypeColumn = "O",
-                            Time = ngay.Add(GlobalVariables._22h00)
-                        };
-                        var vaoca1 = new cCheck {
-                            Type = "I",
-                            MachineNo = 21,
-                            Source = "PC",
-                            MaCC = CIO.Raa.MaCC,
-                            TypeColumn = "I",
-                            Time = ngay.AddDays(1d).Date.Add(GlobalVariables._06h00).Add(XL2._01giay), //todo lưu ý ở đây cộng thêm 1 ngày, 1 giây để ko bị trùng check cùng giờ 2 máy
-                        };
-                        var raaca1 = CIO.Raa;
+						var vaoca3 = CIO.Vao;
+						var raaca3 = new cCheck {
+							Type = "O",
+							MachineNo = 22,
+							Source = "PC",
+							MaCC = CIO.Vao.MaCC,
+							TypeColumn = "O",
+							Time = ngay.Add(GlobalVariables._22h00)
+						};
+						var vaoca1 = new cCheck {
+							Type = "I",
+							MachineNo = 21,
+							Source = "PC",
+							MaCC = CIO.Raa.MaCC,
+							TypeColumn = "I",
+							Time = ngay.AddDays(1d).Date.Add(GlobalVariables._06h00).Add(XL2._01giay), //todo lưu ý ở đây cộng thêm 1 ngày, 1 giây để ko bị trùng check cùng giờ 2 máy
+						};
+						var raaca1 = CIO.Raa;
 
-                        #endregion
+						#endregion
 
-                        // do tách ra thành 2 CIO mới nên phải gán lại IsEdited cho từng cái
-                        bool thuocDSCa3 = false, thuocDSCa1 = false;
-                        cCa thuocCa3, thuocCa1;
+						// do tách ra thành 2 CIO mới nên phải gán lại IsEdited cho từng cái
+						bool thuocDSCa3 = false, thuocDSCa1 = false;
+						cCa thuocCa3, thuocCa1;
 
-                        ds_CIO_A[i] = new cCheckInOut { TD = new ThoiDiem(), Vao = vaoca3, Raa = raaca3, ThuocNgayCong = ngay, TimeDaiDien = vaoca3.Time, };
-                        KiemtraThuocCa(vaoca3.Time, raaca3.Time, ds_CIO_A[i].ThuocNgayCong, DSCa, out thuocDSCa3, out thuocCa3);
-                        if (thuocDSCa3) ds_CIO_A[i].ThuocCa = thuocCa3;
-                        else ds_CIO_A[i].ThuocCa = GlobalVariables.caTuDo;
-                        
-                        var newCIO = new cCheckInOut { TD = new ThoiDiem(), Vao = vaoca1, Raa = raaca1, ThuocNgayCong = ngay.AddDays(1d), TimeDaiDien = vaoca1.Time, };
-                        KiemtraThuocCa(vaoca1.Time, raaca1.Time, newCIO.ThuocNgayCong, DSCa, out thuocDSCa1, out thuocCa1);
-                        if (thuocDSCa3) ds_CIO_A[i].ThuocCa = thuocCa3;
-                        else ds_CIO_A[i].ThuocCa = GlobalVariables.caTuDo;
-                        
-                        // vì hàm insert ko cho phép chèn ở vị trí > số lượng phần tử
-                        // => nên nếu i là phần tử cuối thì add vào cuối danh sách, ngược lại thì insert vào vị trí i+1
-                        if (i == (ds_CIO_A.Count - 1)) ds_CIO_A.Add(newCIO);
-                        else ds_CIO_A.Insert(i + 1, newCIO);
-                        i = i + 2; // +2 vì i là ca3, i+1 là ca 1
-                    }
-                    #endregion
+						ds_CIO_A[i] = new cCheckInOut { TD = new ThoiDiem(), Vao = vaoca3, Raa = raaca3, ThuocNgayCong = ngay, TimeDaiDien = vaoca3.Time, };
+						KiemtraThuocCa(vaoca3.Time, raaca3.Time, ds_CIO_A[i].ThuocNgayCong, DSCa, out thuocDSCa3, out thuocCa3);
+						if (thuocDSCa3) ds_CIO_A[i].ThuocCa = thuocCa3;
+						else ds_CIO_A[i].ThuocCa = GlobalVariables.caTuDo;
 
-                }
+						var newCIO = new cCheckInOut { TD = new ThoiDiem(), Vao = vaoca1, Raa = raaca1, ThuocNgayCong = ngay.AddDays(1d), TimeDaiDien = vaoca1.Time, };
+						KiemtraThuocCa(vaoca1.Time, raaca1.Time, newCIO.ThuocNgayCong, DSCa, out thuocDSCa1, out thuocCa1);
+						if (thuocDSCa3) ds_CIO_A[i].ThuocCa = thuocCa3;
+						else ds_CIO_A[i].ThuocCa = GlobalVariables.caTuDo;
 
-            }
-            catch (Exception e) {
-                //lg.Error(string.Format("[{0}]_[{1}]\n", "XLChamCong", System.Reflection.MethodBase.GetCurrentMethod().Name), e);
-            }
-        }
-        public static void PhanPhoi_DSVaoRa6_V6(List<cCheckInOut> dsVaoRa, List<cNgayCong> dsNgayCong) {
-            var skipElement2 = 0;
-            foreach (var ngayCong in dsNgayCong) {
-                ngayCong.DSVaoRa = (from vaoraa in dsVaoRa.Skip(skipElement2)
-                                    where vaoraa.ThuocNgayCong == ngayCong.Ngay
-                                    select vaoraa).ToList();
-                skipElement2 += ngayCong.DSVaoRa.Count;
-            }
-        }
+						// vì hàm insert ko cho phép chèn ở vị trí > số lượng phần tử
+						// => nên nếu i là phần tử cuối thì add vào cuối danh sách, ngược lại thì insert vào vị trí i+1
+						if (i == (ds_CIO_A.Count - 1)) ds_CIO_A.Add(newCIO);
+						else ds_CIO_A.Insert(i + 1, newCIO);
+						i = i + 2; // +2 vì i là ca3, i+1 là ca 1
+					}
+					#endregion
 
-        public void Tim_DSCa_NhanDienDuoc(DateTime time, DateTime ngay, int HaveINOUT, List<cCa> DSCa, out List<cCa> Result) {
-            Result = new List<cCa>();
-            Result = (HaveINOUT == -1)
-                         ? DSCa.FindAll(ca => time >= ngay.Add(ca.NhanDienVao.From) && time <= ngay.Add(ca.NhanDienVao.To))
-                         : DSCa.FindAll(ca => time >= ngay.Add(ca.NhanDienRaa.From) && time <= ngay.Add(ca.NhanDienRaa.To));
+				}
 
-        }
+			} catch (Exception e) {
+				//lg.Error(string.Format("[{0}]_[{1}]\n", "XLChamCong", System.Reflection.MethodBase.GetCurrentMethod().Name), e);
+			}
+		}
 
-        public static DateTime ThuocNgayCong(DateTime chkinn)// lưu ý không dùng cho các giờ ra, giờ ra thiếu vào, giờ vào thiếu ra
-        {
-            return chkinn.TimeOfDay < XL2._03gio ? chkinn.Date.AddDays(-1) : chkinn.Date;
-        }
+		public void TinhTGLV (IEnumerable<cCheckInOut> DS_CIO )
+		{
+			foreach (cCheckInOut CIO in DS_CIO)
+			{
+				CIO.TD = new ThoiDiem();
+				CIO.KhoangTGCa = new StructTGCa();
+				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, CIO.ThuocCa.NightTime);
+				TinhCong(CIO, CIO.ThuocCa);
+			}
+		}
 
-        public static void KiemtraThuocCa(DateTime t_vao, DateTime t_raa, DateTime ngay, List<cCa> DSCa, out bool ThuocDSCa, out cCa Result) {
-            ThuocDSCa = true;
-            Result = DSCa.FirstOrDefault(ca => t_vao >= ngay.Add(ca.NhanDienVao.From) && t_vao <= ngay.Add(ca.NhanDienVao.To)
-                                             && t_raa >= ngay.Add(ca.NhanDienRaa.From) && t_raa <= ngay.Add(ca.NhanDienRaa.To));
-            if (Result == null) {
-                ThuocDSCa = false;
-            }
+		private void TinhCong(cCheckInOut CIO, cCa Ca) {
+			TinhCong(CIO.KhoangTGCa.LamTrongGio, CIO.KhoangTGCa.LamNgoaiGio,CIO.KhoangTGCa.TreVR, CIO.KhoangTGCa.SomVR, 
+				Ca.WorkingTimeTS, Ca.Workingday,
+				out CIO.CongTheoCa.TruTreVR, out CIO.CongTheoCa.TruSomVR, out CIO.CongTheoCa.TrongGio, out CIO.CongTheoCa.NgoaiGio);
+		}
+
+		private void TinhCong(TimeSpan LamTrongGio, TimeSpan LamNgoaiGio, TimeSpan TreVR, TimeSpan SomVR, TimeSpan WorkingTimeTS, float Workingday,
+			out float TruTreVR, out float TruSomVR, out float TrongGio, out float NgoaiGio)
+		{
+			var DoubleTruTreVR = (TreVR.TotalHours * Convert.ToDouble(Workingday)) / WorkingTimeTS.TotalHours;
+			var DoubleTruSomVR = (SomVR.TotalHours * Convert.ToDouble(Workingday)) / WorkingTimeTS.TotalHours;
+			TruTreVR = DoubleTruTreVR.Truncate(2);
+			TruSomVR = DoubleTruSomVR.Truncate(2);
+			TrongGio = Workingday - TruTreVR - TruSomVR;
+			var DoubleNgoaiGio = (LamNgoaiGio.TotalHours)/8d;
+			NgoaiGio = DoubleNgoaiGio.Truncate(2);
+		}
+
+		public void TinhTG_LV_LVCa3_LamThem1Ca(cCheckInOut CIO, cCa ca, FromToTimeSpan NightTime) {
+			bool tempQuaDem;
+			TinhTG_LV_LVCa3_LamThem1Ca(CIO.ThuocNgayCong, CIO.CheckVT,
+				CIO.Vao.Time, CIO.Raa.Time, ca.Duty.From, ca.Duty.To, ca.chophepTreTS, ca.chophepSomTS, ca.batdaulamthemTS, ca.LunchMin,
+				NightTime,//ver 4.0.0.4
+				out CIO.TD.BD_LV, out CIO.TD.KT_LV_TrongCa, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
+				out CIO.KhoangTGCa.HienDien, out CIO.KhoangTGCa.VaoSauCa, out CIO.KhoangTGCa.RaTruocCa,
+				out CIO.KhoangTGCa.TreVR, out CIO.KhoangTGCa.SomVR,	
+				out CIO.KhoangTGCa.OLaiVR, out CIO.KhoangTGCa.LamTrongGio, out tempQuaDem, out CIO.KhoangTGCa.LamDem);
+			CIO.QuaDem = tempQuaDem;// ko cho phép out CIO.QuaDem nên fix tạm bằng cách dùng biến trung gian cục bộ và gán lại
+		}
+
+		public void TinhTG_LV_LVCa3_LamThem1Ca(DateTime ThuocNgayCong, TrangThaiCheck CheckVT,
+			DateTime TD_Vao, DateTime TD_Raa,
+			TimeSpan BDCa_TS, TimeSpan KTCa_TS, TimeSpan Phut_ChophepTreTS, TimeSpan Phut_ChophepSomTS, TimeSpan Phut_TinhBatdauOT_TS,
+			TimeSpan Phut_NghiTrua,
+			FromToTimeSpan NightTime,
+			out DateTime TD_BD_LV, out DateTime TD_KT_LV_TrongCa, out DateTime TD_BD_LV_Ca3, out DateTime TD_KT_LV_Ca3,
+			out TimeSpan TGHienDien, out TimeSpan TGVaoSauCa, out TimeSpan TGRaTruocCa,
+			out TimeSpan TGVaoTreVR, out TimeSpan TGRaaSomVR, out TimeSpan TG_OLai_VR,
+			out TimeSpan TGLamViecTrongCa, /*out TimeSpan TGLamViecNgoaiGio, ko có TGLamViecNgoaiGio vì chưa xử lý*/
+			out bool QuaDem, out TimeSpan TGLamDem) {
+
+			var TD_Vao_lamTron = new DateTime(TD_Vao.Year, TD_Vao.Month, TD_Vao.Day, TD_Vao.Hour, TD_Vao.Minute, 0);
+			var TD_Raa_lamTron = new DateTime(TD_Raa.Year, TD_Raa.Month, TD_Raa.Day, TD_Raa.Hour, TD_Raa.Minute, 0);
+			TD_BD_LV = ThuocNgayCong;
+			TD_KT_LV_TrongCa = ThuocNgayCong;
+			TD_BD_LV_Ca3 = DateTime.MinValue;
+			TD_KT_LV_Ca3 = DateTime.MinValue;
+			TGHienDien = TimeSpan.Zero;
+			TGVaoSauCa= TimeSpan.Zero;
+			TGRaTruocCa= TimeSpan.Zero;
+			TGVaoTreVR = TimeSpan.Zero;
+			TGRaaSomVR = TimeSpan.Zero;
+			TG_OLai_VR = TimeSpan.Zero;
+			TGLamViecTrongCa = TimeSpan.Zero;//ver 4.0.0.4	
+			TGLamDem = TimeSpan.Zero;
+			QuaDem = false;
+
+			if (CheckVT < 0) return;
+
+			var TD_BD_Ca = ThuocNgayCong.Add(BDCa_TS);
+			var TD_KT_Ca = ThuocNgayCong.Add(KTCa_TS);//off duty này đã bao gồm daycount được công bên trong
+			var thoidiem_BD_tinhtre = ThuocNgayCong.Add(Phut_ChophepTreTS);
+			var thoidiem_BD_tinhsom = ThuocNgayCong.Add(Phut_ChophepSomTS);
+			var thoidiem_BD_tinhOLai = ThuocNgayCong.Add(Phut_TinhBatdauOT_TS);
+			var thoidiem_QuyDinhBDLamDem = ThuocNgayCong.Add(NightTime.From);//ver 4.0.0.4
+			var thoidiem_QuyDinhKTLamDem = ThuocNgayCong.AddDays(1d).Add(NightTime.To);//ver 4.0.0.4 //todo lưu ý phải add thêm 1 ngày vì Global Variable =6g, chưa add 1 ngày
+
+			bool quadem;
+
+			TGHienDien = TD_Raa_lamTron - TD_Vao_lamTron;
+			// kiểm tra giờ ra ko được nhỏ hơn vào ca, giờ vào ko được nhỏ hơn ra ca
+			if (TD_Raa_lamTron <= TD_BD_Ca || TD_Vao_lamTron >= TD_KT_Ca) {
+				return;
+			}
+
+			XacDinh_TD_BDLV(TD_Vao_lamTron, TD_BD_Ca, thoidiem_BD_tinhtre, out TD_BD_LV, out TGVaoSauCa);
+			TGVaoTreVR = (TGVaoSauCa <= Phut_ChophepTreTS) ? TimeSpan.Zero : (TD_Vao_lamTron - TD_BD_Ca);
+			XacDinh_TD_KTLV_TrongCa(TD_Raa_lamTron, TD_KT_Ca, thoidiem_BD_tinhsom, out TD_KT_LV_TrongCa, out TGRaTruocCa);
+			TGRaaSomVR = (TGRaTruocCa <= Phut_ChophepSomTS) ? TimeSpan.Zero : (TD_KT_Ca - TD_Raa_lamTron);
+			XacDinh_KTG_OLai(TD_Raa_lamTron, TD_KT_Ca, thoidiem_BD_tinhOLai, out TG_OLai_VR);
+			Tinh_TGLamViecTrongCa(TD_BD_LV, TD_KT_LV_TrongCa, Phut_NghiTrua, out TGLamViecTrongCa);
+			Tinh_TGLamViec_Ca3(TD_BD_LV, TD_KT_LV_TrongCa, thoidiem_QuyDinhBDLamDem, thoidiem_QuyDinhKTLamDem, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3, out TGLamDem, out quadem);
+			QuaDem = quadem;
+		}
+
+		#region các hàm tính thời điểm bắt đầu và kết thúc làm việc
+		public void XacDinh_TD_BDLV(DateTime TD_VaoLamTron, DateTime TD_BDCa, DateTime TD_Chopheptre, out DateTime TD_BDLV, out TimeSpan VaoSauCa)
+		{
+			if (TD_VaoLamTron - TD_Chopheptre > TimeSpan.Zero) {
+				VaoSauCa = TD_VaoLamTron - TD_BDCa;
+				VaoSauCa = new TimeSpan(VaoSauCa.Days, VaoSauCa.Hours, VaoSauCa.Minutes, 0);
+			}
+			else VaoSauCa = TimeSpan.Zero;
+
+			TD_BDLV = (TD_Chopheptre < TD_VaoLamTron && TD_VaoLamTron - TD_Chopheptre > TimeSpan.Zero) ? TD_VaoLamTron : TD_BDCa;
+		}
+
+		public void XacDinh_TD_KTLV_TrongCa(DateTime TD_Raa_LamTron, DateTime TD_KTCa, DateTime TD_chophepsom, out DateTime TD_KTLVTrongCa, out TimeSpan RaTruocCa) {
+			if (TD_chophepsom - TD_Raa_LamTron > TimeSpan.Zero) {
+				RaTruocCa = TD_KTCa - TD_Raa_LamTron;
+				RaTruocCa = new TimeSpan(RaTruocCa.Days, RaTruocCa.Hours, RaTruocCa.Minutes, 0);
+			}
+			else RaTruocCa = TimeSpan.Zero;
+
+			TD_KTLVTrongCa = (TD_Raa_LamTron < TD_chophepsom && TD_chophepsom - TD_Raa_LamTron > TimeSpan.Zero) ? TD_Raa_LamTron : TD_KTCa;
+		}
+
+		public static void XacDinh_KTG_OLai(DateTime TD_Raa, DateTime TD_KTCa, DateTime TD_BD_TinhOT, out TimeSpan OLaiVR) {
+			OLaiVR = (TD_Raa - TD_BD_TinhOT > GlobalVariables._01phut) ? (TD_Raa - TD_KTCa) : TimeSpan.Zero;
+		}
+
+		public static void Tinh_TGLamViecTrongCa(DateTime tdBdLv, DateTime tdKtLvTrongCa, TimeSpan lunchMin, out TimeSpan tgGioLamViecTrongCa) {//ver 4.0.0.4	
+			tgGioLamViecTrongCa = (tdKtLvTrongCa - tdBdLv).Subtract(lunchMin);
+		}
+
+		public static void Tinh_TGLamViec_Ca3(DateTime TD_BDLV, DateTime TD_KTLV, DateTime startNT, DateTime endddNT,
+			out DateTime TD_BTLVCa3, out DateTime TD_KTLV_Ca3, out TimeSpan TGLamDem, out bool QuaDem) {
+			TimeSpan tempTGLamDem;
+			var BDLamDem = DateTime.MinValue;
+			var KTLamDem = DateTime.MinValue;
+			if (TD_KTLV > startNT) {
+				BDLamDem = TD_BDLV > startNT ? TD_BDLV : startNT;
+				KTLamDem = TD_KTLV < endddNT ? TD_KTLV : endddNT;
+				tempTGLamDem = KTLamDem - BDLamDem;
+			}
+			else tempTGLamDem = TimeSpan.Zero;
+			if (tempTGLamDem < GlobalVariables.TS_Default_LamDemToiThieu) {
+				TD_BTLVCa3 = DateTime.MinValue;
+				TD_KTLV_Ca3 = DateTime.MinValue;
+				TGLamDem = TimeSpan.Zero;
+				QuaDem = false;
+			}
+			else {
+				TD_BTLVCa3 = BDLamDem;
+				TD_KTLV_Ca3 = KTLamDem;
+				TGLamDem = tempTGLamDem;
+				QuaDem = true;
+			}
+		}
+
+		public static TimeSpan Tinh_TGLamThem(TimeSpan TGGioLamViec) {
+			return (TGGioLamViec - GlobalVariables._08gio) >= GlobalVariables._01phut ? (TGGioLamViec - GlobalVariables._08gio) : TimeSpan.Zero;
+		}
+
+		#endregion
 
 
-        }
+		public void PhanPhoi_DSVaoRa6_V6(List<cCheckInOut> dsVaoRa, List<cNgayCong> dsNgayCong) {
+			var skipElement2 = 0;
+			foreach (var ngayCong in dsNgayCong) {
+				ngayCong.DSVaoRa = (from vaoraa in dsVaoRa.Skip(skipElement2)
+									where vaoraa.ThuocNgayCong == ngayCong.Ngay
+									select vaoraa).ToList();
+				skipElement2 += ngayCong.DSVaoRa.Count;
+			}
+		}
 
-        public void TaoCaTuDo(int ID, DateTime CheckInTime, out cCa Ca) {
-            //var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
-            Ca = new cCa();
-            var temp = new TimeSpan(CheckInTime.TimeOfDay.Hours, CheckInTime.TimeOfDay.Minutes, 0);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
-            if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.From.Add(GlobalVariables._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
-            if (Ca.ID == int.MinValue + 0) {
-                Ca.Duty = new FromToTimeSpan { From = temp, To = temp.Add(GlobalVariables._08gio) };
-                Ca.WorkingTimeTS = XL2._08gio;
-                Ca.Workingday = 1f;
-                Ca.Code = Properties.Settings.Default.shiftCodeCa8h;
-                Ca.MoTa = string.Format(Properties.Settings.Default.MoTaCaTuDo, 8);
-                Ca.KyHieuCC = Properties.Settings.Default.kyHieuCCCa8h;
-            }
+		public void Tim_DSCa_NhanDienDuoc(DateTime time, DateTime ngay, TrangThaiCheck CheckVT, List<cCa> DSCa, out List<cCa> Result) {
+			Result = new List<cCa>();
+			Result = (CheckVT == TrangThaiCheck.ThieuRa)
+						 ? DSCa.FindAll(ca => time >= ngay.Add(ca.NhanDienVao.From) && time <= ngay.Add(ca.NhanDienVao.To))
+						 : DSCa.FindAll(ca => time >= ngay.Add(ca.NhanDienRaa.From) && time <= ngay.Add(ca.NhanDienRaa.To));
+
+		}
+
+		public static DateTime ThuocNgayCong(DateTime chkinn)// lưu ý không dùng cho các giờ ra, giờ ra thiếu vào, giờ vào thiếu ra
+		{
+			return chkinn.TimeOfDay < XL2._02gio ? chkinn.Date.AddDays(-1) : chkinn.Date;
+		}
+
+		public static void KiemtraThuocCa(DateTime t_vao, DateTime t_raa, DateTime ngay, List<cCa> DSCa, out bool ThuocDSCa, out cCa Result) {
+			ThuocDSCa = true;
+			Result = DSCa.FirstOrDefault(ca => t_vao >= ngay.Add(ca.NhanDienVao.From) && t_vao <= ngay.Add(ca.NhanDienVao.To)
+											 && t_raa >= ngay.Add(ca.NhanDienRaa.From) && t_raa <= ngay.Add(ca.NhanDienRaa.To));
+			if (Result == null) {
+				ThuocDSCa = false;
+			}
 
 
-            Ca.LateeMin = GlobalVariables._0gio;
-            Ca.EarlyMin = GlobalVariables._0gio;
-            Ca.AfterOTMin = GlobalVariables._0gio;
-            Ca.chophepTreTS = GlobalVariables._0gio;
-            Ca.chophepSomTS = GlobalVariables._0gio;
-            Ca.batdaulamthemTS = GlobalVariables._0gio;
-            Ca.DayCount = Ca.Duty.To.Days;
-            Ca.QuaDem = (Ca.Duty.To.Days == 1);
-            Ca.LunchMin = XL2._0gio;
-        }
+		}
 
-    }
+		public void TaoCaTuDo(int ID, DateTime CheckInTime, out cCa Ca) {
+			//var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
+			Ca = new cCa();
+			var temp = new TimeSpan(CheckInTime.TimeOfDay.Hours, CheckInTime.TimeOfDay.Minutes, 0);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
+			if (CheckInTime.TimeOfDay < XL2._03gio) temp = Ca.Duty.From.Add(GlobalVariables._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
+			if (Ca.ID == int.MinValue + 0) {
+				Ca.Duty = new FromToTimeSpan { From = temp, To = temp.Add(GlobalVariables._08gio) };
+				Ca.WorkingTimeTS = XL2._08gio;
+				Ca.Workingday = 1f;
+				Ca.Code = Properties.Settings.Default.shiftCodeCa8h;
+				Ca.MoTa = string.Format(Properties.Settings.Default.MoTaCaTuDo, 8);
+				Ca.KyHieuCC = Properties.Settings.Default.kyHieuCCCa8h;
+			}
+
+
+			Ca.LateeMin = GlobalVariables._0gio;
+			Ca.EarlyMin = GlobalVariables._0gio;
+			Ca.AfterOTMin = GlobalVariables._0gio;
+			Ca.chophepTreTS = GlobalVariables._0gio;
+			Ca.chophepSomTS = GlobalVariables._0gio;
+			Ca.batdaulamthemTS = GlobalVariables._0gio;
+			Ca.DayCount = Ca.Duty.To.Days;
+			Ca.QuaDem = (Ca.Duty.To.Days == 1);
+			Ca.LunchMin = XL2._0gio;
+		}
+
+	}
 }

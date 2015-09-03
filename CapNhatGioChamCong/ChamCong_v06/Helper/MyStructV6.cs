@@ -35,7 +35,7 @@ namespace ChamCong_v06.Helper {
 	}
 
 	#endregion
-	public class ThoiDiem {
+	public struct ThoiDiem {
 		public DateTime BD_LV;// vào làm ca
 		public DateTime KT_LV_TrongCa;
 		public DateTime KT_LV;// 
@@ -84,6 +84,8 @@ namespace ChamCong_v06.Helper {
 	}
 	public struct StructCongCa
 	{
+		public float TruTreVR;
+		public float TruSomVR;
 		public float TrongGio;
 		public float NgoaiGio;
 		public float DinhMuc;

@@ -78,15 +78,8 @@
     <Compile Include="DTO\cUserInfo.cs" />
     <Compile Include="DTO\cLichTrinh.cs" />
     <Compile Include="DTO\cPhongBan.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <None Include="Helper\SP\CheckInOut_DocCheckChuaXuLyV6.sql" />
     <None Include="Helper\SP\Shift_DocTatCaShiftV6.sql" />
-    <None Include="Helper\SP\CheckInOut_Upd_Loai.sql" />
     <Compile Include="Helper\ACMessageBox.cs" />
     <Compile Include="Helper\ChuyenSoSangChu.cs" />
     <Compile Include="Helper\DanhSachChucNang.cs" />
@@ -280,7 +273,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Helper\SP\CheckInOut_LoaiCheck_KoHopLeV6.sql" />
     <Content Include="Helper\SP\Schedule_DocLichTrinhV6.sql" />
+    <Content Include="Helper\SP\template_If_Exist_SP.txt" />
     <Content Include="QuyUoc.txt" />
     <None Include="Resources\1438546670_Save.png" />
     <None Include="Resources\1438546227_Log Out.png" />

@@ -1,0 +1,9 @@
+﻿IF EXISTS (
+	   SELECT type_desc, type
+	   FROM sys.procedures WITH(NOLOCK)
+	   WHERE NAME = ''
+		   AND type = 'P'
+	 )
+DROP PROCEDURE  
+GO
+CREATE PROCEDURE

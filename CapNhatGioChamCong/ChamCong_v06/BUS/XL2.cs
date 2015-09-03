@@ -38,7 +38,7 @@ namespace ChamCong_v06.BUS {
 		public static readonly TimeSpan _21h45 = new TimeSpan(21, 45, 0);
 		public static readonly TimeSpan _22h00 = new TimeSpan(22, 0, 0);
 		public static readonly TimeSpan _24h00 = new TimeSpan(24, 0, 0);
-		public static readonly TS TOD_NightTime22h = new TS { Onn = XL2._22h00, Off = XL2._06h00 };
+		public static readonly TS TOD_NightTime22h = new TS { Onn = GlobalVariables._22h00, Off = GlobalVariables._06h00 };
 		public static int PC30;
 		public static int PC50;
 		public static int PCTCC3;
