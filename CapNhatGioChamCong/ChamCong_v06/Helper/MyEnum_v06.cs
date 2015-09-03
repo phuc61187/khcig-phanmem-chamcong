@@ -78,6 +78,9 @@ namespace ChamCong_v06.Helper
 		CheckInOut_LoaiCheck_KoHopLeV6,
 
 		#endregion
+		#region CIO
+		CIO_ThemCIOChuaChamCongV6,
+		#endregion
 
 		#region làm nhiều thao tác, bảng kết hợp
 		Other_XoaLichTrinhV6,

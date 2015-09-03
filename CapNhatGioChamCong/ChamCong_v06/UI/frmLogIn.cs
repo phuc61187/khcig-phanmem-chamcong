@@ -56,7 +56,7 @@ namespace ChamCong_v06.UI {
 			//1.2 đăng nhập thành công thì bật cờ,đóng form này lại //todo 
 			string tmpConnStr = string.Empty, currUserAccount = string.Empty;
 			int currUserID = 0;
-            LoaiTK loaiTK = LoaiTK.None;
+			LoaiTK loaiTK = LoaiTK.None;
 			if (Settings.Default.EncryptConnectionString == string.Empty)
 			{
 				ACMessageBox.Show("Chưa có kết nối CSDL.", Resources.Caption_Loi, 2000);
@@ -71,15 +71,15 @@ namespace ChamCong_v06.UI {
 			}
 
 			//1.2 đang nhập thành công thì chuẩn bị các dữ liệu toàn cục
-            // nếu tài khoản LocalRoot thì được mở các form...//todo hiển thị các form nào?
+			// nếu tài khoản LocalRoot thì được mở các form...//todo hiển thị các form nào?
 
-            // nếu tài khoản thường thì chuẩn bị các biến toàn cục: 
-            // a. danh sách phòng ban được phép thao tác, 
-            // b. thông tin ca tự do phần mềm thiết lập, áp dụng cho runtime
+			// nếu tài khoản thường thì chuẩn bị các biến toàn cục: 
+			// a. danh sách phòng ban được phép thao tác, 
+			// b. thông tin ca tự do phần mềm thiết lập, áp dụng cho runtime
 			GlobalVariables.CurrentUserID = currUserID;
 			GlobalVariables.CurrentUserAccount = currUserAccount;
-            GlobalVariables.DocServerSetting5();
-            GlobalVariables.SettingCaTuDo();
+			GlobalVariables.DocServerSetting5();
+			GlobalVariables.SettingCaTuDo();
 			this.m_LogInStatus = true;
 			this.Close();
 			return;

@@ -23,10 +23,10 @@ namespace ChamCong_v06.DTO {
 		public StructCongCa CongTheoCa;
 		#endregion
 		#region phần thông tin riêng cho đã xử lý
-		public bool DuyetChoPhepVaoTre;
-		public bool DuyetChoPhepRaSom;
-		public bool VaoTreKoTruCong; //ver 4.0.0.4	
-		public bool RaaSomKoTruCong; //ver 4.0.0.4	
+		public bool ChoPhepTre;
+		public bool ChoPhepSom;
+		public bool VaoTuDo; //ver 4.0.0.4	
+		public bool RaaTuDo; //ver 4.0.0.4	
 
 		#endregion
 		public int ShiftID;

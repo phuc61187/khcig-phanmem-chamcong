@@ -46,8 +46,8 @@ namespace ChamCong_v06.Helper {
 	public struct StructTGCa
 	{
 		public TimeSpan HienDien;
-		public TimeSpan TreVR;
-		public TimeSpan SomVR;
+		public TimeSpan Tre;
+		public TimeSpan Som;
 		public TimeSpan LamViec;
 		public TimeSpan LamDem;
 		public TimeSpan OLaiVR;
@@ -60,8 +60,8 @@ namespace ChamCong_v06.Helper {
 	public struct StructTGNgay
 	{
 		public TimeSpan HienDien;
-		public TimeSpan TreVR;
-		public TimeSpan SomVR;
+		public TimeSpan Tre;
+		public TimeSpan Som;
 		public TimeSpan VaoSauCa;
 		public TimeSpan RaTruocCa;
 		public TimeSpan LamViec;
@@ -84,8 +84,8 @@ namespace ChamCong_v06.Helper {
 	}
 	public struct StructCongCa
 	{
-		public float TruTreVR;
-		public float TruSomVR;
+		public float TruCongTre;
+		public float TruCongSom;
 		public float TrongGio;
 		public float NgoaiGio;
 		public float DinhMuc;

@@ -162,7 +162,7 @@ namespace ChamCong_v06.UI.ChamCong {
 			BUS_NhanVien busNhanVien = new BUS_NhanVien();
 			busNhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienDR, this.m_SelectedPhong, this.m_AllNhomCa, out listDSNV);
 			BUS_ChamCong busChamCong = new BUS_ChamCong();
-			//BUS_ChamCong.ChamCong(listDSNV, Thang);
+            busChamCong.ChamCong2(listDSNV, new FromToDateTime{From=MyUtility.FirstDayOfMonth(Thang), To = MyUtility.LastDayOfMonth(Thang)});
 		}
 
 
@@ -261,7 +261,7 @@ namespace ChamCong_v06.UI.ChamCong {
 																		|| (item.Raa != null && item.Raa.Source == "PC"));
 					soTH_DaXN += ngayCong.DSVaoRa.Count(item => item.DaXN);
 					soTH_DaXN_LamThem += ngayCong.DSVaoRa.Count(item => item.DaXN && item.TG5.SoPhutLamThem5 > TimeSpan.Zero);
-					soTH_ChoPhepTreSom += ngayCong.DSVaoRa.Count(item => item.DuyetChoPhepVaoTre || item.DuyetChoPhepRaSom);
+					soTH_ChoPhepTreSom += ngayCong.DSVaoRa.Count(item => item.ChoPhepTre || item.ChoPhepSom);
 					soTH_VaoTre_RaSom_CoLamBu += ngayCong.DSVaoRa.Count(item => item.VaoTreTinhCV || item.RaaSomTinhCV);
 					soTH_XinPhepVang += ngayCong.DSVang.Count;
 
