@@ -433,6 +433,17 @@ namespace ChamCong_v06.Helper {
 		{
 			return (ngayVang.DayOfWeek == DayOfWeek.Sunday);
 		}
+		public static DateTime LamTronPhut(DateTime Time) {
+			return new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, Time.Minute, 0);
+		}
+		public static TimeSpan LamTronPhut(TimeSpan Time) {
+			return new TimeSpan(Time.Days, Time.Hours, Time.Minutes, 0);
+		}
+		public static int QuyDoiPhut(TimeSpan timeSpan)
+		{
+			return Convert.ToInt32(timeSpan.TotalMinutes);
+		}
+		
 
 		public static DataTable Array_To_DataTable(string tableName, IEnumerable<int> intArray) {
 			DataTable tableIntArray = new DataTable(tableName);

@@ -274,9 +274,12 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Helper\SP\CheckInOut_LoaiCheck_KoHopLeV6.sql" />
+    <Content Include="Helper\SP\CIO_ThemCIOChuaChamCongV6.sql" />
     <Content Include="Helper\SP\create table cio.sql" />
     <Content Include="Helper\SP\Schedule_DocLichTrinhV6.sql" />
+    <Content Include="Helper\SP\ShiftSch_DocDSCaV6.sql" />
     <Content Include="Helper\SP\template_If_Exist_SP.txt" />
+    <Content Include="Helper\SP\tempTextFile.txt" />
     <Content Include="QuyUoc.txt" />
     <None Include="Resources\1438546670_Save.png" />
     <None Include="Resources\1438546227_Log Out.png" />

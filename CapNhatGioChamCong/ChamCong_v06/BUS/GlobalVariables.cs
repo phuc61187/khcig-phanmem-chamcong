@@ -11,6 +11,7 @@ namespace ChamCong_v06.BUS {
 		public static int CurrentUserID = 0;
 		public static string CurrentUserAccount = string.Empty;
 		public static List<cNhomCa> DSNhomCa = new List<cNhomCa>();
+		public static cNhomCa NhomCaMacDinh = new cNhomCa{IDDescription = new ID_Description{ID = 0, Description = "Default"}, DSCa = new List<cCa>()};
 		public static readonly TimeSpan _0gio = TimeSpan.Zero;
 		public static readonly TimeSpan _01giay = new TimeSpan(0, 0, 1);
 		public static readonly TimeSpan _01phut = new TimeSpan(0, 1, 0);

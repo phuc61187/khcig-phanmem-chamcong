@@ -21,7 +21,7 @@ namespace ChamCong_v06.BUS {
 			foreach (DataRow dataRow in tableNhomCa.Rows) {
 				cNhomCa nhomCa = new cNhomCa { 
 					IDDescription = new ID_Description { ID = (int)dataRow["SchID"], Description = dataRow["SchName"].ToString()},
- 					DSCa = new List<cCa>()
+					DSCa = new List<cCa>()
 				};
 				DSNhomCa.Add(nhomCa);
 			}

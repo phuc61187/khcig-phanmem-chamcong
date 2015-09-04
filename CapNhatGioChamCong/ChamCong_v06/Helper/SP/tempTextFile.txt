@@ -1,0 +1,106 @@
+﻿
+IF EXISTS (
+       SELECT type_desc, type
+       FROM sys.procedures WITH(NOLOCK)
+       WHERE NAME = 'CIO_ThemCIOChuaChamCongV6'
+           AND type = 'P'
+     )
+DROP PROCEDURE  CIO_ThemCIOChuaChamCongV6
+GO
+CREATE PROCEDURE CIO_ThemCIOChuaChamCongV6
+@UserEnrollNumber int
+           ,@NgayCong, datetime
+           ,@HaveINOUT int
+           ,@Vao int
+           ,@Ra int
+           ,@MayVao int
+           ,@MayRa int
+           ,@BDLV int
+           ,@KTLVTrongCa int
+           ,@KTLV int
+           ,@BDLVCa3 int
+           ,@KTLVCa3 int
+           ,@Tre int
+           ,@Som int
+           ,@VaoSauCa int
+           ,@RaTruocCa int
+           ,@SoPhutXacNhanNgoaiGio int
+           ,@ChoPhepTre bit
+           ,@ChoPhepSom bit
+           ,@VaoTuDo bit
+           ,@RaTuDo bit
+           ,@CongTrongGio real
+           ,@CongNgoaiGio real
+           ,@TruCongTre real
+           ,@TruCongSom real
+           ,@ChamCongTay bit
+           ,@DinhMucCong real
+           ,@TongCong real
+           ,@TheoDoiGioGocMayCC nvarchar(2000)
+AS
+begin
+INSERT INTO CIO
+           (UserEnrollNumber
+           ,NgayCong
+           ,HaveINOUT
+           ,Vao
+           ,Ra
+           ,MayVao
+           ,MayRa
+           ,BDLV
+           ,KTLVTrongCa
+           ,KTLV
+           ,BDLVCa3
+           ,KTLVCa3
+           ,Tre
+           ,Som
+           ,VaoSauCa
+           ,RaTruocCa
+           ,SoPhutXacNhanNgoaiGio
+           ,ChoPhepTre
+           ,ChoPhepSom
+           ,VaoTuDo
+           ,RaTuDo
+           ,CongTrongGio
+           ,CongNgoaiGio
+           ,TruCongTre
+           ,TruCongSom
+           ,ChamCongTay
+           ,DinhMucCong
+           ,TongCong
+           ,GhiChu
+           ,LyDo
+           ,TheoDoiGioGocMayCC)
+     VALUES
+           (@UserEnrollNumber,
+           @NgayCong,
+           @HaveINOUT,
+           @Vao,
+           @Ra,
+           @MayVao,
+           @MayRa,
+           @BDLV,
+           @KTLVTrongCa,
+           @KTLV,
+           @BDLVCa3,
+           @KTLVCa3,
+           @Tre,
+           @Som,
+           @VaoSauCa,
+           @RaTruocCa,
+           @SoPhutXacNhanNgoaiGio,
+           @ChoPhepTre,
+           @ChoPhepSom,
+           @VaoTuDo,
+           @RaTuDo,
+           @CongTrongGio,
+           @CongNgoaiGio,
+           @TruCongTre,
+           @TruCongSom,
+           @ChamCongTay,
+           @DinhMucCong,
+           @TongCong,
+           @TheoDoiGioGocMayCC)
+end
+
+

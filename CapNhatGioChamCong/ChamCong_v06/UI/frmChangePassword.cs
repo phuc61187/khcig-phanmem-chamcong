@@ -24,8 +24,8 @@ namespace ChamCong_v06.UI {
 			string oldPass = btnEditMatkhauCu.Text;
 			string newPass = btnEditMatkhauMoi1.Text;
 			string testPass = btnEditMatkhauMoi2.Text;
-			string userAccount = XL2.currUserAccount;
-			int userID = XL2.currUserID;
+			string userAccount = GlobalVariables.CurrentUserAccount;
+			int userID = GlobalVariables.CurrentUserID;
 			if (newPass == testPass)
 			{
 				ACMessageBox.Show("Vui lòng nhập 2 mật khẩu mới giống nhau.", Resources.Caption_Loi, 2000);

@@ -49,7 +49,7 @@ namespace ChamCong_v06.UI.ChamCong {
 			// load các phòng ban Enable được phép thao tác theo tài khoản hiện tại và sắp xếp theo vị trí
 			tvDSPhongBan.Nodes.Clear();
 			DataTable tableDSPhong = SqlDataAccessHelper.ExecSPQuery(SPName6.DeptPrivilege_DocPhongBanThaoTacV6.ToString(),
-				new SqlParameter("@UserID", XL2.currUserID), new SqlParameter("@ChoPhepThaoTac", true),
+				new SqlParameter("@UserID", GlobalVariables.CurrentUserID), new SqlParameter("@ChoPhepThaoTac", true),
 				new SqlParameter("@RelationDeptEnable", true));
 			var allPhongDR = (from DataRow row in tableDSPhong.Rows select row).OrderBy(s => (int)s["ViTri"]);
 			// xác định root node là Node luôn có RelationID = 0(IDCha = 0 tức là gốc ko có cha nữa)
@@ -135,9 +135,9 @@ namespace ChamCong_v06.UI.ChamCong {
 			List<int> listIDPhong = (from cPhongBan phong in SelectedPhong select phong.Phong.ID).ToList();
 			DataTable tableArrayIDPhong = MyUtility.Array_To_DataTable("tableArrayIDD", listIDPhong);
 			tableNhanVien = SqlDataAccessHelper.ExecSPQuery(SPName6.UserInfo_DocNhanVienChamCongV6.ToString(),
-			                                                new SqlParameter("@ArrayIDDepartment", SqlDbType.Structured) {Value = tableArrayIDPhong},
-			                                                new SqlParameter("@DepartmentEnable", true),
-			                                                new SqlParameter("@UserEnabled", true));
+															new SqlParameter("@ArrayIDDepartment", SqlDbType.Structured) {Value = tableArrayIDPhong},
+															new SqlParameter("@DepartmentEnable", true),
+															new SqlParameter("@UserEnabled", true));
 		}
 
 		private void XacDinhPhongDangChon(TreeNode root, ref List<cPhongBan> DSPhongDangChon) {
@@ -162,7 +162,7 @@ namespace ChamCong_v06.UI.ChamCong {
 			BUS_NhanVien busNhanVien = new BUS_NhanVien();
 			busNhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienDR, this.m_SelectedPhong, this.m_AllNhomCa, out listDSNV);
 			BUS_ChamCong busChamCong = new BUS_ChamCong();
-            busChamCong.ChamCong2(listDSNV, new FromToDateTime{From=MyUtility.FirstDayOfMonth(Thang), To = MyUtility.LastDayOfMonth(Thang)});
+			busChamCong.ChamCong2(listDSNV, new FromToDateTime{From=MyUtility.FirstDayOfMonth(Thang), To = MyUtility.LastDayOfMonth(Thang)});
 		}
 
 
@@ -172,8 +172,8 @@ namespace ChamCong_v06.UI.ChamCong {
 		{
 			// lấy danh sách các mã nhân viên check
 			List_UEN = (from CheckedListBoxItem item in checkedComboBox_NhanVien.Properties.Items
-			            where item.CheckState == CheckState.Checked
-			            select (int) item.Value).ToList();
+						where item.CheckState == CheckState.Checked
+						select (int) item.Value).ToList();
 		}
 
 /*

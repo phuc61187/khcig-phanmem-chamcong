@@ -24,15 +24,20 @@ namespace ChamCong_v06.BUS {
 					//todo còn các trường khác
 				};
 				user.PhongBan = XacDinhPhongBan((int)row[Field.UserIDDepartment.ToString()], List_Phong);
-				user.NhomCa = XacDinhNhomCa(user.LichTrinh.ID, List_NhomCa);
+				user.NhomCa = XacDinhNhomCa((int)row["SchID"], List_NhomCa);
 				//todo trường hợp nhóm ca null thì sao??
 				List_NhanVien.Add(user);
 			}
 		}
 
-		private cNhomCa XacDinhNhomCa(int SchID, List<cNhomCa> List_NhomCa)
+		private cNhomCa XacDinhNhomCa(int SchID, IEnumerable<cNhomCa> List_NhomCa)
 		{
-			return (from cNhomCa item in List_NhomCa where item.IDDescription.ID == SchID select item).SingleOrDefault();
+			cNhomCa kq = (from cNhomCa item in List_NhomCa where item.IDDescription.ID == SchID select item).SingleOrDefault();
+			if (kq == null)
+			{
+				kq = GlobalVariables.NhomCaMacDinh;
+			}
+			return kq;
 		}
 
 		private static cPhongBan XacDinhPhongBan(int UserIDDepartment, IEnumerable<cPhongBan> List_All_Phong)

@@ -23,70 +23,7 @@ namespace ChamCong_v06.BUS {
 			return root;
 		}
 
-//		public static void DocServerSetting5() {
-//			var table = SqlDataAccessHelper.ExecuteQueryString("select * from Setting", null, null);
-//			for (int i = 0; i < table.Rows.Count; i++) {
-//				var row = table.Rows[i];
-//				var id = (int)row["ID"];
-//				var code = row["Code"].ToString();
-//				var value = row["Value"].ToString();
 
-//				#region setting phu cap
-
-//				if (code == SettingName.HSPCDem_NgayThuong.ToString()) {
-//					XL2.HSPCDem_NgayThuong = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.HSPCTangCuongNgay_NgayThuong.ToString()) {
-//					XL2.HSPCTangCuongNgay_NgayThuong = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.HSPCTangCuongDem_NgayThuong.ToString()) {
-//					XL2.HSPCTangCuongDem_NgayThuong = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.HSPCNgay_NgayNghi.ToString()) {
-//					XL2.HSPCNgay_NgayNghi = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.HSPCDem_NgayNghi.ToString()) {
-//					XL2.HSPCDem_NgayNghi = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.HSPCNgay_NgayLe.ToString()) {
-//					XL2.HSPCNgay_NgayNghi = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.HSPCDem_NgayLe.ToString()) {
-//					XL2.HSPCDem_NgayNghi = int.Parse(value);
-//					continue;
-//				}
-
-//				#endregion
-
-//				#region số phút cho phép trễ sớm afterot ca tự do
-//				if (code == SettingName.TGLamDemToiThieu.ToString()) {
-//					TimeSpan temp = TimeSpan.Parse(value);
-//					XL2.default_PhutLamDemToiThieu = (int)temp.TotalMinutes;
-//					continue;
-//				}
-//				if (code == SettingName.ChoPhepTre.ToString())
-//				{
-//					XL2.default_PhutChoTre = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.ChoPhepSom.ToString()) {
-//					XL2.default_PhutChoSom = int.Parse(value);
-//					continue;
-//				}
-//				if (code == SettingName.LamThemAfterOT.ToString()) {
-//					XL2.default_PhutAfterOTMin = int.Parse(value);
-//					continue;
-//				}
-//				#endregion
-//			}
-
-//		}
 
 //		public static void SaveSetting(string connectionstring = null, string lastAccLogIn = null, string lastUserName = null,
 //			string lastDatabase = null, string lastServerName = null,
