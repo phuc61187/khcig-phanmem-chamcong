@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChamCong_v06.Helper;
 
 namespace ChamCong_v06.DTO
 {
@@ -12,12 +13,12 @@ namespace ChamCong_v06.DTO
         //public List<cLoaiVang> DSVang = new List<cLoaiVang>();
         public cNgayCong prev;
         public cNgayCong next;
+	    public StructTGNgay TGNgay;
+	    public StructCongCa TongCongCa;
 
         //public ThoiGian TG = new ThoiGian();
 
         public bool QuaDem;
-        public bool TinhPC50;
-        public bool TinhPCDB;
         //public PhuCap PhuCaps;
 
 /*

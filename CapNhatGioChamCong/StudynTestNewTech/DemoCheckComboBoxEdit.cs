@@ -31,6 +31,8 @@ namespace StudynTestNewTech {
 		{
 			richTextBox1.Clear();
 			var item = checkedComboBoxEdit1.Properties.GetCheckedItems();
-			richTextBox1.Text= item.ToString(); }
+			richTextBox1.Text= item.ToString(); 
+		}
+		
 	}
 }

@@ -6,7 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace ChamCong_v06.Helper
+namespace ChamCong_v06.Helper.WaitWindow
 {
 	partial class WaitWindowGUI
 	{

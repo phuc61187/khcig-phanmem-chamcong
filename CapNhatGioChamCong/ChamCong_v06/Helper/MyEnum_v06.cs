@@ -121,6 +121,7 @@ namespace ChamCong_v06.Helper
 		ChoPhepTre,
 		ChoPhepSom,
 		LamThemAfterOT,
+		LunchMin,
 
 		//todo bỏ
 		//HSPCDem_NgayThuong,

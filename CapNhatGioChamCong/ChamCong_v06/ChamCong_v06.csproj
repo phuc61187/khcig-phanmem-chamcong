@@ -68,11 +68,12 @@
     <Compile Include="DAL\DAL_CheckInCheckOut.cs" />
     <Compile Include="DAL\DAL_PhongBan_NhanVien.cs" />
     <Compile Include="DTO\cCheck.cs" />
-    <Compile Include="BUS\XL.cs" />
-    <Compile Include="BUS\XL2.cs" />
+    <Compile Include="BUS\GeneralBUS.cs" />
+    <Compile Include="Helper\Old\XL2.cs" />
     <Compile Include="DAL\DAOPhongBan_NhanVien.cs" />
     <Compile Include="DAL\DAO_Shift_Schedule.cs" />
     <Compile Include="DTO\cCheckInOut.cs" />
+    <Compile Include="DTO\cCheckInOut_DaCC.cs" />
     <Compile Include="DTO\cNgayCong.cs" />
     <Compile Include="DTO\cNhomCa.cs" />
     <Compile Include="DTO\cUserInfo.cs" />
@@ -84,19 +85,19 @@
     <Compile Include="Helper\ChuyenSoSangChu.cs" />
     <Compile Include="Helper\DanhSachChucNang.cs" />
     <Compile Include="Helper\EncryptDecrypt_Password.cs" />
-    <Compile Include="Helper\MyEnum.cs" />
+    <Compile Include="Helper\Old\MyEnum.cs" />
     <Compile Include="Helper\MyEnum_v06.cs" />
-    <Compile Include="Helper\MyStruct.cs" />
+    <Compile Include="Helper\Old\MyStruct.cs" />
     <Compile Include="Helper\MyStructV6.cs" />
     <Compile Include="Helper\MyUtility.cs" />
     <Compile Include="Helper\SqlDataAccessHelper.cs" />
     <Compile Include="Helper\VietGlocalizer.cs" />
-    <Compile Include="Helper\WaitWindow.cs" />
-    <Compile Include="Helper\WaitWindowEventArgs.cs" />
-    <Compile Include="Helper\WaitWindowGUI.cs">
+    <Compile Include="Helper\WaitWindow\WaitWindow.cs" />
+    <Compile Include="Helper\WaitWindow\WaitWindowEventArgs.cs" />
+    <Compile Include="Helper\WaitWindow\WaitWindowGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Helper\WaitWindowGUI.designer.cs" />
+    <Compile Include="Helper\WaitWindow\WaitWindowGUI.designer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -235,7 +236,7 @@
     <Compile Include="UI\frmLogIn.Designer.cs">
       <DependentUpon>frmLogIn.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Helper\WaitWindowGUI.resx" />
+    <EmbeddedResource Include="Helper\WaitWindow\WaitWindowGUI.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

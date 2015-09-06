@@ -6,17 +6,18 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+
 using System;
 using System.Windows.Forms;
 
-namespace ChamCong_v06.Helper
+namespace ChamCong_v06.Helper.WaitWindow
 {
 	/// <summary>
 	/// The dialogue displayed by a WaitWindow instance.
 	/// </summary>
 	internal partial class WaitWindowGUI : Form
 	{
-		public WaitWindowGUI(WaitWindow parent){
+		public WaitWindowGUI(Helper.WaitWindow.WaitWindow parent){
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
@@ -29,7 +30,7 @@ namespace ChamCong_v06.Helper
 			this.Left = Convert.ToInt32((Screen.PrimaryScreen.WorkingArea.Right - this.Width) / 2d);// - 32;
 		}
 
-		private WaitWindow _Parent;
+		private Helper.WaitWindow.WaitWindow _Parent;
 		private delegate T FunctionInvoker<T>();
 		internal object _Result;
 		internal Exception _Error;
@@ -63,7 +64,7 @@ namespace ChamCong_v06.Helper
 		private void WorkComplete(IAsyncResult results){
 			if (!this.IsDisposed){
 				if (this.InvokeRequired){
-					this.Invoke(new WaitWindow.MethodInvoker<IAsyncResult>(this.WorkComplete), results);
+					this.Invoke(new Helper.WaitWindow.WaitWindow.MethodInvoker<IAsyncResult>(this.WorkComplete), results);
 				} else {
 					//	Capture the result
 					try {

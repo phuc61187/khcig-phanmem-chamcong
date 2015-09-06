@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChamCong_v06.BUS;
 
 namespace ChamCong_v06.Helper {
-	public struct ID_Description
-	{
+	public struct ID_Description {
 		public int ID;
 		public string Description;
 	}
-	public struct FromToDateTime
-	{
+	public struct FromToDateTime {
 		public DateTime From;
 		public DateTime To;
 	}
 
-	public struct FromToTimeSpan
-	{
+	public struct FromToTimeSpan {
 		public TimeSpan From;
 		public TimeSpan To;
 	}
@@ -36,6 +34,8 @@ namespace ChamCong_v06.Helper {
 
 	#endregion
 	public struct ThoiDiem {
+		public DateTime VaoLamTron;
+		public DateTime RaaLamTron;
 		public DateTime BD_LV;// vào làm ca
 		public DateTime KT_LV_TrongCa;
 		public DateTime KT_LV;// 
@@ -43,22 +43,20 @@ namespace ChamCong_v06.Helper {
 		public DateTime KT_LV_Ca3;
 	}
 
-	public struct StructTGCa
-	{
+	public struct StructTGCa {
 		public TimeSpan HienDien;
 		public TimeSpan Tre;
 		public TimeSpan Som;
-		public TimeSpan LamViec;
-		public TimeSpan LamDem;
+		public TimeSpan VaoSauCa;
+		public TimeSpan RaTruocCa;
 		public TimeSpan OLaiVR;
+		//public TimeSpan LamViec;
+		public TimeSpan LamDem;
 		public TimeSpan LamTrongGio;
 		public TimeSpan LamNgoaiGio;
-		public TimeSpan VaoSauCa;
-		public TimeSpan RaTruocCa;
 
 	}
-	public struct StructTGNgay
-	{
+	public struct StructTGNgay {
 		public TimeSpan HienDien;
 		public TimeSpan Tre;
 		public TimeSpan Som;
@@ -66,12 +64,13 @@ namespace ChamCong_v06.Helper {
 		public TimeSpan RaTruocCa;
 		public TimeSpan LamViec;
 		public TimeSpan LamDem;
-		public TimeSpan LamNgay;//= lamViec - lamDem
-		public TimeSpan LamThem;//= lamViec - 8
-		public TimeSpan LamTCDem;//lamViec >8, LamDem >0, = LamThem
+		public TimeSpan LamNgay { get { return LamViec - LamDem; } }//= lamViec - lamDem
+		public TimeSpan LamThem { get { return LamViec - GlobalVariables._08gio; } }//= lamViec - 8
+		public TimeSpan LamTCDem {
+			get { return (LamThem > GlobalVariables._08gio && LamDem > TimeSpan.Zero) ? LamThem : TimeSpan.Zero; }
+		}//lamViec >8, LamDem >0, = LamThem
 	}
-	public struct StructTGThang
-	{
+	public struct StructTGThang {
 		public TimeSpan TreVR;
 		public TimeSpan SomVR;
 		public TimeSpan VaoSauCa;
@@ -82,8 +81,7 @@ namespace ChamCong_v06.Helper {
 		public TimeSpan LamThem;
 		public TimeSpan LamTCDem;
 	}
-	public struct StructCongCa
-	{
+	public struct StructCongCa {
 		public float TruCongTre;
 		public float TruCongSom;
 		public float TrongGio;
@@ -91,8 +89,7 @@ namespace ChamCong_v06.Helper {
 		public float DinhMuc;
 		public float Tong;
 	}
-	public struct StructCongNgay
-	{
+	public struct StructCongNgay {
 		public float DinhMuc;
 		public float Tong;
 		public float NghiVR;
@@ -104,10 +101,9 @@ namespace ChamCong_v06.Helper {
 		public float ThaiSan;
 		public float LeTet;
 	}
-	public struct StructCongThang
-	{
-		public float NghiCoCC;//phép, học, họp, lễ, tết, phong trào
-		public float NghiKoCC;//nghỉ bhxh, thai sản, ro
+	public struct StructCongThang {
+		public float NghiCoCC { get { return Phep + HocHop + CongTac + PhongTrao + LeTet; } }//phép, học, họp, lễ, tết, phong trào
+		public float NghiKoCC { get { return BHXH + ThaiSan + NghiVR; } }//nghỉ bhxh, thai sản, ro
 		public float NghiVR;
 		public float Phep;
 		public float HocHop;
@@ -119,10 +115,10 @@ namespace ChamCong_v06.Helper {
 		public float CongCV;
 		public float DinhMuc;
 		public float Tong;
+
 	}
 
-	public struct StructPCNgay
-	{
+	public struct StructPCNgay {
 		public float Dem;
 		public float TC;
 		public float ThemNgayThuong;
@@ -132,8 +128,7 @@ namespace ChamCong_v06.Helper {
 		public float ThemNgayLeTet;
 	}
 
-	public struct StructPCThang
-	{
+	public struct StructPCThang {
 		public float Dem;
 		public float TC;
 		public float ThemNgayThuong;

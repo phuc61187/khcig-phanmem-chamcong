@@ -44,12 +44,7 @@ namespace ChamCong_v06.Helper {
 	}
 
 	#region comment_ver5
-	//public class cCheckComparer : IComparer<cCheck> {
-	//	public int Compare(cCheck x, cCheck y) {
-	//		return x.Time.CompareTo(y.Time);
-	//		//return 1;
-	//	}
-	//}
+
 	//public class cCheckInOutComparer : IComparer<cCheckInOut> {
 	//	public int Compare(cCheckInOut x, cCheckInOut y) {
 	//		return x.TimeDaiDien.CompareTo(y.TimeDaiDien);

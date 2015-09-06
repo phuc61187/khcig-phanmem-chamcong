@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ChamCong_v06.Helper
+namespace ChamCong_v06.Helper.WaitWindow
 {
 	/// <summary>
 	/// Provides data for the WaitWindow events.
@@ -23,16 +23,16 @@ namespace ChamCong_v06.Helper
 		/// </summary>
 		/// <param name="GUI">The associated WaitWindow instance.</param>
 		/// <param name="args">A list of arguments to be passed.</param>
-		public WaitWindowEventArgs(WaitWindow GUI, List<object> args) : base() {
+		public WaitWindowEventArgs(Helper.WaitWindow.WaitWindow GUI, List<object> args) : base() {
 			this._Window = GUI;
 			this._Arguments = args;
 		}
 
-		private WaitWindow _Window;
+		private Helper.WaitWindow.WaitWindow _Window;
 		private List<object> _Arguments;
 		private object _Result;
 		
-		public WaitWindow Window {
+		public Helper.WaitWindow.WaitWindow Window {
 			get { return _Window; }
 		}
 		

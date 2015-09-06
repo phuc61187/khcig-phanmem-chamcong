@@ -250,7 +250,7 @@ namespace ChamCong_v06.UI.ChamCong {
 			#endregion
 
 			foreach (var nhanvien in listNhanVien) {
-				foreach (var ngayCong in nhanvien.DSNgayCong.Where(item => item.Ngay >= ngaybd && item.Ngay <= ngaykt).ToList())
+				foreach (var ngayCong in nhanvien.DSNgayDangCC.Where(item => item.Ngay >= ngaybd && item.Ngay <= ngaykt).ToList())
 				{
 					soTH_ThieuChamCong += ngayCong.DSVaoRa.Count(item => item.HaveINOUT < 0);
 					soTH_KoNhanDienCa += ngayCong.DSVaoRa.Count(item => item.HaveINOUT >= 0 && item.DaXN == false && item.ThuocCa.ID < int.MinValue + 100);
@@ -271,7 +271,7 @@ namespace ChamCong_v06.UI.ChamCong {
 
 		private void populatedata(List<cUserInfo> dsnv, DataTable table) {
 			foreach (var nhanvien in dsnv) {
-				foreach (cNgayCong ngayCong in nhanvien.DSNgayCong) {
+				foreach (cNgayCong ngayCong in nhanvien.DSNgayDangCC) {
 					DataRow row = table.NewRow();
 					row["UserEnrollNumber"] = nhanvien.MaCC;
 					row["UserFullCode"] = nhanvien.MaNV;

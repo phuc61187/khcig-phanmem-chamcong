@@ -6,11 +6,12 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace ChamCong_v06.Helper
+namespace ChamCong_v06.Helper.WaitWindow
 {
 	/// <summary>
 	/// Displays a window telling the user to wait while a process is executing.

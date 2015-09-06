@@ -65,18 +65,16 @@ namespace ChamCong_v06.BUS {
 				ca.DayCount = (int) row["DayCount"];
 				ca.QuaDem = (ca.DayCount == 1);
 				ca.Duty.To = ca.Duty.To.Add(new TimeSpan(ca.DayCount, 0, 0, 0));
-				ca.NightTime = new FromToTimeSpan {From = GlobalVariables._22h00, To = GlobalVariables._06h00};
+				ca.NightTime = new FromToTimeSpan {From = GlobalVariables._22h00, To = GlobalVariables._6gHomSau};
 				ca.OnTimeInMin = (int) row["OnTimeIn"];
 				ca.CutInMin = (int) row["CutIn"];
 				ca.OnTimeOutMin = (int) row["OnTimeOut"];
 				ca.CutOutMin = (int) row["CutOut"];
-				ca.NhanDienVao.From = ca.Duty.From.Subtract(new TimeSpan(0, ca.OnTimeInMin, 0));
-				ca.NhanDienVao.To = ca.Duty.From.Add(new TimeSpan(0, ca.CutInMin, 0));
-				ca.NhanDienRaa.From = ca.Duty.To.Subtract(new TimeSpan(0, ca.OnTimeOutMin, 0));
-				ca.NhanDienRaa.To = ca.Duty.To.Add(new TimeSpan(0, ca.CutOutMin, 0));
+				//nhận diện vào, nhận diện ra tự động tính toán bên kia
 				ca.AfterOTMin = new TimeSpan(0, (int) row["AfterOT"], 0);
 				ca.LateeMin = new TimeSpan(0, (int) row["LateGrace"], 0);
 				ca.EarlyMin = new TimeSpan(0, (int) row["EarlyGrace"], 0);
+				//tính timeOfDay ChoPhépTrễ, Sớm, AfterOT tính toán bên class
 
 				var tOnLunch = TimeSpan.Zero;
 				var tOffLunch = TimeSpan.Zero;
@@ -90,9 +88,6 @@ namespace ChamCong_v06.BUS {
 				ca.WorkingTimeTS = new TimeSpan(0, int.Parse(row["WorkingTime"].ToString()), 0);
 				ca.Workingday = (Single) row["Workingday"];
 				ca.KyHieuCC = row["KyHieuCC"].ToString();
-				ca.chophepTreTS = ca.Duty.From + ca.LateeMin;
-				ca.chophepSomTS = ca.Duty.To - ca.EarlyMin;
-				ca.batdaulamthemTS = ca.Duty.To + ca.AfterOTMin;
 				ca.MoTa = row["Description"].ToString();
 				ca.Is_CaTuDo = false;
 

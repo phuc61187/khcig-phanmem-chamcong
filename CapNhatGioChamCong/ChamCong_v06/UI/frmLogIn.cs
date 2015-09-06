@@ -63,7 +63,7 @@ namespace ChamCong_v06.UI {
 				return;
 			}
 			tmpConnStr = MyUtility.giaima(Settings.Default.EncryptConnectionString);
-			var kq = XL.CheckLogIn(tempUsername, tempPassword, passroot,
+			var kq = GeneralBUS.CheckLogIn(tempUsername, tempPassword, passroot,
 				ref tmpConnStr, out loaiTK, out currUserID, out currUserAccount);
 			if (!kq) {
 				btnEditMatkhau.Text = string.Empty;
@@ -79,7 +79,6 @@ namespace ChamCong_v06.UI {
 			GlobalVariables.CurrentUserID = currUserID;
 			GlobalVariables.CurrentUserAccount = currUserAccount;
 			GlobalVariables.DocServerSetting5();
-			GlobalVariables.SettingCaTuDo();
 			this.m_LogInStatus = true;
 			this.Close();
 			return;

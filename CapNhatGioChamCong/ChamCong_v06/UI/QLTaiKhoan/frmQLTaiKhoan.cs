@@ -107,11 +107,11 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 
 		private void PopulateData_ToTreePhong(DataTable tablePhanQuyenPhongBan) {
 			//logic: thực hiện load trạng thái ban đầu (uncheck toàn bộ): đưa về root và thực hiện từ trên xuống
-			TreeNode root = XL.ReturnRootNode(treePhongBan.TopNode);
+			TreeNode root = GeneralBUS.ReturnRootNode(treePhongBan.TopNode);
 			SetCheckStatus_AllTreeNode(root, false);
 			treePhongBan.Invalidate();
 			// duyệt từ root và check những phòng được thao tác, uncheck và phòng ko được thao tác
-			root = XL.ReturnRootNode(root);
+			root = GeneralBUS.ReturnRootNode(root);
 			SetCheckNode_PhongBanThaoTac(root, tablePhanQuyenPhongBan);
 		}
 
@@ -154,7 +154,7 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 			if (dataRow == null) { return; }
 			int userID = (int)dataRow["UserID"];
 			// uncheck all treeNode Phòng ban
-			TreeNode root = XL.ReturnRootNode(treePhongBan.TopNode);
+			TreeNode root = GeneralBUS.ReturnRootNode(treePhongBan.TopNode);
 			SetCheckStatus_AllTreeNode(root, false);
 			treePhongBan.Refresh();
 			// load dữ liệu phân quyền phòng ban và thực hiện check
@@ -179,13 +179,13 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 			SetCheckStatus_AllTreeNode(root, checkStatus);
 			treePhongBan.AfterCheck += treePhongBan_OnAfterCheck;
 			// sau khi set xong thì focus lại node hiện tại 
-			root = XL.ReturnRootNode(root);
+			root = GeneralBUS.ReturnRootNode(root);
 			root = FindNode(idPhong, root);
 		}
 
 		private void SetCheckNode_PhongBanThaoTac(TreeNode root, DataTable tablePhanQuyenPhongBan) {
 			foreach (DataRow dataRow in tablePhanQuyenPhongBan.Rows) {
-				root = XL.ReturnRootNode(root);
+				root = GeneralBUS.ReturnRootNode(root);
 				int idPhong = (int)dataRow["IDDepartment"];
 				TreeNode node = FindNode(idPhong, root);
 				if (node == null) continue; // ko tìm thấy  node thì đi tiếp
@@ -378,7 +378,7 @@ namespace ChamCong_v06.UI.QLTaiKhoan {
 
 			List<int> dsPhong_DuocThaoTac = new List<int>();
 			List<int> dsPhong_KoDuocThaoTac = new List<int>();
-			TreeNode root = XL.ReturnRootNode(treePhongBan.TopNode);
+			TreeNode root = GeneralBUS.ReturnRootNode(treePhongBan.TopNode);
 			LayDSPhongBanDuocPhanQuyen(root, dsPhong_DuocThaoTac, dsPhong_KoDuocThaoTac);
 			LuuPhanQuyenPhongBan(userID, dsPhong_DuocThaoTac, true);
 			LuuPhanQuyenPhongBan(userID, dsPhong_KoDuocThaoTac, false);

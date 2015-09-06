@@ -8,49 +8,6 @@ using ChamCong_v06.Properties;
 namespace ChamCong_v06.BUS {
 
 	public class XL2 {
-
-
-		public static int PC30;
-		public static int PC50;
-		public static int PCTCC3;
-		public static int PC100;
-		public static int PC160;
-		public static int PC200;
-		public static int PC290;
-
-		#region he so phu cap moi
-
-		public static int HSPCDem_NgayThuong;
-		public static int HSPCTangCuongNgay_NgayThuong;
-		public static int HSPCTangCuongDem_NgayThuong;
-		public static int HSPCNgay_NgayNghi;
-		public static int HSPCDem_NgayNghi;
-		public static int HSPCNgay_NgayLe;
-		public static int HSPCDem_NgayLe;
-
-		#endregion
-
-		public static int default_PhutAfterOTMin = -1;
-		public static TimeSpan TS_Default_LamThemAfterOT {
-			get { return default_PhutAfterOTMin == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutAfterOTMin, 0); }
-		}
-
-		public static int default_PhutLamDemToiThieu = -1;
-		public static TimeSpan TS_Default_LamDemToiThieu {
-			get { return default_PhutLamDemToiThieu == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutLamDemToiThieu, 0); }
-		}
-
-		public static int default_PhutChoTre = -1;
-		public static TimeSpan TS_Default_PhutChoTre {
-			get { return default_PhutChoTre == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutChoTre, 0); }
-		}
-
-		public static int default_PhutChoSom = -1;
-		public static TimeSpan TS_Default_PhutChoSom {
-			get { return default_PhutChoSom == -1 ? TimeSpan.Zero : new TimeSpan(0, default_PhutChoSom, 0); }
-		}
-
-		//public static List<cPhongBan> TatcaPhongban = new List<cPhongBan>();
 		public static List<int> QuyenThaoTac;
 
 		public class cChucNang {
