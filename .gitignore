@@ -57,6 +57,7 @@ CapNhatGioChamCong/CapNhatGioChamCong/obj
 CapNhatGioChamCong/GiuLaiCacFileCu/obj
 *.log
 *.suo
+*.CapNhatGioChamCong
 /CapNhatGioChamCong/ChamCong_v06/bin/Debug
 /CapNhatGioChamCong/ChamCong_v06/obj/Debug
 *.licx
