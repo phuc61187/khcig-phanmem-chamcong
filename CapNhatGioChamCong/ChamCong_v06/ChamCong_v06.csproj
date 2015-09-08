@@ -63,12 +63,14 @@
     <Compile Include="BUS\BUS_ChamCong.cs" />
     <Compile Include="BUS\BUS_LichTrinh_Ca.cs" />
     <Compile Include="BUS\BUS_NhanVien.cs" />
+    <Compile Include="DAL\cKhaiBaoVang.cs" />
     <Compile Include="DTO\cCa.cs" />
     <Compile Include="BUS\GlobalVariables.cs" />
     <Compile Include="DAL\DAL_CheckInCheckOut.cs" />
     <Compile Include="DAL\DAL_PhongBan_NhanVien.cs" />
     <Compile Include="DTO\cCheck.cs" />
     <Compile Include="BUS\GeneralBUS.cs" />
+    <Compile Include="DTO\cKhaiBaoVang.cs" />
     <Compile Include="Helper\Old\XL2.cs" />
     <Compile Include="DAL\DAOPhongBan_NhanVien.cs" />
     <Compile Include="DAL\DAO_Shift_Schedule.cs" />

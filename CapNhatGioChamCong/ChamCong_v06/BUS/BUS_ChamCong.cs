@@ -20,9 +20,22 @@ namespace ChamCong_v06.BUS {
 
 		private void XemCong2(List<cUserInfo> DSNV, FromToDateTime KhoangTG) {
 			List<int> arrayUEN = (from cUserInfo item in DSNV select item.MaCC).ToList();
+			DataTable tableArrayUEN = MyUtility.Array_To_DataTable("tableName", arrayUEN);
 
+			List<cCheckInOut_DaCC> DS_CIO_DaCC;
+			List<cKhaiBaoVang> DS_KhaiBaoVang;
 			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
-
+			DataTable tableCIO, tableNgayCong, tableNgayLe;
+			dal.GetCIOData(tableArrayUEN, KhoangTG, out DS_CIO_DaCC);
+			//List<cCheckInOut_DaCC>  = 
+			dal.GetNgayCongData(tableArrayUEN, KhoangTG, out tableNgayCong);
+			dal.GetNgayVangData(tableArrayUEN, KhoangTG, out tableNgayCong, out DS_KhaiBaoVang);
+			dal.GetNgayLeData(KhoangTG, out tableNgayLe);
+			//string template = "UserEnrollNumber = {0} and Ngay"
+			foreach (cUserInfo nhanvien in DSNV)
+			{
+				//DataRow[] rowsCIO = tableCIO.Select()
+			}
 		}
 
 		public void ChamCong2(List<cUserInfo> DSNV, FromToDateTime KhoangTG) {
@@ -37,13 +50,19 @@ namespace ChamCong_v06.BUS {
 			XuLy_Loai_CheckTrong30ph(arrayUEN, DSCheckInCheckOut, out DSCheck_BiLoai_All);// giữ check hợp lệ, loại check cùng loại, gần nhau, hoặc check nhầm IO trong 10ph
 
 			// ghép check in- check out
+			List<cCheck> DS_Check_A = new List<cCheck>();
+			List<cCheckInOut> DS_CIO_A = new List<cCheckInOut>();
 			foreach (cUserInfo nhanVien in DSNV) {
-				nhanVien.DS_Check_A = (from item in DSCheckInCheckOut where item.MaCC == nhanVien.MaCC select item).ToList();
-				nhanVien.DS_Check_A.Sort(new cCheckComparer());
-				GhepCIO_A2(nhanVien.DS_Check_A, nhanVien.DS_CIO_A);
-				XetCa_ListCIO_A3_V6(nhanVien.DS_CIO_A, nhanVien.NhomCa.DSCa);
+				DS_Check_A.Clear();
+				DS_CIO_A.Clear();
+				int ma_ChamCong = nhanVien.MaCC;
+				DS_Check_A.AddRange(from item in DSCheckInCheckOut where item.MaCC == ma_ChamCong select item);
+				DS_Check_A.Sort(new cCheckComparer());
+				GhepCIO_A2(DS_Check_A, DS_CIO_A);
+				XetCa_ListCIO_A3_V6(DS_CIO_A, nhanVien.NhomCa.DSCa);
+				TinhTGLV(DS_CIO_A);
 				//LapDSNgayCongDeXuLy(nhanVien.DS_CIO_A, out nhanVien.DSNgayDangCC);
-				dal.Insert_CheckInOutData(nhanVien.MaCC, nhanVien.DS_CIO_A);
+				dal.Insert_CheckInOutData(ma_ChamCong, DS_CIO_A);
 			}
 		}
 
@@ -469,15 +488,6 @@ namespace ChamCong_v06.BUS {
 		#endregion
 
 
-		public void PhanPhoi_DSVaoRa6_V6(IEnumerable<cCheckInOut> dsVaoRa, IEnumerable<cNgayCong> dsNgayCong) {
-			var skipElement2 = 0;
-			foreach (var ngayCong in dsNgayCong) {
-				ngayCong.DSVaoRa = (from vaoraa in dsVaoRa.Skip(skipElement2)
-									where vaoraa.ThuocNgayCong == ngayCong.Ngay
-									select vaoraa).ToList();
-				skipElement2 += ngayCong.DSVaoRa.Count;
-			}
-		}
 
 		public void Tim_DSCa_NhanDienDuoc(DateTime time, DateTime ngay, TrangThaiCheck CheckVT, List<cCa> DSCa, out List<cCa> Result) {
 			Result = new List<cCa>();

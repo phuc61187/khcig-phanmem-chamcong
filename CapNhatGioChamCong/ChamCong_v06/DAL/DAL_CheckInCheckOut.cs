@@ -60,12 +60,11 @@ namespace ChamCong_v06.DAL {
 			}
 		}
 
-		private bool KiemTraThoaDieuKienThemCIO(cCheckInOut cio)
-		{
+		private bool KiemTraThoaDieuKienThemCIO(cCheckInOut cio) {
 			//logic: nếu check đủ vào ra, check ra thì thêm xuống csdl, 
 			//nếu check thiếu ra thì kiểm tra trên 22 tiếng mới cho thêm, dưới 22 tiếng thì vẫn có thể là trường hợp đang ở trong nhà máy
 			if (cio.CheckVT == TrangThaiCheck.CheckDayDu || cio.CheckVT == TrangThaiCheck.ThieuVao
-				|| ((cio.CheckVT == TrangThaiCheck.ThieuRa) && (((DateTime.Now - cio.TimeDaiDien).Duration() > GlobalVariables._22h00))))  return true;
+				|| ((cio.CheckVT == TrangThaiCheck.ThieuRa) && (((DateTime.Now - cio.TimeDaiDien).Duration() > GlobalVariables._22h00)))) return true;
 			return false;
 		}
 
@@ -125,6 +124,84 @@ namespace ChamCong_v06.DAL {
 				// ko có GhiChu, LyDo
 				);
 			if (kq == 0) { ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000); }
+		}
+
+		//public void
+
+		internal void GetCIOData(DataTable tableArrayUEN, FromToDateTime KhoangTG, out List<cCheckInOut_DaCC> DS_CIO_DaCC) {
+			DataTable tableCIO = SqlDataAccessHelper.ExecSPQuery(SPName6.CIO_Lay.ToString(),
+				new SqlParameter { ParameterName = "@Array_UserEnrollNumber", Value = tableArrayUEN, SqlDbType = SqlDbType.Structured },
+													 new SqlParameter("@From", KhoangTG.From),
+													 new SqlParameter("@To", KhoangTG.To));
+			DS_CIO_DaCC = new List<cCheckInOut_DaCC>();
+			foreach (DataRow row in tableCIO.Rows) {
+				cCheckInOut_DaCC cio = new cCheckInOut_DaCC();
+				cio.ID = (int)row["ID"];
+				cio.MaCC = (int)row["UserEnrollNumber"];
+				cio.Ngay = (DateTime)row["Ngay"];
+				if (row["GioVao"] != DBNull.Value) cio.GioVao = (DateTime)row["GioVao"];
+				if (row["GioRa"] != DBNull.Value) cio.GioRaa = (DateTime)row["GioRa"];
+				cio.TD = new ThoiDiem();
+				cio.KhoangTG = new StructTGCa();
+				cio.CheckVT = TrangThaiCheckVT((int)row["HaveINOUT"]);
+				if (row["Vao"] != DBNull.Value) cio.GioVao_LamTron = cio.Ngay.Add(new TimeSpan(0, (int)row["Vao"], 0));
+				if (row["Ra"] != DBNull.Value) cio.GioRaa_LamTron = cio.Ngay.Add(new TimeSpan(0, (int)row["Ra"], 0));
+				if (cio.CheckVT == TrangThaiCheck.CheckDayDu)
+				{
+					if (row["BDLV"] != DBNull.Value) cio.TD.BD_LV = cio.Ngay.Add(new TimeSpan(0, (int) row["BDLV"], 0));
+					if (row["KTLVTrongCa"] != DBNull.Value) cio.TD.KT_LV_TrongCa = cio.Ngay.Add(new TimeSpan(0, (int) row["KTLVTrongCa"], 0));
+					if (row["KTLV"] != DBNull.Value) cio.TD.KT_LV = cio.Ngay.Add(new TimeSpan(0, (int) row["KTLV"], 0));
+					if (row["BDLVCa3"] != DBNull.Value) cio.TD.BD_LV_Ca3 = cio.Ngay.Add(new TimeSpan(0, (int) row["BDLVCa3"], 0));
+					if (row["KTLVCa3"] != DBNull.Value) cio.TD.BD_LV_Ca3 = cio.Ngay.Add(new TimeSpan(0, (int) row["KTLVCa3"], 0));
+					//cio.KhoangTG.LamTrongGio = cio.
+				}
+				if (row["Tre"] != DBNull.Value) cio.KhoangTG.Tre = new TimeSpan(0, (int)row["Tre"], 0);
+				if (row["Som"] != DBNull.Value) cio.KhoangTG.Som = new TimeSpan(0, (int)row["Som"], 0);
+				if (row["VaoSauCa"] != DBNull.Value) cio.KhoangTG.VaoSauCa = new TimeSpan(0, (int)row["VaoSauCa"], 0);
+				if (row["RaTruocCa"] != DBNull.Value) cio.KhoangTG.RaTruocCa = new TimeSpan(0, (int)row["RaTruocCa"], 0);
+				if (row["SoPhutXacNhanNgoaiGio"] != DBNull.Value) cio.KhoangTG.LamNgoaiGio = new TimeSpan(0, (int)row["SoPhutXacNhanNgoaiGio"], 0);
+				cio.ChoPhepTre = (bool)row["ChoPhepTre"];
+				cio.ChoPhepSom = (bool)row["ChoPhepSom"];
+				cio.VaoTuDo = (bool)row["VaoTuDo"];
+				cio.RaaTuDo = (bool)row["RaTuDo"];
+				cio.ChamCongTay = (bool)row["ChamCongTay"];
+				if (cio.ChamCongTay) cio.Cong.Tong = (row["TongCong"] != DBNull.Value) ? (float)row["TongCong"] : 0f;
+
+				DS_CIO_DaCC.Add(cio);
+			}
+		}
+
+		private TrangThaiCheck TrangThaiCheckVT(int p) {
+			if (p == (int)TrangThaiCheck.ThieuVao) return TrangThaiCheck.ThieuVao;
+			else if (p == (int)TrangThaiCheck.ThieuRa) return TrangThaiCheck.ThieuRa;
+			return TrangThaiCheck.CheckDayDu;
+		}
+
+		public void GetNgayCongData(DataTable tableArrayUEN, FromToDateTime KhoangTG, out DataTable tableNgayCong) {
+			tableNgayCong = SqlDataAccessHelper.ExecSPQuery(SPName6.NgayCong_Lay.ToString(),
+															new SqlParameter { ParameterName = "@Array_UserEnrollNumber", Value = tableArrayUEN, SqlDbType = SqlDbType.Structured },
+															new SqlParameter("@From", KhoangTG.From),
+															new SqlParameter("@To", KhoangTG.To));
+		}
+
+		public void GetNgayVangData(DataTable tableArrayUEN, FromToDateTime KhoangTG, out DataTable tableKhaiBaoVang, out List<cKhaiBaoVang> DS_KhaiBaoVang) {
+			tableKhaiBaoVang = SqlDataAccessHelper.ExecSPQuery(SPName6.Absent_GetData.ToString(),
+															   new SqlParameter { ParameterName = "@Array_UserEnrollNumber", Value = tableArrayUEN, SqlDbType = SqlDbType.Structured },
+															   new SqlParameter("@From", KhoangTG.From),
+															   new SqlParameter("@To", KhoangTG.To));
+			DS_KhaiBaoVang = new List<cKhaiBaoVang>();
+			foreach (DataRow dataRow in tableKhaiBaoVang.Rows) {
+				cKhaiBaoVang khaiBaoVang = new cKhaiBaoVang();
+				khaiBaoVang.MaCC = (int)dataRow["UserEnrollNumber"];
+				khaiBaoVang.Ngay = (DateTime)dataRow["TimeDate"];
+				khaiBaoVang.Workingday = (float)dataRow["Workingday"];
+				khaiBaoVang.WorkingTime = (float)dataRow["WorkingTime"];
+				DS_KhaiBaoVang.Add(khaiBaoVang);
+			}
+		}
+
+		internal void GetNgayLeData(FromToDateTime KhoangTG, out DataTable tableNgayCong) {
+			throw new NotImplementedException();
 		}
 	}
 }
