@@ -12,6 +12,18 @@ using ChamCong_v06.Helper;
 namespace ChamCong_v06.BUS {
 	public partial class BUS_ChamCong {
 
+		public void XemCong(List<cUserInfo> DSNV, FromToDateTime KhoangTG)
+		{
+			ChamCong2(DSNV, KhoangTG);
+			XemCong2(DSNV, KhoangTG);
+		}
+
+		private void XemCong2(List<cUserInfo> DSNV, FromToDateTime KhoangTG) {
+			List<int> arrayUEN = (from cUserInfo item in DSNV select item.MaCC).ToList();
+
+			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
+
+		}
 
 		public void ChamCong2(List<cUserInfo> DSNV, FromToDateTime KhoangTG) {
 			//ở cấp trên luôn kiểm tra có nhân viên mới chấm công
@@ -30,7 +42,7 @@ namespace ChamCong_v06.BUS {
 				nhanVien.DS_Check_A.Sort(new cCheckComparer());
 				GhepCIO_A2(nhanVien.DS_Check_A, nhanVien.DS_CIO_A);
 				XetCa_ListCIO_A3_V6(nhanVien.DS_CIO_A, nhanVien.NhomCa.DSCa);
-				LapDSNgayCongDeXuLy(nhanVien.DS_CIO_A, out nhanVien.DSNgayDangCC);
+				//LapDSNgayCongDeXuLy(nhanVien.DS_CIO_A, out nhanVien.DSNgayDangCC);
 				dal.Insert_CheckInOutData(nhanVien.MaCC, nhanVien.DS_CIO_A);
 			}
 		}

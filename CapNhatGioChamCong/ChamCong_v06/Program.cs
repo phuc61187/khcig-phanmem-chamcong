@@ -12,7 +12,7 @@ namespace ChamCong_v06 {
 		/// </summary>
 		[STAThread]
 		static void Main() {
-			DevExpress.Utils.AppearanceObject.DefaultFont = new Font("Tahoma", 12, GraphicsUnit.Pixel);
+			DevExpress.Utils.AppearanceObject.DefaultFont = new Font("Tahoma", 7.8F);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new frmMain());

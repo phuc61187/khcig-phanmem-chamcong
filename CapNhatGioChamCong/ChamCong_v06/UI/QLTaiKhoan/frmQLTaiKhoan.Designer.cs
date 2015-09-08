@@ -67,7 +67,7 @@
 			// 
 			// groupControl1
 			// 
-			this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.groupControl1.AppearanceCaption.Options.UseFont = true;
 			this.groupControl1.Controls.Add(this.btnLuuChucNang);
 			this.groupControl1.Controls.Add(this.checkedListChucNang);
@@ -79,7 +79,7 @@
 			// 
 			// btnLuuChucNang
 			// 
-			this.btnLuuChucNang.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnLuuChucNang.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnLuuChucNang.Appearance.Options.UseFont = true;
 			this.btnLuuChucNang.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuuChucNang.Location = new System.Drawing.Point(275, 25);
@@ -91,7 +91,7 @@
 			// 
 			// checkedListChucNang
 			// 
-			this.checkedListChucNang.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkedListChucNang.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.checkedListChucNang.Appearance.Options.UseFont = true;
 			this.checkedListChucNang.CheckOnClick = true;
 			this.checkedListChucNang.Location = new System.Drawing.Point(5, 54);
@@ -101,7 +101,7 @@
 			// 
 			// btnThem
 			// 
-			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnThem.Appearance.Options.UseFont = true;
 			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.btnThem.Image = global::ChamCong_v06.Properties.Resources._1438546384_Add;
@@ -115,7 +115,7 @@
 			// 
 			// btnXoa
 			// 
-			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnXoa.Appearance.Options.UseFont = true;
 			this.btnXoa.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnXoa.Location = new System.Drawing.Point(192, 25);
@@ -127,7 +127,7 @@
 			// 
 			// btnEnableDisable
 			// 
-			this.btnEnableDisable.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEnableDisable.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnEnableDisable.Appearance.Options.UseFont = true;
 			this.btnEnableDisable.Location = new System.Drawing.Point(5, 52);
 			this.btnEnableDisable.Name = "btnEnableDisable";
@@ -138,9 +138,9 @@
 			// 
 			// groupControl2
 			// 
-			this.groupControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.groupControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.groupControl2.Appearance.Options.UseFont = true;
-			this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.groupControl2.AppearanceCaption.Options.UseFont = true;
 			this.groupControl2.Controls.Add(this.btnSua);
 			this.groupControl2.Controls.Add(this.btnResetPassword);
@@ -156,7 +156,7 @@
 			// 
 			// btnSua
 			// 
-			this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnSua.Appearance.Options.UseFont = true;
 			this.btnSua.Image = global::ChamCong_v06.Properties.Resources._1438546263_Edit;
 			this.btnSua.Location = new System.Drawing.Point(98, 25);
@@ -168,7 +168,7 @@
 			// 
 			// btnResetPassword
 			// 
-			this.btnResetPassword.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnResetPassword.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnResetPassword.Appearance.Options.UseFont = true;
 			this.btnResetPassword.Appearance.Options.UseTextOptions = true;
 			this.btnResetPassword.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -207,9 +207,9 @@
 			// 
 			// gridColumn3
 			// 
-			this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridColumn3.AppearanceCell.Options.UseFont = true;
-			this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.gridColumn3.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn3.Caption = "Tài khoản";
 			this.gridColumn3.FieldName = "UserAccount";
@@ -220,7 +220,7 @@
 			// 
 			// gridColumn4
 			// 
-			this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.gridColumn4.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn4.Caption = "Sử dụng";
 			this.gridColumn4.ColumnEdit = this.repositoryItemCheckEdit2;
@@ -240,7 +240,7 @@
 			// treePhongBan
 			// 
 			this.treePhongBan.CheckBoxes = true;
-			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.treePhongBan.HideSelection = false;
 			this.treePhongBan.Indent = 18;
 			this.treePhongBan.ItemHeight = 20;
@@ -263,7 +263,7 @@
 			// 
 			// groupControl3
 			// 
-			this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.groupControl3.AppearanceCaption.Options.UseFont = true;
 			this.groupControl3.Controls.Add(this.btnLuuPhong);
 			this.groupControl3.Controls.Add(this.treePhongBan);
@@ -275,7 +275,7 @@
 			// 
 			// btnLuuPhong
 			// 
-			this.btnLuuPhong.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnLuuPhong.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnLuuPhong.Appearance.Options.UseFont = true;
 			this.btnLuuPhong.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuuPhong.Location = new System.Drawing.Point(196, 25);
@@ -292,7 +292,7 @@
 			this.Controls.Add(this.groupControl3);
 			this.Controls.Add(this.groupControl2);
 			this.Controls.Add(this.groupControl1);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Name = "frmQLTaiKhoan";
 			this.Text = "Quản lý tài khoản";
 			this.Load += new System.EventHandler(this.frmQLTaiKhoan_Load);

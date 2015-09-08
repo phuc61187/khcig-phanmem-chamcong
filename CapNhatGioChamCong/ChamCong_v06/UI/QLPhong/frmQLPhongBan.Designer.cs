@@ -90,7 +90,7 @@
 			// 
 			// btnThem
 			// 
-			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnThem.Appearance.Options.UseFont = true;
 			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.btnThem.Image = global::ChamCong_v06.Properties.Resources._1438546384_Add;
@@ -104,7 +104,7 @@
 			// 
 			// btnXoa
 			// 
-			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnXoa.Appearance.Options.UseFont = true;
 			this.btnXoa.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnXoa.Location = new System.Drawing.Point(177, 358);
@@ -116,7 +116,7 @@
 			// 
 			// btnSua
 			// 
-			this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnSua.Appearance.Options.UseFont = true;
 			this.btnSua.Image = global::ChamCong_v06.Properties.Resources._1438546263_Edit;
 			this.btnSua.Location = new System.Drawing.Point(96, 358);
@@ -128,7 +128,7 @@
 			// 
 			// btnThoat
 			// 
-			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnThoat.Appearance.Options.UseFont = true;
 			this.btnThoat.Image = global::ChamCong_v06.Properties.Resources._1438546227_Log_Out;
 			this.btnThoat.Location = new System.Drawing.Point(259, 358);
@@ -147,7 +147,7 @@
 			this.Controls.Add(this.btnXoa);
 			this.Controls.Add(this.btnThem);
 			this.Controls.Add(this.panel1);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Name = "frmQLPhongBan";
 			this.Text = "Quản lý phòng ban";
 			this.Load += new System.EventHandler(this.frmQLPhongBan_Load);

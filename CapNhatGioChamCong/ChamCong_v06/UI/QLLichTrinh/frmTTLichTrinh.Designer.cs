@@ -47,7 +47,7 @@
 			// 
 			// btnHuy
 			// 
-			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnHuy.Appearance.Options.UseFont = true;
 			this.btnHuy.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnHuy.Location = new System.Drawing.Point(188, 40);
@@ -59,7 +59,7 @@
 			// 
 			// btnLuu
 			// 
-			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnLuu.Appearance.Options.UseFont = true;
 			this.btnLuu.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuu.Location = new System.Drawing.Point(107, 40);
@@ -78,7 +78,7 @@
 			this.Controls.Add(this.btnLuu);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Name = "frmTTLichTrinh";
 			this.Text = "Thông tin lịch trình";
 			this.ResumeLayout(false);

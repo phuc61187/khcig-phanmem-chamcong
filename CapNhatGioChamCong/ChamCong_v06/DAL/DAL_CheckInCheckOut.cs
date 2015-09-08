@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using ChamCong_v06.BUS;
 using ChamCong_v06.DTO;
 using ChamCong_v06.Helper;
 
@@ -54,8 +55,18 @@ namespace ChamCong_v06.DAL {
 		public void Insert_CheckInOutData(int UEN, IEnumerable<cCheckInOut> DS_CIO) {
 			foreach (cCheckInOut CIO in DS_CIO) {
 				if (CIO.CheckVT == TrangThaiCheck.CheckDayDu && CIO.ThuocCa.ID == int.MinValue) continue;//todo test
-				Insert_CheckInOutData(UEN, CIO);
+				if (KiemTraThoaDieuKienThemCIO(CIO))
+					Insert_CheckInOutData(UEN, CIO);
 			}
+		}
+
+		private bool KiemTraThoaDieuKienThemCIO(cCheckInOut cio)
+		{
+			//logic: nếu check đủ vào ra, check ra thì thêm xuống csdl, 
+			//nếu check thiếu ra thì kiểm tra trên 22 tiếng mới cho thêm, dưới 22 tiếng thì vẫn có thể là trường hợp đang ở trong nhà máy
+			if (cio.CheckVT == TrangThaiCheck.CheckDayDu || cio.CheckVT == TrangThaiCheck.ThieuVao
+				|| ((cio.CheckVT == TrangThaiCheck.ThieuRa) && (((DateTime.Now - cio.TimeDaiDien).Duration() > GlobalVariables._22h00))))  return true;
+			return false;
 		}
 
 		public void Insert_CheckInOutData(int UEN, cCheckInOut CIO) {
@@ -101,7 +112,7 @@ namespace ChamCong_v06.DAL {
 														 new SqlParameter { ParameterName = "@SoPhutXacNhanNgoaiGio", Value = 0 }, // lần đầu chưa xác nhận nên = 0
 														 new SqlParameter("@ChoPhepTre", CIO.ChoPhepTre), // lần đầu chưa xác nhận nên = false
 														 new SqlParameter("@ChoPhepSom", CIO.ChoPhepSom), // lần đầu chưa xác nhận nên = false
-														 new SqlParameter("@VaoTuDo", true), // lần đầu chưa xác nhận nên = false
+														 new SqlParameter("@VaoTuDo", CIO.VaoTuDo), // lần đầu chưa xác nhận nên = false
 														 new SqlParameter("@RaTuDo", CIO.RaaTuDo), // lần đầu chưa xác nhận nên = false
 														 new SqlParameter("@CongTrongGio", CIO.CongTheoCa.TrongGio),
 														 new SqlParameter("@CongNgoaiGio", CIO.CongTheoCa.NgoaiGio),

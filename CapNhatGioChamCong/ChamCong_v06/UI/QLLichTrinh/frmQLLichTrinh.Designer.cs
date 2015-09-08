@@ -54,7 +54,7 @@
 			// 
 			// btnXoa
 			// 
-			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnXoa.Appearance.Options.UseFont = true;
 			this.btnXoa.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnXoa.Location = new System.Drawing.Point(86, 25);
@@ -66,7 +66,7 @@
 			// 
 			// btnThem
 			// 
-			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnThem.Appearance.Options.UseFont = true;
 			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.btnThem.Image = global::ChamCong_v06.Properties.Resources._1438546384_Add;
@@ -107,7 +107,7 @@
 			// 
 			// gridColumn1
 			// 
-			this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridColumn1.AppearanceCell.Options.UseFont = true;
 			this.gridColumn1.Caption = "ID_hide";
 			this.gridColumn1.FieldName = "SchID";
@@ -117,9 +117,9 @@
 			// 
 			// gridColumn2
 			// 
-			this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridColumn2.AppearanceCell.Options.UseFont = true;
-			this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.gridColumn2.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn2.Caption = "Lịch trình";
 			this.gridColumn2.FieldName = "SchName";
@@ -160,9 +160,9 @@
 			// 
 			// gridColumn3
 			// 
-			this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridColumn3.AppearanceCell.Options.UseFont = true;
-			this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.gridColumn3.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn3.Caption = "Ca làm việc";
 			this.gridColumn3.FieldName = "ShiftCode";
@@ -174,9 +174,9 @@
 			// 
 			// gridColumn4
 			// 
-			this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridColumn4.AppearanceCell.Options.UseFont = true;
-			this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.gridColumn4.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn4.Caption = "Đang sử dụng";
 			this.gridColumn4.ColumnEdit = this.repositoryItemCheckEdit1;
@@ -194,7 +194,7 @@
 			// 
 			// gridColumn5
 			// 
-			this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridColumn5.AppearanceCell.Options.UseFont = true;
 			this.gridColumn5.Caption = "ShiftID_T1_Hide";
 			this.gridColumn5.FieldName = "T1";
@@ -205,7 +205,7 @@
 			// 
 			// btnThemCa
 			// 
-			this.btnThemCa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThemCa.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnThemCa.Appearance.Options.UseFont = true;
 			this.btnThemCa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.btnThemCa.Image = global::ChamCong_v06.Properties.Resources._1438546384_Add;
@@ -219,7 +219,7 @@
 			// 
 			// groupControl1
 			// 
-			this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.groupControl1.AppearanceCaption.Options.UseFont = true;
 			this.groupControl1.Controls.Add(this.gridControlLichTrinh);
 			this.groupControl1.Controls.Add(this.btnThem);
@@ -232,7 +232,7 @@
 			// 
 			// groupControl2
 			// 
-			this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.groupControl2.AppearanceCaption.Options.UseFont = true;
 			this.groupControl2.Controls.Add(this.btnDong);
 			this.groupControl2.Controls.Add(this.gridControlCa);
@@ -246,7 +246,7 @@
 			// 
 			// btnDong
 			// 
-			this.btnDong.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnDong.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnDong.Appearance.Options.UseFont = true;
 			this.btnDong.Image = global::ChamCong_v06.Properties.Resources._1438546227_Log_Out;
 			this.btnDong.Location = new System.Drawing.Point(197, 25);
@@ -258,7 +258,7 @@
 			// 
 			// btnXoaCa
 			// 
-			this.btnXoaCa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnXoaCa.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnXoaCa.Appearance.Options.UseFont = true;
 			this.btnXoaCa.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnXoaCa.Location = new System.Drawing.Point(101, 25);
@@ -270,9 +270,9 @@
 			// 
 			// gridColumn6
 			// 
-			this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridColumn6.AppearanceCell.Options.UseFont = true;
-			this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.gridColumn6.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn6.Caption = "Công";
 			this.gridColumn6.DisplayFormat.FormatString = "#0.0#";
@@ -290,7 +290,7 @@
 			this.ClientSize = new System.Drawing.Size(619, 453);
 			this.Controls.Add(this.groupControl2);
 			this.Controls.Add(this.groupControl1);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Name = "frmQLLichTrinh";
 			this.Text = "Quản lý lịch trình";
 			this.Load += new System.EventHandler(this.frmQLLichTrinh_Load);

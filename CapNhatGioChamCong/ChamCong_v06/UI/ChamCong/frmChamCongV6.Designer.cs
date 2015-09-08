@@ -102,7 +102,7 @@
 			// 
 			this.gpChonPhongBan.Controls.Add(this.treePhongBan);
 			this.gpChonPhongBan.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gpChonPhongBan.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.gpChonPhongBan.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.gpChonPhongBan.Location = new System.Drawing.Point(0, 0);
 			this.gpChonPhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.gpChonPhongBan.Name = "gpChonPhongBan";
@@ -115,10 +115,10 @@
 			// treePhongBan
 			// 
 			this.treePhongBan.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.treePhongBan.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.treePhongBan.Indent = 18;
 			this.treePhongBan.ItemHeight = 20;
-			this.treePhongBan.Location = new System.Drawing.Point(3, 21);
+			this.treePhongBan.Location = new System.Drawing.Point(3, 22);
 			this.treePhongBan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.treePhongBan.Name = "treePhongBan";
 			treeNode1.Name = "Node2";
@@ -132,45 +132,44 @@
 			this.treePhongBan.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
 			this.treePhongBan.ShowNodeToolTips = true;
-			this.treePhongBan.Size = new System.Drawing.Size(223, 173);
+			this.treePhongBan.Size = new System.Drawing.Size(223, 172);
 			this.treePhongBan.TabIndex = 0;
 			// 
 			// checkedDSNV
 			// 
 			this.checkedDSNV.Location = new System.Drawing.Point(236, 19);
 			this.checkedDSNV.Name = "checkedDSNV";
-			this.checkedDSNV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkedDSNV.Properties.Appearance.Options.UseFont = true;
 			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-			this.checkedDSNV.Size = new System.Drawing.Size(189, 20);
+			this.checkedDSNV.Size = new System.Drawing.Size(189, 22);
 			this.checkedDSNV.TabIndex = 1;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label1.Location = new System.Drawing.Point(236, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(103, 14);
+			this.label1.Size = new System.Drawing.Size(116, 17);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Chọn nhân viên";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label2.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label2.Location = new System.Drawing.Point(236, 42);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 14);
+			this.label2.Size = new System.Drawing.Size(90, 17);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Chọn tháng";
 			// 
 			// dateNavigator1
 			// 
 			this.dateNavigator1.DateTime = new System.DateTime(2015, 4, 3, 0, 0, 0, 0);
-			this.dateNavigator1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.dateNavigator1.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.dateNavigator1.HotDate = null;
 			this.dateNavigator1.Location = new System.Drawing.Point(236, 61);
 			this.dateNavigator1.Name = "dateNavigator1";
@@ -182,16 +181,16 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label3.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label3.Location = new System.Drawing.Point(1, 200);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(149, 14);
+			this.label3.Size = new System.Drawing.Size(168, 17);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Bảng chấm công tháng";
 			// 
 			// btnChamCong
 			// 
-			this.btnChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnChamCong.Appearance.Options.UseFont = true;
 			this.btnChamCong.Location = new System.Drawing.Point(431, 5);
 			this.btnChamCong.Name = "btnChamCong";
@@ -202,13 +201,13 @@
 			// 
 			// lbThieuChamCong
 			// 
-			this.lbThieuChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbThieuChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbThieuChamCong.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbThieuChamCong.LineColor = System.Drawing.Color.Transparent;
 			this.lbThieuChamCong.Location = new System.Drawing.Point(6, 24);
 			this.lbThieuChamCong.Margin = new System.Windows.Forms.Padding(5);
 			this.lbThieuChamCong.Name = "lbThieuChamCong";
-			this.lbThieuChamCong.Size = new System.Drawing.Size(149, 14);
+			this.lbThieuChamCong.Size = new System.Drawing.Size(171, 17);
 			this.lbThieuChamCong.TabIndex = 30;
 			this.lbThieuChamCong.Text = "Thiếu chấm công: [0] TH";
 			// 
@@ -218,7 +217,7 @@
 			this.groupBox1.Controls.Add(this.lbOLaiChuaXN);
 			this.groupBox1.Controls.Add(this.lbKhongNhanDienCa);
 			this.groupBox1.Controls.Add(this.lbThieuChamCong);
-			this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupBox1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.groupBox1.Location = new System.Drawing.Point(801, 12);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(268, 185);
@@ -228,34 +227,34 @@
 			// 
 			// lbVaoTreRaSom
 			// 
-			this.lbVaoTreRaSom.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbVaoTreRaSom.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbVaoTreRaSom.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbVaoTreRaSom.Location = new System.Drawing.Point(6, 96);
 			this.lbVaoTreRaSom.Margin = new System.Windows.Forms.Padding(5);
 			this.lbVaoTreRaSom.Name = "lbVaoTreRaSom";
-			this.lbVaoTreRaSom.Size = new System.Drawing.Size(140, 14);
+			this.lbVaoTreRaSom.Size = new System.Drawing.Size(160, 17);
 			this.lbVaoTreRaSom.TabIndex = 30;
 			this.lbVaoTreRaSom.Text = "Vào trễ, ra sớm: [0] TH";
 			// 
 			// lbOLaiChuaXN
 			// 
-			this.lbOLaiChuaXN.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbOLaiChuaXN.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbOLaiChuaXN.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbOLaiChuaXN.Location = new System.Drawing.Point(6, 72);
 			this.lbOLaiChuaXN.Margin = new System.Windows.Forms.Padding(5);
 			this.lbOLaiChuaXN.Name = "lbOLaiChuaXN";
-			this.lbOLaiChuaXN.Size = new System.Drawing.Size(193, 14);
+			this.lbOLaiChuaXN.Size = new System.Drawing.Size(218, 17);
 			this.lbOLaiChuaXN.TabIndex = 30;
 			this.lbOLaiChuaXN.Text = "Ở lại chưa qua xác nhận: [0] TH";
 			// 
 			// lbKhongNhanDienCa
 			// 
-			this.lbKhongNhanDienCa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbKhongNhanDienCa.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbKhongNhanDienCa.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbKhongNhanDienCa.Location = new System.Drawing.Point(6, 48);
 			this.lbKhongNhanDienCa.Margin = new System.Windows.Forms.Padding(5);
 			this.lbKhongNhanDienCa.Name = "lbKhongNhanDienCa";
-			this.lbKhongNhanDienCa.Size = new System.Drawing.Size(203, 14);
+			this.lbKhongNhanDienCa.Size = new System.Drawing.Size(230, 17);
 			this.lbKhongNhanDienCa.TabIndex = 30;
 			this.lbKhongNhanDienCa.Text = "Không nhận diện được ca: [0] TH";
 			// 
@@ -267,7 +266,7 @@
 			this.groupBox2.Controls.Add(this.lbDaXacNhanLamThem);
 			this.groupBox2.Controls.Add(this.lbVaoRaBiChinhSua);
 			this.groupBox2.Controls.Add(this.lbDaXacNhanCa);
-			this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.groupBox2.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.groupBox2.Location = new System.Drawing.Point(1075, 12);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(268, 185);
@@ -277,74 +276,74 @@
 			// 
 			// lbXinPhepVang
 			// 
-			this.lbXinPhepVang.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbXinPhepVang.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbXinPhepVang.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbXinPhepVang.Location = new System.Drawing.Point(8, 144);
 			this.lbXinPhepVang.Margin = new System.Windows.Forms.Padding(5);
 			this.lbXinPhepVang.Name = "lbXinPhepVang";
-			this.lbXinPhepVang.Size = new System.Drawing.Size(134, 14);
+			this.lbXinPhepVang.Size = new System.Drawing.Size(153, 17);
 			this.lbXinPhepVang.TabIndex = 30;
 			this.lbXinPhepVang.Text = "Xin phép vắng: [0] TH";
 			// 
 			// lbTreSomCoLamBu
 			// 
-			this.lbTreSomCoLamBu.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbTreSomCoLamBu.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbTreSomCoLamBu.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbTreSomCoLamBu.Location = new System.Drawing.Point(8, 120);
 			this.lbTreSomCoLamBu.Margin = new System.Windows.Forms.Padding(5);
 			this.lbTreSomCoLamBu.Name = "lbTreSomCoLamBu";
-			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(203, 14);
+			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(230, 17);
 			this.lbTreSomCoLamBu.TabIndex = 30;
 			this.lbTreSomCoLamBu.Text = "Vào trễ, ra sớm có làm bù: [0] TH";
 			// 
 			// lbChoPhepTreSom
 			// 
-			this.lbChoPhepTreSom.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbChoPhepTreSom.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbChoPhepTreSom.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbChoPhepTreSom.Location = new System.Drawing.Point(8, 96);
 			this.lbChoPhepTreSom.Margin = new System.Windows.Forms.Padding(5);
 			this.lbChoPhepTreSom.Name = "lbChoPhepTreSom";
-			this.lbChoPhepTreSom.Size = new System.Drawing.Size(202, 14);
+			this.lbChoPhepTreSom.Size = new System.Drawing.Size(229, 17);
 			this.lbChoPhepTreSom.TabIndex = 30;
 			this.lbChoPhepTreSom.Text = "Cho phép vào trễ, ra sớm: [0] TH";
 			// 
 			// lbDaXacNhanLamThem
 			// 
-			this.lbDaXacNhanLamThem.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbDaXacNhanLamThem.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbDaXacNhanLamThem.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbDaXacNhanLamThem.Location = new System.Drawing.Point(8, 72);
 			this.lbDaXacNhanLamThem.Margin = new System.Windows.Forms.Padding(5);
 			this.lbDaXacNhanLamThem.Name = "lbDaXacNhanLamThem";
-			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(205, 14);
+			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(232, 17);
 			this.lbDaXacNhanLamThem.TabIndex = 30;
 			this.lbDaXacNhanLamThem.Text = "Đã xác nhận làm thêm giờ: [0] TH";
 			// 
 			// lbVaoRaBiChinhSua
 			// 
-			this.lbVaoRaBiChinhSua.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbVaoRaBiChinhSua.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbVaoRaBiChinhSua.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbVaoRaBiChinhSua.Location = new System.Drawing.Point(8, 24);
 			this.lbVaoRaBiChinhSua.Margin = new System.Windows.Forms.Padding(5);
 			this.lbVaoRaBiChinhSua.Name = "lbVaoRaBiChinhSua";
-			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(218, 14);
+			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(246, 17);
 			this.lbVaoRaBiChinhSua.TabIndex = 30;
 			this.lbVaoRaBiChinhSua.Text = "Giờ vào hoặc ra bị chỉnh sửa: [0] TH";
 			// 
 			// lbDaXacNhanCa
 			// 
-			this.lbDaXacNhanCa.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.lbDaXacNhanCa.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.lbDaXacNhanCa.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbDaXacNhanCa.Location = new System.Drawing.Point(8, 48);
 			this.lbDaXacNhanCa.Margin = new System.Windows.Forms.Padding(5);
 			this.lbDaXacNhanCa.Name = "lbDaXacNhanCa";
-			this.lbDaXacNhanCa.Size = new System.Drawing.Size(138, 14);
+			this.lbDaXacNhanCa.Size = new System.Drawing.Size(158, 17);
 			this.lbDaXacNhanCa.TabIndex = 30;
 			this.lbDaXacNhanCa.Text = "Đã xác nhận ca: [0] TH";
 			// 
 			// gridControl1
 			// 
 			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControl1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.gridControl1.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.gridControl1.Location = new System.Drawing.Point(1, 217);
 			this.gridControl1.MainView = this.gridView1;
 			this.gridControl1.Name = "gridControl1";
@@ -634,7 +633,7 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.checkedDSNV);
 			this.Controls.Add(this.panel1);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Name = "frmChamCongV6";
 			this.Text = "fmXemCong4";
 			this.Load += new System.EventHandler(this.fmXemCong4_Load);

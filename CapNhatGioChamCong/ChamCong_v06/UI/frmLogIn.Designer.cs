@@ -37,7 +37,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label1.Location = new System.Drawing.Point(13, 15);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(66, 14);
@@ -47,7 +47,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label2.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label2.Location = new System.Drawing.Point(14, 41);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(65, 14);
@@ -56,7 +56,7 @@
 			// 
 			// btnDangnhap
 			// 
-			this.btnDangnhap.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnDangnhap.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnDangnhap.Appearance.Options.UseFont = true;
 			this.btnDangnhap.Location = new System.Drawing.Point(88, 64);
 			this.btnDangnhap.Name = "btnDangnhap";
@@ -70,7 +70,7 @@
 			this.btnEditMatkhau.EditValue = "";
 			this.btnEditMatkhau.Location = new System.Drawing.Point(88, 38);
 			this.btnEditMatkhau.Name = "btnEditMatkhau";
-			this.btnEditMatkhau.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditMatkhau.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditMatkhau.Properties.Appearance.Options.UseFont = true;
 			this.btnEditMatkhau.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -81,7 +81,7 @@
 			// 
 			// btnThoat
 			// 
-			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnThoat.Appearance.Options.UseFont = true;
 			this.btnThoat.Location = new System.Drawing.Point(194, 64);
 			this.btnThoat.Name = "btnThoat";
@@ -92,7 +92,7 @@
 			// 
 			// btnKetnoiCSDL
 			// 
-			this.btnKetnoiCSDL.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnKetnoiCSDL.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnKetnoiCSDL.Appearance.Options.UseFont = true;
 			this.btnKetnoiCSDL.Location = new System.Drawing.Point(88, 98);
 			this.btnKetnoiCSDL.Name = "btnKetnoiCSDL";
@@ -106,7 +106,7 @@
 			this.btnEditTaikhoan.EditValue = "";
 			this.btnEditTaikhoan.Location = new System.Drawing.Point(88, 12);
 			this.btnEditTaikhoan.Name = "btnEditTaikhoan";
-			this.btnEditTaikhoan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditTaikhoan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditTaikhoan.Properties.Appearance.Options.UseFont = true;
 			this.btnEditTaikhoan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -125,7 +125,7 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnEditTaikhoan);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "frmLogIn";
 			this.Text = "Đăng nhập";

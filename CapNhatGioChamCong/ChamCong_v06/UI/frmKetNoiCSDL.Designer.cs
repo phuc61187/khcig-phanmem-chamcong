@@ -45,7 +45,7 @@
 			this.btnEditUser.Location = new System.Drawing.Point(75, 33);
 			this.btnEditUser.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditUser.Name = "btnEditUser";
-			this.btnEditUser.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditUser.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditUser.Properties.Appearance.Options.UseFont = true;
 			this.btnEditUser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -58,7 +58,7 @@
 			this.btnEditServer.Location = new System.Drawing.Point(75, 11);
 			this.btnEditServer.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditServer.Name = "btnEditServer";
-			this.btnEditServer.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditServer.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditServer.Properties.Appearance.Options.UseFont = true;
 			this.btnEditServer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -68,7 +68,7 @@
 			// 
 			// btnThoat
 			// 
-			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnThoat.Appearance.Options.UseFont = true;
 			this.btnThoat.Location = new System.Drawing.Point(167, 103);
 			this.btnThoat.Margin = new System.Windows.Forms.Padding(2);
@@ -80,7 +80,7 @@
 			// 
 			// btnKetnoiCSDL
 			// 
-			this.btnKetnoiCSDL.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnKetnoiCSDL.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnKetnoiCSDL.Appearance.Options.UseFont = true;
 			this.btnKetnoiCSDL.Location = new System.Drawing.Point(76, 103);
 			this.btnKetnoiCSDL.Margin = new System.Windows.Forms.Padding(2);
@@ -93,7 +93,7 @@
 			// labelX3
 			// 
 			this.labelX3.AutoSize = true;
-			this.labelX3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.labelX3.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.labelX3.ForeColor = System.Drawing.Color.Black;
 			this.labelX3.Location = new System.Drawing.Point(10, 13);
 			this.labelX3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -105,7 +105,7 @@
 			// labelX4
 			// 
 			this.labelX4.AutoSize = true;
-			this.labelX4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.labelX4.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.labelX4.ForeColor = System.Drawing.Color.Black;
 			this.labelX4.Location = new System.Drawing.Point(10, 82);
 			this.labelX4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -117,7 +117,7 @@
 			// labelX2
 			// 
 			this.labelX2.AutoSize = true;
-			this.labelX2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.labelX2.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.labelX2.ForeColor = System.Drawing.Color.Black;
 			this.labelX2.Location = new System.Drawing.Point(10, 59);
 			this.labelX2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -129,7 +129,7 @@
 			// labelX1
 			// 
 			this.labelX1.AutoSize = true;
-			this.labelX1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.labelX1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.labelX1.ForeColor = System.Drawing.Color.Black;
 			this.labelX1.Location = new System.Drawing.Point(10, 37);
 			this.labelX1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -143,7 +143,7 @@
 			this.btnEditPassword.Location = new System.Drawing.Point(75, 56);
 			this.btnEditPassword.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditPassword.Name = "btnEditPassword";
-			this.btnEditPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditPassword.Properties.Appearance.Options.UseFont = true;
 			this.btnEditPassword.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -158,7 +158,7 @@
 			this.btnEditDatabase.Location = new System.Drawing.Point(75, 79);
 			this.btnEditDatabase.Margin = new System.Windows.Forms.Padding(2);
 			this.btnEditDatabase.Name = "btnEditDatabase";
-			this.btnEditDatabase.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditDatabase.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditDatabase.Properties.Appearance.Options.UseFont = true;
 			this.btnEditDatabase.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -181,7 +181,7 @@
 			this.Controls.Add(this.btnEditServer);
 			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.btnKetnoiCSDL);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "frmKetNoiCSDL";
 			this.Text = "Kết nối CSDL";

@@ -41,7 +41,7 @@
 			this.btnEditMatkhauMoi1.EditValue = "";
 			this.btnEditMatkhauMoi1.Location = new System.Drawing.Point(164, 38);
 			this.btnEditMatkhauMoi1.Name = "btnEditMatkhauMoi1";
-			this.btnEditMatkhauMoi1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditMatkhauMoi1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditMatkhauMoi1.Properties.Appearance.Options.UseFont = true;
 			this.btnEditMatkhauMoi1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -54,7 +54,7 @@
 			// 
 			this.btnEditMatkhauCu.Location = new System.Drawing.Point(164, 12);
 			this.btnEditMatkhauCu.Name = "btnEditMatkhauCu";
-			this.btnEditMatkhauCu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditMatkhauCu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditMatkhauCu.Properties.Appearance.Options.UseFont = true;
 			this.btnEditMatkhauCu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -66,7 +66,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label2.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label2.Location = new System.Drawing.Point(8, 41);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(91, 14);
@@ -76,7 +76,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label1.Location = new System.Drawing.Point(7, 15);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(83, 14);
@@ -86,7 +86,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.label3.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.label3.Location = new System.Drawing.Point(8, 67);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(143, 14);
@@ -98,7 +98,7 @@
 			this.btnEditMatkhauMoi2.EditValue = "";
 			this.btnEditMatkhauMoi2.Location = new System.Drawing.Point(164, 64);
 			this.btnEditMatkhauMoi2.Name = "btnEditMatkhauMoi2";
-			this.btnEditMatkhauMoi2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.btnEditMatkhauMoi2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.btnEditMatkhauMoi2.Properties.Appearance.Options.UseFont = true;
 			this.btnEditMatkhauMoi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -109,7 +109,7 @@
 			// 
 			// btnHuy
 			// 
-			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnHuy.Appearance.Options.UseFont = true;
 			this.btnHuy.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnHuy.Location = new System.Drawing.Point(245, 90);
@@ -121,7 +121,7 @@
 			// 
 			// btnLuu
 			// 
-			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
 			this.btnLuu.Appearance.Options.UseFont = true;
 			this.btnLuu.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuu.Location = new System.Drawing.Point(164, 90);
@@ -144,7 +144,7 @@
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Name = "frmChangePassword";
 			this.Text = "Thay đổi mật khẩu";
 			((System.ComponentModel.ISupportInitialize)(this.btnEditMatkhauMoi1.Properties)).EndInit();

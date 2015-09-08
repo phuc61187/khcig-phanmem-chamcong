@@ -642,7 +642,7 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.checkedDSNV);
 			this.Controls.Add(this.panel1);
-			this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
 			this.Name = "frmXemCong";
 			this.Text = "frmXemCong";
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
