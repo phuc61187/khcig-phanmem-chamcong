@@ -14,8 +14,7 @@ namespace ChamCong_v06.Helper
 		Other = 2,
 	}
 
-	public enum SPName6
-	{
+	public enum SPName6 {
 		#region RelationDept
 		RelationDept_ThemPhongV6,
 		RelationDept_SuaPhongV6,
@@ -84,6 +83,10 @@ namespace ChamCong_v06.Helper
 
 		#region làm nhiều thao tác, bảng kết hợp
 		Other_XoaLichTrinhV6,
+		CIO_Lay,
+		NgayCong_Lay,
+		Absent_GetData,
+		Holiday_GetDataV6,
 		#endregion
 	}
 

@@ -15,7 +15,7 @@ namespace ChamCong_v06.DTO {
 		public cPhongBan PhongBan;
 		//public List<cCheck> DS_Check_A = new List<cCheck>();
 		//public List<cCheckInOut> DS_CIO_A = new List<cCheckInOut>();
-		//public List<cNgayCong> DSNgayDangCC = new List<cNgayCong>();
+		public List<cNgayCong> DSNgayDaCC = new List<cNgayCong>();
 		public cNhomCa NhomCa;
 		//public List<cCheckInOut> DS_CIO_V = new List<cCheckInOut>();
 	}

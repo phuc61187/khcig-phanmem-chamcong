@@ -9,7 +9,7 @@ namespace ChamCong_v06.DTO
 	public class cNgayCong
 	{
 		public DateTime Ngay;
-		public List<cCheckInOut> DSVaoRa = new List<cCheckInOut>();
+		public List<cCheckInOut_DaCC> DSVaoRa = new List<cCheckInOut_DaCC>();
 		public List<cKhaiBaoVang> DSVang = new List<cKhaiBaoVang>();
 		public cNgayCong prev;
 		public cNgayCong next;

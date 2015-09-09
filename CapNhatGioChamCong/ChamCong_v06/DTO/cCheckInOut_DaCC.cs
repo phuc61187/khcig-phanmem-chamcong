@@ -15,18 +15,38 @@ namespace ChamCong_v06.DTO {
 
 		public DateTime GioVao;
 		public DateTime GioRaa;
+		public DateTime VaoLamTron;
+		public DateTime RaaLamTron;
 
-		public DateTime GioVao_LamTron;
-		public DateTime GioRaa_LamTron;
-		public ThoiDiem TD;
-		public StructTGCa KhoangTG;
+		public DateTime BD_LV;// vào làm ca
+		public DateTime KT_LV_TrongCa;
+		public DateTime KT_LV;// 
+		public DateTime BD_LV_Ca3;
+		public DateTime KT_LV_Ca3;
+
+		//public TimeSpan HienDien;
+		public TimeSpan Tre;
+		public TimeSpan Som;
+		public TimeSpan VaoSauCa;
+		public TimeSpan RaTruocCa;
+		//public TimeSpan LamViec;
+		public TimeSpan LamDem;
+		public TimeSpan LamTrongGio;
+		public TimeSpan LamNgoaiGio; 
+		
 		public bool ChoPhepTre;
 		public bool ChoPhepSom;
 		public bool VaoTuDo;
 		public bool RaaTuDo;
-		public StructCongCa Cong;
 
+		public float TruCongTre;
+		public float TruCongSom;
+		public float CongTrongGio;
+		public float CongNgoaiGio;
 		public bool ChamCongTay;
+		public float DinhMuc;
+		public float Tong;
+
 
 	}
 }

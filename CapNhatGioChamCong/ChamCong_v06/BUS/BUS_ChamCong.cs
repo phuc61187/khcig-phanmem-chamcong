@@ -24,17 +24,36 @@ namespace ChamCong_v06.BUS {
 
 			List<cCheckInOut_DaCC> DS_CIO_DaCC;
 			List<cKhaiBaoVang> DS_KhaiBaoVang;
+			List<DateTime> DS_NgayLe;
 			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
 			DataTable tableCIO, tableNgayCong, tableNgayLe;
 			dal.GetCIOData(tableArrayUEN, KhoangTG, out DS_CIO_DaCC);
 			//List<cCheckInOut_DaCC>  = 
 			dal.GetNgayCongData(tableArrayUEN, KhoangTG, out tableNgayCong);
-			dal.GetNgayVangData(tableArrayUEN, KhoangTG, out tableNgayCong, out DS_KhaiBaoVang);
-			dal.GetNgayLeData(KhoangTG, out tableNgayLe);
+			dal.GetNgayVangData(tableArrayUEN, KhoangTG, out tableNgayLe, out DS_KhaiBaoVang);
+			dal.GetNgayLeData(KhoangTG, out DS_NgayLe);
 			//string template = "UserEnrollNumber = {0} and Ngay"
 			foreach (cUserInfo nhanvien in DSNV)
 			{
-				//DataRow[] rowsCIO = tableCIO.Select()
+				LapDSNgayCongDeXuLy(KhoangTG, out nhanvien.DSNgayDaCC);
+				Load_DS_CIO(nhanvien.DSNgayDaCC, DS_CIO_DaCC);
+			}
+		}
+
+		private void Load_DS_CIO(List<cNgayCong> list, List<cCheckInOut_DaCC> DS_CIO_DaCC, DataTable TableNgayCong, List<cKhaiBaoVang> DS_KhaiBaoVang, List<DateTime> DSNgayLe ) {
+			foreach (cNgayCong ngayCong in list)
+			{
+				ngayCong.DSVaoRa = (from cCheckInOut_DaCC item in DS_CIO_DaCC where item.Ngay == ngayCong.Ngay select item).ToList();
+
+			}
+		}
+
+		private void LapDSNgayCongDeXuLy(FromToDateTime KhoangTG, out List<cNgayCong> DSNgayDaCC) {
+			DSNgayDaCC = new List<cNgayCong>();
+			for (DateTime i = KhoangTG.From; i <= KhoangTG.To; i=i.Add(GlobalVariables._1ngay))
+			{
+				cNgayCong ngayCong = new cNgayCong {Ngay = i, DSVang = new List<cKhaiBaoVang>()};
+				DSNgayDaCC.Add(ngayCong);
 			}
 		}
 

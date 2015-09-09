@@ -141,31 +141,36 @@ namespace ChamCong_v06.DAL {
 				cio.Ngay = (DateTime)row["Ngay"];
 				if (row["GioVao"] != DBNull.Value) cio.GioVao = (DateTime)row["GioVao"];
 				if (row["GioRa"] != DBNull.Value) cio.GioRaa = (DateTime)row["GioRa"];
-				cio.TD = new ThoiDiem();
-				cio.KhoangTG = new StructTGCa();
 				cio.CheckVT = TrangThaiCheckVT((int)row["HaveINOUT"]);
-				if (row["Vao"] != DBNull.Value) cio.GioVao_LamTron = cio.Ngay.Add(new TimeSpan(0, (int)row["Vao"], 0));
-				if (row["Ra"] != DBNull.Value) cio.GioRaa_LamTron = cio.Ngay.Add(new TimeSpan(0, (int)row["Ra"], 0));
-				if (cio.CheckVT == TrangThaiCheck.CheckDayDu)
-				{
-					if (row["BDLV"] != DBNull.Value) cio.TD.BD_LV = cio.Ngay.Add(new TimeSpan(0, (int) row["BDLV"], 0));
-					if (row["KTLVTrongCa"] != DBNull.Value) cio.TD.KT_LV_TrongCa = cio.Ngay.Add(new TimeSpan(0, (int) row["KTLVTrongCa"], 0));
-					if (row["KTLV"] != DBNull.Value) cio.TD.KT_LV = cio.Ngay.Add(new TimeSpan(0, (int) row["KTLV"], 0));
-					if (row["BDLVCa3"] != DBNull.Value) cio.TD.BD_LV_Ca3 = cio.Ngay.Add(new TimeSpan(0, (int) row["BDLVCa3"], 0));
-					if (row["KTLVCa3"] != DBNull.Value) cio.TD.BD_LV_Ca3 = cio.Ngay.Add(new TimeSpan(0, (int) row["KTLVCa3"], 0));
-					//cio.KhoangTG.LamTrongGio = cio.
+				if (row["Tre"] != DBNull.Value) cio.Tre = new TimeSpan(0, (int)row["Tre"], 0);
+				if (row["Som"] != DBNull.Value) cio.Som = new TimeSpan(0, (int)row["Som"], 0);
+				if (row["VaoSauCa"] != DBNull.Value) cio.VaoSauCa = new TimeSpan(0, (int)row["VaoSauCa"], 0);
+				if (row["RaTruocCa"] != DBNull.Value) cio.RaTruocCa = new TimeSpan(0, (int)row["RaTruocCa"], 0);
+				if (row["SoPhutXacNhanNgoaiGio"] != DBNull.Value) cio.LamNgoaiGio = new TimeSpan(0, (int)row["SoPhutXacNhanNgoaiGio"], 0);
+				if (cio.CheckVT == TrangThaiCheck.CheckDayDu) {
+					cio.VaoLamTron = cio.Ngay.Add(new TimeSpan(0, (int)row["Vao"], 0));
+					cio.RaaLamTron = cio.Ngay.Add(new TimeSpan(0, (int)row["Ra"], 0));
+					cio.LamTrongGio = (cio.KT_LV - cio.BD_LV);
+					cio.LamDem = (cio.KT_LV_Ca3 - cio.BD_LV_Ca3);
+					cio.BD_LV = cio.Ngay.Add(new TimeSpan(0, (int)row["BDLV"], 0));
+					cio.KT_LV_TrongCa = cio.Ngay.Add(new TimeSpan(0, (int)row["KTLVTrongCa"], 0));
+					cio.KT_LV = cio.Ngay.Add(new TimeSpan(0, (int)row["KTLV"], 0));
+					cio.BD_LV_Ca3 = cio.Ngay.Add(new TimeSpan(0, (int)row["BDLVCa3"], 0));
+					cio.KT_LV_Ca3 = cio.Ngay.Add(new TimeSpan(0, (int)row["KTLVCa3"], 0));
+					cio.ChoPhepTre = (bool)row["ChoPhepTre"];
+					cio.ChoPhepSom = (bool)row["ChoPhepSom"];
+					cio.VaoTuDo = (bool)row["VaoTuDo"];
+					cio.RaaTuDo = (bool)row["RaTuDo"];
+					cio.CongTrongGio = (float) row["CongTrongGio"];
+					cio.CongNgoaiGio = (float) row["CongNgoaiGio"];
+					cio.TruCongTre = (float) row["TruCongTre"];
+					cio.TruCongSom = (float) row["TruCongSom"];
 				}
-				if (row["Tre"] != DBNull.Value) cio.KhoangTG.Tre = new TimeSpan(0, (int)row["Tre"], 0);
-				if (row["Som"] != DBNull.Value) cio.KhoangTG.Som = new TimeSpan(0, (int)row["Som"], 0);
-				if (row["VaoSauCa"] != DBNull.Value) cio.KhoangTG.VaoSauCa = new TimeSpan(0, (int)row["VaoSauCa"], 0);
-				if (row["RaTruocCa"] != DBNull.Value) cio.KhoangTG.RaTruocCa = new TimeSpan(0, (int)row["RaTruocCa"], 0);
-				if (row["SoPhutXacNhanNgoaiGio"] != DBNull.Value) cio.KhoangTG.LamNgoaiGio = new TimeSpan(0, (int)row["SoPhutXacNhanNgoaiGio"], 0);
-				cio.ChoPhepTre = (bool)row["ChoPhepTre"];
-				cio.ChoPhepSom = (bool)row["ChoPhepSom"];
-				cio.VaoTuDo = (bool)row["VaoTuDo"];
-				cio.RaaTuDo = (bool)row["RaTuDo"];
 				cio.ChamCongTay = (bool)row["ChamCongTay"];
-				if (cio.ChamCongTay) cio.Cong.Tong = (row["TongCong"] != DBNull.Value) ? (float)row["TongCong"] : 0f;
+				if (cio.ChamCongTay) {
+					cio.Tong = (row["TongCong"] != DBNull.Value) ? (float)row["TongCong"] : 0f;
+					cio.DinhMuc = (row["DinhMucCong"] != DBNull.Value) ? (float)row["DinhMucCong"] : 0f;
+				}
 
 				DS_CIO_DaCC.Add(cio);
 			}
@@ -200,8 +205,11 @@ namespace ChamCong_v06.DAL {
 			}
 		}
 
-		internal void GetNgayLeData(FromToDateTime KhoangTG, out DataTable tableNgayCong) {
-			throw new NotImplementedException();
+		internal void GetNgayLeData(FromToDateTime KhoangTG, out List<DateTime> listNgayLe)
+		{
+			DataTable tableNgayLe = SqlDataAccessHelper.ExecSPQuery(SPName6.Holiday_GetDataV6.ToString(),
+			                                                        new SqlParameter("@From", KhoangTG.From), new SqlParameter("@To", KhoangTG.To));
+			listNgayLe = (from DataRow dataRow in tableNgayLe.Rows select (DateTime) dataRow["HDate"]).ToList();
 		}
 	}
 }
