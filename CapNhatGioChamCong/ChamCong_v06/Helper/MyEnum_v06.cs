@@ -87,6 +87,7 @@ namespace ChamCong_v06.Helper
 		NgayCong_Lay,
 		Absent_GetData,
 		Holiday_GetDataV6,
+		CheckInOut_Upd_Check_DaChamCongV6,
 		#endregion
 	}
 

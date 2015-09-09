@@ -63,7 +63,7 @@
     <Compile Include="BUS\BUS_ChamCong.cs" />
     <Compile Include="BUS\BUS_LichTrinh_Ca.cs" />
     <Compile Include="BUS\BUS_NhanVien.cs" />
-    <Compile Include="DAL\cKhaiBaoVang.cs" />
+    <Compile Include="DTO\cXacNhanPhuCapNgay.cs" />
     <Compile Include="DTO\cCa.cs" />
     <Compile Include="BUS\GlobalVariables.cs" />
     <Compile Include="DAL\DAL_CheckInCheckOut.cs" />

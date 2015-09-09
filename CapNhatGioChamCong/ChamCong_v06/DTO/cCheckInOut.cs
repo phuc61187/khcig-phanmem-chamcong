@@ -11,7 +11,14 @@ namespace ChamCong_v06.DTO {
 		public DateTime TimeDaiDien;
 		public DateTime ThuocNgayCong;
 		public TrangThaiCheck CheckVT;
-		public ThoiDiem TD;
+		//public ThoiDiem TD;
+		public DateTime VaoLamTron;
+		public DateTime RaaLamTron;
+		public DateTime BD_LV;// vào làm ca
+		public DateTime KT_LV_TrongCa;
+		public DateTime KT_LV;// 
+		public DateTime BD_LV_Ca3;
+		public DateTime KT_LV_Ca3;
 
 		#endregion
 		#region phần thông tin để xử lý các check vân tay
@@ -20,14 +27,32 @@ namespace ChamCong_v06.DTO {
 		public cCa ThuocCa;
 		public List<cCa> DSCaNhanDien;
 
-		public StructTGCa KhoangTGCa;
-		public StructCongCa CongTheoCa;
+		//public StructTGCa KhoangTGCa;
+		public TimeSpan HienDien = TimeSpan.Zero;//todo IsUseful?
+		public TimeSpan Tre = TimeSpan.Zero;
+		public TimeSpan Som = TimeSpan.Zero;
+		public TimeSpan VaoSauCa = TimeSpan.Zero;
+		public TimeSpan RaTruocCa = TimeSpan.Zero;
+		public TimeSpan OLaiVR = TimeSpan.Zero;//todo IsUseful?
+		//public TimeSpan LamViec;
+		public TimeSpan LamDem = TimeSpan.Zero;
+		public TimeSpan LamTrongGio = TimeSpan.Zero;
+		public TimeSpan LamNgoaiGio = TimeSpan.Zero;
+
+		//public StructCongCa CongTheoCa;
+		public float TruCongTre = 0f;
+		public float TruCongSom = 0f;
+		public float TrongGio = 0f;
+		public float NgoaiGio = 0f;//todo IsUseful?
+		public float DinhMuc = 0f;//todo IsUseful?
+		public float Tong = 0f;
+
 		#endregion
 		#region phần thông tin riêng cho đã xử lý
-		public bool ChoPhepTre;
-		public bool ChoPhepSom;
-		public bool VaoTuDo; //ver 4.0.0.4	
-		public bool RaaTuDo; //ver 4.0.0.4	
+		public bool ChoPhepTre = false;
+		public bool ChoPhepSom= false;
+		public bool VaoTuDo= false; //ver 4.0.0.4	
+		public bool RaaTuDo= false; //ver 4.0.0.4	
 
 		#endregion
 		public int ShiftID;
