@@ -28,22 +28,19 @@ namespace ChamCong_v06.BUS {
 			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
 			DataTable tableNgayLe;
 			dal.GetCIOData(tableArrayUEN, KhoangTG, out DS_CIO_DaCC);
-			dal.GetXacNhanPhuCapNgayData(tableArrayUEN, KhoangTG, out DS_XN_PC_Ngay);
-			dal.GetNgayVangData(tableArrayUEN, KhoangTG, out tableNgayLe, out DS_KhaiBaoVang);
+			//dal.GetXacNhanPhuCapNgayData(tableArrayUEN, KhoangTG, out DS_XN_PC_Ngay);
+			dal.GetNgayVangData(tableArrayUEN, KhoangTG, out DS_KhaiBaoVang);
 			dal.GetNgayLeData(KhoangTG, out DS_NgayLe);
-			//string template = "UserEnrollNumber = {0} and Ngay"
 			foreach (cUserInfo nhanvien in DSNV) {
 				LapDSNgayCongDeXuLy(KhoangTG, DS_CIO_DaCC, DS_KhaiBaoVang, DS_NgayLe, out nhanvien.DSNgayDaCC);
-				foreach (cNgayCong ngayCong in nhanvien.DSNgayDaCC)
-				{
+				foreach (cNgayCong ngayCong in nhanvien.DSNgayDaCC) {
 					TinhCong_PC_TGLV_1Ngay(ngayCong);
 				}
 			}
 		}
 
 		private void TinhCong_PC_TGLV_1Ngay(cNgayCong ngayCong) {
-			foreach (cCheckInOut_DaCC item in ngayCong.DSVaoRa)
-			{
+			foreach (cCheckInOut_DaCC item in ngayCong.DSVaoRa) {
 				ngayCong.LamViec += item.LamViec;
 				ngayCong.LamDem += item.LamDem;
 				if (item.QuaDem) ngayCong.QuaDem = true;
@@ -56,7 +53,8 @@ namespace ChamCong_v06.BUS {
 				ngayCong.CongTrongGio += item.CongTrongGio;
 				ngayCong.CongNgoaiGio += item.CongNgoaiGio;
 				ngayCong.ChamCongTay += item.ChamCongTay;
-				
+				ngayCong.DinhMuc += item.DinhMuc;
+				ngayCong.Tong += item.Tong;
 			}
 
 		}
@@ -132,7 +130,7 @@ namespace ChamCong_v06.BUS {
 		private void XuLy_Loai_CheckTrong30ph(IEnumerable<int> ArrayUEN, List<cCheck> DSCheckInCheckOut, out List<cCheck> DSCheck_BiLoai_All) {
 			DSCheck_BiLoai_All = new List<cCheck>();
 			foreach (int uen in ArrayUEN) {
-				List<cCheck> DS_Check_By_UEN = (from cCheck check in DSCheckInCheckOut where check.MaCC == uen select check).ToList();
+				List<cCheck> DS_Check_By_UEN = (from cCheck check in DSCheckInCheckOut where check.MaCC == uen select check).OrderBy(item => item.Time).ToList();
 				List<cCheck> DSCheck_BiLoai_By_UEN;
 				LoaiBoCheckKoHopLe1_V6(DS_Check_By_UEN, out DSCheck_BiLoai_By_UEN);
 				DSCheck_BiLoai_All.AddRange(DSCheck_BiLoai_By_UEN);
@@ -547,7 +545,7 @@ namespace ChamCong_v06.BUS {
 
 		public void TaoCaTuDo(int ID, DateTime CheckInTime, out cCa Ca) {
 			//var temp = CheckInTime.TimeOfDay;//ver 4.0.0.0//tbd xem lại ngày công
-			Ca = new cCa();
+			Ca = new cCa { ID = ID };
 			var gioVaoLamTron = MyUtility.LamTronPhut(CheckInTime.TimeOfDay);//ver 4.0.0.1 bỏ phần giây, chỉ giữ phần giờ, phút
 			//if (CheckInTime.TimeOfDay < GlobalVariables._03gio) temp = Ca.Duty.From.Add(GlobalVariables._1ngay); //ca 3 , ca 3 va 1 vẫn giữ nguyên vì 21h > 4h//tbd xem lại ngày công
 			if (Ca.ID == int.MinValue + 0) {

@@ -483,7 +483,7 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.label27.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.label27.Location = new System.Drawing.Point(194, 9);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(156, 14);
@@ -515,7 +515,7 @@
 			// 
 			// btnHuy
 			// 
-			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnHuy.Appearance.Options.UseFont = true;
 			this.btnHuy.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnHuy.Location = new System.Drawing.Point(374, 266);
@@ -527,7 +527,7 @@
 			// 
 			// btnLuu
 			// 
-			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnLuu.Appearance.Options.UseFont = true;
 			this.btnLuu.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuu.Location = new System.Drawing.Point(293, 266);
@@ -584,7 +584,7 @@
 			this.Controls.Add(this.label25);
 			this.Controls.Add(this.label23);
 			this.Controls.Add(this.label24);
-			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "frmTTCaLamViec";
 			this.Text = "Thông tin ca làm việc";
 			this.Load += new System.EventHandler(this.frmTTCaLamViec_Load);

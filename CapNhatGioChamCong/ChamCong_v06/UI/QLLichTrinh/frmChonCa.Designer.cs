@@ -66,9 +66,9 @@
 			// 
 			// gridColumn3
 			// 
-			this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.gridColumn3.AppearanceCell.Options.UseFont = true;
-			this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.gridColumn3.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn3.Caption = "Ca làm việc";
 			this.gridColumn3.FieldName = "ShiftCode";
@@ -89,9 +89,9 @@
 			// 
 			// gridColumn1
 			// 
-			this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.gridColumn1.AppearanceCell.Options.UseFont = true;
-			this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.gridColumn1.AppearanceHeader.Options.UseFont = true;
 			this.gridColumn1.Caption = "Công";
 			this.gridColumn1.DisplayFormat.FormatString = "#0.0#";
@@ -108,7 +108,7 @@
 			// 
 			// btnHuy
 			// 
-			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnHuy.Appearance.Options.UseFont = true;
 			this.btnHuy.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnHuy.Location = new System.Drawing.Point(163, 389);
@@ -120,7 +120,7 @@
 			// 
 			// btnLuu
 			// 
-			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnLuu.Appearance.Options.UseFont = true;
 			this.btnLuu.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuu.Location = new System.Drawing.Point(82, 389);
@@ -137,7 +137,7 @@
 			this.Controls.Add(this.btnHuy);
 			this.Controls.Add(this.btnLuu);
 			this.Controls.Add(this.gridControl2);
-			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "frmChonCa";
 			this.Text = "Chọn ca";
 			this.Load += new System.EventHandler(this.frmChonCa_Load);

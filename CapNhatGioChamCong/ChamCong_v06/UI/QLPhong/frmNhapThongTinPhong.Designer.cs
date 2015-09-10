@@ -59,7 +59,7 @@
 			// 
 			this.btnTenPhong.Location = new System.Drawing.Point(95, 12);
 			this.btnTenPhong.Name = "btnTenPhong";
-			this.btnTenPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.btnTenPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.btnTenPhong.Properties.Appearance.Options.UseFont = true;
 			this.btnTenPhong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -96,7 +96,7 @@
 			// 
 			// btnHuy
 			// 
-			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnHuy.Appearance.Options.UseFont = true;
 			this.btnHuy.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnHuy.Location = new System.Drawing.Point(176, 380);
@@ -108,7 +108,7 @@
 			// 
 			// btnLuu
 			// 
-			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnLuu.Appearance.Options.UseFont = true;
 			this.btnLuu.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuu.Location = new System.Drawing.Point(95, 380);
@@ -122,7 +122,7 @@
 			// 
 			this.tbVitriPhong.Location = new System.Drawing.Point(95, 38);
 			this.tbVitriPhong.Name = "tbVitriPhong";
-			this.tbVitriPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.tbVitriPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.tbVitriPhong.Properties.Appearance.Options.UseFont = true;
 			this.tbVitriPhong.Size = new System.Drawing.Size(75, 20);
 			this.tbVitriPhong.TabIndex = 14;
@@ -178,7 +178,7 @@
 			this.Controls.Add(this.btnHuy);
 			this.Controls.Add(this.btnLuu);
 			this.Controls.Add(this.tbVitriPhong);
-			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "frmNhapThongTinPhong";
 			this.Text = "Thông tin phòng ban";
 			this.Load += new System.EventHandler(this.frmThemPhongBan_Load);

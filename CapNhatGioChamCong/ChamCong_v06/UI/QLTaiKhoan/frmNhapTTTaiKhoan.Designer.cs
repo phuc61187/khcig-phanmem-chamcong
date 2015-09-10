@@ -42,7 +42,7 @@
 			// 
 			this.btnTenTaiKhoan.Location = new System.Drawing.Point(129, 12);
 			this.btnTenTaiKhoan.Name = "btnTenTaiKhoan";
-			this.btnTenTaiKhoan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.btnTenTaiKhoan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.btnTenTaiKhoan.Properties.Appearance.Options.UseFont = true;
 			this.btnTenTaiKhoan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -61,7 +61,7 @@
 			// 
 			// btnHuy
 			// 
-			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnHuy.Appearance.Options.UseFont = true;
 			this.btnHuy.Image = global::ChamCong_v06.Properties.Resources._1438546065_Delete;
 			this.btnHuy.Location = new System.Drawing.Point(210, 114);
@@ -73,7 +73,7 @@
 			// 
 			// btnLuu
 			// 
-			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnLuu.Appearance.Options.UseFont = true;
 			this.btnLuu.Image = global::ChamCong_v06.Properties.Resources._1438546670_Save;
 			this.btnLuu.Location = new System.Drawing.Point(129, 114);
@@ -88,7 +88,7 @@
 			this.btnEditMatkhau.EditValue = "";
 			this.btnEditMatkhau.Location = new System.Drawing.Point(129, 38);
 			this.btnEditMatkhau.Name = "btnEditMatkhau";
-			this.btnEditMatkhau.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.btnEditMatkhau.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.btnEditMatkhau.Properties.Appearance.Options.UseFont = true;
 			this.btnEditMatkhau.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -100,7 +100,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.label2.Location = new System.Drawing.Point(6, 41);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(57, 14);
@@ -112,7 +112,7 @@
 			this.btnEditMatkhau2.EditValue = "";
 			this.btnEditMatkhau2.Location = new System.Drawing.Point(129, 64);
 			this.btnEditMatkhau2.Name = "btnEditMatkhau2";
-			this.btnEditMatkhau2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.btnEditMatkhau2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.btnEditMatkhau2.Properties.Appearance.Options.UseFont = true;
 			this.btnEditMatkhau2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)});
@@ -124,7 +124,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.label3.Location = new System.Drawing.Point(6, 67);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(104, 14);
@@ -164,7 +164,7 @@
 			this.Controls.Add(this.btnLuu);
 			this.Controls.Add(this.btnTenTaiKhoan);
 			this.Controls.Add(this.label1);
-			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "frmNhapTTTaiKhoan";
 			this.Text = "Thông tin tài khoản";
 			this.Load += new System.EventHandler(this.frmNhapTTTaiKhoan_Load);

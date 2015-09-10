@@ -81,6 +81,15 @@
     <Compile Include="DTO\cUserInfo.cs" />
     <Compile Include="DTO\cLichTrinh.cs" />
     <Compile Include="DTO\cPhongBan.cs" />
+    <Compile Include="UI\zTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\zTestForm.Designer.cs">
+      <DependentUpon>zTestForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\zTestForm.resx">
+      <DependentUpon>zTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Helper\SP\CheckInOut_DocCheckChuaXuLyV6.sql" />
     <None Include="Helper\SP\Shift_DocTatCaShiftV6.sql" />
     <Compile Include="Helper\ACMessageBox.cs" />

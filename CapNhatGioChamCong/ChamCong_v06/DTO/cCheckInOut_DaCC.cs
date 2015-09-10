@@ -69,5 +69,15 @@ namespace ChamCong_v06.DTO {
 
 
 
+
+		internal void CapNhatDinhMucCong()
+		{
+			DinhMuc = CongTrongGio + CongNgoaiGio + TruCongTre + TruCongSom + ChamCongTay;
+		}
+
+		public void CapNhatDinhTongCong()
+		{
+			Tong = CongTrongGio + CongNgoaiGio + ChamCongTay;
+		}
 	}
 }

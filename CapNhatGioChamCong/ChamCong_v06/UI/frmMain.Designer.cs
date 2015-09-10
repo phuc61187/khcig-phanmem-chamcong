@@ -40,7 +40,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            this.menuStrip1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chamCongToolStripMenuItem,
@@ -122,7 +122,7 @@
             // 
             // thoatToolStripMenuItem
             // 
-            this.thoatToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            this.thoatToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.thoatToolStripMenuItem.Name = "thoatToolStripMenuItem";
             this.thoatToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.thoatToolStripMenuItem.Text = "Thoát";
@@ -141,7 +141,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1342, 655);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";

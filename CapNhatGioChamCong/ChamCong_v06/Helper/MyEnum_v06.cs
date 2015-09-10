@@ -83,9 +83,9 @@ namespace ChamCong_v06.Helper
 
 		#region làm nhiều thao tác, bảng kết hợp
 		Other_XoaLichTrinhV6,
-		CIO_Lay,
-		NgayCong_Lay,
-		Absent_GetData,
+		CIO_GetData_V6,
+		NgayCong_LayV6,
+		Absent_GetDataV6,
 		Holiday_GetDataV6,
 		CheckInOut_Upd_Check_DaChamCongV6,
 		#endregion

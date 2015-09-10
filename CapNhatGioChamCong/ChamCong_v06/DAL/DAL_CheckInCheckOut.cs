@@ -136,8 +136,8 @@ namespace ChamCong_v06.DAL {
 														 new SqlParameter("@CongNgoaiGio", congNgoaiGio),
 														 new SqlParameter("@TruCongTre", truCongTre),
 														 new SqlParameter("@TruCongSom", truCongSom),
-														 new SqlParameter { ParameterName = "@TinhCongThuCong", Value = false, },
-														 new SqlParameter("@ChamCongTay", 0f),
+														 new SqlParameter{ ParameterName = "@TinhCongThuCong", Value = false, },
+														 new SqlParameter{ ParameterName = "@ChamCongTay", Value = 0f, },
 														 new SqlParameter("@DinhMucCong", CIO.DinhMuc),
 														 new SqlParameter("@TongCong", CIO.Tong),
 														 new SqlParameter("@TheoDoiGioGocMayCC", string.Empty)//todo ghi phần theo dõi
@@ -149,7 +149,7 @@ namespace ChamCong_v06.DAL {
 		//public void
 
 		internal void GetCIOData(DataTable tableArrayUEN, FromToDateTime KhoangTG, out List<cCheckInOut_DaCC> DS_CIO_DaCC) {
-			DataTable tableCIO = SqlDataAccessHelper.ExecSPQuery(SPName6.CIO_Lay.ToString(),
+			DataTable tableCIO = SqlDataAccessHelper.ExecSPQuery(SPName6.CIO_GetData_V6.ToString(),
 				new SqlParameter { ParameterName = "@Array_UserEnrollNumber", Value = tableArrayUEN, SqlDbType = SqlDbType.Structured },
 													 new SqlParameter("@From", KhoangTG.From),
 													 new SqlParameter("@To", KhoangTG.To));
@@ -158,9 +158,8 @@ namespace ChamCong_v06.DAL {
 				cCheckInOut_DaCC cio = new cCheckInOut_DaCC();
 				cio.ID = (int)row["ID"];
 				cio.MaCC = (int)row["UserEnrollNumber"];
-				cio.Ngay = (DateTime)row["Ngay"];
-				if (row["GioVao"] != DBNull.Value) cio.GioVao = (DateTime)row["GioVao"];
-				if (row["GioRa"] != DBNull.Value) cio.GioRaa = (DateTime)row["GioRa"];
+				cio.Ngay = (DateTime)row["NgayCong"];
+				if (row["GioVao"] != DBNull.Value) cio.GioVao = (DateTime)row["GioVao"];if (row["GioRa"] != DBNull.Value) cio.GioRaa = (DateTime)row["GioRa"];
 				cio.CheckVT = TrangThaiCheckVT((int)row["HaveINOUT"]);
 				cio.Tre_Min = (int)row["Tre"];
 				cio.Som_Min = (int)row["Som"];
@@ -185,8 +184,8 @@ namespace ChamCong_v06.DAL {
 				cio.TruCongSom = (float)row["TruCongSom"];
 				cio.TinhCongThuCong = (bool)row["TinhCongThuCong"];
 				cio.ChamCongTay = (float)row["ChamCongTay"];
-
-
+				cio.CapNhatDinhMucCong();
+				cio.CapNhatDinhTongCong();
 				DS_CIO_DaCC.Add(cio);
 			}
 		}
@@ -198,7 +197,7 @@ namespace ChamCong_v06.DAL {
 		}
 
 		public void GetXacNhanPhuCapNgayData(DataTable tableArrayUEN, FromToDateTime KhoangTG, out List<cXacNhanPhuCapNgay> DS_XN_PC_Ngay) {
-			DataTable tableNgayCong = SqlDataAccessHelper.ExecSPQuery(SPName6.NgayCong_Lay.ToString(),
+			DataTable tableNgayCong = SqlDataAccessHelper.ExecSPQuery(SPName6.NgayCong_LayV6.ToString(),
 															new SqlParameter { ParameterName = "@Array_UserEnrollNumber", Value = tableArrayUEN, SqlDbType = SqlDbType.Structured },
 															new SqlParameter("@From", KhoangTG.From),
 															new SqlParameter("@To", KhoangTG.To));
@@ -217,8 +216,8 @@ namespace ChamCong_v06.DAL {
 			}
 		}
 
-		public void GetNgayVangData(DataTable tableArrayUEN, FromToDateTime KhoangTG, out DataTable tableKhaiBaoVang, out List<cKhaiBaoVang> DS_KhaiBaoVang) {
-			tableKhaiBaoVang = SqlDataAccessHelper.ExecSPQuery(SPName6.Absent_GetData.ToString(),
+		public void GetNgayVangData(DataTable tableArrayUEN, FromToDateTime KhoangTG, out List<cKhaiBaoVang> DS_KhaiBaoVang) {
+			DataTable tableKhaiBaoVang = SqlDataAccessHelper.ExecSPQuery(SPName6.Absent_GetDataV6.ToString(),
 															   new SqlParameter { ParameterName = "@Array_UserEnrollNumber", Value = tableArrayUEN, SqlDbType = SqlDbType.Structured },
 															   new SqlParameter("@From", KhoangTG.From),
 															   new SqlParameter("@To", KhoangTG.To));

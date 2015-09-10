@@ -163,6 +163,8 @@ namespace ChamCong_v06.UI.ChamCong {
 			busNhanVien.KhoiTaoDSNV_DuocChon(listUEN, this.m_NhanVienDR, this.m_SelectedPhong, this.m_AllNhomCa, out listDSNV);
 			BUS_ChamCong busChamCong = new BUS_ChamCong();
 			busChamCong.ChamCong2(listDSNV, new FromToDateTime{From=MyUtility.FirstDayOfMonth(Thang), To = MyUtility.LastDayOfMonth(Thang)});
+			zTestForm frm = new zTestForm();
+			frm.Show();
 		}
 
 
