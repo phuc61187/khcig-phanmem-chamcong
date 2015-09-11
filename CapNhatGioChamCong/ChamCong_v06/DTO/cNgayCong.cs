@@ -10,6 +10,7 @@ namespace ChamCong_v06.DTO {
 		public DateTime Ngay;
 		public List<cCheckInOut_DaCC> DSVaoRa = new List<cCheckInOut_DaCC>();
 		public List<cKhaiBaoVang> DSVang = new List<cKhaiBaoVang>();
+		public cXacNhanPhuCapNgay XN_PCNgay= new cXacNhanPhuCapNgay();
 		public bool IsHoliday = false;
 
 		public bool QuaDem;
@@ -27,7 +28,7 @@ namespace ChamCong_v06.DTO {
 		public float ChamCongTay;
 
 		public float DinhMuc;
-		public float Tong;
+		public float Tong { get { return CongTrongGio + CongNgoaiGio + ChamCongTay; } }
 
 		public TimeSpan LamDem;
 		public TimeSpan LamViec;
@@ -176,5 +177,14 @@ namespace ChamCong_v06.DTO {
 				public cNgayCong() { }
 		*/
 
+
+		public float PhuCapDem;
+		public float PhuCapTangCuong;
+		public float PhuCapThemNgayThuong;
+		public float PhuCapNgayNghi;
+		public float PhuCapThemNgayNghi;
+		public float PhuCapNgayLe;
+		public float PhuCapThemNgayLe;
+		public float TongPhuCap;
 	}
 }

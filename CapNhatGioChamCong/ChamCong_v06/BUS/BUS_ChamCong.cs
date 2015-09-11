@@ -28,17 +28,58 @@ namespace ChamCong_v06.BUS {
 			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
 			DataTable tableNgayLe;
 			dal.GetCIOData(tableArrayUEN, KhoangTG, out DS_CIO_DaCC);
-			//dal.GetXacNhanPhuCapNgayData(tableArrayUEN, KhoangTG, out DS_XN_PC_Ngay);
+			dal.GetXacNhanPhuCapNgayData(tableArrayUEN, KhoangTG, out DS_XN_PC_Ngay);
 			dal.GetNgayVangData(tableArrayUEN, KhoangTG, out DS_KhaiBaoVang);
 			dal.GetNgayLeData(KhoangTG, out DS_NgayLe);
 			foreach (cUserInfo nhanvien in DSNV) {
-				LapDSNgayCongDeXuLy(KhoangTG, DS_CIO_DaCC, DS_KhaiBaoVang, DS_NgayLe, out nhanvien.DSNgayDaCC);
+				LapDSNgayCongDeXuLy(KhoangTG, DS_CIO_DaCC, DS_KhaiBaoVang, DS_NgayLe, DS_XN_PC_Ngay, out nhanvien.DSNgayDaCC);
 				foreach (cNgayCong ngayCong in nhanvien.DSNgayDaCC) {
 					TinhCong_PC_TGLV_1Ngay(ngayCong);
+					TinhPhuCap_1Ngay(ngayCong);
 				}
 			}
 		}
 
+		private void TinhPhuCap_1Ngay(cNgayCong ngayCong)
+		{
+			ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+			if (ngayCong.DuocTinhPCTC)
+			{
+				ngayCong.PhuCapTangCuong = TinhPhuCap(ngayCong.LamThem, GlobalVariables.HSPCTangCuong);
+				ngayCong.PhuCapThemNgayThuong = TinhPhuCap(ngayCong.LamTangCuongDem, GlobalVariables.HSPCThem_NgayThuong);
+				ngayCong.Tong = ngayCong.PhuCapDem + ngayCong.PhuCapTangCuong + ngayCong.PhuCapThemNgayThuong;
+			}
+			else if (ngayCong.DuocTinhPCNgayNghi)
+			{
+				ngayCong.PhuCapNgayNghi = TinhPhuCap(ngayCong.LamNgay, GlobalVariables.HSPCNgayNghi);
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				ngayCong.PhuCapThemNgayNghi = TinhPhuCap(ngayCong.LamThem, GlobalVariables.HSPCThem_NgayNghi);
+				
+			}
+			else if (ngayCong.DuocTinhPCNgayLe)
+			{
+				ngayCong.PhuCapNgayLe = TinhPhuCap(ngayCong.LamNgay, GlobalVariables.HSPCNgayLe);
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				ngayCong.PhuCapThemNgayLe = TinhPhuCap(ngayCong.LamThem, GlobalVariables.HSPCThem_NgayLe);
+			}
+			
+			if (ngayCong.TinhPCThuCong)
+			{
+				ngayCong.TongPhuCap = 0f;
+			}
+			else
+			{
+				ngayCong.TongPhuCap =ngayCong.PhuCapDem
+			}
+
+			ngayCong.Tong 
+		}
+
+
+		public float TinhPhuCap(TimeSpan ThoiGian, int HSPC)
+		{
+			return (Convert.ToSingle(ThoiGian.TotalHours/8d)) * (Convert.ToSingle(HSPC)/100f);
+		}
 		private void TinhCong_PC_TGLV_1Ngay(cNgayCong ngayCong) {
 			foreach (cCheckInOut_DaCC item in ngayCong.DSVaoRa) {
 				ngayCong.LamViec += item.LamViec;
@@ -54,7 +95,6 @@ namespace ChamCong_v06.BUS {
 				ngayCong.CongNgoaiGio += item.CongNgoaiGio;
 				ngayCong.ChamCongTay += item.ChamCongTay;
 				ngayCong.DinhMuc += item.DinhMuc;
-				ngayCong.Tong += item.Tong;
 			}
 
 		}
@@ -65,7 +105,8 @@ namespace ChamCong_v06.BUS {
 			}
 		}
 
-		private void LapDSNgayCongDeXuLy(FromToDateTime KhoangTG, List<cCheckInOut_DaCC> DS_CIO_DaCC, List<cKhaiBaoVang> DS_KhaiBaoVang, List<DateTime> DSNgayLe,
+		private void LapDSNgayCongDeXuLy(FromToDateTime KhoangTG, List<cCheckInOut_DaCC> DS_CIO_DaCC, 
+			List<cKhaiBaoVang> DS_KhaiBaoVang, List<DateTime> DSNgayLe, List<cXacNhanPhuCapNgay> DS_XN_PC_Ngay,
 			out List<cNgayCong> DSNgayDaCC) {
 			DSNgayDaCC = new List<cNgayCong>();
 			for (DateTime i = KhoangTG.From; i <= KhoangTG.To; i = i.Add(GlobalVariables._1ngay)) {
@@ -73,6 +114,7 @@ namespace ChamCong_v06.BUS {
 				ngayCong.DSVaoRa = (from cCheckInOut_DaCC item in DS_CIO_DaCC where item.Ngay == ngayCong.Ngay select item).ToList();
 				ngayCong.DSVang = (from cKhaiBaoVang item in DS_KhaiBaoVang where item.Ngay == ngayCong.Ngay select item).ToList();
 				ngayCong.IsHoliday = (DSNgayLe.Any(item => item == ngayCong.Ngay));
+				ngayCong.XN_PCNgay = (from item in DS_XN_PC_Ngay where item.Ngay == ngayCong.Ngay select item).SingleOrDefault();
 				DSNgayDaCC.Add(ngayCong);
 			}
 		}
@@ -133,7 +175,11 @@ namespace ChamCong_v06.BUS {
 				List<cCheck> DS_Check_By_UEN = (from cCheck check in DSCheckInCheckOut where check.MaCC == uen select check).OrderBy(item => item.Time).ToList();
 				List<cCheck> DSCheck_BiLoai_By_UEN;
 				LoaiBoCheckKoHopLe1_V6(DS_Check_By_UEN, out DSCheck_BiLoai_By_UEN);
-				DSCheck_BiLoai_All.AddRange(DSCheck_BiLoai_By_UEN);
+				foreach (cCheck cCheck in DSCheck_BiLoai_By_UEN)
+				{
+					DSCheckInCheckOut.Remove(cCheck);
+					DSCheck_BiLoai_All.Add(cCheck);
+				}
 			}
 			DAL.DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
 			dal.LoaiCheckTrong30ph(DSCheck_BiLoai_All);
@@ -330,7 +376,7 @@ namespace ChamCong_v06.BUS {
 		}
 
 		private void TinhCong(cCheckInOut CIO, cCa Ca) {
-			TinhCong(CIO.Tre, CIO.Som, CIO.ChoPhepTre, CIO.ChoPhepSom, true, CIO.RaaTuDo,
+			TinhCong(CIO.Tre, CIO.Som, CIO.ChoPhepTre, CIO.ChoPhepSom, CIO.VaoTuDo, CIO.RaaTuDo,
 				CIO.LamTrongGio, CIO.LamNgoaiGio, Ca.WorkingTimeTS, Ca.Workingday,
 				out CIO.TruCongTre, out CIO.TruCongSom, out CIO.TrongGio, out CIO.NgoaiGio,
 				out CIO.DinhMuc, out CIO.Tong);

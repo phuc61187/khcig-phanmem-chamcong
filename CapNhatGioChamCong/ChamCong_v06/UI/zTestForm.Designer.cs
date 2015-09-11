@@ -63,6 +63,7 @@
 			// 
 			this.gridView2.GridControl = this.gridControl2;
 			this.gridView2.Name = "gridView2";
+			this.gridView2.OptionsView.ColumnAutoWidth = false;
 			// 
 			// zTestForm
 			// 

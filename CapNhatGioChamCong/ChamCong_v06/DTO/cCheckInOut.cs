@@ -61,7 +61,7 @@ namespace ChamCong_v06.DTO {
 		public bool QuaDem;
 
 		public override string ToString() {
-			var temp = "HaveIO:{0} XN:{1} V:{2} R:{3} Ca:{4} Ngay:{5}";
+			var temp = "HaveIO:{0} V:{1} R:{2} Ngay:{3}";
 
 			return string.Format(temp, CheckVT, (Vao != null) ? Vao.Time.ToString("H:mm") : "", (Raa != null) ? Raa.Time.ToString("H:mm") : "",
 								 /*(ThuocCa != null) ? ThuocCa.Code : "",*/ ThuocNgayCong.ToString("d/M"));
