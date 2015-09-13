@@ -34,7 +34,7 @@ namespace ChamCong_v06.DAL {
 		}
 
 		internal void LoaiCheckTrong30ph(List<cCheck> DSCheck_BiLoai_All) {
-			int kq = 0;
+			int kq;
 			bool flag = false;
 			foreach (cCheck check in DSCheck_BiLoai_All) {
 				kq = SqlDataAccessHelper.ExecSPNoneQuery(SPName6.CheckInOut_LoaiCheck_KoHopLeV6.ToString(),
@@ -45,6 +45,7 @@ namespace ChamCong_v06.DAL {
 														 new SqlParameter("@DaChamCong", true));
 				if (kq == 0) {
 					flag = true;
+					break;
 				}
 			}
 			if (flag) {
