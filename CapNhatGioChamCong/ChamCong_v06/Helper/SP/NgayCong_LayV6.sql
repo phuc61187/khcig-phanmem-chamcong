@@ -7,9 +7,13 @@ IF EXISTS (
 DROP PROCEDURE  NgayCong_LayV6
 GO
 CREATE PROCEDURE NgayCong_LayV6
+(@Array_UserEnrollNumber IntArray readonly,
 @From datetime,
-@To datetime
-as
+@To datetime)
+as 
 begin
-select * from Holiday where HDate is null
+	select * 
+	from XacNhanPhuCapNgayV6
+	where Ngay between @From and @To
+	and (UserEnrollNumber in (select * from @Array_UserEnrollNumber))
 end

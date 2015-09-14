@@ -19,6 +19,7 @@ namespace ChamCong_v06.DTO {
 		public int BD_LV_Min;// vào làm ca
 		public int KT_LV_TrongCa_Min;
 		public int KT_LV_Min;// 
+		public int LunchMin;
 		public int BD_LV_Ca3_Min;
 		public int KT_LV_Ca3_Min;
 
@@ -31,11 +32,12 @@ namespace ChamCong_v06.DTO {
 		public DateTime BD_LV { get { return Ngay.Add(new TimeSpan(0, BD_LV_Min, 0)); } }// vào làm ca
 		public DateTime KT_LV_TrongCa { get { return Ngay.Add(new TimeSpan(0, KT_LV_TrongCa_Min, 0)); } }
 		public DateTime KT_LV { get { return Ngay.Add(new TimeSpan(0, KT_LV_Min, 0)); } }// 
+		public TimeSpan TG_NghiTrua { get { return new TimeSpan(0, LunchMin, 0); } }
 		public DateTime BD_LV_Ca3 { get { return Ngay.Add(new TimeSpan(0, BD_LV_Ca3_Min, 0)); } }
 		public DateTime KT_LV_Ca3 { get { return Ngay.Add(new TimeSpan(0, KT_LV_Ca3_Min, 0)); } }
 
 		public bool QuaDem;
-		
+
 		//public TimeSpan HienDien;
 		public TimeSpan Tre { get { return (ChoPhepTre || VaoTuDo) ? TimeSpan.Zero : new TimeSpan(0, Tre_Min, 0); } }
 		public TimeSpan Som { get { return (ChoPhepSom || RaaTuDo) ? TimeSpan.Zero : new TimeSpan(0, Som_Min, 0); } }
@@ -48,13 +50,12 @@ namespace ChamCong_v06.DTO {
 		public bool ChoPhepSom;
 		public bool VaoTuDo;
 		public bool RaaTuDo;
+		public bool TinhCongThuCong;
 
 		public float TruCongTre = 0f;
 		public float TruCongSom = 0f;
 		public float CongTrongGio = 0f;
 		public float CongNgoaiGio = 0f;
-
-		public bool TinhCongThuCong;
 		public float ChamCongTay = 0f;
 
 		public float DinhMuc = 0f;
@@ -62,21 +63,16 @@ namespace ChamCong_v06.DTO {
 		#endregion
 
 		public TimeSpan LamDem { get { return KT_LV_Ca3 - BD_LV_Ca3; } }
-		public TimeSpan LamTrongGio { get { return KT_LV_TrongCa - BD_LV; } }
+		public TimeSpan LamTrongGio { get { return ((KT_LV_TrongCa - BD_LV) - TG_NghiTrua); } }
 		public TimeSpan LamNgoaiGio { get { return KT_LV - KT_LV_TrongCa; } }
-		public TimeSpan LamViec { get { return KT_LV - BD_LV; } }
+		public TimeSpan LamViec { get { return ((KT_LV - BD_LV) - TG_NghiTrua); } }
 
 
-
-
-
-		internal void CapNhatDinhMucCong()
-		{
+		internal void CapNhatDinhMucCong() {
 			DinhMuc = CongTrongGio + CongNgoaiGio + TruCongTre + TruCongSom + ChamCongTay;
 		}
 
-		public void CapNhatDinhTongCong()
-		{
+		public void CapNhatDinhTongCong() {
 			Tong = CongTrongGio + CongNgoaiGio + ChamCongTay;
 		}
 	}

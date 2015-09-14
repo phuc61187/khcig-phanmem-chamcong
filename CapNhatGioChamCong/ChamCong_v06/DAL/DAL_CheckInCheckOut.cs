@@ -87,15 +87,16 @@ namespace ChamCong_v06.DAL {
 		public void Insert_CheckInOutData(int UEN, cCheckInOut CIO) {
 			int phut_Vao = 0, phut_Ra = 0, phut_BD_LV = 0, phut_KT_LV_TrongCa = 0, phut_KT_LV = 0, phut_BD_LV_Ca3 = 0, phut_KT_LV_Ca3 = 0;
 			int phut_TreVR = 0, phut_SomVR = 0, phut_LamViec = 0, phut_LamDem = 0, phut_OLaiVR = 0, phut_LamTrongGio = 0, phut_LamNgoaiGio = 0,
-				phut_VaoSauCa = 0, phut_RaTruocCa = 0;
+				phut_VaoSauCa = 0, phut_RaTruocCa = 0, phut_NghiTrua = 0;
 			float congTrongGio = 0f, congNgoaiGio = 0f, truCongTre = 0f, truCongSom = 0f;
 			bool quaDem = false;
 			if (CIO.CheckVT == TrangThaiCheck.CheckDayDu) {
 				phut_Vao = MyUtility.QuyDoiPhut((CIO.BD_LV - CIO.ThuocNgayCong));
 				phut_Ra = MyUtility.QuyDoiPhut((CIO.KT_LV - CIO.ThuocNgayCong));
 				phut_BD_LV = MyUtility.QuyDoiPhut((CIO.BD_LV - CIO.ThuocNgayCong));
-				phut_KT_LV = MyUtility.QuyDoiPhut((CIO.KT_LV - CIO.ThuocNgayCong));
 				phut_KT_LV_TrongCa = MyUtility.QuyDoiPhut((CIO.KT_LV_TrongCa - CIO.ThuocNgayCong));
+				phut_KT_LV = MyUtility.QuyDoiPhut((CIO.KT_LV - CIO.ThuocNgayCong));
+				phut_NghiTrua = MyUtility.QuyDoiPhut(CIO.ThuocCa.LunchMin);
 				phut_BD_LV_Ca3 = (CIO.BD_LV_Ca3 == DateTime.MinValue) ? 0 : MyUtility.QuyDoiPhut((CIO.BD_LV_Ca3 - CIO.ThuocNgayCong));
 				phut_KT_LV_Ca3 = (CIO.KT_LV_Ca3 == DateTime.MinValue) ? 0 : MyUtility.QuyDoiPhut((CIO.KT_LV_Ca3 - CIO.ThuocNgayCong));
 				phut_TreVR = MyUtility.QuyDoiPhut(CIO.Tre);
@@ -121,6 +122,7 @@ namespace ChamCong_v06.DAL {
 														 new SqlParameter("@BDLV", phut_BD_LV),
 														 new SqlParameter("@KTLVTrongCa", phut_KT_LV_TrongCa),
 														 new SqlParameter("@KTLV", phut_KT_LV),
+														 new SqlParameter("@SoPhutNghiTrua", phut_NghiTrua),
 														 new SqlParameter("@BDLVCa3", phut_BD_LV_Ca3),
 														 new SqlParameter("@KTLVCa3", phut_KT_LV_Ca3),
 														 new SqlParameter("@QuaDem", quaDem),
@@ -141,9 +143,9 @@ namespace ChamCong_v06.DAL {
 														 new SqlParameter{ ParameterName = "@ChamCongTay", Value = 0f, },
 														 new SqlParameter("@DinhMucCong", CIO.DinhMuc),
 														 new SqlParameter("@TongCong", CIO.Tong),
-														 new SqlParameter("@TheoDoiGioGocMayCC", string.Empty)//todo ghi phần theo dõi
-				// ko có GhiChu, LyDo
-				);
+														 new SqlParameter("@TheoDoiGioGocMayCC", string.Empty));//todo ghi phần theo dõi// ko có GhiChu, LyDo
+				
+				
 			if (kq == 0) { ACMessageBox.Show(Resources.Text_CoLoi, Resources.Caption_Loi, 2000); }
 		}
 
@@ -160,7 +162,8 @@ namespace ChamCong_v06.DAL {
 				cio.ID = (int)row["ID"];
 				cio.MaCC = (int)row["UserEnrollNumber"];
 				cio.Ngay = (DateTime)row["NgayCong"];
-				if (row["GioVao"] != DBNull.Value) cio.GioVao = (DateTime)row["GioVao"];if (row["GioRa"] != DBNull.Value) cio.GioRaa = (DateTime)row["GioRa"];
+				if (row["GioVao"] != DBNull.Value) cio.GioVao = (DateTime)row["GioVao"];
+				if (row["GioRa"] != DBNull.Value) cio.GioRaa = (DateTime)row["GioRa"];
 				cio.CheckVT = TrangThaiCheckVT((int)row["HaveINOUT"]);
 				cio.Tre_Min = (int)row["Tre"];
 				cio.Som_Min = (int)row["Som"];
@@ -172,6 +175,7 @@ namespace ChamCong_v06.DAL {
 				cio.BD_LV_Min = (int)row["BDLV"];
 				cio.KT_LV_TrongCa_Min = (int)row["KTLVTrongCa"];
 				cio.KT_LV_Min = (int)row["KTLV"];
+				cio.LunchMin = (int) row["SoPhutNghiTrua"];
 				cio.BD_LV_Ca3_Min = (int)row["BDLVCa3"];
 				cio.KT_LV_Ca3_Min = (int)row["KTLVCa3"];
 				cio.QuaDem = (bool) row["QuaDem"];
@@ -179,11 +183,11 @@ namespace ChamCong_v06.DAL {
 				cio.ChoPhepSom = (bool)row["ChoPhepSom"];
 				cio.VaoTuDo = (bool)row["VaoTuDo"];
 				cio.RaaTuDo = (bool)row["RaTuDo"];
+				cio.TinhCongThuCong = (bool)row["TinhCongThuCong"];
 				cio.CongTrongGio = (float)row["CongTrongGio"];
 				cio.CongNgoaiGio = (float)row["CongNgoaiGio"];
 				cio.TruCongTre = (float)row["TruCongTre"];
 				cio.TruCongSom = (float)row["TruCongSom"];
-				cio.TinhCongThuCong = (bool)row["TinhCongThuCong"];
 				cio.ChamCongTay = (float)row["ChamCongTay"];
 				cio.CapNhatDinhMucCong();
 				cio.CapNhatDinhTongCong();
@@ -207,12 +211,13 @@ namespace ChamCong_v06.DAL {
 				cXacNhanPhuCapNgay item = new cXacNhanPhuCapNgay();
 				item.MaCC = (int)dataRow["UserEnrollNumber"];
 				item.Ngay = (DateTime)dataRow["Ngay"];
-				item.TinhPCTC = (bool)dataRow["TinhPCTC"];
-				item.TinhPCNgayNghi = (bool)dataRow["TinhPCNgayNghi"];
-				item.TinhPCNgayLe = (bool)dataRow["TinhPCNgayLe"];
-				item.TinhPCTay = (bool)dataRow["TinhPCThuCong"];
-				item.TongPhuCap = (dataRow["TongPC"] != DBNull.Value) ? (float)dataRow["TongPC"] : 0f;
-				if (item.TinhPCTay) item.PhuCapTay = item.TongPhuCap;
+				item.DuocTinhPCTC = (bool)dataRow["TinhPCTC"];
+				item.DuocTinhPCNgayNghi = (bool)dataRow["TinhPCNgayNghi"];
+				item.DuocTinhPCNgayLe = (bool)dataRow["TinhPCNgayLe"];
+				item.DuocTinhPCThuCong = (bool)dataRow["TinhPCThuCong"];
+				item.PhuCapTay = (float) dataRow["PhuCapTay"];
+				//item.TongPhuCap = (dataRow["TongPC"] != DBNull.Value) ? (float)dataRow["TongPC"] : 0f;
+				//if (item.DuocTinhPCThuCong) item.PhuCapTay = item.TongPhuCap;
 				DS_XN_PC_Ngay.Add(item);
 			}
 		}

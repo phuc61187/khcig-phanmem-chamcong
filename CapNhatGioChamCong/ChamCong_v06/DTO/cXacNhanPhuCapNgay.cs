@@ -8,10 +8,10 @@ namespace ChamCong_v06.DTO {
 		#region dữ liệu
 		public DateTime Ngay;
 		public int MaCC;
-		public bool TinhPCTC;
-		public bool TinhPCNgayNghi;
-		public bool TinhPCNgayLe;
-		public bool TinhPCTay;
+		public bool DuocTinhPCTC;
+		public bool DuocTinhPCNgayNghi;
+		public bool DuocTinhPCNgayLe;
+		public bool DuocTinhPCThuCong;
 		public float TongPhuCap;
 		public float PhuCapTay;
 		#endregion

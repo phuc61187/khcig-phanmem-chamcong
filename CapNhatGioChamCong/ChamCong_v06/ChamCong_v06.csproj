@@ -285,11 +285,18 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Helper\SP\Absent_GetDataV6.sql" />
     <Content Include="Helper\SP\CheckInOut_LoaiCheck_KoHopLeV6.sql" />
+    <Content Include="Helper\SP\CheckInOut_Upd_Check_DaChamCongV6.sql" />
+    <Content Include="Helper\SP\CIO_GetData_V6.sql" />
     <Content Include="Helper\SP\CIO_ThemCIOChuaChamCongV6.sql" />
     <Content Include="Helper\SP\create table cio.sql" />
+    <Content Include="Helper\SP\create table [Shifts6].sql" />
+    <Content Include="Helper\SP\Holiday_GetDataV6.sql" />
+    <Content Include="Helper\SP\NgayCong_LayV6.sql" />
     <Content Include="Helper\SP\Schedule_DocLichTrinhV6.sql" />
     <Content Include="Helper\SP\ShiftSch_DocDSCaV6.sql" />
+    <Content Include="Helper\SP\sp_test_updateDaXuLy_True.sql" />
     <Content Include="Helper\SP\template_If_Exist_SP.txt" />
     <Content Include="Helper\SP\tempTextFile.txt" />
     <Content Include="QuyUoc.txt" />

@@ -10,7 +10,7 @@ namespace ChamCong_v06.DTO {
 		public DateTime Ngay;
 		public List<cCheckInOut_DaCC> DSVaoRa = new List<cCheckInOut_DaCC>();
 		public List<cKhaiBaoVang> DSVang = new List<cKhaiBaoVang>();
-		public cXacNhanPhuCapNgay XN_PCNgay= new cXacNhanPhuCapNgay();
+		public cXacNhanPhuCapNgay XN_PCNgay = new cXacNhanPhuCapNgay();
 		public bool IsHoliday = false;
 
 		public bool QuaDem;
@@ -28,7 +28,7 @@ namespace ChamCong_v06.DTO {
 		public float ChamCongTay;
 
 		public float DinhMuc;
-		public float Tong { get { return CongTrongGio + CongNgoaiGio + ChamCongTay; } }
+		public float Tong;
 
 		public TimeSpan LamDem;
 		public TimeSpan LamViec;
@@ -46,8 +46,6 @@ namespace ChamCong_v06.DTO {
 		}
 
 		public TimeSpan LamNgay { get { return LamViec - LamDem; } }
-
-		//public PhuCap PhuCaps;
 
 		/*
 				public TrangThaiDiemDanh TrangThaiDiemDanh;
@@ -177,6 +175,11 @@ namespace ChamCong_v06.DTO {
 				public cNgayCong() { }
 		*/
 
+		public bool DuocTinhPCTC;
+		public bool DuocTinhPCNgayNghi;
+		public bool DuocTinhPCNgayLe;
+		public bool DuocTinhPCTay;
+		public float PhuCapTay;
 
 		public float PhuCapDem;
 		public float PhuCapTangCuong;
@@ -186,5 +189,95 @@ namespace ChamCong_v06.DTO {
 		public float PhuCapNgayLe;
 		public float PhuCapThemNgayLe;
 		public float TongPhuCap;
+
+		public void Them_CheckInOut_DaCC(cCheckInOut_DaCC item)
+		{
+			if (item.CheckVT != TrangThaiCheck.CheckDayDu)
+			{
+				//todo
+			}
+			//item.CheckVân tay đầy đủ
+			Tre += item.Tre;
+			Som += item.Som;
+			VaoSauCa += item.VaoSauCa;
+			RaTruocCa += item.RaTruocCa;
+			LamViec += item.LamViec;
+			LamDem += item.LamDem;
+
+			TruCongTre += item.TruCongTre;
+			TruCongSom += item.TruCongSom;
+			CongTrongGio += item.CongTrongGio;
+			CongNgoaiGio += item.CongNgoaiGio;
+			ChamCongTay += item.ChamCongTay;
+			DinhMuc += item.DinhMuc;
+			Tong += item.Tong;
+
+			if (item.QuaDem) QuaDem = true;
+			this.DSVaoRa.Add(item);
+		}
+
+		public void SetXacNhanPhuCap(bool DuocTinhPCTC, bool DuocTinhPCNgayNghi,bool DuocTinhPCNgayLe,bool DuocTinhPCTay, float PhuCapTay = 0f)
+		{
+			this.DuocTinhPCTC = DuocTinhPCTC;
+			this.DuocTinhPCNgayNghi = DuocTinhPCNgayNghi;
+			this.DuocTinhPCNgayLe = DuocTinhPCNgayLe;
+			this.DuocTinhPCTay = DuocTinhPCTay;
+			this.PhuCapTay = PhuCapTay;
+		}
+
+		public void TinhLaiPhuCap()
+		{
+			if (DuocTinhPCTay)
+			{
+				PhuCapDem = 0f;
+				PhuCapTangCuong = 0f;
+				PhuCapThemNgayThuong = 0f;
+				PhuCapNgayNghi = 0f;
+				PhuCapThemNgayNghi = 0f;
+				PhuCapNgayLe = 0f;
+				PhuCapThemNgayLe = 0f;
+			}
+			PhuCapDem = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCDem);
+			if (DuocTinhPCTC)
+			{
+				PhuCapNgayNghi = 0f;
+				PhuCapThemNgayNghi = 0f;
+				PhuCapNgayLe = 0f;
+				PhuCapThemNgayLe = 0f;
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				PhuCapTangCuong =  MyUtility.TinhPhuCap(LamThem, GlobalVariables.HSPCTangCuong);
+				PhuCapThemNgayThuong =  MyUtility.TinhPhuCap(LamTangCuongDem, GlobalVariables.HSPCThem_NgayThuong);
+			}
+			if (DuocTinhPCNgayNghi)
+			{
+				PhuCapTangCuong = 0f;
+				PhuCapThemNgayThuong = 0f;
+				PhuCapNgayLe = 0f;
+				PhuCapThemNgayLe = 0f;
+				PhuCapNgayNghi = MyUtility.TinhPhuCap(LamViec, GlobalVariables.HSPCNgayNghi);
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				PhuCapThemNgayNghi = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCThem_NgayNghi);
+			}
+			if (DuocTinhPCNgayLe)
+			{
+				PhuCapTangCuong = 0f;
+				PhuCapThemNgayThuong = 0f;
+				PhuCapNgayLe = MyUtility.TinhPhuCap(LamViec, GlobalVariables.HSPCNgayLe);
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				PhuCapThemNgayLe = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCThem_NgayLe);
+
+			}
+			if (DuocTinhPCTay)
+			{
+				PhuCapDem = 0f;
+				PhuCapTangCuong = 0f;
+				PhuCapThemNgayThuong = 0f;
+				PhuCapNgayNghi = 0f;
+				PhuCapThemNgayNghi = 0f;
+				PhuCapNgayLe = 0f;
+				PhuCapThemNgayLe = 0f;
+			}
+			TongPhuCap = PhuCapDem + PhuCapTangCuong + PhuCapThemNgayThuong + PhuCapThemNgayNghi + PhuCapThemNgayNghi + PhuCapNgayLe + PhuCapThemNgayLe + PhuCapTay;
+		}
 	}
 }

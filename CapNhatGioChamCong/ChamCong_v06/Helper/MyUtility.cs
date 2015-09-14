@@ -447,6 +447,12 @@ namespace ChamCong_v06.Helper {
 			return tableIntArray;
 		}
 
+		public static float TinhPhuCap(TimeSpan ThoiGian, int HSPC) {
+			if (ThoiGian == TimeSpan.Zero) return 0f;
+			return Convert.ToSingle(Math.Round(((ThoiGian.TotalHours / 8d)* (Convert.ToDouble(HSPC) / 100d)),2));
+		}
+
+
 		#region IsUseful
 
 		/// <summary>

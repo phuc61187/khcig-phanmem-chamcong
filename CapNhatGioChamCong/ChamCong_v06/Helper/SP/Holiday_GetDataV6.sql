@@ -7,10 +7,12 @@ IF EXISTS (
 DROP PROCEDURE  Holiday_GetDataV6
 GO
 CREATE PROCEDURE Holiday_GetDataV6
-@From datetime,
-@To datetime
+(@From datetime,
+@To datetime)
 as
 begin
-	select * from Holiday
+	select * 
+	from Holiday
 	where Holiday.HDate between @From and @To
+
 end
