@@ -305,7 +305,10 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static TreeNode TopNode(TreeNode root) {
-			if (root.Parent != null) return root.Parent;
+			//if (root.Parent != null) return root.Parent;
+			while (root.Parent != null) {
+				root = root.Parent;
+			}
 			if (root.PrevNode != null) return root.PrevNode;
 			return root;
 		}

@@ -137,10 +137,17 @@ namespace ChamCong_v04.UI.ChamCong {
 		}
 
 		public void GetTopLevelNode(ref TreeNode currentNode) {
+/*
 			if (currentNode.Parent != null) {
 				currentNode = currentNode.Parent;
 				GetTopLevelNode(ref currentNode);
 			}
+*/
+
+			while (currentNode.Parent != null) {
+				currentNode = currentNode.Parent;
+			}
+			//return currentNode;
 		}
 
 		private void btnThucHien_Click(object sender, EventArgs e) {

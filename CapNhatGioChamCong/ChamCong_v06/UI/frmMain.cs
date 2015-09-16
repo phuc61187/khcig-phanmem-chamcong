@@ -32,7 +32,7 @@ namespace ChamCong_v06.UI {
 				if (frm.m_LogInStatus)
 				{
 					//todo test
-					frmQLTaiKhoan frm1 = new frmQLTaiKhoan();
+					frmXemCong frm1 = new frmXemCong();
 					frm1.MdiParent = this;
 					frm1.Show();
 				}

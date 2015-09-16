@@ -153,9 +153,15 @@ namespace ChamCong_v04.UI.Admin {
 			checkQuyenThaotac.ItemCheck += checkQuyenThaotac_ItemCheck;
 		}
 		public void GetTopLevelNode(ref TreeNode currentNode) {
+/*
 			if (currentNode.Parent != null) {
 				currentNode = currentNode.Parent;
 				GetTopLevelNode(ref currentNode);
+			}
+*/
+
+			while (currentNode.Parent != null) {
+				currentNode = currentNode.Parent;
 			}
 		}
 
