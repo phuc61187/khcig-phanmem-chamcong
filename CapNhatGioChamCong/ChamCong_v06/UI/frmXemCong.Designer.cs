@@ -29,7 +29,7 @@
 			this.lbTreSomCoLamBu = new DevExpress.XtraEditors.LabelControl();
 			this.lbChoPhepTreSom = new DevExpress.XtraEditors.LabelControl();
 			this.lbDaXacNhanLamThem = new DevExpress.XtraEditors.LabelControl();
-			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridView_BangCC = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -41,7 +41,6 @@
 			this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridControl_BangCC = new DevExpress.XtraGrid.GridControl();
@@ -59,12 +58,14 @@
 			this.lbThieuChamCong = new DevExpress.XtraEditors.LabelControl();
 			this.btnChamCong = new DevExpress.XtraEditors.SimpleButton();
 			this.gridControl_DSNV = new DevExpress.XtraGrid.GridControl();
-			this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridView_DSNV = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.dateEdit_ThangCC = new DevExpress.XtraEditors.DateEdit();
 			this.btnThucHien_CCThang = new DevExpress.XtraEditors.SimpleButton();
 			this.label4 = new System.Windows.Forms.Label();
@@ -78,16 +79,14 @@
 			this.buttonEdit_TimKiemNV = new DevExpress.XtraEditors.ButtonEdit();
 			this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
 			this.groupControl5_BangCCTheoNgay = new DevExpress.XtraEditors.GroupControl();
-			this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView_BangCC)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_BangCC)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_DSNV)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView_DSNV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit_ThangCC.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit_ThangCC.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit_NgayBDCC.Properties.CalendarTimeProperties)).BeginInit();
@@ -151,19 +150,19 @@
 			this.lbDaXacNhanLamThem.TabIndex = 30;
 			this.lbDaXacNhanLamThem.Text = "Đã xác nhận làm thêm giờ: [0] TH";
 			// 
-			// gridView1
+			// gridView_BangCC
 			// 
-			this.gridView1.Appearance.Empty.BackColor = System.Drawing.Color.Silver;
-			this.gridView1.Appearance.Empty.Options.UseBackColor = true;
-			this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Silver;
-			this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-			this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
-			this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-			this.gridView1.Appearance.Row.BackColor = System.Drawing.Color.Silver;
-			this.gridView1.Appearance.Row.Options.UseBackColor = true;
-			this.gridView1.Appearance.TopNewRow.BackColor = System.Drawing.Color.Silver;
-			this.gridView1.Appearance.TopNewRow.Options.UseBackColor = true;
-			this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.gridView_BangCC.Appearance.Empty.BackColor = System.Drawing.Color.Silver;
+			this.gridView_BangCC.Appearance.Empty.Options.UseBackColor = true;
+			this.gridView_BangCC.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Silver;
+			this.gridView_BangCC.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+			this.gridView_BangCC.Appearance.HeaderPanel.Options.UseBackColor = true;
+			this.gridView_BangCC.Appearance.HeaderPanel.Options.UseFont = true;
+			this.gridView_BangCC.Appearance.Row.BackColor = System.Drawing.Color.Silver;
+			this.gridView_BangCC.Appearance.Row.Options.UseBackColor = true;
+			this.gridView_BangCC.Appearance.TopNewRow.BackColor = System.Drawing.Color.Silver;
+			this.gridView_BangCC.Appearance.TopNewRow.Options.UseBackColor = true;
+			this.gridView_BangCC.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn14,
             this.gridColumn1,
             this.gridColumn2,
@@ -175,17 +174,16 @@
             this.gridColumn8,
             this.gridColumn9,
             this.gridColumn10,
-            this.gridColumn11,
             this.gridColumn12,
             this.gridColumn13});
-			this.gridView1.GridControl = this.gridControl_BangCC;
-			this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+			this.gridView_BangCC.GridControl = this.gridControl_BangCC;
+			this.gridView_BangCC.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", null, "")});
-			this.gridView1.Name = "gridView1";
-			this.gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
-			this.gridView1.OptionsSelection.MultiSelect = true;
-			this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
-			this.gridView1.OptionsView.ColumnAutoWidth = false;
+			this.gridView_BangCC.Name = "gridView_BangCC";
+			this.gridView_BangCC.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
+			this.gridView_BangCC.OptionsSelection.MultiSelect = true;
+			this.gridView_BangCC.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+			this.gridView_BangCC.OptionsView.ColumnAutoWidth = false;
 			// 
 			// gridColumn14
 			// 
@@ -195,8 +193,6 @@
 			// 
 			// gridColumn1
 			// 
-			this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn1.AppearanceCell.Options.UseFont = true;
 			this.gridColumn1.Caption = "Mã NV";
 			this.gridColumn1.FieldName = "UserFullCode";
 			this.gridColumn1.Name = "gridColumn1";
@@ -208,8 +204,6 @@
 			// 
 			// gridColumn2
 			// 
-			this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn2.AppearanceCell.Options.UseFont = true;
 			this.gridColumn2.Caption = "Tên NV";
 			this.gridColumn2.FieldName = "UserFullName";
 			this.gridColumn2.Name = "gridColumn2";
@@ -221,8 +215,6 @@
 			// 
 			// gridColumn3
 			// 
-			this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn3.AppearanceCell.Options.UseFont = true;
 			this.gridColumn3.Caption = "Ngày";
 			this.gridColumn3.DisplayFormat.FormatString = "dddd dd/MM";
 			this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -236,8 +228,6 @@
 			// 
 			// gridColumn4
 			// 
-			this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn4.AppearanceCell.Options.UseFont = true;
 			this.gridColumn4.Caption = "Ký hiệu ca";
 			this.gridColumn4.FieldName = "KyHieuCa";
 			this.gridColumn4.Name = "gridColumn4";
@@ -249,8 +239,6 @@
 			// 
 			// gridColumn5
 			// 
-			this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn5.AppearanceCell.Options.UseFont = true;
 			this.gridColumn5.Caption = "Vắng";
 			this.gridColumn5.FieldName = "DanhSachXPVang";
 			this.gridColumn5.Name = "gridColumn5";
@@ -258,12 +246,10 @@
 			this.gridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn5.Visible = true;
 			this.gridColumn5.VisibleIndex = 5;
-			this.gridColumn5.Width = 80;
+			this.gridColumn5.Width = 59;
 			// 
 			// gridColumn6
 			// 
-			this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn6.AppearanceCell.Options.UseFont = true;
 			this.gridColumn6.Caption = "T.Công";
 			this.gridColumn6.DisplayFormat.FormatString = "#0.0#";
 			this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -277,8 +263,6 @@
 			// 
 			// gridColumn7
 			// 
-			this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn7.AppearanceCell.Options.UseFont = true;
 			this.gridColumn7.Caption = "T.Phụ cấp";
 			this.gridColumn7.DisplayFormat.FormatString = "#0.0#";
 			this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -291,8 +275,6 @@
 			// 
 			// gridColumn8
 			// 
-			this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn8.AppearanceCell.Options.UseFont = true;
 			this.gridColumn8.Caption = "T.Giờ làm";
 			this.gridColumn8.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -302,12 +284,10 @@
 			this.gridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn8.Visible = true;
 			this.gridColumn8.VisibleIndex = 8;
-			this.gridColumn8.Width = 90;
+			this.gridColumn8.Width = 69;
 			// 
 			// gridColumn9
 			// 
-			this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn9.AppearanceCell.Options.UseFont = true;
 			this.gridColumn9.Caption = "T.Giờ có mặt";
 			this.gridColumn9.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -317,12 +297,10 @@
 			this.gridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumn9.Visible = true;
 			this.gridColumn9.VisibleIndex = 9;
-			this.gridColumn9.Width = 90;
+			this.gridColumn9.Width = 84;
 			// 
 			// gridColumn10
 			// 
-			this.gridColumn10.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn10.AppearanceCell.Options.UseFont = true;
 			this.gridColumn10.Caption = "Trễ/Sớm";
 			this.gridColumn10.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -332,27 +310,11 @@
 			this.gridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn10.Visible = true;
 			this.gridColumn10.VisibleIndex = 10;
-			this.gridColumn10.Width = 80;
-			// 
-			// gridColumn11
-			// 
-			this.gridColumn11.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn11.AppearanceCell.Options.UseFont = true;
-			this.gridColumn11.Caption = "Ra sớm";
-			this.gridColumn11.DisplayFormat.FormatString = "%h\\:mm";
-			this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.gridColumn11.Name = "gridColumn11";
-			this.gridColumn11.OptionsColumn.AllowEdit = false;
-			this.gridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-			this.gridColumn11.Visible = true;
-			this.gridColumn11.VisibleIndex = 11;
-			this.gridColumn11.Width = 80;
+			this.gridColumn10.Width = 60;
 			// 
 			// gridColumn12
 			// 
-			this.gridColumn12.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn12.AppearanceCell.Options.UseFont = true;
-			this.gridColumn12.Caption = "T.Giờ đêm";
+			this.gridColumn12.Caption = "TG Làm đêm";
 			this.gridColumn12.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.gridColumn12.FieldName = "TongGioLamDem";
@@ -360,13 +322,11 @@
 			this.gridColumn12.OptionsColumn.AllowEdit = false;
 			this.gridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn12.Visible = true;
-			this.gridColumn12.VisibleIndex = 12;
+			this.gridColumn12.VisibleIndex = 11;
 			this.gridColumn12.Width = 80;
 			// 
 			// gridColumn13
 			// 
-			this.gridColumn13.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.gridColumn13.AppearanceCell.Options.UseFont = true;
 			this.gridColumn13.Caption = "Làm trên 8g";
 			this.gridColumn13.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -375,22 +335,22 @@
 			this.gridColumn13.OptionsColumn.AllowEdit = false;
 			this.gridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumn13.Visible = true;
-			this.gridColumn13.VisibleIndex = 13;
-			this.gridColumn13.Width = 80;
+			this.gridColumn13.VisibleIndex = 12;
+			this.gridColumn13.Width = 84;
 			// 
 			// gridControl_BangCC
 			// 
 			this.gridControl_BangCC.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControl_BangCC.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl_BangCC.Font = new System.Drawing.Font("Tahoma", 9F);
+			this.gridControl_BangCC.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.gridControl_BangCC.Location = new System.Drawing.Point(2, 21);
-			this.gridControl_BangCC.MainView = this.gridView1;
+			this.gridControl_BangCC.MainView = this.gridView_BangCC;
 			this.gridControl_BangCC.Name = "gridControl_BangCC";
 			this.gridControl_BangCC.Size = new System.Drawing.Size(1277, 408);
 			this.gridControl_BangCC.TabIndex = 43;
 			this.gridControl_BangCC.ToolTipController = this.toolTipController1;
 			this.gridControl_BangCC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gridView_BangCC});
 			// 
 			// repositoryItemCheckEdit1
 			// 
@@ -535,19 +495,19 @@
 			this.gridControl_DSNV.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControl_DSNV.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControl_DSNV.Location = new System.Drawing.Point(2, 21);
-			this.gridControl_DSNV.MainView = this.gridView2;
+			this.gridControl_DSNV.MainView = this.gridView_DSNV;
 			this.gridControl_DSNV.Name = "gridControl_DSNV";
 			this.gridControl_DSNV.Size = new System.Drawing.Size(469, 200);
 			this.gridControl_DSNV.TabIndex = 45;
 			this.gridControl_DSNV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.gridView_DSNV});
 			this.gridControl_DSNV.Click += new System.EventHandler(this.gridControl_DSNV_Click);
 			// 
-			// gridView2
+			// gridView_DSNV
 			// 
-			this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-			this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
-			this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.gridView_DSNV.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+			this.gridView_DSNV.Appearance.HeaderPanel.Options.UseFont = true;
+			this.gridView_DSNV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn16,
             this.gridColumn17,
             this.gridColumn18,
@@ -555,13 +515,13 @@
             this.gridColumn20,
             this.gridColumn15,
             this.gridColumn21});
-			this.gridView2.GridControl = this.gridControl_DSNV;
-			this.gridView2.Name = "gridView2";
-			this.gridView2.OptionsPrint.UsePrintStyles = false;
-			this.gridView2.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
-			this.gridView2.OptionsSelection.MultiSelect = true;
-			this.gridView2.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
-			this.gridView2.OptionsView.ColumnAutoWidth = false;
+			this.gridView_DSNV.GridControl = this.gridControl_DSNV;
+			this.gridView_DSNV.Name = "gridView_DSNV";
+			this.gridView_DSNV.OptionsPrint.UsePrintStyles = false;
+			this.gridView_DSNV.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
+			this.gridView_DSNV.OptionsSelection.MultiSelect = true;
+			this.gridView_DSNV.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+			this.gridView_DSNV.OptionsView.ColumnAutoWidth = false;
 			// 
 			// gridColumn16
 			// 
@@ -603,6 +563,22 @@
 			this.gridColumn20.Caption = "MãPhòng_hide";
 			this.gridColumn20.FieldName = "UserIDDepartment";
 			this.gridColumn20.Name = "gridColumn20";
+			// 
+			// gridColumn15
+			// 
+			this.gridColumn15.Caption = "Lịch trình";
+			this.gridColumn15.FieldName = "SchName";
+			this.gridColumn15.Name = "gridColumn15";
+			this.gridColumn15.Visible = true;
+			this.gridColumn15.VisibleIndex = 4;
+			// 
+			// gridColumn21
+			// 
+			this.gridColumn21.Caption = "Phái";
+			this.gridColumn21.FieldName = "UserSex";
+			this.gridColumn21.Name = "gridColumn21";
+			this.gridColumn21.Visible = true;
+			this.gridColumn21.VisibleIndex = 5;
 			// 
 			// dateEdit_ThangCC
 			// 
@@ -661,6 +637,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.dateEdit_NgayBDCC.Properties.DisplayFormat.FormatString = "ddd dd/MM/yyyy";
 			this.dateEdit_NgayBDCC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dateEdit_NgayBDCC.Properties.Mask.BeepOnError = true;
 			this.dateEdit_NgayBDCC.Size = new System.Drawing.Size(127, 20);
 			this.dateEdit_NgayBDCC.TabIndex = 0;
 			// 
@@ -677,6 +654,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.dateEdit_NgayKTCC.Properties.DisplayFormat.FormatString = "ddd dd/MM/yyyy";
 			this.dateEdit_NgayKTCC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dateEdit_NgayKTCC.Properties.Mask.BeepOnError = true;
 			this.dateEdit_NgayKTCC.Size = new System.Drawing.Size(127, 20);
 			this.dateEdit_NgayKTCC.TabIndex = 0;
 			// 
@@ -771,22 +749,6 @@
 			this.groupControl5_BangCCTheoNgay.TabIndex = 52;
 			this.groupControl5_BangCCTheoNgay.Text = "Bảng chấm công theo ngày";
 			// 
-			// gridColumn15
-			// 
-			this.gridColumn15.Caption = "Lịch trình";
-			this.gridColumn15.FieldName = "SchName";
-			this.gridColumn15.Name = "gridColumn15";
-			this.gridColumn15.Visible = true;
-			this.gridColumn15.VisibleIndex = 4;
-			// 
-			// gridColumn21
-			// 
-			this.gridColumn21.Caption = "Phái";
-			this.gridColumn21.FieldName = "UserSex";
-			this.gridColumn21.Name = "gridColumn21";
-			this.gridColumn21.Visible = true;
-			this.gridColumn21.VisibleIndex = 5;
-			// 
 			// frmXemCong
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -802,7 +764,7 @@
 			this.Name = "frmXemCong";
 			this.Text = "frmXemCong";
 			this.Load += new System.EventHandler(this.frmXemCong_Load);
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView_BangCC)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_BangCC)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			this.groupBox2.ResumeLayout(false);
@@ -811,7 +773,7 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_DSNV)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView_DSNV)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit_ThangCC.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit_ThangCC.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit_NgayBDCC.Properties.CalendarTimeProperties)).EndInit();
@@ -840,7 +802,7 @@
 		private DevExpress.XtraEditors.LabelControl lbTreSomCoLamBu;
 		private DevExpress.XtraEditors.LabelControl lbChoPhepTreSom;
 		private DevExpress.XtraEditors.LabelControl lbDaXacNhanLamThem;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridView_BangCC;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
@@ -852,7 +814,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
@@ -870,7 +831,7 @@
 		private System.Windows.Forms.Label label2;
 		private DevExpress.XtraEditors.CheckedComboBoxEdit checkedDSNV;
 		private DevExpress.XtraGrid.GridControl gridControl_DSNV;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridView_DSNV;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;

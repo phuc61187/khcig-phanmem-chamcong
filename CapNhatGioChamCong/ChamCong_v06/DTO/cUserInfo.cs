@@ -12,6 +12,7 @@ namespace ChamCong_v06.DTO {
 		public bool IsUserEnabled;
 		public ID_Description ChucVu;
 		public ID_Description LichTrinh;
+		public ID_Description PhongBan_ID_Des;
 		public cPhongBan PhongBan;
 
 

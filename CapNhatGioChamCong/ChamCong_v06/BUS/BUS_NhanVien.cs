@@ -30,6 +30,23 @@ namespace ChamCong_v06.BUS {
 			}
 		}
 
+		internal void KhoiTaoNV(DataRow dataRow, IEnumerable<cNhomCa> List_NhomCa, out cUserInfo nhanvien) {
+			nhanvien = new cUserInfo {
+				MaCC = (int)dataRow[Field.UserEnrollNumber.ToString()], MaNV = dataRow[Field.UserFullCode.ToString()].ToString(),
+				TenNV = dataRow[Field.UserFullName.ToString()].ToString(),
+				ChucVu = new ID_Description() { ID = (int)dataRow[Field.IDChucVu.ToString()], Description = dataRow[Field.ChucVu.ToString()].ToString() },
+				//LichTrinh = new ID_Description() { ID = (int)row[Field.SchID.ToString()], Description = row[Field.SchName.ToString()].ToString()},
+				PhongBan_ID_Des = new ID_Description { ID = (int)dataRow["UserIDDepartment"], Description = dataRow["DepartmentDescription"].ToString() }
+
+				//todo còn các trường khác
+			};
+				//user.PhongBan = XacDinhPhongBan((int)dataRow[Field.UserIDDepartment.ToString()], List_Phong);
+			nhanvien.NhomCa = XacDinhNhomCa((int)dataRow["SchID"], List_NhomCa);
+				//todo trường hợp nhóm ca null thì sao??
+			
+		}
+
+
 		private cNhomCa XacDinhNhomCa(int SchID, IEnumerable<cNhomCa> List_NhomCa)
 		{
 			cNhomCa kq = (from cNhomCa item in List_NhomCa where item.IDDescription.ID == SchID select item).SingleOrDefault();
@@ -46,5 +63,6 @@ namespace ChamCong_v06.BUS {
 					where phong.Phong.ID == UserIDDepartment
 					select phong).SingleOrDefault();
 		}
+
 	}
 }
