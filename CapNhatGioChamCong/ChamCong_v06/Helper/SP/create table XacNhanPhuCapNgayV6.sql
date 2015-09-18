@@ -16,11 +16,11 @@ GO
 ALTER TABLE [dbo].[XacNhanPhuCapNgayV6] DROP CONSTRAINT [DF__XacNhanPh__TinhP__737017C0]
 GO
 
-/****** Object:  Table [dbo].[XacNhanPhuCapNgayV6]    Script Date: 9/14/2015 4:32:22 PM ******/
+/****** Object:  Table [dbo].[XacNhanPhuCapNgayV6]    Script Date: 9/18/2015 4:45:48 PM ******/
 DROP TABLE [dbo].[XacNhanPhuCapNgayV6]
 GO
 
-/****** Object:  Table [dbo].[XacNhanPhuCapNgayV6]    Script Date: 9/14/2015 4:32:22 PM ******/
+/****** Object:  Table [dbo].[XacNhanPhuCapNgayV6]    Script Date: 9/18/2015 4:45:48 PM ******/
 SET ANSI_NULLS ON
 GO
 

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ChamCong_v06.Helper
-{
-	public enum ModeType
-	{
+namespace ChamCong_v06.Helper {
+	public enum ModeType {
 		Them = 1,
 		Sua = 0,
 		Xoa = -1,
@@ -91,34 +89,18 @@ namespace ChamCong_v06.Helper
 		#endregion
 	}
 
-	public enum Field
-	{
-		UserEnrollNumber,
-		UserFullName,
-		UserFullCode,
-		IDChucVu,
-		ChucVu,
-		SchID,
-		SchName,
-		UserIDDepartment,
-		IDDepartment,
-
-	}
-	public enum FunctionListV6
-	{
+	public enum FunctionListV6 {
 		Admin_QLLichTrinh = 1,
 		Admin_QLPhong = 2,
 		Admin_QLTaiKhoan = 3,
 	}
 
-	public enum LoaiTK
-	{
+	public enum LoaiTK {
 		User = 1,
 		LocalRoot = 0,
 		None = -1,
 	}
-	public enum SettingName
-	{
+	public enum SettingName {
 		PC30, PC100, PC200, PC160, PC50, PC290, PCTCC3,
 
 		TGLamDemToiThieu,
@@ -146,10 +128,45 @@ namespace ChamCong_v06.Helper
 		//public static int HSPCDem,
 		HSPCThem_NgayLe,
 	}
-	public enum TrangThaiCheck
-	{
+	public enum TrangThaiCheck {
 		ThieuRa = -1,
 		ThieuVao = -2,
 		CheckDayDu = 0,
 	}
+
+	#region dataTable
+	public enum f1 {
+		UserEnrollNumber,
+		UserFullName,
+		UserFullCode,
+		IDChucVu,
+		ChucVu,
+		SchID,
+		SchName,
+		UserIDDepartment,
+		IDDepartment,
+
+	}
+
+	public enum f2 {
+		UserEnrollNumber,
+		UserFullName,
+		UserFullCode,
+		Ngay,
+		KyHieuCa,
+		KyHieuVang,
+		TongCong,
+		TongPhuCap,
+		TongGioLamViec,
+		TongGioHienDien,
+		TongPhutTreSom,
+		TongPhutTre,
+		TongPhutSom,
+		TongGioLamDem,
+		TongGioLamThem,
+
+	}
+	#endregion
+
+
 }

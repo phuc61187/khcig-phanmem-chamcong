@@ -15,21 +15,12 @@ namespace ChamCong_v06.DTO {
 
 		public bool QuaDem;
 
-		//public TimeSpan HienDien;
 		public TimeSpan Tre;
 		public TimeSpan Som;
 		public TimeSpan VaoSauCa;
 		public TimeSpan RaTruocCa;
 
-		public float TruCongTre;
-		public float TruCongSom;
-		public float CongTrongGio;
-		public float CongNgoaiGio;
-		public float ChamCongTay;
-
-		public float DinhMuc;
-		public float Tong;
-
+		public TimeSpan HienDien;
 		public TimeSpan LamDem;
 		public TimeSpan LamViec;
 		public TimeSpan LamThem {
@@ -175,6 +166,15 @@ namespace ChamCong_v06.DTO {
 				public cNgayCong() { }
 		*/
 
+		public float TruCongTre;
+		public float TruCongSom;
+		public float CongTrongGio;
+		public float CongNgoaiGio;
+		public float ChamCongTay;
+
+		public float DinhMucCong;
+		public float TongCong;
+
 		public bool DuocTinhPCTC;
 		public bool DuocTinhPCNgayNghi;
 		public bool DuocTinhPCNgayLe;
@@ -190,6 +190,27 @@ namespace ChamCong_v06.DTO {
 		public float PhuCapThemNgayLe;
 		public float TongPhuCap;
 
+		public string KyHieuCa_1Ngay
+		{
+			get
+			{
+				if (DSVaoRa == null || DSVaoRa.Count == 0) return string.Empty;
+				return DSVaoRa.Aggregate(string.Empty, (current, item) => current + item.KyHieuCa + ";");
+			}
+		}
+
+		public string KyHieuVang_1Ngay
+		{
+			get
+			{
+				string kq = string.Empty;
+				if (IsHoliday) kq = "L;";
+				if (DSVang == null || DSVang.Count == 0) return kq;
+				kq += DSVang.Aggregate(string.Empty, (current, item) => current + item.KyHieuVang + ";");
+				return kq;
+			}
+		}
+
 		public void Them_CheckInOut_DaCC(cCheckInOut_DaCC item)
 		{
 			if (item.CheckVT != TrangThaiCheck.CheckDayDu)
@@ -201,6 +222,8 @@ namespace ChamCong_v06.DTO {
 			Som += item.Som;
 			VaoSauCa += item.VaoSauCa;
 			RaTruocCa += item.RaTruocCa;
+
+			HienDien += (item.RaaLamTron - item.VaoLamTron);
 			LamViec += item.LamViec;
 			LamDem += item.LamDem;
 
@@ -209,8 +232,8 @@ namespace ChamCong_v06.DTO {
 			CongTrongGio += item.CongTrongGio;
 			CongNgoaiGio += item.CongNgoaiGio;
 			ChamCongTay += item.ChamCongTay;
-			DinhMuc += item.DinhMuc;
-			Tong += item.Tong;
+			DinhMucCong += item.DinhMuc;
+			TongCong += item.Tong;
 
 			if (item.QuaDem) QuaDem = true;
 			this.DSVaoRa.Add(item);
@@ -277,7 +300,7 @@ namespace ChamCong_v06.DTO {
 				PhuCapNgayLe = 0f;
 				PhuCapThemNgayLe = 0f;
 			}
-			TongPhuCap = PhuCapDem + PhuCapTangCuong + PhuCapThemNgayThuong + PhuCapThemNgayNghi + PhuCapThemNgayNghi + PhuCapNgayLe + PhuCapThemNgayLe + PhuCapTay;
+			TongPhuCap = PhuCapDem + PhuCapTangCuong + PhuCapThemNgayThuong + PhuCapNgayNghi + PhuCapThemNgayNghi + PhuCapNgayLe + PhuCapThemNgayLe + PhuCapTay;
 		}
 	}
 }

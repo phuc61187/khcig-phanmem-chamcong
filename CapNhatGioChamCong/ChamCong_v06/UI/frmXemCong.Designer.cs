@@ -188,6 +188,7 @@
 			// gridColumn14
 			// 
 			this.gridColumn14.Caption = "MãCC_hide";
+			this.gridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
 			this.gridColumn14.FieldName = "UserEnrollNumber";
 			this.gridColumn14.Name = "gridColumn14";
 			// 
@@ -216,7 +217,7 @@
 			// gridColumn3
 			// 
 			this.gridColumn3.Caption = "Ngày";
-			this.gridColumn3.DisplayFormat.FormatString = "dddd dd/MM";
+			this.gridColumn3.DisplayFormat.FormatString = "ddd dd/MM";
 			this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
 			this.gridColumn3.FieldName = "Ngay";
 			this.gridColumn3.Name = "gridColumn3";
@@ -240,7 +241,7 @@
 			// gridColumn5
 			// 
 			this.gridColumn5.Caption = "Vắng";
-			this.gridColumn5.FieldName = "DanhSachXPVang";
+			this.gridColumn5.FieldName = "KyHieuVang";
 			this.gridColumn5.Name = "gridColumn5";
 			this.gridColumn5.OptionsColumn.AllowEdit = false;
 			this.gridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
@@ -253,7 +254,7 @@
 			this.gridColumn6.Caption = "T.Công";
 			this.gridColumn6.DisplayFormat.FormatString = "#0.0#";
 			this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.gridColumn6.FieldName = "ThucTe";
+			this.gridColumn6.FieldName = "TongCong";
 			this.gridColumn6.Name = "gridColumn6";
 			this.gridColumn6.OptionsColumn.AllowEdit = false;
 			this.gridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
@@ -266,7 +267,7 @@
 			this.gridColumn7.Caption = "T.Phụ cấp";
 			this.gridColumn7.DisplayFormat.FormatString = "#0.0#";
 			this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.gridColumn7.FieldName = "_TongPC";
+			this.gridColumn7.FieldName = "TongPhuCap";
 			this.gridColumn7.Name = "gridColumn7";
 			this.gridColumn7.OptionsColumn.AllowEdit = false;
 			this.gridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
@@ -291,7 +292,7 @@
 			this.gridColumn9.Caption = "T.Giờ có mặt";
 			this.gridColumn9.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.gridColumn9.FieldName = "TongGioThucTe";
+			this.gridColumn9.FieldName = "TongGioHienDien";
 			this.gridColumn9.Name = "gridColumn9";
 			this.gridColumn9.OptionsColumn.AllowEdit = false;
 			this.gridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
@@ -304,7 +305,7 @@
 			this.gridColumn10.Caption = "Trễ/Sớm";
 			this.gridColumn10.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.gridColumn10.FieldName = "TongVaoTre";
+			this.gridColumn10.FieldName = "TongPhutTreSom";
 			this.gridColumn10.Name = "gridColumn10";
 			this.gridColumn10.OptionsColumn.AllowEdit = false;
 			this.gridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
@@ -330,7 +331,7 @@
 			this.gridColumn13.Caption = "Làm trên 8g";
 			this.gridColumn13.DisplayFormat.FormatString = "%h\\:mm";
 			this.gridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.gridColumn13.FieldName = "TongGioTangCuong";
+			this.gridColumn13.FieldName = "TongGioLamThem";
 			this.gridColumn13.Name = "gridColumn13";
 			this.gridColumn13.OptionsColumn.AllowEdit = false;
 			this.gridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
@@ -596,8 +597,8 @@
 			this.dateEdit_ThangCC.Properties.EditFormat.FormatString = "MM/yyyy";
 			this.dateEdit_ThangCC.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
 			this.dateEdit_ThangCC.Properties.Mask.BeepOnError = true;
-			this.dateEdit_ThangCC.Properties.Mask.EditMask = "y";
-			this.dateEdit_ThangCC.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+			this.dateEdit_ThangCC.Properties.Mask.EditMask = "MM/yyyy";
+			this.dateEdit_ThangCC.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
 			this.dateEdit_ThangCC.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
 			this.dateEdit_ThangCC.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
 			this.dateEdit_ThangCC.Size = new System.Drawing.Size(87, 20);
@@ -635,9 +636,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.dateEdit_NgayBDCC.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.dateEdit_NgayBDCC.Properties.DisplayFormat.FormatString = "ddd dd/MM/yyyy";
+			this.dateEdit_NgayBDCC.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
 			this.dateEdit_NgayBDCC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dateEdit_NgayBDCC.Properties.EditFormat.FormatString = "dd/MM/yyyy";
+			this.dateEdit_NgayBDCC.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEdit_NgayBDCC.Properties.Mask.BeepOnError = true;
+			this.dateEdit_NgayBDCC.Properties.Mask.EditMask = "dd/MM/yyyy";
+			this.dateEdit_NgayBDCC.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
 			this.dateEdit_NgayBDCC.Size = new System.Drawing.Size(127, 20);
 			this.dateEdit_NgayBDCC.TabIndex = 0;
 			// 
@@ -652,9 +657,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.dateEdit_NgayKTCC.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.dateEdit_NgayKTCC.Properties.DisplayFormat.FormatString = "ddd dd/MM/yyyy";
+			this.dateEdit_NgayKTCC.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
 			this.dateEdit_NgayKTCC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dateEdit_NgayKTCC.Properties.EditFormat.FormatString = "dd/MM/yyyy";
+			this.dateEdit_NgayKTCC.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEdit_NgayKTCC.Properties.Mask.BeepOnError = true;
+			this.dateEdit_NgayKTCC.Properties.Mask.EditMask = "dd/MM/yyyy";
+			this.dateEdit_NgayKTCC.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
 			this.dateEdit_NgayKTCC.Size = new System.Drawing.Size(127, 20);
 			this.dateEdit_NgayKTCC.TabIndex = 0;
 			// 

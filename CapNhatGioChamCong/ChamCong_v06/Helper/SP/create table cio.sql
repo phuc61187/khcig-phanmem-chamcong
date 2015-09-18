@@ -1,7 +1,99 @@
 USE [WiseEyeV5Express]
 GO
 
-/****** Object:  Table [dbo].[CIO]    Script Date: 9/9/2015 2:12:51 PM ******/
+EXEC sys.sp_dropextendedproperty @name=N'MS_Description' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CIO', @level2type=N'COLUMN',@level2name=N'Vao'
+
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__QuaDem__5B988E2F]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__TruCongSom__44EA3301]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__TruCongTre__43F60EC8]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__CongNgoaiGi__3F3159AB]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__CongTrongGi__66161CA2]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__ChamCongTay__59B045BD]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__TinhCongThu__58BC2184]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__RaTuDo__01F34141]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__VaoTuDo__00FF1D08]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__CoSomVR__379037E3]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__CoTreVR__369C13AA]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__SoPhutXacNh__46D27B73]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__RaTruocCa__35A7EF71]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__VaoSauCa__34B3CB38]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__SomVR__33BFA6FF]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__TreVR__32CB82C6]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__KTLVCa3__31D75E8D]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__BDLVCa3__30E33A54]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__KTLV__2FEF161B]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__KTLVTrongCa__2EFAF1E2]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__BDLV__2E06CDA9]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__SoPhutNghiT__670A40DB]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__KTCa__7C055DC1]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__BDCa__7B113988]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__MayRa__2D12A970]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__MayVao__2C1E8537]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__Ra__2B2A60FE]
+GO
+
+ALTER TABLE [dbo].[CIO] DROP CONSTRAINT [DF__CIO__Vao__2A363CC5]
+GO
+
+/****** Object:  Table [dbo].[CIO]    Script Date: 9/18/2015 4:43:06 PM ******/
+DROP TABLE [dbo].[CIO]
+GO
+
+/****** Object:  Table [dbo].[CIO]    Script Date: 9/18/2015 4:43:06 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,12 +105,16 @@ CREATE TABLE [dbo].[CIO](
 	[UserEnrollNumber] [int] NOT NULL,
 	[NgayCong] [datetime] NOT NULL,
 	[HaveINOUT] [int] NOT NULL,
+	[KyHieuCa] [nvarchar](50) NULL,
 	[GioVao] [datetime] NULL,
 	[GioRa] [datetime] NULL,
 	[Vao] [int] NULL,
 	[Ra] [int] NULL,
 	[MayVao] [int] NULL,
 	[MayRa] [int] NULL,
+	[BDCa] [int] NOT NULL,
+	[KTCa] [int] NOT NULL,
+	[SoPhutNghiTrua] [int] NULL,
 	[BDLV] [int] NULL,
 	[KTLVTrongCa] [int] NULL,
 	[KTLV] [int] NULL,
@@ -33,17 +129,16 @@ CREATE TABLE [dbo].[CIO](
 	[ChoPhepSom] [bit] NOT NULL,
 	[VaoTuDo] [bit] NOT NULL,
 	[RaTuDo] [bit] NOT NULL,
+	[TinhCongThuCong] [bit] NOT NULL,
+	[ChamCongTay] [real] NOT NULL,
 	[CongTrongGio] [real] NOT NULL,
 	[CongNgoaiGio] [real] NOT NULL,
 	[TruCongTre] [real] NOT NULL,
 	[TruCongSom] [real] NOT NULL,
-	[ChamCongTay] [real] NOT NULL,
-	[DinhMucCong] [real] NOT NULL,
-	[TongCong] [real] NULL,
 	[GhiChu] [nvarchar](1000) NULL,
 	[LyDo] [nvarchar](500) NULL,
 	[TheoDoiGioGocMayCC] [nvarchar](2000) NULL,
-	[TinhCongThuCong] [bit] NOT NULL,
+	[QuaDem] [bit] NOT NULL,
  CONSTRAINT [PK__CIO__3214EC27284DF453] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -62,6 +157,15 @@ ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__MayVao__2C1E8537]  DEFAULT ((-
 GO
 
 ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__MayRa__2D12A970]  DEFAULT ((-1)) FOR [MayRa]
+GO
+
+ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__BDCa__7B113988]  DEFAULT ((0)) FOR [BDCa]
+GO
+
+ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__KTCa__7C055DC1]  DEFAULT ((0)) FOR [KTCa]
+GO
+
+ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__SoPhutNghiT__670A40DB]  DEFAULT ((0)) FOR [SoPhutNghiTrua]
 GO
 
 ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__BDLV__2E06CDA9]  DEFAULT ((-1)) FOR [BDLV]
@@ -106,7 +210,13 @@ GO
 ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__RaTuDo__01F34141]  DEFAULT ((0)) FOR [RaTuDo]
 GO
 
-ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__CongTrongGi__3E3D3572]  DEFAULT ((0)) FOR [CongTrongGio]
+ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__TinhCongThu__58BC2184]  DEFAULT ((0)) FOR [TinhCongThuCong]
+GO
+
+ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__ChamCongTay__59B045BD]  DEFAULT ((0)) FOR [ChamCongTay]
+GO
+
+ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__CongTrongGi__66161CA2]  DEFAULT ((0)) FOR [CongTrongGio]
 GO
 
 ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__CongNgoaiGi__3F3159AB]  DEFAULT ((0)) FOR [CongNgoaiGio]
@@ -118,16 +228,7 @@ GO
 ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__TruCongSom__44EA3301]  DEFAULT ((0)) FOR [TruCongSom]
 GO
 
-ALTER TABLE [dbo].[CIO] ADD  DEFAULT ((0)) FOR [ChamCongTay]
-GO
-
-ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__DinhMucCong__45DE573A]  DEFAULT ((0)) FOR [DinhMucCong]
-GO
-
-ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__TongCong__02E7657A]  DEFAULT ((0)) FOR [TongCong]
-GO
-
-ALTER TABLE [dbo].[CIO] ADD  DEFAULT ((0)) FOR [TinhCongThuCong]
+ALTER TABLE [dbo].[CIO] ADD  CONSTRAINT [DF__CIO__QuaDem__5B988E2F]  DEFAULT ((0)) FOR [QuaDem]
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Int, quy doi thanh so phut trong ngay. VD: 60 ~ 1g sang, 120 ~ 2g sang' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CIO', @level2type=N'COLUMN',@level2name=N'Vao'

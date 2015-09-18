@@ -38,8 +38,8 @@ namespace ChamCong_v06.UI {
 					              LamViec = ngayCong.LamViec.ToString(@"hh\:mm"),
 					              LamDem = ngayCong.LamDem.ToString(@"hh\:mm"),
 					              ngayCong.PhuCapDem,
-								  ngayCong.DinhMuc,
-								  ngayCong.Tong,
+								  DinhMuc = ngayCong.DinhMucCong,
+								  Tong = ngayCong.TongCong,
 								  ngayCong.TongPhuCap
 				              }).ToList();
 			gridControl2.DataSource = result;

@@ -9,6 +9,8 @@ namespace ChamCong_v06.DTO {
 		#region dữ liệu
 		public int ID;
 		public int MaCC;
+
+		public string KyHieuCa;
 		public TrangThaiCheck CheckVT;
 		public DateTime Ngay;
 		public DateTime GioVao;
@@ -16,6 +18,8 @@ namespace ChamCong_v06.DTO {
 
 		public int VaoLamTron_Min;
 		public int RaaLamTron_Min;
+		public int BDCa_Min;
+		public int KTCa_Min;
 		public int BD_LV_Min;// vào làm ca
 		public int KT_LV_TrongCa_Min;
 		public int KT_LV_Min;// 
@@ -29,6 +33,8 @@ namespace ChamCong_v06.DTO {
 		public DateTime VaoLamTron { get { return Ngay.Add(new TimeSpan(0, VaoLamTron_Min, 0)); } }
 		public DateTime RaaLamTron { get { return Ngay.Add(new TimeSpan(0, RaaLamTron_Min, 0)); } }
 
+		public DateTime BDCa { get { return Ngay.Add(new TimeSpan(0, BDCa_Min, 0)); } }
+		public DateTime KTCa { get { return Ngay.Add(new TimeSpan(0, KTCa_Min, 0)); } }
 		public DateTime BD_LV { get { return Ngay.Add(new TimeSpan(0, BD_LV_Min, 0)); } }// vào làm ca
 		public DateTime KT_LV_TrongCa { get { return Ngay.Add(new TimeSpan(0, KT_LV_TrongCa_Min, 0)); } }
 		public DateTime KT_LV { get { return Ngay.Add(new TimeSpan(0, KT_LV_Min, 0)); } }// 
@@ -58,16 +64,17 @@ namespace ChamCong_v06.DTO {
 		public float CongNgoaiGio = 0f;
 		public float ChamCongTay = 0f;
 
-		public float DinhMuc = 0f;
-		public float Tong = 0f;
 		#endregion
 
 		public TimeSpan LamDem { get { return KT_LV_Ca3 - BD_LV_Ca3; } }
 		public TimeSpan LamTrongGio { get { return ((KT_LV_TrongCa - BD_LV) - TG_NghiTrua); } }
 		public TimeSpan LamNgoaiGio { get { return KT_LV - KT_LV_TrongCa; } }
 		public TimeSpan LamViec { get { return ((KT_LV - BD_LV) - TG_NghiTrua); } }
+		public TimeSpan HienDien { get { return (CheckVT == TrangThaiCheck.CheckDayDu) ? (RaaLamTron - VaoLamTron) : TimeSpan.Zero; } }
 
 
+		public float DinhMuc = 0f;
+		public float Tong = 0f;
 		internal void CapNhatDinhMucCong() {
 			DinhMuc = CongTrongGio + CongNgoaiGio + TruCongTre + TruCongSom + ChamCongTay;
 		}
