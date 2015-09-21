@@ -81,12 +81,30 @@
     <Compile Include="DTO\cUserInfo.cs" />
     <Compile Include="DTO\cLichTrinh.cs" />
     <Compile Include="DTO\cPhongBan.cs" />
+    <Compile Include="UI\ChamCong\frmThongTinThemGioCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ChamCong\frmThongTinThemGioCC.Designer.cs">
+      <DependentUpon>frmThongTinThemGioCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmChiTietVaoRa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmChiTietVaoRa.Designer.cs">
+      <DependentUpon>frmChiTietVaoRa.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\zTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\zTestForm.Designer.cs">
       <DependentUpon>zTestForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\ChamCong\frmThongTinThemGioCC.resx">
+      <DependentUpon>frmThongTinThemGioCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmChiTietVaoRa.resx">
+      <DependentUpon>frmChiTietVaoRa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\zTestForm.resx">
       <DependentUpon>zTestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,6 +309,7 @@
     <Content Include="Helper\SP\CIO_GetData_V6.sql" />
     <Content Include="Helper\SP\CIO_ThemCIOChuaChamCongV6.sql" />
     <Content Include="Helper\SP\create table cio.sql" />
+    <Content Include="Helper\SP\create table XacNhanPhuCapNgayV6.sql" />
     <Content Include="Helper\SP\create table [Shifts6].sql" />
     <Content Include="Helper\SP\Holiday_GetDataV6.sql" />
     <Content Include="Helper\SP\NgayCong_LayV6.sql" />

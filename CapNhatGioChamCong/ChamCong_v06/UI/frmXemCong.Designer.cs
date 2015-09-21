@@ -24,8 +24,6 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.lbXinPhepVang = new DevExpress.XtraEditors.LabelControl();
 			this.lbTreSomCoLamBu = new DevExpress.XtraEditors.LabelControl();
 			this.lbChoPhepTreSom = new DevExpress.XtraEditors.LabelControl();
 			this.lbDaXacNhanLamThem = new DevExpress.XtraEditors.LabelControl();
@@ -48,15 +46,12 @@
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.lbVaoRaBiChinhSua = new DevExpress.XtraEditors.LabelControl();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.checkedDSNV = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-			this.label2 = new System.Windows.Forms.Label();
 			this.lbDaXacNhanCa = new DevExpress.XtraEditors.LabelControl();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.lbVaoTreRaSom = new DevExpress.XtraEditors.LabelControl();
 			this.lbOLaiChuaXN = new DevExpress.XtraEditors.LabelControl();
 			this.lbKhongNhanDienCa = new DevExpress.XtraEditors.LabelControl();
 			this.lbThieuChamCong = new DevExpress.XtraEditors.LabelControl();
-			this.btnChamCong = new DevExpress.XtraEditors.SimpleButton();
 			this.gridControl_DSNV = new DevExpress.XtraGrid.GridControl();
 			this.gridView_DSNV = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -83,7 +78,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_BangCC)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_DSNV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView_DSNV)).BeginInit();
@@ -106,47 +100,36 @@
 			this.groupControl5_BangCCTheoNgay.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// lbXinPhepVang
-			// 
-			this.lbXinPhepVang.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.lbXinPhepVang.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbXinPhepVang.Location = new System.Drawing.Point(8, 144);
-			this.lbXinPhepVang.Margin = new System.Windows.Forms.Padding(5);
-			this.lbXinPhepVang.Name = "lbXinPhepVang";
-			this.lbXinPhepVang.Size = new System.Drawing.Size(134, 14);
-			this.lbXinPhepVang.TabIndex = 30;
-			this.lbXinPhepVang.Text = "Xin phép vắng: [0] TH";
-			// 
 			// lbTreSomCoLamBu
 			// 
-			this.lbTreSomCoLamBu.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbTreSomCoLamBu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbTreSomCoLamBu.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbTreSomCoLamBu.Location = new System.Drawing.Point(8, 120);
+			this.lbTreSomCoLamBu.Location = new System.Drawing.Point(8, 116);
 			this.lbTreSomCoLamBu.Margin = new System.Windows.Forms.Padding(5);
 			this.lbTreSomCoLamBu.Name = "lbTreSomCoLamBu";
-			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(203, 14);
+			this.lbTreSomCoLamBu.Size = new System.Drawing.Size(184, 13);
 			this.lbTreSomCoLamBu.TabIndex = 30;
 			this.lbTreSomCoLamBu.Text = "Vào trễ, ra sớm có làm bù: [0] TH";
 			// 
 			// lbChoPhepTreSom
 			// 
-			this.lbChoPhepTreSom.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbChoPhepTreSom.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbChoPhepTreSom.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbChoPhepTreSom.Location = new System.Drawing.Point(8, 96);
+			this.lbChoPhepTreSom.Location = new System.Drawing.Point(8, 93);
 			this.lbChoPhepTreSom.Margin = new System.Windows.Forms.Padding(5);
 			this.lbChoPhepTreSom.Name = "lbChoPhepTreSom";
-			this.lbChoPhepTreSom.Size = new System.Drawing.Size(202, 14);
+			this.lbChoPhepTreSom.Size = new System.Drawing.Size(182, 13);
 			this.lbChoPhepTreSom.TabIndex = 30;
 			this.lbChoPhepTreSom.Text = "Cho phép vào trễ, ra sớm: [0] TH";
 			// 
 			// lbDaXacNhanLamThem
 			// 
-			this.lbDaXacNhanLamThem.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbDaXacNhanLamThem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbDaXacNhanLamThem.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbDaXacNhanLamThem.Location = new System.Drawing.Point(8, 72);
+			this.lbDaXacNhanLamThem.Location = new System.Drawing.Point(8, 70);
 			this.lbDaXacNhanLamThem.Margin = new System.Windows.Forms.Padding(5);
 			this.lbDaXacNhanLamThem.Name = "lbDaXacNhanLamThem";
-			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(205, 14);
+			this.lbDaXacNhanLamThem.Size = new System.Drawing.Size(188, 13);
 			this.lbDaXacNhanLamThem.TabIndex = 30;
 			this.lbDaXacNhanLamThem.Text = "Đã xác nhận làm thêm giờ: [0] TH";
 			// 
@@ -361,63 +344,38 @@
 			// 
 			// lbVaoRaBiChinhSua
 			// 
-			this.lbVaoRaBiChinhSua.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbVaoRaBiChinhSua.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbVaoRaBiChinhSua.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbVaoRaBiChinhSua.Location = new System.Drawing.Point(8, 24);
 			this.lbVaoRaBiChinhSua.Margin = new System.Windows.Forms.Padding(5);
 			this.lbVaoRaBiChinhSua.Name = "lbVaoRaBiChinhSua";
-			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(218, 14);
+			this.lbVaoRaBiChinhSua.Size = new System.Drawing.Size(198, 13);
 			this.lbVaoRaBiChinhSua.TabIndex = 30;
 			this.lbVaoRaBiChinhSua.Text = "Giờ vào hoặc ra bị chỉnh sửa: [0] TH";
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.lbXinPhepVang);
 			this.groupBox2.Controls.Add(this.lbTreSomCoLamBu);
 			this.groupBox2.Controls.Add(this.lbChoPhepTreSom);
 			this.groupBox2.Controls.Add(this.lbDaXacNhanLamThem);
-			this.groupBox2.Controls.Add(this.checkedDSNV);
 			this.groupBox2.Controls.Add(this.lbVaoRaBiChinhSua);
-			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.lbDaXacNhanCa);
-			this.groupBox2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.groupBox2.Location = new System.Drawing.Point(952, 2);
+			this.groupBox2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+			this.groupBox2.Location = new System.Drawing.Point(926, 2);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(268, 185);
+			this.groupBox2.Size = new System.Drawing.Size(261, 163);
 			this.groupBox2.TabIndex = 40;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Các trường hợp đã qua xử lý";
 			// 
-			// checkedDSNV
-			// 
-			this.checkedDSNV.Location = new System.Drawing.Point(165, 138);
-			this.checkedDSNV.Name = "checkedDSNV";
-			this.checkedDSNV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-			this.checkedDSNV.Properties.Appearance.Options.UseFont = true;
-			this.checkedDSNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear, "", 20, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-			this.checkedDSNV.Size = new System.Drawing.Size(103, 20);
-			this.checkedDSNV.TabIndex = 35;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.label2.Location = new System.Drawing.Point(162, 165);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 14);
-			this.label2.TabIndex = 37;
-			this.label2.Text = "Chọn tháng";
-			// 
 			// lbDaXacNhanCa
 			// 
-			this.lbDaXacNhanCa.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbDaXacNhanCa.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbDaXacNhanCa.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbDaXacNhanCa.Location = new System.Drawing.Point(8, 48);
+			this.lbDaXacNhanCa.Location = new System.Drawing.Point(8, 47);
 			this.lbDaXacNhanCa.Margin = new System.Windows.Forms.Padding(5);
 			this.lbDaXacNhanCa.Name = "lbDaXacNhanCa";
-			this.lbDaXacNhanCa.Size = new System.Drawing.Size(138, 14);
+			this.lbDaXacNhanCa.Size = new System.Drawing.Size(127, 13);
 			this.lbDaXacNhanCa.TabIndex = 30;
 			this.lbDaXacNhanCa.Text = "Đã xác nhận ca: [0] TH";
 			// 
@@ -427,69 +385,58 @@
 			this.groupBox1.Controls.Add(this.lbOLaiChuaXN);
 			this.groupBox1.Controls.Add(this.lbKhongNhanDienCa);
 			this.groupBox1.Controls.Add(this.lbThieuChamCong);
-			this.groupBox1.Controls.Add(this.btnChamCong);
 			this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.groupBox1.Location = new System.Drawing.Point(675, 2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(268, 185);
+			this.groupBox1.Size = new System.Drawing.Size(245, 163);
 			this.groupBox1.TabIndex = 41;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Các trường hợp chưa xử lý";
 			// 
 			// lbVaoTreRaSom
 			// 
-			this.lbVaoTreRaSom.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbVaoTreRaSom.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbVaoTreRaSom.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbVaoTreRaSom.Location = new System.Drawing.Point(6, 96);
+			this.lbVaoTreRaSom.Location = new System.Drawing.Point(6, 93);
 			this.lbVaoTreRaSom.Margin = new System.Windows.Forms.Padding(5);
 			this.lbVaoTreRaSom.Name = "lbVaoTreRaSom";
-			this.lbVaoTreRaSom.Size = new System.Drawing.Size(140, 14);
+			this.lbVaoTreRaSom.Size = new System.Drawing.Size(127, 13);
 			this.lbVaoTreRaSom.TabIndex = 30;
 			this.lbVaoTreRaSom.Text = "Vào trễ, ra sớm: [0] TH";
 			// 
 			// lbOLaiChuaXN
 			// 
-			this.lbOLaiChuaXN.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbOLaiChuaXN.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbOLaiChuaXN.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbOLaiChuaXN.Location = new System.Drawing.Point(6, 72);
+			this.lbOLaiChuaXN.Location = new System.Drawing.Point(6, 70);
 			this.lbOLaiChuaXN.Margin = new System.Windows.Forms.Padding(5);
 			this.lbOLaiChuaXN.Name = "lbOLaiChuaXN";
-			this.lbOLaiChuaXN.Size = new System.Drawing.Size(193, 14);
+			this.lbOLaiChuaXN.Size = new System.Drawing.Size(175, 13);
 			this.lbOLaiChuaXN.TabIndex = 30;
 			this.lbOLaiChuaXN.Text = "Ở lại chưa qua xác nhận: [0] TH";
 			// 
 			// lbKhongNhanDienCa
 			// 
-			this.lbKhongNhanDienCa.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbKhongNhanDienCa.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbKhongNhanDienCa.Appearance.ForeColor = System.Drawing.Color.Blue;
-			this.lbKhongNhanDienCa.Location = new System.Drawing.Point(6, 48);
+			this.lbKhongNhanDienCa.Location = new System.Drawing.Point(6, 47);
 			this.lbKhongNhanDienCa.Margin = new System.Windows.Forms.Padding(5);
 			this.lbKhongNhanDienCa.Name = "lbKhongNhanDienCa";
-			this.lbKhongNhanDienCa.Size = new System.Drawing.Size(203, 14);
+			this.lbKhongNhanDienCa.Size = new System.Drawing.Size(181, 13);
 			this.lbKhongNhanDienCa.TabIndex = 30;
 			this.lbKhongNhanDienCa.Text = "Không nhận diện được ca: [0] TH";
 			// 
 			// lbThieuChamCong
 			// 
-			this.lbThieuChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.lbThieuChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.lbThieuChamCong.Appearance.ForeColor = System.Drawing.Color.Blue;
 			this.lbThieuChamCong.LineColor = System.Drawing.Color.Transparent;
 			this.lbThieuChamCong.Location = new System.Drawing.Point(6, 24);
 			this.lbThieuChamCong.Margin = new System.Windows.Forms.Padding(5);
 			this.lbThieuChamCong.Name = "lbThieuChamCong";
-			this.lbThieuChamCong.Size = new System.Drawing.Size(149, 14);
+			this.lbThieuChamCong.Size = new System.Drawing.Size(136, 13);
 			this.lbThieuChamCong.TabIndex = 30;
 			this.lbThieuChamCong.Text = "Thiếu chấm công: [0] TH";
-			// 
-			// btnChamCong
-			// 
-			this.btnChamCong.Appearance.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
-			this.btnChamCong.Appearance.Options.UseFont = true;
-			this.btnChamCong.Location = new System.Drawing.Point(165, 110);
-			this.btnChamCong.Name = "btnChamCong";
-			this.btnChamCong.Size = new System.Drawing.Size(103, 46);
-			this.btnChamCong.TabIndex = 39;
-			this.btnChamCong.Text = "Chấm công";
 			// 
 			// gridControl_DSNV
 			// 
@@ -778,7 +725,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkedDSNV.Properties)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_DSNV)).EndInit();
@@ -807,7 +753,6 @@
 
 		#endregion
 
-		private DevExpress.XtraEditors.LabelControl lbXinPhepVang;
 		private DevExpress.XtraEditors.LabelControl lbTreSomCoLamBu;
 		private DevExpress.XtraEditors.LabelControl lbChoPhepTreSom;
 		private DevExpress.XtraEditors.LabelControl lbDaXacNhanLamThem;
@@ -836,9 +781,6 @@
 		private DevExpress.XtraEditors.LabelControl lbOLaiChuaXN;
 		private DevExpress.XtraEditors.LabelControl lbKhongNhanDienCa;
 		private DevExpress.XtraEditors.LabelControl lbThieuChamCong;
-		private DevExpress.XtraEditors.SimpleButton btnChamCong;
-		private System.Windows.Forms.Label label2;
-		private DevExpress.XtraEditors.CheckedComboBoxEdit checkedDSNV;
 		private DevExpress.XtraGrid.GridControl gridControl_DSNV;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView_DSNV;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;

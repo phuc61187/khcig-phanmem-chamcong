@@ -27,26 +27,26 @@ namespace ChamCong_v06.BUS {
 			List<cKhaiBaoVang> DS_KhaiBaoVang;
 			List<DateTime> DS_NgayLe;
 			DAL_CheckInCheckOut dal = new DAL_CheckInCheckOut();
-			DataTable tableNgayLe;
 			dal.GetCIOData(tableArrayUEN, KhoangTG, out DS_CIO_DaCC);
 			dal.GetXacNhanPhuCapNgayData(tableArrayUEN, KhoangTG, out DS_XN_PC_Ngay);
 			dal.GetNgayVangData(tableArrayUEN, KhoangTG, out DS_KhaiBaoVang);
 			dal.GetNgayLeData(KhoangTG, out DS_NgayLe);
-			foreach (cUserInfo nhanvien in DSNV) {
-				LapDSNgayCongDeXuLy(nhanvien.MaCC, KhoangTG, out nhanvien.DSNgayDaCC);
-
-				foreach (cNgayCong ngayCong in nhanvien.DSNgayDaCC) {
-					foreach (cCheckInOut_DaCC CIO_DaCC in DS_CIO_DaCC.Where(item => item.Ngay == ngayCong.Ngay && item.MaCC == nhanvien.MaCC))
-						ngayCong.Them_CheckInOut_DaCC(CIO_DaCC);
-					if (ngayCong.QuaDem) ngayCong.TinhLaiPhuCap();
-				}
-				
+			foreach (cUserInfo nhanvien in DSNV)
+			{
+				int maCC = nhanvien.MaCC;
+				LapDSNgayCongDeXuLy(maCC, KhoangTG, out nhanvien.DSNgayDaCC);
 
 				foreach (cXacNhanPhuCapNgay xacNhanPhuCapNgay in DS_XN_PC_Ngay)
 				{
 					cNgayCong ngayCoPhuCap = nhanvien.DSNgayDaCC.Single(item => item.Ngay == xacNhanPhuCapNgay.Ngay);
 					ngayCoPhuCap.SetXacNhanPhuCap(xacNhanPhuCapNgay.DuocTinhPCTC, xacNhanPhuCapNgay.DuocTinhPCNgayNghi, xacNhanPhuCapNgay.DuocTinhPCNgayLe, xacNhanPhuCapNgay.DuocTinhPCThuCong, xacNhanPhuCapNgay.PhuCapTay);
-					ngayCoPhuCap.TinhLaiPhuCap();
+					//ngayCoPhuCap.TinhLaiPhuCap();
+				}
+
+				foreach (cKhaiBaoVang khaiBaoVang in DS_KhaiBaoVang)
+				{
+					cNgayCong ngayCoKBVang = nhanvien.DSNgayDaCC.Single(item => item.Ngay == khaiBaoVang.Ngay);
+					ngayCoKBVang.DSVang.Add(khaiBaoVang);
 				}
 
 				foreach (DateTime ngayLe in DS_NgayLe)
@@ -54,6 +54,15 @@ namespace ChamCong_v06.BUS {
 					cNgayCong ngayDuocChamCongLe = nhanvien.DSNgayDaCC.Single(item => item.Ngay == ngayLe);
 					ngayDuocChamCongLe.IsHoliday = true;
 				}
+
+				foreach (cNgayCong ngayCong in nhanvien.DSNgayDaCC)
+				{
+					DateTime ngay = ngayCong.Ngay;
+					foreach (cCheckInOut_DaCC CIO_DaCC in DS_CIO_DaCC.Where(item => item.Ngay == ngay && item.MaCC == maCC))
+						ngayCong.Them_CheckInOut_DaCC(CIO_DaCC);
+					ngayCong.TinhLaiPhuCap();
+				}
+				
 			}
 		}
 
@@ -63,7 +72,7 @@ namespace ChamCong_v06.BUS {
 		private void LapDSNgayCongDeXuLy(int MaCC, FromToDateTime KhoangTG, out List<cNgayCong> DSNgayDaCC) {
 			DSNgayDaCC = new List<cNgayCong>();
 			for (DateTime i = KhoangTG.From; i <= KhoangTG.To; i = i.Add(GlobalVariables._1ngay)) {
-				cNgayCong ngayCong = new cNgayCong { Ngay = i, };
+				cNgayCong ngayCong = new cNgayCong { Ngay = i, MaCC = MaCC};
 				//ngayCong.DSVaoRa = (from cCheckInOut_DaCC item in DS_CIO_DaCC where item.Ngay == ngayCong.Ngay select item).ToList();
 				DSNgayDaCC.Add(ngayCong);
 			}

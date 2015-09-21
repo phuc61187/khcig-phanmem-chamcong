@@ -8,6 +8,7 @@ using ChamCong_v06.Helper;
 namespace ChamCong_v06.DTO {
 	public class cNgayCong {
 		public DateTime Ngay;
+		public int MaCC;
 		public List<cCheckInOut_DaCC> DSVaoRa = new List<cCheckInOut_DaCC>();
 		public List<cKhaiBaoVang> DSVang = new List<cKhaiBaoVang>();
 		public cXacNhanPhuCapNgay XN_PCNgay = new cXacNhanPhuCapNgay();
@@ -36,7 +37,7 @@ namespace ChamCong_v06.DTO {
 			get { return (LamThem > TimeSpan.Zero && LamDem > TimeSpan.Zero) ? LamThem : TimeSpan.Zero; }
 		}
 
-		public TimeSpan LamNgay { get { return LamViec - LamDem; } }
+		//public TimeSpan LamNgay { get { return LamViec - LamDem; } }
 
 		/*
 				public TrangThaiDiemDanh TrangThaiDiemDanh;
@@ -190,19 +191,15 @@ namespace ChamCong_v06.DTO {
 		public float PhuCapThemNgayLe;
 		public float TongPhuCap;
 
-		public string KyHieuCa_1Ngay
-		{
-			get
-			{
+		public string KyHieuCa_1Ngay {
+			get {
 				if (DSVaoRa == null || DSVaoRa.Count == 0) return string.Empty;
 				return DSVaoRa.Aggregate(string.Empty, (current, item) => current + item.KyHieuCa + ";");
 			}
 		}
 
-		public string KyHieuVang_1Ngay
-		{
-			get
-			{
+		public string KyHieuVang_1Ngay {
+			get {
 				string kq = string.Empty;
 				if (IsHoliday) kq = "L;";
 				if (DSVang == null || DSVang.Count == 0) return kq;
@@ -211,36 +208,62 @@ namespace ChamCong_v06.DTO {
 			}
 		}
 
-		public void Them_CheckInOut_DaCC(cCheckInOut_DaCC item)
-		{
-			if (item.CheckVT != TrangThaiCheck.CheckDayDu)
-			{
+		public void Them_CheckInOut_DaCC(cCheckInOut_DaCC item) {
+			if (item.CheckVT != TrangThaiCheck.CheckDayDu) {
 				//todo
 			}
-			//item.CheckVân tay đầy đủ
-			Tre += item.Tre;
-			Som += item.Som;
-			VaoSauCa += item.VaoSauCa;
-			RaTruocCa += item.RaTruocCa;
+			else //item.CheckVân tay đầy đủ
+			{
+				Tre += item.Tre;
+				Som += item.Som;
+				VaoSauCa += item.VaoSauCa;
+				RaTruocCa += item.RaTruocCa;
 
-			HienDien += (item.RaaLamTron - item.VaoLamTron);
-			LamViec += item.LamViec;
-			LamDem += item.LamDem;
+				HienDien += (item.RaaLamTron - item.VaoLamTron);
+				LamViec += item.LamViec;
+				LamDem += item.LamDem;
 
-			TruCongTre += item.TruCongTre;
-			TruCongSom += item.TruCongSom;
-			CongTrongGio += item.CongTrongGio;
-			CongNgoaiGio += item.CongNgoaiGio;
-			ChamCongTay += item.ChamCongTay;
-			DinhMucCong += item.DinhMuc;
-			TongCong += item.Tong;
+				TruCongTre += item.TruCongTre;
+				TruCongSom += item.TruCongSom;
+				CongTrongGio += item.CongTrongGio;
+				CongNgoaiGio += item.CongNgoaiGio;
+				ChamCongTay += item.ChamCongTay;
+				DinhMucCong += item.DinhMuc;
+				TongCong += item.Tong;
 
-			if (item.QuaDem) QuaDem = true;
+				if (item.QuaDem) QuaDem = true;
+			}
 			this.DSVaoRa.Add(item);
 		}
 
-		public void SetXacNhanPhuCap(bool DuocTinhPCTC, bool DuocTinhPCNgayNghi,bool DuocTinhPCNgayLe,bool DuocTinhPCTay, float PhuCapTay = 0f)
-		{
+		public void Xoa_CheckInOut_DaCC(cCheckInOut_DaCC item) {
+			if (item.CheckVT != TrangThaiCheck.CheckDayDu) {
+				//todo
+			}
+			else { //item.CheckVân tay đầy đủ
+				Tre -= item.Tre;
+				Som -= item.Som;
+				VaoSauCa -= item.VaoSauCa;
+				RaTruocCa -= item.RaTruocCa;
+
+				HienDien -= (item.RaaLamTron - item.VaoLamTron);
+				LamViec -= item.LamViec;
+				LamDem -= item.LamDem;
+
+				TruCongTre -= item.TruCongTre;
+				TruCongSom -= item.TruCongSom;
+				CongTrongGio -= item.CongTrongGio;
+				CongNgoaiGio -= item.CongNgoaiGio;
+				ChamCongTay -= item.ChamCongTay;
+				DinhMucCong -= item.DinhMuc;
+				TongCong -= item.Tong;
+
+				if (DSVaoRa.Any(itemQuaDem => item.QuaDem)) QuaDem = true;
+			}
+			this.DSVaoRa.Remove(item);
+		}
+
+		public void SetXacNhanPhuCap(bool DuocTinhPCTC, bool DuocTinhPCNgayNghi, bool DuocTinhPCNgayLe, bool DuocTinhPCTay, float PhuCapTay = 0f) {
 			this.DuocTinhPCTC = DuocTinhPCTC;
 			this.DuocTinhPCNgayNghi = DuocTinhPCNgayNghi;
 			this.DuocTinhPCNgayLe = DuocTinhPCNgayLe;
@@ -248,50 +271,37 @@ namespace ChamCong_v06.DTO {
 			this.PhuCapTay = PhuCapTay;
 		}
 
-		public void TinhLaiPhuCap()
-		{
-			if (DuocTinhPCTay)
-			{
-				PhuCapDem = 0f;
-				PhuCapTangCuong = 0f;
-				PhuCapThemNgayThuong = 0f;
-				PhuCapNgayNghi = 0f;
-				PhuCapThemNgayNghi = 0f;
-				PhuCapNgayLe = 0f;
-				PhuCapThemNgayLe = 0f;
-			}
-			PhuCapDem = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCDem);
-			if (DuocTinhPCTC)
-			{
-				PhuCapNgayNghi = 0f;
-				PhuCapThemNgayNghi = 0f;
-				PhuCapNgayLe = 0f;
-				PhuCapThemNgayLe = 0f;
-				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
-				PhuCapTangCuong =  MyUtility.TinhPhuCap(LamThem, GlobalVariables.HSPCTangCuong);
-				PhuCapThemNgayThuong =  MyUtility.TinhPhuCap(LamTangCuongDem, GlobalVariables.HSPCThem_NgayThuong);
-			}
-			if (DuocTinhPCNgayNghi)
-			{
-				PhuCapTangCuong = 0f;
-				PhuCapThemNgayThuong = 0f;
-				PhuCapNgayLe = 0f;
-				PhuCapThemNgayLe = 0f;
-				PhuCapNgayNghi = MyUtility.TinhPhuCap(LamViec, GlobalVariables.HSPCNgayNghi);
-				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
-				PhuCapThemNgayNghi = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCThem_NgayNghi);
-			}
-			if (DuocTinhPCNgayLe)
-			{
-				PhuCapTangCuong = 0f;
-				PhuCapThemNgayThuong = 0f;
-				PhuCapNgayLe = MyUtility.TinhPhuCap(LamViec, GlobalVariables.HSPCNgayLe);
-				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
-				PhuCapThemNgayLe = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCThem_NgayLe);
+		public void TinhLaiPhuCap() {
+			if (QuaDem) PhuCapDem = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCDem);
 
+			if (DuocTinhPCTC) {
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				PhuCapTangCuong = MyUtility.TinhPhuCap(LamThem, GlobalVariables.HSPCTangCuong);
+				PhuCapThemNgayThuong = MyUtility.TinhPhuCap(LamTangCuongDem, GlobalVariables.HSPCThem_NgayThuong);
+				PhuCapNgayNghi = 0f;
+				PhuCapThemNgayNghi = 0f;
+				PhuCapNgayLe = 0f;
+				PhuCapThemNgayLe = 0f;
 			}
-			if (DuocTinhPCTay)
-			{
+			if (DuocTinhPCNgayNghi) {
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				PhuCapTangCuong = 0f;
+				PhuCapThemNgayThuong = 0f;
+				PhuCapNgayNghi = MyUtility.TinhPhuCap(LamViec, GlobalVariables.HSPCNgayNghi);
+				PhuCapThemNgayNghi = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCThem_NgayNghi);
+				PhuCapNgayLe = 0f;
+				PhuCapThemNgayLe = 0f;
+			}
+			if (DuocTinhPCNgayLe) {
+				//ngayCong.PhuCapDem = TinhPhuCap(ngayCong.LamDem, GlobalVariables.HSPCDem);
+				PhuCapTangCuong = 0f;
+				PhuCapThemNgayThuong = 0f;
+				PhuCapNgayNghi = 0f;
+				PhuCapThemNgayNghi = 0f;
+				PhuCapNgayLe = MyUtility.TinhPhuCap(LamViec, GlobalVariables.HSPCNgayLe);
+				PhuCapThemNgayLe = MyUtility.TinhPhuCap(LamDem, GlobalVariables.HSPCThem_NgayLe);
+			}
+			if (DuocTinhPCTay) {
 				PhuCapDem = 0f;
 				PhuCapTangCuong = 0f;
 				PhuCapThemNgayThuong = 0f;
@@ -302,5 +312,6 @@ namespace ChamCong_v06.DTO {
 			}
 			TongPhuCap = PhuCapDem + PhuCapTangCuong + PhuCapThemNgayThuong + PhuCapNgayNghi + PhuCapThemNgayNghi + PhuCapNgayLe + PhuCapThemNgayLe + PhuCapTay;
 		}
+
 	}
 }

@@ -66,10 +66,16 @@ namespace ChamCong_v06.UI {
 			BUS_NhanVien busNhanVien = new BUS_NhanVien();
 			busNhanVien.XuatDataTableXemCong(dsnv_DuocChon, out table_KQ_XemCong);
 			gridControl_BangCC.DataSource = table_KQ_XemCong;
+
+			//ReloadThongKe();
+		}
+
+		private void ReloadThongKe(List<cUserInfo> DSNV_DuocChon, int SoTH_ThieuCC=0, int SoTH_KoNhanDienCa=0, int SoTH_OLaiChuaXN=0 ) {
+			
 		}
 
 		private bool Validate_NgayXemCong(DateTime NgayBD_XemCong, DateTime NgayKT_XemCong) {
-			//validate chỉ xem công trong khoảng thời gian chưa kết lương
+			//todo//validate chỉ xem công trong khoảng thời gian chưa kết lương
 			return true;
 		}
 

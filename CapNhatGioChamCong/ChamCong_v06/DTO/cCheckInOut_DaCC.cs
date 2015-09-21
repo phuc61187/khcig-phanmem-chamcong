@@ -58,11 +58,11 @@ namespace ChamCong_v06.DTO {
 		public bool RaaTuDo;
 		public bool TinhCongThuCong;
 
-		public float TruCongTre = 0f;
-		public float TruCongSom = 0f;
-		public float CongTrongGio = 0f;
-		public float CongNgoaiGio = 0f;
-		public float ChamCongTay = 0f;
+		public float TruCongTre;
+		public float TruCongSom;
+		public float CongTrongGio;
+		public float CongNgoaiGio;
+		public float ChamCongTay;
 
 		#endregion
 
@@ -73,8 +73,8 @@ namespace ChamCong_v06.DTO {
 		public TimeSpan HienDien { get { return (CheckVT == TrangThaiCheck.CheckDayDu) ? (RaaLamTron - VaoLamTron) : TimeSpan.Zero; } }
 
 
-		public float DinhMuc = 0f;
-		public float Tong = 0f;
+		public float DinhMuc;
+		public float Tong;
 		internal void CapNhatDinhMucCong() {
 			DinhMuc = CongTrongGio + CongNgoaiGio + TruCongTre + TruCongSom + ChamCongTay;
 		}
