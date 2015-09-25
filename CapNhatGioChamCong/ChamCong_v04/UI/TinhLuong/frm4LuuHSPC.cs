@@ -57,8 +57,6 @@ namespace ChamCong_v04.UI.TinhLuong {
 			numLuongTT.Value = (tableThongsoKetluongThang.Rows.Count == 0)
 				? Convert.ToDecimal(Settings.Default.LastLuongToiThieu)
 				: Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["MucLuongToiThieu"]);
-			numBoiDuongCa3.Value = (tableThongsoKetluongThang.Rows.Count == 0)
-				? (Settings.Default.LastBoiDuongCa3) : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["BoiDuongCa3"]);
 			numDinhMucComTrua.Value = (tableThongsoKetluongThang.Rows.Count == 0)
 				? Convert.ToDecimal(Settings.Default.LastDinhMucComTrua)
 				: Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["DinhMucComTrua"]);
@@ -139,7 +137,6 @@ namespace ChamCong_v04.UI.TinhLuong {
 			var sanluongGiacongNgoai = (int)numSanluongGiacongNgoai.Value;
 			var dongiaGiacongNgoai = (int)numDongiaGiacongNgoai.Value;
 			var mucLuongToithieu = (int)numLuongTT.Value;
-			var donGiaBdCa3 = (int)numBoiDuongCa3.Value;
 			var DinhMuccomtrua = (int)numDinhMucComTrua.Value;
 
 			double tongQuy100Per03 = Convert.ToDouble(sanluong01) * Convert.ToDouble(dongia02);
@@ -227,10 +224,9 @@ namespace ChamCong_v04.UI.TinhLuong {
 				//tongQuyLuongNghiDinhCP += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC; // yêu cầu cũ (T1/2015) là có lương chờ việc
 				tongQuyLuongNghiDinhCP += nv.chiTietLuong.LCB_Theo.Cong_CD_PC;// yêu cầu mới (T8/2015) là tách lương chờ việc ra
 
-				XL.TinhBoiDuongQuaDemA512(nv.ThongKeThang.NgayQuaDem, donGiaBdCa3, out nv.chiTietLuong.BoiDuongQuaDem);
-				//tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC + nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.LuongDieuChinh; //yêu cầu mới (T8/2015) là tách lương chờ việc ra khỏi quỹ lương cơ bản đưa vào quỹ lương sản phẩm
-				tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.Cong_CD_PC + nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.LuongDieuChinh; //info tong_qlcb_2 bao gồm lương cb 1nv, bồi dưỡng ca 3 1nv, lương tháng trước 1 nv
-				tongChiKhacTuQuyLuong += nv.chiTietLuong.BoiDuongQuaDem + nv.chiTietLuong.KhauTru.ThuChiKhac;
+				//ver4.0.0.7 tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC + nv.chiTietLuong.LuongDieuChinh; //yêu cầu mới (T8/2015) là tách lương chờ việc ra khỏi quỹ lương cơ bản đưa vào quỹ lương sản phẩm
+				tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.Cong_CD_PC + nv.chiTietLuong.LuongDieuChinh; //info tong_qlcb_2 bao gồm lương cb 1nv, bồi dưỡng ca 3 1nv, lương tháng trước 1 nv
+				tongChiKhacTuQuyLuong += nv.chiTietLuong.KhauTru.ThuChiKhac;
 
 				XL.TinhSPLamRa_CongVaPC_B102(nv.HeSo.LuongCV, nv.ThongKeThang.Cong, nv.ThongKeThang.PhuCaps._TongPC, nv.ThongKeThang.Phep, nv.ThongKeThang.H_CT_PT, nv.ThongKeThang.PTDT, nv.ThongKeThang.Le,//DANGLAM
 											 out nv.chiTietLuong.SPLamRa_Theo.CongThucTe, out nv.chiTietLuong.SPLamRa_Theo.CheDoNghi, out nv.chiTietLuong.SPLamRa_Theo.PhuCap);
@@ -275,7 +271,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 													 XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290,
 													 sanluong01, dongia02, perTrichQuyLuong,
 													 sanluongGiacongNoiBo, dongiaGiacongNoiBo, sanluongGiacongNgoai, dongiaGiacongNgoai,
-													 mucLuongToithieu, donGiaBdCa3, DinhMuccomtrua,
+													 mucLuongToithieu, /*donGiaBdCa3,*/ DinhMuccomtrua,
 													 tongQuyLuongCV, tongQuyLuongNghiDinhCP,
 													 tongChiKhacTuQuyLuong, tongQuyLuongSP, giaTri_1SP_B3_1);
 
@@ -647,7 +643,6 @@ namespace ChamCong_v04.UI.TinhLuong {
 				nv.chiTietLuong.LSP_Theo.CheDoNghi = (double)row["LuongSP_TheoCheDoNghi"];
 				nv.chiTietLuong.LSP_Theo.PhuCap = (double)row["PCLuongSP"]; // với 2 chi tiết lương này có thể tính được các tổng LSP
 				nv.chiTietLuong.LuongDieuChinh = (double)row["LuongDieuChinh"];
-				nv.chiTietLuong.BoiDuongQuaDem = (double)row["BoiDuongCa3"];
 				nv.chiTietLuong.KhauTru.TamUng = (double)row["TamUng"];
 				nv.chiTietLuong.MucDongBHXH = (float)row["MucDongBHXH"];
 				nv.chiTietLuong.KhauTru.BHXH = (double)row["KhauTruBHXH"];

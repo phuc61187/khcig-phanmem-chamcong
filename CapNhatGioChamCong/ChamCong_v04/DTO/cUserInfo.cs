@@ -156,9 +156,9 @@ namespace ChamCong_v04.DTO {
 			set { tongLuong_KoTinhCacLoaiPhuCap = value; }
 		}
 
-		private double tongPhuCapLuong;//=LCB_Theo.PhuCap + LSP_Theo.PhuCap + BoiDuongQuaDem
+		private double tongPhuCapLuong;//=LCB_Theo.PhuCap + LSP_Theo.PhuCap 
 		public double TongPhuCapLuong {
-			get { return LCB_Theo.PhuCap + LSP_Theo.PhuCap + BoiDuongQuaDem; }
+			get { return LCB_Theo.PhuCap + LSP_Theo.PhuCap; }
 			set { tongPhuCapLuong = value; }
 		}
 		/*
@@ -178,7 +178,6 @@ namespace ChamCong_v04.DTO {
 		//public double TongLuong_NghiDinh205CP;// = nv.chiTietLuong.LCB_Theo.Cong_CDNghi_CV + nv.chiTietLuong.LCB_Theo.PhuCap;
 
 		public double LuongDieuChinh;
-		public double BoiDuongQuaDem;
 		public float MucDongBHXH;
 		public KhauTru KhauTru;
 

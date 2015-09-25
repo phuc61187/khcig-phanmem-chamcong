@@ -28,10 +28,8 @@
 			this.numSanluongGiacongNoibo = new System.Windows.Forms.NumericUpDown();
 			this.numSanLuong = new System.Windows.Forms.NumericUpDown();
 			this.numDinhMucComTrua = new System.Windows.Forms.NumericUpDown();
-			this.numBoiDuongCa3 = new System.Windows.Forms.NumericUpDown();
 			this.label33 = new System.Windows.Forms.Label();
 			this.label31 = new System.Windows.Forms.Label();
-			this.label32 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.numLuongTT = new System.Windows.Forms.NumericUpDown();
 			this.label34 = new System.Windows.Forms.Label();
@@ -42,7 +40,6 @@
 			this.label29 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
 			this.numDongiaGiacongNgoai = new System.Windows.Forms.NumericUpDown();
-			this.label35 = new System.Windows.Forms.Label();
 			this.numDongiaGiacongNoibo = new System.Windows.Forms.NumericUpDown();
 			this.label7 = new System.Windows.Forms.Label();
 			this.numDonGia = new System.Windows.Forms.NumericUpDown();
@@ -65,7 +62,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.numSanluongGiacongNoibo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numSanLuong)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numDinhMucComTrua)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numBoiDuongCa3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numLuongTT)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numTrichQuyLuong)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numDongiaGiacongNgoai)).BeginInit();
@@ -79,10 +75,8 @@
 			this.groupBox2.Controls.Add(this.numSanluongGiacongNoibo);
 			this.groupBox2.Controls.Add(this.numSanLuong);
 			this.groupBox2.Controls.Add(this.numDinhMucComTrua);
-			this.groupBox2.Controls.Add(this.numBoiDuongCa3);
 			this.groupBox2.Controls.Add(this.label33);
 			this.groupBox2.Controls.Add(this.label31);
-			this.groupBox2.Controls.Add(this.label32);
 			this.groupBox2.Controls.Add(this.label13);
 			this.groupBox2.Controls.Add(this.numLuongTT);
 			this.groupBox2.Controls.Add(this.label34);
@@ -93,7 +87,6 @@
 			this.groupBox2.Controls.Add(this.label29);
 			this.groupBox2.Controls.Add(this.label24);
 			this.groupBox2.Controls.Add(this.numDongiaGiacongNgoai);
-			this.groupBox2.Controls.Add(this.label35);
 			this.groupBox2.Controls.Add(this.numDongiaGiacongNoibo);
 			this.groupBox2.Controls.Add(this.label7);
 			this.groupBox2.Controls.Add(this.numDonGia);
@@ -105,7 +98,7 @@
 			this.groupBox2.Controls.Add(this.label26);
 			this.groupBox2.Location = new System.Drawing.Point(12, 12);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(384, 288);
+			this.groupBox2.Size = new System.Drawing.Size(384, 265);
 			this.groupBox2.TabIndex = 43;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Thông tin tính lương tháng {0}";
@@ -171,7 +164,7 @@
             0,
             0,
             0});
-			this.numDinhMucComTrua.Location = new System.Drawing.Point(195, 262);
+			this.numDinhMucComTrua.Location = new System.Drawing.Point(195, 236);
 			this.numDinhMucComTrua.Maximum = new decimal(new int[] {
             2000000,
             0,
@@ -187,34 +180,11 @@
             0,
             0});
 			// 
-			// numBoiDuongCa3
-			// 
-			this.numBoiDuongCa3.Increment = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-			this.numBoiDuongCa3.Location = new System.Drawing.Point(195, 235);
-			this.numBoiDuongCa3.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-			this.numBoiDuongCa3.Name = "numBoiDuongCa3";
-			this.numBoiDuongCa3.Size = new System.Drawing.Size(100, 21);
-			this.numBoiDuongCa3.TabIndex = 8;
-			this.numBoiDuongCa3.ThousandsSeparator = true;
-			this.numBoiDuongCa3.Value = new decimal(new int[] {
-            1500,
-            0,
-            0,
-            0});
-			// 
 			// label33
 			// 
 			this.label33.AutoSize = true;
 			this.label33.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.label33.Location = new System.Drawing.Point(9, 264);
+			this.label33.Location = new System.Drawing.Point(9, 238);
 			this.label33.Name = "label33";
 			this.label33.Size = new System.Drawing.Size(89, 15);
 			this.label33.TabIndex = 0;
@@ -229,16 +199,6 @@
 			this.label31.Size = new System.Drawing.Size(94, 15);
 			this.label31.TabIndex = 0;
 			this.label31.Text = "Lương tối thiểu";
-			// 
-			// label32
-			// 
-			this.label32.AutoSize = true;
-			this.label32.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.label32.Location = new System.Drawing.Point(9, 237);
-			this.label32.Name = "label32";
-			this.label32.Size = new System.Drawing.Size(94, 15);
-			this.label32.TabIndex = 0;
-			this.label32.Text = "Bồi dưỡng ca 3";
 			// 
 			// label13
 			// 
@@ -327,7 +287,7 @@
 			// label29
 			// 
 			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(301, 265);
+			this.label29.Location = new System.Drawing.Point(301, 239);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(69, 15);
 			this.label29.TabIndex = 0;
@@ -360,15 +320,6 @@
             0,
             0,
             0});
-			// 
-			// label35
-			// 
-			this.label35.AutoSize = true;
-			this.label35.Location = new System.Drawing.Point(301, 238);
-			this.label35.Name = "label35";
-			this.label35.Size = new System.Drawing.Size(35, 15);
-			this.label35.TabIndex = 0;
-			this.label35.Text = "đồng";
 			// 
 			// numDongiaGiacongNoibo
 			// 
@@ -476,7 +427,7 @@
 			// 
 			this.btnDong.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.btnDong.ForeColor = System.Drawing.Color.Blue;
-			this.btnDong.Location = new System.Drawing.Point(207, 399);
+			this.btnDong.Location = new System.Drawing.Point(207, 374);
 			this.btnDong.Name = "btnDong";
 			this.btnDong.Size = new System.Drawing.Size(189, 27);
 			this.btnDong.TabIndex = 5;
@@ -488,7 +439,7 @@
 			// 
 			this.btnNext.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.btnNext.ForeColor = System.Drawing.Color.Blue;
-			this.btnNext.Location = new System.Drawing.Point(12, 333);
+			this.btnNext.Location = new System.Drawing.Point(12, 308);
 			this.btnNext.Name = "btnNext";
 			this.btnNext.Size = new System.Drawing.Size(189, 27);
 			this.btnNext.TabIndex = 1;
@@ -498,7 +449,7 @@
 			// 
 			// tbTenNVLapbieuLuong
 			// 
-			this.tbTenNVLapbieuLuong.Location = new System.Drawing.Point(207, 306);
+			this.tbTenNVLapbieuLuong.Location = new System.Drawing.Point(207, 281);
 			this.tbTenNVLapbieuLuong.Name = "tbTenNVLapbieuLuong";
 			this.tbTenNVLapbieuLuong.Size = new System.Drawing.Size(189, 21);
 			this.tbTenNVLapbieuLuong.TabIndex = 0;
@@ -507,7 +458,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-			this.label1.Location = new System.Drawing.Point(21, 309);
+			this.label1.Location = new System.Drawing.Point(21, 284);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(163, 15);
 			this.label1.TabIndex = 0;
@@ -523,7 +474,7 @@
 			// 
 			this.btnBack.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.btnBack.ForeColor = System.Drawing.Color.Blue;
-			this.btnBack.Location = new System.Drawing.Point(207, 366);
+			this.btnBack.Location = new System.Drawing.Point(207, 341);
 			this.btnBack.Name = "btnBack";
 			this.btnBack.Size = new System.Drawing.Size(189, 27);
 			this.btnBack.TabIndex = 4;
@@ -535,7 +486,7 @@
 			// 
 			this.btnHuyKetluong.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.btnHuyKetluong.ForeColor = System.Drawing.Color.Blue;
-			this.btnHuyKetluong.Location = new System.Drawing.Point(207, 333);
+			this.btnHuyKetluong.Location = new System.Drawing.Point(207, 308);
 			this.btnHuyKetluong.Name = "btnHuyKetluong";
 			this.btnHuyKetluong.Size = new System.Drawing.Size(189, 27);
 			this.btnHuyKetluong.TabIndex = 3;
@@ -547,7 +498,7 @@
 			// 
 			this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.button1.ForeColor = System.Drawing.Color.Blue;
-			this.button1.Location = new System.Drawing.Point(12, 366);
+			this.button1.Location = new System.Drawing.Point(12, 341);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(189, 27);
 			this.button1.TabIndex = 2;
@@ -558,7 +509,7 @@
 			// frm4LuuHSPC
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(410, 430);
+			this.ClientSize = new System.Drawing.Size(410, 410);
 			this.Controls.Add(this.btnBack);
 			this.Controls.Add(this.tbTenNVLapbieuLuong);
 			this.Controls.Add(this.groupBox2);
@@ -577,7 +528,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.numSanluongGiacongNoibo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numSanLuong)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numDinhMucComTrua)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numBoiDuongCa3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numLuongTT)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numTrichQuyLuong)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numDongiaGiacongNgoai)).EndInit();
@@ -593,15 +543,12 @@
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.NumericUpDown numSanLuong;
 		private System.Windows.Forms.NumericUpDown numDinhMucComTrua;
-		private System.Windows.Forms.NumericUpDown numBoiDuongCa3;
 		private System.Windows.Forms.Label label33;
 		private System.Windows.Forms.Label label31;
-		private System.Windows.Forms.Label label32;
 		private System.Windows.Forms.NumericUpDown numLuongTT;
 		private System.Windows.Forms.Label label34;
 		private System.Windows.Forms.Label label29;
 		private System.Windows.Forms.Label label24;
-		private System.Windows.Forms.Label label35;
 		private System.Windows.Forms.NumericUpDown numDonGia;
 		private System.Windows.Forms.Label label27;
 		private System.Windows.Forms.Label label25;

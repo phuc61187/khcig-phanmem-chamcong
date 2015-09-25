@@ -148,7 +148,7 @@ namespace ChamCong_v04.UI.XacNhan {
 				checkXNChoPhepTre.Checked = CIO.DuyetChoPhepVaoTre;
 				checkXNChoPhepSom.Checked = CIO.DuyetChoPhepRaSom;
 				checkXNLamThem.Checked = false;
-				checkXNTinhPC50.Checked = false;
+				checkXNTinhPC50.Checked = true;
 				checkXNVaoTreTinhCV.Checked = CIO.VaoTreTinhCV;//ver 4.0.0.4	
 				checkXNRaaSomTinhCV.Checked = CIO.RaaSomTinhCV;//ver 4.0.0.4	
 				tbXNGhiChu.Text = string.Empty;
@@ -212,6 +212,7 @@ namespace ChamCong_v04.UI.XacNhan {
 
 				MyUtility.CheckedCheckBox(false, checkXNChoPhepTre, checkXNChoPhepSom, checkXNLamThem, checkXNTinhPC50,
 					checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
+				checkXNTinhPC50.Checked = true;
 				tbXNGhiChu.Text = string.Empty;
 
 

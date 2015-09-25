@@ -126,7 +126,7 @@ order by ViTri desc
 	TongPCDem, TongPCTC, TongPCTC_dem, TongPC200, TongPC260, TongPC300, TongPC390, TongPCCus, TongPC,
 	LuongCB_TheoCongThucTe, LuongCB_TheoCheDoNghi, LuongCB_TheoCongCV, PCLuongCB, 
 	LuongSP_TheoCongThucTe, LuongSP_TheoCheDoNghi, PCLuongSP, 
-	LuongDieuChinh, BoiDuongCa3, 
+	LuongDieuChinh,  
 	TamUng, MucDongBHXH, KhauTruBHXH, ThuChiKhac, TienComTrua, ThucLanh  ) 
 	VALUES (
 	@Thang, @UserEnrollNumber, @HSLCB, @HSLCV, @HSBHCongThem,
@@ -136,7 +136,7 @@ order by ViTri desc
 	@TongPCDem, @TongPCTC, @TongPCTC_dem, @TongPC200, @TongPC260, @TongPC300, @TongPC390, @TongPCCus, @TongPC,
 	@LuongCB_TheoCongThucTe, @LuongCB_TheoCheDoNghi, @LuongCB_TheoCongCV, @PCLuongCB, 
 	@LuongSP_TheoCongThucTe, @LuongSP_TheoCheDoNghi, @PCLuongSP, 
-	@LuongDieuChinh, @BoiDuongCa3, 
+	@LuongDieuChinh,
 	@TamUng, @MucDongBHXH, @KhauTruBHXH, @ThuChiKhac, @TienComTrua, @ThucLanh  ) ";
 
 			#endregion
@@ -151,7 +151,7 @@ order by ViTri desc
 "@TongPCDem", "@TongPCTC", "@TongPCTC_dem", "@TongPC200", "@TongPC260", "@TongPC300", "@TongPC390", "@TongPCCus", "@TongPC",
 "@LuongCB_TheoCongThucTe", "@LuongCB_TheoCheDoNghi", "@LuongCB_TheoCongCV", "@PCLuongCB", 
 "@LuongSP_TheoCongThucTe", "@LuongSP_TheoCheDoNghi", "@PCLuongSP", 
-"@BoiDuongCa3", "@LuongDieuChinh", 
+"@LuongDieuChinh", 
 "@TamUng", "@MucDongBHXH", "@KhauTruBHXH", "@ThuChiKhac", "@TienComTrua" , "@ThucLanh"
 															   },
 														   new object[]
@@ -165,7 +165,7 @@ order by ViTri desc
   nv.ThongKeThang.PhuCaps._100_LVNN_Ngay, nv.ThongKeThang.PhuCaps._150_LVNN_Dem, nv.ThongKeThang.PhuCaps._200_LeTet_Ngay, nv.ThongKeThang.PhuCaps._250_LeTet_Dem, nv.ThongKeThang.PhuCaps._Cus, nv.ThongKeThang.PhuCaps._TongPC,
   nv.chiTietLuong.LCB_Theo.CongThucTe, nv.chiTietLuong.LCB_Theo.CheDoNghi, nv.chiTietLuong.LCB_Theo.CongCV, nv.chiTietLuong.LCB_Theo.PhuCap,
   nv.chiTietLuong.LSP_Theo.CongThucTe, nv.chiTietLuong.LSP_Theo.CheDoNghi, nv.chiTietLuong.LSP_Theo.PhuCap, 
-  nv.chiTietLuong.BoiDuongQuaDem, nv.chiTietLuong.LuongDieuChinh,
+  nv.chiTietLuong.LuongDieuChinh,
   nv.chiTietLuong.KhauTru.TamUng, nv.chiTietLuong.MucDongBHXH, nv.chiTietLuong.KhauTru.BHXH, nv.chiTietLuong.KhauTru.ThuChiKhac, nv.chiTietLuong.TienComTrua, nv.chiTietLuong.ThucLanh,
 
 															   });

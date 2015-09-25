@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ChamCong_v04")]
-[assembly: AssemblyDescription("PhanMemChamCong")]
+[assembly: AssemblyTitle("Cham Cong v4.0.0.7")]
+[assembly: AssemblyDescription("Phan Mem Cham Cong")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NMTLKhanhHoi")]
-[assembly: AssemblyProduct("ChamCong_v04")]
+[assembly: AssemblyProduct("Cham Cong v4.0.0.7")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -34,5 +34,5 @@ using System.Resources;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("4.0.0.0")]
-[assembly: AssemblyFileVersion("4.0.0.0")]
+[assembly: AssemblyFileVersion("4.0.0.7")]
 [assembly: NeutralResourcesLanguageAttribute("vi-VN")]

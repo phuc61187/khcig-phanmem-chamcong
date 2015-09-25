@@ -147,7 +147,7 @@ namespace ChamCong_v04.UI.XacNhan {
 				checkXNChoPhepTre.Checked = CIO.DuyetChoPhepVaoTre;
 				checkXNChoPhepSom.Checked = CIO.DuyetChoPhepRaSom;
 				checkXNLamThem.Checked = false;
-				checkXNTinhPC50.Checked = false;
+				checkXNTinhPC50.Checked = true;
 				checkXNVaoTreTinhCV.Checked = CIO.VaoTreTinhCV;//ver 4.0.0.4	
 				checkXNRaaSomTinhCV.Checked = CIO.RaaSomTinhCV;//ver 4.0.0.4	
 				cbXNLyDo.SelectedIndex = 0;
@@ -210,8 +210,9 @@ namespace ChamCong_v04.UI.XacNhan {
 				maskPhutTinhLamThem.Text = "00:00";//ver 4.0.0.4	
 				maskPhutTinhLamThem.Tag = XL2._16gio;//ver 4.0.0.4	
 
-				MyUtility.CheckedCheckBox(false, checkXNChoPhepTre, checkXNChoPhepSom, checkXNLamThem, checkXNTinhPC50,
+				MyUtility.CheckedCheckBox(false, checkXNChoPhepTre, checkXNChoPhepSom, checkXNLamThem, 
 					checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
+				checkXNTinhPC50.Checked = true;
 				cbXNLyDo.SelectedIndex = 0;
 				tbXNGhiChu.Text = string.Empty;
 

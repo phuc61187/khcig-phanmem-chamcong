@@ -55,6 +55,7 @@
 			this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+			this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl5_BangCCTheoNgay)).BeginInit();
 			this.groupControl5_BangCCTheoNgay.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_BangCC)).BeginInit();
@@ -405,11 +406,20 @@
 			this.simpleButton4.TabIndex = 54;
 			this.simpleButton4.Text = "Xác nhận thời gian làm việc";
 			// 
+			// simpleButton5
+			// 
+			this.simpleButton5.Location = new System.Drawing.Point(446, 438);
+			this.simpleButton5.Name = "simpleButton5";
+			this.simpleButton5.Size = new System.Drawing.Size(185, 23);
+			this.simpleButton5.TabIndex = 54;
+			this.simpleButton5.Text = "Đảo ngược giờ vào ra";
+			// 
 			// frmChiTietVaoRa
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1256, 487);
+			this.Controls.Add(this.simpleButton5);
 			this.Controls.Add(this.simpleButton4);
 			this.Controls.Add(this.simpleButton3);
 			this.Controls.Add(this.simpleButton2);
@@ -418,6 +428,7 @@
 			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "frmChiTietVaoRa";
 			this.Text = "frmChiTietVaoRa";
+			this.Load += new System.EventHandler(this.frmChiTietVaoRa_Load);
 			((System.ComponentModel.ISupportInitialize)(this.groupControl5_BangCCTheoNgay)).EndInit();
 			this.groupControl5_BangCCTheoNgay.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl_BangCC)).EndInit();
@@ -465,5 +476,6 @@
 		private DevExpress.XtraEditors.SimpleButton simpleButton2;
 		private DevExpress.XtraEditors.SimpleButton simpleButton3;
 		private DevExpress.XtraEditors.SimpleButton simpleButton4;
+		private DevExpress.XtraEditors.SimpleButton simpleButton5;
 	}
 }

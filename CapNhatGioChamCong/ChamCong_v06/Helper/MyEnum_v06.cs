@@ -166,6 +166,27 @@ namespace ChamCong_v06.Helper {
 		TongGioLamThem,
 
 	}
+
+	public enum f3
+	{
+		UserEnrollNumber,
+		UserFullName,
+		UserFullCode,
+		Ngay,
+		GioVao,
+		GioRa,
+		KyHieuCa,
+		Tre,
+		Som,
+		TongCong,
+		GioLamViec,
+		GioLamDem,
+		GioHienDien,
+		LamNgoaiGio,
+		ChoPhepTre,
+		ChoPhepSom,
+
+	}
 	#endregion
 
 

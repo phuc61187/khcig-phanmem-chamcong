@@ -27,7 +27,7 @@ values (@Thang,  @UserEnrollNumber,  @IDPhong,  @TenPhong,  @NgayBatDau,  @NgayK
 		public static int UpdInsThongsoKetluongThang(DateTime ngayDauThang,
 			int HSPCDem, int HSPCTangCuong, int HSPCTangCuong_Dem, int HSPC200, int HSPC260, int HSPC300, int HSPC390,
 			float d01sanluong, float d02dongia, int perTrichQuyluong,
-			int SanluongGiacongNoibo, int DongiaGiacongNoibo, int SanluongGiacongNgoai, int DongiaGiacongNgoai, int dluongtoithieu, int dDonGiaBD_ca3, int dDinhMucComtrua,
+			int SanluongGiacongNoibo, int DongiaGiacongNoibo, int SanluongGiacongNgoai, int DongiaGiacongNgoai, int dluongtoithieu, /*int dDonGiaBD_ca3,*/ int dDinhMucComtrua,
 			double QuyLuongCV, double QuyLuongNghiDinhCP, double ChiKhacTuQuyLuong, double QuyLuongTheoHeSoSanPham, double TienLuong1HeSoSP) {
 //info thuộc log kết lương tháng
 			#region QUERY
@@ -49,8 +49,7 @@ SET
   DonGiaGiaCongNoiBo = @DonGiaGiaCongNoiBo,
   SanLuongGiaCongNgoai = @SanLuongGiaCongNgoai,
   DonGiaGiaCongNgoai = @DonGiaGiaCongNgoai,
-  MucLuongToiThieu = @MucLuongToiThieu,
-  BoiDuongCa3 = @BoiDuongCa3,
+  MucLuongToiThieu = @MucLuongToiThieu,  
   DinhMucComTrua = @DinhMucComTrua,
   QuyLuongCV = @QuyLuongCV,
   QuyLuongNghiDinhCP = @QuyLuongNghiDinhCP,
@@ -77,8 +76,7 @@ INSERT INTO ThongSoKetLuongThang
 	DonGiaGiaCongNoiBo,
 	SanLuongGiaCongNgoai,
 	DonGiaGiaCongNgoai,
-	MucLuongToiThieu,
-	BoiDuongCa3,
+	MucLuongToiThieu,	
 	DinhMucComTrua,
 	QuyLuongCV,
 	QuyLuongNghiDinhCP,
@@ -101,8 +99,7 @@ VALUES (
 	@DonGiaGiaCongNoiBo,
 	@SanLuongGiaCongNgoai,
 	@DonGiaGiaCongNgoai,
-	@MucLuongToiThieu,
-	@BoiDuongCa3,
+	@MucLuongToiThieu,	
 	@DinhMucComTrua,
 	@QuyLuongCV,
 	@QuyLuongNghiDinhCP,
@@ -119,14 +116,14 @@ VALUES (
 					"@HSPCDem", "@HSPCTangCuong", "@HSPCTangCuong_Dem", "@HSPC200", "@HSPC260", "@HSPC300", "@HSPC390",
 					"@SanLuong","@DonGia","@TrichQuyLuong",
 					"@SanLuongGiaCongNoiBo","@DonGiaGiaCongNoiBo","@SanLuongGiaCongNgoai","@DonGiaGiaCongNgoai",
-					"@MucLuongToiThieu","@BoiDuongCa3","@DinhMucComTrua", 
+					"@MucLuongToiThieu","@DinhMucComTrua", 
 					"@QuyLuongCV","@QuyLuongNghiDinhCP","@ChiKhacTuQuyLuong","@QuyLuongTheoHeSoSanPham","@TienLuong1HeSoSP"
 				}, new object[]{
 						ngayDauThang, 
 						HSPCDem, HSPCTangCuong, HSPCTangCuong_Dem, HSPC200, HSPC260, HSPC300, HSPC390,
 						d01sanluong, d02dongia, perTrichQuyluong, 
 						SanluongGiacongNoibo, DongiaGiacongNoibo,SanluongGiacongNgoai,  DongiaGiacongNgoai,  
-						dluongtoithieu, dDonGiaBD_ca3, dDinhMucComtrua,
+						dluongtoithieu, dDinhMucComtrua,
 						QuyLuongCV,QuyLuongNghiDinhCP,ChiKhacTuQuyLuong,QuyLuongTheoHeSoSanPham,TienLuong1HeSoSP 
 				});
 

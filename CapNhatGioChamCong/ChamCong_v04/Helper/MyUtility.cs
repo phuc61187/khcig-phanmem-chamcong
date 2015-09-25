@@ -98,7 +98,7 @@ namespace ChamCong_v04.Helper {
 		TONGLUONG = 14,
 		PCLUONGCB = 14,
 		PCLUONGSP = 14,
-		BOIDUONGCA3 = 12,
+		//BOIDUONGCA3 = 12,
 		TONGPCLUONG = 14,
 		TONGLUONGPC = 14,
 		TAMUNG = 14,
@@ -300,7 +300,7 @@ namespace ChamCong_v04.Helper {
 		public double tongluong26;
 		public double pcluongcb27;
 		public double pcluongsp28;
-		public double boiduongdem29;
+		//v4.0.0.7 boBDC3 public double boiduongdem29;
 		public double tongpcLuong30;
 		public double tongluongpc31;
 		public double tamung32;

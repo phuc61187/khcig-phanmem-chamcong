@@ -28,9 +28,6 @@ namespace ChamCong_v04.BUS {
 			SP_LamRa_TheoPCap =HSLCV * PCapThang;// sản phẩm hưởng thêm theo phụ cấp
 		}
 
-		public static void TinhBoiDuongQuaDemA512(int NgayQuaDem, int boiduongca3, out double boiduong) {
-			boiduong = Convert.ToDouble(NgayQuaDem * boiduongca3);
-		}
 
 		public static void TinhLuongCoBan_CongVaPC_A202(float HSLCB, int luongtoithieu,
 			float CongThang, float PCapThang, float Phep, float H_CT_PT, float PTDT, float Le, float CongCV,

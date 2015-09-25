@@ -106,7 +106,7 @@ namespace ChamCong_v04.BUS {
 			int? lastSanLuong = null, int? lastDonGia = null,
 			int? lastSanLuongGiaCongNoiBo = null, int? lastDonGiaGiaCongNoiBo = null,
 			int? lastSanLuongGiaCongNgoai = null, int? lastDonGiaGiaCongNgoai = null,
-			int? lastLuongToiThieu = null, int? lastBoiDuongCa3 = null,
+			int? lastLuongToiThieu = null, 
 			string lastTenNVLapBieuChamCong = null, string lastTenNVLapBieuLuong = null, string lastTenTruongBP = null
 			) {
 			if (string.IsNullOrEmpty(connectionstring) == false) Settings.Default.ConnectionStringPath = connectionstring;
@@ -123,7 +123,6 @@ namespace ChamCong_v04.BUS {
 			if (lastSanLuongGiaCongNgoai != null) Settings.Default.LastSanluongGiacongNgoai = (int)lastSanLuongGiaCongNgoai;
 			if (lastDonGiaGiaCongNgoai != null) Settings.Default.LastDongiaGiacongNgoai = (int)lastDonGiaGiaCongNgoai;
 			if (lastLuongToiThieu != null) Settings.Default.LastLuongToiThieu = (int)lastLuongToiThieu;
-			if (lastBoiDuongCa3 != null) Settings.Default.LastBoiDuongCa3 = (int)lastBoiDuongCa3;
 			if (lastTenNVLapBieuChamCong != null) Settings.Default.LastTenNVLapBieuChamCong = lastTenNVLapBieuChamCong;
 			if (lastTenNVLapBieuLuong != null) Settings.Default.LastTenNVLapBieuLuong = lastTenNVLapBieuLuong;
 			if (lastTenTruongBP != null) Settings.Default.LastTenTruongBP = lastTenTruongBP;
