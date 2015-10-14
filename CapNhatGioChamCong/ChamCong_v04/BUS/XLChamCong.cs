@@ -958,7 +958,8 @@ namespace ChamCong_v04.BUS {
 					#endregion
 				}
 
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				lg.Error(string.Format("[{0}]_[{1}]\n", "XLChamCong", System.Reflection.MethodBase.GetCurrentMethod().Name), e);
 			}
 		}
@@ -1051,7 +1052,7 @@ namespace ChamCong_v04.BUS {
 			}
 			else if (shiftID < Int32.MinValue + 100) // ca tự do (8 tiếng, ca dài 12 tiếng)
 			{
-				thuocCa = new cCa {ID = shiftID, Is_CaTuDo = true};
+				thuocCa = new cCa { ID = shiftID, Is_CaTuDo = true };
 				TaoCaTuDo(thuocCa, chkInOutV.Vao.Time);
 			}
 			chkInOutV.ThuocCa = thuocCa;
@@ -1152,65 +1153,65 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void TinhCong_HangNgay(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT) {
-/*
-			ngayCong.TG = new ThoiGian();
-			ngayCong.PhuCaps = new PhuCap();
-			ngayCong.TongCong = 0f;
-			ngayCong.TongNgayLV = 0f; //ver4.0.0.1
-			ngayCong.QuaDem = false;
-			ngayCong.TinhPC50 = false;
-			ngayCong.TinhPCDB = false;
-			ngayCong.LoaiPCDB = 0;
-			ngayCong.TrangThaiDiemDanh = TrangThaiDiemDanh.VANG_NGHI;
-			// tính công của từng ca làm việc, sau đó tổng hợp Công làm việc của 1 ngày
-			if (ngayCong.DSVaoRa.Count == 0) return;
-			foreach (var CIO in ngayCong.DSVaoRa) {
-				if (CIO.HaveINOUT < 0) {
-					continue;
-				}
-				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
-				if (CIO.QuaDem) ngayCong.QuaDem = true; // set qua đêm nếu có
-				//CIO.Cong = Convert.ToSingle(Math.Round((CIO.TG.GioLamViec.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday, 2));// làm tròn 2 số thập phân
-				//CIO.Cong = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)	+ (CIO.TG.OTCa.TotalHours / 8f), 2));
-				float cong_trong_ca = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday) , 2));
-				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours / 8f), 2));
-				CIO.Cong = cong_trong_ca+cong_ngoai_ca;
-				ngayCong.TG.GioThuc += CIO.TG.GioThuc;
-				ngayCong.TG.GioLamViec += CIO.TG.GioLamViec;
-				ngayCong.TG.LamBanDem += CIO.TG.LamBanDem;
-				ngayCong.TG.VaoTre += CIO.TG.VaoTre;
-				ngayCong.TG.RaaSom += CIO.TG.RaaSom;
-				ngayCong.TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
-				//if (CIO.DuyetChoPhepVaoTre && CIO.DuyetChoPhepRaSom)//ver 4.0.0.4	
-				//{
-				//	ngayCong.TongNgayLV += Convert.ToSingle((CIO.ThuocCa.Workingday + (CIO.TG.OTCa.TotalHours / 8f)));
-				//}
-				//else {
-				//	var temp = CIO.TG.GioLVTrongCa;
-				//	if (CIO.VaoTreTinhCV == false) temp += CIO.TG.VaoTre;
-				//	if (CIO.RaaSomTinhCV == false) temp += CIO.TG.RaaSom;
-				//	ngayCong.TongNgayLV += Convert.ToSingle(((temp.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)
-				//													   + (CIO.TG.OTCa.TotalHours / 8f));
-				//}
-				if ((CIO.DuyetChoPhepVaoTre && CIO.DuyetChoPhepRaSom)
-					|| (CIO.DuyetChoPhepVaoTre == false && CIO.DuyetChoPhepRaSom == false && CIO.VaoTreTinhCV == false && CIO.RaaSomTinhCV == false))
-				{
-					ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;
-				}
-				else {
-					if (CIO.DuyetChoPhepVaoTre == false && CIO.VaoTreTinhCV)
-						ngayCong.TongNgayLV += cong_trong_ca;
-					else if (CIO.DuyetChoPhepRaSom == false && CIO.RaaSomTinhCV)
-						ngayCong.TongNgayLV += cong_trong_ca;
-					else ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;					
-				}
-				ngayCong.TongNgayLV += cong_ngoai_ca;
-				//ngayCong.TongNgayLV += (CIO.Cong > CIO.ThuocCa.Workingday) ? CIO.Cong : CIO.ThuocCa.Workingday;//ver4.0.0.1
-			}
-			ngayCong.TG.LamThem = Tinh_TGLamThem(ngayCong.TG.GioLamViec);// (ngayCong.TG.GioLamViec - XL2._08gio > XL2._01phut) ? ngayCong.TG.GioLamViec - XL2._08gio : TimeSpan.Zero;			
-			ngayCong.PhuCaps._30_dem = Convert.ToSingle(Math.Round((ngayCong.TG.LamBanDem.TotalHours / 8d) * (XL2.PC30 / 100f), 2, MidpointRounding.ToEven));
-			ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps._30_dem;
-*/
+			/*
+						ngayCong.TG = new ThoiGian();
+						ngayCong.PhuCaps = new PhuCap();
+						ngayCong.TongCong = 0f;
+						ngayCong.TongNgayLV = 0f; //ver4.0.0.1
+						ngayCong.QuaDem = false;
+						ngayCong.TinhPC50 = false;
+						ngayCong.TinhPCDB = false;
+						ngayCong.LoaiPCDB = 0;
+						ngayCong.TrangThaiDiemDanh = TrangThaiDiemDanh.VANG_NGHI;
+						// tính công của từng ca làm việc, sau đó tổng hợp Công làm việc của 1 ngày
+						if (ngayCong.DSVaoRa.Count == 0) return;
+						foreach (var CIO in ngayCong.DSVaoRa) {
+							if (CIO.HaveINOUT < 0) {
+								continue;
+							}
+							TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
+							if (CIO.QuaDem) ngayCong.QuaDem = true; // set qua đêm nếu có
+							//CIO.Cong = Convert.ToSingle(Math.Round((CIO.TG.GioLamViec.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday, 2));// làm tròn 2 số thập phân
+							//CIO.Cong = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)	+ (CIO.TG.OTCa.TotalHours / 8f), 2));
+							float cong_trong_ca = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday) , 2));
+							float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours / 8f), 2));
+							CIO.Cong = cong_trong_ca+cong_ngoai_ca;
+							ngayCong.TG.GioThuc += CIO.TG.GioThuc;
+							ngayCong.TG.GioLamViec += CIO.TG.GioLamViec;
+							ngayCong.TG.LamBanDem += CIO.TG.LamBanDem;
+							ngayCong.TG.VaoTre += CIO.TG.VaoTre;
+							ngayCong.TG.RaaSom += CIO.TG.RaaSom;
+							ngayCong.TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
+							//if (CIO.DuyetChoPhepVaoTre && CIO.DuyetChoPhepRaSom)//ver 4.0.0.4	
+							//{
+							//	ngayCong.TongNgayLV += Convert.ToSingle((CIO.ThuocCa.Workingday + (CIO.TG.OTCa.TotalHours / 8f)));
+							//}
+							//else {
+							//	var temp = CIO.TG.GioLVTrongCa;
+							//	if (CIO.VaoTreTinhCV == false) temp += CIO.TG.VaoTre;
+							//	if (CIO.RaaSomTinhCV == false) temp += CIO.TG.RaaSom;
+							//	ngayCong.TongNgayLV += Convert.ToSingle(((temp.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)
+							//													   + (CIO.TG.OTCa.TotalHours / 8f));
+							//}
+							if ((CIO.DuyetChoPhepVaoTre && CIO.DuyetChoPhepRaSom)
+								|| (CIO.DuyetChoPhepVaoTre == false && CIO.DuyetChoPhepRaSom == false && CIO.VaoTreTinhCV == false && CIO.RaaSomTinhCV == false))
+							{
+								ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;
+							}
+							else {
+								if (CIO.DuyetChoPhepVaoTre == false && CIO.VaoTreTinhCV)
+									ngayCong.TongNgayLV += cong_trong_ca;
+								else if (CIO.DuyetChoPhepRaSom == false && CIO.RaaSomTinhCV)
+									ngayCong.TongNgayLV += cong_trong_ca;
+								else ngayCong.TongNgayLV += CIO.ThuocCa.Workingday;					
+							}
+							ngayCong.TongNgayLV += cong_ngoai_ca;
+							//ngayCong.TongNgayLV += (CIO.Cong > CIO.ThuocCa.Workingday) ? CIO.Cong : CIO.ThuocCa.Workingday;//ver4.0.0.1
+						}
+						ngayCong.TG.LamThem = Tinh_TGLamThem(ngayCong.TG.GioLamViec);// (ngayCong.TG.GioLamViec - XL2._08gio > XL2._01phut) ? ngayCong.TG.GioLamViec - XL2._08gio : TimeSpan.Zero;			
+						ngayCong.PhuCaps._30_dem = Convert.ToSingle(Math.Round((ngayCong.TG.LamBanDem.TotalHours / 8d) * (XL2.PC30 / 100f), 2, MidpointRounding.ToEven));
+						ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps._30_dem;
+			*/
 		}
 
 		public static void TinhCong_HangNgay2(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT) {
@@ -1218,7 +1219,7 @@ namespace ChamCong_v04.BUS {
 			ngayCong.PhuCaps = new PhuCap();
 			ngayCong.TongCong = 0f;
 			ngayCong.TongNgayLV = 0f; //ver4.0.0.1
-			
+
 			ngayCong.QuaDem = false;
 			ngayCong.TinhPC50 = false;
 			ngayCong.TinhPCDB = false;
@@ -1235,30 +1236,34 @@ namespace ChamCong_v04.BUS {
 
 				#region //ver 4.0.0.8
 
-				float truCongTre = Convert.ToSingle(((CIO.TG.VaoTre.TotalHours/CIO.ThuocCa.WorkingTimeTS.TotalHours)*CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
-				float truCongSom = Convert.ToSingle(((CIO.TG.RaaSom.TotalHours/CIO.ThuocCa.WorkingTimeTS.TotalHours)*CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
+				float truCongTre = Convert.ToSingle(((CIO.TG.VaoTre.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
+				float truCongSom = Convert.ToSingle(((CIO.TG.RaaSom.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
 				CIO.TruCongTre = truCongTre;
 				CIO.TruCongSom = truCongSom;
 
 				float cong_trong_ca = CIO.ThuocCa.Workingday - CIO.TruCongTre - CIO.TruCongSom;
-				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours/8f), 2));
+				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours / 8f), 2));
 				CIO.CongTrongCa = cong_trong_ca;
 				CIO.CongNgoaiCa = cong_ngoai_ca;
 
 				CIO.Cong = CIO.CongTrongCa + CIO.CongNgoaiCa;
+				if (CIO.VaoTreTinhCV) CIO.TruCongTre = 0f;
+				if (CIO.RaaSomTinhCV) CIO.TruCongSom = 0f;
 
-				ngayCong.TongCong_4008 += (CIO.CongTrongCa + CIO.CongNgoaiCa);//ver 4.0.0.8
-				if (CIO.ChoBuGioTre)
-				{
+				if (CIO.ChoBuGioTre) {
 					CIO.TruCongTreVR = 0f;
 					CIO.TruCongTreBu = CIO.TruCongTre;
 				}
-				if (CIO.ChoBuGioSom)
-				{
+				if (CIO.ChoBuGioSom) {
 					CIO.TruCongSomVR = 0f;
 					CIO.TruCongSomBu = CIO.TruCongSom;
 				}
 
+				ngayCong.TongCong_4008 += (CIO.CongTrongCa + CIO.CongNgoaiCa);//ver 4.0.0.8
+				ngayCong.TruCongTreVR += CIO.TruCongTreVR;
+				ngayCong.TruCongSomVR += CIO.TruCongSomVR;
+				ngayCong.TruCongTreBu += CIO.TruCongTreBu;
+				ngayCong.TruCongSomBu += CIO.TruCongSomBu;
 				#endregion
 
 				ngayCong.TG.GioThuc += CIO.TG.GioThuc;
@@ -1279,12 +1284,36 @@ namespace ChamCong_v04.BUS {
 				ngayCong.CongDinhMucDuoi8Tieng = ngayCong.TongCong_4008;
 				ngayCong.CongTichLuy = 0f;
 			}
-			else
-			{
+			else {
 				ngayCong.CongDinhMucDuoi8Tieng = 1f;
 				ngayCong.CongTichLuy = ngayCong.TongCong_4008 - 1f;
 			}
 
+			if (ngayCong.DSVang != null && ngayCong.DSVang.Count > 0) {
+				var buPhep = (from cLoaiVang item in ngayCong.DSVang where item.MaLV_Code == "P" select item).Sum(item1 => item1.WorkingDay);
+				if (buPhep > 0f) {
+					var congPhepDu = buPhep - ngayCong.TruCongTreVR;
+					if (congPhepDu < 0f) {
+						ngayCong.TruCongTreVR = Math.Abs(congPhepDu);
+						buPhep = 0f;
+					}
+					else {
+						ngayCong.TruCongTreVR = 0f;
+						buPhep = congPhepDu;
+					}
+				}
+				if (buPhep > 0f) {
+					var congPhepDu = buPhep - ngayCong.TruCongSomVR;
+					if (congPhepDu < 0f) {
+						ngayCong.TruCongSomVR = Math.Abs(congPhepDu);
+						buPhep = 0f;
+					}
+					else {
+						ngayCong.TruCongSomVR = 0f;
+						buPhep = congPhepDu;
+					}
+				}
+			}
 			#endregion
 		}
 
