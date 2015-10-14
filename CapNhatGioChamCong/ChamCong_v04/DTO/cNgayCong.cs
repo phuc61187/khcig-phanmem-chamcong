@@ -11,11 +11,25 @@ namespace ChamCong_v04.DTO {
 		public cNgayCong prev;
 		public cNgayCong next;
 
-		public ushort IsEdited = 0;
 		public ThoiGian TG = new ThoiGian();
 
 		public float TongCong;
-		public float TongNgayLV;//ver4.0.0.1
+		//public float TongNgayLV;//ver4.0.0.1
+
+		#region //ver 4.0.0.8
+
+		public float TongCong_4008;
+		public float CongTichLuy;
+		public float CongDinhMucDuoi8Tieng;
+		public bool BuPhep;
+
+		public float TruCongTreBu;//ver 4.0.0.8
+		public float TruCongSomBu;//ver 4.0.0.8
+		public float TruCongTreVR;
+		public float TruCongSomVR;
+
+		#endregion
+
 		public bool QuaDem;
 		public bool TinhPC50;
 		public bool TinhPCDB;

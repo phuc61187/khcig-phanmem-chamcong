@@ -235,24 +235,6 @@ namespace ChamCong_v04.BUS {
 					PhuCap30 = Convert.ToSingle(Math.Round((tgTinh130.TotalHours / 8d) * heso_pcdem, 2, MidpointRounding.ToEven));
 					TongPhuCap = PhuCap30 + PhuCapTC + PhuCapTCC3;
 
-					/*
-										if (SoGioLamThem >= SoGioLamDemmm) // trọn qua đêm là tăng cường đêm, còn lại là tăng cường ngày
-										{
-											tgTinhTCC3 = SoGioLamDemmm;
-											tgTinh150 = SoGioLamThem - SoGioLamDemmm; // số giờ tính pctc
-											PhuCapTCC3 = (tgTinhTCC3.TotalHours / 8d) * heso_pctcc3;
-											PhuCapTC = (tgTinh150.TotalHours / 8d) * heso_pctc;
-											TongPhuCap = PhuCapTC + PhuCapTCC3;
-										}
-										else  // 1 ca đêm nhưng 0.5 ca ko tính tăng cường, nửa ca tính tăng cường đêm
-										{
-											tgTinhTCC3 = SoGioLamThem;
-											tgTinh130 = SoGioLamDemmm - SoGioLamThem;
-											PhuCapTCC3 = (tgTinhTCC3.TotalHours / 8d) * heso_pctcc3;
-											PhuCap30 = (tgTinh130.TotalHours / 8d) * heso_pcdem;
-											TongPhuCap = PhuCap30 + PhuCapTCC3;
-										}
-					*/
 				}
 			}
 
@@ -816,19 +798,16 @@ namespace ChamCong_v04.BUS {
 					// cùng loại trong 30ph
 					/*
 										ver4.0.0
-										before.IsEdited += afterr.IsEdited;
 										ds_Check_Trong30ph.Add(afterr);
 										ds_Check_A.Remove(afterr);
 					*/
 					//info ver 4.0.0.1 // giữ vào đầu tiên, ra cuối cùng
 					if (before.Type == "I") {
-						before.IsEdited += afterr.IsEdited;
 						ds_Check_Trong30ph.Add(afterr);
 						ds_Check_A.Remove(afterr);
 					}
 					else //out
 					{
-						afterr.IsEdited += before.IsEdited;
 						ds_Check_Trong30ph.Add(before);
 						ds_Check_A.Remove(before);
 					}
@@ -836,7 +815,6 @@ namespace ChamCong_v04.BUS {
 				else if (before.Type == "I" && afterr.Type == "O"
 					&& (afterr.Time - before.Time) < XL2._10phut) {
 					//IO trong 30 phút thì chỉ giữ O
-					afterr.IsEdited += before.IsEdited;
 					ds_Check_Trong30ph.Add(before);
 					ds_Check_A.Remove(before);
 				}
@@ -852,14 +830,14 @@ namespace ChamCong_v04.BUS {
 				var chk_2 = ds_Check_A[x + 1];
 				if (chk_1.Type == "O") {
 					// đầu ds là checkOut --> ra ko vào
-					var CIO = new cCheckInOut { IsEdited = chk_1.IsEdited, Vao = null, Raa = chk_1, HaveINOUT = -2, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+					var CIO = new cCheckInOut { Vao = null, Raa = chk_1, HaveINOUT = -2, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
 					ds_CIO_A.Add(CIO);
 					x++;
 				}
 				else {
 					//đầu ds là checkInn-> kiểm tra kế nếu cũng là check In thì checkInn trước là vào ko ra
 					if (chk_2.Type == "I") {
-						var CIO = new cCheckInOut { IsEdited = chk_1.IsEdited, Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+						var CIO = new cCheckInOut { Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
 						ds_CIO_A.Add(CIO);
 						x++;
 					}
@@ -867,8 +845,8 @@ namespace ChamCong_v04.BUS {
 						// kế là checkOut --> kiểm tra nằm trong khoảng >30ph và dưới 21h45 thì ghép, ngược lại thì giờ vào ko ra, ra ko vào
 						var duration = chk_2.Time - chk_1.Time;
 						if (duration > XL2._22h00) {//ver 4.0.0.4	old:(duration > XL2._21h45)
-							var CIO1 = new cCheckInOut { IsEdited = chk_1.IsEdited, Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, TD = new ThoiDiem(), }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
-							var CIO2 = new cCheckInOut { IsEdited = chk_2.IsEdited, Vao = null, Raa = chk_2, HaveINOUT = -2, TimeDaiDien = chk_2.Time, TD = new ThoiDiem(), }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+							var CIO1 = new cCheckInOut { Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, TD = new ThoiDiem(), }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+							var CIO2 = new cCheckInOut { Vao = null, Raa = chk_2, HaveINOUT = -2, TimeDaiDien = chk_2.Time, TD = new ThoiDiem(), }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
 							ds_CIO_A.Add(CIO1);
 							x++;
 							ds_CIO_A.Add(CIO2);
@@ -876,8 +854,6 @@ namespace ChamCong_v04.BUS {
 						}
 						else {
 							var CIO = new cCheckInOut { Vao = chk_1, Raa = chk_2, HaveINOUT = 0, TimeDaiDien = chk_1.Time, TG = new ThoiGian(), TD = new ThoiDiem(), };
-							CIO.IsEdited += chk_1.IsEdited;
-							CIO.IsEdited += chk_2.IsEdited;
 							ds_CIO_A.Add(CIO);
 							x++;
 							x++;
@@ -889,11 +865,11 @@ namespace ChamCong_v04.BUS {
 			if (x < ds_Check_A.Count) {
 				var chk_1 = ds_Check_A[x];
 				if (chk_1.Type == "I") {
-					var CIO1 = new cCheckInOut { IsEdited = chk_1.IsEdited, Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+					var CIO1 = new cCheckInOut { Vao = chk_1, Raa = null, HaveINOUT = -1, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
 					ds_CIO_A.Add(CIO1);
 				}
 				else {
-					var CIO2 = new cCheckInOut { IsEdited = chk_1.IsEdited, Vao = null, Raa = chk_1, HaveINOUT = -2, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
+					var CIO2 = new cCheckInOut { Vao = null, Raa = chk_1, HaveINOUT = -2, TimeDaiDien = chk_1.Time, }; //tbd bỏ  TG = new ThoiGian() xem lại có cần thiết thì giữ lại
 					ds_CIO_A.Add(CIO2);
 				}
 			}
@@ -952,10 +928,9 @@ namespace ChamCong_v04.BUS {
 							ds_check_A.Add(raaca3);
 							ds_check_A.Add(vaoca1);
 							ds_check_A.Sort(new cCheckComparer());
-							// do tách ra thành 2 CIO mới nên phải gán lại IsEdited cho từng cái
-							ds_CIO_A[i] = new cCheckInOut { IsEdited = vaoca3.IsEdited, TG = new ThoiGian(), TD = new ThoiDiem(), ThuocCa = ca3, Vao = vaoca3, Raa = raaca3, ThuocNgayCong = ngay, TimeDaiDien = vaoca3.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
+							ds_CIO_A[i] = new cCheckInOut { TG = new ThoiGian(), TD = new ThoiDiem(), ThuocCa = ca3, Vao = vaoca3, Raa = raaca3, ThuocNgayCong = ngay, TimeDaiDien = vaoca3.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
 
-							var newCIO = new cCheckInOut { IsEdited = raaca1.IsEdited, TG = new ThoiGian(), TD = new ThoiDiem(), ThuocCa = ca1, Vao = vaoca1, Raa = raaca1, ThuocNgayCong = ngay.AddDays(1d), TimeDaiDien = vaoca1.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
+							var newCIO = new cCheckInOut { TG = new ThoiGian(), TD = new ThoiDiem(), ThuocCa = ca1, Vao = vaoca1, Raa = raaca1, ThuocNgayCong = ngay.AddDays(1d), TimeDaiDien = vaoca1.Time, }; //TinhPC150 = macdinh_tinhPC50, //[140615_2]
 
 							// vì hàm insert ko cho phép chèn ở vị trí > số lượng phần tử
 							// => nên nếu i là phần tử cuối thì add vào cuối danh sách, ngược lại thì insert vào vị trí i+1
@@ -1076,16 +1051,6 @@ namespace ChamCong_v04.BUS {
 			}
 			else if (shiftID < Int32.MinValue + 100) // ca tự do (8 tiếng, ca dài 12 tiếng)
 			{
-/*
-				if (shiftID == int.MinValue + 0) {
-					thuocCa = new cCa { ID = int.MinValue, Code = mySetting.Default.shiftCodeCa8h, KyHieuCC = "8", Is_CaTuDo = true };
-					TaoCaTuDo(thuocCa, chkInOutV.Vao.Time, XL2._08gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1f, "8");
-				}
-				else if (shiftID == int.MinValue + 1) {
-					thuocCa = new cCa { ID = int.MinValue, Code = mySetting.Default.shiftCodeCa12h, KyHieuCC = "D", Is_CaTuDo = true };
-					TaoCaTuDo(thuocCa, chkInOutV.Vao.Time, XL2._12gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1.5f, "D");
-				}
-*/
 				thuocCa = new cCa {ID = shiftID, Is_CaTuDo = true};
 				TaoCaTuDo(thuocCa, chkInOutV.Vao.Time);
 			}
@@ -1187,6 +1152,7 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void TinhCong_HangNgay(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT) {
+/*
 			ngayCong.TG = new ThoiGian();
 			ngayCong.PhuCaps = new PhuCap();
 			ngayCong.TongCong = 0f;
@@ -1200,7 +1166,6 @@ namespace ChamCong_v04.BUS {
 			if (ngayCong.DSVaoRa.Count == 0) return;
 			foreach (var CIO in ngayCong.DSVaoRa) {
 				if (CIO.HaveINOUT < 0) {
-					ngayCong.IsEdited += CIO.IsEdited;
 					continue;
 				}
 				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
@@ -1210,7 +1175,6 @@ namespace ChamCong_v04.BUS {
 				float cong_trong_ca = Convert.ToSingle(Math.Round(((CIO.TG.GioLVTrongCa.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday) , 2));
 				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours / 8f), 2));
 				CIO.Cong = cong_trong_ca+cong_ngoai_ca;
-				ngayCong.IsEdited += CIO.IsEdited;
 				ngayCong.TG.GioThuc += CIO.TG.GioThuc;
 				ngayCong.TG.GioLamViec += CIO.TG.GioLamViec;
 				ngayCong.TG.LamBanDem += CIO.TG.LamBanDem;
@@ -1246,6 +1210,82 @@ namespace ChamCong_v04.BUS {
 			ngayCong.TG.LamThem = Tinh_TGLamThem(ngayCong.TG.GioLamViec);// (ngayCong.TG.GioLamViec - XL2._08gio > XL2._01phut) ? ngayCong.TG.GioLamViec - XL2._08gio : TimeSpan.Zero;			
 			ngayCong.PhuCaps._30_dem = Convert.ToSingle(Math.Round((ngayCong.TG.LamBanDem.TotalHours / 8d) * (XL2.PC30 / 100f), 2, MidpointRounding.ToEven));
 			ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps._30_dem;
+*/
+		}
+
+		public static void TinhCong_HangNgay2(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT) {
+			ngayCong.TG = new ThoiGian();
+			ngayCong.PhuCaps = new PhuCap();
+			ngayCong.TongCong = 0f;
+			ngayCong.TongNgayLV = 0f; //ver4.0.0.1
+			
+			ngayCong.QuaDem = false;
+			ngayCong.TinhPC50 = false;
+			ngayCong.TinhPCDB = false;
+			ngayCong.LoaiPCDB = 0;
+			ngayCong.TrangThaiDiemDanh = TrangThaiDiemDanh.VANG_NGHI;
+			// tính công của từng ca làm việc, sau đó tổng hợp Công làm việc của 1 ngày
+			if (ngayCong.DSVaoRa.Count == 0) return;
+			foreach (var CIO in ngayCong.DSVaoRa) {
+				if (CIO.HaveINOUT < 0) {
+					continue;
+				}
+				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
+				if (CIO.QuaDem) ngayCong.QuaDem = true; // set qua đêm nếu có
+
+				#region //ver 4.0.0.8
+
+				float truCongTre = Convert.ToSingle(((CIO.TG.VaoTre.TotalHours/CIO.ThuocCa.WorkingTimeTS.TotalHours)*CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
+				float truCongSom = Convert.ToSingle(((CIO.TG.RaaSom.TotalHours/CIO.ThuocCa.WorkingTimeTS.TotalHours)*CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
+				CIO.TruCongTre = truCongTre;
+				CIO.TruCongSom = truCongSom;
+
+				float cong_trong_ca = CIO.ThuocCa.Workingday - CIO.TruCongTre - CIO.TruCongSom;
+				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours/8f), 2));
+				CIO.CongTrongCa = cong_trong_ca;
+				CIO.CongNgoaiCa = cong_ngoai_ca;
+
+				CIO.Cong = CIO.CongTrongCa + CIO.CongNgoaiCa;
+
+				ngayCong.TongCong_4008 += (CIO.CongTrongCa + CIO.CongNgoaiCa);//ver 4.0.0.8
+				if (CIO.ChoBuGioTre)
+				{
+					CIO.TruCongTreVR = 0f;
+					CIO.TruCongTreBu = CIO.TruCongTre;
+				}
+				if (CIO.ChoBuGioSom)
+				{
+					CIO.TruCongSomVR = 0f;
+					CIO.TruCongSomBu = CIO.TruCongSom;
+				}
+
+				#endregion
+
+				ngayCong.TG.GioThuc += CIO.TG.GioThuc;
+				ngayCong.TG.GioLamViec += CIO.TG.GioLamViec;
+				ngayCong.TG.LamBanDem += CIO.TG.LamBanDem;
+				ngayCong.TG.VaoTre += CIO.TG.VaoTre;
+				ngayCong.TG.RaaSom += CIO.TG.RaaSom;
+				ngayCong.TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
+
+			}
+			ngayCong.TG.LamThem = Tinh_TGLamThem(ngayCong.TG.GioLamViec);
+			ngayCong.PhuCaps._30_dem = Convert.ToSingle(Math.Round((ngayCong.TG.LamBanDem.TotalHours / 8d) * (XL2.PC30 / 100f), 2, MidpointRounding.ToEven));
+			ngayCong.PhuCaps._TongPC = ngayCong.PhuCaps._30_dem;
+
+			#region //ver 4.0.0.8
+
+			if (ngayCong.TongCong_4008 <= 1f) {
+				ngayCong.CongDinhMucDuoi8Tieng = ngayCong.TongCong_4008;
+				ngayCong.CongTichLuy = 0f;
+			}
+			else
+			{
+				ngayCong.CongDinhMucDuoi8Tieng = 1f;
+				ngayCong.CongTichLuy = ngayCong.TongCong_4008 - 1f;
+			}
+
+			#endregion
 		}
 
 		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong) {
@@ -1319,8 +1359,6 @@ namespace ChamCong_v04.BUS {
 				if (indexCheck < 0) return false;
 				var prevCheck = (indexCheck == 0) ? null : DS_Check_A[indexCheck - 1];
 				var nextCheck = (indexCheck == DS_Check_A.Count - 1) ? null : DS_Check_A[indexCheck + 1];
-				if (prevCheck != null && (check.Time - prevCheck.Time).Duration() < XL2._1ngay) prevCheck.IsEdited += 1;
-				if (nextCheck != null && (nextCheck.Time - check.Time).Duration() < XL2._1ngay) nextCheck.IsEdited += 1;
 
 				DS_Check_A.Remove(check);
 

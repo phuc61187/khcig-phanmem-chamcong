@@ -204,6 +204,15 @@ namespace ChamCong_v04.DTO {
 	public struct ThongKeCong_PC {
 		public float Cong_Congnhat;
 		public float TongNgayLV;//ver4.0.0.1
+		public float TongNgayLV4008;//ver4.0.0.1
+		public float TongCongDinhMuc8Tieng;//ver 4.0.0.8
+		public float TongCongTichLuy;//ver 4.0.0.8
+		public float TongTruCongTreVR;//ver 4.0.0.8
+		public float TongTruCongSomVR;//ver 4.0.0.8
+		public float TongTruCongTreBu;//ver 4.0.0.8
+		public float TongTruCongSomBu;//ver 4.0.0.8
+		public float TreSomBu_PhanDu;//ver 4.0.0.8
+		public float TichLuy_PhanDu;//ver 4.0.0.8
 		public float Cong;
 		public int NgayQuaDem;
 		public PhuCap PhuCaps;

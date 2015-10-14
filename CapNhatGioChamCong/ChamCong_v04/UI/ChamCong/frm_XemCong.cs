@@ -80,7 +80,6 @@ namespace ChamCong_v04.UI.ChamCong {
 			kq.Columns.Add("TongGioThuc", typeof(TimeSpan));
 			kq.Columns.Add("cNgayCong", typeof(cNgayCong));
 			kq.Columns.Add("cUserInfo", typeof(cUserInfo));
-			kq.Columns.Add("IsEdited", typeof(bool));
 			kq.Columns.Add("TinhPCTC", typeof(bool));
 			return kq;
 		}
@@ -111,7 +110,6 @@ namespace ChamCong_v04.UI.ChamCong {
 			kq.Columns.Add("TongGioThuc", typeof(TimeSpan));
 			kq.Columns.Add("cNgayCong", typeof(cNgayCong));
 			kq.Columns.Add("cUserInfo", typeof(cUserInfo));
-			kq.Columns.Add("IsEdited", typeof(bool));
 			kq.Columns.Add("TinhPCTC", typeof(bool));
 
 			return kq;
@@ -532,15 +530,6 @@ namespace ChamCong_v04.UI.ChamCong {
 		}
 
 		private void VeLaiDataGrid(DataGridView dataGridView) {
-			var listDataGridViewRow = (from DataGridViewRow dataGridViewRow in dataGridView.Rows
-									   let rowView = dataGridViewRow.DataBoundItem as DataRowView
-									   where (rowView["IsEdited"] != DBNull.Value && (bool)rowView["IsEdited"])
-									   select dataGridViewRow)
-						  .ToList();
-
-			foreach (var dataGridViewRow in listDataGridViewRow) {
-				dataGridViewRow.DefaultCellStyle.BackColor = Color.Aquamarine;
-			}
 
 
 			foreach (var dataGridViewRow in (from DataGridViewRow rowSat_Sun in dataGridView.Rows

@@ -154,14 +154,13 @@ namespace ChamCong_v04.BUS {
 								 RaaSomTinhCV = row["RaSomLaCV"] != DBNull.Value && (bool)row["RaSomLaCV"],//ver 4.0.0.4	
 								 HaveINOUT = haveINOUT,
 								 //ID = 0,//info id của xác nhận giờ, xem xét có lưu ko  suggest ko lưu
-								 //IsEdited = 0,//info ko lưu
 								 OTMin = row["OTMin"] != DBNull.Value ? (int)row["OTMin"] : 0,
 								 QuaDem = row["QuaDem"] != DBNull.Value && (bool)row["QuaDem"], //info xem lại lúc update phần công nhật có update qua đêm này về 0 hay ko?, --> có
 
-								 Vao = (row["TimeIn"] != DBNull.Value) ? new cCheck {//ID = 0,IsEdited = 0,MaCC = MachineNo = PhucHoi = Source = //info ko sử dụng
+								 Vao = (row["TimeIn"] != DBNull.Value) ? new cCheck {//ID = 0,MaCC = MachineNo = PhucHoi = Source = //info ko sử dụng
 									 Time = (DateTime)row["TimeIn"], Type = "I",
 								 } : null,
-								 Raa = (row["TimeOut"] != DBNull.Value) ? new cCheck {//ID = 0,IsEdited = 0,MaCC = MachineNo = PhucHoi = Source = //info ko sử dụng
+								 Raa = (row["TimeOut"] != DBNull.Value) ? new cCheck {//ID = 0,MaCC = MachineNo = PhucHoi = Source = //info ko sử dụng
 									 Time = (DateTime)row["TimeOut"], Type = "O",
 								 } : null,
 								 //ShiftID = (int)row["ShiftID"], //info shift id này của giờ đã xác nhận, ko sử dụng đến, sử dụng thuocCa như bên dưới
@@ -205,8 +204,28 @@ namespace ChamCong_v04.BUS {
 			{
 				// trường hợp chỉ làm chính thức
 				if (nvChinhThuc == LoaiCongNhat.NVChinhThuc)
-					foreach (var ngayCong in dsNgayCong)
+				{	foreach (var ngayCong in dsNgayCong)
+					{
 						XL.ThongKeNgay(ref thongKeThang, ngayCong);
+					}
+
+					#region 
+
+					if (thongKeThang.TongCongTichLuy >= (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu))
+					{
+						thongKeThang.TreSomBu_PhanDu = 0f;
+						thongKeThang.TichLuy_PhanDu = thongKeThang.TongCongTichLuy - (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu);
+					}
+					else
+					{
+						thongKeThang.TichLuy_PhanDu = 0f;
+						thongKeThang.TreSomBu_PhanDu = (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu) - thongKeThang.TongCongTichLuy;
+					}
+					thongKeThang.TongNgayLV4008 = thongKeThang.TongCongDinhMuc8Tieng + thongKeThang.TichLuy_PhanDu + thongKeThang.TreSomBu_PhanDu;
+					thongKeThang.TongNgayLV4008 += thongKeThang.TongTruCongTreVR + thongKeThang.TongTruCongSomVR;
+
+					#endregion
+				}
 				else // vừa làm công nhật vừa làm chính thức
 				{
 					thongKeThang.Cong_Congnhat = (dsNgayCong
@@ -223,6 +242,17 @@ namespace ChamCong_v04.BUS {
 		private static void ThongKeNgay(ref ThongKeCong_PC thongKeThang, cNgayCong ngayCong) {
 			thongKeThang.Cong += ngayCong.TongCong;
 			thongKeThang.TongNgayLV += ngayCong.TongNgayLV;//ver4.0.0.1
+
+			#region // tính chiếm công CV 
+
+			thongKeThang.TongCongDinhMuc8Tieng += ngayCong.CongDinhMucDuoi8Tieng;
+			thongKeThang.TongCongTichLuy += ngayCong.CongTichLuy;
+			thongKeThang.TongTruCongTreBu += ngayCong.TruCongTreBu;
+			thongKeThang.TongTruCongSomBu += ngayCong.TruCongSomBu;
+			thongKeThang.TongTruCongTreVR += ngayCong.TruCongTreVR;
+			thongKeThang.TongTruCongSomVR += ngayCong.TruCongSomVR;
+			#endregion
+
 			thongKeThang.PhuCaps._TongPC += ngayCong.PhuCaps._TongPC;
 			thongKeThang.PhuCaps._30_dem += ngayCong.PhuCaps._30_dem;
 			thongKeThang.PhuCaps._50_TC += ngayCong.PhuCaps._50_TC;

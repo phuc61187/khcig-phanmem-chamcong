@@ -733,8 +733,8 @@ namespace ChamCong_v04.BUS {
 			var timevaoca1 = CIO.ThuocNgayCong.AddDays(1d).Add(casauuu.Duty.Onn).Add(XL2._01giay);
 			var timeraaca1 = CIO.Raa.Time;
 			int outputIDXNCa3, outputIDXNCa1;
-			var checkOutCa3 = new cCheck { IsEdited = 1, MaCC = nv.MaCC, MachineNo = 22, Time = timeraaca3, Source = "PC", Type = "O", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
-			var checkInnCa1 = new cCheck { IsEdited = 1, MaCC = nv.MaCC, MachineNo = 21, Time = timevaoca1, Source = "PC", Type = "I", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
+			var checkOutCa3 = new cCheck { MaCC = nv.MaCC, MachineNo = 22, Time = timeraaca3, Source = "PC", Type = "O", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
+			var checkInnCa1 = new cCheck { MaCC = nv.MaCC, MachineNo = 21, Time = timevaoca1, Source = "PC", Type = "I", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
 
 			// 1. thêm giờ đệm vào csdl
 			DAO.ThemGioChoNV(nv.MaCC, checkOutCa3.Time, checkOutCa3.Type, checkOutCa3.MachineNo, "Hệ thống tự động thêm giờ đệm tách ca qua ngày", "Thực hiện tự động");
@@ -831,8 +831,8 @@ namespace ChamCong_v04.BUS {
 			var timevaoca1 = CIO.ThuocNgayCong.AddDays(1d).Add(casauuu.Duty.Onn).Add(XL2._01giay);
 			var timeraaca1 = CIO.Raa.Time;
 			int outputIDXNCa3, outputIDXNCa1;
-			var checkOutCa3 = new cCheck { IsEdited = 1, MaCC = nv.MaCC, MachineNo = 22, Time = timeraaca3, Source = "PC", Type = "O", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
-			var checkInnCa1 = new cCheck { IsEdited = 1, MaCC = nv.MaCC, MachineNo = 21, Time = timevaoca1, Source = "PC", Type = "I", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
+			var checkOutCa3 = new cCheck { MaCC = nv.MaCC, MachineNo = 22, Time = timeraaca3, Source = "PC", Type = "O", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
+			var checkInnCa1 = new cCheck { MaCC = nv.MaCC, MachineNo = 21, Time = timevaoca1, Source = "PC", Type = "I", PhucHoi = new cPhucHoi { IDGioGoc = int.MinValue, Them = true, Xoaa = false } };
 
 
 			// 1. thêm giờ đệm vào csdl

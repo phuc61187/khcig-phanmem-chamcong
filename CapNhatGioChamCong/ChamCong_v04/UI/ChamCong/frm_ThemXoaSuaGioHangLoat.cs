@@ -43,8 +43,8 @@ namespace ChamCong_v04.UI.ChamCong {
 		public DataTable m_Bang_ChiTiet;
 		public DataTable TaoTable_ChiTiet() {
 			var kq = XL.TaoCauTrucDataTable(
-				new[] { "UserFullCode", "UserFullName", "UserEnrollNumber", "cUserInfo", "cNgayCong", "cCheckInOut", "TimeStrNgay", "TimeStrVao", "TimeStrRaa", "ShiftCode", "IsEdited", },
-				new[] { typeof(string), typeof(string), typeof(string), typeof(cUserInfo), typeof(cNgayCong), typeof(cCheckInOut), typeof(DateTime), typeof(DateTime), typeof(DateTime), typeof(string), typeof(bool), }
+				new[] { "UserFullCode", "UserFullName", "UserEnrollNumber", "cUserInfo", "cNgayCong", "cCheckInOut", "TimeStrNgay", "TimeStrVao", "TimeStrRaa", "ShiftCode", },
+				new[] { typeof(string), typeof(string), typeof(string), typeof(cUserInfo), typeof(cNgayCong), typeof(cCheckInOut), typeof(DateTime), typeof(DateTime), typeof(DateTime), typeof(string),  }
 				);
 			return kq;
 		}
@@ -102,7 +102,6 @@ namespace ChamCong_v04.UI.ChamCong {
 				row["cUserInfo"] 		= nhanvien_goc;
 				row["cCheckInOut"] 		= CIO;
 				row["cNgayCong"] 		= ngayCong;
-				row["IsEdited"] 		= CIO.IsEdited;
 				m_Bang_ChiTiet.Rows.Add(row);
 			}
 
@@ -163,7 +162,7 @@ namespace ChamCong_v04.UI.ChamCong {
 							if (item.CIO.HaveINOUT == -2) {
 								var giovao = item.Ngay.Add(timespanGioVao);
 								if (giovao > item.CIO.Raa.Time) giovao = giovao.AddDays(-1d);// trừ đi 1 ngày nếu (giờ vào thêm) > giờ ra
-								var checkinn = new cCheck { IsEdited = 1, MaCC = item.nhanvien.MaCC, Type = "I", Time = giovao, Source = "PC", MachineNo = 21, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
+								var checkinn = new cCheck { MaCC = item.nhanvien.MaCC, Type = "I", Time = giovao, Source = "PC", MachineNo = 21, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
 								XL.ThemGioChoNV(item.nhanvien.MaCC, checkinn, item.nhanvien.DS_Check_A, lydo, ghichu);
 							}
 						}
@@ -171,7 +170,7 @@ namespace ChamCong_v04.UI.ChamCong {
 							if (item.CIO.HaveINOUT == -1) {//3. thêm O cho I kr
 								var gioraa = item.Ngay.Add(timespanGioRaa);
 								if (gioraa < item.CIO.Vao.Time) gioraa = gioraa.AddDays(1d);// cộng thêm 1 ngày nếu (giờ vào thêm) > giờ ra
-								var checkout = new cCheck { IsEdited = 1, MaCC = item.nhanvien.MaCC, Type = "O", Time = gioraa, Source = "PC", MachineNo = 22, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
+								var checkout = new cCheck { MaCC = item.nhanvien.MaCC, Type = "O", Time = gioraa, Source = "PC", MachineNo = 22, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
 								XL.ThemGioChoNV(item.nhanvien.MaCC, checkout, item.nhanvien.DS_Check_A, lydo, ghichu);
 							}
 						}
@@ -241,7 +240,7 @@ namespace ChamCong_v04.UI.ChamCong {
 							if (item.CIO.HaveINOUT == -2) continue;
 							var giovao 			   = item.Ngay.Add(timespanGioVao);
 							var checkinnold 	   = item.CIO.Vao;
-							var checkinnnew 	   = new cCheck { MaCC = nhanvien.MaCC, Type = "I", Time = giovao, Source = "PC", MachineNo = 21, IsEdited = 1, 
+							var checkinnnew 	   = new cCheck { MaCC = nhanvien.MaCC, Type = "I", Time = giovao, Source = "PC", MachineNo = 21, 
 								PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkinnold.PhucHoi.Them, Xoaa = checkinnold.PhucHoi.Xoaa } };
 							XL.SuaGioChoNV(nhanvien.MaCC, checkinnold, checkinnnew, nhanvien.DS_Check_A, lydo, ghichu);
 						}
@@ -249,7 +248,7 @@ namespace ChamCong_v04.UI.ChamCong {
 							if (item.CIO.HaveINOUT == -1) continue;
 							var gioraa 			   = item.Ngay.Add(timespanGioRaa);
 							var checkoutold 	   = item.CIO.Raa;
-							var checkoutnew 	   = new cCheck { MaCC = nhanvien.MaCC, Type = "O", Time = gioraa, Source = "PC", MachineNo = 22, IsEdited = 1, 
+							var checkoutnew 	   = new cCheck { MaCC = nhanvien.MaCC, Type = "O", Time = gioraa, Source = "PC", MachineNo = 22, 
 								PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkoutold.PhucHoi.Them, Xoaa = checkoutold.PhucHoi.Xoaa } };
 							XL.SuaGioChoNV(nhanvien.MaCC, checkoutold, checkoutnew, nhanvien.DS_Check_A, lydo, ghichu);
 						}
@@ -419,17 +418,7 @@ namespace ChamCong_v04.UI.ChamCong {
 
 		}
 
-		private void VeLaiCacGioCoThayDoi()
-		{
-			foreach (DataGridViewRow dataGridViewRow in		(from DataGridViewRow dataGridViewRow in dgrdDSGioVaoRa.Rows 
-															let dataRowView = dataGridViewRow.DataBoundItem as DataRowView 
-															where dataRowView != null let row = dataRowView.Row 
-															where row["IsEdited"] != DBNull.Value && (bool)row["IsEdited"] 
-															select dataGridViewRow)	)
-			{
-				dataGridViewRow.DefaultCellStyle.BackColor = Color.LightGreen;
-			}
-		}
+
 
 		private void cbCa_SelectionChangeCommitted(object sender, EventArgs e)
 		{

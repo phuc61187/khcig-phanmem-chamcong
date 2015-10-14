@@ -51,7 +51,6 @@ namespace ChamCong_v04.DTO {
 		#region Public Properties
 
 		public int ID;
-		public ushort IsEdited;
 		public int MaCC;
 		public DateTime Time;
 		public string Source;
@@ -74,7 +73,6 @@ namespace ChamCong_v04.DTO {
 	public class cCheckInOut
 	{
 		/*public int ID;*/ // info xem lại tình trạng sử dụng của ID này, suggest xóa nếu ko cần thiết
-		public ushort IsEdited;
 		public DateTime TimeDaiDien;
 		public cCheck Vao;
 		public cCheck Raa;
@@ -92,6 +90,16 @@ namespace ChamCong_v04.DTO {
 		public bool DuyetChoPhepRaSom;
 		public bool VaoTreTinhCV; //ver 4.0.0.4	
 		public bool RaaSomTinhCV; //ver 4.0.0.4	
+		public float CongTrongCa;//ver 4.0.0.8
+		public float CongNgoaiCa;//ver 4.0.0.8
+		public float TruCongTre;//ver 4.0.0.8
+		public float TruCongSom;//ver 4.0.0.8
+		public bool ChoBuGioTre;//ver 4.0.0.8
+		public bool ChoBuGioSom;//ver 4.0.0.8
+		public float TruCongTreVR;//ver 4.0.0.8
+		public float TruCongSomVR;//ver 4.0.0.8
+		public float TruCongTreBu;//ver 4.0.0.8
+		public float TruCongSomBu;//ver 4.0.0.8
 
 		public int OTMin;
 		public override string ToString()

@@ -45,17 +45,6 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dgrdGioKDQD = new System.Windows.Forms.DataGridView();
-			this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1c13 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.label3 = new System.Windows.Forms.Label();
 			this.tbMaCC = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -82,6 +71,16 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.toolTipHint = new System.Windows.Forms.ToolTip(this.components);
+			this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1c7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1c9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1c10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gpNhapThongTin.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdGioKDQD)).BeginInit();
 			this.groupBox1.SuspendLayout();
@@ -309,8 +308,7 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn28,
             this.dataGridViewTextBoxColumn31,
-            this.dataGridViewTextBoxColumn32,
-            this.g1c13});
+            this.dataGridViewTextBoxColumn32});
 			this.dgrdGioKDQD.GridColor = System.Drawing.Color.LightGray;
 			this.dgrdGioKDQD.Location = new System.Drawing.Point(12, 41);
 			this.dgrdGioKDQD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -321,109 +319,6 @@
 			this.dgrdGioKDQD.Size = new System.Drawing.Size(702, 179);
 			this.dgrdGioKDQD.TabIndex = 28;
 			this.dgrdGioKDQD.SelectionChanged += new System.EventHandler(this.dgrdGioKDQD_SelectionChanged);
-			// 
-			// dataGridViewTextBoxColumn14
-			// 
-			this.dataGridViewTextBoxColumn14.DataPropertyName = "TimeStrNgay";
-			dataGridViewCellStyle2.Format = "ddd d/M";
-			this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle2;
-			this.dataGridViewTextBoxColumn14.HeaderText = "Ngày công";
-			this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-			this.dataGridViewTextBoxColumn14.ReadOnly = true;
-			this.dataGridViewTextBoxColumn14.ToolTipText = "Ngày";
-			this.dataGridViewTextBoxColumn14.Width = 85;
-			// 
-			// g1c7
-			// 
-			this.g1c7.DataPropertyName = "TimeStr";
-			dataGridViewCellStyle3.Format = "H:mm:ss ddd d/M";
-			this.g1c7.DefaultCellStyle = dataGridViewCellStyle3;
-			this.g1c7.HeaderText = "Thời gian";
-			this.g1c7.Name = "g1c7";
-			this.g1c7.ReadOnly = true;
-			this.g1c7.Width = 140;
-			// 
-			// g1c3
-			// 
-			this.g1c3.DataPropertyName = "Loai";
-			this.g1c3.HeaderText = "Loại";
-			this.g1c3.Name = "g1c3";
-			this.g1c3.ReadOnly = true;
-			this.g1c3.Width = 55;
-			// 
-			// g1c9
-			// 
-			this.g1c9.DataPropertyName = "MachineNo";
-			this.g1c9.HeaderText = "Máy";
-			this.g1c9.Name = "g1c9";
-			this.g1c9.ReadOnly = true;
-			this.g1c9.ToolTipText = "Số hiệu máy chấm công";
-			this.g1c9.Width = 55;
-			// 
-			// dataGridViewTextBoxColumn15
-			// 
-			this.dataGridViewTextBoxColumn15.DataPropertyName = "ShiftCode";
-			this.dataGridViewTextBoxColumn15.HeaderText = "Ca";
-			this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-			this.dataGridViewTextBoxColumn15.ReadOnly = true;
-			this.dataGridViewTextBoxColumn15.ToolTipText = "Ca làm việc trong ngày";
-			this.dataGridViewTextBoxColumn15.Width = 180;
-			// 
-			// g1c10
-			// 
-			this.g1c10.DataPropertyName = "Source";
-			this.g1c10.HeaderText = "Nguồn";
-			this.g1c10.Name = "g1c10";
-			this.g1c10.ReadOnly = true;
-			this.g1c10.ToolTipText = "Nguồn check vân tay: FP: finger print, PC: máy tính";
-			this.g1c10.Width = 55;
-			// 
-			// dataGridViewTextBoxColumn13
-			// 
-			this.dataGridViewTextBoxColumn13.DataPropertyName = "TimeStrThu";
-			dataGridViewCellStyle4.Format = "ddd";
-			this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle4;
-			this.dataGridViewTextBoxColumn13.HeaderText = "Thứ_hide_suggest_delete";
-			this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-			this.dataGridViewTextBoxColumn13.ReadOnly = true;
-			this.dataGridViewTextBoxColumn13.ToolTipText = "Thứ";
-			this.dataGridViewTextBoxColumn13.Visible = false;
-			this.dataGridViewTextBoxColumn13.Width = 45;
-			// 
-			// dataGridViewTextBoxColumn28
-			// 
-			this.dataGridViewTextBoxColumn28.DataPropertyName = "cCheck";
-			this.dataGridViewTextBoxColumn28.HeaderText = "cChk_hide";
-			this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
-			this.dataGridViewTextBoxColumn28.ReadOnly = true;
-			this.dataGridViewTextBoxColumn28.Visible = false;
-			// 
-			// dataGridViewTextBoxColumn31
-			// 
-			this.dataGridViewTextBoxColumn31.DataPropertyName = "cNgayCong";
-			this.dataGridViewTextBoxColumn31.HeaderText = "cNgayCong_hide";
-			this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
-			this.dataGridViewTextBoxColumn31.ReadOnly = true;
-			this.dataGridViewTextBoxColumn31.Visible = false;
-			// 
-			// dataGridViewTextBoxColumn32
-			// 
-			this.dataGridViewTextBoxColumn32.DataPropertyName = "cUserInfo";
-			this.dataGridViewTextBoxColumn32.HeaderText = "cUserInfo_hide";
-			this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
-			this.dataGridViewTextBoxColumn32.Visible = false;
-			// 
-			// g1c13
-			// 
-			this.g1c13.DataPropertyName = "IsEdited";
-			this.g1c13.FalseValue = "false";
-			this.g1c13.HeaderText = "IsEdited_hide";
-			this.g1c13.Name = "g1c13";
-			this.g1c13.ReadOnly = true;
-			this.g1c13.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.g1c13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.g1c13.TrueValue = "true";
-			this.g1c13.Visible = false;
 			// 
 			// label3
 			// 
@@ -748,6 +643,97 @@
 			this.toolTipHint.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTipHint_Draw);
 			this.toolTipHint.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTipHint_Popup);
 			// 
+			// dataGridViewTextBoxColumn14
+			// 
+			this.dataGridViewTextBoxColumn14.DataPropertyName = "TimeStrNgay";
+			dataGridViewCellStyle2.Format = "ddd d/M";
+			this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle2;
+			this.dataGridViewTextBoxColumn14.HeaderText = "Ngày công";
+			this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+			this.dataGridViewTextBoxColumn14.ReadOnly = true;
+			this.dataGridViewTextBoxColumn14.ToolTipText = "Ngày";
+			this.dataGridViewTextBoxColumn14.Width = 85;
+			// 
+			// g1c7
+			// 
+			this.g1c7.DataPropertyName = "TimeStr";
+			dataGridViewCellStyle3.Format = "H:mm:ss ddd d/M";
+			this.g1c7.DefaultCellStyle = dataGridViewCellStyle3;
+			this.g1c7.HeaderText = "Thời gian";
+			this.g1c7.Name = "g1c7";
+			this.g1c7.ReadOnly = true;
+			this.g1c7.Width = 140;
+			// 
+			// g1c3
+			// 
+			this.g1c3.DataPropertyName = "Loai";
+			this.g1c3.HeaderText = "Loại";
+			this.g1c3.Name = "g1c3";
+			this.g1c3.ReadOnly = true;
+			this.g1c3.Width = 55;
+			// 
+			// g1c9
+			// 
+			this.g1c9.DataPropertyName = "MachineNo";
+			this.g1c9.HeaderText = "Máy";
+			this.g1c9.Name = "g1c9";
+			this.g1c9.ReadOnly = true;
+			this.g1c9.ToolTipText = "Số hiệu máy chấm công";
+			this.g1c9.Width = 55;
+			// 
+			// dataGridViewTextBoxColumn15
+			// 
+			this.dataGridViewTextBoxColumn15.DataPropertyName = "ShiftCode";
+			this.dataGridViewTextBoxColumn15.HeaderText = "Ca";
+			this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+			this.dataGridViewTextBoxColumn15.ReadOnly = true;
+			this.dataGridViewTextBoxColumn15.ToolTipText = "Ca làm việc trong ngày";
+			this.dataGridViewTextBoxColumn15.Width = 180;
+			// 
+			// g1c10
+			// 
+			this.g1c10.DataPropertyName = "Source";
+			this.g1c10.HeaderText = "Nguồn";
+			this.g1c10.Name = "g1c10";
+			this.g1c10.ReadOnly = true;
+			this.g1c10.ToolTipText = "Nguồn check vân tay: FP: finger print, PC: máy tính";
+			this.g1c10.Width = 55;
+			// 
+			// dataGridViewTextBoxColumn13
+			// 
+			this.dataGridViewTextBoxColumn13.DataPropertyName = "TimeStrThu";
+			dataGridViewCellStyle4.Format = "ddd";
+			this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle4;
+			this.dataGridViewTextBoxColumn13.HeaderText = "Thứ_hide_suggest_delete";
+			this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+			this.dataGridViewTextBoxColumn13.ReadOnly = true;
+			this.dataGridViewTextBoxColumn13.ToolTipText = "Thứ";
+			this.dataGridViewTextBoxColumn13.Visible = false;
+			this.dataGridViewTextBoxColumn13.Width = 45;
+			// 
+			// dataGridViewTextBoxColumn28
+			// 
+			this.dataGridViewTextBoxColumn28.DataPropertyName = "cCheck";
+			this.dataGridViewTextBoxColumn28.HeaderText = "cChk_hide";
+			this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
+			this.dataGridViewTextBoxColumn28.ReadOnly = true;
+			this.dataGridViewTextBoxColumn28.Visible = false;
+			// 
+			// dataGridViewTextBoxColumn31
+			// 
+			this.dataGridViewTextBoxColumn31.DataPropertyName = "cNgayCong";
+			this.dataGridViewTextBoxColumn31.HeaderText = "cNgayCong_hide";
+			this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
+			this.dataGridViewTextBoxColumn31.ReadOnly = true;
+			this.dataGridViewTextBoxColumn31.Visible = false;
+			// 
+			// dataGridViewTextBoxColumn32
+			// 
+			this.dataGridViewTextBoxColumn32.DataPropertyName = "cUserInfo";
+			this.dataGridViewTextBoxColumn32.HeaderText = "cUserInfo_hide";
+			this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
+			this.dataGridViewTextBoxColumn32.Visible = false;
+			// 
 			// frm_XemCT_GioCC
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -813,6 +799,13 @@
 		private System.Windows.Forms.ToolTip toolTipHint;
 		private System.Windows.Forms.Label lbGioMoi;
 		private System.Windows.Forms.Button btnChuyenDoi;
+		private System.Windows.Forms.Button btnThoat;
+		private System.Windows.Forms.Button btnChonCa_Them;
+		private System.Windows.Forms.TextBox tbCa_Them;
+		private System.Windows.Forms.Button btnChonCa_Suaa;
+		private System.Windows.Forms.TextBox tbCa_Suaa;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TextBox tbGioCuu_ChuyenDoi;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c7;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1c3;
@@ -823,13 +816,5 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
-		private System.Windows.Forms.DataGridViewCheckBoxColumn g1c13;
-		private System.Windows.Forms.Button btnThoat;
-		private System.Windows.Forms.Button btnChonCa_Them;
-		private System.Windows.Forms.TextBox tbCa_Them;
-		private System.Windows.Forms.Button btnChonCa_Suaa;
-		private System.Windows.Forms.TextBox tbCa_Suaa;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox tbGioCuu_ChuyenDoi;
 	}
 }

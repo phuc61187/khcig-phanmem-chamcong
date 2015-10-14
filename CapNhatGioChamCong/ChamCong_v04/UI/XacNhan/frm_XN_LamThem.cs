@@ -56,7 +56,6 @@ namespace ChamCong_v04.UI.XacNhan {
 			kq.Columns.Add("cUserInfo", typeof(cUserInfo));
 			kq.Columns.Add("cNgayCong", typeof(cNgayCong));
 			kq.Columns.Add("cCheckInOut", typeof(cCheckInOut));
-			kq.Columns.Add("IsEdited", typeof(bool));
 
 			return kq;
 		}

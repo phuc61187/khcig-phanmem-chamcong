@@ -174,7 +174,6 @@ namespace ChamCong_v04.BUS
 					row["TongGioThuc"] = ngayCong.TG.GioThuc;//Danglam giophut
 					row["TongCong"] = ngayCong.TongCong;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
-					row["IsEdited"] = (ngayCong.IsEdited > 0);
 					row["TinhPCTC"] = ngayCong.TinhPC50;
 					if (ngayCong.DSVaoRa.Count == 0 && ngayCong.DSVang.Count == 0)
 						row["ShiftCode"] = "-";
@@ -235,7 +234,6 @@ namespace ChamCong_v04.BUS
 						row["TongGioThuc"] = ngayCong.TG.GioThuc;//Danglam giophut
 						row["TongCong"] = ngayCong.TongCong;
 						row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
-						row["IsEdited"] = (ngayCong.IsEdited > 0);
 						var i = 1;
 						foreach (var CIO in ngayCong.DSVaoRa)
 						{
@@ -289,7 +287,6 @@ namespace ChamCong_v04.BUS
 					row["TongGioThuc"] = ngayCong.TG.GioThuc;//Danglam giophut
 					row["TongCong"] = ngayCong.TongCong;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
-					row["IsEdited"] = (ngayCong.IsEdited > 0);
 					var i = 1;
 					foreach (var CIO in ngayCong.DSVaoRa)
 					{
@@ -345,7 +342,6 @@ namespace ChamCong_v04.BUS
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
 					row["TongTre"] = ngayCong.TG.VaoTre.TotalMinutes;
 					row["TongSom"] = ngayCong.TG.RaaSom.TotalMinutes;
-					row["IsEdited"] = (ngayCong.IsEdited > 0);
 					var i = 1;
 					var flag_IsShow = false;
 					foreach (var CIO in ngayCong.DSVaoRa)
@@ -407,7 +403,6 @@ namespace ChamCong_v04.BUS
 					row["cUserInfo"] = nv;
 					row["cNgayCong"] = ngayCong;
 					row["cCheckInOut"] = CIO;
-					row["IsEdited"] = CIO.IsEdited;
 					table.Rows.Add(row);
 				}
 			}
@@ -449,7 +444,6 @@ namespace ChamCong_v04.BUS
 						row["cUserInfo"] = nv;
 						row["cNgayCong"] = ngayCong;
 						row["cCheckInOut"] = CIO;
-						row["IsEdited"] = CIO.IsEdited;
 						table.Rows.Add(row);
 					}
 					

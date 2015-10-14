@@ -42,8 +42,8 @@ namespace ChamCong_v04.UI.ChamCong {
 		public DataTable m_Bang_ChiTiet;
 		public DataTable TaoTable_ChiTiet() {
 			var kq = XL.TaoCauTrucDataTable(
-				new[] { "cUserInfo", "cNgayCong", "cCheckInOut", "cCheck", "TimeStrThu", "TimeStrNgay", "TimeStr", "Loai", "MachineNo", "Source", "ShiftCode", "IsEdited", "IsEnableEdit" },
-				new[] { typeof(cUserInfo), typeof(cNgayCong), typeof(cCheckInOut), typeof(cCheck), typeof(DateTime), typeof(DateTime), typeof(DateTime), typeof(string), typeof(int), typeof(string), typeof(string), typeof(bool), typeof(bool) }
+				new[] { "cUserInfo", "cNgayCong", "cCheckInOut", "cCheck", "TimeStrThu", "TimeStrNgay", "TimeStr", "Loai", "MachineNo", "Source", "ShiftCode", "IsEnableEdit" },
+				new[] { typeof(cUserInfo), typeof(cNgayCong), typeof(cCheckInOut), typeof(cCheck), typeof(DateTime), typeof(DateTime), typeof(DateTime), typeof(string), typeof(int), typeof(string), typeof(string), typeof(bool) }
 				);
 			return kq;
 		}
@@ -117,8 +117,6 @@ namespace ChamCong_v04.UI.ChamCong {
 				row2["TimeStrThu"] = row2["TimeStrNgay"] = ngayCong.Ngay.Date;
 				row1["Loai"] = "Vào";
 				row2["Loai"] = "Ra";
-				row1["IsEdited"] = (ngayCong.IsEdited > 0);
-				row2["IsEdited"] = (ngayCong.IsEdited > 0);
 				row1["IsEnableEdit"] = isEnableEdit;
 				row2["IsEnableEdit"] = isEnableEdit;
 
@@ -164,9 +162,6 @@ namespace ChamCong_v04.UI.ChamCong {
 					row1["ShiftCode"] = row2["ShiftCode"] = temp;
 				}
 
-				row1["IsEdited"] = (CIO.IsEdited > 0);
-				row2["IsEdited"] = (CIO.IsEdited > 0);
-
 				row1["IsEnableEdit"] = isEnableEdit;
 				row2["IsEnableEdit"] = isEnableEdit;
 
@@ -180,9 +175,6 @@ namespace ChamCong_v04.UI.ChamCong {
 				var row = (dataGridViewRow.DataBoundItem as DataRowView).Row;
 				if (row["IsEnableEdit"] == DBNull.Value || (bool)row["IsEnableEdit"] == false) {
 					dataGridViewRow.DefaultCellStyle.BackColor = Color.LightGray;
-				}
-				if (row["IsEdited"] != DBNull.Value && (bool)row["IsEdited"]) {
-					dataGridViewRow.DefaultCellStyle.BackColor = Color.LightGreen;
 				}
 			}
 		}
@@ -313,7 +305,7 @@ namespace ChamCong_v04.UI.ChamCong {
 
 				#endregion
 
-				var checkinn = new cCheck { IsEdited = 1, Type = "I", MachineNo = 21, Source = "PC", MaCC = UserEnrollNumber, Time = giovao, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
+				var checkinn = new cCheck { Type = "I", MachineNo = 21, Source = "PC", MaCC = UserEnrollNumber, Time = giovao, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
 				XL.ThemGioChoNV(nhanvien_goc.MaCC, checkinn, nhanvien_goc.DS_Check_A, lydo, ghichu);
 			}
 
@@ -334,7 +326,7 @@ namespace ChamCong_v04.UI.ChamCong {
 				}
 				#endregion
 
-				var checkout = new cCheck { IsEdited = 1, Type = "O", MachineNo = 22, Source = "PC", MaCC = UserEnrollNumber, Time = gioraa, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
+				var checkout = new cCheck { Type = "O", MachineNo = 22, Source = "PC", MaCC = UserEnrollNumber, Time = gioraa, PhucHoi = new cPhucHoi { Them = true, IDGioGoc = -1, Xoaa = false } };
 				XL.ThemGioChoNV(nhanvien_goc.MaCC, checkout, nhanvien_goc.DS_Check_A, lydo, ghichu);
 			}
 			var ds_raa3_vao1 = new List<cCheck>();
@@ -465,8 +457,8 @@ namespace ChamCong_v04.UI.ChamCong {
 			var DS_Check_KoHopLe = new List<cCheck>();
 
 			cCheck checknew = suagiovao
-				? new cCheck { Type = "I", MaCC = nhanvien_goc.MaCC, IsEdited = 1, Time = gioMoi, Source = "PC", MachineNo = 21, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } }
-				: new cCheck { Type = "O", MaCC = nhanvien_goc.MaCC, IsEdited = 1, Time = gioMoi, Source = "PC", MachineNo = 22, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } };
+				? new cCheck { Type = "I", MaCC = nhanvien_goc.MaCC, Time = gioMoi, Source = "PC", MachineNo = 21, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } }
+				: new cCheck { Type = "O", MaCC = nhanvien_goc.MaCC, Time = gioMoi, Source = "PC", MachineNo = 22, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } };
 
 			XL.SuaGioChoNV(nhanvien_goc.MaCC, checkold, checknew, nhanvien_goc.DS_Check_A, lydo, ghichu);
 
@@ -527,8 +519,8 @@ namespace ChamCong_v04.UI.ChamCong {
 			var DS_Check_KoHopLe = new List<cCheck>();
 
 			cCheck checknew = !VAO_to_RAA
-				? new cCheck { Type = "I", MaCC = nhanvien_goc.MaCC, IsEdited = 1, Time = giocuu, Source = "PC", MachineNo = 21, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } }
-				: new cCheck { Type = "O", MaCC = nhanvien_goc.MaCC, IsEdited = 1, Time = giocuu, Source = "PC", MachineNo = 22, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } };
+				? new cCheck { Type = "I", MaCC = nhanvien_goc.MaCC, Time = giocuu, Source = "PC", MachineNo = 21, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } }
+				: new cCheck { Type = "O", MaCC = nhanvien_goc.MaCC, Time = giocuu, Source = "PC", MachineNo = 22, PhucHoi = new cPhucHoi { IDGioGoc = int.MaxValue, Them = checkold.PhucHoi.Them, Xoaa = checkold.PhucHoi.Xoaa } };
 			XL.SuaGioChoNV(nhanvien_goc.MaCC, checkold, checknew, nhanvien_goc.DS_Check_A, lydo, ghichu);
 			XL.LoaiBoCheckKoHopLe1(nhanvien_goc.DS_Check_A, ref DS_Check_KoHopLe);
 			XL.GhepCIO_A2(nhanvien_goc.DS_Check_A, nhanvien_goc.DS_CIO_A);
