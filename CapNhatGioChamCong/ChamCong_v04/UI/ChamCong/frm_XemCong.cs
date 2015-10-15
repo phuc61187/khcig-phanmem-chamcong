@@ -383,6 +383,18 @@ namespace ChamCong_v04.UI.ChamCong {
 			XL.XemCong_v08(listNV, ngayBD_Bef2D, ngayKT_Aft2D);
 			//Reload4DataGrid(listNV);
 
+			#region //test
+			ThongKeCong_PC thongKeThang = new ThongKeCong_PC();
+			listNV[0].DSNgayCong.RemoveRange(0,2);
+			listNV[0].DSNgayCong.RemoveAt(listNV[0].DSNgayCong.Count-1);
+			listNV[0].DSNgayCong.RemoveAt(listNV[0].DSNgayCong.Count - 1);
+			XL.ThongKeThang(ref thongKeThang, listNV[0].DSNgayCong, DateTime.MinValue, DateTime.MinValue, LoaiCongNhat.NVChinhThuc);
+			frmTest frm = new frmTest();
+			frm.thongKeThang = thongKeThang;
+			frm.dsNgayCong = listNV[0].DSNgayCong;
+			frm.ShowDialog();
+
+			#endregion
 		}
 
 		private void Reload4DataGrid(List<cUserInfo> listNV) {

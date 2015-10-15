@@ -159,6 +159,12 @@
     <Compile Include="UI\Admin\frm_TaoTaiKhoan.designer.cs">
       <DependentUpon>frm_TaoTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ChamCong\frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ChamCong\frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\XepLich\fmDSNVNhanNhiemVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -424,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Admin\frm_TaoTaiKhoan.resx">
       <DependentUpon>frm_TaoTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ChamCong\frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\XepLich\fmDSNVNhanNhiemVu.resx">
       <DependentUpon>fmDSNVNhanNhiemVu.cs</DependentUpon>

@@ -83,10 +83,8 @@ namespace ChamCong_v04.UI.ChamCong {
 				loadRow(nhanvien, ngayCong);
 			}
 
-			VeLaiCacGioCoThayDoi();
 			// reset lại các control trong Thêm, Xóa Sửa
 		}
-
 		private void loadRow(cUserInfo nhanvien_goc, cNgayCong ngayCong)
 		{
 			if (ngayCong 				== null || ngayCong.DSVaoRa.Count == 0) return;

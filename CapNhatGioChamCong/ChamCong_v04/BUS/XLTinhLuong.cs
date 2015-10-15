@@ -73,7 +73,7 @@ namespace ChamCong_v04.BUS {
 				//info ko can loaipcdb, tinhpc50,tinhpcdb, vi đã tính rồi
 				ngayCong.Ngay = (DateTime)row["Ngay"];
 				ngayCong.TongCong = (float)row["TongCong"];
-				ngayCong.TongNgayLV = (row["TongNgayLV"] != DBNull.Value) ? (float)row["TongNgayLV"] : 0f;//ver4.0.0.1
+				//ngayCong.TongNgayLV = (row["TongNgayLV"] != DBNull.Value) ? (float)row["TongNgayLV"] : 0f;//ver4.0.0.1
 				ngayCong.PhuCaps = new PhuCap {
 					_TongPC = (float)row["TongPC"],
 					_30_dem = (float)row["PCDem"],
@@ -239,12 +239,13 @@ namespace ChamCong_v04.BUS {
 
 		}
 
-		private static void ThongKeNgay(ref ThongKeCong_PC thongKeThang, cNgayCong ngayCong) {
+		public static void ThongKeNgay(ref ThongKeCong_PC thongKeThang, cNgayCong ngayCong) {
 			thongKeThang.Cong += ngayCong.TongCong;
-			thongKeThang.TongNgayLV += ngayCong.TongNgayLV;//ver4.0.0.1
-
+			//thongKeThang.TongNgayLV += ngayCong.TongNgayLV;//ver4.0.0.1
+			
 			#region // tính chiếm công CV 
 
+			thongKeThang.Cong += ngayCong.TongCong_4008;
 			thongKeThang.TongCongDinhMuc8Tieng += ngayCong.CongDinhMucDuoi8Tieng;
 			thongKeThang.TongCongTichLuy += ngayCong.CongTichLuy;
 			thongKeThang.TongTruCongTreBu += ngayCong.TruCongTreBu;

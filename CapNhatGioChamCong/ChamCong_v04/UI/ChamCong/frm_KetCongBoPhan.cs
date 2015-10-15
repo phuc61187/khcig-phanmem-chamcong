@@ -300,7 +300,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 							}
 						}
 						if (ngayCong.DSVaoRa.Count != 0) {
-							int kq2 = DAO.InsKetCongNgay(nv.MaCC, ngayCong.Ngay, ngayCong.TongCong, ngayCong.TongNgayLV, ngayCong.PhuCaps._TongPC, //ver4.0.0.1
+							int kq2 = DAO.InsKetCongNgay(nv.MaCC, ngayCong.Ngay, ngayCong.TongCong, /*ngayCong.TongNgayLVtest*/0f, ngayCong.PhuCaps._TongPC, //ver4.0.0.1
 														 ngayCong.PhuCaps._30_dem, ngayCong.PhuCaps._50_TC, ngayCong.PhuCaps._100_TCC3,
 														 ngayCong.PhuCaps._100_LVNN_Ngay, ngayCong.PhuCaps._150_LVNN_Dem,
 														 ngayCong.PhuCaps._200_LeTet_Ngay, ngayCong.PhuCaps._250_LeTet_Dem,
