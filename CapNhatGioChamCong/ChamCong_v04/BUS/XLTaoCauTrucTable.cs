@@ -172,7 +172,7 @@ namespace ChamCong_v04.BUS
 					row["TongSom"] = Math.Floor(ngayCong.TG.RaaSom.TotalMinutes);
 					row["TongGioLam"] = ngayCong.TG.GioLamViec;//Danglam giophut
 					row["TongGioThuc"] = ngayCong.TG.GioThuc;//Danglam giophut
-					row["TongCong"] = ngayCong.TongCong;
+					row["TongCong"] = ngayCong.TongCong_4008;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
 					row["TinhPCTC"] = ngayCong.TinhPC50;
 					if (ngayCong.DSVaoRa.Count == 0 && ngayCong.DSVang.Count == 0)
@@ -232,7 +232,7 @@ namespace ChamCong_v04.BUS
 						row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
 						row["TongGioLam"] = ngayCong.TG.GioLamViec;//Danglam giophut
 						row["TongGioThuc"] = ngayCong.TG.GioThuc;//Danglam giophut
-						row["TongCong"] = ngayCong.TongCong;
+						row["TongCong"] = ngayCong.TongCong_4008;
 						row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
 						var i = 1;
 						foreach (var CIO in ngayCong.DSVaoRa)
@@ -285,7 +285,7 @@ namespace ChamCong_v04.BUS
 					row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
 					row["TongGioLam"] = ngayCong.TG.GioLamViec;//Danglam giophut
 					row["TongGioThuc"] = ngayCong.TG.GioThuc;//Danglam giophut
-					row["TongCong"] = ngayCong.TongCong;
+					row["TongCong"] = ngayCong.TongCong_4008;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
 					var i = 1;
 					foreach (var CIO in ngayCong.DSVaoRa)
@@ -338,7 +338,7 @@ namespace ChamCong_v04.BUS
 					row["TimeStrNgay"] = row["TimeStrThu"] = ngayCong.Ngay;
 					row["TongGioLam"] = ngayCong.TG.GioLamViec;
 					row["TongGioThuc"] = ngayCong.TG.GioThuc;
-					row["TongCong"] = ngayCong.TongCong;
+					row["TongCong"] = ngayCong.TongCong_4008;
 					row["TongPhuCap"] = ngayCong.PhuCaps._TongPC;
 					row["TongTre"] = ngayCong.TG.VaoTre.TotalMinutes;
 					row["TongSom"] = ngayCong.TG.RaaSom.TotalMinutes;

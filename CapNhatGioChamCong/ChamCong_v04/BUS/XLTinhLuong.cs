@@ -72,7 +72,7 @@ namespace ChamCong_v04.BUS {
 				//1.isEdit, next, prev, trangthaidiemdanh ko su dung
 				//info ko can loaipcdb, tinhpc50,tinhpcdb, vi đã tính rồi
 				ngayCong.Ngay = (DateTime)row["Ngay"];
-				ngayCong.TongCong = (float)row["TongCong"];
+				ngayCong.TongCong_4008 = (float)row["TongCong"];
 				//ngayCong.TongNgayLV = (row["TongNgayLV"] != DBNull.Value) ? (float)row["TongNgayLV"] : 0f;//ver4.0.0.1
 				ngayCong.PhuCaps = new PhuCap {
 					_TongPC = (float)row["TongPC"],
@@ -95,6 +95,14 @@ namespace ChamCong_v04.BUS {
 				ngayCong.DSVang = new List<cLoaiVang>(); //info danh sách vắng load ở hàm xử lý sau
 				ngayCong.DSVaoRa = new List<cCheckInOut>();
 				LoadDSVaoRa(macc, indexNgay, ngayCong.DSVaoRa, tableKetcongCa);
+				#region v4.0.0.8
+
+					foreach (var CIO in ngayCong.DSVaoRa)
+					{
+						if (CIO.HaveINOUT < 0) continue;
+						//ngayCong.
+					}
+				#endregion
 			}
 			dsNgayCong.Add(ngayCong);
 
@@ -186,8 +194,18 @@ namespace ChamCong_v04.BUS {
 								 },//v9 chưa làm, xem xét parse các trường thông tin từ shift param sang
 
 								 ThuocNgayCong = (DateTime)row["Ngay"], // tương đương indexNgay
-								 TimeDaiDien = ((int)row["HaveINOUT"] == 0 || (int)row["HaveINOUT"] == -1) ? (DateTime)row["TimeIn"] : (DateTime)row["TimeOut"]
-								 //DSCa = new List<cCa>(),//info chưa có dưới csdl, xem xét có lưu ko? suggest bỏ
+								 TimeDaiDien = ((int)row["HaveINOUT"] == 0 || (int)row["HaveINOUT"] == -1) ? (DateTime)row["TimeIn"] : (DateTime)row["TimeOut"],
+								 //			thongKeThang.Cong += ngayCong.TongCong_4008;
+								 CongTrongCa = row["CongTrongCa"] != DBNull.Value ? (float)row["CongTrongCa"] : 0f,
+								 CongNgoaiCa = row["CongNgoaiCa"] != DBNull.Value ? (float)row["CongNgoaiCa"] : 0f,
+								 TruCongTreBu = row["TruCongTreBu"] != DBNull.Value ? (float)row["TruCongTreBu"] : 0f,
+								 TruCongSomBu = row["TruCongSomBu"] != DBNull.Value ? (float)row["TruCongSomBu"] : 0f,
+								 TruCongTreVR = row["TruCongTreVR"] != DBNull.Value ? (float)row["TruCongTreVR"] : 0f,
+								 TruCongSomVR = row["TruCongSomVR"] != DBNull.Value ? (float)row["TruCongSomVR"] : 0f,
+			//thongKeThang.TongTruCongTreBu += ngayCong.TruCongTreBu;
+			//thongKeThang.TongTruCongSomBu += ngayCong.TruCongSomBu;
+			//thongKeThang.TongTruCongTreVR += ngayCong.TruCongTreVR;
+			//thongKeThang.TongTruCongSomVR += ngayCong.TruCongSomVR;
 							 });
 		}
 
@@ -198,7 +216,7 @@ namespace ChamCong_v04.BUS {
 			{
 				thongKeThang.Cong_Congnhat = (dsNgayCong
 												.Where(item => item.Ngay >= ngayBDCongnhat && item.Ngay <= ngayKTCongnhat)
-												.Sum(item => item.TongCong));
+												.Sum(item => item.TongCong_4008));
 			}
 			else //2 trường hợp, chính thức và vừa chính thức vừa công nhật
 			{
@@ -230,7 +248,7 @@ namespace ChamCong_v04.BUS {
 				{
 					thongKeThang.Cong_Congnhat = (dsNgayCong
 								.Where(item => item.Ngay >= ngayBDCongnhat && item.Ngay <= ngayKTCongnhat)
-								.Sum(item => item.TongCong));
+								.Sum(item => item.TongCong_4008));
 
 					foreach (var ngayCong in dsNgayCong.Where(item => item.Ngay < ngayBDCongnhat || item.Ngay > ngayKTCongnhat))
 						XL.ThongKeNgay(ref thongKeThang, ngayCong);
@@ -240,7 +258,7 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void ThongKeNgay(ref ThongKeCong_PC thongKeThang, cNgayCong ngayCong) {
-			thongKeThang.Cong += ngayCong.TongCong;
+			//thongKeThang.Cong += ngayCong.TongCong;
 			//thongKeThang.TongNgayLV += ngayCong.TongNgayLV;//ver4.0.0.1
 			
 			#region // tính chiếm công CV 

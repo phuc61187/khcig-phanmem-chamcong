@@ -1217,7 +1217,7 @@ namespace ChamCong_v04.BUS {
 		public static void TinhCong_HangNgay2(cNgayCong ngayCong, TimeSpan startNT, TimeSpan endddNT) {
 			ngayCong.TG = new ThoiGian();
 			ngayCong.PhuCaps = new PhuCap();
-			ngayCong.TongCong = 0f;
+			ngayCong.TongCong_4008 = 0f;
 			//ngayCong.TongNgayLV = 0f; //ver4.0.0.1
 
 			ngayCong.QuaDem = false;
@@ -1275,7 +1275,8 @@ namespace ChamCong_v04.BUS {
 				ngayCong.TG.LamBanDem += CIO.TG.LamBanDem;
 				ngayCong.TG.VaoTre += CIO.TG.VaoTre;
 				ngayCong.TG.RaaSom += CIO.TG.RaaSom;
-				ngayCong.TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
+				//ngayCong.TongCong += CIO.Cong; //công đã được làm tròn 2 số thập phân ở trên
+				//ngayCong.TongCong_4008 += (CIO.CongTrongCa + CIO.CongNgoaiCa);//ver 4.0.0.8
 
 			}
 			ngayCong.TG.LamThem = Tinh_TGLamThem(ngayCong.TG.GioLamViec);

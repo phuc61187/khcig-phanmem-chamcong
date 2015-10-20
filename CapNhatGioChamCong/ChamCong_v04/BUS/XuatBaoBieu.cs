@@ -1264,7 +1264,7 @@ namespace ChamCong_v04.BUS {
 			ic++;
 
 			foreach (cNgayCong ngay in nv.DSNgayCong) {
-				XL.FormatCell_N(ws, ir + 0, ic, value: ngay.TongCong, numFormat: Settings.Default.numFormatFloat101F);
+				XL.FormatCell_N(ws, ir + 0, ic, value: ngay.TongCong_4008, numFormat: Settings.Default.numFormatFloat101F);
 				XL.FormatCell_N(ws, ir + 1, ic, value: ngay.PhuCaps._TongPC, numFormat: Settings.Default.numFormatFloat101F);
 				var temp = string.Empty;
 				ngay.XuatChuoiKyHieuChamCong(ref temp);
@@ -1776,7 +1776,7 @@ namespace ChamCong_v04.BUS {
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioLamViec, numFormat: @"[h]:mm");// bỏ :ss
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamThem, numFormat: @"[h]:mm");// bỏ :ss
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamBanDem, numFormat: @"[h]:mm");// bỏ :ss
-				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TongCong, numFormat: Settings.Default.numFormatFloat101F);
+				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.TongCong_4008, numFormat: Settings.Default.numFormatFloat101F);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.PhuCaps._TongPC, numFormat: Settings.Default.numFormatFloat101F);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.PhuCaps._50_TC, numFormat: Settings.Default.numFormatFloat101F);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: ngay.PhuCaps._30_dem, numFormat: Settings.Default.numFormatFloat101F);
@@ -1885,7 +1885,7 @@ namespace ChamCong_v04.BUS {
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.GioLamViec);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamThem);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TG.LamBanDem);
-				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TongCong);
+				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.TongCong_4008);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.PhuCaps._TongPC);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.PhuCaps._50_TC);
 				XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: ngay.PhuCaps._30_dem);

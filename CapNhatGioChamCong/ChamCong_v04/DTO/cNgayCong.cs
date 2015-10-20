@@ -13,7 +13,7 @@ namespace ChamCong_v04.DTO {
 
 		public ThoiGian TG = new ThoiGian();
 
-		public float TongCong;
+		//public float TongCong;
 		//public float TongNgayLV;//ver4.0.0.1
 
 		#region //ver 4.0.0.8
@@ -25,8 +25,8 @@ namespace ChamCong_v04.DTO {
 
 		public float TruCongTreBu;//ver 4.0.0.8
 		public float TruCongSomBu;//ver 4.0.0.8
-		public float TruCongTreVR;
-		public float TruCongSomVR;
+		public float TruCongTreVR;//ver 4.0.0.8
+		public float TruCongSomVR;//ver 4.0.0.8
 
 		#endregion
 
@@ -40,7 +40,7 @@ namespace ChamCong_v04.DTO {
 
 		public override string ToString() {
 			var temp = Ngay.ToString("d/M") + "; " + "; " + "; TongLam: " + TG.GioLamViec.TotalHours.ToString("##.##") + "; LamDem" +
-				   TG.LamBanDem.TotalHours.ToString("#0.##") + "; Cong: " + TongCong.ToString("#0.##") + "; PC: " + PhuCaps._TongPC.ToString("#0.##") + "\n";
+				   TG.LamBanDem.TotalHours.ToString("#0.##") + "; Cong: " + TongCong_4008.ToString("#0.##") + "; PC: " + PhuCaps._TongPC.ToString("#0.##") + "\n";
 			if (DSVaoRa != null) {
 				temp = DSVaoRa.Aggregate(temp, (current, @out) => current + "; I:" + ((@out.Vao != null) ? @out.Vao.Time.ToString("H:mm") : "----") + "; O:" + ((@out.Raa != null) ? @out.Raa.Time.ToString("H:mm") : "----") + "\n");
 			}

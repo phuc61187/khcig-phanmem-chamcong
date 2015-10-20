@@ -96,6 +96,7 @@ namespace ChamCong_v04.DTO {
 		public float TruCongSom;//ver 4.0.0.8
 		public bool ChoBuGioTre;//ver 4.0.0.8
 		public bool ChoBuGioSom;//ver 4.0.0.8
+		public bool ChoBuPhep;//ver 4.0.0.8
 		public float TruCongTreVR;//ver 4.0.0.8
 		public float TruCongSomVR;//ver 4.0.0.8
 		public float TruCongTreBu;//ver 4.0.0.8

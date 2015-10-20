@@ -168,7 +168,7 @@ namespace ChamCong_v04.UI.XepLich {
 					var tongPhep1 = 0f; //tbd
 					foreach (cNgayCong ngayCong in nhanvien.DSNgayCong) {
 						if (ngayCong.Ngay < ngayBD || ngayCong.Ngay > ngayKT) continue;
-						tongCong1 += ngayCong.TongCong;
+						tongCong1 += ngayCong.TongCong_4008;
 						tongPC1 += ngayCong.PhuCaps._TongPC;
 						var listPhep = (ngayCong.DSVang.Where(item => item.MaLV_Code.ToUpper() == "P").ToList());
 						if (listPhep.Count > 0) tongPhep1 += listPhep.Sum(item1 => item1.WorkingDay);

@@ -203,8 +203,8 @@ namespace ChamCong_v04.DTO {
 
 	public struct ThongKeCong_PC {
 		public float Cong_Congnhat;
-		public float TongNgayLV;//ver4.0.0.1
-		public float TongNgayLV4008;//ver4.0.0.1
+		//public float TongNgayLV;//ver4.0.0.1
+		public float TongNgayLV4008;//ver4.0.0.8
 		public float TongCongDinhMuc8Tieng;//ver 4.0.0.8
 		public float TongCongTichLuy;//ver 4.0.0.8
 		public float TongTruCongTreVR;//ver 4.0.0.8
@@ -221,7 +221,6 @@ namespace ChamCong_v04.DTO {
 		public float CongCV; // công chờ việc bao gồm tự động tính và khai báo, trải qua 2 bước : +khai báo, sau đó tính tự động
 		public float CongCV_KB;// công chờ việc được khai báo trước
 		public float CongCV_Auto;// công chờ việc tự động tính theo công chuẩn
-		public float CongCVTreSom;
 		public float BHXH;
 		public float H_CT_PT;
 		public float PTDT;

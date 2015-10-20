@@ -161,7 +161,8 @@ namespace ChamCong_v04.UI.TinhLuong {
 					{
 						nv.ThongKeThang.CongCV_Auto = congChuanThang -
 														  /*(nv.ThongKeThang.Cong + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + //ver4.0.0.0*/
-														  (nv.ThongKeThang.TongNgayLV + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + //ver4.0.0.1
+														  /*(nv.ThongKeThang.TongNgayLV + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + //ver4.0.0.1*/
+														  (nv.ThongKeThang.TongNgayLV4008 + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + //ver4.0.0.1
 														   nv.ThongKeThang.BHXH + nv.ThongKeThang.H_CT_PT +
 														   nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo + nv.ThongKeThang.CongCV_KB);//DANGLAM
 						if (nv.ThongKeThang.CongCV_Auto < 0f) nv.ThongKeThang.CongCV_Auto = 0f;
