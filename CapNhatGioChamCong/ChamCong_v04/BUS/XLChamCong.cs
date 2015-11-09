@@ -805,11 +805,13 @@ namespace ChamCong_v04.BUS {
 				var afterr = ds_Check_A[i + 1];
 				if ((afterr.Time - before.Time) < XL2._10phut) {
 					//info ver 4.0.0.8 // giữ giờ check cuối cùng trừ giờ từ PC
-					if (before.MachineNo < 20 && afterr.MachineNo < 20) {
+					if (before.MachineNo > 20 && afterr.MachineNo > 20 && (afterr.Time - before.Time) < XL2._01phut)
+						i++;
+					else
+					{
 						ds_Check_Trong30ph.Add(before);
 						ds_Check_A.Remove(before);
 					}
-					else i++;
 				}
 				else i++;
 			}
