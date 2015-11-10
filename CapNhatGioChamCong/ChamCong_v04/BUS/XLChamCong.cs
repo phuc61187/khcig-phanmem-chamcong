@@ -94,19 +94,24 @@ namespace ChamCong_v04.BUS {
 			return chkinn.TimeOfDay < XL2._03gio ? chkinn.Date.AddDays(-1) : chkinn.Date;
 		}
 
-		public static void Vao(DateTime timeinn, DateTime onnduty, DateTime chopheptre, bool DuyetChoPhepVaoTre, bool BuGioTre, out DateTime td_batdau_lv, out TimeSpan tre) {
+		public static void Vao(DateTime timeinn, DateTime onnduty, DateTime chopheptre, bool DuyetChoPhepVaoTre, bool BuGioTre, bool VaoTreTinhCV, out DateTime td_batdau_lv, out TimeSpan tre) {
 			if (DuyetChoPhepVaoTre) {
 				td_batdau_lv = onnduty;
 				tre = TimeSpan.Zero;
 			}
 			else {
-				if (chopheptre < timeinn && timeinn - chopheptre > XL2._01phut) {
+				if (VaoTreTinhCV)
+				{
+					td_batdau_lv = onnduty; 
+					tre = TimeSpan.Zero;
+				}
+				else if (chopheptre < timeinn && timeinn - chopheptre > XL2._01phut) {
 					td_batdau_lv = timeinn; //td_batdau_lv = new DateTime(timeinn.Year,timeinn.Month,timeinn.Day, timeinn.Hour,timeinn.Minute,0);
 					tre = timeinn - onnduty;
 					tre = new TimeSpan(tre.Days, tre.Hours, tre.Minutes, 0);
 					if (BuGioTre && tre < XL2._02gio) {
-						tre = XL2._02gio;//todo setting
 						td_batdau_lv = onnduty + XL2._02gio;
+						tre = XL2._02gio;//todo setting
 					}	
 				}
 				else {
@@ -116,20 +121,25 @@ namespace ChamCong_v04.BUS {
 			}
 		}
 
-		public static void Raa(DateTime timeout, DateTime offduty, DateTime chophepsom, bool DuyetChoPhepRaSom, bool BuGioSom, out DateTime td_ketthuc_lv_chuaOT, out TimeSpan som) {
+		public static void Raa(DateTime timeout, DateTime offduty, DateTime chophepsom, bool DuyetChoPhepRaSom, bool BuGioSom, bool RaaSomTinhCV, out DateTime td_ketthuc_lv_chuaOT, out TimeSpan som) {
 			if (DuyetChoPhepRaSom) {
 				td_ketthuc_lv_chuaOT = offduty;
 				som = TimeSpan.Zero;
 			}
 			else {
-				if (timeout < chophepsom && chophepsom - timeout > XL2._01phut) {
+				if (RaaSomTinhCV)
+				{
+					td_ketthuc_lv_chuaOT = offduty;
+					som = TimeSpan.Zero;
+				}
+				else if (timeout < chophepsom && chophepsom - timeout > XL2._01phut) {
 					td_ketthuc_lv_chuaOT = timeout;
 					som = offduty - timeout;
 					som = new TimeSpan(som.Days, som.Hours, som.Minutes, 0);
 					if (BuGioSom && som < XL2._02gio)
 					{
-						som = XL2._02gio;//todo setting
 						td_ketthuc_lv_chuaOT = offduty - XL2._02gio;
+						som = XL2._02gio;//todo setting
 					}
 				}
 				else {
@@ -1121,8 +1131,8 @@ namespace ChamCong_v04.BUS {
 			if (Raa < TD_BD_Ca || Vao > TD_KT_Ca) {
 				return;
 			}
-			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, true, out TD_BD_LV, out TGVaoTre);//todo bỏ true
-			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, true, out TD_KT_LV_TrongCa, out TGRaaSom);//todo bỏ true
+			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, true, VaotreTinhCV, out TD_BD_LV, out TGVaoTre);//todo bỏ true
+			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, true, RaaSomTinhCV, out TD_KT_LV_TrongCa, out TGRaaSom);//todo bỏ true
 			OLai(Raa, TD_KT_Ca, thoidiem_BD_tinhOLai, out TGOLai);
 			Tinh_TGLamViecTrongCa(TD_BD_LV, TD_KT_LV_TrongCa, LunchMin, out TGGioLamViecTrongCa);
 			TD_KT_LV = TD_KT_LV_TrongCa; // giờ chưa qua xác nhận thì kt làm việc là chưa tính OT
