@@ -94,25 +94,24 @@ namespace ChamCong_v04.BUS {
 			return chkinn.TimeOfDay < XL2._03gio ? chkinn.Date.AddDays(-1) : chkinn.Date;
 		}
 
-		public static void Vao(DateTime timeinn, DateTime onnduty, DateTime chopheptre, bool DuyetChoPhepVaoTre, bool BuGioTre, bool VaoTreTinhCV, out DateTime td_batdau_lv, out TimeSpan tre) {
+		public static void Vao(DateTime timeinn, DateTime onnduty, DateTime chopheptre, bool DuyetChoPhepVaoTre, bool VaoTreTinhCV, out DateTime td_batdau_lv, out TimeSpan tre) {
 			if (DuyetChoPhepVaoTre) {
 				td_batdau_lv = onnduty;
 				tre = TimeSpan.Zero;
 			}
-			else {
+			else
+			{
+				var timeinn0s = new DateTime(timeinn.Year, timeinn.Month, timeinn.Day, timeinn.Hour, timeinn.Minute, 0);
 				if (VaoTreTinhCV)
 				{
 					td_batdau_lv = onnduty; 
 					tre = TimeSpan.Zero;
 				}
-				else if (chopheptre < timeinn && timeinn - chopheptre > XL2._01phut) {
-					td_batdau_lv = timeinn; //td_batdau_lv = new DateTime(timeinn.Year,timeinn.Month,timeinn.Day, timeinn.Hour,timeinn.Minute,0);
-					tre = timeinn - onnduty;
-					tre = new TimeSpan(tre.Days, tre.Hours, tre.Minutes, 0);
-					if (BuGioTre && tre < XL2._02gio) {
-						td_batdau_lv = onnduty + XL2._02gio;
-						tre = XL2._02gio;//todo setting
-					}	
+				else if (chopheptre < timeinn0s)
+				{
+					td_batdau_lv = timeinn0s;
+					tre = timeinn0s - onnduty;
+					//tre = new TimeSpan(tre.Days, tre.Hours, tre.Minutes, 0);
 				}
 				else {
 					td_batdau_lv = onnduty;
@@ -121,26 +120,58 @@ namespace ChamCong_v04.BUS {
 			}
 		}
 
-		public static void Raa(DateTime timeout, DateTime offduty, DateTime chophepsom, bool DuyetChoPhepRaSom, bool BuGioSom, bool RaaSomTinhCV, out DateTime td_ketthuc_lv_chuaOT, out TimeSpan som) {
+		public static void XetBuGioTre(bool BuGioTre, DateTime onnduty, ref DateTime td_batdau_lv, ref TimeSpan tre)
+		{
+			if (tre == TimeSpan.Zero) return;
+
+			if (BuGioTre == false) return;
+
+			if (tre <= XL2._02gio) //todo setting
+			{
+				td_batdau_lv = onnduty + XL2._02gio; //todo setting
+				tre = XL2._02gio;//todo setting
+			}
+		}
+
+		public static void XetBuPhepTre (bool BuPhepTre, float CongPhep, DateTime onnduty, ref float CongPhepCongDon, ref DateTime td_batdau_lv, ref TimeSpan tre)
+		{
+			if (tre == TimeSpan.Zero || BuPhepTre == false)
+			{
+				CongPhepCongDon = 0f;
+				return;
+			}
+
+			var temp = onnduty + new TimeSpan(0, Convert.ToInt32((CongPhep * XL2._08gio.TotalMinutes)), 0);
+			CongPhepCongDon = 0f + CongPhep;
+			if (td_batdau_lv > temp)
+			{
+				tre = td_batdau_lv - temp;
+			}
+			else
+			{
+				td_batdau_lv = temp;
+				tre = TimeSpan.Zero;
+			}
+
+		}
+		
+
+		public static void Raa(DateTime timeout, DateTime offduty, DateTime chophepsom, bool DuyetChoPhepRaSom, bool RaaSomTinhCV, out DateTime td_ketthuc_lv_chuaOT, out TimeSpan som) {
 			if (DuyetChoPhepRaSom) {
 				td_ketthuc_lv_chuaOT = offduty;
 				som = TimeSpan.Zero;
 			}
-			else {
+			else
+			{
+				var timeout0s = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
 				if (RaaSomTinhCV)
 				{
 					td_ketthuc_lv_chuaOT = offduty;
 					som = TimeSpan.Zero;
 				}
-				else if (timeout < chophepsom && chophepsom - timeout > XL2._01phut) {
-					td_ketthuc_lv_chuaOT = timeout;
-					som = offduty - timeout;
-					som = new TimeSpan(som.Days, som.Hours, som.Minutes, 0);
-					if (BuGioSom && som < XL2._02gio)
-					{
-						td_ketthuc_lv_chuaOT = offduty - XL2._02gio;
-						som = XL2._02gio;//todo setting
-					}
+				else if (timeout0s < chophepsom) {
+					td_ketthuc_lv_chuaOT = timeout0s;
+					som = offduty - timeout0s;
 				}
 				else {
 					td_ketthuc_lv_chuaOT = offduty;
@@ -150,10 +181,40 @@ namespace ChamCong_v04.BUS {
 			}
 		}
 
+		public static void XetBuGioSom(bool BuGioSom, DateTime offduty, ref DateTime td_ketthuc_lv_chuaOT, ref TimeSpan som) {
+			if (som == TimeSpan.Zero) return;
+
+			if (BuGioSom == false) return;
+
+			if (som <= XL2._02gio) //todo setting
+			{
+				td_ketthuc_lv_chuaOT = offduty - XL2._02gio; //todo setting
+				som = XL2._02gio;//todo setting
+			}
+		}
+
+		public static void XetBuPhepSom(bool BuPhepSom, float CongPhep, DateTime offduty, ref float CongPhepCongDon, ref DateTime td_ketthuc_lv_chuaOT, ref TimeSpan som) {
+			if (som == TimeSpan.Zero || BuPhepSom == false) {
+				CongPhepCongDon = 0f;
+				return;
+			}
+
+			var temp = offduty - new TimeSpan(0, Convert.ToInt32((CongPhep * XL2._08gio.TotalMinutes)), 0);
+			CongPhepCongDon = 0f + CongPhep;
+			if (td_ketthuc_lv_chuaOT < temp) {
+				som = temp - td_ketthuc_lv_chuaOT;
+			}
+			else {
+				td_ketthuc_lv_chuaOT = temp;
+				som = TimeSpan.Zero;
+			}
+
+		}
+
 		public static void OLai(DateTime timeout, DateTime offduty, DateTime batdaulamthem, out TimeSpan olai) {
-			if (batdaulamthem < timeout && timeout - batdaulamthem > XL2._01phut) {
-				olai = timeout - offduty;
-				olai = new TimeSpan(olai.Days, olai.Hours, olai.Minutes, 0);
+			var timeout0s = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
+			if (batdaulamthem < timeout0s) {
+				olai = timeout0s - offduty;
 			}
 			else {
 				olai = TimeSpan.Zero;
@@ -179,8 +240,8 @@ namespace ChamCong_v04.BUS {
 			var BDLamDem = DateTime.MinValue;
 			var KTLamDem = DateTime.MinValue;
 			if (kt_lv_DaCoOT > startNT) {
-				BDLamDem = bd_lv > (startNT + XL2.ChoPhepTre + XL2._01phut) ? bd_lv : startNT;
-				KTLamDem = kt_lv_DaCoOT < (endddNT - XL2.ChoPhepSom - XL2._01phut) ? kt_lv_DaCoOT : endddNT;
+				BDLamDem = bd_lv > (startNT + XL2.ChoPhepTre) ? bd_lv : startNT;
+				KTLamDem = kt_lv_DaCoOT < (endddNT - XL2.ChoPhepSom) ? kt_lv_DaCoOT : endddNT;
 				tempTGLamDem = KTLamDem - BDLamDem;
 			}
 			else tempTGLamDem = TimeSpan.Zero;
@@ -1074,6 +1135,8 @@ namespace ChamCong_v04.BUS {
 			bool tempQuaDem;
 			TinhTG_LV_LVCa3_LamThem1Ca(CIO.ThuocNgayCong, CIO.HaveINOUT, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
 				CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,//ver 4.0.0.4	
+				CIO.ChoBuGioTre, CIO.ChoBuGioSom,//ver 4.0.0.8	
+				CIO.ChoBuPhepTre, CIO.BuCongPhepTre, ref CIO.BuCongPhepTreCongDon, CIO.ChoBuPhepSom, CIO.BuCongPhepSom, ref CIO.BuCongPhepSomCongDon,//ver 4.0.0.8	
 				CIO.Vao.Time, CIO.Raa.Time, ca.Duty.Onn, ca.Duty.Off, ca.chophepTreTS, ca.chophepSomTS, ca.batdaulamthemTS, ca.LunchMin, CIO.TG.OTCa,
 				startNT, endddNT,//ver 4.0.0.4
 				out CIO.TD.BD_LV, out CIO.TD.KT_LV, out CIO.TD.KT_LV_ChuaOT, out CIO.TD.KT_LV_DaCoOT, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
@@ -1086,6 +1149,8 @@ namespace ChamCong_v04.BUS {
 		public static void TinhTG_LV_LVCa3_LamThem1Ca(DateTime ThuocNgayCong, int HaveINOUT, Boolean DaXN,
 			bool KoTruVaoTre, bool KoTruRaaSom,
 			bool VaotreTinhCV, bool RaaSomTinhCV, //ver 4.0.0.4	
+			bool ChoBuGioVaoTre, bool ChoBuGioRaaSom, //ver 4.0.0.8	
+			bool ChoBuPhepVaoTre, float CongPhepTre,ref float CongBuPhepTre, bool ChoBuPhepRaaSom, float CongPhepSom,ref float CongBuPhepSom, //ver 4.0.0.8	
 			DateTime Vao, DateTime Raa,
 			TimeSpan DutyOnn, TimeSpan DutyOff, TimeSpan chophepTreTS, TimeSpan chophepSomTS, TimeSpan batdaulamthemTS,
 			TimeSpan LunchMin, TimeSpan OTCa,
@@ -1131,8 +1196,13 @@ namespace ChamCong_v04.BUS {
 			if (Raa < TD_BD_Ca || Vao > TD_KT_Ca) {
 				return;
 			}
-			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, true, VaotreTinhCV, out TD_BD_LV, out TGVaoTre);//todo bỏ true
-			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, true, RaaSomTinhCV, out TD_KT_LV_TrongCa, out TGRaaSom);//todo bỏ true
+			var temp = 0f;
+			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, VaotreTinhCV, out TD_BD_LV, out TGVaoTre);//todo bỏ true
+			XL.XetBuGioTre(ChoBuGioVaoTre, TD_BD_Ca, ref TD_BD_LV, ref TGVaoTre);
+			XL.XetBuPhepTre(ChoBuPhepVaoTre, CongPhepTre, TD_BD_Ca, ref CongBuPhepTre, ref TD_BD_LV, ref TGVaoTre);
+			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, RaaSomTinhCV, out TD_KT_LV_TrongCa, out TGRaaSom);//todo bỏ true
+			XL.XetBuGioSom(ChoBuGioRaaSom, TD_KT_Ca, ref TD_KT_LV_TrongCa, ref TGRaaSom);
+			XL.XetBuPhepSom(ChoBuPhepRaaSom, CongPhepSom, TD_KT_Ca, ref CongBuPhepSom, ref TD_KT_LV_TrongCa, ref TGRaaSom);
 			OLai(Raa, TD_KT_Ca, thoidiem_BD_tinhOLai, out TGOLai);
 			Tinh_TGLamViecTrongCa(TD_BD_LV, TD_KT_LV_TrongCa, LunchMin, out TGGioLamViecTrongCa);
 			TD_KT_LV = TD_KT_LV_TrongCa; // giờ chưa qua xác nhận thì kt làm việc là chưa tính OT
@@ -1236,7 +1306,7 @@ namespace ChamCong_v04.BUS {
 				if (CIO.HaveINOUT < 0) {
 					continue;
 				}
-				XacDinhThoiDiemLamViec(CIO);
+				//XacDinhThoiDiemLamViec(CIO);
 				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
 				if (CIO.QuaDem) ngayCong.QuaDem = true; // set qua đêm nếu có
 				CIO.ChoBuGioTre = true;
@@ -1248,14 +1318,12 @@ namespace ChamCong_v04.BUS {
 				CIO.TruCongTre = truCongTre;
 				CIO.TruCongSom = truCongSom;
 
-				float cong_trong_ca = CIO.ThuocCa.Workingday - CIO.TruCongTre - CIO.TruCongSom;
+				float cong_trong_ca = CIO.ThuocCa.Workingday - CIO.TruCongTre - CIO.TruCongSom - CIO.BuCongPhepTreCongDon-CIO.BuCongPhepSomCongDon;
 				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours / 8f), 2));
 				CIO.CongTrongCa = cong_trong_ca;
 				CIO.CongNgoaiCa = cong_ngoai_ca;
 
 				CIO.Cong = CIO.CongTrongCa + CIO.CongNgoaiCa;
-				if (CIO.VaoTreTinhCV) CIO.TruCongTre = 0f;
-				if (CIO.RaaSomTinhCV) CIO.TruCongSom = 0f;
 
 				CIO.TruCongTreVR = CIO.TruCongTre;
 				CIO.TruCongSomVR = CIO.TruCongSom;
@@ -1300,31 +1368,6 @@ namespace ChamCong_v04.BUS {
 				ngayCong.CongTichLuy = ngayCong.TongCong_4008 - 1f;
 			}
 
-			if (ngayCong.DSVang != null && ngayCong.DSVang.Count > 0) {
-				var buPhep = (from cLoaiVang item in ngayCong.DSVang where item.MaLV_Code == "P" select item).Sum(item1 => item1.WorkingDay);
-				if (buPhep > 0f) {
-					var congPhepDu = buPhep - ngayCong.TruCongTreVR;
-					if (congPhepDu < 0f) {
-						ngayCong.TruCongTreVR = Math.Abs(congPhepDu);
-						buPhep = 0f;
-					}
-					else {
-						ngayCong.TruCongTreVR = 0f;
-						buPhep = congPhepDu;
-					}
-				}
-				if (buPhep > 0f) {
-					var congPhepDu = buPhep - ngayCong.TruCongSomVR;
-					if (congPhepDu < 0f) {
-						ngayCong.TruCongSomVR = Math.Abs(congPhepDu);
-						buPhep = 0f;
-					}
-					else {
-						ngayCong.TruCongSomVR = 0f;
-						buPhep = congPhepDu;
-					}
-				}
-			}
 			#endregion
 		}
 

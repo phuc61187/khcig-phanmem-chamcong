@@ -300,9 +300,9 @@ namespace ChamCong_v04.UI.XacNhan {
 				DateTime td_kt_ca3va1 = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
 
 				XL.Vao(timevao, td_bd_ca3, CIO.ThuocNgayCong.Add(currShift.chophepTreTS),
-					bDuyetCPTre, out td_bd_lv, out tempTre);
+					bDuyetCPTre, true, out td_bd_lv, out tempTre);
 				XL.Raa(timeraa, td_kt_ca3va1, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, out td_kt_lv_chuaOT, out tempSom);
+					bDuyetCPSom, true, out td_kt_lv_chuaOT, out tempSom);
 				XL.LamThem(td_kt_lv_chuaOT, new TimeSpan(0, soPhutLamThem, 0), out td_kt_lv_DaCoOT);
 				if (td_bd_lv > td_bd_ca3 + XL2._04gio || td_kt_lv_DaCoOT < td_bd_ca1 + XL2._02gio) {
 					MessageBox.Show(Resources.Text_KhongTheXacNhanCaTach_KoDuDieuKienTach, Resources.Caption_ThongBao, MessageBoxButtons.OK);
@@ -317,7 +317,7 @@ namespace ChamCong_v04.UI.XacNhan {
 				TimeSpan tempSom, tempOLai;
 
 				XL.Raa(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, out td_kt_lv_chuaOT, out tempSom);
+					bDuyetCPSom, true, out td_kt_lv_chuaOT, out tempSom);
 				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.AfterOTMin), out tempOLai);
 				if (soPhutLamThem > tempOLai.TotalMinutes)
 					soPhutLamThem = Convert.ToInt32(tempOLai.TotalMinutes);
@@ -405,12 +405,15 @@ namespace ChamCong_v04.UI.XacNhan {
 
 			#endregion
 
+			//ver 4.0.0.8
+			float temp1=0.25f, temp2=0.25f; //todo
 			// tính giờ làm việc
 			DateTime TD_BD_LV, TD_KT_LV, TD_KT_LV_ChuaOT, TD_KT_LV_DaCoOT, TD_BD_LV_Ca3, TD_KT_LV_Ca3;
 			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGOLai, TGLamThem, TGLamBanDem, TGGioLamViecTrongCa;
 			bool QuaDem;
 			XL.TinhTG_LV_LVCa3_LamThem1Ca(Ngay, 0, true, bDuyetVaoTre, bDuyetRaaSom,
 				bVaoTreLaCV, bRaaSomLaCV, //ver 4.0.0.4	
+				true, true, false,0f,ref temp1, false,0f,ref temp2, //ver 4.0.0.8 todo
 				timevao, timeraa, selectedShift.Duty.Onn, selectedShift.Duty.Off,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
 				selectedShift.chophepTreTS, selectedShift.chophepSomTS, selectedShift.batdaulamthemTS, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
 				nv.StartNT, nv.EndddNT,//ver 4.0.0.4

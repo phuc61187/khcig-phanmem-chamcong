@@ -93,13 +93,23 @@
 			this.tbTTGioVao = new System.Windows.Forms.TextBox();
 			this.tbTTOLaiThem = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
+			this.checkXNBuGioTre = new System.Windows.Forms.CheckBox();
+			this.checkXNBuGioSom = new System.Windows.Forms.CheckBox();
+			this.checkXNBuPhepTre = new System.Windows.Forms.CheckBox();
+			this.checkXNBuPhepSom = new System.Windows.Forms.CheckBox();
+			this.cbCongPhepTre = new System.Windows.Forms.ComboBox();
+			this.cbCongPhepSom = new System.Windows.Forms.ComboBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.checkTTBuGioTre = new System.Windows.Forms.CheckBox();
+			this.checkTTBuGioSom = new System.Windows.Forms.CheckBox();
+			this.checkTTBuPhepTre = new System.Windows.Forms.CheckBox();
+			this.checkTTBuPhepSom = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdGioCoLamThem)).BeginInit();
 			this.gbChiTiet.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numPhutTinhLamThem)).BeginInit();
@@ -267,7 +277,13 @@
 			// 
 			// gbChiTiet
 			// 
-			this.gbChiTiet.BackColor = System.Drawing.SystemColors.Control;
+			this.gbChiTiet.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.gbChiTiet.Controls.Add(this.cbCongPhepSom);
+			this.gbChiTiet.Controls.Add(this.cbCongPhepTre);
+			this.gbChiTiet.Controls.Add(this.checkXNBuGioSom);
+			this.gbChiTiet.Controls.Add(this.checkXNBuPhepSom);
+			this.gbChiTiet.Controls.Add(this.checkXNBuPhepTre);
+			this.gbChiTiet.Controls.Add(this.checkXNBuGioTre);
 			this.gbChiTiet.Controls.Add(this.maskPhutTinhLamThem);
 			this.gbChiTiet.Controls.Add(this.tbXNGhiChu);
 			this.gbChiTiet.Controls.Add(this.checkXNRaaSomTinhCV);
@@ -306,7 +322,7 @@
 			// 
 			// maskPhutTinhLamThem
 			// 
-			this.maskPhutTinhLamThem.Location = new System.Drawing.Point(233, 165);
+			this.maskPhutTinhLamThem.Location = new System.Drawing.Point(162, 198);
 			this.maskPhutTinhLamThem.Mask = "00:00";
 			this.maskPhutTinhLamThem.Name = "maskPhutTinhLamThem";
 			this.maskPhutTinhLamThem.Size = new System.Drawing.Size(50, 21);
@@ -316,10 +332,10 @@
 			// tbXNGhiChu
 			// 
 			this.tbXNGhiChu.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.tbXNGhiChu.Location = new System.Drawing.Point(98, 241);
+			this.tbXNGhiChu.Location = new System.Drawing.Point(98, 265);
 			this.tbXNGhiChu.Multiline = true;
 			this.tbXNGhiChu.Name = "tbXNGhiChu";
-			this.tbXNGhiChu.Size = new System.Drawing.Size(207, 40);
+			this.tbXNGhiChu.Size = new System.Drawing.Size(207, 27);
 			this.tbXNGhiChu.TabIndex = 14;
 			// 
 			// checkXNRaaSomTinhCV
@@ -327,12 +343,12 @@
 			this.checkXNRaaSomTinhCV.AutoSize = true;
 			this.checkXNRaaSomTinhCV.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkXNRaaSomTinhCV.ForeColor = System.Drawing.Color.Black;
-			this.checkXNRaaSomTinhCV.Location = new System.Drawing.Point(162, 117);
+			this.checkXNRaaSomTinhCV.Location = new System.Drawing.Point(162, 114);
 			this.checkXNRaaSomTinhCV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNRaaSomTinhCV.Name = "checkXNRaaSomTinhCV";
-			this.checkXNRaaSomTinhCV.Size = new System.Drawing.Size(161, 19);
+			this.checkXNRaaSomTinhCV.Size = new System.Drawing.Size(102, 19);
 			this.checkXNRaaSomTinhCV.TabIndex = 3;
-			this.checkXNRaaSomTinhCV.Text = "Ra sớm tính CV (nếu có)";
+			this.checkXNRaaSomTinhCV.Text = "Ra sớm tự do";
 			this.toolTipHint.SetToolTip(this.checkXNRaaSomTinhCV, "Đánh dấu nếu vào làm\r\ntheo yêu cầu, điều động\r\ncủa quản lý (thời gian \r\nra sớm sẽ" +
         " tính là chờ việc \r\nnếu chưa đủ công chuẩn)");
 			this.checkXNRaaSomTinhCV.UseVisualStyleBackColor = true;
@@ -342,12 +358,12 @@
 			this.checkXNVaoTreTinhCV.AutoSize = true;
 			this.checkXNVaoTreTinhCV.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkXNVaoTreTinhCV.ForeColor = System.Drawing.Color.Black;
-			this.checkXNVaoTreTinhCV.Location = new System.Drawing.Point(5, 117);
+			this.checkXNVaoTreTinhCV.Location = new System.Drawing.Point(5, 114);
 			this.checkXNVaoTreTinhCV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNVaoTreTinhCV.Name = "checkXNVaoTreTinhCV";
-			this.checkXNVaoTreTinhCV.Size = new System.Drawing.Size(154, 19);
+			this.checkXNVaoTreTinhCV.Size = new System.Drawing.Size(95, 19);
 			this.checkXNVaoTreTinhCV.TabIndex = 3;
-			this.checkXNVaoTreTinhCV.Text = "Vào trễ tính CV (nếu có)";
+			this.checkXNVaoTreTinhCV.Text = "Vào trễ tự do";
 			this.toolTipHint.SetToolTip(this.checkXNVaoTreTinhCV, "Đánh dấu nếu vào làm\r\ntheo yêu cầu, điều động\r\ncủa quản lý (thời gian \r\nvào trễ s" +
         "ẽ tính là chờ việc \r\nnếu chưa đủ công chuẩn)");
 			this.checkXNVaoTreTinhCV.UseVisualStyleBackColor = true;
@@ -362,7 +378,7 @@
             "Xác nhận có tính phụ cấp tăng cường",
             "Duyệt cho phép trễ/sớm",
             "Lý do khác"});
-			this.cbXNLyDo.Location = new System.Drawing.Point(98, 217);
+			this.cbXNLyDo.Location = new System.Drawing.Point(98, 241);
 			this.cbXNLyDo.Name = "cbXNLyDo";
 			this.cbXNLyDo.Size = new System.Drawing.Size(207, 23);
 			this.cbXNLyDo.TabIndex = 13;
@@ -381,7 +397,7 @@
 			// linkLabelTinhToan
 			// 
 			this.linkLabelTinhToan.AutoSize = true;
-			this.linkLabelTinhToan.Location = new System.Drawing.Point(6, 147);
+			this.linkLabelTinhToan.Location = new System.Drawing.Point(6, 290);
 			this.linkLabelTinhToan.Name = "linkLabelTinhToan";
 			this.linkLabelTinhToan.Size = new System.Drawing.Size(59, 15);
 			this.linkLabelTinhToan.TabIndex = 8;
@@ -408,7 +424,7 @@
 			// 
 			this.btnXacNhan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnXacNhan.ForeColor = System.Drawing.Color.Blue;
-			this.btnXacNhan.Location = new System.Drawing.Point(97, 286);
+			this.btnXacNhan.Location = new System.Drawing.Point(97, 297);
 			this.btnXacNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnXacNhan.Name = "btnXacNhan";
 			this.btnXacNhan.Size = new System.Drawing.Size(83, 27);
@@ -422,7 +438,7 @@
 			// 
 			this.btnThoat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnThoat.ForeColor = System.Drawing.Color.Blue;
-			this.btnThoat.Location = new System.Drawing.Point(222, 286);
+			this.btnThoat.Location = new System.Drawing.Point(222, 297);
 			this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnThoat.Name = "btnThoat";
 			this.btnThoat.Size = new System.Drawing.Size(83, 27);
@@ -436,12 +452,12 @@
 			this.checkXNTinhPC50.AutoSize = true;
 			this.checkXNTinhPC50.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.checkXNTinhPC50.ForeColor = System.Drawing.Color.DarkRed;
-			this.checkXNTinhPC50.Location = new System.Drawing.Point(78, 192);
+			this.checkXNTinhPC50.Location = new System.Drawing.Point(5, 220);
 			this.checkXNTinhPC50.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNTinhPC50.Name = "checkXNTinhPC50";
-			this.checkXNTinhPC50.Size = new System.Drawing.Size(173, 19);
+			this.checkXNTinhPC50.Size = new System.Drawing.Size(317, 19);
 			this.checkXNTinhPC50.TabIndex = 12;
-			this.checkXNTinhPC50.Text = "Được tính PC tăng cường";
+			this.checkXNTinhPC50.Text = "Được tính Phụ cấp tăng cường (nếu làm trên 8 giờ)";
 			this.toolTipHint.SetToolTip(this.checkXNTinhPC50, "Đánh dấu nếu cho phép tính\r\nPC tăng cường 50% trường \r\nhợp ngày làm trên 8 tiếng." +
         "");
 			this.checkXNTinhPC50.UseVisualStyleBackColor = true;
@@ -454,7 +470,7 @@
             0,
             0,
             0});
-			this.numPhutTinhLamThem.Location = new System.Drawing.Point(14, 292);
+			this.numPhutTinhLamThem.Location = new System.Drawing.Point(14, 303);
 			this.numPhutTinhLamThem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.numPhutTinhLamThem.Maximum = new decimal(new int[] {
             1000,
@@ -503,7 +519,7 @@
 			// tbXN_OLaiThem
 			// 
 			this.tbXN_OLaiThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.tbXN_OLaiThem.Location = new System.Drawing.Point(233, 141);
+			this.tbXN_OLaiThem.Location = new System.Drawing.Point(162, 177);
 			this.tbXN_OLaiThem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.tbXN_OLaiThem.Name = "tbXN_OLaiThem";
 			this.tbXN_OLaiThem.ReadOnly = true;
@@ -526,12 +542,12 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.label7.Location = new System.Drawing.Point(94, 145);
+			this.label7.Location = new System.Drawing.Point(21, 180);
 			this.label7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(75, 15);
+			this.label7.Size = new System.Drawing.Size(108, 15);
 			this.label7.TabIndex = 0;
-			this.label7.Text = "Ở lại cần XN";
+			this.label7.Text = "Ở lại cần xác nhận";
 			// 
 			// tbXNCa
 			// 
@@ -548,7 +564,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.label4.Location = new System.Drawing.Point(4, 220);
+			this.label4.Location = new System.Drawing.Point(4, 244);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(88, 15);
@@ -581,7 +597,7 @@
 			// 
 			this.checkXNLamThem.AutoSize = true;
 			this.checkXNLamThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.checkXNLamThem.Location = new System.Drawing.Point(78, 166);
+			this.checkXNLamThem.Location = new System.Drawing.Point(5, 200);
 			this.checkXNLamThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNLamThem.Name = "checkXNLamThem";
 			this.checkXNLamThem.Size = new System.Drawing.Size(132, 19);
@@ -623,7 +639,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.label5.Location = new System.Drawing.Point(2, 244);
+			this.label5.Location = new System.Drawing.Point(2, 268);
 			this.label5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(97, 15);
@@ -666,7 +682,7 @@
 			// tbTTLamThem
 			// 
 			this.tbTTLamThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.tbTTLamThem.Location = new System.Drawing.Point(98, 197);
+			this.tbTTLamThem.Location = new System.Drawing.Point(267, 106);
 			this.tbTTLamThem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.tbTTLamThem.Name = "tbTTLamThem";
 			this.tbTTLamThem.ReadOnly = true;
@@ -703,12 +719,12 @@
 			this.checkTTVaoTreTinhCV.Enabled = false;
 			this.checkTTVaoTreTinhCV.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkTTVaoTreTinhCV.ForeColor = System.Drawing.Color.Black;
-			this.checkTTVaoTreTinhCV.Location = new System.Drawing.Point(5, 154);
+			this.checkTTVaoTreTinhCV.Location = new System.Drawing.Point(5, 146);
 			this.checkTTVaoTreTinhCV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTVaoTreTinhCV.Name = "checkTTVaoTreTinhCV";
-			this.checkTTVaoTreTinhCV.Size = new System.Drawing.Size(154, 19);
+			this.checkTTVaoTreTinhCV.Size = new System.Drawing.Size(95, 19);
 			this.checkTTVaoTreTinhCV.TabIndex = 3;
-			this.checkTTVaoTreTinhCV.Text = "Vào trễ tính CV (nếu có)";
+			this.checkTTVaoTreTinhCV.Text = "Vào trễ tự do";
 			this.toolTipHint.SetToolTip(this.checkTTVaoTreTinhCV, "Vào trễ sẽ KHÔNG bị trừ công chờ việc (nếu có)");
 			this.checkTTVaoTreTinhCV.UseVisualStyleBackColor = true;
 			// 
@@ -718,12 +734,12 @@
 			this.checkTTRaaSomTinhCV.Enabled = false;
 			this.checkTTRaaSomTinhCV.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkTTRaaSomTinhCV.ForeColor = System.Drawing.Color.Black;
-			this.checkTTRaaSomTinhCV.Location = new System.Drawing.Point(162, 154);
+			this.checkTTRaaSomTinhCV.Location = new System.Drawing.Point(162, 146);
 			this.checkTTRaaSomTinhCV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTRaaSomTinhCV.Name = "checkTTRaaSomTinhCV";
-			this.checkTTRaaSomTinhCV.Size = new System.Drawing.Size(161, 19);
+			this.checkTTRaaSomTinhCV.Size = new System.Drawing.Size(102, 19);
 			this.checkTTRaaSomTinhCV.TabIndex = 3;
-			this.checkTTRaaSomTinhCV.Text = "Ra sớm tính CV (nếu có)";
+			this.checkTTRaaSomTinhCV.Text = "Ra sớm tự do";
 			this.toolTipHint.SetToolTip(this.checkTTRaaSomTinhCV, "Ra sớm sẽ KHÔNG bị trừ công chờ việc (nếu có)");
 			this.checkTTRaaSomTinhCV.UseVisualStyleBackColor = true;
 			// 
@@ -748,9 +764,13 @@
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+			this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.groupBox1.Controls.Add(this.tbTTTenNV);
 			this.groupBox1.Controls.Add(this.checkTTRaaSomTinhCV);
+			this.groupBox1.Controls.Add(this.checkTTBuGioSom);
+			this.groupBox1.Controls.Add(this.checkTTBuPhepSom);
+			this.groupBox1.Controls.Add(this.checkTTBuPhepTre);
+			this.groupBox1.Controls.Add(this.checkTTBuGioTre);
 			this.groupBox1.Controls.Add(this.checkTTVaoTreTinhCV);
 			this.groupBox1.Controls.Add(this.checkTTChoPhepSom);
 			this.groupBox1.Controls.Add(this.checkTTChoPhepTre);
@@ -799,7 +819,7 @@
 			this.checkTTChoPhepSom.Enabled = false;
 			this.checkTTChoPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkTTChoPhepSom.ForeColor = System.Drawing.Color.Black;
-			this.checkTTChoPhepSom.Location = new System.Drawing.Point(162, 131);
+			this.checkTTChoPhepSom.Location = new System.Drawing.Point(162, 127);
 			this.checkTTChoPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTChoPhepSom.Name = "checkTTChoPhepSom";
 			this.checkTTChoPhepSom.Size = new System.Drawing.Size(154, 19);
@@ -813,7 +833,7 @@
 			this.checkTTChoPhepTre.Enabled = false;
 			this.checkTTChoPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkTTChoPhepTre.ForeColor = System.Drawing.Color.Black;
-			this.checkTTChoPhepTre.Location = new System.Drawing.Point(5, 131);
+			this.checkTTChoPhepTre.Location = new System.Drawing.Point(5, 127);
 			this.checkTTChoPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTChoPhepTre.Name = "checkTTChoPhepTre";
 			this.checkTTChoPhepTre.Size = new System.Drawing.Size(150, 19);
@@ -827,12 +847,12 @@
 			this.checkTTTinhPC50.Enabled = false;
 			this.checkTTTinhPC50.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.checkTTTinhPC50.ForeColor = System.Drawing.Color.DarkRed;
-			this.checkTTTinhPC50.Location = new System.Drawing.Point(162, 199);
+			this.checkTTTinhPC50.Location = new System.Drawing.Point(5, 203);
 			this.checkTTTinhPC50.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTTinhPC50.Name = "checkTTTinhPC50";
-			this.checkTTTinhPC50.Size = new System.Drawing.Size(155, 19);
+			this.checkTTTinhPC50.Size = new System.Drawing.Size(314, 19);
 			this.checkTTTinhPC50.TabIndex = 3;
-			this.checkTTTinhPC50.Text = "Được tính PC T.Cường";
+			this.checkTTTinhPC50.Text = "Được tính Phụ cấp tăng cường(nếu làm trên 8 giờ)";
 			this.checkTTTinhPC50.UseVisualStyleBackColor = true;
 			// 
 			// tbTTThuocCa
@@ -870,12 +890,13 @@
 			// tbTTOLaiThem
 			// 
 			this.tbTTOLaiThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.tbTTOLaiThem.Location = new System.Drawing.Point(98, 176);
+			this.tbTTOLaiThem.Location = new System.Drawing.Point(269, 149);
 			this.tbTTOLaiThem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.tbTTOLaiThem.Name = "tbTTOLaiThem";
 			this.tbTTOLaiThem.ReadOnly = true;
 			this.tbTTOLaiThem.Size = new System.Drawing.Size(50, 21);
 			this.tbTTOLaiThem.TabIndex = 5;
+			this.tbTTOLaiThem.Visible = false;
 			// 
 			// label12
 			// 
@@ -888,22 +909,11 @@
 			this.label12.TabIndex = 0;
 			this.label12.Text = "Giờ làm việc";
 			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.label15.Location = new System.Drawing.Point(2, 180);
-			this.label15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(75, 15);
-			this.label15.TabIndex = 0;
-			this.label15.Text = "Ở lại cần XN";
-			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
 			this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.label13.Location = new System.Drawing.Point(1, 201);
+			this.label13.Location = new System.Drawing.Point(170, 109);
 			this.label13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(97, 15);
@@ -966,6 +976,156 @@
 			this.label21.TabIndex = 0;
 			this.label21.Text = "Vào";
 			// 
+			// checkXNBuGioTre
+			// 
+			this.checkXNBuGioTre.AutoSize = true;
+			this.checkXNBuGioTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuGioTre.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuGioTre.Location = new System.Drawing.Point(5, 134);
+			this.checkXNBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuGioTre.Name = "checkXNBuGioTre";
+			this.checkXNBuGioTre.Size = new System.Drawing.Size(101, 19);
+			this.checkXNBuGioTre.TabIndex = 18;
+			this.checkXNBuGioTre.Text = "Bù giờ vào trễ";
+			this.toolTipHint.SetToolTip(this.checkXNBuGioTre, "Đánh dấu nếu vào làm\r\ntheo yêu cầu, điều động\r\ncủa quản lý (thời gian \r\nvào trễ s" +
+        "ẽ tính là chờ việc \r\nnếu chưa đủ công chuẩn)");
+			this.checkXNBuGioTre.UseVisualStyleBackColor = true;
+			// 
+			// checkXNBuGioSom
+			// 
+			this.checkXNBuGioSom.AutoSize = true;
+			this.checkXNBuGioSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuGioSom.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuGioSom.Location = new System.Drawing.Point(162, 134);
+			this.checkXNBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuGioSom.Name = "checkXNBuGioSom";
+			this.checkXNBuGioSom.Size = new System.Drawing.Size(105, 19);
+			this.checkXNBuGioSom.TabIndex = 18;
+			this.checkXNBuGioSom.Text = "Bù giờ ra sớm";
+			this.checkXNBuGioSom.UseVisualStyleBackColor = true;
+			// 
+			// checkXNBuPhepTre
+			// 
+			this.checkXNBuPhepTre.AutoSize = true;
+			this.checkXNBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuPhepTre.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuPhepTre.Location = new System.Drawing.Point(5, 154);
+			this.checkXNBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuPhepTre.Name = "checkXNBuPhepTre";
+			this.checkXNBuPhepTre.Size = new System.Drawing.Size(90, 19);
+			this.checkXNBuPhepTre.TabIndex = 18;
+			this.checkXNBuPhepTre.Text = "Bù Phép trễ";
+			this.checkXNBuPhepTre.UseVisualStyleBackColor = true;
+			// 
+			// checkXNBuPhepSom
+			// 
+			this.checkXNBuPhepSom.AutoSize = true;
+			this.checkXNBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuPhepSom.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuPhepSom.Location = new System.Drawing.Point(162, 154);
+			this.checkXNBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuPhepSom.Name = "checkXNBuPhepSom";
+			this.checkXNBuPhepSom.Size = new System.Drawing.Size(102, 19);
+			this.checkXNBuPhepSom.TabIndex = 18;
+			this.checkXNBuPhepSom.Text = "Bù Phép sớm";
+			this.checkXNBuPhepSom.UseVisualStyleBackColor = true;
+			// 
+			// cbCongPhepTre
+			// 
+			this.cbCongPhepTre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCongPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.cbCongPhepTre.FormattingEnabled = true;
+			this.cbCongPhepTre.Items.AddRange(new object[] {
+            "0.25",
+            "0.5",
+            "0.75"});
+			this.cbCongPhepTre.Location = new System.Drawing.Point(98, 150);
+			this.cbCongPhepTre.Name = "cbCongPhepTre";
+			this.cbCongPhepTre.Size = new System.Drawing.Size(50, 23);
+			this.cbCongPhepTre.TabIndex = 19;
+			// 
+			// cbCongPhepSom
+			// 
+			this.cbCongPhepSom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCongPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.cbCongPhepSom.FormattingEnabled = true;
+			this.cbCongPhepSom.Items.AddRange(new object[] {
+            "0.25",
+            "0.5",
+            "0.75"});
+			this.cbCongPhepSom.Location = new System.Drawing.Point(263, 150);
+			this.cbCongPhepSom.Name = "cbCongPhepSom";
+			this.cbCongPhepSom.Size = new System.Drawing.Size(48, 23);
+			this.cbCongPhepSom.TabIndex = 20;
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.label15.Location = new System.Drawing.Point(253, 175);
+			this.label15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(75, 15);
+			this.label15.TabIndex = 0;
+			this.label15.Text = "Ở lại cần XN";
+			this.label15.Visible = false;
+			// 
+			// checkTTBuGioTre
+			// 
+			this.checkTTBuGioTre.AutoSize = true;
+			this.checkTTBuGioTre.Enabled = false;
+			this.checkTTBuGioTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuGioTre.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuGioTre.Location = new System.Drawing.Point(5, 165);
+			this.checkTTBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuGioTre.Name = "checkTTBuGioTre";
+			this.checkTTBuGioTre.Size = new System.Drawing.Size(101, 19);
+			this.checkTTBuGioTre.TabIndex = 3;
+			this.checkTTBuGioTre.Text = "Bù giờ vào trễ";
+			this.checkTTBuGioTre.UseVisualStyleBackColor = true;
+			// 
+			// checkTTBuGioSom
+			// 
+			this.checkTTBuGioSom.AutoSize = true;
+			this.checkTTBuGioSom.Enabled = false;
+			this.checkTTBuGioSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuGioSom.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuGioSom.Location = new System.Drawing.Point(162, 165);
+			this.checkTTBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuGioSom.Name = "checkTTBuGioSom";
+			this.checkTTBuGioSom.Size = new System.Drawing.Size(105, 19);
+			this.checkTTBuGioSom.TabIndex = 3;
+			this.checkTTBuGioSom.Text = "Bù giờ ra sớm";
+			this.checkTTBuGioSom.UseVisualStyleBackColor = true;
+			// 
+			// checkTTBuPhepTre
+			// 
+			this.checkTTBuPhepTre.AutoSize = true;
+			this.checkTTBuPhepTre.Enabled = false;
+			this.checkTTBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuPhepTre.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuPhepTre.Location = new System.Drawing.Point(5, 184);
+			this.checkTTBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuPhepTre.Name = "checkTTBuPhepTre";
+			this.checkTTBuPhepTre.Size = new System.Drawing.Size(90, 19);
+			this.checkTTBuPhepTre.TabIndex = 3;
+			this.checkTTBuPhepTre.Text = "Bù Phép trễ";
+			this.checkTTBuPhepTre.UseVisualStyleBackColor = true;
+			// 
+			// checkTTBuPhepSom
+			// 
+			this.checkTTBuPhepSom.AutoSize = true;
+			this.checkTTBuPhepSom.Enabled = false;
+			this.checkTTBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuPhepSom.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuPhepSom.Location = new System.Drawing.Point(162, 184);
+			this.checkTTBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuPhepSom.Name = "checkTTBuPhepSom";
+			this.checkTTBuPhepSom.Size = new System.Drawing.Size(102, 19);
+			this.checkTTBuPhepSom.TabIndex = 3;
+			this.checkTTBuPhepSom.Text = "Bù Phép sớm";
+			this.checkTTBuPhepSom.UseVisualStyleBackColor = true;
+			// 
 			// frm_XN_Ca
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -974,7 +1134,7 @@
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.Name = "frm_XN_Ca";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Xác nhận ca";
+			this.Text = " ";
 			this.Load += new System.EventHandler(this.frmXacNhanTangCa_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dgrdGioCoLamThem)).EndInit();
 			this.gbChiTiet.ResumeLayout(false);
@@ -1026,7 +1186,6 @@
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.CheckBox checkTTTinhPC50;
 		private System.Windows.Forms.TextBox tbTTOLaiThem;
-		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.CheckBox checkTTChoPhepSom;
 		private System.Windows.Forms.CheckBox checkTTChoPhepTre;
 		private System.Windows.Forms.CheckBox checkXNChoPhepTre;
@@ -1058,6 +1217,17 @@
 		private System.Windows.Forms.CheckBox checkTTRaaSomTinhCV;
 		private System.Windows.Forms.CheckBox checkTTVaoTreTinhCV;
 		private System.Windows.Forms.MaskedTextBox maskPhutTinhLamThem;
+		private System.Windows.Forms.CheckBox checkXNBuGioSom;
+		private System.Windows.Forms.CheckBox checkXNBuPhepSom;
+		private System.Windows.Forms.CheckBox checkXNBuPhepTre;
+		private System.Windows.Forms.CheckBox checkXNBuGioTre;
+		private System.Windows.Forms.ComboBox cbCongPhepSom;
+		private System.Windows.Forms.ComboBox cbCongPhepTre;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.CheckBox checkTTBuGioSom;
+		private System.Windows.Forms.CheckBox checkTTBuPhepSom;
+		private System.Windows.Forms.CheckBox checkTTBuPhepTre;
+		private System.Windows.Forms.CheckBox checkTTBuGioTre;
 
 	}
 }

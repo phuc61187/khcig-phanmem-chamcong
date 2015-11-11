@@ -156,6 +156,9 @@
   <metadata name="toolTipHint.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>235, 17</value>
   </metadata>
+  <metadata name="toolTipHint.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>235, 17</value>
+  </metadata>
   <data name="btnXacNhan.ToolTip" xml:space="preserve">
     <value>1. Quét chọn các ngày công cần xác nhận
 2. Chọn ca cần xác nhận
@@ -168,6 +171,9 @@ có làm thêm sau giờ ra ca
 7. Thực hiện xác nhận
 </value>
   </data>
+  <metadata name="toolTipHint.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>235, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>76</value>
   </metadata>

@@ -447,8 +447,8 @@ namespace ChamCong_v04.UI.KhaiBao {
 
 			tongGiothuc = timeKT - timeBD;
 			TimeSpan TGGioLamViecTrongCa;
-			XL.Vao(timeBD, ngay.Add(ca.Duty.Onn), ngay.Add(ca.chophepTreTS), false, out td_batdau_lv, out tre);
-			XL.Raa(timeKT, ngay.Add(ca.Duty.Off), ngay.Add(ca.chophepSomTS), false, out td_ketthuc_lv_chuaOT, out som);
+			XL.Vao(timeBD, ngay.Add(ca.Duty.Onn), ngay.Add(ca.chophepTreTS), true, true, out td_batdau_lv, out tre);//todo 4.0.0.8
+			XL.Raa(timeKT, ngay.Add(ca.Duty.Off), ngay.Add(ca.chophepSomTS), false, false, out td_ketthuc_lv_chuaOT, out som); //todo 4.0.0.8
 			XL.LamThem(td_ketthuc_lv_chuaOT, new TimeSpan(0, sophutOT, 0), out td_ketthuc_lv_daCoOT);
 			if (timeKT < td_ketthuc_lv_daCoOT)
 			{

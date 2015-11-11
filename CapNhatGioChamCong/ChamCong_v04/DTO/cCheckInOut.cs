@@ -90,13 +90,18 @@ namespace ChamCong_v04.DTO {
 		public bool DuyetChoPhepRaSom;
 		public bool VaoTreTinhCV; //ver 4.0.0.4	
 		public bool RaaSomTinhCV; //ver 4.0.0.4	
+		public bool ChoBuGioTre;//ver 4.0.0.8
+		public bool ChoBuGioSom;//ver 4.0.0.8
+		public bool ChoBuPhepTre;//ver 4.0.0.8
+		public bool ChoBuPhepSom;//ver 4.0.0.8
+		public float BuCongPhepTre;//ver 4.0.0.8
+		public float BuCongPhepSom;//ver 4.0.0.8
+		public float BuCongPhepTreCongDon;//ver 4.0.0.8
+		public float BuCongPhepSomCongDon;//ver 4.0.0.8
 		public float CongTrongCa;//ver 4.0.0.8
 		public float CongNgoaiCa;//ver 4.0.0.8
 		public float TruCongTre;//ver 4.0.0.8
 		public float TruCongSom;//ver 4.0.0.8
-		public bool ChoBuGioTre;//ver 4.0.0.8
-		public bool ChoBuGioSom;//ver 4.0.0.8
-		public bool ChoBuPhep;//ver 4.0.0.8
 		public float TruCongTreVR;//ver 4.0.0.8
 		public float TruCongSomVR;//ver 4.0.0.8
 		public float TruCongTreBu;//ver 4.0.0.8
