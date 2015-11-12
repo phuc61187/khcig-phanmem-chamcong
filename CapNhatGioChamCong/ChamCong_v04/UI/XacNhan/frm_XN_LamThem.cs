@@ -69,7 +69,8 @@ namespace ChamCong_v04.UI.XacNhan {
 			dgrdGioCoLamThem.DataSource = m_tableDS_CIO;
 
 			dgrdGioCoLamThem.SelectionChanged += dgrdGioCoLamThem_SelectionChanged;
-
+			cbCongPhepTre.SelectedIndex = 0;
+			cbCongPhepSom.SelectedIndex = 0;
 		}
 
 		private void frmXacNhanTangCa_Load(object sender, EventArgs e) {
@@ -91,24 +92,27 @@ namespace ChamCong_v04.UI.XacNhan {
 
 				MyUtility.CheckedCheckBox(false, checkTTChoPhepTre,checkTTChoPhepSom,checkTTTinhPC50,
 					checkXNChoPhepTre,checkXNChoPhepSom,checkXNLamThem,checkXNTinhPC50,
+					checkXNBuGioTre, checkXNBuGioSom, checkXNBuPhepTre, checkXNBuPhepSom,//ver 4.0.0.8
+					checkTTBuGioTre, checkTTBuGioSom, checkTTBuPhepTre, checkTTBuPhepSom,//ver 4.0.0.8
 					checkTTVaoTreTinhCV, checkTTRaaSomTinhCV, checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
 
 				//numPhutTinhLamThem.Value = 0;
 				maskPhutTinhLamThem.Text = "00:00";//ver 4.0.0.4	
 				maskPhutTinhLamThem.Tag = TimeSpan.Zero;//ver 4.0.0.4	
-
+				cbXNLyDo.SelectedIndex = 0;
 				#endregion
 				MyUtility.EnableDisableControl(false, 
 						btnXacNhan,btnDoiCa,				// ngoài reset layout thì disable nút xác nhận, nút sửa để tránh ấn nhầm gây lỗi
-						checkXNChoPhepTre,checkXNChoPhepSom,checkXNLamThem,checkXNTinhPC50,numPhutTinhLamThem,
-						maskPhutTinhLamThem, checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
-
+						checkXNChoPhepTre, checkXNChoPhepSom, checkXNLamThem, checkXNTinhPC50, numPhutTinhLamThem, maskPhutTinhLamThem,
+						checkXNBuGioTre, checkXNBuGioSom, checkXNBuPhepTre, checkXNBuPhepSom, //ver 4.0.0.8
+						checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
 			}
 			else if (dgrdGioCoLamThem.SelectedRows.Count == 1) {
 				MyUtility.EnableDisableControl(true, 
 						btnXacNhan, btnDoiCa,
-						checkXNChoPhepTre, checkXNChoPhepSom, checkXNTinhPC50, checkXNLamThem, numPhutTinhLamThem,
-						maskPhutTinhLamThem, checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
+						checkXNChoPhepTre, checkXNChoPhepSom, checkXNLamThem, checkXNTinhPC50, numPhutTinhLamThem, maskPhutTinhLamThem,
+						checkXNBuGioTre, checkXNBuGioSom, checkXNBuPhepTre, checkXNBuPhepSom, //ver 4.0.0.8
+						checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
 				var dataRowView = dgrdGioCoLamThem.SelectedRows[0].DataBoundItem as DataRowView;
 				var nhanvien = dataRowView["cUserInfo"] as cUserInfo;
 				var CIO = dataRowView["cCheckInOut"] as cCheckInOut;
@@ -130,6 +134,10 @@ namespace ChamCong_v04.UI.XacNhan {
 				checkTTTinhPC50.Checked = ngaycong.TinhPC50;
 				checkTTVaoTreTinhCV.Checked = CIO.VaoTreTinhCV;//ver 4.0.0.4	
 				checkTTRaaSomTinhCV.Checked = CIO.RaaSomTinhCV;//ver 4.0.0.4	
+				checkTTBuGioTre.Checked = CIO.ChoBuGioTre;//ver 4.0.0.8
+				checkTTBuGioSom.Checked = CIO.ChoBuGioSom;//ver 4.0.0.8
+				checkTTBuPhepTre.Checked = CIO.ChoBuPhepTre;//ver 4.0.0.8
+				checkTTBuPhepSom.Checked = CIO.ChoBuPhepSom;//ver 4.0.0.8
 				#endregion
 
 				#region fill phần xác nhận CIO
@@ -146,10 +154,15 @@ namespace ChamCong_v04.UI.XacNhan {
 				maskPhutTinhLamThem.Text = (CIO.TG.OLai == null) ? "00:00" : CIO.TG.OLai.ToString(@"hh\:mm");//ver 4.0.0.4	
 				checkXNChoPhepTre.Checked = CIO.DuyetChoPhepVaoTre;
 				checkXNChoPhepSom.Checked = CIO.DuyetChoPhepRaSom;
+				checkXNBuGioTre.Checked = CIO.ChoBuGioTre;//ver 4.0.0.8
+				checkXNBuGioSom.Checked = CIO.ChoBuGioSom;//ver 4.0.0.8
+				checkXNBuPhepTre.Checked = CIO.ChoBuPhepTre;//ver 4.0.0.8
+				checkXNBuPhepSom.Checked = CIO.ChoBuPhepSom;//ver 4.0.0.8
 				checkXNLamThem.Checked = false;
 				checkXNTinhPC50.Checked = true;
 				checkXNVaoTreTinhCV.Checked = CIO.VaoTreTinhCV;//ver 4.0.0.4	
 				checkXNRaaSomTinhCV.Checked = CIO.RaaSomTinhCV;//ver 4.0.0.4	
+				cbXNLyDo.SelectedIndex = 0;
 				tbXNGhiChu.Text = string.Empty;
 
 				#endregion
@@ -159,6 +172,7 @@ namespace ChamCong_v04.UI.XacNhan {
 				MyUtility.EnableDisableControl(true, 
 						btnXacNhan, btnDoiCa,
 						checkXNChoPhepTre, checkXNChoPhepSom, checkXNTinhPC50, checkXNLamThem, numPhutTinhLamThem,
+						checkXNBuGioTre, checkXNBuGioSom, checkXNBuPhepTre, checkXNBuPhepSom, //ver 4.0.0.8
 						maskPhutTinhLamThem, checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
 				var dataRowView = dgrdGioCoLamThem.SelectedRows[0].DataBoundItem as DataRowView;
 				var nhanvien = dataRowView["cUserInfo"] as cUserInfo;
@@ -180,6 +194,10 @@ namespace ChamCong_v04.UI.XacNhan {
 				checkTTTinhPC50.Checked = ngaycong.TinhPC50;
 				checkTTVaoTreTinhCV.Checked = CIO.VaoTreTinhCV;//ver 4.0.0.4	
 				checkTTRaaSomTinhCV.Checked = CIO.RaaSomTinhCV;//ver 4.0.0.4	
+				checkTTBuGioTre.Checked = CIO.ChoBuGioTre;//ver 4.0.0.8
+				checkTTBuGioSom.Checked = CIO.ChoBuGioSom;//ver 4.0.0.8
+				checkTTBuPhepTre.Checked = CIO.ChoBuPhepTre;//ver 4.0.0.8
+				checkTTBuPhepSom.Checked = CIO.ChoBuPhepSom;//ver 4.0.0.8
 
 				#endregion
 
@@ -209,12 +227,13 @@ namespace ChamCong_v04.UI.XacNhan {
 				maskPhutTinhLamThem.Text = "00:00";//ver 4.0.0.4	
 				maskPhutTinhLamThem.Tag = XL2._16gio;//ver 4.0.0.4	
 
-				MyUtility.CheckedCheckBox(false, checkXNChoPhepTre, checkXNChoPhepSom, checkXNLamThem, checkXNTinhPC50,
+				MyUtility.CheckedCheckBox(false, checkXNChoPhepTre, checkXNChoPhepSom, checkXNLamThem,
+					checkXNBuGioTre, checkXNBuGioSom, checkXNBuPhepTre, checkXNBuPhepSom, //ver 4.0.0.8
 					checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
 				checkXNTinhPC50.Checked = true;
+				cbXNLyDo.SelectedIndex = 0;
 				tbXNGhiChu.Text = string.Empty;
-
-
+				
 				#endregion
 
 			}
@@ -223,6 +242,9 @@ namespace ChamCong_v04.UI.XacNhan {
 
 		private void btnXacNhan_Click(object sender, EventArgs e) {
 			if (XL2.KiemtraKetnoiCSDL() == false) return;
+
+			// đọc tháng kết công để ko cho phép xác nhận nếu đã kết công
+			//XL2.NgayCuoiThangKetCong = XL.DocThangKetCong();//tbd temp patch
 
 			#region hỏi trước khi xác nhận
 
@@ -253,12 +275,21 @@ namespace ChamCong_v04.UI.XacNhan {
 			var currShift = (tbXNCa.Tag != null) ? (cCa)tbXNCa.Tag : null;
 			var bDuyetCPTre = checkXNChoPhepTre.Checked;
 			var bDuyetCPSom = checkXNChoPhepSom.Checked;
+			var bBuGioTre = checkXNBuGioTre.Checked;//ver 4.0.0.8
+			var bBuGioSom = checkXNBuGioSom.Checked;//ver 4.0.0.8
+			var bBuPhepTre = checkXNBuPhepTre.Checked;//ver 4.0.0.8
+			var bBuPhepSom = checkXNBuPhepSom.Checked;//ver 4.0.0.8
+			var fCongPhepTre = ((cbCongPhepTre.SelectedIndex)*0.25f);
+			var fCongPhepSom = ((cbCongPhepSom.SelectedIndex)*0.25f);
 			var bXacNhanLamThem = checkXNLamThem.Checked;
 			//var soPhutLamThem = (checkXNLamThem.Checked) ? Convert.ToInt32(numPhutTinhLamThem.Value) : 0;
 			var soPhutLamThem = Convert.ToInt32(OTCa.TotalMinutes);//ver 4.0.0.4	
 			var choPhepTinhPc50 = checkXNTinhPC50.Checked;
 			var bVaoTreLaCV = checkXNVaoTreTinhCV.Checked;//ver 4.0.0.4	
 			var bRaaSomLaCV = checkXNRaaSomTinhCV.Checked;//ver 4.0.0.4	
+			var fCongPhepTreCongDon = 0f;
+			var fCongPhepSomCongDon = 0f;
+
 			var lydo = (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.SelectedText;
 			var ghichu = tbXNGhiChu.Text;
 			#endregion
@@ -268,28 +299,34 @@ namespace ChamCong_v04.UI.XacNhan {
 				IsReload = true;
 				var dataRow = (DataRowView)dgrdGioCoLamThem.SelectedRows[0].DataBoundItem;
 				XuLyDon(dataRow, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-					bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
+					bVaoTreLaCV, bRaaSomLaCV,//ver 4.0.0.4	
+					bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTre, bBuPhepSom, fCongPhepSom//ver 4.0.0.8
+					);
 			}
 			else// chế độ xác nhận multiple
 			{
 				IsReload = true;
-				foreach (DataGridViewRow dataGridViewRow in dgrdGioCoLamThem.SelectedRows)
-				{
-					var dataRow = (DataRowView)dataGridViewRow.DataBoundItem;
+				foreach (var dataRow in (from DataGridViewRow dataGridViewRow in dgrdGioCoLamThem.SelectedRows
+										 select (DataRowView)dataGridViewRow.DataBoundItem)) {
 					XuLyDon(dataRow, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV,//ver 4.0.0.4	
+						bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTre, bBuPhepSom, fCongPhepSom//ver 4.0.0.8
+						);
 				}
 			}
 			XL.TaoTableXacNhanLamThem(m_DSNV, m_tableDS_CIO);
 		}
 
 		private void XuLyDon(DataRowView dataRow, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV)//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV,//ver 4.0.0.4
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongPhepTre, bool bBuPhepSom, float fCongPhepSom//ver 4.0.0.8
+			)
 		{
 			var nv = (cUserInfo)dataRow["cUserInfo"];
 			var CIO = (cCheckInOut)dataRow["cCheckInOut"];
 			var timevao = CIO.Vao.Time;
 			var timeraa = CIO.Raa.Time;
+			float tempRef_CongPhepTreCongDon = 0f, tempRef_CongPhepSomCongDon = 0f;//todo 4.0.0.8
 			if (currShift.TachCaDem) {
 				DateTime td_bd_lv, td_kt_lv_chuaOT, td_kt_lv_DaCoOT;
 				TimeSpan tempSom, tempTre;
@@ -300,30 +337,41 @@ namespace ChamCong_v04.UI.XacNhan {
 				DateTime td_kt_ca3va1 = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
 
 				XL.Vao(timevao, td_bd_ca3, CIO.ThuocNgayCong.Add(currShift.chophepTreTS),
-					bDuyetCPTre, true, out td_bd_lv, out tempTre);
+					bDuyetCPTre, bVaoTreLaCV, out td_bd_lv, out tempTre); //todo 4.0.0.8
+				XL.XetBuGioTre(bBuGioTre, td_bd_ca3, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
+				XL.XetBuPhepTre(bBuPhepTre, fCongPhepTre, td_bd_ca3, ref tempRef_CongPhepTreCongDon, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
 				XL.Raa(timeraa, td_kt_ca3va1, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, true, out td_kt_lv_chuaOT, out tempSom);
+					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom);//todo 4.0.0.8
+				XL.XetBuGioSom(bBuGioSom, td_kt_ca3va1, ref td_kt_lv_chuaOT, ref tempSom);
+				XL.XetBuPhepSom(bBuPhepSom, fCongPhepSom, td_kt_ca3va1, ref tempRef_CongPhepSomCongDon, ref td_kt_lv_chuaOT, ref  tempSom);
 				XL.LamThem(td_kt_lv_chuaOT, new TimeSpan(0, soPhutLamThem, 0), out td_kt_lv_DaCoOT);
 				if (td_bd_lv > td_bd_ca3 + XL2._04gio || td_kt_lv_DaCoOT < td_bd_ca1 + XL2._02gio) {
 					MessageBox.Show(Resources.Text_KhongTheXacNhanCaTach_KoDuDieuKienTach, Resources.Caption_ThongBao, MessageBoxButtons.OK);
 				}
 				else {
 					XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT,//ver 4.0.0.4	
+						bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
+						);
 				}
 			}
 			else {
 				DateTime td_kt_lv_chuaOT;
 				TimeSpan tempSom, tempOLai;
+				var offduty = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
+				XL.Raa(timeraa, offduty, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
+					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom); //todo 4.0.0.8
+				XL.XetBuGioSom(bBuGioSom, offduty, ref td_kt_lv_chuaOT, ref tempSom);
+				XL.XetBuPhepSom(bBuPhepSom, fCongPhepSom, offduty, ref tempRef_CongPhepSomCongDon, ref td_kt_lv_chuaOT, ref  tempSom);
 
-				XL.Raa(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, true, out td_kt_lv_chuaOT, out tempSom);
 				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.AfterOTMin), out tempOLai);
 				if (soPhutLamThem > tempOLai.TotalMinutes)
 					soPhutLamThem = Convert.ToInt32(tempOLai.TotalMinutes);
 
 				XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-					bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT);//ver 4.0.0.4	
+					bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT,//ver 4.0.0.4
+					bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
+					);
 			}
 
 		}
@@ -380,9 +428,8 @@ namespace ChamCong_v04.UI.XacNhan {
 			}
 
 			#endregion
-			//if (selectedShift.ID == int.MinValue) 
+			if (selectedShift.ID == int.MinValue + 0 || selectedShift.ID == int.MinValue + 1 || selectedShift.ID == int.MinValue + 2 || selectedShift.ID == int.MinValue + 3)
 				//XL.TaoCaTuDo(selectedShift, timevao, XL2._08gio, XL2.ChoPhepTre, XL2.ChoPhepSom, XL2.LamThemAfterOT, 1f, "8");
-			if (selectedShift.ID < int.MinValue + 100) 
 				XL.TaoCaTuDo(selectedShift, timevao);
 			
 			var Ngay = XL.ThuocNgayCong(timevao);
@@ -390,6 +437,14 @@ namespace ChamCong_v04.UI.XacNhan {
 			var bDuyetRaaSom = checkXNChoPhepSom.Checked;
 			var bVaoTreLaCV = checkXNVaoTreTinhCV.Checked;
 			var bRaaSomLaCV = checkXNRaaSomTinhCV.Checked;
+			var bBuGioTre = checkXNBuGioTre.Checked;//ver 4.0.0.8
+			var bBuGioSom = checkXNBuGioSom.Checked;//ver 4.0.0.8
+			var bBuPhepTre = checkXNBuPhepTre.Checked;//ver 4.0.0.8
+			var bBuPhepSom = checkXNBuPhepSom.Checked;//ver 4.0.0.8
+			var fCongPhepTre = ((cbCongPhepTre.SelectedIndex) * 0.25f);
+			var fCongPhepSom = ((cbCongPhepSom.SelectedIndex) * 0.25f);
+			var fCongPhepTreCongDon = 0f;
+			var fCongPhepSomCongDon = 0f;
 			var bXacNhanOT = checkXNLamThem.Checked;
 			var bDuocTinhPC50 = checkXNTinhPC50.Checked;
 			//var iSoPhutOT = Convert.ToInt32(numPhutTinhLamThem.Value);
@@ -402,24 +457,24 @@ namespace ChamCong_v04.UI.XacNhan {
 				OTCa = TimeSpan.Zero;
 			var maxOTCa = (maskPhutTinhLamThem.Tag == null) ? TimeSpan.Zero : (TimeSpan)maskPhutTinhLamThem.Tag;
 			if (OTCa > maxOTCa) OTCa = maxOTCa;
+			if (bXacNhanOT == false) OTCa = TimeSpan.Zero;
 
 			#endregion
 
-			//ver 4.0.0.8
-			float temp1=0.25f, temp2=0.25f; //todo
 			// tính giờ làm việc
 			DateTime TD_BD_LV, TD_KT_LV, TD_KT_LV_ChuaOT, TD_KT_LV_DaCoOT, TD_BD_LV_Ca3, TD_KT_LV_Ca3;
-			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGOLai, TGLamThem, TGLamBanDem, TGGioLamViecTrongCa;
+			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGOLai, TGLamThem, TGLamBanDem;
+			TimeSpan TGLamViecTrongCa;//ver 4.0.0.4	
 			bool QuaDem;
 			XL.TinhTG_LV_LVCa3_LamThem1Ca(Ngay, 0, true, bDuyetVaoTre, bDuyetRaaSom,
-				bVaoTreLaCV, bRaaSomLaCV, //ver 4.0.0.4	
-				true, true, false,0f,ref temp1, false,0f,ref temp2, //ver 4.0.0.8 todo
-				timevao, timeraa, selectedShift.Duty.Onn, selectedShift.Duty.Off,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+				bVaoTreLaCV, bRaaSomLaCV,//ver 4.0.0.4	
+				bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTre, ref fCongPhepTreCongDon, bBuPhepSom, fCongPhepSom, ref fCongPhepSomCongDon, //todo 4.0.0.8	
+				timevao, timeraa, selectedShift.Duty.Onn, selectedShift.Duty.Off,
 				selectedShift.chophepTreTS, selectedShift.chophepSomTS, selectedShift.batdaulamthemTS, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
-				nv.StartNT, nv.EndddNT,//ver 4.0.0.4
+				nv.StartNT, nv.EndddNT,
 				out TD_BD_LV, out TD_KT_LV, out TD_KT_LV_ChuaOT, out TD_KT_LV_DaCoOT, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3,
-				out TGThucTe, out TGGioLamViec, out TGVaoTre, out TGRaaSom, 
-				out TGGioLamViecTrongCa, 
+				out TGThucTe, out TGGioLamViec, out TGVaoTre, out TGRaaSom,
+				out TGLamViecTrongCa,
 				out TGOLai, out TGLamThem, out QuaDem, out TGLamBanDem);
 			tbXNGioLam.Text = TGGioLamViec.ToString(@"h\gmm\p");
 			tbXNTre.Text = TGVaoTre.ToString(@"h\gmm\p");

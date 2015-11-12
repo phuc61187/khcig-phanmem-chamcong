@@ -240,7 +240,8 @@ namespace ChamCong_v04.BUS {
 						thongKeThang.TreSomBu_PhanDu = (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu) - thongKeThang.TongCongTichLuy;
 					}
 					thongKeThang.TongNgayLV4008 = thongKeThang.TongCongDinhMuc8Tieng + thongKeThang.TichLuy_PhanDu + thongKeThang.TreSomBu_PhanDu;
-					thongKeThang.TongNgayLV4008 += thongKeThang.TongTruCongTreVR + thongKeThang.TongTruCongSomVR;
+					thongKeThang.TongNgayLV4008 += thongKeThang.TongTruCongTreVR + thongKeThang.TongTruCongSomVR;// cộng thêm phần trễ sớm việc riêng
+					//thongKeThang.TongNgayLV4008 += thongKeThang.TongBuPhepTre + thongKeThang.TongBuPhepSom;// phần bù phép trễ sớm để bên phần thống kê Phép tháng
 
 					#endregion
 				}
@@ -270,6 +271,8 @@ namespace ChamCong_v04.BUS {
 			thongKeThang.TongTruCongSomBu += ngayCong.TruCongSomBu;
 			thongKeThang.TongTruCongTreVR += ngayCong.TruCongTreVR;
 			thongKeThang.TongTruCongSomVR += ngayCong.TruCongSomVR;
+			thongKeThang.TongBuPhepTre += ngayCong.BuPhepTre;
+			thongKeThang.TongBuPhepSom += ngayCong.BuPhepSom;
 			#endregion
 
 			thongKeThang.PhuCaps._TongPC += ngayCong.PhuCaps._TongPC;
@@ -289,7 +292,7 @@ namespace ChamCong_v04.BUS {
 						thongKeThang.Le = thongKeThang.Le + WorkingDay;
 						break;
 					case "P":
-						thongKeThang.Phep = thongKeThang.Phep + WorkingDay;
+						thongKeThang.Phep = thongKeThang.Phep + WorkingDay; // phần phép bù sẽ cập nhật lại ở bên dưới cùng
 						break;
 					case "CV":
 						thongKeThang.CongCV_KB = thongKeThang.CongCV_KB + WorkingDay; // tính trước công chờ việc khai báo, tính công chờ việc tự động sau
@@ -313,7 +316,7 @@ namespace ChamCong_v04.BUS {
 				}
 
 			}
-
+			thongKeThang.Phep += (thongKeThang.TongBuPhepTre + thongKeThang.TongBuPhepSom);
 		}
 	}
 

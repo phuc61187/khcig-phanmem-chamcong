@@ -211,6 +211,8 @@ namespace ChamCong_v04.DTO {
 		public float TongTruCongSomVR;//ver 4.0.0.8
 		public float TongTruCongTreBu;//ver 4.0.0.8
 		public float TongTruCongSomBu;//ver 4.0.0.8
+		public float TongBuPhepTre;//ver 4.0.0.8
+		public float TongBuPhepSom;//ver 4.0.0.8
 		public float TreSomBu_PhanDu;//ver 4.0.0.8
 		public float TichLuy_PhanDu;//ver 4.0.0.8
 		public float Cong;

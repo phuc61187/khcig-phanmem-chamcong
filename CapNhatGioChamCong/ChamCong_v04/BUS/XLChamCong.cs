@@ -104,7 +104,7 @@ namespace ChamCong_v04.BUS {
 				var timeinn0s = new DateTime(timeinn.Year, timeinn.Month, timeinn.Day, timeinn.Hour, timeinn.Minute, 0);
 				if (VaoTreTinhCV)
 				{
-					td_batdau_lv = onnduty; 
+					td_batdau_lv = timeinn0s; 
 					tre = TimeSpan.Zero;
 				}
 				else if (chopheptre < timeinn0s)
@@ -166,7 +166,7 @@ namespace ChamCong_v04.BUS {
 				var timeout0s = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
 				if (RaaSomTinhCV)
 				{
-					td_ketthuc_lv_chuaOT = offduty;
+					td_ketthuc_lv_chuaOT = timeout0s;
 					som = TimeSpan.Zero;
 				}
 				else if (timeout0s < chophepsom) {
@@ -1309,8 +1309,8 @@ namespace ChamCong_v04.BUS {
 				//XacDinhThoiDiemLamViec(CIO);
 				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
 				if (CIO.QuaDem) ngayCong.QuaDem = true; // set qua đêm nếu có
-				CIO.ChoBuGioTre = true;
-				CIO.ChoBuGioSom = true;
+				//CIO.ChoBuGioTre = true;
+				//CIO.ChoBuGioSom = true;
 				#region //ver 4.0.0.8
 
 				float truCongTre = Convert.ToSingle(((CIO.TG.VaoTre.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
@@ -1371,83 +1371,6 @@ namespace ChamCong_v04.BUS {
 			#endregion
 		}
 
-		private static void XacDinhThoiDiemLamViec(cCheckInOut CIO) {
-			//if (CIO.KhongChamCong == true) { }
-			//xác định thời điểm
-			var TD_BD_LV = DateTime.MinValue;
-			var TD_KT_LV_TrongCa = DateTime.MinValue;
-			var TD_KT_LV_NgoaiCaCoOT = DateTime.MinValue;
-			var TD_KT_LV = DateTime.MinValue;
-			var TD_BD_LV_Ca3 = DateTime.MinValue;
-			var TD_KT_LV_Ca3 = DateTime.MinValue;
-			var TGThucTe = TimeSpan.Zero;
-			var TGVaoTre = TimeSpan.Zero;
-			var TGRaaSom = TimeSpan.Zero;
-			var TGOLai = TimeSpan.Zero;
-			var TGGioLamViec = TimeSpan.Zero;
-			var TGGioLamViecTrongCa = TimeSpan.Zero;//ver 4.0.0.4	
-			var TGLamThem = TimeSpan.Zero;
-			var TGLamBanDem = TimeSpan.Zero;
-			var QuaDem = false;
-			var chophepTreTS = CIO.ThuocCa.chophepTreTS;
-			var chophepSomTS = CIO.ThuocCa.chophepSomTS;
-			var batdaulamthemTS = CIO.ThuocCa.batdaulamthemTS;
-			var ThuocNgayCong = CIO.ThuocNgayCong;
-			var KoTruVaoTre = CIO.DuyetChoPhepVaoTre;
-			var KoTruRaaSom = CIO.DuyetChoPhepRaSom;
-			var BuGioTre = CIO.ChoBuGioTre;
-			var BuGioSom = CIO.ChoBuGioSom;
-
-			var Vao = CIO.Vao.Time;
-			var Raa = CIO.Raa.Time;
-			var TD_BD_Ca = DateTime.MinValue;
-			var TD_KT_Ca = DateTime.MinValue;//off duty này đã bao gồm daycount được công bên trong
-			var DutyOnn = CIO.ThuocCa.Duty.Onn;
-			var DutyOff = CIO.ThuocCa.Duty.Off;
-			var LunchMin = CIO.ThuocCa.LunchMin;
-			var DaXN = CIO.DaXN;
-			var OTCa = CIO.TG.OTCa;
-
-			if (CIO.ThuocCa.ID < 0)
-			{
-				TD_BD_Ca = CIO.Vao.Time;
-				TD_KT_Ca = CIO.Raa.Time;
-			}
-			else
-			{
-				TD_BD_Ca = CIO.ThuocNgayCong.Add(DutyOnn);
-				TD_KT_Ca = CIO.ThuocNgayCong.Add(DutyOff);//off duty này đã bao gồm daycount được công bên trong
-			}
-
-			var thoidiem_BD_tinhtre = ThuocNgayCong.Add(chophepTreTS);
-			var thoidiem_BD_tinhsom = ThuocNgayCong.Add(chophepSomTS);
-			var thoidiem_BD_tinhOLai = ThuocNgayCong.Add(batdaulamthemTS);
-			var tmpBDLamDem = ThuocNgayCong.Add(XL2._22h00);//ver 4.0.0.4
-			var tmpKTLamDem = ThuocNgayCong.AddDays(1d).Add(XL2._06h00);//ver 4.0.0.4
-
-			bool quadem;
-
-			TGThucTe = CIO.Raa.Time - CIO.Vao.Time;
-			// kiểm tra giờ ra ko được nhỏ hơn vào ca, giờ vào ko được nhỏ hơn ra ca
-			if (Raa < TD_BD_Ca || Vao > TD_KT_Ca) {
-				return;
-			}
-			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, BuGioTre, out TD_BD_LV, out TGVaoTre);
-			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, BuGioSom, out TD_KT_LV_TrongCa, out TGRaaSom);
-			OLai(Raa, TD_KT_Ca, thoidiem_BD_tinhOLai, out TGOLai);
-			Tinh_TGLamViecTrongCa(TD_BD_LV, TD_KT_LV_TrongCa, LunchMin, out TGGioLamViecTrongCa);
-			TD_KT_LV = TD_KT_LV_TrongCa; // giờ chưa qua xác nhận thì kt làm việc là chưa tính OT
-			if (DaXN) {
-				LamThem(TD_KT_LV_TrongCa, OTCa, out TD_KT_LV_NgoaiCaCoOT);
-				TD_KT_LV = TD_KT_LV_NgoaiCaCoOT;
-			}
-			//Tinh_TGLamViec(TD_BD_LV, TD_KT_LV, LunchMin, out TGGioLamViec);// lúc này TD_KT_LV là kết thúc ca nếu chưa XN, nếu đã XN thì = (TD_KT_LV + khoảng OT)
-			TGGioLamViec = TGGioLamViecTrongCa + OTCa;//ver 4.0.0.4	
-			Tinh_TGLamViec_Ca3(TD_BD_LV, TD_KT_LV, tmpBDLamDem, tmpKTLamDem, out TD_BD_LV_Ca3, out  TD_KT_LV_Ca3, out TGLamBanDem, out quadem);
-			TGLamThem = Tinh_TGLamThem(TGGioLamViec);//(TGGioLamViec - XL2._08gio) >= XL2._01phut ? (TGGioLamViec - XL2._08gio) : TimeSpan.Zero;
-			QuaDem = quadem;
-
-		}
 
 		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong) {
 			foreach (var item in dsXacNhanPC) {

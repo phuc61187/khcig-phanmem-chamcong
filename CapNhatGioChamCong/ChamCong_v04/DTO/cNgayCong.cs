@@ -27,6 +27,8 @@ namespace ChamCong_v04.DTO {
 		public float TruCongSomBu;//ver 4.0.0.8
 		public float TruCongTreVR;//ver 4.0.0.8
 		public float TruCongSomVR;//ver 4.0.0.8
+		public float BuPhepTre;//ver 4.0.0.8
+		public float BuPhepSom;//ver 4.0.0.8
 
 		#endregion
 

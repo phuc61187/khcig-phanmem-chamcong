@@ -696,7 +696,9 @@ namespace ChamCong_v04.BUS {
 
 		public static void XacNhanCa(cUserInfo nv, cCheckInOut CIO, cCa currShift,
 			bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT,//ver 4.0.0.4	
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, bool bBuPhepSom//ver 4.0.0.8
+			) {
 
 			//if (CIO.Vao.Time <= XL2.NgayCuoiThangKetCong) return;
 
@@ -714,11 +716,15 @@ namespace ChamCong_v04.BUS {
 			else {
 				if (CIO.DaXN) {
 					XacNhan_CIO_V(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT,//ver 4.0.0.4	
+						bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
+						);
 				}
 				else {
 					XacNhan_CIO_A(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
+						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT,//ver 4.0.0.4	
+						bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
+					);
 				}
 
 			}
@@ -919,7 +925,9 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void XacNhan_CIO_V(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu, 
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT,//ver 4.0.0.4	
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, bool bBuPhepSom//ver 4.0.0.8
+			) {
 			var timevao = CIO.Vao.Time;
 			var timeraa = CIO.Raa.Time;
 			int outputIDXN;
@@ -953,7 +961,9 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void XacNhan_CIO_A(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT,//ver 4.0.0.4
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, bool bBuPhepSom//ver 4.0.0.8
+			) {	
 			var timevao = CIO.Vao.Time;
 			var timeraa = CIO.Raa.Time;
 			if (timeraa - timevao <= TimeSpan.Zero || timeraa - timevao > XL2._24h00) {
