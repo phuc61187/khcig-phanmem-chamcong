@@ -338,12 +338,12 @@ namespace ChamCong_v04.UI.XacNhan {
 				var offduty = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
 
 				XL.Vao(timevao, onnduty, CIO.ThuocNgayCong.Add(currShift.chophepTreTS),
-					bDuyetCPTre, bVaoTreLaCV, out td_bd_lv, out tempTre); //todo 4.0.0.8
+					bDuyetCPTre, bVaoTreLaCV, out td_bd_lv, out tempTre); //ver 4.0.0.8
 				XL.XetBuGioTre(bBuGioTre, onnduty, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
 				XL.XetBuPhepTre(bBuPhepTre, fCongPhepTre, onnduty, ref tempRef_CongPhepTreCongDon, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
 
 				XL.Raa(timeraa, offduty, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom); //todo 4.0.0.8
+					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom); //ver 4.0.0.8
 				XL.XetBuGioSom(bBuGioSom, offduty, ref td_kt_lv_chuaOT, ref tempSom);
 				XL.XetBuPhepSom(bBuPhepSom, fCongPhepSom, offduty, ref tempRef_CongPhepSomCongDon, ref td_kt_lv_chuaOT, ref  tempSom);
 

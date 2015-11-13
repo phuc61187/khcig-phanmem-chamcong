@@ -771,9 +771,10 @@ namespace ChamCong_v04.BUS {
 					DuyetChoPhepVaoTre = DuyetChoPhepVaoTre, DuyetChoPhepRaSom = DuyetChoPhepRaSom,
 					VaoTreTinhCV = vaoTreTinhCV, RaaSomTinhCV = raaSomTinhCV,//ver 4.0.0.4	
 					ChoBuGioTre = bBuGioTre, ChoBuGioSom = bBuGioSom,//ver 4.0.0.8
-					ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = bBuPhepSom, BuCongPhepTre = fCongPhepTreCongDon, BuCongPhepSom = fCongPhepSomCongDon,//ver 4.0.0.8
-					ThuocNgayCong = ThuocNgayCong(chkInnV.Time),
-					TG = new ThoiGian { OTCa = new TimeSpan(0, pOTMin, 0) },
+					ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = bBuPhepSom, //ver 4.0.0.8
+					BuCongPhepTre = fCongPhepTreCongDon, BuCongPhepSom = fCongPhepSomCongDon,//ver 4.0.0.8
+					BuCongPhepTreCongDon = fCongPhepTreCongDon, BuCongPhepSomCongDon = fCongPhepSomCongDon,//ver 4.0.0.8
+					ThuocNgayCong = ThuocNgayCong(chkInnV.Time),TG = new ThoiGian { OTCa = new TimeSpan(0, pOTMin, 0) },
 					TD = new ThoiDiem()
 				};
 				DS_CIO_V.Add(chkInOutV);
@@ -1205,10 +1206,10 @@ namespace ChamCong_v04.BUS {
 				return;
 			}
 			var temp = 0f;
-			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, VaotreTinhCV, out TD_BD_LV, out TGVaoTre);//todo bỏ true
+			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, VaotreTinhCV, out TD_BD_LV, out TGVaoTre);//ver 4.0.0.8
 			XL.XetBuGioTre(ChoBuGioVaoTre, TD_BD_Ca, ref TD_BD_LV, ref TGVaoTre);
 			XL.XetBuPhepTre(ChoBuPhepVaoTre, CongPhepTre, TD_BD_Ca, ref CongBuPhepTre, ref TD_BD_LV, ref TGVaoTre);
-			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, RaaSomTinhCV, out TD_KT_LV_TrongCa, out TGRaaSom);//todo bỏ true
+			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, RaaSomTinhCV, out TD_KT_LV_TrongCa, out TGRaaSom);//ver 4.0.0.8
 			XL.XetBuGioSom(ChoBuGioRaaSom, TD_KT_Ca, ref TD_KT_LV_TrongCa, ref TGRaaSom);
 			XL.XetBuPhepSom(ChoBuPhepRaaSom, CongPhepSom, TD_KT_Ca, ref CongBuPhepSom, ref TD_KT_LV_TrongCa, ref TGRaaSom);
 			OLai(Raa, TD_KT_Ca, thoidiem_BD_tinhOLai, out TGOLai);
@@ -1302,6 +1303,14 @@ namespace ChamCong_v04.BUS {
 			ngayCong.PhuCaps = new PhuCap();
 			ngayCong.TongCong_4008 = 0f;
 			//ngayCong.TongNgayLV = 0f; //ver4.0.0.1
+			ngayCong.CongDinhMucDuoi8Tieng = 0f;//ver 4.0.0.8
+			ngayCong.CongTichLuy = 0f;//ver 4.0.0.8
+			ngayCong.TruCongTreVR = 0f;//ver 4.0.0.8
+			ngayCong.TruCongSomVR = 0f;//ver 4.0.0.8
+			ngayCong.TruCongTreBu = 0f;//ver 4.0.0.8
+			ngayCong.TruCongSomBu = 0f;//ver 4.0.0.8
+			ngayCong.CongBuPhepTre = 0f;//ver 4.0.0.8
+			ngayCong.CongBuPhepSom = 0f;//ver 4.0.0.8
 
 			ngayCong.QuaDem = false;
 			ngayCong.TinhPC50 = false;
@@ -1317,8 +1326,6 @@ namespace ChamCong_v04.BUS {
 				//XacDinhThoiDiemLamViec(CIO);
 				TinhTG_LV_LVCa3_LamThem1Ca(CIO, CIO.ThuocCa, startNT, endddNT);
 				if (CIO.QuaDem) ngayCong.QuaDem = true; // set qua đêm nếu có
-				//CIO.ChoBuGioTre = true;
-				//CIO.ChoBuGioSom = true;
 				#region //ver 4.0.0.8
 
 				float truCongTre = Convert.ToSingle(((CIO.TG.VaoTre.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
@@ -1350,6 +1357,8 @@ namespace ChamCong_v04.BUS {
 				ngayCong.TruCongSomVR += CIO.TruCongSomVR;
 				ngayCong.TruCongTreBu += CIO.TruCongTreBu;
 				ngayCong.TruCongSomBu += CIO.TruCongSomBu;
+				ngayCong.CongBuPhepTre += CIO.BuCongPhepTreCongDon;
+				ngayCong.CongBuPhepSom += CIO.BuCongPhepSomCongDon;
 				#endregion
 
 				ngayCong.TG.GioThuc += CIO.TG.GioThuc;

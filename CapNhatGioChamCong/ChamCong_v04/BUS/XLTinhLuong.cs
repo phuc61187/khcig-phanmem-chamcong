@@ -74,6 +74,14 @@ namespace ChamCong_v04.BUS {
 				ngayCong.Ngay = (DateTime)row["Ngay"];
 				ngayCong.TongCong_4008 = (float)row["TongCong"];
 				//ngayCong.TongNgayLV = (row["TongNgayLV"] != DBNull.Value) ? (float)row["TongNgayLV"] : 0f;//ver4.0.0.1
+				ngayCong.CongDinhMucDuoi8Tieng = (float)row["CongDinhMucDuoi8Tieng"]; //ver 4.0.0.8
+				ngayCong.CongTichLuy = (float)row["CongTichLuy"]; //ver 4.0.0.8
+				ngayCong.TruCongTreVR = (float)row["TruCongTreVR"];//ver 4.0.0.8
+				ngayCong.TruCongSomVR = (float)row["TruCongSomVR"];//ver 4.0.0.8
+				ngayCong.TruCongTreBu = (float)row["TruCongTreBu"];//ver 4.0.0.8
+				ngayCong.TruCongSomBu = (float)row["TruCongSomBu"];//ver 4.0.0.8
+				ngayCong.CongBuPhepTre = (float)row["CongBuPhepTre"];//ver 4.0.0.8
+				ngayCong.CongBuPhepSom = (float)row["CongBuPhepSom"];//ver 4.0.0.8
 				ngayCong.PhuCaps = new PhuCap {
 					_TongPC = (float)row["TongPC"],
 					_30_dem = (float)row["PCDem"],
@@ -95,14 +103,6 @@ namespace ChamCong_v04.BUS {
 				ngayCong.DSVang = new List<cLoaiVang>(); //info danh sách vắng load ở hàm xử lý sau
 				ngayCong.DSVaoRa = new List<cCheckInOut>();
 				LoadDSVaoRa(macc, indexNgay, ngayCong.DSVaoRa, tableKetcongCa);
-				#region v4.0.0.8
-
-					foreach (var CIO in ngayCong.DSVaoRa)
-					{
-						if (CIO.HaveINOUT < 0) continue;
-						//ngayCong.
-					}
-				#endregion
 			}
 			dsNgayCong.Add(ngayCong);
 
@@ -198,14 +198,16 @@ namespace ChamCong_v04.BUS {
 								 //			thongKeThang.Cong += ngayCong.TongCong_4008;
 								 CongTrongCa = row["CongTrongCa"] != DBNull.Value ? (float)row["CongTrongCa"] : 0f,
 								 CongNgoaiCa = row["CongNgoaiCa"] != DBNull.Value ? (float)row["CongNgoaiCa"] : 0f,
-								 TruCongTreBu = row["TruCongTreBu"] != DBNull.Value ? (float)row["TruCongTreBu"] : 0f,
-								 TruCongSomBu = row["TruCongSomBu"] != DBNull.Value ? (float)row["TruCongSomBu"] : 0f,
-								 TruCongTreVR = row["TruCongTreVR"] != DBNull.Value ? (float)row["TruCongTreVR"] : 0f,
-								 TruCongSomVR = row["TruCongSomVR"] != DBNull.Value ? (float)row["TruCongSomVR"] : 0f,
-			//thongKeThang.TongTruCongTreBu += ngayCong.TruCongTreBu;
-			//thongKeThang.TongTruCongSomBu += ngayCong.TruCongSomBu;
-			//thongKeThang.TongTruCongTreVR += ngayCong.TruCongTreVR;
-			//thongKeThang.TongTruCongSomVR += ngayCong.TruCongSomVR;
+								 TruCongTreBu = row["TruCongTreBu"] != DBNull.Value ? (float)row["TruCongTreBu"] : 0f,//ver 4.0.0.8
+								 TruCongSomBu = row["TruCongSomBu"] != DBNull.Value ? (float)row["TruCongSomBu"] : 0f,//ver 4.0.0.8
+								 TruCongTreVR = row["TruCongTreVR"] != DBNull.Value ? (float)row["TruCongTreVR"] : 0f,//ver 4.0.0.8
+								 TruCongSomVR = row["TruCongSomVR"] != DBNull.Value ? (float)row["TruCongSomVR"] : 0f,//ver 4.0.0.8
+								 ChoBuGioTre = row["BuGioTre"] != DBNull.Value && (bool)row["BuGioTre"],//ver 4.0.0.8
+								 ChoBuGioSom = row["BuGioSom"] != DBNull.Value && (bool)row["BuGioSom"],//ver 4.0.0.8
+								 ChoBuPhepTre = row["BuPhepTre"] != DBNull.Value && (bool)row["BuPhepTre"],//ver 4.0.0.8
+								 ChoBuPhepSom = row["BuPhepSom"] != DBNull.Value && (bool)row["BuPhepSom"],//ver 4.0.0.8
+								 BuCongPhepTre = row["CongBuPhepTre"] != DBNull.Value ? (float)row["CongBuPhepTre"] : 0f,//ver 4.0.0.8
+								 BuCongPhepSom = row["CongBuPhepSom"] != DBNull.Value ? (float)row["CongBuPhepSom"] : 0f,//ver 4.0.0.8
 							 });
 		}
 
@@ -222,28 +224,12 @@ namespace ChamCong_v04.BUS {
 			{
 				// trường hợp chỉ làm chính thức
 				if (nvChinhThuc == LoaiCongNhat.NVChinhThuc)
-				{	foreach (var ngayCong in dsNgayCong)
+				{	
+					foreach (var ngayCong in dsNgayCong)
 					{
 						XL.ThongKeNgay(ref thongKeThang, ngayCong);
 					}
 
-					#region 
-
-					if (thongKeThang.TongCongTichLuy >= (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu))
-					{
-						thongKeThang.TreSomBu_PhanDu = 0f;
-						thongKeThang.TichLuy_PhanDu = thongKeThang.TongCongTichLuy - (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu);
-					}
-					else
-					{
-						thongKeThang.TichLuy_PhanDu = 0f;
-						thongKeThang.TreSomBu_PhanDu = (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu) - thongKeThang.TongCongTichLuy;
-					}
-					thongKeThang.TongNgayLV4008 = thongKeThang.TongCongDinhMuc8Tieng + thongKeThang.TichLuy_PhanDu + thongKeThang.TreSomBu_PhanDu;
-					thongKeThang.TongNgayLV4008 += thongKeThang.TongTruCongTreVR + thongKeThang.TongTruCongSomVR;// cộng thêm phần trễ sớm việc riêng
-					//thongKeThang.TongNgayLV4008 += thongKeThang.TongBuPhepTre + thongKeThang.TongBuPhepSom;// phần bù phép trễ sớm để bên phần thống kê Phép tháng
-
-					#endregion
 				}
 				else // vừa làm công nhật vừa làm chính thức
 				{
@@ -254,6 +240,27 @@ namespace ChamCong_v04.BUS {
 					foreach (var ngayCong in dsNgayCong.Where(item => item.Ngay < ngayBDCongnhat || item.Ngay > ngayKTCongnhat))
 						XL.ThongKeNgay(ref thongKeThang, ngayCong);
 				}
+				#region 4.0.0.8 xét lại bù giờ
+
+				var tempTongCongTreSomBu = (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu);
+				var tempTongCongTreSom_KoDuBu = 0f;
+				if (thongKeThang.TongCongTichLuy >= tempTongCongTreSomBu)
+				{
+					thongKeThang.TreSom_KoDuBuCong = 0f;
+					thongKeThang.TreSom_DuocBuCong = tempTongCongTreSomBu;
+					thongKeThang.TichLuy_PhanDu = thongKeThang.TongCongTichLuy - thongKeThang.TreSom_DuocBuCong;
+				}
+				else
+				{
+					thongKeThang.TreSom_DuocBuCong = thongKeThang.TichLuy_PhanDu;//tempTongCongBu - thongKeThang.TongCongTichLuy;
+					thongKeThang.TichLuy_PhanDu = 0f;
+					thongKeThang.TreSom_KoDuBuCong = tempTongCongTreSomBu - thongKeThang.TichLuy_PhanDu;
+				}
+				thongKeThang.TongNgayLV4008 = thongKeThang.TongCongDinhMuc8Tieng + thongKeThang.TichLuy_PhanDu + thongKeThang.TreSom_DuocBuCong;
+				//thongKeThang.TongNgayLV4008 += tempTongCongTreSom_KoDuBu; // phần ko đủ giờ bù là phần việc riêng
+				//thongKeThang.TongNgayLV4008 += thongKeThang.TongTruCongTreVR + thongKeThang.TongTruCongSomVR;// cộng thêm phần trễ sớm việc riêng
+
+				#endregion
 			}
 
 		}
@@ -271,8 +278,6 @@ namespace ChamCong_v04.BUS {
 			thongKeThang.TongTruCongSomBu += ngayCong.TruCongSomBu;
 			thongKeThang.TongTruCongTreVR += ngayCong.TruCongTreVR;
 			thongKeThang.TongTruCongSomVR += ngayCong.TruCongSomVR;
-			thongKeThang.TongBuPhepTre += ngayCong.BuPhepTre;
-			thongKeThang.TongBuPhepSom += ngayCong.BuPhepSom;
 			#endregion
 
 			thongKeThang.PhuCaps._TongPC += ngayCong.PhuCaps._TongPC;
@@ -285,6 +290,7 @@ namespace ChamCong_v04.BUS {
 			thongKeThang.PhuCaps._250_LeTet_Dem += ngayCong.PhuCaps._250_LeTet_Dem;
 			thongKeThang.PhuCaps._Cus += ngayCong.PhuCaps._Cus;
 			thongKeThang.NgayQuaDem += (ngayCong.QuaDem) ? 1 : 0;
+			var tempRo = 0f;
 			foreach (var xpVang in ngayCong.DSVang) {
 				var WorkingDay = xpVang.WorkingDay;
 				switch (xpVang.MaLV_Code) {
@@ -311,12 +317,20 @@ namespace ChamCong_v04.BUS {
 						thongKeThang.PTDT = thongKeThang.PTDT + WorkingDay;//DANGLAM
 						break;
 					case "RO":
-						thongKeThang.NghiRo = thongKeThang.NghiRo + WorkingDay;
+						tempRo += WorkingDay;
+						thongKeThang.NghiRo = thongKeThang.NghiRo + tempRo;
 						break;
 				}
 
 			}
-			thongKeThang.Phep += (thongKeThang.TongBuPhepTre + thongKeThang.TongBuPhepSom);
+			thongKeThang.Phep += ngayCong.CongBuPhepTre;
+			thongKeThang.Phep += ngayCong.CongBuPhepSom;
+			var tempSoNgayNghiRO_NguyenNgay = 0;
+			if (Math.Abs(tempRo - 1f) < 0.05f)
+				tempSoNgayNghiRO_NguyenNgay = 1;
+			else if (Math.Abs(tempRo - 2f) < 0.05f)
+				tempSoNgayNghiRO_NguyenNgay = 2;
+			thongKeThang.SoNgayNghiRO_NguyenNgay += tempSoNgayNghiRO_NguyenNgay;
 		}
 	}
 

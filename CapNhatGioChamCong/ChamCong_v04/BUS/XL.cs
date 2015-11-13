@@ -780,6 +780,10 @@ namespace ChamCong_v04.BUS {
 				ThuocNgayCong = ThuocNgayCong(checkInnCa3.Time),
 				DuyetChoPhepVaoTre = bDuyetCPTre, DuyetChoPhepRaSom = bDuyetCPSom,
 				VaoTreTinhCV = bVaoTreLaCV, RaaSomTinhCV = bRaaSomLaCV,//ver 4.0.0.4	
+				ChoBuGioTre = bBuGioTre, ChoBuGioSom = false,//ver 4.0.0.8
+				ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = false, 
+				BuCongPhepTre = fCongBuPhepTreCongDon, BuCongPhepSom = 0f,//ver 4.0.0.8
+				BuCongPhepTreCongDon = fCongBuPhepTreCongDon, BuCongPhepSomCongDon = 0f,//ver 4.0.0.8
 				TG = new ThoiGian { OTCa = new TimeSpan(0, 0, 0) }, // ca 3 ko có OT
 				TD = new ThoiDiem()
 			};
@@ -791,6 +795,10 @@ namespace ChamCong_v04.BUS {
 				ThuocNgayCong = ThuocNgayCong(checkInnCa1.Time),
 				DuyetChoPhepVaoTre = bDuyetCPTre, DuyetChoPhepRaSom = bDuyetCPSom,
 				VaoTreTinhCV = bVaoTreLaCV, RaaSomTinhCV = bRaaSomLaCV,//ver 4.0.0.4	
+				ChoBuGioTre = false, ChoBuGioSom = bBuGioSom,//ver 4.0.0.8
+				ChoBuPhepTre = false, ChoBuPhepSom = bBuPhepSom, //ver 4.0.0.8
+				BuCongPhepTre = 0f, BuCongPhepSom = fCongBuPhepSomCongDon,//ver 4.0.0.8
+				BuCongPhepTreCongDon = 0f, BuCongPhepSomCongDon = fCongBuPhepSomCongDon,//ver 4.0.0.8
 				TG = new ThoiGian { OTCa = new TimeSpan(0, soPhutLamThem, 0) }, // ca 1 có OT
 				TD = new ThoiDiem()
 			};
@@ -813,7 +821,7 @@ namespace ChamCong_v04.BUS {
 			// do trong hàm tính công sẽ reset lại tất cả thông số trong đó có tính PCTC nên phải tính lại PCTC
 			var ngayCong_cua_CIO_A = nv.DSNgayCong.Find(item => item.Ngay == CIO_A.ThuocNgayCong);
 			ngayCong_cua_CIO_A.DSVaoRa.Remove(CIO_A);
-			TinhCong_HangNgay(ngayCong_cua_CIO_A, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_A, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCapDB);
 
@@ -821,7 +829,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_V_Ca3 = nv.DSNgayCong.Find(item => item.Ngay == CIO_V_Ca3.ThuocNgayCong);
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Add(CIO_V_Ca3);
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Sort(new cCheckInOutComparer());
-			TinhCong_HangNgay(ngayCong_cua_CIO_V_Ca3, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca3, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCapDB);
 
@@ -829,7 +837,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_V_Ca1 = ngayCong_cua_CIO_V_Ca3.next;
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Add(CIO_V_Ca1);
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Sort(new cCheckInOutComparer());
-			TinhCong_HangNgay(ngayCong_cua_CIO_V_Ca1, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca1, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCapDB);
 		}
@@ -877,6 +885,10 @@ namespace ChamCong_v04.BUS {
 				ThuocNgayCong = ThuocNgayCong(CIO.Vao.Time),
 				DuyetChoPhepVaoTre = bDuyetCPTre, DuyetChoPhepRaSom = bDuyetCPSom,
 				VaoTreTinhCV = bVaoTreLaCV, RaaSomTinhCV = bRaaSomLaCV,//ver 4.0.0.4	
+				ChoBuGioTre = bBuGioTre, ChoBuGioSom = false,//ver 4.0.0.8
+				ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = false, //ver 4.0.0.8
+				BuCongPhepTre = fCongBuPhepTreCongDon, BuCongPhepSom = 0f,//ver 4.0.0.8
+				BuCongPhepTreCongDon = fCongBuPhepTreCongDon, BuCongPhepSomCongDon = 0f,//ver 4.0.0.8
 				TG = new ThoiGian { OTCa = new TimeSpan(0, 0, 0) }, // ca 3 ko có OT
 				TD = new ThoiDiem()
 			};
@@ -888,6 +900,10 @@ namespace ChamCong_v04.BUS {
 				ThuocNgayCong = CIO_V_NEW_Ca3.ThuocNgayCong.AddDays(1d),
 				DuyetChoPhepVaoTre = bDuyetCPTre, DuyetChoPhepRaSom = bDuyetCPSom,
 				VaoTreTinhCV = bVaoTreLaCV, RaaSomTinhCV = bRaaSomLaCV,//ver 4.0.0.4	
+				ChoBuGioTre = false, ChoBuGioSom = bBuGioSom,//ver 4.0.0.8
+				ChoBuPhepTre = false, ChoBuPhepSom = bBuPhepSom, //ver 4.0.0.8
+				BuCongPhepTre = 0f, BuCongPhepSom = fCongBuPhepSomCongDon,//ver 4.0.0.8
+				BuCongPhepTreCongDon = 0f, BuCongPhepSomCongDon = fCongBuPhepSomCongDon,//ver 4.0.0.8
 				TG = new ThoiGian { OTCa = new TimeSpan(0, soPhutLamThem, 0) }, // ca 1 có OT
 				TD = new ThoiDiem()
 			};
@@ -910,7 +926,7 @@ namespace ChamCong_v04.BUS {
 			// do trong hàm tính công sẽ reset lại tất cả thông số trong đó có tính PCTC nên phải tính lại PCTC
 			var ngayCong_cua_CIO_V_OLD = nv.DSNgayCong.Find(item => item.Ngay == CIO_V_OLD.ThuocNgayCong);
 			ngayCong_cua_CIO_V_OLD.DSVaoRa.Remove(CIO_V_OLD);
-			TinhCong_HangNgay(ngayCong_cua_CIO_V_OLD, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_V_OLD, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_OLD, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_OLD, nv.DSXNPhuCapDB);
 
@@ -918,7 +934,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_V_Ca3 = nv.DSNgayCong.Find(item => item.Ngay == CIO_V_NEW_Ca3.ThuocNgayCong);
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Add(CIO_V_NEW_Ca3);
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Sort(new cCheckInOutComparer());
-			TinhCong_HangNgay(ngayCong_cua_CIO_V_Ca3, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca3, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCapDB);
 
@@ -926,7 +942,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_V_Ca1 = ngayCong_cua_CIO_V_Ca3.next;
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Add(CIO_V_NEW_Ca1);
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Sort(new cCheckInOutComparer());
-			TinhCong_HangNgay(ngayCong_cua_CIO_V_Ca1, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca1, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCapDB);
 
@@ -952,6 +968,14 @@ namespace ChamCong_v04.BUS {
 			CIO.DuyetChoPhepRaSom = bDuyetCPSom;
 			CIO.VaoTreTinhCV = bVaoTreLaCV;//ver 4.0.0.4	
 			CIO.RaaSomTinhCV = bRaaSomLaCV;//ver 4.0.0.4	
+			CIO.ChoBuGioTre = bBuGioTre;//ver 4.0.0.8
+			CIO.ChoBuGioSom = bBuGioSom;//ver 4.0.0.8
+			CIO.ChoBuPhepTre = bBuPhepTre;//ver 4.0.0.8
+			CIO.ChoBuPhepSom = bBuPhepSom;//ver 4.0.0.8
+			CIO.BuCongPhepTre = fCongPhepTreCongDon;//ver 4.0.0.8
+			CIO.BuCongPhepSom = fCongPhepSomCongDon;//ver 4.0.0.8
+			CIO.BuCongPhepTreCongDon = fCongPhepTreCongDon;//ver 4.0.0.8
+			CIO.BuCongPhepSomCongDon = fCongPhepSomCongDon;//ver 4.0.0.8
 			CIO.TG = new ThoiGian { OTCa = new TimeSpan(0, soPhutLamThem, 0) };
 			CIO.TD = new ThoiDiem();// phải new thời điểm vì còn các thời điểm Raa_tinhOT sẽ bị thay đổi do số phút OT thay đổi
 			XetCa_1_CIO_V(CIO, nv.LichTrinhLV);
@@ -963,7 +987,7 @@ namespace ChamCong_v04.BUS {
 			// do trong hàm tính công sẽ reset lại tất cả thông số trong đó có tính PCTC nên phải tính lại PCTC
 			var ngayCong_cua_CIO_V = nv.DSNgayCong.Find(item => item.Ngay == CIO.ThuocNgayCong);
 			//ngayCong_cua_CIO_V.DSVaoRa.Add(CIO); ko cần add lại, chỉ tính lại
-			TinhCong_HangNgay(ngayCong_cua_CIO_V, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_V, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCapDB);
 
@@ -1007,7 +1031,9 @@ namespace ChamCong_v04.BUS {
 				DuyetChoPhepVaoTre = bDuyetCPTre, DuyetChoPhepRaSom = bDuyetCPSom,
 				VaoTreTinhCV = bVaoTreLaCV, RaaSomTinhCV = bRaaSomLaCV,//ver 4.0.0.4	
 				ChoBuGioTre = bBuGioTre, ChoBuGioSom = bBuGioSom,//ver 4.0.0.8
-				ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = bBuPhepSom, BuCongPhepTre = fCongPhepTreCongDon, BuCongPhepSom = fCongPhepSomCongDon,//ver 4.0.0.8
+				ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = bBuPhepSom,//ver 4.0.0.8
+				BuCongPhepTre = fCongPhepTreCongDon, BuCongPhepSom = fCongPhepSomCongDon,//ver 4.0.0.8
+				BuCongPhepTreCongDon = fCongPhepTreCongDon, BuCongPhepSomCongDon = fCongPhepSomCongDon,//ver 4.0.0.8
 				TG = new ThoiGian { OTCa = new TimeSpan(0, soPhutLamThem, 0) },
 				TD = new ThoiDiem()
 			};
@@ -1026,7 +1052,7 @@ namespace ChamCong_v04.BUS {
 			// do trong hàm tính công sẽ reset lại tất cả thông số trong đó có tính PCTC nên phải tính lại PCTC
 			var ngayCong_cua_CIO_A = nv.DSNgayCong.Find(item => item.Ngay == CIO_A.ThuocNgayCong);
 			ngayCong_cua_CIO_A.DSVaoRa.Remove(CIO_A);
-			TinhCong_HangNgay(ngayCong_cua_CIO_A, startNT, endddNT);
+			TinhCong_HangNgay2(ngayCong_cua_CIO_A, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCapDB);
 
@@ -1034,7 +1060,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_V = nv.DSNgayCong.Find(item => item.Ngay == CIO_V.ThuocNgayCong);
 			ngayCong_cua_CIO_V.DSVaoRa.Add(CIO_V);
 			ngayCong_cua_CIO_V.DSVaoRa.Sort(new cCheckInOutComparer());
-			TinhCong_HangNgay(ngayCong_cua_CIO_V, startNT, endddNT);//ver 4.0.0.4
+			TinhCong_HangNgay2(ngayCong_cua_CIO_V, startNT, endddNT);//ver 4.0.0.8
 			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCap50);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCapDB);
 

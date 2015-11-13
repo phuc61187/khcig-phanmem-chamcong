@@ -213,7 +213,8 @@ namespace ChamCong_v04.DTO {
 		public float TongTruCongSomBu;//ver 4.0.0.8
 		public float TongBuPhepTre;//ver 4.0.0.8
 		public float TongBuPhepSom;//ver 4.0.0.8
-		public float TreSomBu_PhanDu;//ver 4.0.0.8
+		public float TreSom_DuocBuCong;//ver 4.0.0.8
+		public float TreSom_KoDuBuCong;//ver 4.0.0.8
 		public float TichLuy_PhanDu;//ver 4.0.0.8
 		public float Cong;
 		public int NgayQuaDem;
@@ -227,6 +228,7 @@ namespace ChamCong_v04.DTO {
 		public float H_CT_PT;
 		public float PTDT;
 		public float NghiRo;
+		public int SoNgayNghiRO_NguyenNgay;
 	}
 
 	public struct HeSo {

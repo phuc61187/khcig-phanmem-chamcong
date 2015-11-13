@@ -18,17 +18,16 @@ namespace ChamCong_v04.DTO {
 
 		#region //ver 4.0.0.8
 
-		public float TongCong_4008;
-		public float CongTichLuy;
-		public float CongDinhMucDuoi8Tieng;
-		public bool BuPhep;
+		public float TongCong_4008;//ver 4.0.0.8
+		public float CongTichLuy;//ver 4.0.0.8
+		public float CongDinhMucDuoi8Tieng;//ver 4.0.0.8
 
 		public float TruCongTreBu;//ver 4.0.0.8
 		public float TruCongSomBu;//ver 4.0.0.8
 		public float TruCongTreVR;//ver 4.0.0.8
 		public float TruCongSomVR;//ver 4.0.0.8
-		public float BuPhepTre;//ver 4.0.0.8
-		public float BuPhepSom;//ver 4.0.0.8
+		public float CongBuPhepTre;//ver 4.0.0.8
+		public float CongBuPhepSom;//ver 4.0.0.8
 
 		#endregion
 
@@ -69,7 +68,7 @@ namespace ChamCong_v04.DTO {
 			if (PhuCaps._200_LeTet_Ngay > 0f) temp += ", (x3)";
 			if (PhuCaps._250_LeTet_Dem > 0f) temp += ", (x3đ)";
 			if (PhuCaps._Cus > 0f) temp += ", (xYC)";
-			if (PhuCaps._50_TC > 0f) temp += ", (TC)";
+			if (PhuCaps._50_TC > 0f) temp += ", (tc)";
 			if (PhuCaps._100_TCC3 > 0f) temp += ", (T3)";
 		}
 		public void XuatChuoiKyHieuPhuCap_Vang(ref string temp) {
@@ -86,7 +85,7 @@ namespace ChamCong_v04.DTO {
 				if (PhuCaps._Cus > 0f) temp += "; (xYC)";
 			}
 			else if (TinhPC50) {
-				if (PhuCaps._50_TC > 0f) temp += "; (TC)";
+				if (PhuCaps._50_TC > 0f) temp += "; (tc)";
 				if (PhuCaps._100_TCC3 > 0f) temp += "; (T3)";
 			}
 		}
@@ -131,8 +130,8 @@ namespace ChamCong_v04.DTO {
 				if (PhuCaps._Cus > 0f) kq += ";(xYC)";
 			}
 			else if (TinhPC50) {
-				if (PhuCaps._50_TC > 0f) kq += ";(TC)";
-				if (PhuCaps._100_TCC3 > 0f) kq += ";(T3)";
+				if (PhuCaps._50_TC > 0f) kq += ";(tc)";
+				if (PhuCaps._100_TCC3 > 0f) kq += ";(t3)";
 			}
 			return kq;
 		}
@@ -148,7 +147,7 @@ namespace ChamCong_v04.DTO {
 			else if (string.IsNullOrEmpty(AbsentsCode)) kq += CIOs_Code;
 			else kq = (CIOs_Code + ";" + AbsentsCode);
 			kq = (chuoiTruoc == null) ? kq : chuoiTruoc + ";" + kq;
-			if (TinhPC50 && PhuCaps._50_TC > 0f) kq += ";(TC)";
+			if (TinhPC50 && PhuCaps._50_TC > 0f) kq += ";(tc)";
 			if (TinhPCDB) {
 				if (PhuCaps._100_LVNN_Ngay > 0f) kq += ";(x2)";
 				if (PhuCaps._150_LVNN_Dem > 0f) kq += ";(x2đ)";
@@ -157,8 +156,8 @@ namespace ChamCong_v04.DTO {
 				if (PhuCaps._Cus > 0f) kq += ";(xYC)";
 			}
 			else if (TinhPC50) {
-				if (PhuCaps._50_TC > 0f) kq += ";(TC)";
-				if (PhuCaps._100_TCC3 > 0f) kq += ";(T3)";
+				if (PhuCaps._50_TC > 0f) kq += ";(tc)";
+				if (PhuCaps._100_TCC3 > 0f) kq += ";(t3)";
 			}
 			return kq;
 		}
@@ -177,7 +176,6 @@ namespace ChamCong_v04.DTO {
 			if (Math.Abs(WorkingDay - 0f) < 0.01f) kq += string.Empty;
 			else if (Math.Abs(WorkingDay - 0.5f) < 0.01f) kq += "N" + MaLV_Code;
 			else if (Math.Abs(WorkingDay - 1f) < 0.01f) kq += MaLV_Code;
-			else if (Math.Abs(WorkingDay - 0.25f) < 0.01f) kq += MaLV_Code + @"/4";
 			return kq;
 		}
 

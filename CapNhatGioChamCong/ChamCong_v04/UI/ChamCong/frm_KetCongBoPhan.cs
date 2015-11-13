@@ -265,6 +265,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 													   null, string.Empty, null, null, null,
 													   null, null,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
 													   null, null, null, null, null, null,//ver 4.0.0.8@BuGioTre, @BuGioSom, @BuPhepTre, @CongBuPhepTre, @BuPhepSom, @CongBuPhepSom,
+													   null, null, null, null, null, null, //ver 4.0.0.8 CongTrongCa, CongNgoaiCa, TruCongTreVR, TruCongSomVR, TruCongTreBu, TruCongSomBu,
 													   null, null, string.Empty,
 													   null, null, null, null, null, null, null, null, string.Empty, string.Empty, CIO.HaveINOUT, null);
 
@@ -294,7 +295,8 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								kq1 = DAO.InsKetCongCa(nv.MaCC, ngayCong.Ngay, CIO.Vao.Time, CIO.Raa.Time,
 													   CIO.ThuocCa.ID, CIO.ThuocCa.Code, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
 													   CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,//ver 4.0.0.4	
-													   CIO.ChoBuGioTre, CIO.ChoBuGioSom, CIO.ChoBuPhepTre, CIO.BuCongPhepTre, CIO.ChoBuPhepSom, CIO.BuCongPhepSom,//ver 4.0.0.8
+													   CIO.ChoBuGioTre, CIO.ChoBuGioSom, CIO.ChoBuPhepTre, CIO.BuCongPhepTreCongDon, CIO.ChoBuPhepSom, CIO.BuCongPhepSomCongDon,//ver 4.0.0.8
+													   CIO.CongTrongCa, CIO.CongNgoaiCa, CIO.TruCongTreVR, CIO.TruCongSomVR, CIO.TruCongTreBu, CIO.TruCongSomBu, //ver 4.0.0.8
 													   CIO.OTMin, CIO.QuaDem, CIO.ThuocCa.KyHieuCC, CIO.TG.GioLamViec, CIO.TG.LamThem, CIO.TG.LamBanDem, CIO.TG.GioThuc,
 													   CIO.TG.VaoTre, CIO.TG.RaaSom,
 													   CIO.TD.BD_LV, CIO.TD.KT_LV, thongtinCa, shiftParams,
@@ -302,14 +304,14 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 							}
 						}
 						if (ngayCong.DSVaoRa.Count != 0) {
-							int kq2 = DAO.InsKetCongNgay(nv.MaCC, ngayCong.Ngay, ngayCong.TongCong_4008, /*ngayCong.TongNgayLVtest*/0f, ngayCong.PhuCaps._TongPC, //ver4.0.0.1
+							int kq2 = DAO.InsKetCongNgay(nv.MaCC, ngayCong.Ngay, ngayCong.TongCong_4008, /*ngayCong.TongNgayLVtest*/0f, ngayCong.PhuCaps._TongPC, //ver4.0.0.1 //ver 4.0.0.8 ngayCong.TongCong_4008,TongNgayLV=0f
 														 ngayCong.PhuCaps._30_dem, ngayCong.PhuCaps._50_TC, ngayCong.PhuCaps._100_TCC3,
 														 ngayCong.PhuCaps._100_LVNN_Ngay, ngayCong.PhuCaps._150_LVNN_Dem,
 														 ngayCong.PhuCaps._200_LeTet_Ngay, ngayCong.PhuCaps._250_LeTet_Dem,
 														 ngayCong.PhuCaps._Cus, ngayCong.TG.GioLamViec, ngayCong.TG.LamThem,
-														 ngayCong.TG.LamBanDem, ngayCong.TG.GioThuc, ngayCong.QuaDem//,
-														 //ngayCong.TruCongTreVR, ngayCong.TruCongSomVR, ngayCong.TruCongTreBu, ngayCong.TruCongSomBu,
-														 //ngayCong.CongDinhMucDuoi8Tieng, ngayCong.CongTichLuy,
+														 ngayCong.TG.LamBanDem, ngayCong.TG.GioThuc, ngayCong.QuaDem,
+														 ngayCong.CongDinhMucDuoi8Tieng, ngayCong.CongTichLuy, ngayCong.TruCongTreVR, ngayCong.TruCongSomVR, //ver 4.0.0.8
+														 ngayCong.TruCongTreBu, ngayCong.TruCongSomBu, ngayCong.CongBuPhepTre, ngayCong.CongBuPhepSom//ver 4.0.0.8
 														 );
 						}
 					}
@@ -390,10 +392,10 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 							if (nv.LoaiCN == LoaiCongNhat.NVChinhThuc)// nhân viên chính thức
 							{
 								nv.ThongKeThang.CongCV_Auto = congChuanThang -
-															  /*(nv.ThongKeThang.Cong + nv.ThongKeThang.Le + nv.ThongKeThang.Phep +//ver4.0.0.0*/
-															  /*(nv.ThongKeThang.TongNgayLV + nv.ThongKeThang.Le + nv.ThongKeThang.Phep +//ver4.0.0.1*/
-															  (nv.ThongKeThang.TongNgayLV4008 + nv.ThongKeThang.Le + nv.ThongKeThang.Phep +//ver4.0.0.8
-															   nv.ThongKeThang.BHXH + nv.ThongKeThang.H_CT_PT
+															  (nv.ThongKeThang.TongNgayLV4008 
+															   + nv.ThongKeThang.TongTruCongTreVR+nv.ThongKeThang.TongTruCongSomVR + nv.ThongKeThang.TreSom_KoDuBuCong
+															   + nv.ThongKeThang.Phep + nv.ThongKeThang.Le //ver4.0.0.8
+															   + nv.ThongKeThang.BHXH + nv.ThongKeThang.H_CT_PT
 															   + nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo + nv.ThongKeThang.CongCV_KB);//DANGLAM
 								if (nv.ThongKeThang.CongCV_Auto < 0f) nv.ThongKeThang.CongCV_Auto = 0f;
 							}
@@ -408,7 +410,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								new WarningMessage {
 									MaCC = nv.MaCC, MaNV = nv.MaNV, TenNV = nv.TenNV,
 									NoiDung = string.Format(
-												"Có số công chờ việc được tính tự động [{0}] công theo quy định vượt quá [{1}] ngày chủ nhật trong tháng.",
+												"Có số công chờ việc được tính tự động [{0}] công theo quy định vượt quá [{1}] ngày thứ Bảy trong tháng.",
 												nv.ThongKeThang.CongCV_Auto.ToString("#0.0#"), soNgayChuNhat)
 								});
 						}

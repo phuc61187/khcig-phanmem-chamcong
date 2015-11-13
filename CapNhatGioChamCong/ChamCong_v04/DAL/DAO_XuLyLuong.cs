@@ -166,6 +166,7 @@ VALUES (
 			int? ShiftID, string ShiftCode, bool? DaXN, bool? DuyetCPVaoTre, bool? DuyetCPRaSom,
 			bool? vaoTreLaCV, bool? raaSomLaCV,//ver 4.0.0.4	
 			bool? BuGioTre, bool? BuGioSom, bool? BuPhepTre, float? CongBuPhepTre, bool? BuPhepSom, float? CongBuPhepSom,//ver 4.0.0.8
+			float? CongTrongCa, float? CongNgoaiCa, float? TruCongTreVR, float? TruCongSomVR, float? TruCongTreBu, float? TruCongSomBu,
 			int? OTMin, bool? QuaDem, string KyHieuCC,
 			TimeSpan? gioLV, TimeSpan? tGLamthem, TimeSpan? tGLamdem, TimeSpan? tGthuc, TimeSpan? vaotre, TimeSpan? raasom,
 			DateTime? tD_BD_LV, DateTime? tD_KT_LV_coOT, string thongtinCa, string shiftParams, int? haveINOUT, float? cong
@@ -179,6 +180,7 @@ INSERT INTO KetCongCa
 CoXN,  DuyetCPVaoTre,  DuyetCPRaSom,  OTMin,  QuaDem,  KyHieuCC,  
 VaoTreLaCV, RaSomLaCV,
 BuGioTre, BuGioSom, BuPhepTre, CongBuPhepTre, BuPhepSom, CongBuPhepSom,
+CongTrongCa, CongNgoaiCa, TruCongTreVR, TruCongSomVR, TruCongTreBu, TruCongSomBu,
 TGLamViec,  TGLamThem,  TGLamDem,  TGThuc,  TGVaoTre,  TGRaSom,  
 TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 	 VALUES
@@ -186,11 +188,12 @@ TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 @CoXN, @DuyetCPVaoTre, @DuyetCPRaSom, @OTMin, @QuaDem, @KyHieuCC, 
 @VaoTreLaCV, @RaSomLaCV,
 @BuGioTre, @BuGioSom, @BuPhepTre, @CongBuPhepTre, @BuPhepSom, @CongBuPhepSom,
+@CongTrongCa, @CongNgoaiCa, @TruCongTreVR, @TruCongSomVR, @TruCongTreBu, @TruCongSomBu,
 @TGLamViec, @TGLamThem, @TGLamDem, @TGThuc, @TGVaoTre, @TGRaSom, 
 @TD_BD_LV, @TD_KT_LV_CoOT, @ThongTinCa, @ShiftParams, @HaveINOUT, @Cong)
 ";//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
 //ver 4.0.0.8			BuGioTre,  BuGioSom,  BuPhepTre,  CongBuPhepTre,  BuPhepSom,  CongBuPhepSom,
-
+//ver 4.0.0.8			TruCongTreVR, TruCongSomVR, TruCongTreBu, TruCongSomBu,
 			#endregion
 			return SqlDataAccessHelper.ExecNoneQueryString(query,
 														   new string[]
@@ -199,6 +202,7 @@ TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 "@CoXN", "@DuyetCPVaoTre", "@DuyetCPRaSom", "@OTMin", "@QuaDem", "@KyHieuCC", 
 "@VaoTreLaCV", "@RaSomLaCV",//ver 4.0.0.4	
 "@BuGioTre", "@BuGioSom", "@BuPhepTre", "@CongBuPhepTre", "@BuPhepSom", "@CongBuPhepSom",//ver 4.0.0.8
+"@CongTrongCa", "@CongNgoaiCa", "@TruCongTreVR", "@TruCongSomVR", "@TruCongTreBu", "@TruCongSomBu",//ver 4.0.0.8
 "@TGLamViec", "@TGLamThem", "@TGLamDem", "@TGThuc", "@TGVaoTre", "@TGRaSom", 
 "@TD_BD_LV", "@TD_KT_LV_CoOT", "@ThongTinCa", "@ShiftParams", "@HaveINOUT", "@Cong"
 															   },
@@ -220,6 +224,12 @@ TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 		CongBuPhepTre != null ? (object) CongBuPhepTre : DBNull.Value, //ver 4.0.0.8 
 		BuPhepSom != null ? (object) BuPhepSom : DBNull.Value, //ver 4.0.0.8 
 		CongBuPhepSom != null ? (object) CongBuPhepSom : DBNull.Value, //ver 4.0.0.8
+		CongTrongCa != null ? (object) CongTrongCa : DBNull.Value, //ver 4.0.0.8
+		CongNgoaiCa != null ? (object) CongNgoaiCa : DBNull.Value, //ver 4.0.0.8
+		TruCongTreVR != null ? (object) TruCongTreVR : DBNull.Value, //ver 4.0.0.8
+		TruCongSomVR != null ? (object) TruCongSomVR : DBNull.Value, //ver 4.0.0.8
+		TruCongTreBu != null ? (object) TruCongTreBu : DBNull.Value, //ver 4.0.0.8
+		TruCongSomBu != null ? (object) TruCongSomBu : DBNull.Value, //ver 4.0.0.8
 		gioLV != null ? (object) gioLV : DBNull.Value,
 		tGLamthem != null ? (object) tGLamthem : DBNull.Value,
 		tGLamdem != null ? (object) tGLamdem : DBNull.Value,
@@ -279,24 +289,32 @@ values ( @Thang, @UserEnrollNumber, @TamUng, @LuongDieuChinh, @ThuChiKhac, @MucD
 				new object[] { thang, UserEnrollNumber, tamung, luongdieuchinh, thuchikhac, mucdongbhxh }); 
 		}
 
-		public static int InsKetCongNgay(int maCc, DateTime ngay, float tongCong, float tongNgayLV/*ver4.0.0.1*/, float tongPc, float pc30, float pc50, float pctcc3, float pc200, float pc260, float pc300, float pc390, float pccus, TimeSpan gioLamViec, TimeSpan lamThem, TimeSpan lamBanDem, TimeSpan gioThuc, bool QuaDem) {
+		public static int InsKetCongNgay(int maCc, DateTime ngay, float tongCong, float tongNgayLV/*ver4.0.0.1*/, float tongPc, float pc30, float pc50, float pctcc3, float pc200, float pc260, float pc300, float pc390, float pccus, TimeSpan gioLamViec, TimeSpan lamThem, TimeSpan lamBanDem, TimeSpan gioThuc, bool QuaDem,
+			float CongDinhMucDuoi8Tieng, float CongTichLuy, float TruCongTreVR,float TruCongSomVR, float TruCongTreBu,float TruCongSomBu,float CongBuPhepTre,float CongBuPhepSom//ver 4.0.0.8
+			) {
 //info thuộc log kết công bộ phận
 			//ver4.0.0.1 có thêm TongNgayLV
 			var query = @"
 INSERT INTO KetCongNgay
 (  UserEnrollNumber, Ngay, TongCong, TongNgayLV, TongPC, PCDem, PCTangCuong, PCTangCuong_Dem, 
-PC200, PC260, PC300, PC390, PCCus, TGLamViec, TGLamThem, TGLamDem, TGThuc, IsOverNight ) 
+PC200, PC260, PC300, PC390, PCCus, TGLamViec, TGLamThem, TGLamDem, TGThuc, IsOverNight,
+CongDinhMucDuoi8Tieng, CongTichLuy, TruCongTreVR, TruCongSomVR, TruCongTreBu, TruCongSomBu, CongBuPhepTre, CongBuPhepSom) 
 VALUES (
   @UserEnrollNumber, @Ngay, @TongCong, @TongNgayLV, @TongPC, @PCDem, @PCTangCuong, @PCTangCuong_Dem, 
-@PC200, @PC260, @PC300, @PC390, @PCCus, @TGLamViec, @TGLamThem, @TGLamDem, @TGThuc, @IsOverNight )";
+@PC200, @PC260, @PC300, @PC390, @PCCus, @TGLamViec, @TGLamThem, @TGLamDem, @TGThuc, @IsOverNight,
+@CongDinhMucDuoi8Tieng, @CongTichLuy, @TruCongTreVR, @TruCongSomVR, @TruCongTreBu, @TruCongSomBu, @CongBuPhepTre, @CongBuPhepSom)";
+			//ver4.0.0.1 có thêm TongNgayLV
+			//ver 4.0.0.8 CongDinhMucDuoi8Tieng, CongTichLuy, TruCongTreVR,TruCongSomVR, TruCongTreBu,TruCongSomBu,CongBuPhepTre,CongBuPhepSom
 			return SqlDataAccessHelper.ExecNoneQueryString(query, new string[]
 				{
   "@UserEnrollNumber", "@Ngay", "@TongCong", "@TongNgayLV", "@TongPC", "@PCDem", "@PCTangCuong", "@PCTangCuong_Dem", //ver4.0.0.1 có thêm TongNgayLV
-  "@PC200", "@PC260", "@PC300", "@PC390", "@PCCus", "@TGLamViec", "@TGLamThem", "@TGLamDem", "@TGThuc", "@IsOverNight"
+  "@PC200", "@PC260", "@PC300", "@PC390", "@PCCus", "@TGLamViec", "@TGLamThem", "@TGLamDem", "@TGThuc", "@IsOverNight",
+  "@CongDinhMucDuoi8Tieng", "@CongTichLuy", "@TruCongTreVR", "@TruCongSomVR", "@TruCongTreBu", "@TruCongSomBu", "@CongBuPhepTre", "@CongBuPhepSom"
 				}, new object[]
 					{
 						maCc, ngay, tongCong, tongNgayLV, tongPc, pc30, pc50, pctcc3, //ver4.0.0.1 có thêm TongNgayLV
-						pc200, pc260, pc300, pc390, pccus, gioLamViec, lamThem, lamBanDem, gioThuc, QuaDem
+						pc200, pc260, pc300, pc390, pccus, gioLamViec, lamThem, lamBanDem, gioThuc, QuaDem,
+						CongDinhMucDuoi8Tieng, CongTichLuy, TruCongTreVR, TruCongSomVR, TruCongTreBu, TruCongSomBu, CongBuPhepTre, CongBuPhepSom//ver 4.0.0.8
 					});
 		}
 
