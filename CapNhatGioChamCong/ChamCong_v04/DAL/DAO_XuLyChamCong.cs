@@ -45,6 +45,7 @@ namespace ChamCong_v04.DAL {
 										,CIO.TimeStr, CIO.Source, CIO.MachineNo
 										,XN.ID,ShiftID,DuyetChoPhepVaoTre, DuyetChoPhepRaSom,OTMin, Explain, Note
 										,VaoTreLaCV, RaSomLaCV
+										,BuGioTre, BuGioSom, BuPhepTre, CongBuPhepTre, BuPhepSom, CongBuPhepSom
 										,CIO.Them, CIO.IDGioGoc, CIO.Xoa
 								FROM	XNCa_LamThem XN, CheckInOut CIO
 								where	(Xoa is null or Xoa = 0)
@@ -56,8 +57,10 @@ namespace ChamCong_v04.DAL {
 										,CIO.TimeStr, CIO.Source, CIO.MachineNo 
 										,XN.ID,ShiftID,DuyetChoPhepVaoTre, DuyetChoPhepRaSom,OTMin, Explain, Note
 										,VaoTreLaCV, RaSomLaCV
+										,BuGioTre, BuGioSom, BuPhepTre, CongBuPhepTre, BuPhepSom, CongBuPhepSom
 										,CIO.Them, CIO.IDGioGoc, CIO.Xoa
 								order by CIO.UserEnrollNumber asc, ID asc , CIO.TimeStr asc";//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+			//ver 4.0.0.8	BuGioTre, BuGioSom, BuPhepTre, CongBuPhepTre, BuPhepSom, CongBuPhepSom			
 			query = String.Format(query, String.Join(" or CIO.UserEnrollNumber = ", ArrDSMaCC_Checked));
 			var tableCIO_V = SqlDataAccessHelper.ExecuteQueryString(query
 				, new[] { "@BDVao", "@KTVao", "@BDRaa", "@KTRaa" }
@@ -497,17 +500,26 @@ values (@UserEnrollNumber, @Ngay,@loai,@PCNgay, @PCDem,1)";
 
 		public static void XacNhanCa(int maCc, DateTime timevao, int machineNoInn, string sourceInn,
 			DateTime timeraa, int machineNoOut, string sourceOut,
-			int ShiftID, string shiftCode, bool bDuyetCpTre, bool bDuyetCpSom, int soPhutLamThem, string lydo, string ghichu,
-			out int idXacNhan, bool vaoTreLaCV, bool raaSomLaCV) {
+			int ShiftID, string shiftCode, bool bDuyetCpTre, bool bDuyetCpSom, int soPhutLamThem, string lydo, string ghichu, out int idXacNhan, 
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongBuPhepTreCongDon, bool bBuPhepSom, float fCongBuPhepSomCongDon,//ver 4.0.0.8
+			bool vaoTreLaCV, bool raaSomLaCV) {
 			// insert vào bảng xác nhận trước để lấy id
 			var queryInsXNCa = @"	INSERT INTO XNCa_LamThem(ShiftID,ShiftCode,DuyetChoPhepVaoTre, DuyetChoPhepRaSom,  OTMin,  Explain,  Note,
+															BuGioTre, BuGioSom, BuPhepTre, CongBuPhepTre, BuPhepSom, CongBuPhepSom,
 															VaoTreLaCV, RaSomLaCV) 
-									VALUES (@ShiftID,@ShiftCode,@DuyetChoPhepVaoTre,@DuyetChoPhepRaSom,@OTMin,@Explain,@Note,@VaoTreLaCV, @RaSomLaCV)
+									VALUES (@ShiftID,@ShiftCode,@DuyetChoPhepVaoTre,@DuyetChoPhepRaSom,@OTMin,@Explain,@Note,
+											@BuGioTre, @BuGioSom, @BuPhepTre, @CongBuPhepTre, @BuPhepSom, @CongBuPhepSom,
+											@VaoTreLaCV, @RaSomLaCV)
 									select ID = @@Identity";//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+			//ver 4.0.0.8		"@BuGioTre", "@BuGioSom", "@BuPhepTre", "@CongBuPhepTre", "@BuPhepSom", "@CongBuPhepSom",
 			DataTable tableKQ1 = SqlDataAccessHelper.ExecuteQueryString(
 				queryInsXNCa,
-				new string[] { "@ShiftID", "@ShiftCode", "@DuyetChoPhepVaoTre", "@DuyetChoPhepRaSom", "@OTMin", "@Explain", "@Note", "@VaoTreLaCV", "@RaSomLaCV" },//ver 4.0.0.4	
-				new object[] { ShiftID, shiftCode, bDuyetCpTre, bDuyetCpSom, soPhutLamThem, lydo, ghichu, vaoTreLaCV, raaSomLaCV });//ver 4.0.0.4	
+				new string[] { "@ShiftID", "@ShiftCode", "@DuyetChoPhepVaoTre", "@DuyetChoPhepRaSom", "@OTMin", "@Explain", "@Note", 
+					"@BuGioTre", "@BuGioSom", "@BuPhepTre", "@CongBuPhepTre", "@BuPhepSom", "@CongBuPhepSom",//ver 4.0.0.8
+					"@VaoTreLaCV", "@RaSomLaCV" },//ver 4.0.0.4	
+				new object[] { ShiftID, shiftCode, bDuyetCpTre, bDuyetCpSom, soPhutLamThem, lydo, ghichu, 
+					bBuGioTre, bBuGioSom, bBuPhepTre, fCongBuPhepTreCongDon, bBuPhepSom, fCongBuPhepSomCongDon,//ver 4.0.0.8
+					vaoTreLaCV, raaSomLaCV });//ver 4.0.0.4	
 			idXacNhan = Int32.Parse(tableKQ1.Rows[0][0].ToString());
 			var queryUpd_CheckInOut = @"	UPDATE	CheckInOut  
 											SET		IDXNCa_LamThem = @IDXNCa_LamThem

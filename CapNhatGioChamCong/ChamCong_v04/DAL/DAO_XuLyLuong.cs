@@ -165,6 +165,7 @@ VALUES (
 		public static int InsKetCongCa(int UserEnrollNumber, DateTime Ngay, DateTime? TimeIn, DateTime? TimeOut,
 			int? ShiftID, string ShiftCode, bool? DaXN, bool? DuyetCPVaoTre, bool? DuyetCPRaSom,
 			bool? vaoTreLaCV, bool? raaSomLaCV,//ver 4.0.0.4	
+			bool? BuGioTre, bool? BuGioSom, bool? BuPhepTre, float? CongBuPhepTre, bool? BuPhepSom, float? CongBuPhepSom,//ver 4.0.0.8
 			int? OTMin, bool? QuaDem, string KyHieuCC,
 			TimeSpan? gioLV, TimeSpan? tGLamthem, TimeSpan? tGLamdem, TimeSpan? tGthuc, TimeSpan? vaotre, TimeSpan? raasom,
 			DateTime? tD_BD_LV, DateTime? tD_KT_LV_coOT, string thongtinCa, string shiftParams, int? haveINOUT, float? cong
@@ -177,15 +178,18 @@ INSERT INTO KetCongCa
 ( UserEnrollNumber,  Ngay,  TimeIn,  TimeOut,  ShiftID,  ShiftCode,  
 CoXN,  DuyetCPVaoTre,  DuyetCPRaSom,  OTMin,  QuaDem,  KyHieuCC,  
 VaoTreLaCV, RaSomLaCV,
+BuGioTre, BuGioSom, BuPhepTre, CongBuPhepTre, BuPhepSom, CongBuPhepSom,
 TGLamViec,  TGLamThem,  TGLamDem,  TGThuc,  TGVaoTre,  TGRaSom,  
 TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 	 VALUES
 (@UserEnrollNumber, @Ngay, @TimeIn, @TimeOut, @ShiftID, @ShiftCode, 
 @CoXN, @DuyetCPVaoTre, @DuyetCPRaSom, @OTMin, @QuaDem, @KyHieuCC, 
 @VaoTreLaCV, @RaSomLaCV,
+@BuGioTre, @BuGioSom, @BuPhepTre, @CongBuPhepTre, @BuPhepSom, @CongBuPhepSom,
 @TGLamViec, @TGLamThem, @TGLamDem, @TGThuc, @TGVaoTre, @TGRaSom, 
 @TD_BD_LV, @TD_KT_LV_CoOT, @ThongTinCa, @ShiftParams, @HaveINOUT, @Cong)
 ";//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+//ver 4.0.0.8			BuGioTre,  BuGioSom,  BuPhepTre,  CongBuPhepTre,  BuPhepSom,  CongBuPhepSom,
 
 			#endregion
 			return SqlDataAccessHelper.ExecNoneQueryString(query,
@@ -193,7 +197,8 @@ TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 															   { 
 "@UserEnrollNumber", "@Ngay", "@TimeIn", "@TimeOut", "@ShiftID", "@ShiftCode", 
 "@CoXN", "@DuyetCPVaoTre", "@DuyetCPRaSom", "@OTMin", "@QuaDem", "@KyHieuCC", 
-"@VaoTreLaCV", "@RaSomLaCV",
+"@VaoTreLaCV", "@RaSomLaCV",//ver 4.0.0.4	
+"@BuGioTre", "@BuGioSom", "@BuPhepTre", "@CongBuPhepTre", "@BuPhepSom", "@CongBuPhepSom",//ver 4.0.0.8
 "@TGLamViec", "@TGLamThem", "@TGLamDem", "@TGThuc", "@TGVaoTre", "@TGRaSom", 
 "@TD_BD_LV", "@TD_KT_LV_CoOT", "@ThongTinCa", "@ShiftParams", "@HaveINOUT", "@Cong"
 															   },
@@ -207,8 +212,14 @@ TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 		OTMin != null ? (object) OTMin : DBNull.Value,
 		QuaDem != null ? (object) QuaDem : DBNull.Value,
 		KyHieuCC != null ? (object) KyHieuCC : DBNull.Value,
-		vaoTreLaCV != null ? (object) vaoTreLaCV : DBNull.Value, 
-		raaSomLaCV != null ? (object) raaSomLaCV : DBNull.Value,
+		vaoTreLaCV != null ? (object) vaoTreLaCV : DBNull.Value, //ver 4.0.0.4
+		raaSomLaCV != null ? (object) raaSomLaCV : DBNull.Value,//ver 4.0.0.4
+		BuGioTre != null ? (object) BuGioTre : DBNull.Value, //ver 4.0.0.8
+		BuGioSom != null ? (object) BuGioSom : DBNull.Value, //ver 4.0.0.8 
+		BuPhepTre != null ? (object) BuPhepTre : DBNull.Value, //ver 4.0.0.8 
+		CongBuPhepTre != null ? (object) CongBuPhepTre : DBNull.Value, //ver 4.0.0.8 
+		BuPhepSom != null ? (object) BuPhepSom : DBNull.Value, //ver 4.0.0.8 
+		CongBuPhepSom != null ? (object) CongBuPhepSom : DBNull.Value, //ver 4.0.0.8
 		gioLV != null ? (object) gioLV : DBNull.Value,
 		tGLamthem != null ? (object) tGLamthem : DBNull.Value,
 		tGLamdem != null ? (object) tGLamdem : DBNull.Value,

@@ -697,7 +697,7 @@ namespace ChamCong_v04.BUS {
 		public static void XacNhanCa(cUserInfo nv, cCheckInOut CIO, cCa currShift,
 			bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
 			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT,//ver 4.0.0.4	
-			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, bool bBuPhepSom//ver 4.0.0.8
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongPhepTreCongDon, bool bBuPhepSom, float fCongPhepSomCongDon//ver 4.0.0.8
 			) {
 
 			//if (CIO.Vao.Time <= XL2.NgayCuoiThangKetCong) return;
@@ -705,10 +705,12 @@ namespace ChamCong_v04.BUS {
 			if (currShift.TachCaDem) {
 				if (CIO.DaXN) {
 					XacNhan_CIO_V_CoTachCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
+						bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTreCongDon, bBuPhepSom, fCongPhepSomCongDon,//ver 4.0.0.8
 						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
 				}
 				else {
 					XacNhan_CIO_A_CoTachCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
+						bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTreCongDon, bBuPhepSom, fCongPhepSomCongDon,//ver 4.0.0.8
 						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT);//ver 4.0.0.4	
 				}
 			}
@@ -716,14 +718,14 @@ namespace ChamCong_v04.BUS {
 			else {
 				if (CIO.DaXN) {
 					XacNhan_CIO_V(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT,//ver 4.0.0.4	
-						bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
+						bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTreCongDon, bBuPhepSom, fCongPhepSomCongDon,//ver 4.0.0.8
+						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT//ver 4.0.0.4	
 						);
 				}
 				else {
 					XacNhan_CIO_A(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT,//ver 4.0.0.4	
-						bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
+						bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTreCongDon, bBuPhepSom, fCongPhepSomCongDon,//ver 4.0.0.8
+						bVaoTreLaCV, bRaaSomLaCV, startNT, endddNT//ver 4.0.0.4	
 					);
 				}
 
@@ -731,6 +733,7 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void XacNhan_CIO_A_CoTachCa(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongBuPhepTreCongDon, bool bBuPhepSom, float fCongBuPhepSomCongDon,//ver 4.0.0.8
 			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
 			var catruoc = currShift.catruoc;
 			var casauuu = currShift.casauuu;
@@ -750,10 +753,12 @@ namespace ChamCong_v04.BUS {
 			DAO.XacNhanCa(nv.MaCC, CIO.Vao.Time, CIO.Vao.MachineNo, CIO.Vao.Source,
 				checkOutCa3.Time, checkOutCa3.MachineNo, checkOutCa3.Source,
 				catruoc.ID, catruoc.Code, bDuyetCPTre, bDuyetCPSom, 0, lydo, ghichu, out outputIDXNCa3,// ca 3 ko có làm thêm OT
+				bBuGioTre, bBuGioSom, bBuPhepTre, fCongBuPhepTreCongDon, false, 0f,//ver 4.0.0.8
 				bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
 			DAO.XacNhanCa(nv.MaCC, checkInnCa1.Time, checkInnCa1.MachineNo, checkInnCa1.Source,
 				CIO.Raa.Time, CIO.Raa.MachineNo, CIO.Raa.Source,
 				casauuu.ID, casauuu.Code, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, lydo, ghichu, out outputIDXNCa1,
+				bBuGioTre, bBuGioSom, false, 0f, bBuPhepSom, fCongBuPhepSomCongDon,//ver 4.0.0.8
 				bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
 
 			// 3. bỏ Check In, Check Out khỏi DS_Check_A
@@ -829,6 +834,7 @@ namespace ChamCong_v04.BUS {
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCapDB);
 		}
 		public static void XacNhan_CIO_V_CoTachCa(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongBuPhepTreCongDon, bool bBuPhepSom, float fCongBuPhepSomCongDon,//ver 4.0.0.8
 			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT) {//ver 4.0.0.4	
 			var catruoc = currShift.catruoc;
 			var casauuu = currShift.casauuu;
@@ -849,10 +855,12 @@ namespace ChamCong_v04.BUS {
 			DAO.XacNhanCa(nv.MaCC, CIO.Vao.Time, CIO.Vao.MachineNo, CIO.Vao.Source,
 				checkOutCa3.Time, checkOutCa3.MachineNo, checkOutCa3.Source,
 				catruoc.ID, catruoc.Code, bDuyetCPTre, bDuyetCPSom, 0, lydo, ghichu, out outputIDXNCa3,// ca 3 ko có làm thêm OT
+				bBuGioTre, bBuGioSom, bBuPhepTre, fCongBuPhepTreCongDon, false, 0f,//ver 4.0.0.8
 				bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
 			DAO.XacNhanCa(nv.MaCC, checkInnCa1.Time, checkInnCa1.MachineNo, checkInnCa1.Source,
 				CIO.Raa.Time, CIO.Raa.MachineNo, CIO.Raa.Source,
 				casauuu.ID, casauuu.Code, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, lydo, ghichu, out outputIDXNCa1,
+				bBuGioTre, bBuGioSom, bBuPhepTre, fCongBuPhepTreCongDon, false, 0f,//ver 4.0.0.8
 				bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
 			// 3 CIO_V nên ko có DSCheck_V để loại bỏ
 			// 4.1 bỏ CIO_V khỏi DS_CIO_V;   4.2 bỏ CIO_V khỏi DSVaoRa;
@@ -924,15 +932,16 @@ namespace ChamCong_v04.BUS {
 
 		}
 
-		public static void XacNhan_CIO_V(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu, 
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT,//ver 4.0.0.4	
-			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, bool bBuPhepSom//ver 4.0.0.8
+		public static void XacNhan_CIO_V(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongPhepTreCongDon, bool bBuPhepSom, float fCongPhepSomCongDon,//ver 4.0.0.8
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT//ver 4.0.0.4	
 			) {
 			var timevao = CIO.Vao.Time;
 			var timeraa = CIO.Raa.Time;
 			int outputIDXN;
 			DAO.XacNhanCa(nv.MaCC, timevao, CIO.Vao.MachineNo, CIO.Vao.Source, timeraa, CIO.Raa.MachineNo, CIO.Raa.Source,
-				currShift.ID, currShift.Code, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, lydo, ghichu, out outputIDXN , 
+				currShift.ID, currShift.Code, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, lydo, ghichu, out outputIDXN ,
+				bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTreCongDon, bBuPhepSom, fCongPhepSomCongDon,//ver 4.0.0.8
 				bVaoTreLaCV, bRaaSomLaCV);
 
 			// update lại ID cho CIO_V này và cập nhật lại các thông tin. sau đó XÉT CA lại
@@ -961,8 +970,8 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void XacNhan_CIO_A(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
-			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT,//ver 4.0.0.4
-			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, bool bBuPhepSom//ver 4.0.0.8
+			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongPhepTreCongDon, bool bBuPhepSom,float fCongPhepSomCongDon,//ver 4.0.0.8
+			bool bVaoTreLaCV, bool bRaaSomLaCV, TimeSpan startNT, TimeSpan endddNT//ver 4.0.0.4
 			) {	
 			var timevao = CIO.Vao.Time;
 			var timeraa = CIO.Raa.Time;
@@ -974,6 +983,7 @@ namespace ChamCong_v04.BUS {
 			// 2. xác nhận ca dưới csdl
 			DAO.XacNhanCa(nv.MaCC, timevao, CIO.Vao.MachineNo, CIO.Vao.Source, timeraa, CIO.Raa.MachineNo, CIO.Raa.Source,
 				currShift.ID, currShift.Code, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, lydo, ghichu, out outputIDXN,
+				bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTreCongDon, bBuPhepSom, fCongPhepSomCongDon,//ver 4.0.0.8
 				bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
 
 			// 3. bỏ Check In, Check Out khỏi DS_Check_A
@@ -996,6 +1006,8 @@ namespace ChamCong_v04.BUS {
 				ThuocNgayCong = ThuocNgayCong(checkInn.Time),
 				DuyetChoPhepVaoTre = bDuyetCPTre, DuyetChoPhepRaSom = bDuyetCPSom,
 				VaoTreTinhCV = bVaoTreLaCV, RaaSomTinhCV = bRaaSomLaCV,//ver 4.0.0.4	
+				ChoBuGioTre = bBuGioTre, ChoBuGioSom = bBuGioSom,//ver 4.0.0.8
+				ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = bBuPhepSom, BuCongPhepTre = fCongPhepTreCongDon, BuCongPhepSom = fCongPhepSomCongDon,//ver 4.0.0.8
 				TG = new ThoiGian { OTCa = new TimeSpan(0, soPhutLamThem, 0) },
 				TD = new ThoiDiem()
 			};
@@ -1037,6 +1049,7 @@ namespace ChamCong_v04.BUS {
 			// 2. xác nhận ca dưới csdl
 			DAO.XacNhanCa(MaCC, timevao, 21, "PC", timeraa, 22, "PC",
 				currShift.ID, currShift.Code, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, lydo, ghichu, out outputIDXN,
+				false, false, false, 0f, false, 0f,//todo//ver 4.0.0.8
 				bVaoTreLaCV, bRaaSomLaCV);//ver 4.0.0.4	
 			DAO.CheckTinhPC50(MaCC, timevao.Date, choPhepTinhPc50);
 		}

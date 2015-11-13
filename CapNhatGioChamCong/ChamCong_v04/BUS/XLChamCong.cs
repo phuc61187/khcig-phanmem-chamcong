@@ -739,6 +739,12 @@ namespace ChamCong_v04.BUS {
 				var DuyetChoPhepRaSom = (rowInn["DuyetChoPhepRaSom"] != DBNull.Value) && (bool)rowInn["DuyetChoPhepRaSom"];
 				var vaoTreTinhCV = (rowInn["VaoTreLaCV"] != DBNull.Value) && (bool)rowInn["VaoTreLaCV"];//ver 4.0.0.4	
 				var raaSomTinhCV = (rowInn["RaSomLaCV"] != DBNull.Value) && (bool)rowInn["RaSomLaCV"];//ver 4.0.0.4	
+				var bBuGioTre = (rowInn["BuGioTre"] != DBNull.Value) && (bool)rowInn["BuGioTre"];//ver 4.0.0.8
+				var bBuGioSom = (rowInn["BuGioSom"] != DBNull.Value) && (bool)rowInn["BuGioSom"];//ver 4.0.0.8
+				var bBuPhepTre = (rowInn["BuPhepTre"] != DBNull.Value) && (bool)rowInn["BuPhepTre"];//ver 4.0.0.8
+				var bBuPhepSom = (rowInn["BuPhepSom"] != DBNull.Value) && (bool)rowInn["BuPhepSom"];//ver 4.0.0.8
+				var fCongPhepTreCongDon = (rowInn["CongBuPhepTre"] != DBNull.Value) ? (float)rowInn["CongBuPhepTre"] : 0f;//ver 4.0.0.8
+				var fCongPhepSomCongDon = (rowInn["CongBuPhepSom"] != DBNull.Value) ? (float)rowInn["CongBuPhepSom"] : 0f;//ver 4.0.0.8
 				var pOTMin = (int)rowInn["OTMin"];
 
 				if (IDinn != IDout) // b? m?t c?p -> b? qua d?n c?p k? ti?p, ph?i tang x, y v́ x+1=y ==> y+1
@@ -764,6 +770,8 @@ namespace ChamCong_v04.BUS {
 					ShiftID = shiftID,
 					DuyetChoPhepVaoTre = DuyetChoPhepVaoTre, DuyetChoPhepRaSom = DuyetChoPhepRaSom,
 					VaoTreTinhCV = vaoTreTinhCV, RaaSomTinhCV = raaSomTinhCV,//ver 4.0.0.4	
+					ChoBuGioTre = bBuGioTre, ChoBuGioSom = bBuGioSom,//ver 4.0.0.8
+					ChoBuPhepTre = bBuPhepTre, ChoBuPhepSom = bBuPhepSom, BuCongPhepTre = fCongPhepTreCongDon, BuCongPhepSom = fCongPhepSomCongDon,//ver 4.0.0.8
 					ThuocNgayCong = ThuocNgayCong(chkInnV.Time),
 					TG = new ThoiGian { OTCa = new TimeSpan(0, pOTMin, 0) },
 					TD = new ThoiDiem()

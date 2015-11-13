@@ -264,6 +264,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 													   (CIO.Raa != null) ? (DateTime?)CIO.Raa.Time : null,
 													   null, string.Empty, null, null, null,
 													   null, null,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+													   null, null, null, null, null, null,//ver 4.0.0.8@BuGioTre, @BuGioSom, @BuPhepTre, @CongBuPhepTre, @BuPhepSom, @CongBuPhepSom,
 													   null, null, string.Empty,
 													   null, null, null, null, null, null, null, null, string.Empty, string.Empty, CIO.HaveINOUT, null);
 
@@ -293,6 +294,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								kq1 = DAO.InsKetCongCa(nv.MaCC, ngayCong.Ngay, CIO.Vao.Time, CIO.Raa.Time,
 													   CIO.ThuocCa.ID, CIO.ThuocCa.Code, CIO.DaXN, CIO.DuyetChoPhepVaoTre, CIO.DuyetChoPhepRaSom,
 													   CIO.VaoTreTinhCV, CIO.RaaSomTinhCV,//ver 4.0.0.4	
+													   CIO.ChoBuGioTre, CIO.ChoBuGioSom, CIO.ChoBuPhepTre, CIO.BuCongPhepTre, CIO.ChoBuPhepSom, CIO.BuCongPhepSom,//ver 4.0.0.8
 													   CIO.OTMin, CIO.QuaDem, CIO.ThuocCa.KyHieuCC, CIO.TG.GioLamViec, CIO.TG.LamThem, CIO.TG.LamBanDem, CIO.TG.GioThuc,
 													   CIO.TG.VaoTre, CIO.TG.RaaSom,
 													   CIO.TD.BD_LV, CIO.TD.KT_LV, thongtinCa, shiftParams,

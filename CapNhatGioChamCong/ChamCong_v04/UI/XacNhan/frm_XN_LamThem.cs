@@ -328,37 +328,20 @@ namespace ChamCong_v04.UI.XacNhan {
 			var timeraa = CIO.Raa.Time;
 			float tempRef_CongPhepTreCongDon = 0f, tempRef_CongPhepSomCongDon = 0f;//todo 4.0.0.8
 			if (currShift.TachCaDem) {
-				DateTime td_bd_lv, td_kt_lv_chuaOT, td_kt_lv_DaCoOT;
-				TimeSpan tempSom, tempTre;
-
-				DateTime td_bd_ca3 = CIO.ThuocNgayCong.Add(currShift.Duty.Onn);
-				DateTime td_kt_ca3 = td_bd_ca3.Add(currShift.catruoc.WorkingTimeTS);
-				DateTime td_bd_ca1 = td_bd_ca3.Add(currShift.catruoc.WorkingTimeTS).Add(XL2._01giay);
-				DateTime td_kt_ca3va1 = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
-
-				XL.Vao(timevao, td_bd_ca3, CIO.ThuocNgayCong.Add(currShift.chophepTreTS),
-					bDuyetCPTre, bVaoTreLaCV, out td_bd_lv, out tempTre); //todo 4.0.0.8
-				XL.XetBuGioTre(bBuGioTre, td_bd_ca3, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
-				XL.XetBuPhepTre(bBuPhepTre, fCongPhepTre, td_bd_ca3, ref tempRef_CongPhepTreCongDon, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
-				XL.Raa(timeraa, td_kt_ca3va1, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom);//todo 4.0.0.8
-				XL.XetBuGioSom(bBuGioSom, td_kt_ca3va1, ref td_kt_lv_chuaOT, ref tempSom);
-				XL.XetBuPhepSom(bBuPhepSom, fCongPhepSom, td_kt_ca3va1, ref tempRef_CongPhepSomCongDon, ref td_kt_lv_chuaOT, ref  tempSom);
-				XL.LamThem(td_kt_lv_chuaOT, new TimeSpan(0, soPhutLamThem, 0), out td_kt_lv_DaCoOT);
-				if (td_bd_lv > td_bd_ca3 + XL2._04gio || td_kt_lv_DaCoOT < td_bd_ca1 + XL2._02gio) {
-					MessageBox.Show(Resources.Text_KhongTheXacNhanCaTach_KoDuDieuKienTach, Resources.Caption_ThongBao, MessageBoxButtons.OK);
-				}
-				else {
-					XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
-						bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT,//ver 4.0.0.4	
-						bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
-						);
-				}
+				MessageBox.Show("Vui lòng thêm giờ ra cuối ca 3 và giờ vào đầu ca 1 và thực hiện xác nhận lại!",
+					Resources.Caption_ThongBao, MessageBoxButtons.OK);
 			}
 			else {
-				DateTime td_kt_lv_chuaOT;
-				TimeSpan tempSom, tempOLai;
+				DateTime td_bd_lv, td_kt_lv_chuaOT;
+				TimeSpan tempTre, tempSom, tempOLai;
+				var onnduty = CIO.ThuocNgayCong.Add(currShift.Duty.Onn);
 				var offduty = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
+
+				XL.Vao(timevao, onnduty, CIO.ThuocNgayCong.Add(currShift.chophepTreTS),
+					bDuyetCPTre, bVaoTreLaCV, out td_bd_lv, out tempTre); //todo 4.0.0.8
+				XL.XetBuGioTre(bBuGioTre, onnduty, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
+				XL.XetBuPhepTre(bBuPhepTre, fCongPhepTre, onnduty, ref tempRef_CongPhepTreCongDon, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
+
 				XL.Raa(timeraa, offduty, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
 					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom); //todo 4.0.0.8
 				XL.XetBuGioSom(bBuGioSom, offduty, ref td_kt_lv_chuaOT, ref tempSom);
@@ -370,7 +353,7 @@ namespace ChamCong_v04.UI.XacNhan {
 
 				XL.XacNhanCa(nv, CIO, currShift, bDuyetCPTre, bDuyetCPSom, soPhutLamThem, choPhepTinhPc50, lydo, ghichu,
 					bVaoTreLaCV, bRaaSomLaCV, nv.StartNT, nv.EndddNT,//ver 4.0.0.4
-					bBuGioTre, bBuGioSom, bBuPhepTre, bBuPhepSom//ver 4.0.0.8
+					bBuGioTre, bBuGioSom, bBuPhepTre, tempRef_CongPhepTreCongDon, bBuPhepSom, tempRef_CongPhepSomCongDon//ver 4.0.0.8
 					);
 			}
 
