@@ -120,7 +120,7 @@ namespace ChamCong_v04.UI.ChamCong {
 
 			var timespanGioVao = dtpVao.Value.TimeOfDay;
 			var timespanGioRaa = dtpRaa.Value.TimeOfDay;
-			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.SelectedText;
+			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.Text;
 			var ghichu = tbGhiChu.Text;
 
 			#endregion
@@ -201,7 +201,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			IsReload = true;
 			var timespanGioVao = dtpVao.Value.TimeOfDay;
 			var timespanGioRaa = dtpRaa.Value.TimeOfDay;
-			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.SelectedText;
+			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.Text;
 			var ghichu = tbGhiChu.Text;
 
 			if (dgrdDSGioVaoRa.SelectedRows.Count == 0) return;
@@ -282,7 +282,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			if (XL2.KiemtraKetnoiCSDL() == false) return;
 
 			IsReload = true;
-			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.SelectedText;
+			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.Text;
 			var ghichu = tbGhiChu.Text;
 
 			if (dgrdDSGioVaoRa.SelectedRows.Count == 0) return;
@@ -349,7 +349,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			if (XL2.KiemtraKetnoiCSDL() == false) return;
 
 			IsReload = true;
-			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.SelectedText;
+			var lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.Text;
 			var ghichu = tbGhiChu.Text;
 
 			#region hỏi lại ttrước khi xoá

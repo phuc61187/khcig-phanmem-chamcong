@@ -119,9 +119,9 @@ namespace ChamCong_v04.UI.QLNV {
 			DateTime ngayvaolam = dtpNgayVaoLam.Value.Date;
 			int idchucvu = (int)cbChucVu.SelectedValue;
 			int idphong = (int)cbPhongBan.SelectedValue;
-			string tenphong = (cbPhongBan.SelectedItem != null) ? cbPhongBan.SelectedItem.ToString() : cbPhongBan.SelectedText;
+			string tenphong = (cbPhongBan.SelectedItem != null) ? cbPhongBan.SelectedItem.ToString() : cbPhongBan.Text;
 			int idlichtrinh = (int)cbLichTrinh.SelectedValue;
-			string tenLichTrinh = (cbLichTrinh.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.SelectedText;
+			string tenLichTrinh = (cbLichTrinh.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.Text;
 			float hslcb, hslcv, hsbhxhcongthem;
 			if (float.TryParse(tbHSLCB.Text, out hslcb) == false
 				|| float.TryParse(tbHSLCV.Text, out hslcv) == false

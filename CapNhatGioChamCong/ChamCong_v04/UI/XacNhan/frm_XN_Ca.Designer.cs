@@ -24,15 +24,15 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_XN_Ca));
 			this.dgrdGioCoLamThem = new System.Windows.Forms.DataGridView();
 			this.g1colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,6 +110,8 @@
 			this.label19 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
+			this.lbTTCongBuPhepTre = new System.Windows.Forms.Label();
+			this.lbTTCongBuPhepSom = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdGioCoLamThem)).BeginInit();
 			this.gbChiTiet.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numPhutTinhLamThem)).BeginInit();
@@ -125,9 +127,9 @@
 			this.dgrdGioCoLamThem.AllowUserToAddRows = false;
 			this.dgrdGioCoLamThem.AllowUserToDeleteRows = false;
 			this.dgrdGioCoLamThem.AllowUserToResizeRows = false;
-			dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black;
-			this.dgrdGioCoLamThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+			this.dgrdGioCoLamThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgrdGioCoLamThem.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdGioCoLamThem.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
 			this.dgrdGioCoLamThem.ColumnHeadersHeight = 27;
@@ -169,8 +171,8 @@
 			// colUserEnrollNumberTongHop
 			// 
 			this.colUserEnrollNumberTongHop.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle20.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.colUserEnrollNumberTongHop.DefaultCellStyle = dataGridViewCellStyle20;
+			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.colUserEnrollNumberTongHop.DefaultCellStyle = dataGridViewCellStyle2;
 			this.colUserEnrollNumberTongHop.HeaderText = "Mã CC_hide";
 			this.colUserEnrollNumberTongHop.Name = "colUserEnrollNumberTongHop";
 			this.colUserEnrollNumberTongHop.ReadOnly = true;
@@ -189,8 +191,8 @@
 			// colTimeDateTongHop
 			// 
 			this.colTimeDateTongHop.DataPropertyName = "TimeStrNgay";
-			dataGridViewCellStyle21.Format = "ddd d/M";
-			this.colTimeDateTongHop.DefaultCellStyle = dataGridViewCellStyle21;
+			dataGridViewCellStyle3.Format = "ddd d/M";
+			this.colTimeDateTongHop.DefaultCellStyle = dataGridViewCellStyle3;
 			this.colTimeDateTongHop.HeaderText = "Ngày công";
 			this.colTimeDateTongHop.Name = "colTimeDateTongHop";
 			this.colTimeDateTongHop.ReadOnly = true;
@@ -207,8 +209,8 @@
 			// colCong
 			// 
 			this.colCong.DataPropertyName = "Cong";
-			dataGridViewCellStyle22.Format = "#0.##";
-			this.colCong.DefaultCellStyle = dataGridViewCellStyle22;
+			dataGridViewCellStyle4.Format = "#0.##";
+			this.colCong.DefaultCellStyle = dataGridViewCellStyle4;
 			this.colCong.HeaderText = "Công";
 			this.colCong.Name = "colCong";
 			this.colCong.ReadOnly = true;
@@ -217,8 +219,8 @@
 			// grid1colPhuCap
 			// 
 			this.grid1colPhuCap.DataPropertyName = "PhuCap";
-			dataGridViewCellStyle23.Format = "#0.##";
-			this.grid1colPhuCap.DefaultCellStyle = dataGridViewCellStyle23;
+			dataGridViewCellStyle5.Format = "#0.##";
+			this.grid1colPhuCap.DefaultCellStyle = dataGridViewCellStyle5;
 			this.grid1colPhuCap.HeaderText = "Phụ cấp";
 			this.grid1colPhuCap.Name = "grid1colPhuCap";
 			this.grid1colPhuCap.ReadOnly = true;
@@ -228,8 +230,8 @@
 			// colTongGioLamTongHop
 			// 
 			this.colTongGioLamTongHop.DataPropertyName = "TongGioLam";
-			dataGridViewCellStyle24.Format = "h\\gmm";
-			this.colTongGioLamTongHop.DefaultCellStyle = dataGridViewCellStyle24;
+			dataGridViewCellStyle6.Format = "h\\gmm";
+			this.colTongGioLamTongHop.DefaultCellStyle = dataGridViewCellStyle6;
 			this.colTongGioLamTongHop.HeaderText = "Giờ LV";
 			this.colTongGioLamTongHop.Name = "colTongGioLamTongHop";
 			this.colTongGioLamTongHop.ReadOnly = true;
@@ -239,8 +241,8 @@
 			// cTongGioThuc
 			// 
 			this.cTongGioThuc.DataPropertyName = "TongGioThuc";
-			dataGridViewCellStyle25.Format = "h\\gmm";
-			this.cTongGioThuc.DefaultCellStyle = dataGridViewCellStyle25;
+			dataGridViewCellStyle7.Format = "h\\gmm";
+			this.cTongGioThuc.DefaultCellStyle = dataGridViewCellStyle7;
 			this.cTongGioThuc.HeaderText = "T.Giờ";
 			this.cTongGioThuc.Name = "cTongGioThuc";
 			this.cTongGioThuc.ReadOnly = true;
@@ -250,8 +252,8 @@
 			// colTimeStrInTongHop
 			// 
 			this.colTimeStrInTongHop.DataPropertyName = "TimeStrVao";
-			dataGridViewCellStyle26.Format = "H:mm d/M";
-			this.colTimeStrInTongHop.DefaultCellStyle = dataGridViewCellStyle26;
+			dataGridViewCellStyle8.Format = "H:mm d/M";
+			this.colTimeStrInTongHop.DefaultCellStyle = dataGridViewCellStyle8;
 			this.colTimeStrInTongHop.HeaderText = "Vào";
 			this.colTimeStrInTongHop.Name = "colTimeStrInTongHop";
 			this.colTimeStrInTongHop.ReadOnly = true;
@@ -260,8 +262,8 @@
 			// colTimeStrOutTongHop
 			// 
 			this.colTimeStrOutTongHop.DataPropertyName = "TimeStrRaa";
-			dataGridViewCellStyle27.Format = "H:mm d/M";
-			this.colTimeStrOutTongHop.DefaultCellStyle = dataGridViewCellStyle27;
+			dataGridViewCellStyle9.Format = "H:mm d/M";
+			this.colTimeStrOutTongHop.DefaultCellStyle = dataGridViewCellStyle9;
 			this.colTimeStrOutTongHop.HeaderText = "Ra";
 			this.colTimeStrOutTongHop.Name = "colTimeStrOutTongHop";
 			this.colTimeStrOutTongHop.ReadOnly = true;
@@ -883,6 +885,8 @@
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label19);
 			this.groupBox1.Controls.Add(this.label20);
+			this.groupBox1.Controls.Add(this.lbTTCongBuPhepSom);
+			this.groupBox1.Controls.Add(this.lbTTCongBuPhepTre);
 			this.groupBox1.Controls.Add(this.label21);
 			this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.groupBox1.Location = new System.Drawing.Point(2, 3);
@@ -1038,7 +1042,7 @@
 			// tbTTOLaiThem
 			// 
 			this.tbTTOLaiThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.tbTTOLaiThem.Location = new System.Drawing.Point(269, 149);
+			this.tbTTOLaiThem.Location = new System.Drawing.Point(291, 151);
 			this.tbTTOLaiThem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.tbTTOLaiThem.Name = "tbTTOLaiThem";
 			this.tbTTOLaiThem.ReadOnly = true;
@@ -1061,7 +1065,7 @@
 			// 
 			this.label15.AutoSize = true;
 			this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.label15.Location = new System.Drawing.Point(253, 175);
+			this.label15.Location = new System.Drawing.Point(266, 147);
 			this.label15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(75, 15);
@@ -1135,6 +1139,28 @@
 			this.label21.Size = new System.Drawing.Size(28, 15);
 			this.label21.TabIndex = 0;
 			this.label21.Text = "Vào";
+			// 
+			// lbTTCongBuPhepTre
+			// 
+			this.lbTTCongBuPhepTre.AutoSize = true;
+			this.lbTTCongBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.lbTTCongBuPhepTre.Location = new System.Drawing.Point(102, 185);
+			this.lbTTCongBuPhepTre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.lbTTCongBuPhepTre.Name = "lbTTCongBuPhepTre";
+			this.lbTTCongBuPhepTre.Size = new System.Drawing.Size(63, 15);
+			this.lbTTCongBuPhepTre.TabIndex = 0;
+			this.lbTTCongBuPhepTre.Text = "CongPTre";
+			// 
+			// lbTTCongBuPhepSom
+			// 
+			this.lbTTCongBuPhepSom.AutoSize = true;
+			this.lbTTCongBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.lbTTCongBuPhepSom.Location = new System.Drawing.Point(264, 185);
+			this.lbTTCongBuPhepSom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.lbTTCongBuPhepSom.Name = "lbTTCongBuPhepSom";
+			this.lbTTCongBuPhepSom.Size = new System.Drawing.Size(71, 15);
+			this.lbTTCongBuPhepSom.TabIndex = 0;
+			this.lbTTCongBuPhepSom.Text = "CongPSom";
 			// 
 			// frm_XN_Ca
 			// 
@@ -1238,6 +1264,8 @@
 		private System.Windows.Forms.CheckBox checkTTBuPhepSom;
 		private System.Windows.Forms.CheckBox checkTTBuPhepTre;
 		private System.Windows.Forms.CheckBox checkTTBuGioTre;
+		private System.Windows.Forms.Label lbTTCongBuPhepSom;
+		private System.Windows.Forms.Label lbTTCongBuPhepTre;
 
 	}
 }

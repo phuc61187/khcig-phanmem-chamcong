@@ -72,13 +72,13 @@ namespace ChamCong_v04.UI.QLNV {
 			if (checkChucVu.Checked) {
 				idChucVu = (int)cbChucVu.SelectedValue;
 				arrString.Add(" UserIDTitle = @IDChucVu ");
-				arrString2.Add("chức vụ mới: [" + ((cbChucVu.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.SelectedText) + "]; ");
+				arrString2.Add("chức vụ mới: [" + ((cbChucVu.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.Text) + "]; ");
 				IsExist_1Check = true;
 			}
 			if (checkLichtrinh.Checked) {
 				idLichtrinh = (int)cbLichTrinh.SelectedValue;
-				arrString.Add(" SchID = @SchID ");// (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.SelectedText;
-				arrString2.Add("lịch trình làm việc mới: [" + ((cbLichTrinh.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.SelectedText) + "]; ");
+				arrString.Add(" SchID = @SchID ");// (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.Text;
+				arrString2.Add("lịch trình làm việc mới: [" + ((cbLichTrinh.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.Text) + "]; ");
 				IsExist_1Check = true;
 			}
 			if (checkHSLCB.Checked) {

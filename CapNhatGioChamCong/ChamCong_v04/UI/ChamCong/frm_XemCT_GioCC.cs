@@ -266,7 +266,7 @@ namespace ChamCong_v04.UI.ChamCong {
 
 			var giovao = dtpVao_Them.Value.Add(XL2._01giay);
 			var gioraa = dtpRaa_Them.Value;
-			var lydo = (cbLyDo_Them.SelectedItem != null) ? cbLyDo_Them.SelectedItem.ToString() : cbLyDo_Them.SelectedText;
+			var lydo = (cbLyDo_Them.SelectedItem != null) ? cbLyDo_Them.SelectedItem.ToString() : cbLyDo_Them.Text;
 			var ghichu = tbGhichu_Them.Text;
 			var UserEnrollNumber = nhanvien_goc.MaCC;
 
@@ -362,7 +362,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			var row = (DataRowView)((dgrdGioKDQD.SelectedRows[0]).DataBoundItem);
 			var check = (cCheck)row["cCheck"];
 			var CIO = (cCheckInOut)row["cCheckInOut"];
-			var lydo = (cbLyDo_Xoaa.SelectedItem != null) ? cbLyDo_Xoaa.SelectedItem.ToString() : cbLyDo_Xoaa.SelectedText;
+			var lydo = (cbLyDo_Xoaa.SelectedItem != null) ? cbLyDo_Xoaa.SelectedItem.ToString() : cbLyDo_Xoaa.Text;
 			var ghichu = tbGhiChu_Xoaa.Text;
 
 			#endregion
@@ -421,7 +421,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			var checkold = (cCheck)row["cCheck"];
 			var suagiovao = (checkold.MachineNo % 2 == 1);
 			var gioMoi = dtpGioMoi_Sua.Value;
-			var lydo = (cbLyDo_Suaa.SelectedItem != null) ? cbLyDo_Suaa.SelectedItem.ToString() : cbLyDo_Suaa.SelectedText;
+			var lydo = (cbLyDo_Suaa.SelectedItem != null) ? cbLyDo_Suaa.SelectedItem.ToString() : cbLyDo_Suaa.Text;
 			var ghichu = tbGhiChu_Suaa.Text;
 
 			#endregion
@@ -489,7 +489,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			var CIO = (cCheckInOut)row["cCheckInOut"];
 			var VAO_to_RAA = (checkold.MachineNo % 2 == 1);
 			var giocuu = checkold.Time;
-			var lydo = (cbLyDo_Suaa.SelectedItem != null) ? cbLyDo_Suaa.SelectedItem.ToString() : cbLyDo_Suaa.SelectedText;
+			var lydo = (cbLyDo_Suaa.SelectedItem != null) ? cbLyDo_Suaa.SelectedItem.ToString() : cbLyDo_Suaa.Text;
 			var ghichu = tbGhiChu_Suaa.Text;
 
 			#region thông báo ko cho chuyển đõi nếu đã xn

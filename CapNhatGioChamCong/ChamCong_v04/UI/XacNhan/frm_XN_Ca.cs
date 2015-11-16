@@ -71,6 +71,11 @@ namespace ChamCong_v04.UI.XacNhan {
 			dgrdGioCoLamThem.SelectionChanged += dgrdGioCoLamThem_SelectionChanged;
 			cbCongPhepTre.SelectedIndex = 0;
 			cbCongPhepSom.SelectedIndex = 0;
+			lbTTCongBuPhepTre.Text = string.Empty;
+			lbTTCongBuPhepSom.Text = string.Empty;
+			lbTTCongBuPhepTre.Tag = null;
+			lbTTCongBuPhepSom.Tag = null;
+
 		}
 
 		private void frmXacNhanTangCa_Load(object sender, EventArgs e) {
@@ -87,6 +92,7 @@ namespace ChamCong_v04.UI.XacNhan {
 				MyUtility.ClearControlText(tbTTTenNV, tbTTGioVao, tbTTGioRaa,
 				tbTTThuocCa, tbTTGioLam, tbTTTongGio, tbTTTreSom,
 				tbTTOLaiThem, tbTTLamThem,
+				lbTTCongBuPhepTre, lbTTCongBuPhepSom,//ver 4.0.0.8
 				tbXNCa, tbXNGioLam,
 				tbXNTre, tbXNSom, tbXN_OLaiThem, tbXNGhiChu);
 
@@ -129,6 +135,8 @@ namespace ChamCong_v04.UI.XacNhan {
 				tbTTTreSom.Text = (CIO.HaveINOUT == 0) ? (CIO.TG.VaoTre + CIO.TG.RaaSom).ToString(@"h\gmm\p") : string.Empty;
 				tbTTOLaiThem.Text = (CIO.HaveINOUT == 0) ? CIO.TG.OLai.ToString(@"h\gmm\p") : string.Empty;
 				tbTTLamThem.Text = (CIO.DaXN) ? CIO.TG.OTCa.ToString(@"h\gmm\p") : string.Empty;
+				lbTTCongBuPhepTre.Text = this.ChuyenDoiCongThanhChu(CIO.BuCongPhepTreCongDon);//ver 4.0.0.8
+				lbTTCongBuPhepSom.Text = this.ChuyenDoiCongThanhChu(CIO.BuCongPhepSomCongDon);//ver 4.0.0.8
 				checkTTChoPhepTre.Checked = CIO.DuyetChoPhepVaoTre;
 				checkTTChoPhepSom.Checked = CIO.DuyetChoPhepRaSom;
 				checkTTTinhPC50.Checked = ngaycong.TinhPC50;
@@ -158,6 +166,12 @@ namespace ChamCong_v04.UI.XacNhan {
 				checkXNBuGioSom.Checked = CIO.ChoBuGioSom;//ver 4.0.0.8
 				checkXNBuPhepTre.Checked = CIO.ChoBuPhepTre;//ver 4.0.0.8
 				checkXNBuPhepSom.Checked = CIO.ChoBuPhepSom;//ver 4.0.0.8
+				cbCongPhepTre.SelectedIndexChanged -= this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
+				cbCongPhepSom.SelectedIndexChanged -= this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
+				cbCongPhepTre.SelectedIndex = this.ChuyenDoiSangIndexCongBuPhep(CIO.BuCongPhepTreCongDon);//ver 4.0.0.8
+				cbCongPhepSom.SelectedIndex = this.ChuyenDoiSangIndexCongBuPhep(CIO.BuCongPhepSomCongDon);//ver 4.0.0.8
+				cbCongPhepTre.SelectedIndexChanged += this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
+				cbCongPhepSom.SelectedIndexChanged += this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
 				checkXNLamThem.Checked = false;
 				checkXNTinhPC50.Checked = true;
 				checkXNVaoTreTinhCV.Checked = CIO.VaoTreTinhCV;//ver 4.0.0.4	
@@ -189,6 +203,8 @@ namespace ChamCong_v04.UI.XacNhan {
 				tbTTTreSom.Text = (CIO.HaveINOUT == 0) ? (CIO.TG.VaoTre + CIO.TG.RaaSom).ToString(@"h\gmm\p") : string.Empty;
 				tbTTOLaiThem.Text = (CIO.HaveINOUT == 0) ? CIO.TG.OLai.ToString(@"h\gmm\p") : string.Empty;
 				tbTTLamThem.Text = (CIO.DaXN) ? CIO.TG.OTCa.ToString(@"h\gmm\p") : string.Empty;
+				lbTTCongBuPhepTre.Text = this.ChuyenDoiCongThanhChu(CIO.BuCongPhepTreCongDon);//ver 4.0.0.8
+				lbTTCongBuPhepSom.Text = this.ChuyenDoiCongThanhChu(CIO.BuCongPhepSomCongDon);//ver 4.0.0.8
 				checkTTChoPhepTre.Checked = CIO.DuyetChoPhepVaoTre;
 				checkTTChoPhepSom.Checked = CIO.DuyetChoPhepRaSom;
 				checkTTTinhPC50.Checked = ngaycong.TinhPC50;
@@ -232,12 +248,34 @@ namespace ChamCong_v04.UI.XacNhan {
 					checkXNVaoTreTinhCV, checkXNRaaSomTinhCV);//ver 4.0.0.4	
 				checkXNTinhPC50.Checked = true;
 				cbXNLyDo.SelectedIndex = 0;
+				cbCongPhepTre.SelectedIndexChanged -= this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
+				cbCongPhepSom.SelectedIndexChanged -= this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
+				cbCongPhepTre.SelectedIndex = 0;//ver 4.0.0.8
+				cbCongPhepSom.SelectedIndex = 0;//ver 4.0.0.8
+				cbCongPhepTre.SelectedIndexChanged += this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
+				cbCongPhepSom.SelectedIndexChanged += this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
 				tbXNGhiChu.Text = string.Empty;
 
 				#endregion
 
 			}
 
+		}
+
+		private int ChuyenDoiSangIndexCongBuPhep(float p) {
+			if (Math.Abs(p - 0f) < 0.05f) return 0;
+			else if (Math.Abs(p - 0.25f) < 0.05f) return 1;
+			else if (Math.Abs(p - 0.5f) < 0.05f) return 2;
+			else if (Math.Abs(p - 0.75f) < 0.05f) return 3;
+			return 0;
+		}
+
+		private string ChuyenDoiCongThanhChu(float p) {
+			if (Math.Abs(p - 0f) < 0.05f) return "";
+			else if (Math.Abs(p - 0.25f) < 0.05f) return "2 giờ";
+			else if (Math.Abs(p - 0.5f) < 0.05f) return "4 giờ";
+			else if (Math.Abs(p - 0.75f) < 0.05f) return "6 giờ";
+			return "LH bp IT";
 		}
 
 		private void btnXacNhan_Click(object sender, EventArgs e) {
@@ -279,8 +317,10 @@ namespace ChamCong_v04.UI.XacNhan {
 			var bBuGioSom = checkXNBuGioSom.Checked;//ver 4.0.0.8
 			var bBuPhepTre = checkXNBuPhepTre.Checked;//ver 4.0.0.8
 			var bBuPhepSom = checkXNBuPhepSom.Checked;//ver 4.0.0.8
-			float fCongPhepTre = (cbCongPhepTre.SelectedIndex*0.25f);//ver 4.0.0.8
-			float fCongPhepSom = (cbCongPhepSom.SelectedIndex*0.25f);//ver 4.0.0.8
+			float fCongPhepTre = (cbCongPhepTre.SelectedIndex * 0.25f);//ver 4.0.0.8
+			float fCongPhepSom = (cbCongPhepSom.SelectedIndex * 0.25f);//ver 4.0.0.8
+			if (Math.Abs(fCongPhepTre - 0f) < 0.05f) bBuPhepTre = false;
+			if (Math.Abs(fCongPhepSom - 0f) < 0.05f) bBuPhepSom = false;
 			var bXacNhanLamThem = checkXNLamThem.Checked;
 			//var soPhutLamThem = (checkXNLamThem.Checked) ? Convert.ToInt32(numPhutTinhLamThem.Value) : 0;
 			var soPhutLamThem = Convert.ToInt32(OTCa.TotalMinutes);//ver 4.0.0.4	
@@ -290,7 +330,7 @@ namespace ChamCong_v04.UI.XacNhan {
 			var fCongPhepTreCongDon = 0f;
 			var fCongPhepSomCongDon = 0f;
 
-			var lydo = (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.SelectedText;
+			var lydo = (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.Text;
 			var ghichu = tbXNGhiChu.Text;
 			#endregion
 			// chế độ xác nhận single
@@ -320,15 +360,13 @@ namespace ChamCong_v04.UI.XacNhan {
 		private void XuLyDon(DataRowView dataRow, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
 			bool bVaoTreLaCV, bool bRaaSomLaCV,//ver 4.0.0.4
 			bool bBuGioTre, bool bBuGioSom, bool bBuPhepTre, float fCongPhepTre, bool bBuPhepSom, float fCongPhepSom//ver 4.0.0.8
-			) 
-		{	
+			) {
 			var nv = (cUserInfo)dataRow["cUserInfo"];
 			var CIO = (cCheckInOut)dataRow["cCheckInOut"];
 			var timevao = CIO.Vao.Time;
 			var timeraa = CIO.Raa.Time;
 			float tempRef_CongPhepTreCongDon = 0f, tempRef_CongPhepSomCongDon = 0f;//todo 4.0.0.8
-			if (currShift.TachCaDem)
-			{
+			if (currShift.TachCaDem) {
 				MessageBox.Show("Vui lòng thêm giờ ra cuối ca 3 và giờ vào đầu ca 1 và thực hiện xác nhận lại!",
 					Resources.Caption_ThongBao, MessageBoxButtons.OK);
 			}
@@ -345,8 +383,8 @@ namespace ChamCong_v04.UI.XacNhan {
 
 				XL.Raa(timeraa, offduty, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
 					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom); //ver 4.0.0.8
-				XL.XetBuGioSom(bBuGioSom, offduty, ref td_kt_lv_chuaOT, ref tempSom);
-				XL.XetBuPhepSom(bBuPhepSom, fCongPhepSom, offduty, ref tempRef_CongPhepSomCongDon, ref td_kt_lv_chuaOT, ref  tempSom);
+				XL.XetBuGioSom(bBuGioSom, offduty, ref td_kt_lv_chuaOT, ref tempSom);//ver 4.0.0.8
+				XL.XetBuPhepSom(bBuPhepSom, fCongPhepSom, offduty, ref tempRef_CongPhepSomCongDon, ref td_kt_lv_chuaOT, ref  tempSom);//ver 4.0.0.8
 
 				XL.OLai(timeraa, CIO.ThuocNgayCong.Add(currShift.Duty.Off), CIO.ThuocNgayCong.Add(currShift.batdaulamthemTS), out tempOLai);
 				if (soPhutLamThem > tempOLai.TotalMinutes)
@@ -425,8 +463,8 @@ namespace ChamCong_v04.UI.XacNhan {
 			var bBuGioSom = checkXNBuGioSom.Checked;//ver 4.0.0.8
 			var bBuPhepTre = checkXNBuPhepTre.Checked;//ver 4.0.0.8
 			var bBuPhepSom = checkXNBuPhepSom.Checked;//ver 4.0.0.8
-			var fCongPhepTre = ((cbCongPhepTre.SelectedIndex)*0.25f);
-			var fCongPhepSom = ((cbCongPhepSom.SelectedIndex)*0.25f);
+			var fCongPhepTre = ((cbCongPhepTre.SelectedIndex) * 0.25f);
+			var fCongPhepSom = ((cbCongPhepSom.SelectedIndex) * 0.25f);
 			var fCongPhepTreCongDon = 0f;
 			var fCongPhepSomCongDon = 0f;
 			var bXacNhanOT = checkXNLamThem.Checked;
@@ -452,7 +490,7 @@ namespace ChamCong_v04.UI.XacNhan {
 			bool QuaDem;
 			XL.TinhTG_LV_LVCa3_LamThem1Ca(Ngay, 0, true, bDuyetVaoTre, bDuyetRaaSom,
 				bVaoTreLaCV, bRaaSomLaCV,//ver 4.0.0.4	
-				bBuGioTre, bBuGioSom, bBuPhepTre,fCongPhepTre, ref fCongPhepTreCongDon,bBuPhepSom, fCongPhepSom, ref fCongPhepSomCongDon, //todo 4.0.0.8	
+				bBuGioTre, bBuGioSom, bBuPhepTre, fCongPhepTre, ref fCongPhepTreCongDon, bBuPhepSom, fCongPhepSom, ref fCongPhepSomCongDon, //todo 4.0.0.8	
 				timevao, timeraa, selectedShift.Duty.Onn, selectedShift.Duty.Off,
 				selectedShift.chophepTreTS, selectedShift.chophepSomTS, selectedShift.batdaulamthemTS, selectedShift.LunchMin, OTCa,/*new TimeSpan(0, iSoPhutOT, 0),*/
 				nv.StartNT, nv.EndddNT,
@@ -472,6 +510,26 @@ namespace ChamCong_v04.UI.XacNhan {
 		}
 
 		private void checkXNChoPhepTre_CheckedChanged(object sender, EventArgs e) {
+			if (checkXNBuPhepTre.Checked && sender == checkXNBuPhepTre) {
+				checkXNBuGioTre.CheckedChanged -= checkXNChoPhepTre_CheckedChanged;
+				checkXNBuGioTre.Checked = false;
+				checkXNBuGioTre.CheckedChanged += checkXNChoPhepTre_CheckedChanged;
+			}
+			if (checkXNBuGioTre.Checked && sender == checkXNBuGioTre) {
+				checkXNBuPhepTre.CheckedChanged -= checkXNChoPhepTre_CheckedChanged;
+				checkXNBuPhepTre.Checked = false;
+				checkXNBuPhepTre.CheckedChanged += checkXNChoPhepTre_CheckedChanged;
+			}
+			if (checkXNBuPhepSom.Checked && sender == checkXNBuPhepSom) {
+				checkXNBuGioSom.CheckedChanged -= checkXNChoPhepTre_CheckedChanged;
+				checkXNBuGioSom.Checked = false;
+				checkXNBuGioSom.CheckedChanged += checkXNChoPhepTre_CheckedChanged;
+			}
+			if (checkXNBuGioSom.Checked && sender == checkXNBuGioSom) {
+				checkXNBuPhepSom.CheckedChanged -= checkXNChoPhepTre_CheckedChanged;
+				checkXNBuPhepSom.Checked = false;
+				checkXNBuPhepSom.CheckedChanged += checkXNChoPhepTre_CheckedChanged;
+			}
 			linkLabelTinhToan_LinkClicked(null, null);
 		}
 

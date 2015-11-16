@@ -317,7 +317,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 			var TinhPCTC = (checkTinhPC150.Checked);
 			var bVaoTreLaCV = checkXNVaoTreTinhCV.Checked;//ver 4.0.0.4	
 			var bRaaSomLaCV = checkXNRaaSomTinhCV.Checked;//ver 4.0.0.4	
-			string lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.SelectedText;
+			string lydo = (cbLyDo.SelectedItem != null) ? cbLyDo.SelectedItem.ToString() : cbLyDo.Text;
 			string ghichu = tbGhiChu.Text;
 
 			#endregion

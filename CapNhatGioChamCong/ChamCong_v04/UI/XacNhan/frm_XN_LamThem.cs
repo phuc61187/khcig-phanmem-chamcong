@@ -290,7 +290,7 @@ namespace ChamCong_v04.UI.XacNhan {
 			var fCongPhepTreCongDon = 0f;
 			var fCongPhepSomCongDon = 0f;
 
-			var lydo = (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.SelectedText;
+			var lydo = (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.Text;
 			var ghichu = tbXNGhiChu.Text;
 			#endregion
 			// chế độ xác nhận single
