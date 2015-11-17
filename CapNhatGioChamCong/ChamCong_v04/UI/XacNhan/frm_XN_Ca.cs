@@ -75,7 +75,6 @@ namespace ChamCong_v04.UI.XacNhan {
 			lbTTCongBuPhepSom.Text = string.Empty;
 			lbTTCongBuPhepTre.Tag = null;
 			lbTTCongBuPhepSom.Tag = null;
-
 		}
 
 		private void frmXacNhanTangCa_Load(object sender, EventArgs e) {
@@ -319,8 +318,8 @@ namespace ChamCong_v04.UI.XacNhan {
 			var bBuPhepSom = checkXNBuPhepSom.Checked;//ver 4.0.0.8
 			float fCongPhepTre = (cbCongPhepTre.SelectedIndex * 0.25f);//ver 4.0.0.8
 			float fCongPhepSom = (cbCongPhepSom.SelectedIndex * 0.25f);//ver 4.0.0.8
-			if (Math.Abs(fCongPhepTre - 0f) < 0.05f) bBuPhepTre = false;
-			if (Math.Abs(fCongPhepSom - 0f) < 0.05f) bBuPhepSom = false;
+			if (Math.Abs(fCongPhepTre - 0f) < 0.05f) bBuPhepTre = false;//ver 4.0.0.8
+			if (Math.Abs(fCongPhepSom - 0f) < 0.05f) bBuPhepSom = false;//ver 4.0.0.8
 			var bXacNhanLamThem = checkXNLamThem.Checked;
 			//var soPhutLamThem = (checkXNLamThem.Checked) ? Convert.ToInt32(numPhutTinhLamThem.Value) : 0;
 			var soPhutLamThem = Convert.ToInt32(OTCa.TotalMinutes);//ver 4.0.0.4	

@@ -24,15 +24,15 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_XN_LamThem));
 			this.dgrdGioCoLamThem = new System.Windows.Forms.DataGridView();
 			this.g1colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +48,12 @@
 			this.colTimeStrOutTongHop = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.grid2colShiftID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gbChiTiet = new System.Windows.Forms.GroupBox();
+			this.cbCongPhepSom = new System.Windows.Forms.ComboBox();
+			this.cbCongPhepTre = new System.Windows.Forms.ComboBox();
+			this.checkXNBuGioSom = new System.Windows.Forms.CheckBox();
+			this.checkXNBuPhepSom = new System.Windows.Forms.CheckBox();
+			this.checkXNBuPhepTre = new System.Windows.Forms.CheckBox();
+			this.checkXNBuGioTre = new System.Windows.Forms.CheckBox();
 			this.maskPhutTinhLamThem = new System.Windows.Forms.MaskedTextBox();
 			this.checkXNRaaSomTinhCV = new System.Windows.Forms.CheckBox();
 			this.tbXNGhiChu = new System.Windows.Forms.TextBox();
@@ -85,6 +91,10 @@
 			this.checkTTVaoTreTinhCV = new System.Windows.Forms.CheckBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.checkTTBuGioSom = new System.Windows.Forms.CheckBox();
+			this.checkTTBuPhepSom = new System.Windows.Forms.CheckBox();
+			this.checkTTBuPhepTre = new System.Windows.Forms.CheckBox();
+			this.checkTTBuGioTre = new System.Windows.Forms.CheckBox();
 			this.tbTTTenNV = new System.Windows.Forms.TextBox();
 			this.checkTTChoPhepSom = new System.Windows.Forms.CheckBox();
 			this.checkTTChoPhepTre = new System.Windows.Forms.CheckBox();
@@ -94,23 +104,15 @@
 			this.tbTTGioVao = new System.Windows.Forms.TextBox();
 			this.tbTTOLaiThem = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
-			this.cbCongPhepSom = new System.Windows.Forms.ComboBox();
-			this.cbCongPhepTre = new System.Windows.Forms.ComboBox();
-			this.checkXNBuGioSom = new System.Windows.Forms.CheckBox();
-			this.checkXNBuPhepSom = new System.Windows.Forms.CheckBox();
-			this.checkXNBuPhepTre = new System.Windows.Forms.CheckBox();
-			this.checkXNBuGioTre = new System.Windows.Forms.CheckBox();
-			this.label15 = new System.Windows.Forms.Label();
-			this.checkTTBuGioSom = new System.Windows.Forms.CheckBox();
-			this.checkTTBuPhepSom = new System.Windows.Forms.CheckBox();
-			this.checkTTBuPhepTre = new System.Windows.Forms.CheckBox();
-			this.checkTTBuGioTre = new System.Windows.Forms.CheckBox();
+			this.lbTTCongBuPhepSom = new System.Windows.Forms.Label();
+			this.lbTTCongBuPhepTre = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdGioCoLamThem)).BeginInit();
 			this.gbChiTiet.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numPhutTinhLamThem)).BeginInit();
@@ -126,9 +128,9 @@
 			this.dgrdGioCoLamThem.AllowUserToAddRows = false;
 			this.dgrdGioCoLamThem.AllowUserToDeleteRows = false;
 			this.dgrdGioCoLamThem.AllowUserToResizeRows = false;
-			dataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle46.ForeColor = System.Drawing.Color.Black;
-			this.dgrdGioCoLamThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
+			dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+			this.dgrdGioCoLamThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
 			this.dgrdGioCoLamThem.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdGioCoLamThem.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
 			this.dgrdGioCoLamThem.ColumnHeadersHeight = 27;
@@ -170,8 +172,8 @@
 			// colUserEnrollNumberTongHop
 			// 
 			this.colUserEnrollNumberTongHop.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle47.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.colUserEnrollNumberTongHop.DefaultCellStyle = dataGridViewCellStyle47;
+			dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.colUserEnrollNumberTongHop.DefaultCellStyle = dataGridViewCellStyle11;
 			this.colUserEnrollNumberTongHop.HeaderText = "Mã CC_hide";
 			this.colUserEnrollNumberTongHop.Name = "colUserEnrollNumberTongHop";
 			this.colUserEnrollNumberTongHop.ReadOnly = true;
@@ -190,8 +192,8 @@
 			// colTimeDateTongHop
 			// 
 			this.colTimeDateTongHop.DataPropertyName = "TimeStrNgay";
-			dataGridViewCellStyle48.Format = "ddd d/M";
-			this.colTimeDateTongHop.DefaultCellStyle = dataGridViewCellStyle48;
+			dataGridViewCellStyle12.Format = "ddd d/M";
+			this.colTimeDateTongHop.DefaultCellStyle = dataGridViewCellStyle12;
 			this.colTimeDateTongHop.HeaderText = "Ngày công";
 			this.colTimeDateTongHop.Name = "colTimeDateTongHop";
 			this.colTimeDateTongHop.ReadOnly = true;
@@ -208,8 +210,8 @@
 			// colCong
 			// 
 			this.colCong.DataPropertyName = "Cong";
-			dataGridViewCellStyle49.Format = "#0.##";
-			this.colCong.DefaultCellStyle = dataGridViewCellStyle49;
+			dataGridViewCellStyle13.Format = "#0.##";
+			this.colCong.DefaultCellStyle = dataGridViewCellStyle13;
 			this.colCong.HeaderText = "Công";
 			this.colCong.Name = "colCong";
 			this.colCong.ReadOnly = true;
@@ -218,8 +220,8 @@
 			// grid1colPhuCap
 			// 
 			this.grid1colPhuCap.DataPropertyName = "PhuCap";
-			dataGridViewCellStyle50.Format = "#0.##";
-			this.grid1colPhuCap.DefaultCellStyle = dataGridViewCellStyle50;
+			dataGridViewCellStyle14.Format = "#0.##";
+			this.grid1colPhuCap.DefaultCellStyle = dataGridViewCellStyle14;
 			this.grid1colPhuCap.HeaderText = "Phụ cấp";
 			this.grid1colPhuCap.Name = "grid1colPhuCap";
 			this.grid1colPhuCap.ReadOnly = true;
@@ -229,8 +231,8 @@
 			// colTongGioLamTongHop
 			// 
 			this.colTongGioLamTongHop.DataPropertyName = "TongGioLam";
-			dataGridViewCellStyle51.Format = "h\\gmm";
-			this.colTongGioLamTongHop.DefaultCellStyle = dataGridViewCellStyle51;
+			dataGridViewCellStyle15.Format = "h\\gmm";
+			this.colTongGioLamTongHop.DefaultCellStyle = dataGridViewCellStyle15;
 			this.colTongGioLamTongHop.HeaderText = "Giờ LV";
 			this.colTongGioLamTongHop.Name = "colTongGioLamTongHop";
 			this.colTongGioLamTongHop.ReadOnly = true;
@@ -240,8 +242,8 @@
 			// cTongGioThuc
 			// 
 			this.cTongGioThuc.DataPropertyName = "TongGioThuc";
-			dataGridViewCellStyle52.Format = "h\\gmm";
-			this.cTongGioThuc.DefaultCellStyle = dataGridViewCellStyle52;
+			dataGridViewCellStyle16.Format = "h\\gmm";
+			this.cTongGioThuc.DefaultCellStyle = dataGridViewCellStyle16;
 			this.cTongGioThuc.HeaderText = "T.Giờ";
 			this.cTongGioThuc.Name = "cTongGioThuc";
 			this.cTongGioThuc.ReadOnly = true;
@@ -251,8 +253,8 @@
 			// colTimeStrInTongHop
 			// 
 			this.colTimeStrInTongHop.DataPropertyName = "TimeStrVao";
-			dataGridViewCellStyle53.Format = "H:mm d/M";
-			this.colTimeStrInTongHop.DefaultCellStyle = dataGridViewCellStyle53;
+			dataGridViewCellStyle17.Format = "H:mm d/M";
+			this.colTimeStrInTongHop.DefaultCellStyle = dataGridViewCellStyle17;
 			this.colTimeStrInTongHop.HeaderText = "Vào";
 			this.colTimeStrInTongHop.Name = "colTimeStrInTongHop";
 			this.colTimeStrInTongHop.ReadOnly = true;
@@ -261,8 +263,8 @@
 			// colTimeStrOutTongHop
 			// 
 			this.colTimeStrOutTongHop.DataPropertyName = "TimeStrRaa";
-			dataGridViewCellStyle54.Format = "H:mm d/M";
-			this.colTimeStrOutTongHop.DefaultCellStyle = dataGridViewCellStyle54;
+			dataGridViewCellStyle18.Format = "H:mm d/M";
+			this.colTimeStrOutTongHop.DefaultCellStyle = dataGridViewCellStyle18;
 			this.colTimeStrOutTongHop.HeaderText = "Ra";
 			this.colTimeStrOutTongHop.Name = "colTimeStrOutTongHop";
 			this.colTimeStrOutTongHop.ReadOnly = true;
@@ -321,6 +323,88 @@
 			this.gbChiTiet.TabIndex = 0;
 			this.gbChiTiet.TabStop = false;
 			this.gbChiTiet.Text = "PHẦN XÁC NHẬN";
+			// 
+			// cbCongPhepSom
+			// 
+			this.cbCongPhepSom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCongPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.cbCongPhepSom.FormattingEnabled = true;
+			this.cbCongPhepSom.Items.AddRange(new object[] {
+            "0.25",
+            "0.5",
+            "0.75"});
+			this.cbCongPhepSom.Location = new System.Drawing.Point(263, 149);
+			this.cbCongPhepSom.Name = "cbCongPhepSom";
+			this.cbCongPhepSom.Size = new System.Drawing.Size(48, 23);
+			this.cbCongPhepSom.TabIndex = 26;
+			// 
+			// cbCongPhepTre
+			// 
+			this.cbCongPhepTre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCongPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.cbCongPhepTre.FormattingEnabled = true;
+			this.cbCongPhepTre.Items.AddRange(new object[] {
+            "0.25",
+            "0.5",
+            "0.75"});
+			this.cbCongPhepTre.Location = new System.Drawing.Point(98, 149);
+			this.cbCongPhepTre.Name = "cbCongPhepTre";
+			this.cbCongPhepTre.Size = new System.Drawing.Size(50, 23);
+			this.cbCongPhepTre.TabIndex = 25;
+			// 
+			// checkXNBuGioSom
+			// 
+			this.checkXNBuGioSom.AutoSize = true;
+			this.checkXNBuGioSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuGioSom.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuGioSom.Location = new System.Drawing.Point(162, 133);
+			this.checkXNBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuGioSom.Name = "checkXNBuGioSom";
+			this.checkXNBuGioSom.Size = new System.Drawing.Size(105, 19);
+			this.checkXNBuGioSom.TabIndex = 21;
+			this.checkXNBuGioSom.Text = "Bù giờ ra sớm";
+			this.checkXNBuGioSom.UseVisualStyleBackColor = true;
+			// 
+			// checkXNBuPhepSom
+			// 
+			this.checkXNBuPhepSom.AutoSize = true;
+			this.checkXNBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuPhepSom.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuPhepSom.Location = new System.Drawing.Point(162, 153);
+			this.checkXNBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuPhepSom.Name = "checkXNBuPhepSom";
+			this.checkXNBuPhepSom.Size = new System.Drawing.Size(102, 19);
+			this.checkXNBuPhepSom.TabIndex = 22;
+			this.checkXNBuPhepSom.Text = "Bù Phép sớm";
+			this.checkXNBuPhepSom.UseVisualStyleBackColor = true;
+			// 
+			// checkXNBuPhepTre
+			// 
+			this.checkXNBuPhepTre.AutoSize = true;
+			this.checkXNBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuPhepTre.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuPhepTre.Location = new System.Drawing.Point(5, 153);
+			this.checkXNBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuPhepTre.Name = "checkXNBuPhepTre";
+			this.checkXNBuPhepTre.Size = new System.Drawing.Size(90, 19);
+			this.checkXNBuPhepTre.TabIndex = 23;
+			this.checkXNBuPhepTre.Text = "Bù Phép trễ";
+			this.checkXNBuPhepTre.UseVisualStyleBackColor = true;
+			// 
+			// checkXNBuGioTre
+			// 
+			this.checkXNBuGioTre.AutoSize = true;
+			this.checkXNBuGioTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuGioTre.ForeColor = System.Drawing.Color.Black;
+			this.checkXNBuGioTre.Location = new System.Drawing.Point(5, 133);
+			this.checkXNBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkXNBuGioTre.Name = "checkXNBuGioTre";
+			this.checkXNBuGioTre.Size = new System.Drawing.Size(101, 19);
+			this.checkXNBuGioTre.TabIndex = 24;
+			this.checkXNBuGioTre.Text = "Bù giờ vào trễ";
+			this.toolTipHint.SetToolTip(this.checkXNBuGioTre, "Đánh dấu nếu vào làm\r\ntheo yêu cầu, điều động\r\ncủa quản lý (thời gian \r\nvào trễ s" +
+        "ẽ tính là chờ việc \r\nnếu chưa đủ công chuẩn)");
+			this.checkXNBuGioTre.UseVisualStyleBackColor = true;
 			// 
 			// maskPhutTinhLamThem
 			// 
@@ -774,6 +858,8 @@
 			// groupBox1
 			// 
 			this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.groupBox1.Controls.Add(this.lbTTCongBuPhepSom);
+			this.groupBox1.Controls.Add(this.lbTTCongBuPhepTre);
 			this.groupBox1.Controls.Add(this.checkTTBuGioSom);
 			this.groupBox1.Controls.Add(this.checkTTBuPhepSom);
 			this.groupBox1.Controls.Add(this.checkTTBuPhepTre);
@@ -810,6 +896,62 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "PHẦN THÔNG TIN CA";
+			// 
+			// checkTTBuGioSom
+			// 
+			this.checkTTBuGioSom.AutoSize = true;
+			this.checkTTBuGioSom.Enabled = false;
+			this.checkTTBuGioSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuGioSom.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuGioSom.Location = new System.Drawing.Point(162, 163);
+			this.checkTTBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuGioSom.Name = "checkTTBuGioSom";
+			this.checkTTBuGioSom.Size = new System.Drawing.Size(105, 19);
+			this.checkTTBuGioSom.TabIndex = 8;
+			this.checkTTBuGioSom.Text = "Bù giờ ra sớm";
+			this.checkTTBuGioSom.UseVisualStyleBackColor = true;
+			// 
+			// checkTTBuPhepSom
+			// 
+			this.checkTTBuPhepSom.AutoSize = true;
+			this.checkTTBuPhepSom.Enabled = false;
+			this.checkTTBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuPhepSom.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuPhepSom.Location = new System.Drawing.Point(162, 181);
+			this.checkTTBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuPhepSom.Name = "checkTTBuPhepSom";
+			this.checkTTBuPhepSom.Size = new System.Drawing.Size(102, 19);
+			this.checkTTBuPhepSom.TabIndex = 9;
+			this.checkTTBuPhepSom.Text = "Bù Phép sớm";
+			this.checkTTBuPhepSom.UseVisualStyleBackColor = true;
+			// 
+			// checkTTBuPhepTre
+			// 
+			this.checkTTBuPhepTre.AutoSize = true;
+			this.checkTTBuPhepTre.Enabled = false;
+			this.checkTTBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuPhepTre.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuPhepTre.Location = new System.Drawing.Point(5, 181);
+			this.checkTTBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuPhepTre.Name = "checkTTBuPhepTre";
+			this.checkTTBuPhepTre.Size = new System.Drawing.Size(90, 19);
+			this.checkTTBuPhepTre.TabIndex = 10;
+			this.checkTTBuPhepTre.Text = "Bù Phép trễ";
+			this.checkTTBuPhepTre.UseVisualStyleBackColor = true;
+			// 
+			// checkTTBuGioTre
+			// 
+			this.checkTTBuGioTre.AutoSize = true;
+			this.checkTTBuGioTre.Enabled = false;
+			this.checkTTBuGioTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuGioTre.ForeColor = System.Drawing.Color.Black;
+			this.checkTTBuGioTre.Location = new System.Drawing.Point(5, 163);
+			this.checkTTBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkTTBuGioTre.Name = "checkTTBuGioTre";
+			this.checkTTBuGioTre.Size = new System.Drawing.Size(101, 19);
+			this.checkTTBuGioTre.TabIndex = 11;
+			this.checkTTBuGioTre.Text = "Bù giờ vào trễ";
+			this.checkTTBuGioTre.UseVisualStyleBackColor = true;
 			// 
 			// tbTTTenNV
 			// 
@@ -896,7 +1038,7 @@
 			// tbTTOLaiThem
 			// 
 			this.tbTTOLaiThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.tbTTOLaiThem.Location = new System.Drawing.Point(269, 147);
+			this.tbTTOLaiThem.Location = new System.Drawing.Point(273, 161);
 			this.tbTTOLaiThem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.tbTTOLaiThem.Name = "tbTTOLaiThem";
 			this.tbTTOLaiThem.ReadOnly = true;
@@ -914,6 +1056,18 @@
 			this.label12.Size = new System.Drawing.Size(75, 15);
 			this.label12.TabIndex = 0;
 			this.label12.Text = "Giờ làm việc";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.label15.Location = new System.Drawing.Point(261, 147);
+			this.label15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(75, 15);
+			this.label15.TabIndex = 0;
+			this.label15.Text = "Ở lại cần XN";
+			this.label15.Visible = false;
 			// 
 			// label13
 			// 
@@ -982,155 +1136,27 @@
 			this.label21.TabIndex = 0;
 			this.label21.Text = "Vào";
 			// 
-			// cbCongPhepSom
+			// lbTTCongBuPhepSom
 			// 
-			this.cbCongPhepSom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbCongPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.cbCongPhepSom.FormattingEnabled = true;
-			this.cbCongPhepSom.Items.AddRange(new object[] {
-            "0.25",
-            "0.5",
-            "0.75"});
-			this.cbCongPhepSom.Location = new System.Drawing.Point(263, 149);
-			this.cbCongPhepSom.Name = "cbCongPhepSom";
-			this.cbCongPhepSom.Size = new System.Drawing.Size(48, 23);
-			this.cbCongPhepSom.TabIndex = 26;
+			this.lbTTCongBuPhepSom.AutoSize = true;
+			this.lbTTCongBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.lbTTCongBuPhepSom.Location = new System.Drawing.Point(259, 182);
+			this.lbTTCongBuPhepSom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.lbTTCongBuPhepSom.Name = "lbTTCongBuPhepSom";
+			this.lbTTCongBuPhepSom.Size = new System.Drawing.Size(71, 15);
+			this.lbTTCongBuPhepSom.TabIndex = 12;
+			this.lbTTCongBuPhepSom.Text = "CongPSom";
 			// 
-			// cbCongPhepTre
+			// lbTTCongBuPhepTre
 			// 
-			this.cbCongPhepTre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbCongPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.cbCongPhepTre.FormattingEnabled = true;
-			this.cbCongPhepTre.Items.AddRange(new object[] {
-            "0.25",
-            "0.5",
-            "0.75"});
-			this.cbCongPhepTre.Location = new System.Drawing.Point(98, 149);
-			this.cbCongPhepTre.Name = "cbCongPhepTre";
-			this.cbCongPhepTre.Size = new System.Drawing.Size(50, 23);
-			this.cbCongPhepTre.TabIndex = 25;
-			// 
-			// checkXNBuGioSom
-			// 
-			this.checkXNBuGioSom.AutoSize = true;
-			this.checkXNBuGioSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkXNBuGioSom.ForeColor = System.Drawing.Color.Black;
-			this.checkXNBuGioSom.Location = new System.Drawing.Point(162, 133);
-			this.checkXNBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkXNBuGioSom.Name = "checkXNBuGioSom";
-			this.checkXNBuGioSom.Size = new System.Drawing.Size(105, 19);
-			this.checkXNBuGioSom.TabIndex = 21;
-			this.checkXNBuGioSom.Text = "Bù giờ ra sớm";
-			this.checkXNBuGioSom.UseVisualStyleBackColor = true;
-			// 
-			// checkXNBuPhepSom
-			// 
-			this.checkXNBuPhepSom.AutoSize = true;
-			this.checkXNBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkXNBuPhepSom.ForeColor = System.Drawing.Color.Black;
-			this.checkXNBuPhepSom.Location = new System.Drawing.Point(162, 153);
-			this.checkXNBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkXNBuPhepSom.Name = "checkXNBuPhepSom";
-			this.checkXNBuPhepSom.Size = new System.Drawing.Size(102, 19);
-			this.checkXNBuPhepSom.TabIndex = 22;
-			this.checkXNBuPhepSom.Text = "Bù Phép sớm";
-			this.checkXNBuPhepSom.UseVisualStyleBackColor = true;
-			// 
-			// checkXNBuPhepTre
-			// 
-			this.checkXNBuPhepTre.AutoSize = true;
-			this.checkXNBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkXNBuPhepTre.ForeColor = System.Drawing.Color.Black;
-			this.checkXNBuPhepTre.Location = new System.Drawing.Point(5, 153);
-			this.checkXNBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkXNBuPhepTre.Name = "checkXNBuPhepTre";
-			this.checkXNBuPhepTre.Size = new System.Drawing.Size(90, 19);
-			this.checkXNBuPhepTre.TabIndex = 23;
-			this.checkXNBuPhepTre.Text = "Bù Phép trễ";
-			this.checkXNBuPhepTre.UseVisualStyleBackColor = true;
-			// 
-			// checkXNBuGioTre
-			// 
-			this.checkXNBuGioTre.AutoSize = true;
-			this.checkXNBuGioTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkXNBuGioTre.ForeColor = System.Drawing.Color.Black;
-			this.checkXNBuGioTre.Location = new System.Drawing.Point(5, 133);
-			this.checkXNBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkXNBuGioTre.Name = "checkXNBuGioTre";
-			this.checkXNBuGioTre.Size = new System.Drawing.Size(101, 19);
-			this.checkXNBuGioTre.TabIndex = 24;
-			this.checkXNBuGioTre.Text = "Bù giờ vào trễ";
-			this.toolTipHint.SetToolTip(this.checkXNBuGioTre, "Đánh dấu nếu vào làm\r\ntheo yêu cầu, điều động\r\ncủa quản lý (thời gian \r\nvào trễ s" +
-        "ẽ tính là chờ việc \r\nnếu chưa đủ công chuẩn)");
-			this.checkXNBuGioTre.UseVisualStyleBackColor = true;
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.label15.Location = new System.Drawing.Point(240, 173);
-			this.label15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(75, 15);
-			this.label15.TabIndex = 0;
-			this.label15.Text = "Ở lại cần XN";
-			this.label15.Visible = false;
-			// 
-			// checkTTBuGioSom
-			// 
-			this.checkTTBuGioSom.AutoSize = true;
-			this.checkTTBuGioSom.Enabled = false;
-			this.checkTTBuGioSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkTTBuGioSom.ForeColor = System.Drawing.Color.Black;
-			this.checkTTBuGioSom.Location = new System.Drawing.Point(162, 163);
-			this.checkTTBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkTTBuGioSom.Name = "checkTTBuGioSom";
-			this.checkTTBuGioSom.Size = new System.Drawing.Size(105, 19);
-			this.checkTTBuGioSom.TabIndex = 8;
-			this.checkTTBuGioSom.Text = "Bù giờ ra sớm";
-			this.checkTTBuGioSom.UseVisualStyleBackColor = true;
-			// 
-			// checkTTBuPhepSom
-			// 
-			this.checkTTBuPhepSom.AutoSize = true;
-			this.checkTTBuPhepSom.Enabled = false;
-			this.checkTTBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkTTBuPhepSom.ForeColor = System.Drawing.Color.Black;
-			this.checkTTBuPhepSom.Location = new System.Drawing.Point(162, 181);
-			this.checkTTBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkTTBuPhepSom.Name = "checkTTBuPhepSom";
-			this.checkTTBuPhepSom.Size = new System.Drawing.Size(102, 19);
-			this.checkTTBuPhepSom.TabIndex = 9;
-			this.checkTTBuPhepSom.Text = "Bù Phép sớm";
-			this.checkTTBuPhepSom.UseVisualStyleBackColor = true;
-			// 
-			// checkTTBuPhepTre
-			// 
-			this.checkTTBuPhepTre.AutoSize = true;
-			this.checkTTBuPhepTre.Enabled = false;
-			this.checkTTBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkTTBuPhepTre.ForeColor = System.Drawing.Color.Black;
-			this.checkTTBuPhepTre.Location = new System.Drawing.Point(5, 181);
-			this.checkTTBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkTTBuPhepTre.Name = "checkTTBuPhepTre";
-			this.checkTTBuPhepTre.Size = new System.Drawing.Size(90, 19);
-			this.checkTTBuPhepTre.TabIndex = 10;
-			this.checkTTBuPhepTre.Text = "Bù Phép trễ";
-			this.checkTTBuPhepTre.UseVisualStyleBackColor = true;
-			// 
-			// checkTTBuGioTre
-			// 
-			this.checkTTBuGioTre.AutoSize = true;
-			this.checkTTBuGioTre.Enabled = false;
-			this.checkTTBuGioTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			this.checkTTBuGioTre.ForeColor = System.Drawing.Color.Black;
-			this.checkTTBuGioTre.Location = new System.Drawing.Point(5, 163);
-			this.checkTTBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.checkTTBuGioTre.Name = "checkTTBuGioTre";
-			this.checkTTBuGioTre.Size = new System.Drawing.Size(101, 19);
-			this.checkTTBuGioTre.TabIndex = 11;
-			this.checkTTBuGioTre.Text = "Bù giờ vào trễ";
-			this.checkTTBuGioTre.UseVisualStyleBackColor = true;
+			this.lbTTCongBuPhepTre.AutoSize = true;
+			this.lbTTCongBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.lbTTCongBuPhepTre.Location = new System.Drawing.Point(97, 182);
+			this.lbTTCongBuPhepTre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.lbTTCongBuPhepTre.Name = "lbTTCongBuPhepTre";
+			this.lbTTCongBuPhepTre.Size = new System.Drawing.Size(63, 15);
+			this.lbTTCongBuPhepTre.TabIndex = 13;
+			this.lbTTCongBuPhepTre.Text = "CongPTre";
 			// 
 			// frm_XN_LamThem
 			// 
@@ -1235,6 +1261,8 @@
 		private System.Windows.Forms.CheckBox checkTTBuPhepSom;
 		private System.Windows.Forms.CheckBox checkTTBuPhepTre;
 		private System.Windows.Forms.CheckBox checkTTBuGioTre;
+		private System.Windows.Forms.Label lbTTCongBuPhepSom;
+		private System.Windows.Forms.Label lbTTCongBuPhepTre;
 
 	}
 }
