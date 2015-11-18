@@ -140,9 +140,11 @@ namespace ChamCong_v04.UI.ChamCong {
 					nv9.ThongKeThang.CongCV_Auto = congChuanThang -
 												  /*(nv9.ThongKeThang.Cong + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep +//ver4.0.0.0*/
 												  /*(nv9.ThongKeThang.TongNgayLV + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep +//ver4.0.0.1*/
-												  (nv9.ThongKeThang.TongNgayLV4008 + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep +//ver4.0.0.1
-												   nv9.ThongKeThang.BHXH + nv9.ThongKeThang.H_CT_PT
-												   + nv9.ThongKeThang.PTDT + nv9.ThongKeThang.NghiRo + nv9.ThongKeThang.CongCV_KB);//DANGLAM
+												  (nv9.ThongKeThang.TongNgayLV4008
+												  + nv9.ThongKeThang.TongTruCongTreVR + nv9.ThongKeThang.TongTruCongSomVR + nv9.ThongKeThang.TreSom_KoDuBuCong//ver 4.0.0.8
+												  + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep//ver4.0.0.8
+												  + nv9.ThongKeThang.BHXH + nv9.ThongKeThang.H_CT_PT
+												  + nv9.ThongKeThang.PTDT + nv9.ThongKeThang.NghiRo + nv9.ThongKeThang.CongCV_KB);//DANGLAM
 					if (nv9.ThongKeThang.CongCV_Auto < 0f) nv9.ThongKeThang.CongCV_Auto = 0f;
 				}
 				nv9.ThongKeThang.CongCV = nv9.ThongKeThang.CongCV_Auto + nv9.ThongKeThang.CongCV_KB;

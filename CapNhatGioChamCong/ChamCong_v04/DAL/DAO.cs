@@ -122,7 +122,7 @@ order by ViTri desc
 	(Thang, UserEnrollNumber, HSLCB, HSLCV, HSBHCongThem,
 	IDPhong, TenPhong, ViTriPhong, LevelDept, RelationIDDept,
 	IDChucVu, ChucVu,
-	TongCong, TongLe, TongPhep, TongH_CT_PT, TongQuaDem, TongCongCV, TongBHXH, TongRo, TongPTDT,
+	TongCong, TongLe, TongPhep, TongH_CT_PT, TongQuaDem, TongCongCV, TongBHXH, TongRo, TongPTDT, ViecRiengKoComTrua,
 	TongPCDem, TongPCTC, TongPCTC_dem, TongPC200, TongPC260, TongPC300, TongPC390, TongPCCus, TongPC,
 	LuongCB_TheoCongThucTe, LuongCB_TheoCheDoNghi, LuongCB_TheoCongCV, PCLuongCB, 
 	LuongSP_TheoCongThucTe, LuongSP_TheoCheDoNghi, PCLuongSP, 
@@ -132,13 +132,13 @@ order by ViTri desc
 	@Thang, @UserEnrollNumber, @HSLCB, @HSLCV, @HSBHCongThem,
 	@IDPhong, @TenPhong, @ViTriPhong, @LevelDept, @RelationIDDept,
 	@IDChucVu, @ChucVu,
-	@TongCong, @TongLe, @TongPhep, @TongH_CT_PT, @TongQuaDem, @TongCongCV, @TongBHXH, @TongRo, @TongPTDT,
+	@TongCong, @TongLe, @TongPhep, @TongH_CT_PT, @TongQuaDem, @TongCongCV, @TongBHXH, @TongRo, @TongPTDT, @ViecRiengKoComTrua,
 	@TongPCDem, @TongPCTC, @TongPCTC_dem, @TongPC200, @TongPC260, @TongPC300, @TongPC390, @TongPCCus, @TongPC,
 	@LuongCB_TheoCongThucTe, @LuongCB_TheoCheDoNghi, @LuongCB_TheoCongCV, @PCLuongCB, 
 	@LuongSP_TheoCongThucTe, @LuongSP_TheoCheDoNghi, @PCLuongSP, 
 	@LuongDieuChinh,
 	@TamUng, @MucDongBHXH, @KhauTruBHXH, @ThuChiKhac, @TienComTrua, @ThucLanh  ) ";
-
+			//ver 4.0.0.8 ViecRiengKoComTrua,
 			#endregion
 
 			return SqlDataAccessHelper.ExecNoneQueryString(query,
@@ -147,7 +147,7 @@ order by ViTri desc
 "@Thang", "@UserEnrollNumber", "@HSLCB", "@HSLCV", "@HSBHCongThem",
 "@IDPhong", "@TenPhong", "@ViTriPhong", "@LevelDept", "@RelationIDDept",
 "@IDChucVu", "@ChucVu",
-"@TongCong", "@TongLe", "@TongPhep", "@TongH_CT_PT", "@TongQuaDem", "@TongCongCV", "@TongBHXH", "@TongRo", "@TongPTDT",
+"@TongCong", "@TongLe", "@TongPhep", "@TongH_CT_PT", "@TongQuaDem", "@TongCongCV", "@TongBHXH", "@TongRo", "@TongPTDT", "@ViecRiengKoComTrua",//ver 4.0.0.8 "@ViecRiengKoComTrua"
 "@TongPCDem", "@TongPCTC", "@TongPCTC_dem", "@TongPC200", "@TongPC260", "@TongPC300", "@TongPC390", "@TongPCCus", "@TongPC",
 "@LuongCB_TheoCongThucTe", "@LuongCB_TheoCheDoNghi", "@LuongCB_TheoCongCV", "@PCLuongCB", 
 "@LuongSP_TheoCongThucTe", "@LuongSP_TheoCheDoNghi", "@PCLuongSP", 
@@ -160,7 +160,7 @@ order by ViTri desc
   nv.PhongBan.ID,nv.PhongBan.Ten, nv.PhongBan.ViTri, 0/*leveldept*/, nv.PhongBan.idParent, //info xem lại nếu phòng ban null thì id và tên ntn--> đã giải quyết
 																							//info id parent nếu null --> đã giải quyết
   nv.IDChucVu, nv.ChucVu,
-  nv.ThongKeThang.Cong, nv.ThongKeThang.Le, nv.ThongKeThang.Phep, nv.ThongKeThang.H_CT_PT, nv.ThongKeThang.NgayQuaDem, nv.ThongKeThang.CongCV,nv.ThongKeThang.BHXH, nv.ThongKeThang.NghiRo, nv.ThongKeThang.PTDT,//DANGLAM
+  nv.ThongKeThang.Cong, nv.ThongKeThang.Le, nv.ThongKeThang.Phep, nv.ThongKeThang.H_CT_PT, nv.ThongKeThang.NgayQuaDem, nv.ThongKeThang.CongCV,nv.ThongKeThang.BHXH, nv.ThongKeThang.NghiRo, nv.ThongKeThang.PTDT, nv.ThongKeThang.SoNgayNghiRO_NguyenNgay,//ver 4.0.0.8 SoNgayNghiRO_NguyenNgay
   nv.ThongKeThang.PhuCaps._30_dem,nv.ThongKeThang.PhuCaps._50_TC, nv.ThongKeThang.PhuCaps._100_TCC3, 
   nv.ThongKeThang.PhuCaps._100_LVNN_Ngay, nv.ThongKeThang.PhuCaps._150_LVNN_Dem, nv.ThongKeThang.PhuCaps._200_LeTet_Ngay, nv.ThongKeThang.PhuCaps._250_LeTet_Dem, nv.ThongKeThang.PhuCaps._Cus, nv.ThongKeThang.PhuCaps._TongPC,
   nv.chiTietLuong.LCB_Theo.CongThucTe, nv.chiTietLuong.LCB_Theo.CheDoNghi, nv.chiTietLuong.LCB_Theo.CongCV, nv.chiTietLuong.LCB_Theo.PhuCap,

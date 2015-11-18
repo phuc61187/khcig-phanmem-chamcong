@@ -1824,16 +1824,16 @@ namespace ChamCong_v04.BUS {
 						   orderby @group.Key.ViTri
 						   select @group).ToList();
 			List<string> kh = new List<string> { "H", "CT", "PT", "PD", "L", "P", "BH", "RO", "CV", };//DANGLAM
-			Stopwatch stopwatch = new Stopwatch();
+			//Stopwatch stopwatch = new Stopwatch();
 			foreach (var item in dsphong) {
 				var phong = item.Key;
 				ic = left;
-				stopwatch.Reset();
-				stopwatch.Start();
+				//stopwatch.Reset();
+				//stopwatch.Start();
 				List<cUserInfo> dsnv1 = dsnv.Where(o => o.PhongBan.ID == phong.ID).ToList();
 				XL.EXP_group_ChiTietNgayCong1(ws, ref ir, ref ic, dsnv1, phong, kh);
-				stopwatch.Stop();
-				Console.WriteLine(string.Format("Phong {0}, {1} NV, thuc hien trong {2}", phong.Ten, dsnv1.Count, Convert.ToSingle((stopwatch.ElapsedMilliseconds / 1000d)).ToString("###0.0#")));
+				//stopwatch.Stop();
+				//Console.WriteLine(string.Format("Phong {0}, {1} NV, thuc hien trong {2}", phong.Ten, dsnv1.Count, Convert.ToSingle((stopwatch.ElapsedMilliseconds / 1000d)).ToString("###0.0#")));
 				//ir++;
 			}
 		}
@@ -1956,6 +1956,7 @@ namespace ChamCong_v04.BUS {
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.H_CT_PT);////"Học, họp, CT, PT",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Le);//Le 10//"Lễ",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.BHXH);////"BH",
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.SoNgayNghiRO_NguyenNgay);////"SoNgayNghiRO_NguyenNgay",//ver 4.0.0.8
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.NghiRo);////"Việc riêng",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PTDT);////""PT Đoàn thể"",//DANGLAM
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.CongCV);////"Chờ việc",

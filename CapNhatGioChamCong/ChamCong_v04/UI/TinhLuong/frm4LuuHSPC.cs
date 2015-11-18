@@ -162,9 +162,11 @@ namespace ChamCong_v04.UI.TinhLuong {
 						nv.ThongKeThang.CongCV_Auto = congChuanThang -
 														  /*(nv.ThongKeThang.Cong + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + //ver4.0.0.0*/
 														  /*(nv.ThongKeThang.TongNgayLV + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + //ver4.0.0.1*/
-														  (nv.ThongKeThang.TongNgayLV4008 + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + //ver4.0.0.1
-														   nv.ThongKeThang.BHXH + nv.ThongKeThang.H_CT_PT +
-														   nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo + nv.ThongKeThang.CongCV_KB);//DANGLAM
+														  (nv.ThongKeThang.TongNgayLV4008
+														  + nv.ThongKeThang.TongTruCongTreVR + nv.ThongKeThang.TongTruCongSomVR + nv.ThongKeThang.TreSom_KoDuBuCong //ver 4.0.0.8
+														  + nv.ThongKeThang.Phep + nv.ThongKeThang.Le //ver4.0.0.8
+														  + nv.ThongKeThang.BHXH + nv.ThongKeThang.H_CT_PT 
+														  + nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo + nv.ThongKeThang.CongCV_KB);//DANGLAM
 						if (nv.ThongKeThang.CongCV_Auto < 0f) nv.ThongKeThang.CongCV_Auto = 0f;
 					}
 					else// nhân viên chính thức vừa công nhật thì công cv_auto =0, công cv khai báo ko đổi
@@ -498,7 +500,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 					#region ghi sheet chi tiết từng ngày công
 					ws = workbook.Worksheets["BangChiTietNgayCong"];
 					ws.Name = "BangChiTietNgayCong";
-					XL.ExportSheetChiTietNgayCong1(ws, dsnv);
+					//XL.ExportSheetChiTietNgayCong1(ws, dsnv);
 
 					#endregion
 
@@ -627,6 +629,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 				nv.ThongKeThang.BHXH = (float)row["TongBHXH"];
 				nv.ThongKeThang.NghiRo = (float)row["TongRo"];
 				nv.ThongKeThang.PTDT = (float)row["TongPTDT"];//DANGLAM
+				nv.ThongKeThang.SoNgayNghiRO_NguyenNgay = (int)row["ViecRiengKoComTrua"];//ver 4.0.0.8
 				nv.ThongKeThang.PhuCaps._30_dem = (float)row["TongPCDem"];
 				nv.ThongKeThang.PhuCaps._50_TC = (float)row["TongPCTC"];
 				nv.ThongKeThang.PhuCaps._100_TCC3 = (float)row["TongPCTC_Dem"];
