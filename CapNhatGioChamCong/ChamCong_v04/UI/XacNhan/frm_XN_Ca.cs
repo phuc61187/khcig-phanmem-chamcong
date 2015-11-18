@@ -53,6 +53,12 @@ namespace ChamCong_v04.UI.XacNhan {
 			kq.Columns.Add("Cong", typeof(float)); //20
 			kq.Columns.Add("TongGioLam", typeof(TimeSpan));
 			kq.Columns.Add("TongGioThuc", typeof(TimeSpan));
+			kq.Columns.Add("ChoBuGioTre", typeof(bool));//ver 4.0.0.8
+			kq.Columns.Add("ChoBuGioSom", typeof(bool));//ver 4.0.0.8
+			kq.Columns.Add("ChoBuPhepTre", typeof(bool));//ver 4.0.0.8
+			kq.Columns.Add("TGBuPhepTre", typeof(string));//ver 4.0.0.8
+			kq.Columns.Add("ChoBuPhepSom", typeof(bool));//ver 4.0.0.8
+			kq.Columns.Add("TGBuPhepSom", typeof(string));//ver 4.0.0.8
 			kq.Columns.Add("cUserInfo", typeof(cUserInfo));
 			kq.Columns.Add("cNgayCong", typeof(cNgayCong));
 			kq.Columns.Add("cCheckInOut", typeof(cCheckInOut));
@@ -167,8 +173,8 @@ namespace ChamCong_v04.UI.XacNhan {
 				checkXNBuPhepSom.Checked = CIO.ChoBuPhepSom;//ver 4.0.0.8
 				cbCongPhepTre.SelectedIndexChanged -= this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
 				cbCongPhepSom.SelectedIndexChanged -= this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
-				cbCongPhepTre.SelectedIndex = this.ChuyenDoiSangIndexCongBuPhep(CIO.BuCongPhepTreCongDon);//ver 4.0.0.8
-				cbCongPhepSom.SelectedIndex = this.ChuyenDoiSangIndexCongBuPhep(CIO.BuCongPhepSomCongDon);//ver 4.0.0.8
+				cbCongPhepTre.SelectedIndex = this.ChuyenDoiSangIndexCongBuPhep(CIO.ChoBuPhepTre, CIO.BuCongPhepTreCongDon);//ver 4.0.0.8
+				cbCongPhepSom.SelectedIndex = this.ChuyenDoiSangIndexCongBuPhep(CIO.ChoBuPhepSom, CIO.BuCongPhepSomCongDon);//ver 4.0.0.8
 				cbCongPhepTre.SelectedIndexChanged += this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
 				cbCongPhepSom.SelectedIndexChanged += this.checkXNChoPhepTre_CheckedChanged;//ver 4.0.0.8
 				checkXNLamThem.Checked = false;
@@ -261,7 +267,8 @@ namespace ChamCong_v04.UI.XacNhan {
 
 		}
 
-		private int ChuyenDoiSangIndexCongBuPhep(float p) {
+		private int ChuyenDoiSangIndexCongBuPhep(bool ChoBuPhep, float p) {
+			if (ChoBuPhep == false) return 0;
 			if (Math.Abs(p - 0f) < 0.05f) return 0;
 			else if (Math.Abs(p - 0.25f) < 0.05f) return 1;
 			else if (Math.Abs(p - 0.5f) < 0.05f) return 2;
@@ -411,6 +418,11 @@ namespace ChamCong_v04.UI.XacNhan {
 			if (currShift != null && currShift.ID < int.MinValue + 100) {
 				checkXNVaoTreTinhCV.Checked = true;
 				checkXNRaaSomTinhCV.Checked = true;
+			}
+			else
+			{
+				checkXNVaoTreTinhCV.Checked = false;
+				checkXNRaaSomTinhCV.Checked = false;
 			}
 			linkLabelTinhToan_LinkClicked(null, null);
 		}

@@ -400,12 +400,26 @@ namespace ChamCong_v04.BUS
 					row["Cong"] = CIO.Cong; //20
 					row["TongGioLam"] = CIO.TG.GioLamViec;//Danglam giophut
 					row["TongGioThuc"] = CIO.TG.GioThuc;//Danglam giophut
+					row["ChoBuGioTre"] = CIO.ChoBuGioTre;//ver 4.0.0.8
+					row["ChoBuGioSom"] = CIO.ChoBuGioSom;//ver 4.0.0.8
+					row["ChoBuPhepTre"] = CIO.ChoBuPhepTre;//ver 4.0.0.8
+					row["TGBuPhepTre"] = XacDinhTGBuPhep(CIO.BuCongPhepTreCongDon);//ver 4.0.0.8
+					row["ChoBuPhepSom"] = CIO.ChoBuPhepSom;//ver 4.0.0.8
+					row["TGBuPhepSom"] = XacDinhTGBuPhep(CIO.BuCongPhepSomCongDon);//ver 4.0.0.8
 					row["cUserInfo"] = nv;
 					row["cNgayCong"] = ngayCong;
 					row["cCheckInOut"] = CIO;
 					table.Rows.Add(row);
 				}
 			}
+		}
+
+		private static object XacDinhTGBuPhep(float p) {
+			if (Math.Abs(p - 0f) < 0.05f) return "";
+			else if (Math.Abs(p - 0.25f) < 0.05f) return "2 giờ";
+			else if (Math.Abs(p - 0.5f) < 0.05f) return "4 giờ";
+			else if (Math.Abs(p - 0.75f) < 0.05f) return "6 giờ";
+			return "LH bp IT";
 		}
 		public static void TaoTableXacNhanLamThem(List<cUserInfo> dsnv, DataTable table)
 		{/*( ngaycong.TG.GioLamViec > XL2._08gio 
@@ -441,6 +455,12 @@ namespace ChamCong_v04.BUS
 						row["Cong"] = CIO.Cong; //20
 						row["TongGioLam"] = CIO.TG.GioLamViec;//Danglam giophut
 						row["TongGioThuc"] = CIO.TG.GioThuc;//Danglam giophut
+						row["ChoBuGioTre"] = CIO.ChoBuGioTre;//ver 4.0.0.8
+						row["ChoBuGioSom"] = CIO.ChoBuGioSom;//ver 4.0.0.8
+						row["ChoBuPhepTre"] = CIO.ChoBuPhepTre;//ver 4.0.0.8
+						row["TGBuPhepTre"] = XacDinhTGBuPhep(CIO.BuCongPhepTreCongDon);//ver 4.0.0.8
+						row["ChoBuPhepSom"] = CIO.ChoBuPhepSom;//ver 4.0.0.8
+						row["TGBuPhepSom"] = XacDinhTGBuPhep(CIO.BuCongPhepSomCongDon);//ver 4.0.0.8
 						row["cUserInfo"] = nv;
 						row["cNgayCong"] = ngayCong;
 						row["cCheckInOut"] = CIO;
