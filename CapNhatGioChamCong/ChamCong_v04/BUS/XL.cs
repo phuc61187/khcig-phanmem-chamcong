@@ -1155,12 +1155,7 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static bool KiemTraDieuKienCongCVAuto_VuotNguong(float CongCV_Auto, int soNgayThu7, int soNgayChuNhat) {
-			if (soNgayThu7 == 5 && soNgayChuNhat == 4) {
 				if (CongCV_Auto > soNgayThu7) return true; // info trường hợp đặc biệt 5 ngày T7 nhưng chỉ 4 ngày CN thì tối đa 5 ngày CV, chứ ko phải 4 ngày CN
-			}
-			else {
-				if (CongCV_Auto > soNgayChuNhat) return true;
-			}
 			return false;
 		}
 

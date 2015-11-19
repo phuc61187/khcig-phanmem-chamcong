@@ -53,6 +53,10 @@ namespace ChamCong_v04.UI.XacNhan {
 			kq.Columns.Add("Cong", typeof(float)); //20
 			kq.Columns.Add("TongGioLam", typeof(TimeSpan));
 			kq.Columns.Add("TongGioThuc", typeof(TimeSpan));
+			kq.Columns.Add("DuyetCPVaoTre", typeof(bool));//ver 4.0.0.8
+			kq.Columns.Add("DuyetCPRaSom", typeof(bool));//ver 4.0.0.8
+			kq.Columns.Add("VaoTreTuDo", typeof(bool));//ver 4.0.0.8
+			kq.Columns.Add("RaSomTuDo", typeof(bool));//ver 4.0.0.8
 			kq.Columns.Add("ChoBuGioTre", typeof(bool));//ver 4.0.0.8
 			kq.Columns.Add("ChoBuGioSom", typeof(bool));//ver 4.0.0.8
 			kq.Columns.Add("ChoBuPhepTre", typeof(bool));//ver 4.0.0.8
@@ -419,8 +423,7 @@ namespace ChamCong_v04.UI.XacNhan {
 				checkXNVaoTreTinhCV.Checked = true;
 				checkXNRaaSomTinhCV.Checked = true;
 			}
-			else
-			{
+			else {
 				checkXNVaoTreTinhCV.Checked = false;
 				checkXNRaaSomTinhCV.Checked = false;
 			}
@@ -474,10 +477,10 @@ namespace ChamCong_v04.UI.XacNhan {
 			var bBuGioSom = checkXNBuGioSom.Checked;//ver 4.0.0.8
 			var bBuPhepTre = checkXNBuPhepTre.Checked;//ver 4.0.0.8
 			var bBuPhepSom = checkXNBuPhepSom.Checked;//ver 4.0.0.8
-			var fCongPhepTre = ((cbCongPhepTre.SelectedIndex) * 0.25f);
-			var fCongPhepSom = ((cbCongPhepSom.SelectedIndex) * 0.25f);
-			var fCongPhepTreCongDon = 0f;
-			var fCongPhepSomCongDon = 0f;
+			var fCongPhepTre = ((cbCongPhepTre.SelectedIndex) * 0.25f);//ver 4.0.0.8
+			var fCongPhepSom = ((cbCongPhepSom.SelectedIndex) * 0.25f);//ver 4.0.0.8
+			var fCongPhepTreCongDon = 0f;//ver 4.0.0.8
+			var fCongPhepSomCongDon = 0f;//ver 4.0.0.8
 			var bXacNhanOT = checkXNLamThem.Checked;
 			var bDuocTinhPC50 = checkXNTinhPC50.Checked;
 			//var iSoPhutOT = Convert.ToInt32(numPhutTinhLamThem.Value);

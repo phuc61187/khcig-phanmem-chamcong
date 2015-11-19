@@ -80,15 +80,15 @@ namespace ChamCong_v04.BUS {
 			t.Add("8: Ca tự do tính công trên cơ sở 8h làm việc");
 			t.Add("D: Ca dài tính công trên cơ sở 12h làm việc");
 			List<string> t2 = new List<string>();
-			t2.Add("(TC): có phụ cấp tăng cường");
-			t2.Add("(T3): có phụ cấp tăng cường làm việc ban đêm");
+			t2.Add("(tc): có phụ cấp tăng cường");
+			t2.Add("(t3): có phụ cấp tăng cường làm việc ban đêm");
 			t2.Add("(x2): có phụ cấp làm việc vào ngày nghỉ");
 			t2.Add("(x2đ): có phụ cấp làm việc ban đêm vào ngày nghỉ");
 			t2.Add("(x3): có phụ cấp làm việc, trực ngày lễ, tết");
 			t2.Add("(x3đ): có phụ cấp làm việc, trực ban đêm ngày lễ, tết");
 			t2.Add("(xYC): có phụ cấp theo yêu cầu quản lý");
 			List<string> t3 = new List<string>();
-			t3.Add("N: nửa công (hoặc nửa ngày)");
+			t3.Add("n: nửa công (hoặc nửa ngày)");
 			t3.Add("L: 1 công lễ, tết");
 			t3.AddRange((from DataRow row in tableAbsent.Rows select row["AbsentDescription"].ToString()).ToList());
 
@@ -1152,7 +1152,7 @@ namespace ChamCong_v04.BUS {
 
 			// 1. ghi header
 			string headerString = string.Format(Settings.Default.titleBangCC_THANG, ngaybd.ToString("MM/yyyy"));
-			int left1 = 6, left2 = 40, leftT = 24;
+			int left1 = 6, left2 = 39, leftT = 24;
 			ir = top;
 			EXP_Header(ws, ref ir, left1, left2, leftT, size1: 24, size2: 24, sizeT: 24,
 				logoName: "logo", ngayLap: DateTime.Today, headerString: headerString);

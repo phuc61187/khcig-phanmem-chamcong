@@ -204,7 +204,7 @@
     <value>Thông báo</value>
   </data>
   <data name="Text_DuLieuChamCongChuaUpdate" xml:space="preserve">
-    <value>Máy chấm công CHƯA LẤY ĐƯỢC DỮ LIỆU MỚI NHẤT do mất kết nối với máy chủ. Vui lòng hạn chế chỉnh sửa giờ chấm công.</value>
+    <value>Máy chủ Server CHƯA LẤY ĐƯỢC DỮ LIỆU MỚI NHẤT do mất kết nối với máy chấm công. Vui lòng hạn chế chỉnh sửa giờ chấm công.</value>
   </data>
   <data name="Text_ChuaChonNV" xml:space="preserve">
     <value>Bạn chưa chọn Nhân viên.</value>

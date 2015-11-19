@@ -264,7 +264,7 @@ namespace ChamCong_v04.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Máy chấm công CHƯA LẤY ĐƯỢC DỮ LIỆU MỚI NHẤT do mất kết nối với máy chủ. Vui lòng hạn chế chỉnh sửa giờ chấm công..
+        ///   Looks up a localized string similar to Máy chủ Server CHƯA LẤY ĐƯỢC DỮ LIỆU MỚI NHẤT do mất kết nối với máy chấm công. Vui lòng hạn chế chỉnh sửa giờ chấm công..
         /// </summary>
         public static string Text_DuLieuChamCongChuaUpdate {
             get {

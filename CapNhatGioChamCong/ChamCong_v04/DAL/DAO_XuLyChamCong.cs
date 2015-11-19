@@ -532,9 +532,13 @@ values (@UserEnrollNumber, @Ngay,@loai,@PCNgay, @PCDem,1)";
 				new object[] { idXacNhan, maCc, timevao, sourceInn, machineNoInn, timeraa, sourceOut, machineNoOut });
 
 			//string noidung = @"Xác nhận ca [{0}] cho NV có mã chấm công [{1}], giờ vào [{2}], giờ ra [{3}], [{4}] cho phép vào trễ, [{5}] cho phép ra sớm, làm thêm [{6}] phút, [{9}] tính vào trễ, [{10}] tính ra sớm là chờ việc(nếu có), lý do: [{7}], ghi chú: [{8}]";//ver 4.0.0.4	
-			string noidung = @"Xác nhận ca [{0}] cho NV có mã chấm công [{1}], giờ vào [{2}], giờ ra [{3}], [{4}] cho phép vào trễ, [{5}] cho phép ra sớm, làm thêm [{6}] phút, [{7}] tính vào trễ, [{8}] tính ra sớm là chờ việc(nếu có), lý do: [{9}], ghi chú: [{10}]";//ver 4.0.0.4	
-			noidung = string.Format(noidung, shiftCode, maCc, timevao.ToString("H:mm:ss dd/MM/yyyy"), timeraa.ToString("H:mm:ss dd/MM/yyyy"), bDuyetCpTre ? "CÓ" : "KHÔNG",
-									bDuyetCpSom ? "CÓ" : "KHÔNG", soPhutLamThem, vaoTreLaCV ? "CÓ" : "KHÔNG", raaSomLaCV ? "CÓ" : "KHÔNG", lydo, ghichu);//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+			string noidung = @"Xác nhận ca [{0}] cho NV có mã chấm công [{1}], giờ vào [{2}], giờ ra [{3}], [{4}] cho phép vào trễ, [{5}] cho phép ra sớm, làm thêm [{6}] phút, [{7}] tính vào trễ, [{8}] tính ra sớm là chờ việc(nếu có), [{9}] bù giờ vào trễ, [{10}] bù giờ ra sớm, [{11}] bù phép vào trễ [{12}], [{13}] bù phép ra sớm [{14}], lý do: [{15}], ghi chú: [{16}]";//ver 4.0.0.4	
+			noidung = string.Format(noidung, shiftCode, maCc, timevao.ToString("H:mm:ss dd/MM/yyyy"), timeraa.ToString("H:mm:ss dd/MM/yyyy"), // 0 1 2 3 
+				bDuyetCpTre ? "CÓ" : "KHÔNG", bDuyetCpSom ? "CÓ" : "KHÔNG", soPhutLamThem, vaoTreLaCV ? "CÓ" : "KHÔNG", raaSomLaCV ? "CÓ" : "KHÔNG",// 4 5 6 7 8
+				bBuGioTre ? "CÓ" : "KHÔNG", bBuGioSom ? "CÓ" : "KHÔNG", //ver 4.0.0.8 //9 10
+				bBuPhepTre ? "CÓ" : "KHÔNG", XL.XacDinhTGBuPhep(fCongBuPhepTreCongDon), //ver 4.0.0.8 //11 12
+				bBuPhepSom ? "CÓ" : "KHÔNG", XL.XacDinhTGBuPhep(fCongBuPhepSomCongDon),//ver 4.0.0.8 //13 14
+				lydo, ghichu);//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV //15 16
 			DAO.GhiNhatKyThaotac("Xác nhận ca", noidung, maCC:maCc);
 		}
 

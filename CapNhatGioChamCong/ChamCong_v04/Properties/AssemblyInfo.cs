@@ -6,7 +6,7 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cham Cong v4.0.0.7")]
+[assembly: AssemblyTitle("Cham Cong v4.0.0.8")]
 [assembly: AssemblyDescription("Phan Mem Cham Cong")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NMTLKhanhHoi")]

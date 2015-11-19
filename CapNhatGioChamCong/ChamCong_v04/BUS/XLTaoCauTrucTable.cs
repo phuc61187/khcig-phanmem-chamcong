@@ -400,6 +400,10 @@ namespace ChamCong_v04.BUS
 					row["Cong"] = CIO.Cong; //20
 					row["TongGioLam"] = CIO.TG.GioLamViec;//Danglam giophut
 					row["TongGioThuc"] = CIO.TG.GioThuc;//Danglam giophut
+					row["DuyetCPVaoTre"] = CIO.DuyetChoPhepVaoTre;//ver 4.0.0.8
+					row["DuyetCPRaSom"] = CIO.DuyetChoPhepRaSom;//ver 4.0.0.8
+					row["VaoTreTuDo"] = CIO.VaoTreTinhCV;//ver 4.0.0.8
+					row["RaSomTuDo"] = CIO.RaaSomTinhCV;//ver 4.0.0.8
 					row["ChoBuGioTre"] = CIO.ChoBuGioTre;//ver 4.0.0.8
 					row["ChoBuGioSom"] = CIO.ChoBuGioSom;//ver 4.0.0.8
 					row["ChoBuPhepTre"] = CIO.ChoBuPhepTre;//ver 4.0.0.8
@@ -414,7 +418,7 @@ namespace ChamCong_v04.BUS
 			}
 		}
 
-		private static object XacDinhTGBuPhep(float p) {
+		public static object XacDinhTGBuPhep(float p) {
 			if (Math.Abs(p - 0f) < 0.05f) return "";
 			else if (Math.Abs(p - 0.25f) < 0.05f) return "2 giờ";
 			else if (Math.Abs(p - 0.5f) < 0.05f) return "4 giờ";
@@ -455,6 +459,10 @@ namespace ChamCong_v04.BUS
 						row["Cong"] = CIO.Cong; //20
 						row["TongGioLam"] = CIO.TG.GioLamViec;//Danglam giophut
 						row["TongGioThuc"] = CIO.TG.GioThuc;//Danglam giophut
+						row["DuyetCPVaoTre"] = CIO.DuyetChoPhepVaoTre;//ver 4.0.0.8
+						row["DuyetCPRaSom"] = CIO.DuyetChoPhepRaSom;//ver 4.0.0.8
+						row["VaoTreTuDo"] = CIO.VaoTreTinhCV;//ver 4.0.0.8
+						row["RaSomTuDo"] = CIO.RaaSomTinhCV;//ver 4.0.0.8
 						row["ChoBuGioTre"] = CIO.ChoBuGioTre;//ver 4.0.0.8
 						row["ChoBuGioSom"] = CIO.ChoBuGioSom;//ver 4.0.0.8
 						row["ChoBuPhepTre"] = CIO.ChoBuPhepTre;//ver 4.0.0.8

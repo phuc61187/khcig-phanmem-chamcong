@@ -252,9 +252,9 @@ namespace ChamCong_v04.BUS {
 				}
 				else
 				{
-					thongKeThang.TreSom_DuocBuCong = thongKeThang.TichLuy_PhanDu;//tempTongCongBu - thongKeThang.TongCongTichLuy;
+					thongKeThang.TreSom_DuocBuCong = thongKeThang.TongCongTichLuy;//tempTongCongBu - thongKeThang.TongCongTichLuy;
 					thongKeThang.TichLuy_PhanDu = 0f;
-					thongKeThang.TreSom_KoDuBuCong = tempTongCongTreSomBu - thongKeThang.TichLuy_PhanDu;
+					thongKeThang.TreSom_KoDuBuCong = tempTongCongTreSomBu - thongKeThang.TongCongTichLuy;
 				}
 				thongKeThang.TongNgayLV4008 = thongKeThang.TongCongDinhMuc8Tieng + thongKeThang.TichLuy_PhanDu + thongKeThang.TreSom_DuocBuCong;
 				//thongKeThang.TongNgayLV4008 += tempTongCongTreSom_KoDuBu; // phần ko đủ giờ bù là phần việc riêng

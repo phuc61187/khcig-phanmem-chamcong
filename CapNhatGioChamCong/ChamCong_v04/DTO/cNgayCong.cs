@@ -69,14 +69,14 @@ namespace ChamCong_v04.DTO {
 			if (PhuCaps._250_LeTet_Dem > 0f) temp += ", (x3đ)";
 			if (PhuCaps._Cus > 0f) temp += ", (xYC)";
 			if (PhuCaps._50_TC > 0f) temp += ", (tc)";
-			if (PhuCaps._100_TCC3 > 0f) temp += ", (T3)";
+			if (PhuCaps._100_TCC3 > 0f) temp += ", (t3)";
 		}
 		public void XuatChuoiKyHieuPhuCap_Vang(ref string temp) {
 			temp = string.Empty;
 			if (DSVang != null && DSVang.Count == 0)
 				foreach (cLoaiVang vang in DSVang)
 					temp = temp + ((temp == string.Empty) ? vang.LayKyHieu() : ", " + vang.LayKyHieu());
-			if (PhuCaps._30_dem > 0f) temp += "; (C3)";
+			if (PhuCaps._30_dem > 0f) temp += "; (c3)";
 			if (TinhPCDB) {
 				if (PhuCaps._100_LVNN_Ngay > 0f) temp += "; (x2)";
 				if (PhuCaps._150_LVNN_Dem > 0f) temp += "; (x2đ)";
@@ -86,7 +86,7 @@ namespace ChamCong_v04.DTO {
 			}
 			else if (TinhPC50) {
 				if (PhuCaps._50_TC > 0f) temp += "; (tc)";
-				if (PhuCaps._100_TCC3 > 0f) temp += "; (T3)";
+				if (PhuCaps._100_TCC3 > 0f) temp += "; (t3)";
 			}
 		}
 
@@ -119,19 +119,19 @@ namespace ChamCong_v04.DTO {
 			// kết hợp theo format <cio code> <absentcode> <phu cap 50, 100>
 			if (string.IsNullOrEmpty(CIOs_Code)) kq += AbsentsCode;
 			else if (string.IsNullOrEmpty(AbsentsCode)) kq += CIOs_Code;
-			else kq = (CIOs_Code + ";" + AbsentsCode);
-			kq = (chuoiTruoc == null) ? kq : chuoiTruoc + ";" + kq;
+			else kq = (CIOs_Code + "; " + AbsentsCode);
+			kq = (chuoiTruoc == null) ? kq : chuoiTruoc + "; " + kq;
 
 			if (TinhPCDB) {
-				if (PhuCaps._100_LVNN_Ngay > 0f) kq += ";(x2)";
-				if (PhuCaps._150_LVNN_Dem > 0f) kq += ";(x2đ)";
-				if (PhuCaps._200_LeTet_Ngay > 0f) kq += ";(x3)";
-				if (PhuCaps._250_LeTet_Dem > 0f) kq += ";(x3đ)";
-				if (PhuCaps._Cus > 0f) kq += ";(xYC)";
+				if (PhuCaps._100_LVNN_Ngay > 0f) kq += "; (x2)";
+				if (PhuCaps._150_LVNN_Dem > 0f) kq += "; (x2đ)";
+				if (PhuCaps._200_LeTet_Ngay > 0f) kq += "; (x3)";
+				if (PhuCaps._250_LeTet_Dem > 0f) kq += "; (x3đ)";
+				if (PhuCaps._Cus > 0f) kq += "; (xYC)";
 			}
 			else if (TinhPC50) {
-				if (PhuCaps._50_TC > 0f) kq += ";(tc)";
-				if (PhuCaps._100_TCC3 > 0f) kq += ";(t3)";
+				if (PhuCaps._50_TC > 0f) kq += "; (tc)";
+				if (PhuCaps._100_TCC3 > 0f) kq += "; (t3)";
 			}
 			return kq;
 		}
@@ -146,18 +146,18 @@ namespace ChamCong_v04.DTO {
 			if (string.IsNullOrEmpty(CIOs_Code)) kq += AbsentsCode;
 			else if (string.IsNullOrEmpty(AbsentsCode)) kq += CIOs_Code;
 			else kq = (CIOs_Code + ";" + AbsentsCode);
-			kq = (chuoiTruoc == null) ? kq : chuoiTruoc + ";" + kq;
-			if (TinhPC50 && PhuCaps._50_TC > 0f) kq += ";(tc)";
+			kq = (chuoiTruoc == null) ? kq : chuoiTruoc + "; " + kq;
+			if (TinhPC50 && PhuCaps._50_TC > 0f) kq += "; (tc)";
 			if (TinhPCDB) {
-				if (PhuCaps._100_LVNN_Ngay > 0f) kq += ";(x2)";
-				if (PhuCaps._150_LVNN_Dem > 0f) kq += ";(x2đ)";
-				if (PhuCaps._200_LeTet_Ngay > 0f) kq += ";(x3)";
-				if (PhuCaps._250_LeTet_Dem > 0f) kq += ";(x3đ)";
-				if (PhuCaps._Cus > 0f) kq += ";(xYC)";
+				if (PhuCaps._100_LVNN_Ngay > 0f) kq += "; (x2)";
+				if (PhuCaps._150_LVNN_Dem > 0f) kq += "; (x2đ)";
+				if (PhuCaps._200_LeTet_Ngay > 0f) kq += "; (x3)";
+				if (PhuCaps._250_LeTet_Dem > 0f) kq += "; (x3đ)";
+				if (PhuCaps._Cus > 0f) kq += "; (xYC)";
 			}
 			else if (TinhPC50) {
-				if (PhuCaps._50_TC > 0f) kq += ";(tc)";
-				if (PhuCaps._100_TCC3 > 0f) kq += ";(t3)";
+				if (PhuCaps._50_TC > 0f) kq += "; (tc)";
+				if (PhuCaps._100_TCC3 > 0f) kq += "; (t3)";
 			}
 			return kq;
 		}
@@ -174,7 +174,7 @@ namespace ChamCong_v04.DTO {
 		public string LayKyHieu() {
 			var kq = string.Empty;
 			if (Math.Abs(WorkingDay - 0f) < 0.01f) kq += string.Empty;
-			else if (Math.Abs(WorkingDay - 0.5f) < 0.01f) kq += "N" + MaLV_Code;
+			else if (Math.Abs(WorkingDay - 0.5f) < 0.01f) kq += "n" + MaLV_Code;
 			else if (Math.Abs(WorkingDay - 1f) < 0.01f) kq += MaLV_Code;
 			return kq;
 		}
