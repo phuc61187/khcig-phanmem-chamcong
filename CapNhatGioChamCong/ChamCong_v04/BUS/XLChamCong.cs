@@ -94,10 +94,11 @@ namespace ChamCong_v04.BUS {
 			return chkinn.TimeOfDay < XL2._03gio ? chkinn.Date.AddDays(-1) : chkinn.Date;
 		}
 
-		public static void Vao(DateTime timeinn, DateTime onnduty, DateTime chopheptre, bool DuyetChoPhepVaoTre, bool VaoTreTinhCV, out DateTime td_batdau_lv, out TimeSpan tre) {
+		public static void Vao(DateTime timeinn, DateTime onnduty, DateTime chopheptre, bool DuyetChoPhepVaoTre, bool VaoTreTinhCV, out DateTime td_batdau_lv, out TimeSpan treVR, out TimeSpan vaoSauCaKoTruVR) {
+			treVR = TimeSpan.Zero;
+			vaoSauCaKoTruVR = TimeSpan.Zero;
 			if (DuyetChoPhepVaoTre) {
 				td_batdau_lv = onnduty;
-				tre = TimeSpan.Zero;
 			}
 			else
 			{
@@ -105,17 +106,15 @@ namespace ChamCong_v04.BUS {
 				if (VaoTreTinhCV)
 				{
 					td_batdau_lv = timeinn0s; 
-					tre = TimeSpan.Zero;
+					if (chopheptre < timeinn0s) vaoSauCaKoTruVR = timeinn0s - onnduty;
 				}
 				else if (chopheptre < timeinn0s)
 				{
 					td_batdau_lv = timeinn0s;
-					tre = timeinn0s - onnduty;
-					//tre = new TimeSpan(tre.Days, tre.Hours, tre.Minutes, 0);
+					treVR = timeinn0s - onnduty;
 				}
 				else {
 					td_batdau_lv = onnduty;
-					tre = TimeSpan.Zero;
 				}
 			}
 		}
@@ -154,12 +153,13 @@ namespace ChamCong_v04.BUS {
 			}
 
 		}
-		
 
-		public static void Raa(DateTime timeout, DateTime offduty, DateTime chophepsom, bool DuyetChoPhepRaSom, bool RaaSomTinhCV, out DateTime td_ketthuc_lv_chuaOT, out TimeSpan som) {
+
+		public static void Raa(DateTime timeout, DateTime offduty, DateTime chophepsom, bool DuyetChoPhepRaSom, bool RaaSomTinhCV, out DateTime td_ketthuc_lv_chuaOT, out TimeSpan som, out TimeSpan raTruocCaKoTruVR) {
+			som = TimeSpan.Zero;
+			raTruocCaKoTruVR = TimeSpan.Zero;
 			if (DuyetChoPhepRaSom) {
 				td_ketthuc_lv_chuaOT = offduty;
-				som = TimeSpan.Zero;
 			}
 			else
 			{
@@ -167,7 +167,7 @@ namespace ChamCong_v04.BUS {
 				if (RaaSomTinhCV)
 				{
 					td_ketthuc_lv_chuaOT = timeout0s;
-					som = TimeSpan.Zero;
+					if (timeout0s < chophepsom) raTruocCaKoTruVR = offduty - timeout0s;
 				}
 				else if (timeout0s < chophepsom) {
 					td_ketthuc_lv_chuaOT = timeout0s;
@@ -175,7 +175,6 @@ namespace ChamCong_v04.BUS {
 				}
 				else {
 					td_ketthuc_lv_chuaOT = offduty;
-					som = TimeSpan.Zero;
 				}
 
 			}
@@ -1150,6 +1149,7 @@ namespace ChamCong_v04.BUS {
 				startNT, endddNT,//ver 4.0.0.4
 				out CIO.TD.BD_LV, out CIO.TD.KT_LV, out CIO.TD.KT_LV_ChuaOT, out CIO.TD.KT_LV_DaCoOT, out CIO.TD.BD_LV_Ca3, out CIO.TD.KT_LV_Ca3,
 				out CIO.TG.GioThuc, out CIO.TG.GioLamViec, out CIO.TG.VaoTre, out CIO.TG.RaaSom,
+				out CIO.TG.VaoSauCaKoTruCong, out CIO.TG.RaTruocCaKoTruCong, //ver 4.0.0.8
 				out CIO.TG.GioLVTrongCa,//ver 4.0.0.4	
 				out CIO.TG.OLai, out CIO.TG.LamThem, out tempQuaDem, out CIO.TG.LamBanDem);
 			CIO.QuaDem = tempQuaDem;// ko cho phép out CIO.QuaDem nên fix tạm bằng cách dùng biến trung gian cục bộ và gán lại
@@ -1167,6 +1167,7 @@ namespace ChamCong_v04.BUS {
 			out DateTime TD_BD_LV, out DateTime TD_KT_LV, out DateTime TD_KT_LV_TrongCa, out DateTime TD_KT_LV_NgoaiCaCoOT,
 			out DateTime TD_BD_LV_Ca3, out DateTime TD_KT_LV_Ca3,
 			out TimeSpan TGThucTe, out TimeSpan TGGioLamViec, out TimeSpan TGVaoTre, out TimeSpan TGRaaSom,
+			out TimeSpan TGVaoTreKoTruVR, out TimeSpan TGRaaSomKoTruVR,
 			out TimeSpan TGGioLamViecTrongCa, //ver 4.0.0.4	
 			out TimeSpan TGOLai, out TimeSpan TGLamThem, out bool QuaDem, out TimeSpan TGLamBanDem) {
 
@@ -1179,6 +1180,8 @@ namespace ChamCong_v04.BUS {
 			TGThucTe = TimeSpan.Zero;
 			TGVaoTre = TimeSpan.Zero;
 			TGRaaSom = TimeSpan.Zero;
+			TGVaoTreKoTruVR = TimeSpan.Zero;
+			TGRaaSomKoTruVR = TimeSpan.Zero;
 			TGOLai = TimeSpan.Zero;
 			TGGioLamViec = TimeSpan.Zero;
 			TGGioLamViecTrongCa = TimeSpan.Zero;//ver 4.0.0.4	
@@ -1206,10 +1209,10 @@ namespace ChamCong_v04.BUS {
 				return;
 			}
 			var temp = 0f;
-			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, VaotreTinhCV, out TD_BD_LV, out TGVaoTre);//ver 4.0.0.8
+			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, VaotreTinhCV, out TD_BD_LV, out TGVaoTre, out TGVaoTreKoTruVR);//ver 4.0.0.8
 			XL.XetBuGioTre(ChoBuGioVaoTre, TD_BD_Ca, ref TD_BD_LV, ref TGVaoTre);
 			XL.XetBuPhepTre(ChoBuPhepVaoTre, CongPhepTre, TD_BD_Ca, ref CongBuPhepTre, ref TD_BD_LV, ref TGVaoTre);
-			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, RaaSomTinhCV, out TD_KT_LV_TrongCa, out TGRaaSom);//ver 4.0.0.8
+			XL.Raa(Raa, TD_KT_Ca, thoidiem_BD_tinhsom, KoTruRaaSom, RaaSomTinhCV, out TD_KT_LV_TrongCa, out TGRaaSom, out TGRaaSomKoTruVR);//ver 4.0.0.8
 			XL.XetBuGioSom(ChoBuGioRaaSom, TD_KT_Ca, ref TD_KT_LV_TrongCa, ref TGRaaSom);
 			XL.XetBuPhepSom(ChoBuPhepRaaSom, CongPhepSom, TD_KT_Ca, ref CongBuPhepSom, ref TD_KT_LV_TrongCa, ref TGRaaSom);
 			OLai(Raa, TD_KT_Ca, thoidiem_BD_tinhOLai, out TGOLai);
@@ -1330,10 +1333,12 @@ namespace ChamCong_v04.BUS {
 
 				float truCongTre = Convert.ToSingle(((CIO.TG.VaoTre.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
 				float truCongSom = Convert.ToSingle(((CIO.TG.RaaSom.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
+				float fVaoSauCaKoTruCong = Convert.ToSingle(((CIO.TG.VaoSauCaKoTruCong.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
+				float fRaTruocCaKoTruCong = Convert.ToSingle(((CIO.TG.RaTruocCaKoTruCong.TotalHours / CIO.ThuocCa.WorkingTimeTS.TotalHours) * CIO.ThuocCa.Workingday)).Truncate(2); //ver 4.0.0.8
 				CIO.TruCongTre = truCongTre;
 				CIO.TruCongSom = truCongSom;
 
-				float cong_trong_ca = CIO.ThuocCa.Workingday - CIO.TruCongTre - CIO.TruCongSom - CIO.BuCongPhepTreCongDon-CIO.BuCongPhepSomCongDon;
+				float cong_trong_ca = CIO.ThuocCa.Workingday - CIO.TruCongTre - CIO.TruCongSom - CIO.BuCongPhepTreCongDon - CIO.BuCongPhepSomCongDon - fVaoSauCaKoTruCong - fRaTruocCaKoTruCong;
 				float cong_ngoai_ca = Convert.ToSingle(Math.Round((CIO.TG.OTCa.TotalHours / 8f), 2));
 				CIO.CongTrongCa = cong_trong_ca;
 				CIO.CongNgoaiCa = cong_ngoai_ca;

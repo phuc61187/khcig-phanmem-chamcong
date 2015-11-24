@@ -382,17 +382,17 @@ namespace ChamCong_v04.UI.XacNhan {
 			}
 			else {
 				DateTime td_bd_lv, td_kt_lv_chuaOT;
-				TimeSpan tempTre, tempSom, tempOLai;
+				TimeSpan tempTre, tempSom, tempTreKoTruVR, tempSomKoTruVR, tempOLai;
 				var onnduty = CIO.ThuocNgayCong.Add(currShift.Duty.Onn);
 				var offduty = CIO.ThuocNgayCong.Add(currShift.Duty.Off);
 
 				XL.Vao(timevao, onnduty, CIO.ThuocNgayCong.Add(currShift.chophepTreTS),
-					bDuyetCPTre, bVaoTreLaCV, out td_bd_lv, out tempTre); //ver 4.0.0.8
+					bDuyetCPTre, bVaoTreLaCV, out td_bd_lv, out tempTre, out tempTreKoTruVR); //ver 4.0.0.8
 				XL.XetBuGioTre(bBuGioTre, onnduty, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
 				XL.XetBuPhepTre(bBuPhepTre, fCongPhepTre, onnduty, ref tempRef_CongPhepTreCongDon, ref td_bd_lv, ref tempTre);//ver 4.0.0.8
 
 				XL.Raa(timeraa, offduty, CIO.ThuocNgayCong.Add(currShift.chophepSomTS),
-					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom); //ver 4.0.0.8
+					bDuyetCPSom, bRaaSomLaCV, out td_kt_lv_chuaOT, out tempSom, out tempSomKoTruVR); //ver 4.0.0.8
 				XL.XetBuGioSom(bBuGioSom, offduty, ref td_kt_lv_chuaOT, ref tempSom);//ver 4.0.0.8
 				XL.XetBuPhepSom(bBuPhepSom, fCongPhepSom, offduty, ref tempRef_CongPhepSomCongDon, ref td_kt_lv_chuaOT, ref  tempSom);//ver 4.0.0.8
 
@@ -499,7 +499,7 @@ namespace ChamCong_v04.UI.XacNhan {
 
 			// tính giờ làm việc
 			DateTime TD_BD_LV, TD_KT_LV, TD_KT_LV_ChuaOT, TD_KT_LV_DaCoOT, TD_BD_LV_Ca3, TD_KT_LV_Ca3;
-			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGOLai, TGLamThem, TGLamBanDem;
+			TimeSpan TGThucTe, TGGioLamViec, TGVaoTre, TGRaaSom, TGVaoSauCaKoTruCong, TGRaTruocCaKoTruCong, TGOLai, TGLamThem, TGLamBanDem;
 			TimeSpan TGLamViecTrongCa;//ver 4.0.0.4	
 			bool QuaDem;
 			XL.TinhTG_LV_LVCa3_LamThem1Ca(Ngay, 0, true, bDuyetVaoTre, bDuyetRaaSom,
@@ -510,6 +510,7 @@ namespace ChamCong_v04.UI.XacNhan {
 				nv.StartNT, nv.EndddNT,
 				out TD_BD_LV, out TD_KT_LV, out TD_KT_LV_ChuaOT, out TD_KT_LV_DaCoOT, out TD_BD_LV_Ca3, out TD_KT_LV_Ca3,
 				out TGThucTe, out TGGioLamViec, out TGVaoTre, out TGRaaSom,
+				out TGVaoSauCaKoTruCong, out TGRaTruocCaKoTruCong,//ver 4.0.0.8
 				out TGLamViecTrongCa,
 				out TGOLai, out TGLamThem, out QuaDem, out TGLamBanDem);
 			tbXNGioLam.Text = TGGioLamViec.ToString(@"h\gmm\p");

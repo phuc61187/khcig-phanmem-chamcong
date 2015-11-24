@@ -32,6 +32,8 @@ namespace ChamCong_v04.DTO {
 
 		public TimeSpan VaoTre = TimeSpan.Zero;
 		public TimeSpan RaaSom = TimeSpan.Zero;
+		public TimeSpan VaoSauCaKoTruCong = TimeSpan.Zero;
+		public TimeSpan RaTruocCaKoTruCong = TimeSpan.Zero;
 		public TimeSpan OLai = TimeSpan.Zero;
 		public TimeSpan OTCa = TimeSpan.Zero;
 	}

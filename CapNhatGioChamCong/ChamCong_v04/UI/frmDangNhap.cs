@@ -6,7 +6,6 @@ using ChamCong_v04.Properties;
 using ChamCong_v04.UI.Admin;
 using ChamCong_v04.UI.ChamCong;
 using ChamCong_v04.UI.XepLich;
-using ChamCong_v04.UI4._5;
 using log4net;
 
 namespace ChamCong_v04.UI {

@@ -404,7 +404,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 		
 		private void linkTinhLaiCong_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
 			DateTime td_batdau_lv, td_ketthuc_lv_chuaOT, td_ketthuc_lv_daCoOT, TD_BD_LV_Ca3, TD_KT_LV_Ca3;
-			TimeSpan tre, som, tongGiothuc = TimeSpan.Zero, TGGioLamViec = TimeSpan.Zero, TGLamBanDem, tgTinhPC30, tgTinhPC50, tgTinhPCTCC3;
+			TimeSpan tre, som, treKoTruVR, somKoTruVR, tongGiothuc = TimeSpan.Zero, TGGioLamViec = TimeSpan.Zero, TGLamBanDem, tgTinhPC30, tgTinhPC50, tgTinhPCTCC3;
 			float Cong = 0f, PhuCap30, PhuCapTC, PhuCapTCC3, TongPhuCap = 0f;
 			bool QuaDem;
 			var ngay = DateTime.Today;
@@ -447,8 +447,8 @@ namespace ChamCong_v04.UI.KhaiBao {
 
 			tongGiothuc = timeKT - timeBD;
 			TimeSpan TGGioLamViecTrongCa;
-			XL.Vao(timeBD, ngay.Add(ca.Duty.Onn), ngay.Add(ca.chophepTreTS), true, true, out td_batdau_lv, out tre);//todo 4.0.0.8
-			XL.Raa(timeKT, ngay.Add(ca.Duty.Off), ngay.Add(ca.chophepSomTS), false, false, out td_ketthuc_lv_chuaOT, out som); //todo 4.0.0.8
+			XL.Vao(timeBD, ngay.Add(ca.Duty.Onn), ngay.Add(ca.chophepTreTS), true, true, out td_batdau_lv, out tre, out treKoTruVR);//todo 4.0.0.8
+			XL.Raa(timeKT, ngay.Add(ca.Duty.Off), ngay.Add(ca.chophepSomTS), false, false, out td_ketthuc_lv_chuaOT, out som, out somKoTruVR); //todo 4.0.0.8
 			XL.LamThem(td_ketthuc_lv_chuaOT, new TimeSpan(0, sophutOT, 0), out td_ketthuc_lv_daCoOT);
 			if (timeKT < td_ketthuc_lv_daCoOT)
 			{
