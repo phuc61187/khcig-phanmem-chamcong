@@ -105,8 +105,15 @@ namespace ChamCong_v04.BUS {
 				var timeinn0s = new DateTime(timeinn.Year, timeinn.Month, timeinn.Day, timeinn.Hour, timeinn.Minute, 0);
 				if (VaoTreTinhCV)
 				{
-					td_batdau_lv = timeinn0s; 
-					if (chopheptre < timeinn0s) vaoSauCaKoTruVR = timeinn0s - onnduty;
+					if (chopheptre < timeinn0s)
+					{
+						td_batdau_lv = timeinn0s; 
+						vaoSauCaKoTruVR = timeinn0s - onnduty;
+					}
+					else
+					{
+						td_batdau_lv = onnduty; 
+					}
 				}
 				else if (chopheptre < timeinn0s)
 				{
@@ -166,8 +173,15 @@ namespace ChamCong_v04.BUS {
 				var timeout0s = new DateTime(timeout.Year, timeout.Month, timeout.Day, timeout.Hour, timeout.Minute, 0);
 				if (RaaSomTinhCV)
 				{
-					td_ketthuc_lv_chuaOT = timeout0s;
-					if (timeout0s < chophepsom) raTruocCaKoTruVR = offduty - timeout0s;
+					if (timeout0s < chophepsom)
+					{
+						td_ketthuc_lv_chuaOT = timeout0s;
+						raTruocCaKoTruVR = offduty - timeout0s;
+					}
+					else
+					{
+						td_ketthuc_lv_chuaOT = offduty;
+					}
 				}
 				else if (timeout0s < chophepsom) {
 					td_ketthuc_lv_chuaOT = timeout0s;

@@ -553,7 +553,6 @@ values (@UserEnrollNumber, @Ngay,@loai,@PCNgay, @PCDem,1)";
 
 
 
-
-
+		
 	}
 }

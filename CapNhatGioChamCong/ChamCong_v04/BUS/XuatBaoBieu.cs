@@ -87,6 +87,11 @@ namespace ChamCong_v04.BUS {
 			t2.Add("(x3): có phụ cấp làm việc, trực ngày lễ, tết");
 			t2.Add("(x3đ): có phụ cấp làm việc, trực ban đêm ngày lễ, tết");
 			t2.Add("(xYC): có phụ cấp theo yêu cầu quản lý");
+			t2.Add("(bt): sử dụng quỹ tăng cường cho thời gian vào trễ");
+			t2.Add("(bs): sử dụng quỹ tăng cường cho thời gian ra sớm");
+			t2.Add("(p2): nghỉ phép 2 giờ");
+			t2.Add("(nP): nghỉ phép 4 giờ");
+			t2.Add("(p6): nghỉ phép 6 giờ");
 			List<string> t3 = new List<string>();
 			t3.Add("n: nửa công (hoặc nửa ngày)");
 			t3.Add("L: 1 công lễ, tết");

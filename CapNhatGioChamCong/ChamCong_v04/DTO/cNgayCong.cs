@@ -57,7 +57,7 @@ namespace ChamCong_v04.DTO {
 			//xuất theo format <chuỗi ký hiệu ca> <chuỗi ký hiệu vắng> <chuỗi ký hiệu phụ cấp>
 			foreach (var CIO in DSVaoRa) {
 				if (CIO.HaveINOUT < 0) continue;
-				temp += (temp == string.Empty) ? CIO.ThuocCa.KyHieuCC : ", " + CIO.ThuocCa.KyHieuCC;
+				temp += (temp == string.Empty) ? CIO.ThuocCa.KyHieuCC + CIO.KyHieuBuPhepBuGio() : ", " + CIO.ThuocCa.KyHieuCC + CIO.KyHieuBuPhepBuGio();
 			}
 			foreach (cLoaiVang vang in DSVang)
 				temp = temp + ((temp == string.Empty) ? vang.LayKyHieu() : ", " + vang.LayKyHieu());

@@ -124,9 +124,27 @@ namespace ChamCong_v04.DTO {
 			if (HaveINOUT == -2) kq = "KV";
 			else if (HaveINOUT == -1) kq = "KR";
 			else kq = ((DaXN) ? "XN-":"")+ThuocCa.Code;
-			return (chuoiTruoc == null)
+			kq += KyHieuBuPhepBuGio();
+			kq = (chuoiTruoc == null)
 					   ? kq
 					   : chuoiTruoc + ";" + kq;
+			return kq;
+		}
+
+		public string KyHieuBuPhepBuGio()
+		{
+			var kq = string.Empty;
+			if (HaveINOUT < 0) return kq;
+			if (ChoBuGioTre) kq += " (bt)";
+			if (ChoBuGioSom) kq += " (bs)";
+			if (ChoBuPhepTre && Math.Abs(BuCongPhepTreCongDon - 0.25f) < 0.05f) kq += " (p2)";
+			if (ChoBuPhepTre && Math.Abs(BuCongPhepTreCongDon - 0.5f) < 0.05f) kq += " (nP)";
+			if (ChoBuPhepTre && Math.Abs(BuCongPhepTreCongDon - 0.75f) < 0.05f) kq += " (p6)";
+			if (ChoBuPhepSom && Math.Abs(BuCongPhepSomCongDon - 0.25f) < 0.05f) kq += " (p2)";
+			if (ChoBuPhepSom && Math.Abs(BuCongPhepSomCongDon - 0.5f) < 0.05f) kq += " (nP)";
+			if (ChoBuPhepSom && Math.Abs(BuCongPhepSomCongDon - 0.75f) < 0.05f) kq += " (p6)";
+			return kq;
+
 		}
 
 		public string CIOCodeFull(string chuoiTruoc = null) {
@@ -158,6 +176,7 @@ namespace ChamCong_v04.DTO {
 			else {
 				kq += ((DaXN) ? "XN-" : "") + ThuocCa.Code;
 			}
+
 			return (chuoiTruoc == null)
 								   ? kq
 								   : chuoiTruoc + ";" + kq;
