@@ -411,7 +411,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 									MaCC = nv.MaCC, MaNV = nv.MaNV, TenNV = nv.TenNV,
 									NoiDung = string.Format(
 												"Có số công chờ việc được tính tự động [{0}] công theo quy định vượt quá [{1}] ngày thứ Bảy trong tháng.",
-												nv.ThongKeThang.CongCV_Auto.ToString("#0.0#"), soNgayChuNhat)
+												nv.ThongKeThang.CongCV_Auto.ToString("#0.0#"), soNgayThu7)
 								});
 						}
 					}

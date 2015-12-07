@@ -46,7 +46,7 @@ namespace ChamCong_v04.UI {
 			try {
 				cnn.Open();
 				cnn.Close();
-				var temp = Application.UserAppDataPath + "\\Setting.txt";
+				var temp = Application.CommonAppDataPath + "\\Setting.txt";
 				StreamWriter writer = new StreamWriter( temp);
 				string encryptConnectionString = MyUtility.Mahoa(sConnection);
 				writer.Write(encryptConnectionString);
