@@ -24,16 +24,16 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_XN_Ca));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgrdGioCoLamThem = new System.Windows.Forms.DataGridView();
 			this.gbChiTiet = new System.Windows.Forms.GroupBox();
 			this.cbCongPhepSom = new System.Windows.Forms.ComboBox();
@@ -137,9 +137,9 @@
 			this.dgrdGioCoLamThem.AllowUserToAddRows = false;
 			this.dgrdGioCoLamThem.AllowUserToDeleteRows = false;
 			this.dgrdGioCoLamThem.AllowUserToResizeRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-			this.dgrdGioCoLamThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+			this.dgrdGioCoLamThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
 			this.dgrdGioCoLamThem.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdGioCoLamThem.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
 			this.dgrdGioCoLamThem.ColumnHeadersHeight = 41;
@@ -264,37 +264,37 @@
 			this.checkXNBuGioSom.Location = new System.Drawing.Point(162, 134);
 			this.checkXNBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNBuGioSom.Name = "checkXNBuGioSom";
-			this.checkXNBuGioSom.Size = new System.Drawing.Size(105, 19);
+			this.checkXNBuGioSom.Size = new System.Drawing.Size(139, 19);
 			this.checkXNBuGioSom.TabIndex = 18;
-			this.checkXNBuGioSom.Text = "Bù giờ ra sớm";
+			this.checkXNBuGioSom.Text = "Dùng quỹ TC cuối ca";
 			this.checkXNBuGioSom.UseVisualStyleBackColor = true;
 			this.checkXNBuGioSom.CheckedChanged += new System.EventHandler(this.checkXNChoPhepTre_CheckedChanged);
 			// 
 			// checkXNBuPhepSom
 			// 
 			this.checkXNBuPhepSom.AutoSize = true;
-			this.checkXNBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuPhepSom.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkXNBuPhepSom.ForeColor = System.Drawing.Color.Black;
 			this.checkXNBuPhepSom.Location = new System.Drawing.Point(162, 154);
 			this.checkXNBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNBuPhepSom.Name = "checkXNBuPhepSom";
-			this.checkXNBuPhepSom.Size = new System.Drawing.Size(102, 19);
+			this.checkXNBuPhepSom.Size = new System.Drawing.Size(98, 18);
 			this.checkXNBuPhepSom.TabIndex = 18;
-			this.checkXNBuPhepSom.Text = "Bù Phép sớm";
+			this.checkXNBuPhepSom.Text = "N.Phép cuối ca";
 			this.checkXNBuPhepSom.UseVisualStyleBackColor = true;
 			this.checkXNBuPhepSom.CheckedChanged += new System.EventHandler(this.checkXNChoPhepTre_CheckedChanged);
 			// 
 			// checkXNBuPhepTre
 			// 
 			this.checkXNBuPhepTre.AutoSize = true;
-			this.checkXNBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkXNBuPhepTre.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkXNBuPhepTre.ForeColor = System.Drawing.Color.Black;
 			this.checkXNBuPhepTre.Location = new System.Drawing.Point(5, 154);
 			this.checkXNBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNBuPhepTre.Name = "checkXNBuPhepTre";
-			this.checkXNBuPhepTre.Size = new System.Drawing.Size(90, 19);
+			this.checkXNBuPhepTre.Size = new System.Drawing.Size(96, 18);
 			this.checkXNBuPhepTre.TabIndex = 18;
-			this.checkXNBuPhepTre.Text = "Bù Phép trễ";
+			this.checkXNBuPhepTre.Text = "N.Phép đầu ca";
 			this.checkXNBuPhepTre.UseVisualStyleBackColor = true;
 			this.checkXNBuPhepTre.CheckedChanged += new System.EventHandler(this.checkXNChoPhepTre_CheckedChanged);
 			// 
@@ -306,9 +306,9 @@
 			this.checkXNBuGioTre.Location = new System.Drawing.Point(5, 134);
 			this.checkXNBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkXNBuGioTre.Name = "checkXNBuGioTre";
-			this.checkXNBuGioTre.Size = new System.Drawing.Size(101, 19);
+			this.checkXNBuGioTre.Size = new System.Drawing.Size(137, 19);
 			this.checkXNBuGioTre.TabIndex = 18;
-			this.checkXNBuGioTre.Text = "Bù giờ vào trễ";
+			this.checkXNBuGioTre.Text = "Dùng quỹ TC đầu ca";
 			this.toolTipHint.SetToolTip(this.checkXNBuGioTre, "Đánh dấu nếu vào làm\r\ntheo yêu cầu, điều động\r\ncủa quản lý (thời gian \r\nvào trễ s" +
         "ẽ tính là chờ việc \r\nnếu chưa đủ công chuẩn)");
 			this.checkXNBuGioTre.UseVisualStyleBackColor = true;
@@ -398,6 +398,7 @@
 			this.linkLabelTinhToan.TabIndex = 8;
 			this.linkLabelTinhToan.TabStop = true;
 			this.linkLabelTinhToan.Text = "Tính toán";
+			this.linkLabelTinhToan.Visible = false;
 			this.linkLabelTinhToan.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelTinhToan_LinkClicked);
 			// 
 			// btnDoiCa
@@ -760,10 +761,12 @@
 			// groupBox1
 			// 
 			this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.groupBox1.Controls.Add(this.lbTTCongBuPhepSom);
+			this.groupBox1.Controls.Add(this.checkTTBuPhepSom);
+			this.groupBox1.Controls.Add(this.lbTTCongBuPhepTre);
 			this.groupBox1.Controls.Add(this.tbTTTenNV);
 			this.groupBox1.Controls.Add(this.checkTTRaaSomTinhCV);
 			this.groupBox1.Controls.Add(this.checkTTBuGioSom);
-			this.groupBox1.Controls.Add(this.checkTTBuPhepSom);
 			this.groupBox1.Controls.Add(this.checkTTBuPhepTre);
 			this.groupBox1.Controls.Add(this.checkTTBuGioTre);
 			this.groupBox1.Controls.Add(this.checkTTVaoTreTinhCV);
@@ -786,8 +789,6 @@
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label19);
 			this.groupBox1.Controls.Add(this.label20);
-			this.groupBox1.Controls.Add(this.lbTTCongBuPhepSom);
-			this.groupBox1.Controls.Add(this.lbTTCongBuPhepTre);
 			this.groupBox1.Controls.Add(this.label21);
 			this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.groupBox1.Location = new System.Drawing.Point(2, 3);
@@ -819,37 +820,37 @@
 			this.checkTTBuGioSom.Location = new System.Drawing.Point(162, 165);
 			this.checkTTBuGioSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTBuGioSom.Name = "checkTTBuGioSom";
-			this.checkTTBuGioSom.Size = new System.Drawing.Size(105, 19);
+			this.checkTTBuGioSom.Size = new System.Drawing.Size(139, 19);
 			this.checkTTBuGioSom.TabIndex = 3;
-			this.checkTTBuGioSom.Text = "Bù giờ ra sớm";
+			this.checkTTBuGioSom.Text = "Dùng quỹ TC cuối ca";
 			this.checkTTBuGioSom.UseVisualStyleBackColor = true;
 			// 
 			// checkTTBuPhepSom
 			// 
 			this.checkTTBuPhepSom.AutoSize = true;
 			this.checkTTBuPhepSom.Enabled = false;
-			this.checkTTBuPhepSom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuPhepSom.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkTTBuPhepSom.ForeColor = System.Drawing.Color.Black;
 			this.checkTTBuPhepSom.Location = new System.Drawing.Point(162, 184);
 			this.checkTTBuPhepSom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTBuPhepSom.Name = "checkTTBuPhepSom";
-			this.checkTTBuPhepSom.Size = new System.Drawing.Size(102, 19);
+			this.checkTTBuPhepSom.Size = new System.Drawing.Size(98, 18);
 			this.checkTTBuPhepSom.TabIndex = 3;
-			this.checkTTBuPhepSom.Text = "Bù Phép sớm";
+			this.checkTTBuPhepSom.Text = "N.Phép cuối ca";
 			this.checkTTBuPhepSom.UseVisualStyleBackColor = true;
 			// 
 			// checkTTBuPhepTre
 			// 
 			this.checkTTBuPhepTre.AutoSize = true;
 			this.checkTTBuPhepTre.Enabled = false;
-			this.checkTTBuPhepTre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.checkTTBuPhepTre.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.checkTTBuPhepTre.ForeColor = System.Drawing.Color.Black;
 			this.checkTTBuPhepTre.Location = new System.Drawing.Point(5, 184);
 			this.checkTTBuPhepTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTBuPhepTre.Name = "checkTTBuPhepTre";
-			this.checkTTBuPhepTre.Size = new System.Drawing.Size(90, 19);
+			this.checkTTBuPhepTre.Size = new System.Drawing.Size(96, 18);
 			this.checkTTBuPhepTre.TabIndex = 3;
-			this.checkTTBuPhepTre.Text = "Bù Phép trễ";
+			this.checkTTBuPhepTre.Text = "N.Phép đầu ca";
 			this.checkTTBuPhepTre.UseVisualStyleBackColor = true;
 			// 
 			// checkTTBuGioTre
@@ -861,9 +862,9 @@
 			this.checkTTBuGioTre.Location = new System.Drawing.Point(5, 165);
 			this.checkTTBuGioTre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.checkTTBuGioTre.Name = "checkTTBuGioTre";
-			this.checkTTBuGioTre.Size = new System.Drawing.Size(101, 19);
+			this.checkTTBuGioTre.Size = new System.Drawing.Size(137, 19);
 			this.checkTTBuGioTre.TabIndex = 3;
-			this.checkTTBuGioTre.Text = "Bù giờ vào trễ";
+			this.checkTTBuGioTre.Text = "Dùng quỹ TC đầu ca";
 			this.checkTTBuGioTre.UseVisualStyleBackColor = true;
 			// 
 			// checkTTChoPhepSom
@@ -1086,8 +1087,8 @@
 			// colUserEnrollNumberTongHop
 			// 
 			this.colUserEnrollNumberTongHop.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.colUserEnrollNumberTongHop.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.colUserEnrollNumberTongHop.DefaultCellStyle = dataGridViewCellStyle11;
 			this.colUserEnrollNumberTongHop.HeaderText = "Mã CC_hide";
 			this.colUserEnrollNumberTongHop.Name = "colUserEnrollNumberTongHop";
 			this.colUserEnrollNumberTongHop.ReadOnly = true;
@@ -1098,8 +1099,8 @@
 			// colTimeDateTongHop
 			// 
 			this.colTimeDateTongHop.DataPropertyName = "TimeStrNgay";
-			dataGridViewCellStyle3.Format = "ddd d/M";
-			this.colTimeDateTongHop.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle12.Format = "ddd d/M";
+			this.colTimeDateTongHop.DefaultCellStyle = dataGridViewCellStyle12;
 			this.colTimeDateTongHop.HeaderText = "Ngày công";
 			this.colTimeDateTongHop.Name = "colTimeDateTongHop";
 			this.colTimeDateTongHop.ReadOnly = true;
@@ -1116,8 +1117,8 @@
 			// colCong
 			// 
 			this.colCong.DataPropertyName = "Cong";
-			dataGridViewCellStyle4.Format = "#0.##";
-			this.colCong.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle13.Format = "#0.##";
+			this.colCong.DefaultCellStyle = dataGridViewCellStyle13;
 			this.colCong.HeaderText = "Công";
 			this.colCong.Name = "colCong";
 			this.colCong.ReadOnly = true;
@@ -1126,8 +1127,8 @@
 			// grid1colPhuCap
 			// 
 			this.grid1colPhuCap.DataPropertyName = "PhuCap";
-			dataGridViewCellStyle5.Format = "#0.##";
-			this.grid1colPhuCap.DefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle14.Format = "#0.##";
+			this.grid1colPhuCap.DefaultCellStyle = dataGridViewCellStyle14;
 			this.grid1colPhuCap.HeaderText = "Phụ cấp";
 			this.grid1colPhuCap.Name = "grid1colPhuCap";
 			this.grid1colPhuCap.ReadOnly = true;
@@ -1137,8 +1138,8 @@
 			// colTongGioLamTongHop
 			// 
 			this.colTongGioLamTongHop.DataPropertyName = "TongGioLam";
-			dataGridViewCellStyle6.Format = "h\\gmm";
-			this.colTongGioLamTongHop.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle15.Format = "h\\gmm";
+			this.colTongGioLamTongHop.DefaultCellStyle = dataGridViewCellStyle15;
 			this.colTongGioLamTongHop.HeaderText = "Giờ làm việc";
 			this.colTongGioLamTongHop.Name = "colTongGioLamTongHop";
 			this.colTongGioLamTongHop.ReadOnly = true;
@@ -1148,8 +1149,8 @@
 			// cTongGioThuc
 			// 
 			this.cTongGioThuc.DataPropertyName = "TongGioThuc";
-			dataGridViewCellStyle7.Format = "h\\gmm";
-			this.cTongGioThuc.DefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle16.Format = "h\\gmm";
+			this.cTongGioThuc.DefaultCellStyle = dataGridViewCellStyle16;
 			this.cTongGioThuc.HeaderText = "T.Giờ";
 			this.cTongGioThuc.Name = "cTongGioThuc";
 			this.cTongGioThuc.ReadOnly = true;
@@ -1159,8 +1160,8 @@
 			// colTimeStrInTongHop
 			// 
 			this.colTimeStrInTongHop.DataPropertyName = "TimeStrVao";
-			dataGridViewCellStyle8.Format = "H:mm d/M";
-			this.colTimeStrInTongHop.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle17.Format = "H:mm d/M";
+			this.colTimeStrInTongHop.DefaultCellStyle = dataGridViewCellStyle17;
 			this.colTimeStrInTongHop.HeaderText = "Vào";
 			this.colTimeStrInTongHop.Name = "colTimeStrInTongHop";
 			this.colTimeStrInTongHop.ReadOnly = true;
@@ -1169,8 +1170,8 @@
 			// colTimeStrOutTongHop
 			// 
 			this.colTimeStrOutTongHop.DataPropertyName = "TimeStrRaa";
-			dataGridViewCellStyle9.Format = "H:mm d/M";
-			this.colTimeStrOutTongHop.DefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle18.Format = "H:mm d/M";
+			this.colTimeStrOutTongHop.DefaultCellStyle = dataGridViewCellStyle18;
 			this.colTimeStrOutTongHop.HeaderText = "Ra";
 			this.colTimeStrOutTongHop.Name = "colTimeStrOutTongHop";
 			this.colTimeStrOutTongHop.ReadOnly = true;
@@ -1232,7 +1233,7 @@
 			// 
 			this.g1c13.DataPropertyName = "ChoBuGioTre";
 			this.g1c13.FalseValue = "false";
-			this.g1c13.HeaderText = "Có bù giờ trễ";
+			this.g1c13.HeaderText = "Dùng quỹ đầu ca";
 			this.g1c13.Name = "g1c13";
 			this.g1c13.ReadOnly = true;
 			this.g1c13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -1243,7 +1244,7 @@
 			// 
 			this.g1c14.DataPropertyName = "ChoBuGioSom";
 			this.g1c14.FalseValue = "false";
-			this.g1c14.HeaderText = "Có bù giờ sớm";
+			this.g1c14.HeaderText = "Dùng quỹ cuối ca";
 			this.g1c14.Name = "g1c14";
 			this.g1c14.ReadOnly = true;
 			this.g1c14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -1254,7 +1255,7 @@
 			// 
 			this.g1c15.DataPropertyName = "ChoBuPhepTre";
 			this.g1c15.FalseValue = "false";
-			this.g1c15.HeaderText = "Có chấm phép trễ";
+			this.g1c15.HeaderText = "Nghỉ phép đầu ca";
 			this.g1c15.Name = "g1c15";
 			this.g1c15.ReadOnly = true;
 			this.g1c15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -1264,7 +1265,7 @@
 			// g1c17
 			// 
 			this.g1c17.DataPropertyName = "TGBuPhepTre";
-			this.g1c17.HeaderText = "TG chấm phép trễ";
+			this.g1c17.HeaderText = "TG n.phép đầu ca";
 			this.g1c17.Name = "g1c17";
 			this.g1c17.ReadOnly = true;
 			this.g1c17.Width = 75;
@@ -1273,7 +1274,7 @@
 			// 
 			this.g1c16.DataPropertyName = "ChoBuPhepSom";
 			this.g1c16.FalseValue = "false";
-			this.g1c16.HeaderText = "Có chấm phép sớm";
+			this.g1c16.HeaderText = "Nghỉ phép cuối ca";
 			this.g1c16.Name = "g1c16";
 			this.g1c16.ReadOnly = true;
 			this.g1c16.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -1283,7 +1284,7 @@
 			// g1c18
 			// 
 			this.g1c18.DataPropertyName = "TGBuPhepSom";
-			this.g1c18.HeaderText = "TG chấm phép sớm";
+			this.g1c18.HeaderText = "TG n.phép cuối ca";
 			this.g1c18.Name = "g1c18";
 			this.g1c18.ReadOnly = true;
 			this.g1c18.Width = 75;

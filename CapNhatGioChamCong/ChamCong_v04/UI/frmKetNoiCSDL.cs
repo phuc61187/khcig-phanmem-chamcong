@@ -46,7 +46,11 @@ namespace ChamCong_v04.UI {
 			try {
 				cnn.Open();
 				cnn.Close();
-				var temp = Application.CommonAppDataPath + "\\Setting.txt";
+				int lastIndex = Application.CommonAppDataPath.LastIndexOf(Path.DirectorySeparatorChar);
+				int count = Application.CommonAppDataPath.Length - lastIndex;
+
+				var temp = Application.CommonAppDataPath.Remove(lastIndex, count);
+				temp = temp +"\\Setting.txt";
 				StreamWriter writer = new StreamWriter( temp);
 				string encryptConnectionString = MyUtility.Mahoa(sConnection);
 				writer.Write(encryptConnectionString);

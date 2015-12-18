@@ -72,13 +72,14 @@ namespace ChamCong_v04.UI.QLNV {
 			if (checkChucVu.Checked) {
 				idChucVu = (int)cbChucVu.SelectedValue;
 				arrString.Add(" UserIDTitle = @IDChucVu ");
-				arrString2.Add("chức vụ mới: [" + ((cbChucVu.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.Text) + "]; ");
+				arrString2.Add("chức vụ mới: [" + ((cbChucVu.SelectedItem != null) ? ((DataRowView)cbChucVu.SelectedItem)["ChucVu"].ToString() : cbChucVu.Text) + "]; ");
 				IsExist_1Check = true;
+				
 			}
 			if (checkLichtrinh.Checked) {
 				idLichtrinh = (int)cbLichTrinh.SelectedValue;
 				arrString.Add(" SchID = @SchID ");// (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.Text;
-				arrString2.Add("lịch trình làm việc mới: [" + ((cbLichTrinh.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.Text) + "]; ");
+				arrString2.Add("lịch trình làm việc mới: [" + ((cbLichTrinh.SelectedItem != null) ? ((DataRowView)cbLichTrinh.SelectedItem)["SchName"].ToString() : cbLichTrinh.Text) + "]; ");
 				IsExist_1Check = true;
 			}
 			if (checkHSLCB.Checked) {
@@ -144,6 +145,10 @@ namespace ChamCong_v04.UI.QLNV {
 				IsReload = true;
 				Close();
 			}
+		}
+
+		private string abc() {
+			throw new NotImplementedException();
 		}
 
 

@@ -542,7 +542,7 @@ namespace ChamCong_v04.BUS {
 				else if (ex is UnauthorizedAccessException)
 					MessageBox.Show(string.Format(Resources.Text_KoCoQuyenTruyCapFileX, "kết nối CSDL"), Resources.Caption_Loi);
 				else {
-					lg.Error(string.Format("[{0}]_[{1}]\n", "XL", System.Reflection.MethodBase.GetCurrentMethod().Name), ex);
+					lg.Error(string.Format("[{0}]_[{1}]_[FileName={2}]\n", "XL", System.Reflection.MethodBase.GetCurrentMethod().Name, FileName), ex);
 					MessageBox.Show(Resources.Text_KoTheKetNoiCSDL + ex.Message, Resources.Caption_Loi);
 				}
 			}
@@ -550,7 +550,12 @@ namespace ChamCong_v04.BUS {
 		}
 		public static bool CheckLogIn(string tempUsername, string tempPassword, string passroot,
 			ref string tmpConnStr, ref int loaiTK, ref int currUserID, ref string currUserAccount) {
-			var kqDocFile = KiemtraDocFileKetnoiDL(Settings.Default.ConnectionStringPath, ref tmpConnStr);
+			int lastIndex = Application.CommonAppDataPath.LastIndexOf(Path.DirectorySeparatorChar);
+			int count = Application.CommonAppDataPath.Length - lastIndex;
+			var tempPath = Application.CommonAppDataPath.Remove(lastIndex, count);
+			tempPath = tempPath + "\\Setting.txt";
+
+			var kqDocFile = KiemtraDocFileKetnoiDL(tempPath, ref tmpConnStr);
 			var kq = false;
 
 			if (!kqDocFile) // ko đọc được file thì trả về false
