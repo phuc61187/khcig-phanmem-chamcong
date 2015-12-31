@@ -1160,7 +1160,7 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static bool KiemTraDieuKienCongCVAuto_VuotNguong(float CongCV_Auto, int soNgayThu7, int soNgayChuNhat) {
-			if (Math.Abs(CongCV_Auto - Convert.ToSingle(soNgayThu7)) > 0.05f) return true; // info trường hợp đặc biệt 5 ngày T7 nhưng chỉ 4 ngày CN thì tối đa 5 ngày CV, chứ ko phải 4 ngày CN
+			if (CongCV_Auto - Convert.ToSingle(soNgayThu7) > 0.005f) return true; // info trường hợp đặc biệt 5 ngày T7 nhưng chỉ 4 ngày CN thì tối đa 5 ngày CV, chứ ko phải 4 ngày CN
 			return false;
 		}
 

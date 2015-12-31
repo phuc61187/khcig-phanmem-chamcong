@@ -210,26 +210,26 @@ TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 		UserEnrollNumber, Ngay, 
 		TimeIn != null ? (object) TimeIn : DBNull.Value,TimeOut != null ? (object)TimeOut : DBNull.Value,
 		ShiftID != null ? (object) ShiftID : DBNull.Value, ShiftCode, 
-		DaXN != null ? (object) DaXN : DBNull.Value, 
-		DuyetCPVaoTre != null ? (object) DuyetCPVaoTre : DBNull.Value, 
-		DuyetCPRaSom != null ? (object) DuyetCPRaSom : DBNull.Value,
-		OTMin != null ? (object) OTMin : DBNull.Value,
-		QuaDem != null ? (object) QuaDem : DBNull.Value,
-		KyHieuCC != null ? (object) KyHieuCC : DBNull.Value,
-		vaoTreLaCV != null ? (object) vaoTreLaCV : DBNull.Value, //ver 4.0.0.4
-		raaSomLaCV != null ? (object) raaSomLaCV : DBNull.Value,//ver 4.0.0.4
-		BuGioTre != null ? (object) BuGioTre : DBNull.Value, //ver 4.0.0.8
-		BuGioSom != null ? (object) BuGioSom : DBNull.Value, //ver 4.0.0.8 
-		BuPhepTre != null ? (object) BuPhepTre : DBNull.Value, //ver 4.0.0.8 
-		CongBuPhepTre != null ? (object) CongBuPhepTre : DBNull.Value, //ver 4.0.0.8 
-		BuPhepSom != null ? (object) BuPhepSom : DBNull.Value, //ver 4.0.0.8 
-		CongBuPhepSom != null ? (object) CongBuPhepSom : DBNull.Value, //ver 4.0.0.8
-		CongTrongCa != null ? (object) CongTrongCa : DBNull.Value, //ver 4.0.0.8
-		CongNgoaiCa != null ? (object) CongNgoaiCa : DBNull.Value, //ver 4.0.0.8
-		TruCongTreVR != null ? (object) TruCongTreVR : DBNull.Value, //ver 4.0.0.8
-		TruCongSomVR != null ? (object) TruCongSomVR : DBNull.Value, //ver 4.0.0.8
-		TruCongTreBu != null ? (object) TruCongTreBu : DBNull.Value, //ver 4.0.0.8
-		TruCongSomBu != null ? (object) TruCongSomBu : DBNull.Value, //ver 4.0.0.8
+		DaXN != null ? (object) DaXN : false, 
+		DuyetCPVaoTre != null ? (object) DuyetCPVaoTre : false, 
+		DuyetCPRaSom != null ? (object) DuyetCPRaSom : false,
+		OTMin != null ? (object) OTMin : 0,
+		QuaDem != null ? (object) QuaDem : false,
+		KyHieuCC != null ? (object) KyHieuCC : string.Empty,
+		vaoTreLaCV != null ? (object) vaoTreLaCV : false, //ver 4.0.0.4
+		raaSomLaCV != null ? (object) raaSomLaCV : false,//ver 4.0.0.4
+		BuGioTre != null ? (object) BuGioTre : false, //ver 4.0.0.8
+		BuGioSom != null ? (object) BuGioSom : false, //ver 4.0.0.8 
+		BuPhepTre != null ? (object) BuPhepTre : false, //ver 4.0.0.8 
+		CongBuPhepTre != null ? (object) CongBuPhepTre : 0f, //ver 4.0.0.8 
+		BuPhepSom != null ? (object) BuPhepSom : false, //ver 4.0.0.8 
+		CongBuPhepSom != null ? (object) CongBuPhepSom : 0f, //ver 4.0.0.8
+		CongTrongCa != null ? (object) CongTrongCa : 0f, //ver 4.0.0.8
+		CongNgoaiCa != null ? (object) CongNgoaiCa : 0f, //ver 4.0.0.8
+		TruCongTreVR != null ? (object) TruCongTreVR : 0f, //ver 4.0.0.8
+		TruCongSomVR != null ? (object) TruCongSomVR : 0f, //ver 4.0.0.8
+		TruCongTreBu != null ? (object) TruCongTreBu : 0f, //ver 4.0.0.8
+		TruCongSomBu != null ? (object) TruCongSomBu : 0f, //ver 4.0.0.8
 		gioLV != null ? (object) gioLV : DBNull.Value,
 		tGLamthem != null ? (object) tGLamthem : DBNull.Value,
 		tGLamdem != null ? (object) tGLamdem : DBNull.Value,
@@ -241,7 +241,7 @@ TD_BD_LV,  TD_KT_LV_CoOT,  ThongTinCa,  ShiftParams,  HaveINOUT,  Cong)
 		thongtinCa != null ? (object) thongtinCa : DBNull.Value,
 		shiftParams != null ? (object) shiftParams : DBNull.Value,
 		haveINOUT != null ? (object) haveINOUT : DBNull.Value,
-		cong != null ? (object) cong : DBNull.Value});
+		cong != null ? (object) cong : 0f});
 		}
 
 

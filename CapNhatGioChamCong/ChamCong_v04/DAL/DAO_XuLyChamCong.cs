@@ -542,11 +542,11 @@ values (@UserEnrollNumber, @Ngay,@loai,@PCNgay, @PCDem,1)";
 			DAO.GhiNhatKyThaotac("Xác nhận ca", noidung, maCC:maCc);
 		}
 
-		public static bool KiemtraTonTaiLoaiVang(string absentCode, DateTime ngay) {
-			var querySel = @"	select ID from Absent where AbsentCode = @AbsentCode and TimeDate = @TimeDate ";
+		public static bool KiemtraTonTaiLoaiVang(string absentCode, DateTime ngay, int MaCC) {
+			var querySel = @"	select ID from Absent where AbsentCode = @AbsentCode and TimeDate = @TimeDate and UserEnrollNumber = @UserEnrollNumber";
 			DataTable table = SqlDataAccessHelper.ExecuteQueryString(querySel,
-																	 new string[] { "@AbsentCode", "@TimeDate" },
-																	 new object[] { absentCode, ngay });
+																	 new string[] { "@AbsentCode", "@TimeDate", "@UserEnrollNumber" },
+																	 new object[] { absentCode, ngay, MaCC });
 			return (table.Rows.Count > 0);
 		}
 

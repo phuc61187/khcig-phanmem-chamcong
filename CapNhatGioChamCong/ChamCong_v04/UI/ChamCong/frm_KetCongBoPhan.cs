@@ -262,12 +262,12 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								kq1 = DAO.InsKetCongCa(nv.MaCC, ngayCong.Ngay,
 													   (CIO.Vao != null) ? (DateTime?)CIO.Vao.Time : null,
 													   (CIO.Raa != null) ? (DateTime?)CIO.Raa.Time : null,
-													   null, string.Empty, null, null, null,
-													   null, null,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
-													   null, null, null, null, null, null,//ver 4.0.0.8@BuGioTre, @BuGioSom, @BuPhepTre, @CongBuPhepTre, @BuPhepSom, @CongBuPhepSom,
-													   null, null, null, null, null, null, //ver 4.0.0.8 CongTrongCa, CongNgoaiCa, TruCongTreVR, TruCongSomVR, TruCongTreBu, TruCongSomBu,
-													   null, null, string.Empty,
-													   null, null, null, null, null, null, null, null, string.Empty, string.Empty, CIO.HaveINOUT, null);
+													   null, string.Empty, false, false, false,
+													   false, false,//ver 4.0.0.4	VaoTreLaCV, RaSomLaCV
+													   false, false, false, 0f, false, 0f,//ver 4.0.0.8@BuGioTre, @BuGioSom, @BuPhepTre, @CongBuPhepTre, @BuPhepSom, @CongBuPhepSom,
+													   0f, 0f, 0f, 0f, 0f, 0f, //ver 4.0.0.8 CongTrongCa, CongNgoaiCa, TruCongTreVR, TruCongSomVR, TruCongTreBu, TruCongSomBu,
+													   0, false, string.Empty,
+													   null, null, null, null, null, null, null, null, string.Empty, string.Empty, CIO.HaveINOUT, 0f);
 
 							}
 							else {

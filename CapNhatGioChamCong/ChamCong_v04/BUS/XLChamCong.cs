@@ -91,7 +91,7 @@ namespace ChamCong_v04.BUS {
 
 		public static DateTime ThuocNgayCong(DateTime chkinn)// lưu ý không dùng cho các giờ ra, giờ ra thiếu vào, giờ vào thiếu ra
 		{
-			return chkinn.TimeOfDay < XL2._03gio ? chkinn.Date.AddDays(-1) : chkinn.Date;
+			return chkinn.TimeOfDay < XL2._03gio ? chkinn.Date.AddDays(-1d) : chkinn.Date;
 		}
 
 		public static void Vao(DateTime timeinn, DateTime onnduty, DateTime chopheptre, bool DuyetChoPhepVaoTre, bool VaoTreTinhCV, out DateTime td_batdau_lv, out TimeSpan treVR, out TimeSpan vaoSauCaKoTruVR) {
@@ -1498,7 +1498,7 @@ namespace ChamCong_v04.BUS {
 
 		public static void ThemNgayVang(IEnumerable<dynamic> list, float workingDay, float workingTime, string absentCode, List<Error> listError) {
 			foreach (dynamic obj in list) {
-				bool kqKiemTraMauThuan = XL.KiemtraCoMauThuanLoaiVang(absentCode, obj.NgayVang, listError);
+				bool kqKiemTraMauThuan = XL.KiemtraCoMauThuanLoaiVang(obj, absentCode, obj.NgayVang, listError);
 				if (kqKiemTraMauThuan) continue;// nếu bị mâu thuẫn loại vắng thì chuyển qua cái kế tiếp
 				var ngayVang = (DateTime)obj.NgayVang;
 				//BH dài ngày vào chủ nhật, Ro dài ngày vào chủ nhật thì set workingday về 0
@@ -1512,7 +1512,7 @@ namespace ChamCong_v04.BUS {
 			}
 		}
 
-		private static bool KiemtraCoMauThuanLoaiVang(string absentCode, DateTime ngayVang, List<Error> listError) {
+		private static bool KiemtraCoMauThuanLoaiVang(dynamic obj, string absentCode, DateTime ngayVang, List<Error> listError) {
 			bool kq = false;
 			switch (absentCode) {
 				#region bh
@@ -1524,13 +1524,13 @@ namespace ChamCong_v04.BUS {
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày chủ nhật {1}", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
 					// bh ko di chung TS
-					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng thai sản", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
 					break;
 				case "BD": // bh ko di chung TS
-					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng thai sản", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
@@ -1546,7 +1546,7 @@ namespace ChamCong_v04.BUS {
 				case "PT":
 				case "PD":
 				case "P": // ro H CT PT PD P   ko di chung TS
-					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng thai sản", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
@@ -1557,39 +1557,39 @@ namespace ChamCong_v04.BUS {
 				#region ts ko đi chung với tất cả các loại khác
 
 				case "TS": //ts  ko cho phép chủ nhật
-					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("TS", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng thai sản ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("BH", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("BH", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng bảo hiểm ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("BD", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("BD", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng bảo hiểm ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("RO", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("RO", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng việc riêng ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("H", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("H", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang họp, học ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("CT", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("CT", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang công tác ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("PT", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("PT", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} phong trào ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("PD", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("PD", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} phong trào ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
-					if (DAO.KiemtraTonTaiLoaiVang("P", ngayVang)) {
+					if (DAO.KiemtraTonTaiLoaiVang("P", ngayVang, (int)obj.MaCC)) {
 						kq = true;
 						listError.Add(new Error { L = string.Format("Không thể báo vắng {0}", absentCode), ND = string.Format("Không thể báo vắng {0} vào ngày {1} đang vắng phép ", absentCode, ngayVang.ToString("dd/MM/yyyy")) });
 					}
