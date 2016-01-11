@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HTQLTTKH" GeneratedClassName="StaticSetting">
+  <Profiles />
+  <Settings>
+    <Setting Name="LoaiVang_H" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">H</Value>
+    </Setting>
+    <Setting Name="LoaiVang_PT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PT</Value>
+    </Setting>
+    <Setting Name="LoaiVang_CT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CT</Value>
+    </Setting>
+    <Setting Name="LoaiVang_Ro" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Ro</Value>
+    </Setting>
+    <Setting Name="LoaiVang_BH" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BH</Value>
+    </Setting>
+    <Setting Name="LoaiVang_TS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TS</Value>
+    </Setting>
+    <Setting Name="LoaiVang_P" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">P</Value>
+    </Setting>
+    <Setting Name="LoaiVang_PTDT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PTDT</Value>
+    </Setting>
+    <Setting Name="LoaiVang_CV" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CV</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

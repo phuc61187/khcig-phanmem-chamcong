@@ -29,9 +29,12 @@ namespace HTQLTTKH {
 				}
 				else
 				{
-					MainForm frmMain = new MainForm();
-					frmMain.Show();
-					this.Hide();
+					LastState.Default.UserLogin = taiKhoan;
+					LastState.Default.Save();
+					//MainForm mainForm = new MainForm();
+					//mainForm.ShowDialog();
+					this.Close();
+					//todo phân quyền
 				}
 			}
 		}
@@ -50,7 +53,7 @@ namespace HTQLTTKH {
 					return true;
 				}
 			}
-
+			
 			//tài khoản thường: kiểm tra có kết nối CSDL chưa, 
 			string template = "{0}\\Setting.txt";
 			int lastIndex = Application.CommonAppDataPath.LastIndexOf(Path.DirectorySeparatorChar);
@@ -64,14 +67,12 @@ namespace HTQLTTKH {
 			WEDatabaseDataContext context = new WEDatabaseDataContext(GV.cs);
 			if (context.DatabaseExists() == false)
 			{
-				MessageBox.Show(Resources.Text_MatKetNoiCSDL, Resources.Caption_ThongBao);
+				MessageBox.Show(ResxNotification.Text_MatKetNoiCSDL, ResxNotification.Caption_ThongBao);
 				return false;
 			}
 			if (context.NewUserAccounts.Any(item =>item.UserAccount == TaiKhoan && item.Password == MyUtility.Mahoa(Pass) && item.Enable) == false) 
-				return false;
-			if (!context.NewUserAccount_DocTatCaTaiKhoanV6(true, TaiKhoan, MyUtility.Mahoa(Pass)).Any())
 			{
-				MessageBox.Show(Resources.Text_Acc_Pass_incorrect, Resources.Caption_ThongBao);
+				MessageBox.Show(ResxNotification.Text_Acc_Pass_incorrect, ResxNotification.Caption_ThongBao);
 				return false;
 			}
 			return true;
@@ -93,24 +94,25 @@ namespace HTQLTTKH {
 				kq = false;
 				if (ex is FileNotFoundException || ex is DirectoryNotFoundException)
 				{
-					MessageBox.Show(string.Format(Resources.Text_KoTimThayFileX, "kết nối CSDL"), Resources.Caption_Loi);
+					MessageBox.Show(string.Format(ResxNotification.E_KoTimThayFileX, "kết nối CSDL"), ResxNotification.Caption_Loi);
 					fmKetNoiCSDL frm = new fmKetNoiCSDL();// test
 					frm.ShowDialog();//test
 				}
 				else if (ex is NotSupportedException || ex is PathTooLongException)
-					MessageBox.Show(string.Format(Resources.Text_UnsupportedFile_PathTooLong, "kết nối CSDL"), Resources.Caption_Loi);
+					MessageBox.Show(string.Format(ResxNotification.E_UnsupportedFile_PathTooLong, "kết nối CSDL"), ResxNotification.Caption_Loi);
 				else if (ex is UnauthorizedAccessException)
-					MessageBox.Show(string.Format(Resources.Text_KoCoQuyenTruyCapFileX, "kết nối CSDL"), Resources.Caption_Loi);
+					MessageBox.Show(string.Format(ResxNotification.E_KoCoQuyenTruyCapFileX, "kết nối CSDL"), ResxNotification.Caption_Loi);
 				else {
 					//lg.Error(string.Format("[{0}]_[{1}]\n", "XL", System.Reflection.MethodBase.GetCurrentMethod().Name), ex);
-					MessageBox.Show(Resources.Text_KoTheKetNoiCSDL + ex.Message, Resources.Caption_Loi);
+					MessageBox.Show(ResxNotification.Text_KoTheKetNoiCSDL + ex.Message, ResxNotification.Caption_Loi);
 				}
 			}
 			return kq;		
 		}
 
-		private void frmLogin_Load(object sender, EventArgs e) {
-
+		private void frmLogin_Load(object sender, EventArgs e)
+		{
+			tbTaiKhoan.Text = LastState.Default.UserLogin;
 		}
 
 	}

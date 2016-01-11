@@ -42,7 +42,7 @@
 			// 
 			// simpleButtonThoat
 			// 
-			this.simpleButtonThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.simpleButtonThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.simpleButtonThoat.Appearance.Options.UseFont = true;
 			this.simpleButtonThoat.Location = new System.Drawing.Point(225, 124);
 			this.simpleButtonThoat.LookAndFeel.SkinName = "Office 2010 Blue";
@@ -55,7 +55,7 @@
 			// 
 			// simpleButtonKetNoi
 			// 
-			this.simpleButtonKetNoi.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+			this.simpleButtonKetNoi.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 			this.simpleButtonKetNoi.Appearance.Options.UseFont = true;
 			this.simpleButtonKetNoi.Location = new System.Drawing.Point(109, 124);
 			this.simpleButtonKetNoi.LookAndFeel.SkinName = "Office 2010 Blue";
@@ -71,7 +71,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(12, 71);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(66, 17);
+			this.label2.Size = new System.Drawing.Size(53, 13);
 			this.label2.TabIndex = 5;
 			this.label2.Text = "Password";
 			// 
@@ -80,7 +80,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(12, 15);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(48, 17);
+			this.label1.Size = new System.Drawing.Size(39, 13);
 			this.label1.TabIndex = 6;
 			this.label1.Text = "Server";
 			// 
@@ -89,21 +89,21 @@
 			this.tbPass.Location = new System.Drawing.Point(109, 68);
 			this.tbPass.Name = "tbPass";
 			this.tbPass.Properties.UseSystemPasswordChar = true;
-			this.tbPass.Size = new System.Drawing.Size(226, 22);
+			this.tbPass.Size = new System.Drawing.Size(226, 20);
 			this.tbPass.TabIndex = 2;
 			// 
 			// tbServer
 			// 
 			this.tbServer.Location = new System.Drawing.Point(109, 12);
 			this.tbServer.Name = "tbServer";
-			this.tbServer.Size = new System.Drawing.Size(226, 22);
+			this.tbServer.Size = new System.Drawing.Size(226, 20);
 			this.tbServer.TabIndex = 0;
 			// 
 			// tbUser
 			// 
 			this.tbUser.Location = new System.Drawing.Point(109, 40);
 			this.tbUser.Name = "tbUser";
-			this.tbUser.Size = new System.Drawing.Size(226, 22);
+			this.tbUser.Size = new System.Drawing.Size(226, 20);
 			this.tbUser.TabIndex = 1;
 			// 
 			// label3
@@ -111,7 +111,7 @@
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(12, 43);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(35, 17);
+			this.label3.Size = new System.Drawing.Size(29, 13);
 			this.label3.TabIndex = 5;
 			this.label3.Text = "User";
 			// 
@@ -119,7 +119,7 @@
 			// 
 			this.tbDatabase.Location = new System.Drawing.Point(109, 96);
 			this.tbDatabase.Name = "tbDatabase";
-			this.tbDatabase.Size = new System.Drawing.Size(226, 22);
+			this.tbDatabase.Size = new System.Drawing.Size(226, 20);
 			this.tbDatabase.TabIndex = 3;
 			// 
 			// label4
@@ -127,7 +127,7 @@
 			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(12, 99);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(65, 17);
+			this.label4.Size = new System.Drawing.Size(53, 13);
 			this.label4.TabIndex = 5;
 			this.label4.Text = "Database";
 			// 
@@ -138,7 +138,7 @@
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox1.Location = new System.Drawing.Point(109, 153);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(177, 21);
+			this.checkBox1.Size = new System.Drawing.Size(139, 17);
 			this.checkBox1.TabIndex = 9;
 			this.checkBox1.Text = "Test dữ liệu máy cục bộ";
 			this.checkBox1.UseVisualStyleBackColor = true;
@@ -159,9 +159,10 @@
 			this.Controls.Add(this.tbDatabase);
 			this.Controls.Add(this.tbPass);
 			this.Controls.Add(this.tbServer);
-			this.Font = new System.Drawing.Font("Tahoma", 7.8F);
+			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "fmKetNoiCSDL";
 			this.Text = "Kết nối CSDL";
+			this.Load += new System.EventHandler(this.fmKetNoiCSDL_Load);
 			((System.ComponentModel.ISupportInitialize)(this.tbPass.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbServer.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbUser.Properties)).EndInit();

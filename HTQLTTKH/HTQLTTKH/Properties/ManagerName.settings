@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HTQLTTKH" GeneratedClassName="ManagerName">
+  <Profiles />
+  <Settings>
+    <Setting Name="GiamDoc" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lê Anh Tuấn</Value>
+    </Setting>
+    <Setting Name="PhoGiamDoc" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Nguyễn Chí Tân</Value>
+    </Setting>
+    <Setting Name="KeToanTruong" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Nguyễn Quốc Thái</Value>
+    </Setting>
+    <Setting Name="NguoiLapBieuKetCong" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NguoiLapBieuKetLuong" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

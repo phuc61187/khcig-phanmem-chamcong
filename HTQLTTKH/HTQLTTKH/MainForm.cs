@@ -14,6 +14,25 @@ namespace HTQLTTKH {
 			InitializeComponent();
 		}
 
+		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
+			Application.Exit();
+		}
+
+		private void thoatToolStripMenuItem_Click(object sender, EventArgs e) {
+			while (this.MdiChildren.Any())
+			{
+				this.MdiChildren[0].Close();
+			}
+			frmLogin frmLogin = new frmLogin();
+			frmLogin.ShowDialog();
+		}
+
+		private void MainForm_Load(object sender, EventArgs e) {
+			frmLogin frmLogin = new frmLogin();
+			frmLogin.ShowDialog();
+			//frmLogin.MdiParent = this;
+		}
+
 
 	}
 }
