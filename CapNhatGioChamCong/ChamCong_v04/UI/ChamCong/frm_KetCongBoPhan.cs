@@ -331,6 +331,9 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 			string tenTrgBP = e.Arguments[2].ToString();
 			DateTime thang = (DateTime)e.Arguments[3];
 			List<cPhongBan> dsphongban = (List<cPhongBan>)e.Arguments[4];
+			var tongCongKoTinhCV = 0f;
+			var congTinhLuong = 0f;
+			var congKOtinhLuong = 0f;
 
 			try  //general try catch
 			{
@@ -380,8 +383,9 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 
 					var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
 					var soNgayThu7 = XL.DemSoNgayNghiChunhat(ngaydauthang, false, true);//v 4.0.0.1
+					int soNgayChamCongx2 = 0, soNgayNghiAnhHuongCongx2 = 0;
 					foreach (var nv in dsnv) {
-						XL.ThongKeThang(ref nv.ThongKeThang, nv.DSNgayCong, nv.NgayBDCongnhat, nv.NgayKTCongnhat, nv.LoaiCN);
+						XL.ThongKeThang(ref nv.ThongKeThang, nv.DSNgayCong, nv.NgayBDCongnhat, nv.NgayKTCongnhat, nv.LoaiCN, out soNgayChamCongx2, out soNgayNghiAnhHuongCongx2);
 						// tính công chờ việc: 1.nv công nhật ko cv. 2. nv mới chính thức thì chỉ giữ công cv khai báo
 						if (nv.LoaiCN == LoaiCongNhat.NVCongNhat)// nhân viên làm công nhật, công cv tự động, khai báo = 0
 						{
@@ -391,12 +395,21 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 						else {
 							if (nv.LoaiCN == LoaiCongNhat.NVChinhThuc)// nhân viên chính thức
 							{
-								nv.ThongKeThang.CongCV_Auto = congChuanThang -
-															  (nv.ThongKeThang.TongNgayLV4008 
+								congTinhLuong = (nv.ThongKeThang.TongNgayLV4008
+								                 + nv.ThongKeThang.Phep + nv.ThongKeThang.Le //ver4.0.0.8
+								                 + nv.ThongKeThang.H_CT_PT);
+								congKOtinhLuong = nv.ThongKeThang.TongTruCongTreVR + nv.ThongKeThang.TongTruCongSomVR + nv.ThongKeThang.TreSom_KoDuBuCong
+												  + nv.ThongKeThang.BHXH + nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo; //ko có nv.ThongKeThang.CongCV_KB
+								tongCongKoTinhCV = congTinhLuong + congKOtinhLuong;
+/*
+								tongCongKoTinhCV = 	(nv.ThongKeThang.TongNgayLV4008 
 															   + nv.ThongKeThang.TongTruCongTreVR+nv.ThongKeThang.TongTruCongSomVR + nv.ThongKeThang.TreSom_KoDuBuCong
 															   + nv.ThongKeThang.Phep + nv.ThongKeThang.Le //ver4.0.0.8
 															   + nv.ThongKeThang.BHXH + nv.ThongKeThang.H_CT_PT
 															   + nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo + nv.ThongKeThang.CongCV_KB);//DANGLAM
+*/
+
+								nv.ThongKeThang.CongCV_Auto = congChuanThang - tongCongKoTinhCV;
 								if (nv.ThongKeThang.CongCV_Auto < 0f) nv.ThongKeThang.CongCV_Auto = 0f;
 							}
 							else// nhân viên chính thức vừa công nhật thì công cv_auto =0, công cv khai báo ko đổi
@@ -413,6 +426,39 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 												"Có số công chờ việc được tính tự động [{0}] công theo quy định vượt quá [{1}] ngày thứ Bảy trong tháng.",
 												nv.ThongKeThang.CongCV_Auto.ToString("#0.0#"), soNgayThu7)
 								});
+						}
+						if (XL.KiemTraDieuKienChamCongx2(congChuanThang, congTinhLuong, soNgayChuNhat, soNgayChamCongx2, soNgayNghiAnhHuongCongx2) == 1)
+						{
+							warningMessages.Add(
+								new WarningMessage
+									{
+										MaCC = nv.MaCC, MaNV = nv.MaNV, TenNV = nv.TenNV,
+										NoiDung = string.Format(
+										"Chấm công làm việc ngày nghỉ hàng tuần chưa đúng quy định ([{0}] ngày nghỉ >= [{1}] ngày chủ nhật).",
+										soNgayNghiAnhHuongCongx2, soNgayChuNhat)
+									});
+						}
+						else if (XL.KiemTraDieuKienChamCongx2(congChuanThang, congTinhLuong, soNgayChuNhat, soNgayChamCongx2, soNgayNghiAnhHuongCongx2) == 2)
+						{
+							warningMessages.Add(
+								new WarningMessage
+									{
+										MaCC = nv.MaCC, MaNV = nv.MaNV, TenNV = nv.TenNV,
+										NoiDung = string.Format(
+										"Chấm công làm việc ngày nghỉ hàng tuần chưa đúng quy định ([{0}] ngày chấm công làm việc ngày nghỉ hàng tuần + [{1}] ngày nghỉ > [{2}] ngày chủ nhật).",
+										soNgayChamCongx2, soNgayNghiAnhHuongCongx2, soNgayChuNhat)
+									});
+						}
+						else if (XL.KiemTraDieuKienChamCongx2(congChuanThang, congTinhLuong, soNgayChuNhat, soNgayChamCongx2, soNgayNghiAnhHuongCongx2) == 3)
+						{
+							warningMessages.Add(
+								new WarningMessage
+									{
+										MaCC = nv.MaCC, MaNV = nv.MaNV, TenNV = nv.TenNV,
+										NoiDung = string.Format(
+										"Nhân viên có [{0}] công làm việc vượt [{1}] ngày công chuẩn của tháng.",
+										congTinhLuong.ToString("#0.0#"), congChuanThang.ToString(""))
+									});
 						}
 					}
 

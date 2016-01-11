@@ -213,7 +213,10 @@ namespace ChamCong_v04.BUS {
 
 
 		public static void ThongKeThang(ref ThongKeCong_PC thongKeThang, List<cNgayCong> dsNgayCong,
-			DateTime ngayBDCongnhat, DateTime ngayKTCongnhat, LoaiCongNhat nvChinhThuc) {
+			DateTime ngayBDCongnhat, DateTime ngayKTCongnhat, LoaiCongNhat nvChinhThuc,
+			out int SoNgayChamCongx2, out int SoNgayNghiAnhHuongCongx2) {//v4.0.0.9
+			SoNgayChamCongx2 = 0;
+			SoNgayNghiAnhHuongCongx2 = 0;
 			if (nvChinhThuc == LoaiCongNhat.NVCongNhat) // chỉ làm công nhật, chỉ tính công công nhật trong khoảng gian từ bắt đầu đến kết thúc
 			{
 				thongKeThang.Cong_Congnhat = (dsNgayCong
@@ -224,10 +227,13 @@ namespace ChamCong_v04.BUS {
 			{
 				// trường hợp chỉ làm chính thức
 				if (nvChinhThuc == LoaiCongNhat.NVChinhThuc)
-				{	
+				{
 					foreach (var ngayCong in dsNgayCong)
 					{
-						XL.ThongKeNgay(ref thongKeThang, ngayCong);
+						bool LaNgayChamCongx2, LaNgayNghiAnhHuongCongx2;
+						XL.ThongKeNgay(ref thongKeThang, ngayCong, out LaNgayChamCongx2, out LaNgayNghiAnhHuongCongx2);
+						SoNgayChamCongx2 += (LaNgayChamCongx2) ? 1 : 0;
+						SoNgayNghiAnhHuongCongx2 += (LaNgayNghiAnhHuongCongx2) ? 1 : 0;
 					}
 
 				}
@@ -236,9 +242,9 @@ namespace ChamCong_v04.BUS {
 					thongKeThang.Cong_Congnhat = (dsNgayCong
 								.Where(item => item.Ngay >= ngayBDCongnhat && item.Ngay <= ngayKTCongnhat)
 								.Sum(item => item.TongCong_4008));
-
+					bool LaNgayChamCongx2, LaNgayNghiAnhHuongCongx2;
 					foreach (var ngayCong in dsNgayCong.Where(item => item.Ngay < ngayBDCongnhat || item.Ngay > ngayKTCongnhat))
-						XL.ThongKeNgay(ref thongKeThang, ngayCong);
+						XL.ThongKeNgay(ref thongKeThang, ngayCong, out LaNgayChamCongx2, out LaNgayNghiAnhHuongCongx2);
 				}
 				#region 4.0.0.8 xét lại bù giờ
 
@@ -265,7 +271,14 @@ namespace ChamCong_v04.BUS {
 
 		}
 
-		public static void ThongKeNgay(ref ThongKeCong_PC thongKeThang, cNgayCong ngayCong) {
+		public static void ThongKeNgay(ref ThongKeCong_PC thongKeThang, cNgayCong ngayCong,
+			out bool LaNgayChamCongx2, out bool LaNgayNghiAnhHuongCongx2 //v4.0.0.9
+			)
+		{
+			LaNgayChamCongx2 = false;
+			LaNgayNghiAnhHuongCongx2 = false;
+			bool flag1 = true;
+			bool flag2 = true;
 			//thongKeThang.Cong += ngayCong.TongCong;
 			//thongKeThang.TongNgayLV += ngayCong.TongNgayLV;//ver4.0.0.1
 			
@@ -286,6 +299,10 @@ namespace ChamCong_v04.BUS {
 			thongKeThang.PhuCaps._100_TCC3 += ngayCong.PhuCaps._100_TCC3;
 			thongKeThang.PhuCaps._100_LVNN_Ngay += ngayCong.PhuCaps._100_LVNN_Ngay;
 			thongKeThang.PhuCaps._150_LVNN_Dem += ngayCong.PhuCaps._150_LVNN_Dem;
+			//v4.0.0.9------------------
+			if (ngayCong.PhuCaps._100_LVNN_Ngay > 0f || ngayCong.PhuCaps._150_LVNN_Dem > 0f) LaNgayChamCongx2 = true;
+			if (Math.Abs(ngayCong.TongCong_4008 - 0f) > 0.0005f) flag1 = false;
+			//--------------------------
 			thongKeThang.PhuCaps._200_LeTet_Ngay += ngayCong.PhuCaps._200_LeTet_Ngay;
 			thongKeThang.PhuCaps._250_LeTet_Dem += ngayCong.PhuCaps._250_LeTet_Dem;
 			thongKeThang.PhuCaps._Cus += ngayCong.PhuCaps._Cus;
@@ -296,25 +313,31 @@ namespace ChamCong_v04.BUS {
 				switch (xpVang.MaLV_Code) {
 					case "L":
 						thongKeThang.Le = thongKeThang.Le + WorkingDay;
+						flag2 = false;//v4.0.0.9
 						break;
 					case "P":
 						thongKeThang.Phep = thongKeThang.Phep + WorkingDay; // phần phép bù sẽ cập nhật lại ở bên dưới cùng
+						flag2 = false;//v4.0.0.9
 						break;
 					case "CV":
 						thongKeThang.CongCV_KB = thongKeThang.CongCV_KB + WorkingDay; // tính trước công chờ việc khai báo, tính công chờ việc tự động sau
+						flag2 = false;//v4.0.0.9
 						break;
 					case "BH":
 					case "TS":
 					case "BD": //info new version
 						thongKeThang.BHXH = thongKeThang.BHXH + WorkingDay;
+						flag2 = false;//v4.0.0.9
 						break;
 					case "H":
 					case "CT":
 					case "PT":
 						thongKeThang.H_CT_PT = thongKeThang.H_CT_PT + WorkingDay;
+						flag2 = false;//v4.0.0.9
 						break;
 					case "PD":
 						thongKeThang.PTDT = thongKeThang.PTDT + WorkingDay;//DANGLAM
+						flag2 = false;//v4.0.0.9
 						break;
 					case "RO":
 						tempRo += WorkingDay;
@@ -323,6 +346,7 @@ namespace ChamCong_v04.BUS {
 				}
 
 			}
+			if (flag1 && flag2) LaNgayNghiAnhHuongCongx2 = true;//v4.0.0.9
 			thongKeThang.Phep += ngayCong.CongBuPhepTre;
 			thongKeThang.Phep += ngayCong.CongBuPhepSom;
 			var tempSoNgayNghiRO_NguyenNgay = 0;

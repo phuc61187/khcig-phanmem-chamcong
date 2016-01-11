@@ -145,11 +145,11 @@ namespace ChamCong_v04.UI.TinhLuong {
 			#endregion
 			// xác định công chuẩn của tháng
 			var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang);
-			#region // thống kê công, phụ cấp hàng ngày của từng nhân viên chính thức
-			//trường hợp nhân viên vừa công nhật vừa chính thức thì chỉ thống kê ngày công sau ngày kết thúc công nhật
+			int temp = 0;
+			#region // thống kê công, phụ cấp hàng ngày của từng nhân viên chính thức//trường hợp nhân viên vừa công nhật vừa chính thức thì chỉ thống kê ngày công sau ngày kết thúc công nhật
 			foreach (var nv in dsnv) {
 				// thống kê công và phụ cấp từng nv
-				XL.ThongKeThang(ref nv.ThongKeThang, nv.DSNgayCong, nv.NgayBDCongnhat, nv.NgayKTCongnhat, nv.LoaiCN);
+				XL.ThongKeThang(ref nv.ThongKeThang, nv.DSNgayCong, nv.NgayBDCongnhat, nv.NgayKTCongnhat, nv.LoaiCN, out temp, out temp);
 				// tính công chờ việc: 1.nv công nhật ko cv. 2. nv mới chính thức thì chỉ giữ công cv khai báo
 				if (nv.LoaiCN == LoaiCongNhat.NVCongNhat)// nhân viên làm công nhật, công cv tự động, khai báo = 0
 				{

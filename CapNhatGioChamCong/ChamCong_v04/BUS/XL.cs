@@ -1164,6 +1164,31 @@ namespace ChamCong_v04.BUS {
 			return false;
 		}
 
+
+		internal static int KiemTraDieuKienChamCongx2( float NgayCongChuanThang,  float CongTinhLuong,  int SoNgayChuNhat, int SoNgayChamCongx2, int SoNgayNghiAnhHuongCongx2)
+		{
+			if (SoNgayChamCongx2 > 0)
+			{
+				if (SoNgayNghiAnhHuongCongx2 >= SoNgayChuNhat)
+					return 1;
+				else
+				{
+					if (SoNgayChamCongx2 + SoNgayNghiAnhHuongCongx2 > SoNgayChuNhat)
+						return 2;
+				}
+			}
+			else
+			{
+				if (SoNgayNghiAnhHuongCongx2 < SoNgayChuNhat)
+				{
+					if (CongTinhLuong > NgayCongChuanThang)
+					{
+						return 3;
+					}
+				}
+			}
+			return 0;
+		}
 	}
 
 }

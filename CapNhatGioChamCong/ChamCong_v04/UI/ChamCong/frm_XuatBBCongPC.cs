@@ -126,9 +126,9 @@ namespace ChamCong_v04.UI.ChamCong {
 				XL.LoadThongtinLamViecCongNhat(nv9.MaCC, ref nv9.NgayBDCongnhat, ref nv9.NgayKTCongnhat, ref nv9.LoaiCN, nv9.DSNgayCong, tableDSNVChiCongnhatThang);
 				dsnv9.Add(nv9);
 			}
-
+			int temp = 0;
 			foreach (var nv9 in dsnv9) {
-				XL.ThongKeThang(ref nv9.ThongKeThang, nv9.DSNgayCong, nv9.NgayBDCongnhat, nv9.NgayKTCongnhat, nv9.LoaiCN);
+				XL.ThongKeThang(ref nv9.ThongKeThang, nv9.DSNgayCong, nv9.NgayBDCongnhat, nv9.NgayKTCongnhat, nv9.LoaiCN, out temp, out temp);
 
 				// tính công chờ việc: 1.nv công nhật ko cv. 2. nv mới chính thức thì chỉ giữ công cv khai báo
 				if (nv9.NgayBDCongnhat != DateTime.MinValue) // nhân viên vừa làm chính thức vừa làm công nhật, công cv tự động = 0
