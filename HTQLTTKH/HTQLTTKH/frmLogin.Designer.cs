@@ -113,7 +113,7 @@ namespace HTQLTTKH {
 			this.Controls.Add(this.tbTaiKhoan);
 			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "frmLogin";
-			this.Text = "frmLogin";
+			this.Text = "Đăng nhập";
 			this.Load += new System.EventHandler(this.frmLogin_Load);
 			((System.ComponentModel.ISupportInitialize)(this.tbTaiKhoan.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbPass.Properties)).EndInit();

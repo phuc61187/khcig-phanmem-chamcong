@@ -8,4 +8,61 @@
       <Column Name="Enable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.UserInfo" Member="UserInfos">
+    <Type Name="UserInfo">
+      <Column Name="UserFullCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="UserFullName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="UserLastName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="UserEnrollNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserEnrollName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="UserCardNo" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
+      <Column Name="UserHireDay" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserIDTitle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserSex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserBirthDay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserBirthPlace" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserPhoto" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UserNoted" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UserPW" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="UserPrivilege" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserIDC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserIDD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SchID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserTZ" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserPIN1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PushCardID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HeSoLuongCB" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="HeSoLuongSP" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="HSBHCongThem" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RelationDept" Member="RelationDepts">
+    <Type Name="RelationDept">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RelationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LevelID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TinhPC50" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViTri" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Enable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeptPrivilege" Member="DeptPrivileges">
+    <Type Name="DeptPrivilege">
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsYes" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.a" Method="a">
+    <ElementType Name="aResult">
+      <Column Name="UserFullCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="UserFullName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="UserEnrollNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserLastName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="UserEnrollName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

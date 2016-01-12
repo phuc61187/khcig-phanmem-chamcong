@@ -19,13 +19,18 @@ namespace HTQLTTKH {
 			//{
 			//	relationDeptBindingSource.DataSource = context.RelationDepts;
 			//}
+			WEDatabaseDataContext context = new WEDatabaseDataContext();
+			gridLookUpEdit1.Properties.DataSource = context.a();
 		}
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			var tempList = (List<object>) checkedComboBoxEdit1.EditValue; // ko dùng List<int>
+			var tempList = (List<object>) gridLookUpEdit1.EditValue; // ko dùng List<int>
 			var chuoi1 = tempList.Aggregate(string.Empty, (current, i) => current + i.ToString());
 			richTextBox1.Text += string.Format("EditValueType: {0} \nValue: {1}\n", checkedComboBoxEdit1.EditValue.GetType(), chuoi1);
+
+			//gridLookUpEdit1View.DataSource = 
+
 		}
 
 		private void simpleButton1_Click(object sender, EventArgs e)
