@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HTQLTTKH.Properties;
 
 namespace HTQLTTKH {
 	public partial class fmKetNoiCSDL : Form {
