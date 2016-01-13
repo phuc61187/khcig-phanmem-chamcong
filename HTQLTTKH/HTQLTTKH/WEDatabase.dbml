@@ -500,6 +500,12 @@
       <Column Name="CongBuPhepSom" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Title" Member="Titles">
+    <Type Name="Title">
+      <Column Name="IDT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TitleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.NewUserAccount_XoaTaiKhoanV6" Method="NewUserAccount_XoaTaiKhoanV6">
     <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />

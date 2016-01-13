@@ -350,6 +350,14 @@ namespace HTQLTTKH
 			}
 		}
 		
+		public System.Data.Linq.Table<Title> Titles
+		{
+			get
+			{
+				return this.GetTable<Title>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.NewUserAccount_XoaTaiKhoanV6")]
 		public int NewUserAccount_XoaTaiKhoanV6([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID)
 		{
@@ -7861,6 +7869,51 @@ namespace HTQLTTKH
 				if ((this._CongBuPhepSom != value))
 				{
 					this._CongBuPhepSom = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Title")]
+	public partial class Title
+	{
+		
+		private int _IDT;
+		
+		private string _TitleName;
+		
+		public Title()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDT", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int IDT
+		{
+			get
+			{
+				return this._IDT;
+			}
+			set
+			{
+				if ((this._IDT != value))
+				{
+					this._IDT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TitleName", DbType="NVarChar(50)")]
+		public string TitleName
+		{
+			get
+			{
+				return this._TitleName;
+			}
+			set
+			{
+				if ((this._TitleName != value))
+				{
+					this._TitleName = value;
 				}
 			}
 		}

@@ -10,30 +10,36 @@ using System.Windows.Forms;
 
 namespace HTQLTTKH {
 	public partial class zTestControl : Form {
+		private WEDatabaseDataContext _context = new WEDatabaseDataContext();
 		public zTestControl() {
 			InitializeComponent();
 		}
 
-		private void button1_Click(object sender, EventArgs e) {
+		private void buttonInit_Click(object sender, EventArgs e) {
 			//using (WE_LinqToSQLDataContext context = new WE_LinqToSQLDataContext())
 			//{
 			//	relationDeptBindingSource.DataSource = context.RelationDepts;
 			//}
 			WEDatabaseDataContext context = new WEDatabaseDataContext();
 			//gridLookUpEdit1.Properties.DataSource = context.a();
+/*
 			var kq = from user in context.UserInfos
 						join phong in context.RelationDepts.DefaultIfEmpty() on user.UserIDD equals phong.ID
 				select user;
 			gridControl1.DataSource = kq;
+*/
+			var kq = from user in _context.UserInfos
+			         join phong in _context.RelationDepts on user.UserIDD equals phong.ID
+			         select new {user.UserFullCode, user.UserFullName, user.UserIDD, phong.Description};
+
+			gridControl1.DataSource = kq;
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void buttonProcess_Click(object sender, EventArgs e)
 		{
 			var tempList = (List<object>) gridLookUpEdit1.EditValue; // ko dùng List<int>
 			var chuoi1 = tempList.Aggregate(string.Empty, (current, i) => current + i.ToString());
 			richTextBox1.Text += string.Format("EditValueType: {0} \nValue: {1}\n", checkedComboBoxEdit1.EditValue.GetType(), chuoi1);
-
-			//gridLookUpEdit1View.DataSource = 
 
 		}
 
