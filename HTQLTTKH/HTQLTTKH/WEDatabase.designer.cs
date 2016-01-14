@@ -45,15 +45,15 @@ namespace HTQLTTKH
     partial void InsertSetting(Setting instance);
     partial void UpdateSetting(Setting instance);
     partial void DeleteSetting(Setting instance);
-    partial void InsertUserInfo(UserInfo instance);
-    partial void UpdateUserInfo(UserInfo instance);
-    partial void DeleteUserInfo(UserInfo instance);
     partial void InsertXacNhanPC(XacNhanPC instance);
     partial void UpdateXacNhanPC(XacNhanPC instance);
     partial void DeleteXacNhanPC(XacNhanPC instance);
     partial void InsertXacNhanPC50(XacNhanPC50 instance);
     partial void UpdateXacNhanPC50(XacNhanPC50 instance);
     partial void DeleteXacNhanPC50(XacNhanPC50 instance);
+    partial void InsertUserInfo(UserInfo instance);
+    partial void UpdateUserInfo(UserInfo instance);
+    partial void DeleteUserInfo(UserInfo instance);
     #endregion
 		
 		public WEDatabaseDataContext() : 
@@ -310,14 +310,6 @@ namespace HTQLTTKH
 			}
 		}
 		
-		public System.Data.Linq.Table<UserInfo> UserInfos
-		{
-			get
-			{
-				return this.GetTable<UserInfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<XacNhanPC> XacNhanPCs
 		{
 			get
@@ -355,6 +347,14 @@ namespace HTQLTTKH
 			get
 			{
 				return this.GetTable<Title>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserInfo> UserInfos
+		{
+			get
+			{
+				return this.GetTable<UserInfo>();
 			}
 		}
 		
@@ -827,9 +827,9 @@ namespace HTQLTTKH
 	public partial class DeptPrivilege
 	{
 		
-		private System.Nullable<int> _UserID;
+		private int _UserID;
 		
-		private System.Nullable<int> _IDD;
+		private int _IDD;
 		
 		private bool _IsYes;
 		
@@ -838,7 +838,7 @@ namespace HTQLTTKH
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int")]
-		public System.Nullable<int> UserID
+		public int UserID
 		{
 			get
 			{
@@ -854,7 +854,7 @@ namespace HTQLTTKH
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDD", DbType="Int")]
-		public System.Nullable<int> IDD
+		public int IDD
 		{
 			get
 			{
@@ -6404,668 +6404,6 @@ namespace HTQLTTKH
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserInfo")]
-	public partial class UserInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _UserFullCode;
-		
-		private string _UserFullName;
-		
-		private string _UserLastName;
-		
-		private int _UserEnrollNumber;
-		
-		private string _UserEnrollName;
-		
-		private string _UserCardNo;
-		
-		private System.DateTime _UserHireDay;
-		
-		private System.Nullable<int> _UserIDTitle;
-		
-		private System.Nullable<int> _UserSex;
-		
-		private string _UserBirthDay;
-		
-		private System.Nullable<int> _UserBirthPlace;
-		
-		private System.Data.Linq.Binary _UserPhoto;
-		
-		private string _UserNoted;
-		
-		private string _UserPW;
-		
-		private System.Nullable<int> _UserPrivilege;
-		
-		private bool _UserEnabled;
-		
-		private System.Nullable<int> _UserIDC;
-		
-		private System.Nullable<int> _UserIDD;
-		
-		private System.Nullable<int> _SchID;
-		
-		private System.Nullable<int> _UserGroup;
-		
-		private string _UserTZ;
-		
-		private string _UserPIN1;
-		
-		private string _PushCardID;
-		
-		private System.Nullable<float> _HeSoLuongCB;
-		
-		private System.Nullable<float> _HeSoLuongSP;
-		
-		private System.Nullable<float> _HSBHCongThem;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserFullCodeChanging(string value);
-    partial void OnUserFullCodeChanged();
-    partial void OnUserFullNameChanging(string value);
-    partial void OnUserFullNameChanged();
-    partial void OnUserLastNameChanging(string value);
-    partial void OnUserLastNameChanged();
-    partial void OnUserEnrollNumberChanging(int value);
-    partial void OnUserEnrollNumberChanged();
-    partial void OnUserEnrollNameChanging(string value);
-    partial void OnUserEnrollNameChanged();
-    partial void OnUserCardNoChanging(string value);
-    partial void OnUserCardNoChanged();
-    partial void OnUserHireDayChanging(System.DateTime value);
-    partial void OnUserHireDayChanged();
-    partial void OnUserIDTitleChanging(System.Nullable<int> value);
-    partial void OnUserIDTitleChanged();
-    partial void OnUserSexChanging(System.Nullable<int> value);
-    partial void OnUserSexChanged();
-    partial void OnUserBirthDayChanging(string value);
-    partial void OnUserBirthDayChanged();
-    partial void OnUserBirthPlaceChanging(System.Nullable<int> value);
-    partial void OnUserBirthPlaceChanged();
-    partial void OnUserPhotoChanging(System.Data.Linq.Binary value);
-    partial void OnUserPhotoChanged();
-    partial void OnUserNotedChanging(string value);
-    partial void OnUserNotedChanged();
-    partial void OnUserPWChanging(string value);
-    partial void OnUserPWChanged();
-    partial void OnUserPrivilegeChanging(System.Nullable<int> value);
-    partial void OnUserPrivilegeChanged();
-    partial void OnUserEnabledChanging(bool value);
-    partial void OnUserEnabledChanged();
-    partial void OnUserIDCChanging(System.Nullable<int> value);
-    partial void OnUserIDCChanged();
-    partial void OnUserIDDChanging(System.Nullable<int> value);
-    partial void OnUserIDDChanged();
-    partial void OnSchIDChanging(System.Nullable<int> value);
-    partial void OnSchIDChanged();
-    partial void OnUserGroupChanging(System.Nullable<int> value);
-    partial void OnUserGroupChanged();
-    partial void OnUserTZChanging(string value);
-    partial void OnUserTZChanged();
-    partial void OnUserPIN1Changing(string value);
-    partial void OnUserPIN1Changed();
-    partial void OnPushCardIDChanging(string value);
-    partial void OnPushCardIDChanged();
-    partial void OnHeSoLuongCBChanging(System.Nullable<float> value);
-    partial void OnHeSoLuongCBChanged();
-    partial void OnHeSoLuongSPChanging(System.Nullable<float> value);
-    partial void OnHeSoLuongSPChanged();
-    partial void OnHSBHCongThemChanging(System.Nullable<float> value);
-    partial void OnHSBHCongThemChanged();
-    #endregion
-		
-		public UserInfo()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserFullCode", DbType="NVarChar(20)")]
-		public string UserFullCode
-		{
-			get
-			{
-				return this._UserFullCode;
-			}
-			set
-			{
-				if ((this._UserFullCode != value))
-				{
-					this.OnUserFullCodeChanging(value);
-					this.SendPropertyChanging();
-					this._UserFullCode = value;
-					this.SendPropertyChanged("UserFullCode");
-					this.OnUserFullCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserFullName", DbType="NVarChar(40)")]
-		public string UserFullName
-		{
-			get
-			{
-				return this._UserFullName;
-			}
-			set
-			{
-				if ((this._UserFullName != value))
-				{
-					this.OnUserFullNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserFullName = value;
-					this.SendPropertyChanged("UserFullName");
-					this.OnUserFullNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserLastName", DbType="NVarChar(20)")]
-		public string UserLastName
-		{
-			get
-			{
-				return this._UserLastName;
-			}
-			set
-			{
-				if ((this._UserLastName != value))
-				{
-					this.OnUserLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserLastName = value;
-					this.SendPropertyChanged("UserLastName");
-					this.OnUserLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnrollNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int UserEnrollNumber
-		{
-			get
-			{
-				return this._UserEnrollNumber;
-			}
-			set
-			{
-				if ((this._UserEnrollNumber != value))
-				{
-					this.OnUserEnrollNumberChanging(value);
-					this.SendPropertyChanging();
-					this._UserEnrollNumber = value;
-					this.SendPropertyChanged("UserEnrollNumber");
-					this.OnUserEnrollNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnrollName", DbType="NVarChar(30)")]
-		public string UserEnrollName
-		{
-			get
-			{
-				return this._UserEnrollName;
-			}
-			set
-			{
-				if ((this._UserEnrollName != value))
-				{
-					this.OnUserEnrollNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserEnrollName = value;
-					this.SendPropertyChanged("UserEnrollName");
-					this.OnUserEnrollNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserCardNo", DbType="NVarChar(14)")]
-		public string UserCardNo
-		{
-			get
-			{
-				return this._UserCardNo;
-			}
-			set
-			{
-				if ((this._UserCardNo != value))
-				{
-					this.OnUserCardNoChanging(value);
-					this.SendPropertyChanging();
-					this._UserCardNo = value;
-					this.SendPropertyChanged("UserCardNo");
-					this.OnUserCardNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserHireDay", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime UserHireDay
-		{
-			get
-			{
-				return this._UserHireDay;
-			}
-			set
-			{
-				if ((this._UserHireDay != value))
-				{
-					this.OnUserHireDayChanging(value);
-					this.SendPropertyChanging();
-					this._UserHireDay = value;
-					this.SendPropertyChanged("UserHireDay");
-					this.OnUserHireDayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserIDTitle", DbType="Int")]
-		public System.Nullable<int> UserIDTitle
-		{
-			get
-			{
-				return this._UserIDTitle;
-			}
-			set
-			{
-				if ((this._UserIDTitle != value))
-				{
-					this.OnUserIDTitleChanging(value);
-					this.SendPropertyChanging();
-					this._UserIDTitle = value;
-					this.SendPropertyChanged("UserIDTitle");
-					this.OnUserIDTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserSex", DbType="Int")]
-		public System.Nullable<int> UserSex
-		{
-			get
-			{
-				return this._UserSex;
-			}
-			set
-			{
-				if ((this._UserSex != value))
-				{
-					this.OnUserSexChanging(value);
-					this.SendPropertyChanging();
-					this._UserSex = value;
-					this.SendPropertyChanged("UserSex");
-					this.OnUserSexChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserBirthDay", DbType="NVarChar(50)")]
-		public string UserBirthDay
-		{
-			get
-			{
-				return this._UserBirthDay;
-			}
-			set
-			{
-				if ((this._UserBirthDay != value))
-				{
-					this.OnUserBirthDayChanging(value);
-					this.SendPropertyChanging();
-					this._UserBirthDay = value;
-					this.SendPropertyChanged("UserBirthDay");
-					this.OnUserBirthDayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserBirthPlace", DbType="Int")]
-		public System.Nullable<int> UserBirthPlace
-		{
-			get
-			{
-				return this._UserBirthPlace;
-			}
-			set
-			{
-				if ((this._UserBirthPlace != value))
-				{
-					this.OnUserBirthPlaceChanging(value);
-					this.SendPropertyChanging();
-					this._UserBirthPlace = value;
-					this.SendPropertyChanged("UserBirthPlace");
-					this.OnUserBirthPlaceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPhoto", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary UserPhoto
-		{
-			get
-			{
-				return this._UserPhoto;
-			}
-			set
-			{
-				if ((this._UserPhoto != value))
-				{
-					this.OnUserPhotoChanging(value);
-					this.SendPropertyChanging();
-					this._UserPhoto = value;
-					this.SendPropertyChanged("UserPhoto");
-					this.OnUserPhotoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserNoted", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		public string UserNoted
-		{
-			get
-			{
-				return this._UserNoted;
-			}
-			set
-			{
-				if ((this._UserNoted != value))
-				{
-					this.OnUserNotedChanging(value);
-					this.SendPropertyChanging();
-					this._UserNoted = value;
-					this.SendPropertyChanged("UserNoted");
-					this.OnUserNotedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPW", DbType="NVarChar(20)")]
-		public string UserPW
-		{
-			get
-			{
-				return this._UserPW;
-			}
-			set
-			{
-				if ((this._UserPW != value))
-				{
-					this.OnUserPWChanging(value);
-					this.SendPropertyChanging();
-					this._UserPW = value;
-					this.SendPropertyChanged("UserPW");
-					this.OnUserPWChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPrivilege", DbType="Int")]
-		public System.Nullable<int> UserPrivilege
-		{
-			get
-			{
-				return this._UserPrivilege;
-			}
-			set
-			{
-				if ((this._UserPrivilege != value))
-				{
-					this.OnUserPrivilegeChanging(value);
-					this.SendPropertyChanging();
-					this._UserPrivilege = value;
-					this.SendPropertyChanged("UserPrivilege");
-					this.OnUserPrivilegeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnabled", DbType="Bit NOT NULL")]
-		public bool UserEnabled
-		{
-			get
-			{
-				return this._UserEnabled;
-			}
-			set
-			{
-				if ((this._UserEnabled != value))
-				{
-					this.OnUserEnabledChanging(value);
-					this.SendPropertyChanging();
-					this._UserEnabled = value;
-					this.SendPropertyChanged("UserEnabled");
-					this.OnUserEnabledChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserIDC", DbType="Int")]
-		public System.Nullable<int> UserIDC
-		{
-			get
-			{
-				return this._UserIDC;
-			}
-			set
-			{
-				if ((this._UserIDC != value))
-				{
-					this.OnUserIDCChanging(value);
-					this.SendPropertyChanging();
-					this._UserIDC = value;
-					this.SendPropertyChanged("UserIDC");
-					this.OnUserIDCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserIDD", DbType="Int")]
-		public System.Nullable<int> UserIDD
-		{
-			get
-			{
-				return this._UserIDD;
-			}
-			set
-			{
-				if ((this._UserIDD != value))
-				{
-					this.OnUserIDDChanging(value);
-					this.SendPropertyChanging();
-					this._UserIDD = value;
-					this.SendPropertyChanged("UserIDD");
-					this.OnUserIDDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchID", DbType="Int")]
-		public System.Nullable<int> SchID
-		{
-			get
-			{
-				return this._SchID;
-			}
-			set
-			{
-				if ((this._SchID != value))
-				{
-					this.OnSchIDChanging(value);
-					this.SendPropertyChanging();
-					this._SchID = value;
-					this.SendPropertyChanged("SchID");
-					this.OnSchIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroup", DbType="Int")]
-		public System.Nullable<int> UserGroup
-		{
-			get
-			{
-				return this._UserGroup;
-			}
-			set
-			{
-				if ((this._UserGroup != value))
-				{
-					this.OnUserGroupChanging(value);
-					this.SendPropertyChanging();
-					this._UserGroup = value;
-					this.SendPropertyChanged("UserGroup");
-					this.OnUserGroupChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserTZ", DbType="NVarChar(50)")]
-		public string UserTZ
-		{
-			get
-			{
-				return this._UserTZ;
-			}
-			set
-			{
-				if ((this._UserTZ != value))
-				{
-					this.OnUserTZChanging(value);
-					this.SendPropertyChanging();
-					this._UserTZ = value;
-					this.SendPropertyChanged("UserTZ");
-					this.OnUserTZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPIN1", DbType="NVarChar(50)")]
-		public string UserPIN1
-		{
-			get
-			{
-				return this._UserPIN1;
-			}
-			set
-			{
-				if ((this._UserPIN1 != value))
-				{
-					this.OnUserPIN1Changing(value);
-					this.SendPropertyChanging();
-					this._UserPIN1 = value;
-					this.SendPropertyChanged("UserPIN1");
-					this.OnUserPIN1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PushCardID", DbType="NVarChar(50)")]
-		public string PushCardID
-		{
-			get
-			{
-				return this._PushCardID;
-			}
-			set
-			{
-				if ((this._PushCardID != value))
-				{
-					this.OnPushCardIDChanging(value);
-					this.SendPropertyChanging();
-					this._PushCardID = value;
-					this.SendPropertyChanged("PushCardID");
-					this.OnPushCardIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HeSoLuongCB", DbType="Real")]
-		public System.Nullable<float> HeSoLuongCB
-		{
-			get
-			{
-				return this._HeSoLuongCB;
-			}
-			set
-			{
-				if ((this._HeSoLuongCB != value))
-				{
-					this.OnHeSoLuongCBChanging(value);
-					this.SendPropertyChanging();
-					this._HeSoLuongCB = value;
-					this.SendPropertyChanged("HeSoLuongCB");
-					this.OnHeSoLuongCBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HeSoLuongSP", DbType="Real")]
-		public System.Nullable<float> HeSoLuongSP
-		{
-			get
-			{
-				return this._HeSoLuongSP;
-			}
-			set
-			{
-				if ((this._HeSoLuongSP != value))
-				{
-					this.OnHeSoLuongSPChanging(value);
-					this.SendPropertyChanging();
-					this._HeSoLuongSP = value;
-					this.SendPropertyChanged("HeSoLuongSP");
-					this.OnHeSoLuongSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HSBHCongThem", DbType="Real")]
-		public System.Nullable<float> HSBHCongThem
-		{
-			get
-			{
-				return this._HSBHCongThem;
-			}
-			set
-			{
-				if ((this._HSBHCongThem != value))
-				{
-					this.OnHSBHCongThemChanging(value);
-					this.SendPropertyChanging();
-					this._HSBHCongThem = value;
-					this.SendPropertyChanged("HSBHCongThem");
-					this.OnHSBHCongThemChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.XacNhanPC")]
 	public partial class XacNhanPC : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -7915,6 +7253,668 @@ namespace HTQLTTKH
 				{
 					this._TitleName = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserInfo")]
+	public partial class UserInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UserFullCode;
+		
+		private string _UserFullName;
+		
+		private string _UserLastName;
+		
+		private int _UserEnrollNumber;
+		
+		private string _UserEnrollName;
+		
+		private string _UserCardNo;
+		
+		private System.DateTime _UserHireDay;
+		
+		private System.Nullable<int> _UserIDTitle;
+		
+		private System.Nullable<int> _UserSex;
+		
+		private string _UserBirthDay;
+		
+		private System.Nullable<int> _UserBirthPlace;
+		
+		private System.Data.Linq.Binary _UserPhoto;
+		
+		private string _UserNoted;
+		
+		private string _UserPW;
+		
+		private System.Nullable<int> _UserPrivilege;
+		
+		private bool _UserEnabled;
+		
+		private System.Nullable<int> _UserIDC;
+		
+		private System.Nullable<int> _UserIDD;
+		
+		private System.Nullable<int> _SchID;
+		
+		private System.Nullable<int> _UserGroup;
+		
+		private string _UserTZ;
+		
+		private string _UserPIN1;
+		
+		private string _PushCardID;
+		
+		private System.Nullable<float> _HeSoLuongCB;
+		
+		private System.Nullable<float> _HeSoLuongSP;
+		
+		private System.Nullable<float> _HSBHCongThem;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserFullCodeChanging(string value);
+    partial void OnUserFullCodeChanged();
+    partial void OnUserFullNameChanging(string value);
+    partial void OnUserFullNameChanged();
+    partial void OnUserLastNameChanging(string value);
+    partial void OnUserLastNameChanged();
+    partial void OnUserEnrollNumberChanging(int value);
+    partial void OnUserEnrollNumberChanged();
+    partial void OnUserEnrollNameChanging(string value);
+    partial void OnUserEnrollNameChanged();
+    partial void OnUserCardNoChanging(string value);
+    partial void OnUserCardNoChanged();
+    partial void OnUserHireDayChanging(System.DateTime value);
+    partial void OnUserHireDayChanged();
+    partial void OnUserIDTitleChanging(System.Nullable<int> value);
+    partial void OnUserIDTitleChanged();
+    partial void OnUserSexChanging(System.Nullable<int> value);
+    partial void OnUserSexChanged();
+    partial void OnUserBirthDayChanging(string value);
+    partial void OnUserBirthDayChanged();
+    partial void OnUserBirthPlaceChanging(System.Nullable<int> value);
+    partial void OnUserBirthPlaceChanged();
+    partial void OnUserPhotoChanging(System.Data.Linq.Binary value);
+    partial void OnUserPhotoChanged();
+    partial void OnUserNotedChanging(string value);
+    partial void OnUserNotedChanged();
+    partial void OnUserPWChanging(string value);
+    partial void OnUserPWChanged();
+    partial void OnUserPrivilegeChanging(System.Nullable<int> value);
+    partial void OnUserPrivilegeChanged();
+    partial void OnUserEnabledChanging(bool value);
+    partial void OnUserEnabledChanged();
+    partial void OnUserIDCChanging(System.Nullable<int> value);
+    partial void OnUserIDCChanged();
+    partial void OnUserIDDChanging(System.Nullable<int> value);
+    partial void OnUserIDDChanged();
+    partial void OnSchIDChanging(System.Nullable<int> value);
+    partial void OnSchIDChanged();
+    partial void OnUserGroupChanging(System.Nullable<int> value);
+    partial void OnUserGroupChanged();
+    partial void OnUserTZChanging(string value);
+    partial void OnUserTZChanged();
+    partial void OnUserPIN1Changing(string value);
+    partial void OnUserPIN1Changed();
+    partial void OnPushCardIDChanging(string value);
+    partial void OnPushCardIDChanged();
+    partial void OnHeSoLuongCBChanging(System.Nullable<float> value);
+    partial void OnHeSoLuongCBChanged();
+    partial void OnHeSoLuongSPChanging(System.Nullable<float> value);
+    partial void OnHeSoLuongSPChanged();
+    partial void OnHSBHCongThemChanging(System.Nullable<float> value);
+    partial void OnHSBHCongThemChanged();
+    #endregion
+		
+		public UserInfo()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserFullCode", DbType="NVarChar(20)")]
+		public string UserFullCode
+		{
+			get
+			{
+				return this._UserFullCode;
+			}
+			set
+			{
+				if ((this._UserFullCode != value))
+				{
+					this.OnUserFullCodeChanging(value);
+					this.SendPropertyChanging();
+					this._UserFullCode = value;
+					this.SendPropertyChanged("UserFullCode");
+					this.OnUserFullCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserFullName", DbType="NVarChar(40)")]
+		public string UserFullName
+		{
+			get
+			{
+				return this._UserFullName;
+			}
+			set
+			{
+				if ((this._UserFullName != value))
+				{
+					this.OnUserFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserFullName = value;
+					this.SendPropertyChanged("UserFullName");
+					this.OnUserFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserLastName", DbType="NVarChar(20)")]
+		public string UserLastName
+		{
+			get
+			{
+				return this._UserLastName;
+			}
+			set
+			{
+				if ((this._UserLastName != value))
+				{
+					this.OnUserLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserLastName = value;
+					this.SendPropertyChanged("UserLastName");
+					this.OnUserLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnrollNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int UserEnrollNumber
+		{
+			get
+			{
+				return this._UserEnrollNumber;
+			}
+			set
+			{
+				if ((this._UserEnrollNumber != value))
+				{
+					this.OnUserEnrollNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UserEnrollNumber = value;
+					this.SendPropertyChanged("UserEnrollNumber");
+					this.OnUserEnrollNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnrollName", DbType="NVarChar(30)")]
+		public string UserEnrollName
+		{
+			get
+			{
+				return this._UserEnrollName;
+			}
+			set
+			{
+				if ((this._UserEnrollName != value))
+				{
+					this.OnUserEnrollNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserEnrollName = value;
+					this.SendPropertyChanged("UserEnrollName");
+					this.OnUserEnrollNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserCardNo", DbType="NVarChar(14)")]
+		public string UserCardNo
+		{
+			get
+			{
+				return this._UserCardNo;
+			}
+			set
+			{
+				if ((this._UserCardNo != value))
+				{
+					this.OnUserCardNoChanging(value);
+					this.SendPropertyChanging();
+					this._UserCardNo = value;
+					this.SendPropertyChanged("UserCardNo");
+					this.OnUserCardNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserHireDay", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime UserHireDay
+		{
+			get
+			{
+				return this._UserHireDay;
+			}
+			set
+			{
+				if ((this._UserHireDay != value))
+				{
+					this.OnUserHireDayChanging(value);
+					this.SendPropertyChanging();
+					this._UserHireDay = value;
+					this.SendPropertyChanged("UserHireDay");
+					this.OnUserHireDayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserIDTitle", DbType="Int")]
+		public System.Nullable<int> UserIDTitle
+		{
+			get
+			{
+				return this._UserIDTitle;
+			}
+			set
+			{
+				if ((this._UserIDTitle != value))
+				{
+					this.OnUserIDTitleChanging(value);
+					this.SendPropertyChanging();
+					this._UserIDTitle = value;
+					this.SendPropertyChanged("UserIDTitle");
+					this.OnUserIDTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserSex", DbType="Int")]
+		public System.Nullable<int> UserSex
+		{
+			get
+			{
+				return this._UserSex;
+			}
+			set
+			{
+				if ((this._UserSex != value))
+				{
+					this.OnUserSexChanging(value);
+					this.SendPropertyChanging();
+					this._UserSex = value;
+					this.SendPropertyChanged("UserSex");
+					this.OnUserSexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserBirthDay", DbType="NVarChar(50)")]
+		public string UserBirthDay
+		{
+			get
+			{
+				return this._UserBirthDay;
+			}
+			set
+			{
+				if ((this._UserBirthDay != value))
+				{
+					this.OnUserBirthDayChanging(value);
+					this.SendPropertyChanging();
+					this._UserBirthDay = value;
+					this.SendPropertyChanged("UserBirthDay");
+					this.OnUserBirthDayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserBirthPlace", DbType="Int")]
+		public System.Nullable<int> UserBirthPlace
+		{
+			get
+			{
+				return this._UserBirthPlace;
+			}
+			set
+			{
+				if ((this._UserBirthPlace != value))
+				{
+					this.OnUserBirthPlaceChanging(value);
+					this.SendPropertyChanging();
+					this._UserBirthPlace = value;
+					this.SendPropertyChanged("UserBirthPlace");
+					this.OnUserBirthPlaceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPhoto", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary UserPhoto
+		{
+			get
+			{
+				return this._UserPhoto;
+			}
+			set
+			{
+				if ((this._UserPhoto != value))
+				{
+					this.OnUserPhotoChanging(value);
+					this.SendPropertyChanging();
+					this._UserPhoto = value;
+					this.SendPropertyChanged("UserPhoto");
+					this.OnUserPhotoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserNoted", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string UserNoted
+		{
+			get
+			{
+				return this._UserNoted;
+			}
+			set
+			{
+				if ((this._UserNoted != value))
+				{
+					this.OnUserNotedChanging(value);
+					this.SendPropertyChanging();
+					this._UserNoted = value;
+					this.SendPropertyChanged("UserNoted");
+					this.OnUserNotedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPW", DbType="NVarChar(20)")]
+		public string UserPW
+		{
+			get
+			{
+				return this._UserPW;
+			}
+			set
+			{
+				if ((this._UserPW != value))
+				{
+					this.OnUserPWChanging(value);
+					this.SendPropertyChanging();
+					this._UserPW = value;
+					this.SendPropertyChanged("UserPW");
+					this.OnUserPWChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPrivilege", DbType="Int")]
+		public System.Nullable<int> UserPrivilege
+		{
+			get
+			{
+				return this._UserPrivilege;
+			}
+			set
+			{
+				if ((this._UserPrivilege != value))
+				{
+					this.OnUserPrivilegeChanging(value);
+					this.SendPropertyChanging();
+					this._UserPrivilege = value;
+					this.SendPropertyChanged("UserPrivilege");
+					this.OnUserPrivilegeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnabled", DbType="Bit NOT NULL")]
+		public bool UserEnabled
+		{
+			get
+			{
+				return this._UserEnabled;
+			}
+			set
+			{
+				if ((this._UserEnabled != value))
+				{
+					this.OnUserEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._UserEnabled = value;
+					this.SendPropertyChanged("UserEnabled");
+					this.OnUserEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserIDC", DbType="Int")]
+		public System.Nullable<int> UserIDC
+		{
+			get
+			{
+				return this._UserIDC;
+			}
+			set
+			{
+				if ((this._UserIDC != value))
+				{
+					this.OnUserIDCChanging(value);
+					this.SendPropertyChanging();
+					this._UserIDC = value;
+					this.SendPropertyChanged("UserIDC");
+					this.OnUserIDCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserIDD", DbType="Int")]
+		public System.Nullable<int> UserIDD
+		{
+			get
+			{
+				return this._UserIDD;
+			}
+			set
+			{
+				if ((this._UserIDD != value))
+				{
+					this.OnUserIDDChanging(value);
+					this.SendPropertyChanging();
+					this._UserIDD = value;
+					this.SendPropertyChanged("UserIDD");
+					this.OnUserIDDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchID", DbType="Int")]
+		public System.Nullable<int> SchID
+		{
+			get
+			{
+				return this._SchID;
+			}
+			set
+			{
+				if ((this._SchID != value))
+				{
+					this.OnSchIDChanging(value);
+					this.SendPropertyChanging();
+					this._SchID = value;
+					this.SendPropertyChanged("SchID");
+					this.OnSchIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroup", DbType="Int")]
+		public System.Nullable<int> UserGroup
+		{
+			get
+			{
+				return this._UserGroup;
+			}
+			set
+			{
+				if ((this._UserGroup != value))
+				{
+					this.OnUserGroupChanging(value);
+					this.SendPropertyChanging();
+					this._UserGroup = value;
+					this.SendPropertyChanged("UserGroup");
+					this.OnUserGroupChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserTZ", DbType="NVarChar(50)")]
+		public string UserTZ
+		{
+			get
+			{
+				return this._UserTZ;
+			}
+			set
+			{
+				if ((this._UserTZ != value))
+				{
+					this.OnUserTZChanging(value);
+					this.SendPropertyChanging();
+					this._UserTZ = value;
+					this.SendPropertyChanged("UserTZ");
+					this.OnUserTZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPIN1", DbType="NVarChar(50)")]
+		public string UserPIN1
+		{
+			get
+			{
+				return this._UserPIN1;
+			}
+			set
+			{
+				if ((this._UserPIN1 != value))
+				{
+					this.OnUserPIN1Changing(value);
+					this.SendPropertyChanging();
+					this._UserPIN1 = value;
+					this.SendPropertyChanged("UserPIN1");
+					this.OnUserPIN1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PushCardID", DbType="NVarChar(50)")]
+		public string PushCardID
+		{
+			get
+			{
+				return this._PushCardID;
+			}
+			set
+			{
+				if ((this._PushCardID != value))
+				{
+					this.OnPushCardIDChanging(value);
+					this.SendPropertyChanging();
+					this._PushCardID = value;
+					this.SendPropertyChanged("PushCardID");
+					this.OnPushCardIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HeSoLuongCB", DbType="Real")]
+		public System.Nullable<float> HeSoLuongCB
+		{
+			get
+			{
+				return this._HeSoLuongCB;
+			}
+			set
+			{
+				if ((this._HeSoLuongCB != value))
+				{
+					this.OnHeSoLuongCBChanging(value);
+					this.SendPropertyChanging();
+					this._HeSoLuongCB = value;
+					this.SendPropertyChanged("HeSoLuongCB");
+					this.OnHeSoLuongCBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HeSoLuongSP", DbType="Real")]
+		public System.Nullable<float> HeSoLuongSP
+		{
+			get
+			{
+				return this._HeSoLuongSP;
+			}
+			set
+			{
+				if ((this._HeSoLuongSP != value))
+				{
+					this.OnHeSoLuongSPChanging(value);
+					this.SendPropertyChanging();
+					this._HeSoLuongSP = value;
+					this.SendPropertyChanged("HeSoLuongSP");
+					this.OnHeSoLuongSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HSBHCongThem", DbType="Real")]
+		public System.Nullable<float> HSBHCongThem
+		{
+			get
+			{
+				return this._HSBHCongThem;
+			}
+			set
+			{
+				if ((this._HSBHCongThem != value))
+				{
+					this.OnHSBHCongThemChanging(value);
+					this.SendPropertyChanging();
+					this._HSBHCongThem = value;
+					this.SendPropertyChanged("HSBHCongThem");
+					this.OnHSBHCongThemChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
