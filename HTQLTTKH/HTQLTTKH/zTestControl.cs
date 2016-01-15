@@ -39,13 +39,18 @@ namespace HTQLTTKH {
 								select	phanQuyen.IDD).Contains((int)user.UserIDD)
 								&& listDeptOfEachUser != null
 						select new {
-							user.UserFullCode, user.UserFullName, UserEnrollNumber=user.UserEnrollNumber,
+							user.UserFullCode, user.UserFullName, UserEnrollNumber=user.UserEnrollNumber, user.UserLastName,
 							UserIDDepartment = user.UserIDD, DepartmentDescription = listDeptOfEachUser.Description,
 							ScheduleID = user.SchID, ScheduleName = listScheOfEachUser.SchName
 						};
 
-			popupContainerEdit1.DataBindings.Add("EditValue", kq.ToList(), "UserEnrollNumber");
+			//popupContainerEdit1.DataBindings.Add("EditValue", kq.ToList(), "UserFullName");
+			//popupContainerEdit1.DataBindings.Add("EditValue", kq.ToList(), "User");
 			gridControl1.DataSource = kq;
+		}
+
+		void temp_Parse(object sender, ConvertEventArgs e) {
+			throw new NotImplementedException();
 		}
 
 		private void buttonProcess_Click(object sender, EventArgs e)
@@ -64,14 +69,13 @@ namespace HTQLTTKH {
 		private void popupContainerEdit1_Properties_QueryResultValue(object sender, DevExpress.XtraEditors.Controls.QueryResultValueEventArgs e)
 		{
 			int[] selectedRow_s = gridView1.GetSelectedRows();
-			List<ExpandoObject> selectedObject_s = new List<ExpandoObject>();
-			foreach (int rowHandleIndex in selectedRow_s)
-			{
-				var selectedObj = (ExpandoObject)gridView1.GetRow(rowHandleIndex);
-				//ExpandoObject eo = new ExpandoObject();	
-				selectedObject_s.Add(selectedObj);
-			}
-			e.Value = selectedObject_s;
+			List<dynamic> selectedObject_s = selectedRow_s.Select(rowHandleIndex => gridView1.GetRow(rowHandleIndex)).Cast<dynamic>().ToList();
+			string templateString = " {0} [{1}]";
+			List<string> tempList = selectedObject_s.Select(@object => String.Format(templateString, @object.UserLastName, @object.UserEnrollNumber)).Cast<string>().ToList();
+
+			string selectedObjectString_s = string.Join(";", tempList);
+			//List<string> selectedObjectString_s = selectedObject_s.Aggregate(string.Empty, (current, item) => current +=)
+			e.Value = selectedObjectString_s;
 		}
 
 		private void popupContainerEdit1_Properties_QueryCloseUp(object sender, CancelEventArgs e)
@@ -84,12 +88,45 @@ namespace HTQLTTKH {
 			richTextBox1.Text += "\npopupContainerEdit1_EditValueChanged";
 			//string temp = ((List<dynamic>) popupContainerEdit1.EditValue).Aggregate(string.Empty, (current, item) => current += item.UserFullName);
 			//richTextBox1.Text += string.Format("\n{0}", temp);
-			
+			//popupContainerEdit1.Text = temp;
+		}
+
+		private void popupContainerEdit1_Properties_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e) {
+
+		}
+
+		private void popupContainerEdit1_Properties_QueryPopUp(object sender, CancelEventArgs e)
+		{
+			var editValue = popupContainerEdit1.EditValue;
+			if (editValue == null)
+			{
+				gridView1.ClearSelection();
+			}
+			else if (editValue.ToString() == string.Empty)
+			{
+				richTextBox1.Text += "None Item Selected";}
+			else if (editValue.ToString() != string.Empty) {
+				string[] selectedValue = editValue.ToString().Split(';');
+				List<int> userEnrollNumber_s = (from s in selectedValue
+												let a = s.LastIndexOf('[') + 1
+												let b = s.LastIndexOf(']') - 1
+												select s.Substring(a, b - a) into c
+												select int.Parse(c)).ToList();
+				//string[] selectedValue = editValue.ToString().Split(';');
+				/*
+								string s = "Phong [4698]";
+								//selectedValue[0].Substring();
+								int a = s.LastIndexOf('[') + 1;
+								int b = s.LastIndexOf(']') - 1;
+								string c = s.Substring(a, b - a);
+								Console.WriteLine(string.Format("{0} {1} {2} {3}"), a, b, (b - a), c);
+								Console.WriteLine("");
+				*/
+
+			}
 		}
 	}
-}
-
-//-- =============================================
+}//-- =============================================
 //-- Author:		Name
 //-- Create date: 
 //-- Description:	

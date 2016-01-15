@@ -64,8 +64,8 @@
 			// 
 			// checkedComboBoxEdit1
 			// 
-			this.checkedComboBoxEdit1.Location = new System.Drawing.Point(47, 62);
-			this.checkedComboBoxEdit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.checkedComboBoxEdit1.Location = new System.Drawing.Point(35, 50);
+			this.checkedComboBoxEdit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
 			this.checkedComboBoxEdit1.Properties.AllowMultiSelect = true;
 			this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -75,24 +75,24 @@
 			this.checkedComboBoxEdit1.Properties.EditValueType = DevExpress.XtraEditors.Repository.EditValueTypeCollection.List;
 			this.checkedComboBoxEdit1.Properties.IncrementalSearch = true;
 			this.checkedComboBoxEdit1.Properties.ValueMember = "ID";
-			this.checkedComboBoxEdit1.Size = new System.Drawing.Size(341, 22);
+			this.checkedComboBoxEdit1.Size = new System.Drawing.Size(256, 20);
 			this.checkedComboBoxEdit1.TabIndex = 0;
 			// 
 			// richTextBox1
 			// 
-			this.richTextBox1.Location = new System.Drawing.Point(63, 252);
-			this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.richTextBox1.Location = new System.Drawing.Point(47, 205);
+			this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(517, 253);
+			this.richTextBox1.Size = new System.Drawing.Size(389, 206);
 			this.richTextBox1.TabIndex = 1;
 			this.richTextBox1.Text = "";
 			// 
 			// buttonInit
 			// 
-			this.buttonInit.Location = new System.Drawing.Point(47, 114);
-			this.buttonInit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.buttonInit.Location = new System.Drawing.Point(35, 93);
+			this.buttonInit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.buttonInit.Name = "buttonInit";
-			this.buttonInit.Size = new System.Drawing.Size(75, 23);
+			this.buttonInit.Size = new System.Drawing.Size(56, 19);
 			this.buttonInit.TabIndex = 2;
 			this.buttonInit.Text = "Init";
 			this.buttonInit.UseVisualStyleBackColor = true;
@@ -100,10 +100,10 @@
 			// 
 			// buttonProcess
 			// 
-			this.buttonProcess.Location = new System.Drawing.Point(128, 114);
-			this.buttonProcess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.buttonProcess.Location = new System.Drawing.Point(96, 93);
+			this.buttonProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.buttonProcess.Name = "buttonProcess";
-			this.buttonProcess.Size = new System.Drawing.Size(75, 23);
+			this.buttonProcess.Size = new System.Drawing.Size(56, 19);
 			this.buttonProcess.TabIndex = 2;
 			this.buttonProcess.Text = "Process";
 			this.buttonProcess.UseVisualStyleBackColor = true;
@@ -112,8 +112,8 @@
 			// timeEdit1
 			// 
 			this.timeEdit1.EditValue = new System.DateTime(2016, 1, 10, 0, 0, 0, 0);
-			this.timeEdit1.Location = new System.Drawing.Point(401, 91);
-			this.timeEdit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.timeEdit1.Location = new System.Drawing.Point(301, 74);
+			this.timeEdit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.timeEdit1.Name = "timeEdit1";
 			this.timeEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -122,30 +122,29 @@
 			this.timeEdit1.Properties.EditFormat.FormatString = "%h:mm dddd dd/MM/yyyy";
 			this.timeEdit1.Properties.Mask.EditMask = "H:mm dd/MM/yyyy";
 			this.timeEdit1.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
-			this.timeEdit1.Size = new System.Drawing.Size(271, 22);
+			this.timeEdit1.Size = new System.Drawing.Size(203, 20);
 			this.timeEdit1.TabIndex = 3;
 			// 
 			// simpleButton1
 			// 
-			this.simpleButton1.Location = new System.Drawing.Point(407, 140);
-			this.simpleButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.simpleButton1.Location = new System.Drawing.Point(305, 114);
+			this.simpleButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.simpleButton1.Name = "simpleButton1";
-			this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+			this.simpleButton1.Size = new System.Drawing.Size(56, 19);
 			this.simpleButton1.TabIndex = 4;
 			this.simpleButton1.Text = "simpleButton1";
 			this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
 			// 
 			// gridLookUpEdit1
 			// 
-			this.gridLookUpEdit1.Location = new System.Drawing.Point(603, 39);
-			this.gridLookUpEdit1.Margin = new System.Windows.Forms.Padding(4);
+			this.gridLookUpEdit1.Location = new System.Drawing.Point(452, 32);
 			this.gridLookUpEdit1.Name = "gridLookUpEdit1";
 			this.gridLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.gridLookUpEdit1.Properties.DisplayMember = "UserFullName";
 			this.gridLookUpEdit1.Properties.ValueMember = "UserEnrollNumber";
 			this.gridLookUpEdit1.Properties.View = this.gridLookUpEdit1View;
-			this.gridLookUpEdit1.Size = new System.Drawing.Size(357, 22);
+			this.gridLookUpEdit1.Size = new System.Drawing.Size(268, 20);
 			this.gridLookUpEdit1.TabIndex = 5;
 			// 
 			// gridLookUpEdit1View
@@ -163,8 +162,8 @@
 			// dateEdit1
 			// 
 			this.dateEdit1.EditValue = new System.DateTime(2016, 1, 12, 0, 0, 0, 0);
-			this.dateEdit1.Location = new System.Drawing.Point(233, 186);
-			this.dateEdit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.dateEdit1.Location = new System.Drawing.Point(175, 151);
+			this.dateEdit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.dateEdit1.Name = "dateEdit1";
 			this.dateEdit1.Properties.Appearance.Options.UseFont = true;
 			this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -180,7 +179,7 @@
 			this.dateEdit1.Properties.MaxValue = new System.DateTime(2050, 1, 1, 0, 0, 0, 0);
 			this.dateEdit1.Properties.MinValue = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
 			this.dateEdit1.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-			this.dateEdit1.Size = new System.Drawing.Size(189, 22);
+			this.dateEdit1.Size = new System.Drawing.Size(142, 20);
 			this.dateEdit1.TabIndex = 6;
 			// 
 			// gridControl1
@@ -188,12 +187,12 @@
 			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControl1.DataSource = this.v5UserInfoDocDSNVThaoTacResultBindingSource;
 			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.gridControl1.Location = new System.Drawing.Point(0, 0);
 			this.gridControl1.MainView = this.gridView1;
-			this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.gridControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.Size = new System.Drawing.Size(439, 238);
+			this.gridControl1.Size = new System.Drawing.Size(431, 372);
 			this.gridControl1.TabIndex = 7;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -214,12 +213,19 @@
             this.colScheduleID,
             this.colScheduleName});
 			this.gridView1.GridControl = this.gridControl1;
+			this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserEnrollNumber", this.colDepartmentDescription, "TổngNV={0}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserEnrollNumber", this.colScheduleName, "Tổng NVS{0}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", null, "")});
 			this.gridView1.Name = "gridView1";
 			this.gridView1.OptionsFind.AlwaysVisible = true;
-			this.gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 20;
+			this.gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
 			this.gridView1.OptionsSelection.MultiSelect = true;
 			this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+			this.gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+			this.gridView1.OptionsSelection.ShowCheckBoxSelectorInGroupRow = DevExpress.Utils.DefaultBoolean.True;
 			this.gridView1.OptionsView.ColumnAutoWidth = false;
+			this.gridView1.OptionsView.ShowFooter = true;
 			// 
 			// colUserFullCode
 			// 
@@ -234,7 +240,7 @@
 			this.colUserFullName.FieldName = "UserFullName";
 			this.colUserFullName.Name = "colUserFullName";
 			this.colUserFullName.Visible = true;
-			this.colUserFullName.VisibleIndex = 2;
+			this.colUserFullName.VisibleIndex = 3;
 			this.colUserFullName.Width = 107;
 			// 
 			// colUserEnrollNumber
@@ -242,7 +248,7 @@
 			this.colUserEnrollNumber.FieldName = "UserEnrollNumber";
 			this.colUserEnrollNumber.Name = "colUserEnrollNumber";
 			this.colUserEnrollNumber.Visible = true;
-			this.colUserEnrollNumber.VisibleIndex = 3;
+			this.colUserEnrollNumber.VisibleIndex = 2;
 			this.colUserEnrollNumber.Width = 131;
 			// 
 			// colUserLastName
@@ -257,6 +263,8 @@
 			// 
 			this.colUserIDDepartment.FieldName = "UserIDDepartment";
 			this.colUserIDDepartment.Name = "colUserIDDepartment";
+			this.colUserIDDepartment.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserIDDepartment", "{0}")});
 			this.colUserIDDepartment.Visible = true;
 			this.colUserIDDepartment.VisibleIndex = 5;
 			this.colUserIDDepartment.Width = 133;
@@ -288,16 +296,16 @@
 			// popupContainerControl1
 			// 
 			this.popupContainerControl1.Controls.Add(this.gridControl1);
-			this.popupContainerControl1.Location = new System.Drawing.Point(587, 241);
-			this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.popupContainerControl1.Location = new System.Drawing.Point(440, 196);
+			this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.popupContainerControl1.Name = "popupContainerControl1";
-			this.popupContainerControl1.Size = new System.Drawing.Size(439, 238);
+			this.popupContainerControl1.Size = new System.Drawing.Size(431, 372);
 			this.popupContainerControl1.TabIndex = 8;
 			// 
 			// popupContainerEdit1
 			// 
-			this.popupContainerEdit1.Location = new System.Drawing.Point(587, 213);
-			this.popupContainerEdit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.popupContainerEdit1.Location = new System.Drawing.Point(440, 173);
+			this.popupContainerEdit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.popupContainerEdit1.Name = "popupContainerEdit1";
 			this.popupContainerEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -305,7 +313,9 @@
 			this.popupContainerEdit1.Properties.ShowPopupCloseButton = false;
 			this.popupContainerEdit1.Properties.QueryResultValue += new DevExpress.XtraEditors.Controls.QueryResultValueEventHandler(this.popupContainerEdit1_Properties_QueryResultValue);
 			this.popupContainerEdit1.Properties.QueryCloseUp += new System.ComponentModel.CancelEventHandler(this.popupContainerEdit1_Properties_QueryCloseUp);
-			this.popupContainerEdit1.Size = new System.Drawing.Size(439, 22);
+			this.popupContainerEdit1.Properties.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.popupContainerEdit1_Properties_QueryPopUp);
+			this.popupContainerEdit1.Properties.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.popupContainerEdit1_Properties_CustomDisplayText);
+			this.popupContainerEdit1.Size = new System.Drawing.Size(329, 20);
 			this.popupContainerEdit1.TabIndex = 9;
 			this.popupContainerEdit1.EditValueChanged += new System.EventHandler(this.popupContainerEdit1_EditValueChanged);
 			// 
@@ -315,9 +325,9 @@
 			// 
 			// zTestControl
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1052, 593);
+			this.ClientSize = new System.Drawing.Size(950, 592);
 			this.Controls.Add(this.popupContainerEdit1);
 			this.Controls.Add(this.popupContainerControl1);
 			this.Controls.Add(this.dateEdit1);
@@ -328,7 +338,7 @@
 			this.Controls.Add(this.buttonInit);
 			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.checkedComboBoxEdit1);
-			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "zTestControl";
 			this.Text = "zTestControl";
 			((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();

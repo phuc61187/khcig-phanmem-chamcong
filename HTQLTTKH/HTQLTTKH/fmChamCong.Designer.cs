@@ -24,6 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
+			DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
 			this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +43,8 @@
 			this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
 			this.popupContainerEdit1 = new DevExpress.XtraEditors.PopupContainerEdit();
 			this.simpleButtonInitData = new DevExpress.XtraEditors.SimpleButton();
-			this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colUserLastName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.simpleButtonChamCong = new DevExpress.XtraEditors.SimpleButton();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
@@ -70,6 +72,7 @@
 			this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEdit1.Properties.EditFormat.FormatString = "d/M/yyyy";
 			this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEdit1.Properties.Mask.BeepOnError = true;
 			this.dateEdit1.Properties.Mask.EditMask = "d/M/yyyy";
 			this.dateEdit1.Properties.MaxValue = new System.DateTime(2050, 1, 1, 0, 0, 0, 0);
 			this.dateEdit1.Properties.MinValue = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
@@ -131,10 +134,13 @@
 			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControl1.DataSource = this.bindingSource1;
 			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			gridLevelNode2.RelationName = "Level1";
+			this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode2});
 			this.gridControl1.Location = new System.Drawing.Point(0, 0);
 			this.gridControl1.MainView = this.gridView1;
 			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.Size = new System.Drawing.Size(449, 254);
+			this.gridControl1.Size = new System.Drawing.Size(564, 334);
 			this.gridControl1.TabIndex = 3;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -146,17 +152,18 @@
 			// gridView1
 			// 
 			this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colUserEnrollNumber,
+            this.colUserLastName,
             this.colUserFullCode,
             this.colUserFullName,
-            this.colUserIDDepartment,
             this.colDepartmentDescription,
-            this.colScheduleID,
             this.colScheduleName,
-            this.gridColumn1});
+            this.colUserEnrollNumber,
+            this.colUserIDDepartment,
+            this.colScheduleID});
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserFullName", this.colUserFullName, "")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserEnrollNumber", this.colDepartmentDescription, "Tổng NV={0}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserEnrollNumber", this.colScheduleName, "Tổng NV={0}")});
 			this.gridView1.Name = "gridView1";
 			this.gridView1.OptionsBehavior.Editable = false;
 			this.gridView1.OptionsFilter.AllowFilterEditor = false;
@@ -180,7 +187,7 @@
 			this.colUserFullCode.FieldName = "UserFullCode";
 			this.colUserFullCode.Name = "colUserFullCode";
 			this.colUserFullCode.Visible = true;
-			this.colUserFullCode.VisibleIndex = 1;
+			this.colUserFullCode.VisibleIndex = 2;
 			// 
 			// colUserFullName
 			// 
@@ -188,7 +195,7 @@
 			this.colUserFullName.FieldName = "UserFullName";
 			this.colUserFullName.Name = "colUserFullName";
 			this.colUserFullName.Visible = true;
-			this.colUserFullName.VisibleIndex = 2;
+			this.colUserFullName.VisibleIndex = 3;
 			// 
 			// colUserIDDepartment
 			// 
@@ -202,7 +209,7 @@
 			this.colDepartmentDescription.FieldName = "DepartmentDescription";
 			this.colDepartmentDescription.Name = "colDepartmentDescription";
 			this.colDepartmentDescription.Visible = true;
-			this.colDepartmentDescription.VisibleIndex = 3;
+			this.colDepartmentDescription.VisibleIndex = 4;
 			// 
 			// colScheduleID
 			// 
@@ -216,14 +223,14 @@
 			this.colScheduleName.FieldName = "ScheduleName";
 			this.colScheduleName.Name = "colScheduleName";
 			this.colScheduleName.Visible = true;
-			this.colScheduleName.VisibleIndex = 4;
+			this.colScheduleName.VisibleIndex = 5;
 			// 
 			// popupContainerControl1
 			// 
 			this.popupContainerControl1.Controls.Add(this.gridControl1);
-			this.popupContainerControl1.Location = new System.Drawing.Point(209, 112);
+			this.popupContainerControl1.Location = new System.Drawing.Point(958, 484);
 			this.popupContainerControl1.Name = "popupContainerControl1";
-			this.popupContainerControl1.Size = new System.Drawing.Size(449, 254);
+			this.popupContainerControl1.Size = new System.Drawing.Size(564, 334);
 			this.popupContainerControl1.TabIndex = 4;
 			// 
 			// popupContainerEdit1
@@ -232,23 +239,40 @@
 			this.popupContainerEdit1.Name = "popupContainerEdit1";
 			this.popupContainerEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.popupContainerEdit1.Properties.CloseOnLostFocus = false;
+			this.popupContainerEdit1.Properties.CloseOnOuterMouseClick = false;
+			this.popupContainerEdit1.Properties.HideSelection = false;
 			this.popupContainerEdit1.Properties.PopupControl = this.popupContainerControl1;
 			this.popupContainerEdit1.Size = new System.Drawing.Size(376, 20);
 			this.popupContainerEdit1.TabIndex = 5;
 			// 
 			// simpleButtonInitData
 			// 
-			this.simpleButtonInitData.Location = new System.Drawing.Point(92, 140);
+			this.simpleButtonInitData.Location = new System.Drawing.Point(506, 44);
 			this.simpleButtonInitData.Name = "simpleButtonInitData";
 			this.simpleButtonInitData.Size = new System.Drawing.Size(75, 23);
 			this.simpleButtonInitData.TabIndex = 6;
 			this.simpleButtonInitData.Text = "Init Data";
 			this.simpleButtonInitData.Click += new System.EventHandler(this.simpleButtonInitData_Click);
 			// 
-			// gridColumn1
+			// colUserLastName
 			// 
-			this.gridColumn1.Caption = "gridColumn1";
-			this.gridColumn1.Name = "gridColumn1";
+			this.colUserLastName.Caption = "Tên NV";
+			this.colUserLastName.FieldName = "UserLastName";
+			this.colUserLastName.Name = "colUserLastName";
+			this.colUserLastName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserEnrollNumber", "Tổng={0}")});
+			this.colUserLastName.Visible = true;
+			this.colUserLastName.VisibleIndex = 1;
+			// 
+			// simpleButtonChamCong
+			// 
+			this.simpleButtonChamCong.Location = new System.Drawing.Point(506, 73);
+			this.simpleButtonChamCong.Name = "simpleButtonChamCong";
+			this.simpleButtonChamCong.Size = new System.Drawing.Size(75, 23);
+			this.simpleButtonChamCong.TabIndex = 6;
+			this.simpleButtonChamCong.Text = "Init Data";
+			this.simpleButtonChamCong.Click += new System.EventHandler(this.simpleButtonChamCong_Click);
 			// 
 			// fmChamCong
 			// 
@@ -256,6 +280,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.ClientSize = new System.Drawing.Size(1000, 574);
+			this.Controls.Add(this.simpleButtonChamCong);
 			this.Controls.Add(this.simpleButtonInitData);
 			this.Controls.Add(this.popupContainerEdit1);
 			this.Controls.Add(this.popupContainerControl1);
@@ -303,6 +328,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colScheduleID;
 		private DevExpress.XtraGrid.Columns.GridColumn colScheduleName;
 		private DevExpress.XtraEditors.SimpleButton simpleButtonInitData;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+		private DevExpress.XtraGrid.Columns.GridColumn colUserLastName;
+		private DevExpress.XtraEditors.SimpleButton simpleButtonChamCong;
 	}
 }

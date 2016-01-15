@@ -50,7 +50,7 @@ namespace HTQLTTKH.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DatabaseUserLogin {
+        public string UserLoginDatabase {
             get {
                 return ((string)(this["UserLoginDatabase"]));
             }
@@ -68,6 +68,28 @@ namespace HTQLTTKH.Properties {
             }
             set {
                 this["UserLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime g1_NgayBD {
+            get {
+                return ((global::System.DateTime)(this["g1_NgayBD"]));
+            }
+            set {
+                this["g1_NgayBD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime g1_NgayKT {
+            get {
+                return ((global::System.DateTime)(this["g1_NgayKT"]));
+            }
+            set {
+                this["g1_NgayKT"] = value;
             }
         }
     }
