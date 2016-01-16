@@ -50,7 +50,7 @@ namespace HTQLTTKH {
 		}
 
 		void temp_Parse(object sender, ConvertEventArgs e) {
-			throw new NotImplementedException();
+			
 		}
 
 		private void buttonProcess_Click(object sender, EventArgs e)
