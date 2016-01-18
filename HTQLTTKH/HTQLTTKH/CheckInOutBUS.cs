@@ -10,8 +10,8 @@ namespace HTQLTTKH {
 		internal void ChamCong(DateTime ngayBD, DateTime ngayKT, List<int> selectedUEN_s) {
 			var startSearchTime=ngayBD;
 			var endSearchTime=ngayKT;
-			WEDatabaseDataContext db=new WEDatabaseDataContext(GV.cs);
-			List<CheckInOut> AllCheck= //db.CheckInOuts.Where(item => (item.TimeStr > startSearchTime && item.TimeStr < endSearchTime));
+			var db=new WEDatabaseDataContext(GV.cs);
+			var AllCheck= //db.CheckInOuts.Where(item => (item.TimeStr > startSearchTime && item.TimeStr < endSearchTime));
 				new List<CheckInOut>();
 			var listCheck=from check in db.CheckInOuts
 						  //join	uen in selectedUEN_s on check.UserEnrollNumber equals uen into group1
@@ -21,7 +21,7 @@ namespace HTQLTTKH {
 						  orderby check.UserEnrollNumber, check.TimeStr
 						  select check;
 			var listCheckNotUsed = new List<CheckInOut>();
-			int i = 0;
+			var i = 0;
 			while (i+1 <listCheck.Count())
 			{
 				var before = listCheck.ElementAt(i);
@@ -39,15 +39,19 @@ namespace HTQLTTKH {
 			foreach (var subGroup in groupCheckByUEN)
 			{
 				var list = new List<CheckInCheckOut>();
-				this.Pair(subGroup.Key.Value, subGroup.GetEnumerator(), out list);
+				this.Pair(subGroup.Key.Value, subGroup.ToList(), out list);
 			}
 			//this.Pair()
 
 
 		}
 
-		private void Pair(int p, IEnumerator<CheckInOut> enumerator, out List<CheckInCheckOut> Result) {
-			
+		private void Pair(int UEN, List<CheckInOut> ListCheckInOut_OfUEN, out List<CheckInCheckOut> Result) {
+			Result = new List<CheckInCheckOut>();
+			foreach (var check in ListCheckInOut_OfUEN)
+			{
+				
+			}
 		}
 	}
 }

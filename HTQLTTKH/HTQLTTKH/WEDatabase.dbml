@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WiseEyeV5Express" Class="WEDatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=WiseEyeV5Express;Integrated Security=True" SettingsObjectName="HTQLTTKH.Properties.Settings" SettingsPropertyName="WiseEyeV5ExpressConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\Projects;Initial Catalog=WiseEyeV5Express;Integrated Security=True;Connect Timeout=30" SettingsObjectName="HTQLTTKH.Properties.Settings" SettingsPropertyName="WiseEyeV5ExpressConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Absent" Member="Absents">
     <Type Name="Absent">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
@@ -506,6 +506,19 @@
       <Column Name="DaChamCong" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Loai" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="IsWatched5" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CheckInCheckOut" Member="CheckInCheckOuts">
+    <Type Name="CheckInCheckOut">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CheckInTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CheckOutTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MachineNoIn" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="MachineNoOut" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="UserEnrollNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartWorkingTime" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="EndWorkingTime" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="ShiftID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.NewUserAccount_XoaTaiKhoanV6" Method="NewUserAccount_XoaTaiKhoanV6">

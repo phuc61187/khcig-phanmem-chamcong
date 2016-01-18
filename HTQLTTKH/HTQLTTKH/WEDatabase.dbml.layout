@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 22, 25.125" name="WEDatabase">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 27.875, 25.125" name="WEDatabase">
   <DataContextMoniker Name="/WEDatabaseDataContext" />
   <nestedChildShapes>
     <classShape Id="b5ef4ec8-2e79-4985-a280-b1c5e0513070" absoluteBounds="0.75, 0.75, 2, 2.7324039713541666">
@@ -204,6 +204,12 @@
       <DataClassMoniker Name="/WEDatabaseDataContext/CheckInOut" />
       <nestedChildShapes>
         <elementListCompartment Id="5fb160fd-ac49-48fe-9aad-a7ede847c061" absoluteBounds="4.515, 2.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c5f642fe-cf52-44fe-8a37-406704627157" absoluteBounds="25.625, 6.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/WEDatabaseDataContext/CheckInCheckOut" />
+      <nestedChildShapes>
+        <elementListCompartment Id="96f7ed8d-b019-43c7-b4ce-8d0a35517863" absoluteBounds="25.64, 6.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
