@@ -13,7 +13,7 @@ namespace HTQLTTKH {
 		static void Main() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new fmChamCong());
+			Application.Run(new zTestControl());
 		}
 	}
 }

@@ -291,6 +291,7 @@ namespace ChamCong_v04.Helper {
 		public float pc160_17;
 		public float pc200_18;
 		public float pc290_19;
+		public float pcKhac;
 		public float tongcong20;
 		public float tongpc21;
 		public double luongcb22;

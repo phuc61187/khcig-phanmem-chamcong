@@ -94,14 +94,6 @@ namespace HTQLTTKH
 			}
 		}
 		
-		public System.Data.Linq.Table<CheckInOut> CheckInOuts
-		{
-			get
-			{
-				return this.GetTable<CheckInOut>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DeptPrivilege> DeptPrivileges
 		{
 			get
@@ -358,6 +350,14 @@ namespace HTQLTTKH
 			}
 		}
 		
+		public System.Data.Linq.Table<CheckInOut> CheckInOuts
+		{
+			get
+			{
+				return this.GetTable<CheckInOut>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.NewUserAccount_XoaTaiKhoanV6")]
 		public int NewUserAccount_XoaTaiKhoanV6([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID)
 		{
@@ -557,267 +557,6 @@ namespace HTQLTTKH
 				if ((this._UserID != value))
 				{
 					this._UserID = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CheckInOut")]
-	public partial class CheckInOut
-	{
-		
-		private System.Nullable<int> _UserEnrollNumber;
-		
-		private System.Nullable<System.DateTime> _TimeDate;
-		
-		private System.Nullable<System.DateTime> _TimeStr;
-		
-		private string _OriginType;
-		
-		private string _NewType;
-		
-		private string _Source;
-		
-		private System.Nullable<int> _MachineNo;
-		
-		private System.Nullable<int> _WorkCode;
-		
-		private System.Nullable<int> _IDXacNhanCaVaLamThem;
-		
-		private System.Nullable<bool> _Loai;
-		
-		private System.Nullable<bool> _Them;
-		
-		private System.Nullable<int> _IDGioGoc;
-		
-		private System.Nullable<bool> _Xoa;
-		
-		private System.Nullable<int> _IDXNCa_LamThem;
-		
-		public CheckInOut()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnrollNumber", DbType="Int")]
-		public System.Nullable<int> UserEnrollNumber
-		{
-			get
-			{
-				return this._UserEnrollNumber;
-			}
-			set
-			{
-				if ((this._UserEnrollNumber != value))
-				{
-					this._UserEnrollNumber = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeDate", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> TimeDate
-		{
-			get
-			{
-				return this._TimeDate;
-			}
-			set
-			{
-				if ((this._TimeDate != value))
-				{
-					this._TimeDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStr", DbType="DateTime")]
-		public System.Nullable<System.DateTime> TimeStr
-		{
-			get
-			{
-				return this._TimeStr;
-			}
-			set
-			{
-				if ((this._TimeStr != value))
-				{
-					this._TimeStr = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OriginType", DbType="NVarChar(10)")]
-		public string OriginType
-		{
-			get
-			{
-				return this._OriginType;
-			}
-			set
-			{
-				if ((this._OriginType != value))
-				{
-					this._OriginType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NewType", DbType="NVarChar(10)")]
-		public string NewType
-		{
-			get
-			{
-				return this._NewType;
-			}
-			set
-			{
-				if ((this._NewType != value))
-				{
-					this._NewType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="NVarChar(10)")]
-		public string Source
-		{
-			get
-			{
-				return this._Source;
-			}
-			set
-			{
-				if ((this._Source != value))
-				{
-					this._Source = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MachineNo", DbType="Int")]
-		public System.Nullable<int> MachineNo
-		{
-			get
-			{
-				return this._MachineNo;
-			}
-			set
-			{
-				if ((this._MachineNo != value))
-				{
-					this._MachineNo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkCode", DbType="Int")]
-		public System.Nullable<int> WorkCode
-		{
-			get
-			{
-				return this._WorkCode;
-			}
-			set
-			{
-				if ((this._WorkCode != value))
-				{
-					this._WorkCode = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDXacNhanCaVaLamThem", DbType="Int")]
-		public System.Nullable<int> IDXacNhanCaVaLamThem
-		{
-			get
-			{
-				return this._IDXacNhanCaVaLamThem;
-			}
-			set
-			{
-				if ((this._IDXacNhanCaVaLamThem != value))
-				{
-					this._IDXacNhanCaVaLamThem = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Loai", DbType="Bit")]
-		public System.Nullable<bool> Loai
-		{
-			get
-			{
-				return this._Loai;
-			}
-			set
-			{
-				if ((this._Loai != value))
-				{
-					this._Loai = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Them", DbType="Bit")]
-		public System.Nullable<bool> Them
-		{
-			get
-			{
-				return this._Them;
-			}
-			set
-			{
-				if ((this._Them != value))
-				{
-					this._Them = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDGioGoc", DbType="Int")]
-		public System.Nullable<int> IDGioGoc
-		{
-			get
-			{
-				return this._IDGioGoc;
-			}
-			set
-			{
-				if ((this._IDGioGoc != value))
-				{
-					this._IDGioGoc = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Xoa", DbType="Bit")]
-		public System.Nullable<bool> Xoa
-		{
-			get
-			{
-				return this._Xoa;
-			}
-			set
-			{
-				if ((this._Xoa != value))
-				{
-					this._Xoa = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDXNCa_LamThem", DbType="Int")]
-		public System.Nullable<int> IDXNCa_LamThem
-		{
-			get
-			{
-				return this._IDXNCa_LamThem;
-			}
-			set
-			{
-				if ((this._IDXNCa_LamThem != value))
-				{
-					this._IDXNCa_LamThem = value;
 				}
 			}
 		}
@@ -7598,7 +7337,7 @@ namespace HTQLTTKH
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPhoto", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPhoto", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary UserPhoto
 		{
 			get
@@ -7915,6 +7654,303 @@ namespace HTQLTTKH
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CheckInOut")]
+	public partial class CheckInOut
+	{
+		
+		private System.Nullable<int> _UserEnrollNumber;
+		
+		private System.Nullable<System.DateTime> _TimeDate;
+		
+		private System.Nullable<System.DateTime> _TimeStr;
+		
+		private string _OriginType;
+		
+		private string _NewType;
+		
+		private string _Source;
+		
+		private System.Nullable<int> _MachineNo;
+		
+		private System.Nullable<int> _WorkCode;
+		
+		private System.Nullable<int> _IDXacNhanCaVaLamThem;
+		
+		private System.Nullable<bool> _Them;
+		
+		private System.Nullable<int> _IDGioGoc;
+		
+		private System.Nullable<bool> _Xoa;
+		
+		private System.Nullable<int> _IDXNCa_LamThem;
+		
+		private bool _DaChamCong;
+		
+		private bool _Loai;
+		
+		private bool _IsWatched5;
+		
+		public CheckInOut()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEnrollNumber", DbType="Int")]
+		public System.Nullable<int> UserEnrollNumber
+		{
+			get
+			{
+				return this._UserEnrollNumber;
+			}
+			set
+			{
+				if ((this._UserEnrollNumber != value))
+				{
+					this._UserEnrollNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeDate", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> TimeDate
+		{
+			get
+			{
+				return this._TimeDate;
+			}
+			set
+			{
+				if ((this._TimeDate != value))
+				{
+					this._TimeDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStr", DbType="DateTime")]
+		public System.Nullable<System.DateTime> TimeStr
+		{
+			get
+			{
+				return this._TimeStr;
+			}
+			set
+			{
+				if ((this._TimeStr != value))
+				{
+					this._TimeStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OriginType", DbType="NVarChar(10)")]
+		public string OriginType
+		{
+			get
+			{
+				return this._OriginType;
+			}
+			set
+			{
+				if ((this._OriginType != value))
+				{
+					this._OriginType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NewType", DbType="NVarChar(10)")]
+		public string NewType
+		{
+			get
+			{
+				return this._NewType;
+			}
+			set
+			{
+				if ((this._NewType != value))
+				{
+					this._NewType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="NVarChar(10)")]
+		public string Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this._Source = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MachineNo", DbType="Int")]
+		public System.Nullable<int> MachineNo
+		{
+			get
+			{
+				return this._MachineNo;
+			}
+			set
+			{
+				if ((this._MachineNo != value))
+				{
+					this._MachineNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkCode", DbType="Int")]
+		public System.Nullable<int> WorkCode
+		{
+			get
+			{
+				return this._WorkCode;
+			}
+			set
+			{
+				if ((this._WorkCode != value))
+				{
+					this._WorkCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDXacNhanCaVaLamThem", DbType="Int")]
+		public System.Nullable<int> IDXacNhanCaVaLamThem
+		{
+			get
+			{
+				return this._IDXacNhanCaVaLamThem;
+			}
+			set
+			{
+				if ((this._IDXacNhanCaVaLamThem != value))
+				{
+					this._IDXacNhanCaVaLamThem = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Them", DbType="Bit")]
+		public System.Nullable<bool> Them
+		{
+			get
+			{
+				return this._Them;
+			}
+			set
+			{
+				if ((this._Them != value))
+				{
+					this._Them = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDGioGoc", DbType="Int")]
+		public System.Nullable<int> IDGioGoc
+		{
+			get
+			{
+				return this._IDGioGoc;
+			}
+			set
+			{
+				if ((this._IDGioGoc != value))
+				{
+					this._IDGioGoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Xoa", DbType="Bit")]
+		public System.Nullable<bool> Xoa
+		{
+			get
+			{
+				return this._Xoa;
+			}
+			set
+			{
+				if ((this._Xoa != value))
+				{
+					this._Xoa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDXNCa_LamThem", DbType="Int")]
+		public System.Nullable<int> IDXNCa_LamThem
+		{
+			get
+			{
+				return this._IDXNCa_LamThem;
+			}
+			set
+			{
+				if ((this._IDXNCa_LamThem != value))
+				{
+					this._IDXNCa_LamThem = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaChamCong", DbType="Bit NOT NULL")]
+		public bool DaChamCong
+		{
+			get
+			{
+				return this._DaChamCong;
+			}
+			set
+			{
+				if ((this._DaChamCong != value))
+				{
+					this._DaChamCong = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Loai", DbType="Bit NOT NULL")]
+		public bool Loai
+		{
+			get
+			{
+				return this._Loai;
+			}
+			set
+			{
+				if ((this._Loai != value))
+				{
+					this._Loai = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsWatched5", DbType="Bit NOT NULL")]
+		public bool IsWatched5
+		{
+			get
+			{
+				return this._IsWatched5;
+			}
+			set
+			{
+				if ((this._IsWatched5 != value))
+				{
+					this._IsWatched5 = value;
+				}
 			}
 		}
 	}

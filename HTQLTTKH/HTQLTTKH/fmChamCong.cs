@@ -99,5 +99,9 @@ namespace HTQLTTKH {
 			bus.ChamCong(ngayBD, ngayKT, selectedUEN_s);
 		}
 
+		private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
+
+		}
+
 	}
 }

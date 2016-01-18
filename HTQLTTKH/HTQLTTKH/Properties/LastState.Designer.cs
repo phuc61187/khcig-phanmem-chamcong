@@ -50,12 +50,12 @@ namespace HTQLTTKH.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserLoginDatabase {
+        public string DatabaseUserLogin {
             get {
-                return ((string)(this["UserLoginDatabase"]));
+                return ((string)(this["DatabaseUserLogin"]));
             }
             set {
-                this["UserLoginDatabase"] = value;
+                this["DatabaseUserLogin"] = value;
             }
         }
         

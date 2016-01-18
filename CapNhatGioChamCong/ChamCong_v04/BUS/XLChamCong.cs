@@ -815,6 +815,7 @@ namespace ChamCong_v04.BUS {
 							let mota = row["Holiday"].ToString()
 							select new cLoaiVang { WorkingDay = 1f, MaLV_Code = "L", MoTa = mota, Ngay = ngayle }).ToList();
 
+/*
 			for (int i = 0; i < dsNgayLe.Count; i++) {
 				var ngayLe = dsNgayLe[i];
 				// các trường hợp ko tính 1 công lễ
@@ -823,6 +824,7 @@ namespace ChamCong_v04.BUS {
 					i = i - 1;
 				}
 			}
+*/
 			dsVangs.AddRange(dsNgayLe);
 
 		sort: dsVangs.Sort(new cLoaiVangComparer());

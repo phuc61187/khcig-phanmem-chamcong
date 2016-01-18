@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HTQLTTKH.Helper;
+using HTQLTTKH.Properties;
 
 namespace HTQLTTKH {
 	public partial class zTestControl : Form {
@@ -28,6 +30,9 @@ namespace HTQLTTKH {
 				select user;
 			gridControl1.DataSource = kq;
 */
+GV.cs = (@"Data Source=.\sqlexpress;Initial Catalog=WiseEyeV5Express;Integrated Security=True;");
+test();
+return;
 			var kq =	from	user in db.UserInfos
 								join phong in db.RelationDepts on user.UserIDD equals phong.ID into JG_Phong
 								join lichtrinh in db.Schedules on user.SchID equals lichtrinh.SchID into JG_LichTrinh
@@ -125,6 +130,63 @@ namespace HTQLTTKH {
 
 			}
 		}
+
+
+		private void test()
+		{
+					var startSearchTime = DateTime.Today.Date;
+			var endSearchTime = startSearchTime.Date.AddMonths(1);
+			WEDatabaseDataContext db = new WEDatabaseDataContext(GV.cs);
+			List<CheckInOut> AllCheck = //db.CheckInOuts.Where(item => (item.TimeStr > startSearchTime && item.TimeStr < endSearchTime));
+				new List<CheckInOut>();
+				//db.CheckInOuts.InsertAllOnSubmit();
+				int[] selectedUEN_s = new int[]{1000,2000};
+			List<CheckInOut> listTemp = new List<CheckInOut>();
+			listTemp.Add(new CheckInOut {UserEnrollNumber = 1000, IsWatched5 = false, TimeStr = new DateTime(2016, 1, 19, 7, 30, 0)});
+			listTemp.Add(new CheckInOut {UserEnrollNumber = 1000, IsWatched5 = false, TimeStr = new DateTime(2016, 1, 19, 7, 31, 0)});
+			listTemp.Add(new CheckInOut {UserEnrollNumber = 1000, IsWatched5 = false, TimeStr = new DateTime(2016, 1, 19, 16, 30, 0)});
+			listTemp.Add(new CheckInOut {UserEnrollNumber = 1000, IsWatched5 = false, TimeStr = new DateTime(2016, 1, 19, 16, 31, 0)});
+			//listTemp.Add(new CheckInOut {UserEnrollNumber = 1000, IsWatched5 = false, TimeStr = new DateTime(2016, 1, 1, 7, 30, 0)});
+			//listTemp.Add(new CheckInOut {UserEnrollNumber = 1000, IsWatched5 = false, TimeStr = new DateTime(2016, 1, 1, 7, 30, 0)});
+
+			var groupCheckByUEN_s =	from	check in listTemp
+						//join	uen in selectedUEN_s on check.UserEnrollNumber equals uen into group1
+						where	check.IsWatched5 == false	
+								&&	selectedUEN_s.Contains((int)check.UserEnrollNumber)
+								&&	check.TimeStr > startSearchTime	&&	check.TimeStr < endSearchTime
+						orderby		check.TimeStr
+						group	check	by check.UserEnrollNumber into groupCheckByUEN
+						orderby		groupCheckByUEN.Key
+						select	groupCheckByUEN;
+
+			List<CheckInOut> listCheckNotUsed = new List<CheckInOut>();
+			foreach (var group in groupCheckByUEN_s)
+			{
+				int i = 0;
+				while (i + 1 < group.Count())
+				{
+					var before = group.ElementAt(i);
+					var afterr = group.ElementAt(i + 1);
+					if ((afterr.TimeStr - before.TimeStr) < StaticSetting.Default._10phut)
+					{
+						listCheckNotUsed.Add(afterr);
+					}
+					i++;
+				}					
+			}
+			foreach (var group in groupCheckByUEN_s)
+			{
+				int i = 0;
+				richTextBox1.Text += (string.Format("{0}\n", "Key="+group.Key.Value.ToString()));
+				foreach (var checkInOut in group.Except(listCheckNotUsed))
+				{
+					richTextBox1.Text += (string.Format("{0}\t{1}\n", checkInOut.UserEnrollNumber, checkInOut.TimeStr));
+				}
+			}
+
+
+		}
+
 	}
 }//-- =============================================
 //-- Author:		Name

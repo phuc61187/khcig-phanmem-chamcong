@@ -24,7 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+			DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
 			this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -33,18 +33,19 @@
 			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.colUserEnrollNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colUserLastName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colUserFullCode = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colUserFullName = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colUserIDDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colDepartmentDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colScheduleID = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colScheduleName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colUserEnrollNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colUserIDDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colScheduleID = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
 			this.popupContainerEdit1 = new DevExpress.XtraEditors.PopupContainerEdit();
 			this.simpleButtonInitData = new DevExpress.XtraEditors.SimpleButton();
-			this.colUserLastName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.simpleButtonChamCong = new DevExpress.XtraEditors.SimpleButton();
+			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
@@ -134,9 +135,9 @@
 			this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControl1.DataSource = this.bindingSource1;
 			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			gridLevelNode2.RelationName = "Level1";
+			gridLevelNode1.RelationName = "Level1";
 			this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
 			this.gridControl1.Location = new System.Drawing.Point(0, 0);
 			this.gridControl1.MainView = this.gridView1;
 			this.gridControl1.Name = "gridControl1";
@@ -175,11 +176,15 @@
 			this.gridView1.OptionsView.ColumnAutoWidth = false;
 			this.gridView1.OptionsView.ShowFooter = true;
 			// 
-			// colUserEnrollNumber
+			// colUserLastName
 			// 
-			this.colUserEnrollNumber.Caption = "Mã CC";
-			this.colUserEnrollNumber.FieldName = "UserEnrollNumber";
-			this.colUserEnrollNumber.Name = "colUserEnrollNumber";
+			this.colUserLastName.Caption = "Tên NV";
+			this.colUserLastName.FieldName = "UserLastName";
+			this.colUserLastName.Name = "colUserLastName";
+			this.colUserLastName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserEnrollNumber", "Tổng={0}")});
+			this.colUserLastName.Visible = true;
+			this.colUserLastName.VisibleIndex = 1;
 			// 
 			// colUserFullCode
 			// 
@@ -197,12 +202,6 @@
 			this.colUserFullName.Visible = true;
 			this.colUserFullName.VisibleIndex = 3;
 			// 
-			// colUserIDDepartment
-			// 
-			this.colUserIDDepartment.Caption = "Mã Phòng";
-			this.colUserIDDepartment.FieldName = "UserIDDepartment";
-			this.colUserIDDepartment.Name = "colUserIDDepartment";
-			// 
 			// colDepartmentDescription
 			// 
 			this.colDepartmentDescription.Caption = "Phòng";
@@ -211,12 +210,6 @@
 			this.colDepartmentDescription.Visible = true;
 			this.colDepartmentDescription.VisibleIndex = 4;
 			// 
-			// colScheduleID
-			// 
-			this.colScheduleID.Caption = "Mã lịch trình";
-			this.colScheduleID.FieldName = "ScheduleID";
-			this.colScheduleID.Name = "colScheduleID";
-			// 
 			// colScheduleName
 			// 
 			this.colScheduleName.Caption = "Lịch trình";
@@ -224,6 +217,24 @@
 			this.colScheduleName.Name = "colScheduleName";
 			this.colScheduleName.Visible = true;
 			this.colScheduleName.VisibleIndex = 5;
+			// 
+			// colUserEnrollNumber
+			// 
+			this.colUserEnrollNumber.Caption = "Mã CC";
+			this.colUserEnrollNumber.FieldName = "UserEnrollNumber";
+			this.colUserEnrollNumber.Name = "colUserEnrollNumber";
+			// 
+			// colUserIDDepartment
+			// 
+			this.colUserIDDepartment.Caption = "Mã Phòng";
+			this.colUserIDDepartment.FieldName = "UserIDDepartment";
+			this.colUserIDDepartment.Name = "colUserIDDepartment";
+			// 
+			// colScheduleID
+			// 
+			this.colScheduleID.Caption = "Mã lịch trình";
+			this.colScheduleID.FieldName = "ScheduleID";
+			this.colScheduleID.Name = "colScheduleID";
 			// 
 			// popupContainerControl1
 			// 
@@ -255,16 +266,6 @@
 			this.simpleButtonInitData.Text = "Init Data";
 			this.simpleButtonInitData.Click += new System.EventHandler(this.simpleButtonInitData_Click);
 			// 
-			// colUserLastName
-			// 
-			this.colUserLastName.Caption = "Tên NV";
-			this.colUserLastName.FieldName = "UserLastName";
-			this.colUserLastName.Name = "colUserLastName";
-			this.colUserLastName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "UserEnrollNumber", "Tổng={0}")});
-			this.colUserLastName.Visible = true;
-			this.colUserLastName.VisibleIndex = 1;
-			// 
 			// simpleButtonChamCong
 			// 
 			this.simpleButtonChamCong.Location = new System.Drawing.Point(506, 73);
@@ -273,6 +274,10 @@
 			this.simpleButtonChamCong.TabIndex = 6;
 			this.simpleButtonChamCong.Text = "Init Data";
 			this.simpleButtonChamCong.Click += new System.EventHandler(this.simpleButtonChamCong_Click);
+			// 
+			// backgroundWorker1
+			// 
+			this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
 			// 
 			// fmChamCong
 			// 
@@ -330,5 +335,6 @@
 		private DevExpress.XtraEditors.SimpleButton simpleButtonInitData;
 		private DevExpress.XtraGrid.Columns.GridColumn colUserLastName;
 		private DevExpress.XtraEditors.SimpleButton simpleButtonChamCong;
+		private System.ComponentModel.BackgroundWorker backgroundWorker1;
 	}
 }
