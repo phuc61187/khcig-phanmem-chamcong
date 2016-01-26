@@ -106,10 +106,13 @@ namespace ChamCong_v04.UI.XacNhan {
 				//if (ngay <= XL2.NgayCuoiThangKetCong && XL2.NgayCuoiThangKetCong != DateTime.MinValue) continue;//tbd temp patch// ko thực hiện đối với các ngày trong tháng đã kết công
 				if (loai == -1) {
 					XL.HuyBo_TinhPCDB(nhanvien, ngayCong, nhanvien.DSXNPhuCapDB);
+					//XL.TinhPCNgayVang(ngayCong);
 				}
 				else {
 					XL.TinhPCDB(nhanvien, ngayCong, ngay, loai, pcngay, pcdem, temp);
+					XL.TinhPCNgayVang(ngayCong);
 				}
+
 			}
 			this.Close();
 		}

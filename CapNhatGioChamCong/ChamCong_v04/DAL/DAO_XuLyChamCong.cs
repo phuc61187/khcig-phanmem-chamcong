@@ -76,7 +76,7 @@ namespace ChamCong_v04.DAL {
 		public static DataTable LayTableXPVang(DateTime ngayBD, DateTime ngayKT, int[] ArrDSMaCC_Checked) {
 			var query = @"   SELECT      ID, UserInfo.UserEnrollNumber, UserInfo.UserFullCode, UserInfo.UserFullName
 											, TimeDate, LoaiVang.AbsentCode, LoaiVang.AbsentDescription
-											, Thang, Nam, Absent.Workingday, Absent.WorkingTime 
+											, Thang, Nam, Absent.Workingday, Absent.WorkingTime , Absent.PhuCap
 								FROM        Absent, LoaiVang , UserInfo 
 								WHERE      (Absent.AbsentCode = LoaiVang.AbsentCode)
 										and (UserInfo.UserEnrollNumber = Absent.UserEnrollNumber)
@@ -92,7 +92,7 @@ namespace ChamCong_v04.DAL {
 		public static DataTable LayTableXPVang(DateTime ngayBD, DateTime ngayKT) {
 			var query = @"   SELECT      ID, UserInfo.UserEnrollNumber, UserInfo.UserFullCode, UserInfo.UserFullName
 											, TimeDate, LoaiVang.AbsentCode, LoaiVang.AbsentDescription
-											, Thang, Nam, Absent.Workingday, Absent.WorkingTime 
+											, Thang, Nam, Absent.Workingday, Absent.WorkingTime , Absent.PhuCap
 								FROM        Absent, LoaiVang , UserInfo 
 								WHERE      (Absent.AbsentCode = LoaiVang.AbsentCode)
 										and (UserInfo.UserEnrollNumber = Absent.UserEnrollNumber)
@@ -302,37 +302,48 @@ namespace ChamCong_v04.DAL {
 			return SqlDataAccessHelper.ExecuteQueryString(query, null, null);
 		}
 
-		public static bool ThemNgayVang(IEnumerable<dynamic> list, float workingDay, float workingTime, string absentCode) {
+		public static bool ThemNgayVang(IEnumerable<dynamic> list, float workingDay, float workingTime, float PhuCapVang, string absentCode) {
 			#region query
 			var queryIns = @"	
 IF EXISTS (	SELECT ID FROM Absent 
-			WHERE AbsentCode=@AbsentCode and TimeDate=@TimeDate	and WorkingTime = 4 and WorkingTime = @WorkingTime )
-	UPDATE Absent SET Workingday = @NewWorkingday, WorkingTime = @NewWorkingTime
-	WHERE AbsentCode=@AbsentCode and TimeDate=@TimeDate 
+			WHERE UserEnrollNumber = @UserEnrollNumber and AbsentCode=@AbsentCode and TimeDate=@TimeDate	
+					and WorkingTime = 4 and WorkingTime = @WorkingTime )
+	UPDATE Absent SET	Workingday = Workingday + @Workingday, WorkingTime = WorkingTime + @WorkingTime, 
+						PhuCap = CAST(ISNULL(PhuCap,0) as real) + @PhuCap
+	WHERE UserEnrollNumber = @UserEnrollNumber and AbsentCode=@AbsentCode and TimeDate=@TimeDate 
 			and WorkingTime = 4  and WorkingTime = @WorkingTime 
 ELSE
-		INSERT INTO Absent (UserEnrollNumber,   TimeDate,  AbsentCode, Thang, Nam, Workingday, WorkingTime) 
-		VALUES		  (@UserEnrollNumber,  @TimeDate, @AbsentCode,@Thang,@Nam,@Workingday,@WorkingTime) 
+	INSERT INTO Absent (UserEnrollNumber,   TimeDate,  AbsentCode, Thang, Nam, Workingday, WorkingTime, PhuCap) 
+		VALUES		  (@UserEnrollNumber,  @TimeDate, @AbsentCode,@Thang,@Nam,@Workingday,@WorkingTime,@PhuCap) 
 ";
 			#endregion
 
-			string noidung = "Thêm xin phép vắng [{0}] [{1}] ngày [{2}] cho NV có mã chấm công [{3}]";
+			string noidung = "Thêm xin phép vắng [{0}] [{1}] ngày [{2}], phụ cấp [{3}] cho NV có mã chấm công [{4}] ";
 			//info ghép 2 cái nửa thành 1
 			foreach (dynamic obj in list) {
 				int kq = SqlDataAccessHelper.ExecNoneQueryString(
 					queryIns,
+/*
 					new string[] { "@UserEnrollNumber", "@TimeDate", "@AbsentCode", "@Thang", "@Nam", 
 						"@Workingday", "@WorkingTime", "@NewWorkingday", "@NewWorkingTime",  },
+*/
+					new string[] { "@UserEnrollNumber", "@TimeDate", "@AbsentCode", "@Thang", "@Nam", 
+						"@Workingday", "@WorkingTime", "@PhuCap", },
+/*
 					new object[] { obj.MaCC, obj.NgayVang, absentCode, obj.NgayVang.Month, obj.NgayVang.Year, 
 						workingDay, workingTime, 1f, 8f });
+*/
+					new object[] { obj.MaCC, obj.NgayVang, absentCode, obj.NgayVang.Month, obj.NgayVang.Year, 
+						workingDay, workingTime, PhuCapVang });
 				DAO.GhiNhatKyThaotac("Thêm xin phép vắng", 
-					string.Format(noidung, absentCode, workingDay.ToString("0.0"), ((DateTime)obj.NgayVang).ToString("dd/MM/yyyy"), obj.MaCC), maCC:(int)obj.MaCC);
+					string.Format(noidung, absentCode, workingDay.ToString("0.0"), ((DateTime)obj.NgayVang).ToString("dd/MM/yyyy"), PhuCapVang.ToString("0.0#"), obj.MaCC), maCC:(int)obj.MaCC);
 			}
 
 			return true;
 		}
-		public static bool ThemNgayVang(int MaCC, DateTime ngayVang, float workingDay, float workingTime, string absentCode) {
+		public static bool ThemNgayVang(int MaCC, DateTime ngayVang, float workingDay, float workingTime, float PhuCapVang, string absentCode) {
 			#region query
+/*
 			var queryIns = @"	
 IF EXISTS (	SELECT ID FROM Absent 
 			WHERE UserEnrollNumber = @UserEnrollNumber and AbsentCode=@AbsentCode and TimeDate=@TimeDate	
@@ -344,19 +355,32 @@ ELSE
    INSERT INTO Absent (UserEnrollNumber,   TimeDate,  AbsentCode, Thang, Nam, Workingday, WorkingTime) 
 		VALUES		  (@UserEnrollNumber,  @TimeDate, @AbsentCode,@Thang,@Nam,@Workingday,@WorkingTime) 
 ";
-			#endregion
+*/
+				var queryIns = @"	
+IF EXISTS (	SELECT ID FROM Absent 
+			WHERE UserEnrollNumber = @UserEnrollNumber and AbsentCode=@AbsentCode and TimeDate=@TimeDate	
+					and WorkingTime = 4 and WorkingTime = @WorkingTime )
+	UPDATE Absent SET	Workingday = Workingday + @Workingday, WorkingTime = WorkingTime + @WorkingTime, 
+						PhuCap = CAST(ISNULL(PhuCap,0) as real) + @PhuCap
+	WHERE UserEnrollNumber = @UserEnrollNumber and AbsentCode=@AbsentCode and TimeDate=@TimeDate 
+			and WorkingTime = 4  and WorkingTime = @WorkingTime 
+ELSE
+	INSERT INTO Absent (UserEnrollNumber,   TimeDate,  AbsentCode, Thang, Nam, Workingday, WorkingTime, PhuCap) 
+		VALUES		  (@UserEnrollNumber,  @TimeDate, @AbsentCode,@Thang,@Nam,@Workingday,@WorkingTime,@PhuCap) 
+";
+		#endregion
 
 			//info ghép 2 cái nửa thành 1
 			int kq = SqlDataAccessHelper.ExecNoneQueryString(
 					queryIns,
 					new string[] { "@UserEnrollNumber", "@TimeDate", "@AbsentCode", "@Thang", "@Nam", 
-						"@Workingday", "@WorkingTime", "@NewWorkingday", "@NewWorkingTime",  },
+						"@Workingday", "@WorkingTime", "@PhuCap", },
 					new object[] { MaCC, ngayVang, absentCode, ngayVang.Month, ngayVang.Year, 
-						workingDay, workingTime, 1f, 8f });
-			string noidung = "Thêm xin phép vắng [{0}] [{1}] ngày [{2}] cho NV có mã chấm công [{3}]";
+						workingDay, workingTime, PhuCapVang });
+			string noidung = "Thêm xin phép vắng [{0}] [{1}] ngày [{2}], phụ cấp [{3}] cho NV có mã chấm công [{4}]";
 			
 			DAO.GhiNhatKyThaotac("Thêm xin phép vắng",
-					string.Format(noidung, absentCode, workingDay.ToString("0.0"), (ngayVang).ToString("dd/MM/yyyy"), MaCC), maCC:MaCC);
+					string.Format(noidung, absentCode, workingDay.ToString("0.0"), (ngayVang).ToString("dd/MM/yyyy"), PhuCapVang.ToString("0.00"), MaCC), maCC:MaCC);
 			return true;
 		}
 
@@ -382,7 +406,7 @@ ELSE
 
 		public static DataTable LietKeNgayVangChoNV(List<int> arrDSNVCheck, DateTime ngayBD, DateTime ngayKT) {
 			var query = @"	SELECT      ID, UserInfo.UserEnrollNumber, UserInfo.UserFullCode, UserInfo.UserFullName, TimeDate, 
-										LoaiVang.AbsentCode, LoaiVang.AbsentDescription, Thang, Nam, Absent.Workingday, Absent.WorkingTime 
+										LoaiVang.AbsentCode, LoaiVang.AbsentDescription, Thang, Nam, Absent.Workingday, Absent.WorkingTime, Absent.PhuCap 
 							 FROM        Absent, LoaiVang , UserInfo 
 							 WHERE      (Absent.AbsentCode = LoaiVang.AbsentCode)
 									and (UserInfo.UserEnrollNumber = Absent.UserEnrollNumber)

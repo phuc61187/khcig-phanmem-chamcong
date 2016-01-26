@@ -119,8 +119,8 @@
   </resheader>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>Thông tin về các loại vắng:
-1. BD : vắng BHXH liên tục dài ngày có chứng nhận của cơ quan y tế. Trong thời gian vắng này sẽ không được hưởng chế độ Lễ, tết của Nhà máy (BH chi).
-2. TS : vắng thai sản. Trong thời gian này sẽ không được hưởng chế độ Lễ, tết của Nhà máy.
+1. BD : vắng BHXH liên tục dài ngày.
+2. TS : vắng thai sản. 
 3. BH : vắng BHXH.
 4. RO : vắng việc riêng.
 5. CT : vắng công tác.

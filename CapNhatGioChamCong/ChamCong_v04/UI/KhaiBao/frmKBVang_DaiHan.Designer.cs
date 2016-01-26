@@ -24,7 +24,6 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.label1 = new System.Windows.Forms.Label();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
 			this.btnThem = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.cbLoaiVang = new System.Windows.Forms.ComboBox();
@@ -43,24 +42,11 @@
 			this.label1.Size = new System.Drawing.Size(0, 15);
 			this.label1.TabIndex = 0;
 			// 
-			// richTextBox1
-			// 
-			this.richTextBox1.Enabled = false;
-			this.richTextBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.richTextBox1.Location = new System.Drawing.Point(12, 12);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.ReadOnly = true;
-			this.richTextBox1.Size = new System.Drawing.Size(332, 91);
-			this.richTextBox1.TabIndex = 1;
-			this.richTextBox1.Text = "Theo quy định:\n- Với các trường hợp nghỉ BHXH do bệnh dài ngày, nghỉ việc riêng R" +
-    "O dài hạn, nghỉ thai sản : trong khoảng thời gian này sẽ không được hưởng công L" +
-    "ễ, tết Nhà máy chi trả";
-			// 
 			// btnThem
 			// 
 			this.btnThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnThem.ForeColor = System.Drawing.Color.Blue;
-			this.btnThem.Location = new System.Drawing.Point(105, 185);
+			this.btnThem.Location = new System.Drawing.Point(105, 91);
 			this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnThem.Name = "btnThem";
 			this.btnThem.Size = new System.Drawing.Size(75, 25);
@@ -73,7 +59,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(10, 161);
+			this.label3.Location = new System.Drawing.Point(10, 67);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(61, 15);
 			this.label3.TabIndex = 33;
@@ -84,7 +70,7 @@
 			this.cbLoaiVang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbLoaiVang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
 			this.cbLoaiVang.FormattingEnabled = true;
-			this.cbLoaiVang.Location = new System.Drawing.Point(105, 158);
+			this.cbLoaiVang.Location = new System.Drawing.Point(105, 64);
 			this.cbLoaiVang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.cbLoaiVang.Name = "cbLoaiVang";
 			this.cbLoaiVang.Size = new System.Drawing.Size(239, 23);
@@ -95,7 +81,7 @@
 			this.dtpNgayKT.CustomFormat = "dddd d/M/yyyy";
 			this.dtpNgayKT.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.dtpNgayKT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtpNgayKT.Location = new System.Drawing.Point(105, 133);
+			this.dtpNgayKT.Location = new System.Drawing.Point(105, 39);
 			this.dtpNgayKT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.dtpNgayKT.Name = "dtpNgayKT";
 			this.dtpNgayKT.ShowUpDown = true;
@@ -108,7 +94,7 @@
 			this.dtpNgayBD.CustomFormat = "dddd d/M/yyyy";
 			this.dtpNgayBD.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.dtpNgayBD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtpNgayBD.Location = new System.Drawing.Point(105, 108);
+			this.dtpNgayBD.Location = new System.Drawing.Point(105, 14);
 			this.dtpNgayBD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.dtpNgayBD.Name = "dtpNgayBD";
 			this.dtpNgayBD.ShowUpDown = true;
@@ -120,7 +106,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.label4.Location = new System.Drawing.Point(10, 136);
+			this.label4.Location = new System.Drawing.Point(10, 42);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(81, 15);
 			this.label4.TabIndex = 40;
@@ -130,7 +116,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
-			this.label5.Location = new System.Drawing.Point(11, 111);
+			this.label5.Location = new System.Drawing.Point(11, 17);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(82, 15);
 			this.label5.TabIndex = 40;
@@ -140,7 +126,7 @@
 			// 
 			this.btnDong.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnDong.ForeColor = System.Drawing.Color.Blue;
-			this.btnDong.Location = new System.Drawing.Point(269, 185);
+			this.btnDong.Location = new System.Drawing.Point(269, 91);
 			this.btnDong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnDong.Name = "btnDong";
 			this.btnDong.Size = new System.Drawing.Size(75, 25);
@@ -152,7 +138,7 @@
 			// frmKBVang_DaiHan
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(356, 221);
+			this.ClientSize = new System.Drawing.Size(356, 132);
 			this.Controls.Add(this.dtpNgayKT);
 			this.Controls.Add(this.dtpNgayBD);
 			this.Controls.Add(this.label5);
@@ -161,7 +147,6 @@
 			this.Controls.Add(this.btnThem);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.cbLoaiVang);
-			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.label1);
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "frmKBVang_DaiHan";
@@ -175,7 +160,6 @@
 		#endregion
 
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.RichTextBox richTextBox1;
 		private System.Windows.Forms.Button btnThem;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.ComboBox cbLoaiVang;

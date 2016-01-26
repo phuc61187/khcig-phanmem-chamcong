@@ -305,7 +305,7 @@ namespace ChamCong_v04.BUS {
 			//--------------------------
 			thongKeThang.PhuCaps._200_LeTet_Ngay += ngayCong.PhuCaps._200_LeTet_Ngay;
 			thongKeThang.PhuCaps._250_LeTet_Dem += ngayCong.PhuCaps._250_LeTet_Dem;
-			thongKeThang.PhuCaps._Cus += ngayCong.PhuCaps._Cus;
+			thongKeThang.PhuCaps._Cus += ngayCong.PhuCaps._Cus; //phụ cấp vắng
 			thongKeThang.NgayQuaDem += (ngayCong.QuaDem) ? 1 : 0;
 			var tempRo = 0f;
 			foreach (var xpVang in ngayCong.DSVang) {

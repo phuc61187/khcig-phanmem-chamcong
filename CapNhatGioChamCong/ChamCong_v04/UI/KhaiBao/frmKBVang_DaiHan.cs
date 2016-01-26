@@ -121,7 +121,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 											 select new { MaCC = macc, NgayVang = ngay });
 
 			List<Error> listError = new List<Error>();
-			XL.ThemNgayVang(listMaCC_NgayVang, workingDay, workingTime, absentCode, listError);
+			XL.ThemNgayVang(listMaCC_NgayVang, workingDay, workingTime, 0f, absentCode, listError);
 			if (listError.Count > 0) {
 				frmError frm = new frmError {StartPosition=FormStartPosition.CenterParent, listError = listError };
 				frm.ShowDialog();

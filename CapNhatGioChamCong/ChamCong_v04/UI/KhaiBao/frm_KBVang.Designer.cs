@@ -25,8 +25,6 @@
         private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("px thành phẩm");
 			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("bảo vệ");
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("văn phòng", new System.Windows.Forms.TreeNode[] {
@@ -34,22 +32,16 @@
 			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhà máy thuốc lá khánh hội", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode3});
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dtpThang = new System.Windows.Forms.DateTimePicker();
 			this.checklistNgay = new System.Windows.Forms.CheckedListBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.cbLoaiVang = new System.Windows.Forms.ComboBox();
 			this.dgrdNgayVang = new System.Windows.Forms.DataGridView();
-			this.g4colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g2macc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1tennv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1ngay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1cong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1mota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1userfullcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.g1absentcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnLietKe = new System.Windows.Forms.Button();
 			this.btnXoa = new System.Windows.Forms.Button();
 			this.btnThem = new System.Windows.Forms.Button();
@@ -83,6 +75,18 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.rad1ngay = new System.Windows.Forms.RadioButton();
 			this.radNuaNgay = new System.Windows.Forms.RadioButton();
+			this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.g4colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g2macc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1tennv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1ngay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1cong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1c10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1mota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1userfullcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.g1absentcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dgrdNgayVang)).BeginInit();
 			this.gpChonPhongBan.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -156,21 +160,21 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(436, 244);
+			this.label3.Location = new System.Drawing.Point(488, 244);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(61, 15);
+			this.label3.Size = new System.Drawing.Size(31, 15);
 			this.label3.TabIndex = 1;
-			this.label3.Text = "Loại vắng";
+			this.label3.Text = "Loại";
 			// 
 			// cbLoaiVang
 			// 
 			this.cbLoaiVang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbLoaiVang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
 			this.cbLoaiVang.FormattingEnabled = true;
-			this.cbLoaiVang.Location = new System.Drawing.Point(505, 241);
+			this.cbLoaiVang.Location = new System.Drawing.Point(535, 241);
 			this.cbLoaiVang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.cbLoaiVang.Name = "cbLoaiVang";
-			this.cbLoaiVang.Size = new System.Drawing.Size(257, 23);
+			this.cbLoaiVang.Size = new System.Drawing.Size(227, 23);
 			this.cbLoaiVang.TabIndex = 4;
 			// 
 			// dgrdNgayVang
@@ -191,6 +195,7 @@
             this.g1tennv,
             this.g1ngay,
             this.g1cong,
+            this.g1c10,
             this.g1mota,
             this.g1userfullcode,
             this.g1ID,
@@ -202,84 +207,6 @@
 			this.dgrdNgayVang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgrdNgayVang.Size = new System.Drawing.Size(532, 260);
 			this.dgrdNgayVang.TabIndex = 8;
-			// 
-			// g4colMaNV
-			// 
-			this.g4colMaNV.DataPropertyName = "UserFullCode";
-			this.g4colMaNV.HeaderText = "Mã NV";
-			this.g4colMaNV.Name = "g4colMaNV";
-			this.g4colMaNV.ReadOnly = true;
-			this.g4colMaNV.ToolTipText = "Mã Nhân viên";
-			this.g4colMaNV.Width = 55;
-			// 
-			// g2macc
-			// 
-			this.g2macc.DataPropertyName = "UserEnrollNumber";
-			this.g2macc.HeaderText = "Mã CC_hide";
-			this.g2macc.Name = "g2macc";
-			this.g2macc.ReadOnly = true;
-			this.g2macc.Visible = false;
-			this.g2macc.Width = 55;
-			// 
-			// g1tennv
-			// 
-			this.g1tennv.DataPropertyName = "UserFullName";
-			this.g1tennv.HeaderText = "Tên NV";
-			this.g1tennv.Name = "g1tennv";
-			this.g1tennv.ReadOnly = true;
-			this.g1tennv.Width = 150;
-			// 
-			// g1ngay
-			// 
-			this.g1ngay.DataPropertyName = "TimeDate";
-			dataGridViewCellStyle2.Format = "ddd d/M";
-			this.g1ngay.DefaultCellStyle = dataGridViewCellStyle2;
-			this.g1ngay.HeaderText = "Ngày";
-			this.g1ngay.Name = "g1ngay";
-			this.g1ngay.ReadOnly = true;
-			this.g1ngay.Width = 80;
-			// 
-			// g1cong
-			// 
-			this.g1cong.DataPropertyName = "Workingday";
-			dataGridViewCellStyle3.Format = "#0.##";
-			this.g1cong.DefaultCellStyle = dataGridViewCellStyle3;
-			this.g1cong.HeaderText = "Số ngày";
-			this.g1cong.Name = "g1cong";
-			this.g1cong.ReadOnly = true;
-			this.g1cong.ToolTipText = "Số ngày";
-			this.g1cong.Width = 60;
-			// 
-			// g1mota
-			// 
-			this.g1mota.DataPropertyName = "AbsentDescription";
-			this.g1mota.HeaderText = "Mô tả";
-			this.g1mota.Name = "g1mota";
-			this.g1mota.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.g1mota.Width = 150;
-			// 
-			// g1userfullcode
-			// 
-			this.g1userfullcode.DataPropertyName = "UserFullCode";
-			this.g1userfullcode.HeaderText = "UserFullCode_hide";
-			this.g1userfullcode.Name = "g1userfullcode";
-			this.g1userfullcode.ReadOnly = true;
-			this.g1userfullcode.Visible = false;
-			// 
-			// g1ID
-			// 
-			this.g1ID.DataPropertyName = "ID";
-			this.g1ID.HeaderText = "ID_hide";
-			this.g1ID.Name = "g1ID";
-			this.g1ID.ReadOnly = true;
-			this.g1ID.Visible = false;
-			// 
-			// g1absentcode
-			// 
-			this.g1absentcode.DataPropertyName = "AbsentCode";
-			this.g1absentcode.HeaderText = "AbsentCodeHide";
-			this.g1absentcode.Name = "g1absentcode";
-			this.g1absentcode.Visible = false;
 			// 
 			// btnLietKe
 			// 
@@ -299,7 +226,7 @@
 			// 
 			this.btnXoa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnXoa.ForeColor = System.Drawing.Color.Blue;
-			this.btnXoa.Location = new System.Drawing.Point(596, 271);
+			this.btnXoa.Location = new System.Drawing.Point(611, 271);
 			this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnXoa.Name = "btnXoa";
 			this.btnXoa.Size = new System.Drawing.Size(75, 25);
@@ -313,7 +240,7 @@
 			// 
 			this.btnThem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnThem.ForeColor = System.Drawing.Color.Blue;
-			this.btnThem.Location = new System.Drawing.Point(505, 271);
+			this.btnThem.Location = new System.Drawing.Point(534, 271);
 			this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnThem.Name = "btnThem";
 			this.btnThem.Size = new System.Drawing.Size(75, 25);
@@ -389,7 +316,7 @@
 			// 
 			this.btnThoat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(163)));
 			this.btnThoat.ForeColor = System.Drawing.Color.Blue;
-			this.btnThoat.Location = new System.Drawing.Point(687, 271);
+			this.btnThoat.Location = new System.Drawing.Point(688, 271);
 			this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnThoat.Name = "btnThoat";
 			this.btnThoat.Size = new System.Drawing.Size(75, 25);
@@ -464,8 +391,8 @@
 			this.dgrdDSNVTrgPhg.AllowUserToAddRows = false;
 			this.dgrdDSNVTrgPhg.AllowUserToDeleteRows = false;
 			this.dgrdDSNVTrgPhg.AllowUserToResizeRows = false;
-			dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.dgrdDSNVTrgPhg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.dgrdDSNVTrgPhg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
 			this.dgrdDSNVTrgPhg.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdDSNVTrgPhg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
@@ -519,8 +446,8 @@
 			// dataGridViewTextBoxColumn3
 			// 
 			this.dataGridViewTextBoxColumn3.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dataGridViewTextBoxColumn3.HeaderText = "Mã CC";
 			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
 			this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -662,8 +589,10 @@
 			this.groupBox2.Controls.Add(this.radNuaNgay);
 			this.groupBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(243, 244);
+			this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(187, 52);
+			this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
+			this.groupBox2.Size = new System.Drawing.Size(182, 52);
 			this.groupBox2.TabIndex = 44;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Chọn khoảng thời gian vắng";
@@ -672,7 +601,7 @@
 			// 
 			this.rad1ngay.AutoSize = true;
 			this.rad1ngay.Checked = true;
-			this.rad1ngay.Location = new System.Drawing.Point(102, 27);
+			this.rad1ngay.Location = new System.Drawing.Point(86, 27);
 			this.rad1ngay.Name = "rad1ngay";
 			this.rad1ngay.Size = new System.Drawing.Size(62, 19);
 			this.rad1ngay.TabIndex = 1;
@@ -690,10 +619,122 @@
 			this.radNuaNgay.Text = "0.5 ngày";
 			this.radNuaNgay.UseVisualStyleBackColor = true;
 			// 
+			// maskedTextBox1
+			// 
+			this.maskedTextBox1.BeepOnError = true;
+			this.maskedTextBox1.Location = new System.Drawing.Point(488, 273);
+			this.maskedTextBox1.Mask = "0.00";
+			this.maskedTextBox1.Name = "maskedTextBox1";
+			this.maskedTextBox1.RejectInputOnFirstFailure = true;
+			this.maskedTextBox1.Size = new System.Drawing.Size(40, 21);
+			this.maskedTextBox1.SkipLiterals = false;
+			this.maskedTextBox1.TabIndex = 42;
+			this.maskedTextBox1.Text = "000";
+			this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(429, 276);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(53, 15);
+			this.label2.TabIndex = 41;
+			this.label2.Text = "Phụ cấp";
+			// 
+			// g4colMaNV
+			// 
+			this.g4colMaNV.DataPropertyName = "UserFullCode";
+			this.g4colMaNV.HeaderText = "Mã NV";
+			this.g4colMaNV.Name = "g4colMaNV";
+			this.g4colMaNV.ReadOnly = true;
+			this.g4colMaNV.ToolTipText = "Mã Nhân viên";
+			this.g4colMaNV.Width = 55;
+			// 
+			// g2macc
+			// 
+			this.g2macc.DataPropertyName = "UserEnrollNumber";
+			this.g2macc.HeaderText = "Mã CC_hide";
+			this.g2macc.Name = "g2macc";
+			this.g2macc.ReadOnly = true;
+			this.g2macc.Visible = false;
+			this.g2macc.Width = 55;
+			// 
+			// g1tennv
+			// 
+			this.g1tennv.DataPropertyName = "UserFullName";
+			this.g1tennv.HeaderText = "Tên NV";
+			this.g1tennv.Name = "g1tennv";
+			this.g1tennv.ReadOnly = true;
+			this.g1tennv.Width = 150;
+			// 
+			// g1ngay
+			// 
+			this.g1ngay.DataPropertyName = "TimeDate";
+			dataGridViewCellStyle2.Format = "ddd d/M";
+			this.g1ngay.DefaultCellStyle = dataGridViewCellStyle2;
+			this.g1ngay.HeaderText = "Ngày";
+			this.g1ngay.Name = "g1ngay";
+			this.g1ngay.ReadOnly = true;
+			this.g1ngay.Width = 80;
+			// 
+			// g1cong
+			// 
+			this.g1cong.DataPropertyName = "Workingday";
+			dataGridViewCellStyle3.Format = "#0.##";
+			this.g1cong.DefaultCellStyle = dataGridViewCellStyle3;
+			this.g1cong.HeaderText = "Số ngày";
+			this.g1cong.Name = "g1cong";
+			this.g1cong.ReadOnly = true;
+			this.g1cong.ToolTipText = "Số ngày";
+			this.g1cong.Width = 60;
+			// 
+			// g1c10
+			// 
+			this.g1c10.DataPropertyName = "PhuCap";
+			dataGridViewCellStyle4.Format = "0.0#";
+			this.g1c10.DefaultCellStyle = dataGridViewCellStyle4;
+			this.g1c10.HeaderText = "Phụ cấp";
+			this.g1c10.Name = "g1c10";
+			this.g1c10.Width = 60;
+			// 
+			// g1mota
+			// 
+			this.g1mota.DataPropertyName = "AbsentDescription";
+			this.g1mota.HeaderText = "Mô tả";
+			this.g1mota.Name = "g1mota";
+			this.g1mota.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.g1mota.Width = 150;
+			// 
+			// g1userfullcode
+			// 
+			this.g1userfullcode.DataPropertyName = "UserFullCode";
+			this.g1userfullcode.HeaderText = "UserFullCode_hide";
+			this.g1userfullcode.Name = "g1userfullcode";
+			this.g1userfullcode.ReadOnly = true;
+			this.g1userfullcode.Visible = false;
+			// 
+			// g1ID
+			// 
+			this.g1ID.DataPropertyName = "ID";
+			this.g1ID.HeaderText = "ID_hide";
+			this.g1ID.Name = "g1ID";
+			this.g1ID.ReadOnly = true;
+			this.g1ID.Visible = false;
+			// 
+			// g1absentcode
+			// 
+			this.g1absentcode.DataPropertyName = "AbsentCode";
+			this.g1absentcode.HeaderText = "AbsentCodeHide";
+			this.g1absentcode.Name = "g1absentcode";
+			this.g1absentcode.Visible = false;
+			// 
 			// frm_KBVang
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(774, 563);
+			this.Controls.Add(this.maskedTextBox1);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.tableLayoutPanel1);
@@ -774,10 +815,13 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1tennv;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1ngay;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1cong;
+		private System.Windows.Forms.DataGridViewTextBoxColumn g1c10;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1mota;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1userfullcode;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1ID;
 		private System.Windows.Forms.DataGridViewTextBoxColumn g1absentcode;
+		private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+		private System.Windows.Forms.Label label2;
 
 
     }

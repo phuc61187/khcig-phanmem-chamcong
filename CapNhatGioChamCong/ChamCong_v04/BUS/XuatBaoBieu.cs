@@ -447,10 +447,10 @@ namespace ChamCong_v04.BUS {
 
 			#region // set colWidth = 0 các cột ko cần thiết
 
-			if (Math.Abs(sumLuong.pc100_16 - 0f) < 0.01f) ws.Column(16).Width = 0;
-			if (Math.Abs(sumLuong.pc160_17 - 0f) < 0.01f) ws.Column(17).Width = 0;
-			if (Math.Abs(sumLuong.pc200_18 - 0f) < 0.01f) ws.Column(18).Width = 0;
-			if (Math.Abs(sumLuong.pc290_19 - 0f) < 0.01f) ws.Column(19).Width = 0;
+			if (Math.Abs(sumLuong.pc100_16 - 0f) < 0.01f) ws.Column(15).Width = 0;
+			if (Math.Abs(sumLuong.pc160_17 - 0f) < 0.01f) ws.Column(16).Width = 0;
+			if (Math.Abs(sumLuong.pc200_18 - 0f) < 0.01f) ws.Column(17).Width = 0;
+			if (Math.Abs(sumLuong.pc290_19 - 0f) < 0.01f) ws.Column(18).Width = 0;
 			if (Math.Abs(sumLuong.dieuchinh25 - 0d) < 0.01d) ws.Column(25).Width = 0;
 			//v4.0.0.7 boBDC3 if (Math.Abs(sumLuong.thuchikhac34 - 0d) < 0.01d) ws.Column(34).Width = 0;
 			if (Math.Abs(sumLuong.thuchikhac34 - 0d) < 0.01d) ws.Column(33).Width = 0;

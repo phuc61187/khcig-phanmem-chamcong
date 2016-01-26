@@ -85,11 +85,13 @@ namespace ChamCong_v04.UI.XacNhan {
 					XL.CheckTinhPC50_UpdORInsNew_Sort(nhanvien, ngay, false);
 					XL.TinhPCTC_CuaNgay(ngayCong, false);
 					XL.TinhPCDB_CuaNgay(ngayCong, nhanvien.DSXNPhuCapDB);
+					XL.TinhPCNgayVang(ngayCong);
 				}
 				else {
 					XL.CheckTinhPC50_UpdORInsNew_Sort(nhanvien, ngay, true);
 					XL.TinhPCTC_CuaNgay(ngayCong, true);
 					XL.TinhPCDB_CuaNgay(ngayCong, nhanvien.DSXNPhuCapDB);
+					XL.TinhPCNgayVang(ngayCong);
 				}
 				//XL.TinhPCTC_CuaNgay(ngayCong, nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
 				//XL.TinhLaiPhuCapDB(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);

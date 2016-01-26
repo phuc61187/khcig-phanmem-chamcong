@@ -31,6 +31,8 @@
 			this.btnThoat = new System.Windows.Forms.Button();
 			this.btnThem = new System.Windows.Forms.Button();
 			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
 			this.SuspendLayout();
 			// 
 			// cbSoBuoi
@@ -113,16 +115,41 @@
 			this.richTextBox1.TabIndex = 39;
 			this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(202, 42);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(53, 15);
+			this.label1.TabIndex = 34;
+			this.label1.Text = "Phụ cấp";
+			// 
+			// maskedTextBox1
+			// 
+			this.maskedTextBox1.BeepOnError = true;
+			this.maskedTextBox1.Location = new System.Drawing.Point(261, 39);
+			this.maskedTextBox1.Mask = "0.00";
+			this.maskedTextBox1.Name = "maskedTextBox1";
+			this.maskedTextBox1.RejectInputOnFirstFailure = true;
+			this.maskedTextBox1.Size = new System.Drawing.Size(75, 21);
+			this.maskedTextBox1.SkipLiterals = false;
+			this.maskedTextBox1.TabIndex = 40;
+			this.maskedTextBox1.Text = "000";
+			this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+			// 
 			// frm_KBVang_Nhanh
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(350, 328);
+			this.Controls.Add(this.maskedTextBox1);
 			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.btnThem);
 			this.Controls.Add(this.cbSoBuoi);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.cbLoaiVang);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label2);
 			this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -143,5 +170,7 @@
 		private System.Windows.Forms.Button btnThoat;
 		private System.Windows.Forms.Button btnThem;
 		private System.Windows.Forms.RichTextBox richTextBox1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.MaskedTextBox maskedTextBox1;
 	}
 }

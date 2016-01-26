@@ -260,6 +260,11 @@ namespace ChamCong_v04.UI.KhaiBao {
 			var absentCode = rowLV["AbsentCode"].ToString();
 			var workingDay = radNuaNgay.Checked ? 0.5f : 1f;
 			var workingTime = 0f;
+			var phuCapString = maskedTextBox1.Text;
+			var phuCapInt = 0;
+			var phuCapFloat = 0f;
+			if (int.TryParse(phuCapString, out phuCapInt)==false || phuCapString.Length < 3) { ACMessageBox.Show("Nhập phụ cấp chưa đúng định dạng.", Resources.Caption_Loi, 2000); return;}
+			phuCapFloat = Convert.ToSingle(phuCapInt)/100f;
 
 			#region set working time tùy theo workingDay
 
@@ -302,7 +307,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 			IEnumerable<dynamic> tempList = (from macc in listMaCC_NV
 			                          from ngay in DSNgayCheck
 			                          select new {MaCC = macc, NgayVang = ngay});
-			DAO.ThemNgayVang(tempList, workingDay, workingTime, absentCode);
+			DAO.ThemNgayVang(tempList, workingDay, workingTime, phuCapFloat, absentCode);
 
 
 			// sau khi thao tác xong thì clear check các ngày liệt kê lại

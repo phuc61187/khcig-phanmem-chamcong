@@ -344,6 +344,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
 			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
 			XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
+			XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
 			if (ds_raa3_vao1.Count > 0) DAO.ThemGio_ra3_vao1(ds_raa3_vao1);
 
@@ -400,6 +401,7 @@ namespace ChamCong_v04.UI.ChamCong {
 				XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
 				XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
 				XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
+				XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			}
 			if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
 			if (ds_raa3_vao1.Count > 0) DAO.ThemGio_ra3_vao1(ds_raa3_vao1);
@@ -471,6 +473,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
 			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
 			XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
+			XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
 			if (ds_raa3_vao1.Count > 0) DAO.ThemGio_ra3_vao1(ds_raa3_vao1);
 
@@ -531,6 +534,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
 			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
 			XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
+			XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
 			if (ds_raa3_vao1.Count > 0) DAO.ThemGio_ra3_vao1(ds_raa3_vao1);
 

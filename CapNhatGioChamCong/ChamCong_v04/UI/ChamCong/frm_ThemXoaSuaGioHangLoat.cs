@@ -183,6 +183,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
 					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
+					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 				}
 				if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
 				if (ds_raa3_vao1.Count > 0) DAO.ThemGio_ra3_vao1(ds_raa3_vao1);
@@ -260,7 +261,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
 					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
-
+					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 
 				}
 				if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
@@ -327,7 +328,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
 					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
-
+					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 
 				}
 				if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
@@ -396,7 +397,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
 					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
-
+					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 
 				}
 				if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);

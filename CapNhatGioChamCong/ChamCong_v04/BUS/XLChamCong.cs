@@ -685,10 +685,36 @@ namespace ChamCong_v04.BUS {
 				TinhCong_ListNgayCong8(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
 				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong);
 				TinhPCDB_TrongListXNPCDB10(nv.DSXNPhuCapDB, nv.DSNgayCong);
+				TinhPCNgayVang(nv.DSVang, nv.DSNgayCong);
 			}
 			if (DS_Check_KoHopLe_AllNV.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe_AllNV);
 			if (ds_raa3_vao1.Count > 0) DAO.ThemGio_ra3_vao1(ds_raa3_vao1);
 			#endregion
+		}
+
+		public static void TinhPCNgayVang(List<cLoaiVang> dsVang, List<cNgayCong> dsNgayCong)
+		{
+			if (dsVang == null || dsVang.Count == 0) return;
+			var listDsVangCoPhuCap = dsVang.Where(item => (Math.Abs(item.PhuCap - 0f) > 0.0001f)).ToList();
+			if (listDsVangCoPhuCap.Any() == false) return;
+			foreach (var ngayCong in dsNgayCong)
+			{
+				TinhPCNgayVang(ngayCong);
+			}
+		}
+
+		public static void TinhPCNgayVang(cNgayCong ngayCong)
+		{
+			if (ngayCong.DSVang == null || ngayCong.DSVang.Count == 0) return;
+			List<cLoaiVang> listDSVangCoPhuCap = ngayCong.DSVang.Where(item => Math.Abs(item.PhuCap - 0f) > 0.0001f).ToList();
+			if (listDSVangCoPhuCap.Any() == false) return;
+			
+			foreach (var loaiVang in listDSVangCoPhuCap)
+			{
+				ngayCong.PhuCaps._Cus += loaiVang.PhuCap;//todo tongPC????
+				ngayCong.PhuCaps._TongPC += loaiVang.PhuCap;
+			}
+
 		}
 
 		public static void LoadDSCheck_A(int tempMaCC, DataTable tableCheck_A, List<cCheck> ds_Check_A) {
@@ -808,12 +834,13 @@ namespace ChamCong_v04.BUS {
 							 let absentCode = (string)row["AbsentCode"]
 							 let absentDesc = (string)row["AbsentDescription"]
 							 let wkdayy = (Single)row["Workingday"]
-							 select new cLoaiVang { WorkingDay = wkdayy, MaLV_Code = absentCode, MoTa = absentDesc, Ngay = TimeDate });
+							 let phuCap = (row["PhuCap"] == DBNull.Value) ? 0f : (Single)(row["PhuCap"])
+							 select new cLoaiVang { WorkingDay = wkdayy, MaLV_Code = absentCode, MoTa = absentDesc, Ngay = TimeDate, PhuCap = phuCap});
 			if (tableNgayLe.Rows.Count == 0) goto sort;
 			var dsNgayLe = (from DataRow row in tableNgayLe.Select(string.Empty, "HDate ASC")
 							let ngayle = (DateTime)row["HDate"]
 							let mota = row["Holiday"].ToString()
-							select new cLoaiVang { WorkingDay = 1f, MaLV_Code = "L", MoTa = mota, Ngay = ngayle }).ToList();
+							select new cLoaiVang { WorkingDay = 1f, MaLV_Code = "L", MoTa = mota, Ngay = ngayle, PhuCap = 0f}).ToList();
 
 /*
 			for (int i = 0; i < dsNgayLe.Count; i++) {
@@ -1452,7 +1479,7 @@ namespace ChamCong_v04.BUS {
 			TinhPCDB(ngayCong.TinhPCDB, ngayCong.TG.GioLamViec, ngayCong.TG.LamBanDem, ngayCong.QuaDem, ngayCong.LoaiPCDB, PCNgay, PCDem, //tbd
 		 out ngayCong.TG.Tinh200, out ngayCong.TG.Tinh260, out ngayCong.TG.Tinh300, out ngayCong.TG.Tinh390, out ngayCong.TG.TinhPCCus,
 		 out ngayCong.PhuCaps._100_LVNN_Ngay, out ngayCong.PhuCaps._150_LVNN_Dem, out ngayCong.PhuCaps._200_LeTet_Ngay, out ngayCong.PhuCaps._250_LeTet_Dem, out ngayCong.PhuCaps._Cus, ref ngayCong.PhuCaps._TongPC);
-
+			//TinhPCNgayVang(ngayCong);
 		}
 
 		public static void TinhPCDB_CuaNgay(cNgayCong ngayCong, List<structPCDB> DSXNPCDB) {
@@ -1498,7 +1525,7 @@ namespace ChamCong_v04.BUS {
 			}
 		}
 
-		public static void ThemNgayVang(IEnumerable<dynamic> list, float workingDay, float workingTime, string absentCode, List<Error> listError) {
+		public static void ThemNgayVang(IEnumerable<dynamic> list, float workingDay, float workingTime, float PhuCapVang, string absentCode, List<Error> listError) {
 			foreach (dynamic obj in list) {
 				bool kqKiemTraMauThuan = XL.KiemtraCoMauThuanLoaiVang(obj, absentCode, obj.NgayVang, listError);
 				if (kqKiemTraMauThuan) continue;// nếu bị mâu thuẫn loại vắng thì chuyển qua cái kế tiếp
@@ -1506,10 +1533,10 @@ namespace ChamCong_v04.BUS {
 				//BH dài ngày vào chủ nhật, Ro dài ngày vào chủ nhật thì set workingday về 0
 				if ((absentCode == "BD" || absentCode == "TS") && (ngayVang).DayOfWeek == DayOfWeek.Sunday) {
 					var NewWKDay = 0f;
-					DAO.ThemNgayVang(obj.MaCC, ngayVang, NewWKDay, workingTime, absentCode);
+					DAO.ThemNgayVang(obj.MaCC, ngayVang, NewWKDay, workingTime, PhuCapVang, absentCode);
 				}
 				else {
-					DAO.ThemNgayVang(obj.MaCC, ngayVang, workingDay, workingTime, absentCode);
+					DAO.ThemNgayVang(obj.MaCC, ngayVang, workingDay, workingTime, PhuCapVang, absentCode);
 				}
 			}
 		}

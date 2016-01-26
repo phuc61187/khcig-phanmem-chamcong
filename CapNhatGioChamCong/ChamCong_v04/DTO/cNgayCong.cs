@@ -169,6 +169,7 @@ namespace ChamCong_v04.DTO {
 	public class cLoaiVang {
 		public string MaLV_Code;
 		public float WorkingDay;
+		public float PhuCap;
 		public string MoTa;
 		public DateTime Ngay;
 		public string LayKyHieu() {

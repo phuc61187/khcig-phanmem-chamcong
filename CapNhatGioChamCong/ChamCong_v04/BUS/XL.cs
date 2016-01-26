@@ -1104,6 +1104,7 @@ namespace ChamCong_v04.BUS {
 				ngayCong.TG.Tinh390 = TimeSpan.Zero;
 				ngayCong.TG.TinhPCCus = TimeSpan.Zero;
 				TinhPCTC_CuaNgay(ngayCong, nhanvien.DSXNPhuCap50);
+				TinhPCNgayVang(ngayCong);
 			}
 		}
 

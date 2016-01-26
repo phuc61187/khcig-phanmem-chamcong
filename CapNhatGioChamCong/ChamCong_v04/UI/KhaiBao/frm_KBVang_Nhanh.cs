@@ -65,6 +65,11 @@ namespace ChamCong_v04.UI.KhaiBao {
 			var rowLV = cbLoaiVang.SelectedItem as DataRowView;
 			var absentCode = rowLV["AbsentCode"].ToString();
 			var workingDay = (float) ((frm_KBVang.Working) cbSoBuoi.SelectedItem).Cong;
+			var phuCapString = maskedTextBox1.Text;
+			var phuCapInt = 0;
+			var phuCapFloat = 0f;
+			if (int.TryParse(phuCapString, out phuCapInt)==false || phuCapString.Length < 3) { ACMessageBox.Show("Nhập phụ cấp chưa đúng định dạng.", Resources.Caption_Loi, 2000); return;}
+			phuCapFloat = Convert.ToSingle(phuCapInt)/100f;
 
 			#region set working time tùy theo workingDay
 
@@ -80,7 +85,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 
 			IsReload = true;
 			List<Error> listError = new List<Error>();
-			XL.ThemNgayVang(listMaCC_NgayVang, workingDay, workingTime, absentCode, listError);
+			XL.ThemNgayVang(listMaCC_NgayVang, workingDay, workingTime, phuCapFloat, absentCode, listError);
 			if (listError.Count > 0)
 			{
 				frmError frm = new frmError { StartPosition = FormStartPosition.CenterParent,listError = listError };
