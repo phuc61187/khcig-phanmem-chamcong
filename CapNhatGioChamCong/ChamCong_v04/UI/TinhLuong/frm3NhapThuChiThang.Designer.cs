@@ -24,13 +24,13 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.btnThoat = new System.Windows.Forms.Button();
 			this.tbSearchThuchiThang = new System.Windows.Forms.TextBox();
 			this.btnTimThuChiThang = new System.Windows.Forms.Button();
@@ -167,8 +167,8 @@
 			this.dgrdDSThuChiThangTungNV.AllowUserToAddRows = false;
 			this.dgrdDSThuChiThangTungNV.AllowUserToDeleteRows = false;
 			this.dgrdDSThuChiThangTungNV.AllowUserToResizeRows = false;
-			dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.dgrdDSThuChiThangTungNV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.dgrdDSThuChiThangTungNV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgrdDSThuChiThangTungNV.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdDSThuChiThangTungNV.ColumnHeadersHeight = 25;
 			this.dgrdDSThuChiThangTungNV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -210,8 +210,8 @@
 			// cUserFullCodeDSNV2
 			// 
 			this.cUserFullCodeDSNV2.DataPropertyName = "UserFullCode";
-			dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.cUserFullCodeDSNV2.DefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.cUserFullCodeDSNV2.DefaultCellStyle = dataGridViewCellStyle2;
 			this.cUserFullCodeDSNV2.HeaderText = "Mã NV";
 			this.cUserFullCodeDSNV2.Name = "cUserFullCodeDSNV2";
 			this.cUserFullCodeDSNV2.ReadOnly = true;
@@ -230,8 +230,8 @@
 			// g1c10
 			// 
 			this.g1c10.DataPropertyName = "TamUng";
-			dataGridViewCellStyle10.Format = "###,###,###,##0";
-			this.g1c10.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle3.Format = "###,###,###,##0";
+			this.g1c10.DefaultCellStyle = dataGridViewCellStyle3;
 			this.g1c10.HeaderText = "Tạm ứng tháng";
 			this.g1c10.Name = "g1c10";
 			this.g1c10.ReadOnly = true;
@@ -240,8 +240,8 @@
 			// g1c9
 			// 
 			this.g1c9.DataPropertyName = "LuongDieuChinh";
-			dataGridViewCellStyle11.Format = "###,###,###,##0";
-			this.g1c9.DefaultCellStyle = dataGridViewCellStyle11;
+			dataGridViewCellStyle4.Format = "###,###,###,##0";
+			this.g1c9.DefaultCellStyle = dataGridViewCellStyle4;
 			this.g1c9.HeaderText = "Lương điều chỉnh";
 			this.g1c9.Name = "g1c9";
 			this.g1c9.ReadOnly = true;
@@ -250,8 +250,8 @@
 			// g1c11
 			// 
 			this.g1c11.DataPropertyName = "ThuChiKhac";
-			dataGridViewCellStyle12.Format = "###,###,###,##0";
-			this.g1c11.DefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle5.Format = "###,###,###,##0";
+			this.g1c11.DefaultCellStyle = dataGridViewCellStyle5;
 			this.g1c11.HeaderText = "Thu chi khác";
 			this.g1c11.Name = "g1c11";
 			this.g1c11.ReadOnly = true;
@@ -268,8 +268,8 @@
 			// cUserEnrollNumberDSNV2
 			// 
 			this.cUserEnrollNumberDSNV2.DataPropertyName = "UserEnrollNumber";
-			dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.cUserEnrollNumberDSNV2.DefaultCellStyle = dataGridViewCellStyle13;
+			dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.cUserEnrollNumberDSNV2.DefaultCellStyle = dataGridViewCellStyle6;
 			this.cUserEnrollNumberDSNV2.HeaderText = "Mã CC_hide";
 			this.cUserEnrollNumberDSNV2.Name = "cUserEnrollNumberDSNV2";
 			this.cUserEnrollNumberDSNV2.ReadOnly = true;
@@ -421,8 +421,8 @@
 			this.dgrdDSNV.AllowUserToAddRows = false;
 			this.dgrdDSNV.AllowUserToDeleteRows = false;
 			this.dgrdDSNV.AllowUserToResizeRows = false;
-			dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.dgrdDSNV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.dgrdDSNV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
 			this.dgrdDSNV.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dgrdDSNV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -744,6 +744,11 @@
             0,
             0,
             0});
+			this.numLuongdieuchinh.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
 			this.numLuongdieuchinh.Name = "numLuongdieuchinh";
 			this.numLuongdieuchinh.Size = new System.Drawing.Size(174, 21);
 			this.numLuongdieuchinh.TabIndex = 5;
