@@ -314,6 +314,24 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 														 ngayCong.TruCongTreBu, ngayCong.TruCongSomBu, ngayCong.CongBuPhepTre, ngayCong.CongBuPhepSom//ver 4.0.0.8
 														 );
 						}
+
+						//tbd fix lỗi phụ cấp công tác những ngày ko có làm việc
+						else
+						{
+							if (ngayCong.DSVang.Count!=0)
+							{
+								int kq2 = DAO.InsKetCongNgay(nv.MaCC, ngayCong.Ngay, ngayCong.TongCong_4008, /*ngayCong.TongNgayLVtest*/0f, ngayCong.PhuCaps._TongPC, //ver4.0.0.1 //ver 4.0.0.8 ngayCong.TongCong_4008,TongNgayLV=0f
+														 ngayCong.PhuCaps._30_dem, ngayCong.PhuCaps._50_TC, ngayCong.PhuCaps._100_TCC3,
+														 ngayCong.PhuCaps._100_LVNN_Ngay, ngayCong.PhuCaps._150_LVNN_Dem,
+														 ngayCong.PhuCaps._200_LeTet_Ngay, ngayCong.PhuCaps._250_LeTet_Dem,
+														 ngayCong.PhuCaps._Cus, ngayCong.TG.GioLamViec, ngayCong.TG.LamThem,
+														 ngayCong.TG.LamBanDem, ngayCong.TG.GioThuc, ngayCong.QuaDem,
+														 ngayCong.CongDinhMucDuoi8Tieng, ngayCong.CongTichLuy, ngayCong.TruCongTreVR, ngayCong.TruCongSomVR, //ver 4.0.0.8
+														 ngayCong.TruCongTreBu, ngayCong.TruCongSomBu, ngayCong.CongBuPhepTre, ngayCong.CongBuPhepSom//ver 4.0.0.8
+														 );
+
+							}
+						}
 					}
 				}
 				// sau khi ghi kết công thì cập nhật tình trạng kết công (đã kết công), đồng thời ghi log đã kết công
