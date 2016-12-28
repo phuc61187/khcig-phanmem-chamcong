@@ -40,6 +40,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 
 			List<frm_KBVang.Working> list = new List<frm_KBVang.Working>
 				{
+					new frm_KBVang.Working{cong = 0.25f, hour = 2f},
 					new frm_KBVang.Working{cong = 0.5f, hour = 4f},
 					new frm_KBVang.Working{cong = 1f, hour = 8f},
 				};
@@ -76,6 +77,15 @@ namespace ChamCong_v04.UI.KhaiBao {
 			var workingTime = 0f;
 
 			if (Math.Abs(workingDay - 0f) < 0.01f) workingTime = 0f;
+			else if (Math.Abs(workingDay - 0.25f) < 0.01f)
+			{
+				workingTime = 2f;
+				if (!(absentCode.ToLower()=="p"||absentCode.ToLower()=="ro"))
+				{
+					ACMessageBox.Show("Chưa hỗ trợ vắng 2 tiếng ngoài phép và việc riêng.", "Chức năng chưa được hỗ trợ", 3000);
+					return;
+				}
+			}
 			else if (Math.Abs(workingDay - 0.5f) < 0.01f) workingTime = 4f;
 			else if (Math.Abs(workingDay - 1f) < 0.01f) workingTime = 8f;
 

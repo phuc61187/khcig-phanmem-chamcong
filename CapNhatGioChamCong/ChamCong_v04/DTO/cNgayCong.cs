@@ -175,6 +175,7 @@ namespace ChamCong_v04.DTO {
 		public string LayKyHieu() {
 			var kq = string.Empty;
 			if (Math.Abs(WorkingDay - 0f) < 0.01f) kq += string.Empty;
+			else if (Math.Abs(WorkingDay - 0.25f) < 0.01f) kq += "2t" + MaLV_Code;
 			else if (Math.Abs(WorkingDay - 0.5f) < 0.01f) kq += "n" + MaLV_Code;
 			else if (Math.Abs(WorkingDay - 1f) < 0.01f) kq += MaLV_Code;
 			return kq;

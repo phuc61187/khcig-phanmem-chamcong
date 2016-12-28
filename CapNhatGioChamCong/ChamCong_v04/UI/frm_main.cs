@@ -79,6 +79,8 @@ namespace ChamCong_v04.UI {
 		}
 
 		private void Menu_KhaiBaoVang_Click(object sender, EventArgs e) {
+		//ACMessageBox.Show("Chức năng này hiện tạm dừng sử dụng để sửa chữa.", Resources.Caption_ThongBao, 3000);
+		//return;
 			if (XL2.QuyenThaoTac.Any(o => o == (int)Quyen.KhaiBaoVang) == false) {
 				ACMessageBox.Show(Resources.Text_KoCoQuyen, Resources.Caption_ThongBao, 3000);
 				return;
@@ -93,8 +95,8 @@ namespace ChamCong_v04.UI {
 			else {
 				frm1.MdiParent = this;
 				frm1.WindowState = FormWindowState.Normal;
-				frm1.Location = new Point((int)((Size.Width - frm1.Size.Width) / 2f),
-										  (int)((Size.Height - frm1.Size.Height) / 2f));
+				//frm1.Location = new Point((int)((Size.Width - frm1.Size.Width) / 2f),
+				//						  (int)((Size.Height - frm1.Size.Height) / 2f));
 				frm1.Show();
 			}
 		}

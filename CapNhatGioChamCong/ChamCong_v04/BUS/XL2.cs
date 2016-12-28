@@ -7,8 +7,16 @@ using ChamCong_v04.Helper;
 using ChamCong_v04.Properties;
 
 namespace ChamCong_v04.BUS {
+		public class cChucNang
+		{
+			public int ID;
+			public string MoTa { get; set; }
+			public bool IsYes { get; set; }
 
-	public class XL2 {
+		}
+
+
+	public static class XL2 {
 
 		public static int currUserID = Int32.MinValue;
 		public static string currUserAccount = String.Empty;
@@ -52,15 +60,6 @@ namespace ChamCong_v04.BUS {
 		public static TimeSpan LamThemAfterOT;
 		public static List<cPhongBan> TatcaPhongban = new List<cPhongBan>();
 		public static List<int> QuyenThaoTac;
-
-		public class cChucNang {
-			public int ID { get; set; }
-			public string MoTa { get; set; }
-			public bool IsYes { get; set; }
-			public override string ToString() {
-				return "ID= " + ID + " IsYes= " + IsYes + "\t" + MoTa;
-			}
-		}
 
 
 		public static void VeCheckBox_CheckAll(DataGridView grid, CheckBox checkBox, EventHandler checkAll_CheckedChanged, Point location) {
@@ -107,34 +106,34 @@ namespace ChamCong_v04.BUS {
 			return new Point((int)((MdiParentWidth - formWidth) / 2f),(int)((MdiParentHeight - formHeight) / 2f));
 		}
 
-		internal static List<XL2.cChucNang> TaoChucNang() {
+		internal static List<cChucNang> TaoChucNang() {
 			List<cChucNang> lstChucNang = new List<cChucNang>();
 			//lstChucNang.Add(new cChucNang() { ID = 10000, MoTa = "Kết nối CSDL" });
-			lstChucNang.Add(new cChucNang() { ID = 10011, MoTa = "Xem Công" });
-			lstChucNang.Add(new cChucNang() { ID = 10012, MoTa = "Thêm xoá sửa giờ chấm công" });
-			lstChucNang.Add(new cChucNang() { ID = 10033, MoTa = "Xác nhận ca và làm thêm" });
-			lstChucNang.Add(new cChucNang() { ID = 10014, MoTa = "Xác nhận phụ cấp tăng cường" });
-			lstChucNang.Add(new cChucNang() { ID = 10015, MoTa = "Xác nhận phụ cấp làm việc ngày nghỉ, trực lễ, tết" });
-			lstChucNang.Add(new cChucNang() { ID = 10016, MoTa = "Kết công tháng" });
-			lstChucNang.Add(new cChucNang() { ID = 10021, MoTa = "Điểm danh Nhân viên" });
-			lstChucNang.Add(new cChucNang() { ID = 10031, MoTa = "Chấm công tay cho Quản lý" });
+			lstChucNang.Add(new cChucNang { ID = 10011, MoTa = "Xem Công" });
+			lstChucNang.Add(new cChucNang { ID = 10012, MoTa = "Thêm xoá sửa giờ chấm công"  });
+			lstChucNang.Add(new cChucNang { ID = 10033, MoTa = "Xác nhận ca và làm thêm"  });
+			lstChucNang.Add(new cChucNang { ID = 10014, MoTa = "Xác nhận phụ cấp tăng cường"  });
+			lstChucNang.Add(new cChucNang { ID = 10015, MoTa = "Xác nhận phụ cấp làm việc ngày nghỉ, trực lễ, tết"  });
+			lstChucNang.Add(new cChucNang { ID = 10016, MoTa = "Kết công tháng"  });
+			lstChucNang.Add(new cChucNang { ID = 10021, MoTa = "Điểm danh Nhân viên"  });
+			lstChucNang.Add(new cChucNang { ID = 10031, MoTa = "Chấm công tay cho Quản lý"  });
 
-			lstChucNang.Add(new cChucNang() { ID = 20011, MoTa = "Khai báo vắng cho Nhân viên" });
+			lstChucNang.Add(new cChucNang { ID = 20011, MoTa = "Khai báo vắng cho Nhân viên"  });
 
-			lstChucNang.Add(new cChucNang() { ID = 30011, MoTa = "Sửa giờ hàng loạt" });
-			lstChucNang.Add(new cChucNang() { ID = 30012, MoTa = "Xem lịch sử thao tác" });
-			lstChucNang.Add(new cChucNang() { ID = 30013, MoTa = "Quản lý nhiệm vụ của nhân viên"});
-			lstChucNang.Add(new cChucNang() { ID = 30014, MoTa = "Xem thống kê công, PC, phép theo nhiệm vụ"});
-			lstChucNang.Add(new cChucNang() { ID = 30015, MoTa = "Xem danh sách nhiệm vụ"});
+			lstChucNang.Add(new cChucNang { ID = 30011, MoTa = "Sửa giờ hàng loạt"  });
+			lstChucNang.Add(new cChucNang { ID = 30012, MoTa = "Xem lịch sử thao tác"  });
+			lstChucNang.Add(new cChucNang { ID = 30013, MoTa = "Quản lý nhiệm vụ của nhân viên" });
+			lstChucNang.Add(new cChucNang { ID = 30014, MoTa = "Xem thống kê công, PC, phép theo nhiệm vụ" });
+			lstChucNang.Add(new cChucNang { ID = 30015, MoTa = "Xem danh sách nhiệm vụ" });
 
-			lstChucNang.Add(new cChucNang() { ID = 40011, MoTa = "Quản lý Nhân viên" });
+			lstChucNang.Add(new cChucNang { ID = 40011, MoTa = "Quản lý Nhân viên"  });
 
-			lstChucNang.Add(new cChucNang() { ID = 50011, MoTa = "Kết lương và huỷ kết lương tháng" });
+			lstChucNang.Add(new cChucNang { ID = 50011, MoTa = "Kết lương và huỷ kết lương tháng"  });
 
 			//lstChucNang.Add(new cChucNang() { ID = 60011, MoTa = "Đổi mật khẩu tài khoản" });// xem [2703_1]
-			lstChucNang.Add(new cChucNang() { ID = 70011, MoTa = "Phân quyền" });
-			lstChucNang.Add(new cChucNang() { ID = 70012, MoTa = "Cài đặt thông số" });
-			lstChucNang.Add(new cChucNang() { ID = 70013, MoTa = "Tạo tài khoản đăng nhập" });
+			lstChucNang.Add(new cChucNang { ID = 70011, MoTa = "Phân quyền"  });
+			lstChucNang.Add(new cChucNang { ID = 70012, MoTa = "Cài đặt thông số"  });
+			lstChucNang.Add(new cChucNang { ID = 70013, MoTa = "Tạo tài khoản đăng nhập"  });
 
 			return lstChucNang;
 

@@ -188,6 +188,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 
 
 		private void dtpThang_ValueChanged(object sender, EventArgs e) {
+			checklistNgay.Items.Clear();
 			currMonth = dtpThang.Value;
 			var startDay = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, 1);
 			var endddDay = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, DateTime.DaysInMonth(dtpThang.Value.Year, dtpThang.Value.Month));
@@ -199,8 +200,10 @@ namespace ChamCong_v04.UI.KhaiBao {
 				indexDay = indexDay.AddDays(1d);
 			}
 			checklistNgay.FormatString = "d - ddd";
-
-			checklistNgay.DataSource = lstNgay;
+			for (int i = 0; i < lstNgay.Count; i++)
+			{
+				checklistNgay.Items.Add(lstNgay[i]);
+			}
 		}
 
 		private void btnThem_Click(object sender, EventArgs e)
@@ -258,7 +261,11 @@ namespace ChamCong_v04.UI.KhaiBao {
 			var rowLV = cbLoaiVang.SelectedItem as DataRowView;
 
 			var absentCode = rowLV["AbsentCode"].ToString();
-			var workingDay = radNuaNgay.Checked ? 0.5f : 1f;
+			float workingDay = 0f;
+			if (rad2Gio.Checked) workingDay = 0.25f;
+			else if (radNuaNgay.Checked) workingDay = 0.5f;
+			else if (rad1ngay.Checked) workingDay = 1f;
+			else workingDay = 0f;
 			var workingTime = 0f;
 			var phuCapString = maskedTextBox1.Text;
 			var phuCapInt = 0;
@@ -269,10 +276,20 @@ namespace ChamCong_v04.UI.KhaiBao {
 			#region set working time tùy theo workingDay
 
 			if (Math.Abs(workingDay - 0f) < 0.01f) workingTime = 0f;
+			else if (Math.Abs(workingDay - 0.25f) < 0.01f) workingTime = 2f;
 			else if (Math.Abs(workingDay - 0.5f) < 0.01f) workingTime = 4f;
 			else if (Math.Abs(workingDay - 1f) < 0.01f) workingTime = 8f;
 
 			#endregion
+
+			if (Math.Abs(workingDay-0.25f)<0.01f)
+			{
+				if  (!(absentCode.ToLower()=="p"||absentCode.ToLower()=="ro"))
+				{
+					ACMessageBox.Show("Chưa hỗ trợ vắng 2 tiếng ngoài phép và việc riêng.", "Chức năng chưa được hỗ trợ", 3000);
+					return;
+				}
+			}
 
 			var formatString = "[{0}] đã xin phép vắng [{1}] [{2}] ngày ngày [{3}]";
 			var tableVang = DAO.LietKeNgayVangChoNV(listMaCC_NV, DSNgayCheck.Min(), DSNgayCheck.Max());
@@ -299,7 +316,8 @@ namespace ChamCong_v04.UI.KhaiBao {
 				}
 
 				// hiện form cảnh báo, nếu xác nhận tiếp tục thì thực hiện , ko thì dừng
-				frmWarning frm = new frmWarning { StartPosition = FormStartPosition.CenterParent };
+				frmWarning frm = new frmWarning { StartPosition = FormStartPosition.CenterParent};
+				frm.listWarning = listWarning;
 				frm.ShowDialog();
 				if (frm.TiepTuc == false) return;
 			}

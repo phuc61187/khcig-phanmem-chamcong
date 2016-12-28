@@ -81,7 +81,7 @@ namespace ChamCong_v04.UI.Admin {
 			string insertString = @" insert into NewUserAccount(UserID, UserAccount, Password) values (@UserID, @UserAccount, @password) ";
 
 			// xem các chức năng để tạo mặc định 
-			List<XL2.cChucNang> listChucNang = XL2.TaoChucNang();
+			List<cChucNang> listChucNang = XL2.TaoChucNang();
 			string templateString = " insert into MenuPrivilege (UserID, MenuID, IsYes) values (@UserID, {0}, 0) ";
 			string chuoi = string.Empty;
 			for (int i = 0; i < listChucNang.Count; i++)

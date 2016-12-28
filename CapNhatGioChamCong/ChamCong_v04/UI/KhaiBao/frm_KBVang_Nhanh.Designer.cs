@@ -43,7 +43,7 @@
 			this.cbSoBuoi.Items.AddRange(new object[] {
             "0.5",
             "1",
-            "2"});
+            "0.25"});
 			this.cbSoBuoi.Location = new System.Drawing.Point(97, 39);
 			this.cbSoBuoi.Name = "cbSoBuoi";
 			this.cbSoBuoi.Size = new System.Drawing.Size(75, 23);

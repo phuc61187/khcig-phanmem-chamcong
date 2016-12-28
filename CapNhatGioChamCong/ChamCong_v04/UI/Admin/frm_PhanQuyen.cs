@@ -86,10 +86,11 @@ namespace ChamCong_v04.UI.Admin {
 
 		private void frm_PhanQuyen_Load(object sender, EventArgs e) {
 			// load danh sách chức năng trước tất cả các chức năng mà tài khoản này được phép thao tác
-			List<XL2.cChucNang> lstChucnang = XL2.TaoChucNang();
-			checkQuyenThaotac.DataSource = lstChucnang;
+			List<cChucNang> lstChucnang = XL2.TaoChucNang();
 			checkQuyenThaotac.ValueMember = "ID";
+			checkQuyenThaotac.DataSource = lstChucnang;
 			checkQuyenThaotac.DisplayMember = "MoTa";
+			checkQuyenThaotac.Refresh();
 
 			// load tree view danh sách phòng ban mà tài khoản đang login được phép thao tác, nếu tài khoản login là root thì load hết danh sách phòng ban
 			List<cPhongBan> dsphongThaotac = new List<cPhongBan>();
@@ -244,9 +245,9 @@ namespace ChamCong_v04.UI.Admin {
 			}
 
 			//duyệt từng chức năng và update lại cho phép hay ko cho phép chức năng đó
-			List<XL2.cChucNang> lstchucnang = checkQuyenThaotac.DataSource as List<XL2.cChucNang>;
+			List<cChucNang> lstchucnang = checkQuyenThaotac.DataSource as List<cChucNang>;
 			for (int i = 0; i < checkQuyenThaotac.Items.Count; i++) {
-				XL2.cChucNang item = checkQuyenThaotac.Items[i] as XL2.cChucNang;
+				cChucNang item = checkQuyenThaotac.Items[i] as cChucNang;
 				bool check = item.IsYes;
 				int menuid = item.ID;
 				SqlDataAccessHelper.ExecNoneQueryString(
@@ -282,7 +283,7 @@ namespace ChamCong_v04.UI.Admin {
 			// lấy dataSource danh sách chức năng, set default false nếu ko có row nào
 			if (tableChucnang == null || tableChucnang.Rows.Count == 0) {
 				for (int i = 0; i < checkQuyenThaotac.Items.Count; i++) {
-					XL2.cChucNang chucnang = checkQuyenThaotac.Items[i] as XL2.cChucNang;
+					cChucNang chucnang = checkQuyenThaotac.Items[i] as cChucNang;
 					if (chucnang == null) continue;
 					checkQuyenThaotac.SetItemCheckState(i, CheckState.Unchecked);
 					chucnang.IsYes = false;
@@ -291,7 +292,7 @@ namespace ChamCong_v04.UI.Admin {
 			else {// tồn tại chức năng
 				//duyệt từng chức năng trong danh sách chức năng, kiểm tra xem chức năng đó có trong csdl table ko? nếu có thì check, ko thì uncheck
 				for (int i = 0; i < checkQuyenThaotac.Items.Count; i++) {
-					XL2.cChucNang chucnang = checkQuyenThaotac.Items[i] as XL2.cChucNang;
+					cChucNang chucnang = checkQuyenThaotac.Items[i] as cChucNang;
 					if (chucnang == null) continue;
 					int id = chucnang.ID;
 					DataRow[] arrRows = tableChucnang.Select("MenuID = " + id, "MenuID asc");// tìm trong table chức năng đó bật hay tắt, 
@@ -314,7 +315,7 @@ namespace ChamCong_v04.UI.Admin {
 
 
 		private void checkQuyenThaotac_ItemCheck(object sender, ItemCheckEventArgs e) {
-			XL2.cChucNang item = checkQuyenThaotac.Items[e.Index] as XL2.cChucNang;
+			cChucNang item = checkQuyenThaotac.Items[e.Index] as cChucNang;
 			if (e.NewValue == CheckState.Checked) item.IsYes = true;
 			else if (e.NewValue == CheckState.Unchecked) item.IsYes = false;
 		}

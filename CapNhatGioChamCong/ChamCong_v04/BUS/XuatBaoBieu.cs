@@ -89,9 +89,11 @@ namespace ChamCong_v04.BUS {
 			t2.Add("(xYC): có phụ cấp theo yêu cầu quản lý");
 			t2.Add("(bt): sử dụng quỹ tăng cường cho thời gian vào trễ");
 			t2.Add("(bs): sử dụng quỹ tăng cường cho thời gian ra sớm");
-			t2.Add("(p2): nghỉ phép 2 giờ");
+			t2.Add("2tP/(p2): nghỉ phép 2 giờ");
 			t2.Add("(nP): nghỉ phép 4 giờ");
 			t2.Add("(p6): nghỉ phép 6 giờ");
+			t2.Add("2tRo: nghỉ việc riêng 2 giờ");
+			
 			List<string> t3 = new List<string>();
 			t3.Add("n: nửa công (hoặc nửa ngày)");
 			t3.Add("L: 1 công lễ, tết");
@@ -410,7 +412,7 @@ namespace ChamCong_v04.BUS {
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //phep
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10); //hoc
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10); //ptdt //DANGLAM
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10); //viecrieng //col10 //DANGLAM
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //viecrieng //col10 //DANGLAM
 			/*--*///XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatInt); //qua dem
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //cho viec
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
@@ -840,7 +842,7 @@ namespace ChamCong_v04.BUS {
 			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._200_LeTet_Ngay);
 			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._250_LeTet_Dem);
 			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._Cus);
-			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10);//NghiRo);
+			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//NghiRo);
 			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10);//PTDT);//DANGLAM
 
 
@@ -874,14 +876,14 @@ namespace ChamCong_v04.BUS {
 			var tableShift = DAO.LayDSCa();
 			var tableAbsent = DAO.LayDSLoaiVang();
 			ir = ir + 2;// cách 2 dòng
-			EXP_KyHieuCC(ws, ref ir, new int[] { 3, 4, 24, 41 }, out ir, tableShift, tableAbsent);
-
-			ir = ir + 2;// cách 2 dòng
 			EXP_Footer(ws, ref ir,
 	new int[] { 4, 24, 41 },
 	new int[] { 16, 16, 16 },
 	new string[] { "LẬP BIỂU", "TRƯỞNG BỘ PHẬN", "PHÓ GIÁM ĐỐC" },
 	new string[] { tenNVLapBieu, tenTrgBP, Settings.Default.LastTenPhoGD }, khoangCachTen_ChucVu: Settings.Default.cachDongBKC_LapBieu_ten);
+
+			ir = ir + 10;// cách 2 dòng
+			EXP_KyHieuCC(ws, ref ir, new int[] { 3, 4, 24, 41 }, out ir, tableShift, tableAbsent);
 
 		}
 		public static void EXP_group_KetcongThang(ExcelWorksheet ws, ref int stt, ref int top, ref int left, List<cUserInfo> dsnv, cPhongBan phong, bool XuatPhanChinhThuc, ref SUMCC sumCC, out int sumCol_Pos) {
