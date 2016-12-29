@@ -100,7 +100,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 								{
 									CB = "Đã có xin phép vắng", 
 									ND = string.Format(formatString, userfullname, row123["AbsentCode"], 
-															((float) row123["Workingday"]).ToString("0.0"),
+															((float) row123["Workingday"]).ToString("0.0#"),
 															((DateTime)row123["TimeDate"]).ToString("dd/MM/yyyy"))
 								}));
 						}

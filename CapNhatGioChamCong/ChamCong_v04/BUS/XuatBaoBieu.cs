@@ -882,7 +882,7 @@ namespace ChamCong_v04.BUS {
 	new string[] { "LẬP BIỂU", "TRƯỞNG BỘ PHẬN", "PHÓ GIÁM ĐỐC" },
 	new string[] { tenNVLapBieu, tenTrgBP, Settings.Default.LastTenPhoGD }, khoangCachTen_ChucVu: Settings.Default.cachDongBKC_LapBieu_ten);
 
-			ir = ir + 10;// cách 2 dòng
+			ir = ir + Settings.Default.cachDongBKC_LapBieu_ten + 2;// cách 2 dòng
 			EXP_KyHieuCC(ws, ref ir, new int[] { 3, 4, 24, 41 }, out ir, tableShift, tableAbsent);
 
 		}

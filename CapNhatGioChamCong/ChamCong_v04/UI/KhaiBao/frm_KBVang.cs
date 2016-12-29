@@ -187,7 +187,11 @@ namespace ChamCong_v04.UI.KhaiBao {
 		}
 
 
-		private void dtpThang_ValueChanged(object sender, EventArgs e) {
+		private void dtpThang_ValueChanged(object sender, EventArgs e)
+		{
+			chk2AllWKDays.Checked = false;
+			chk2ExceptSat.Checked = false;
+			chk2ExceptSun.Checked = false;
 			checklistNgay.Items.Clear();
 			currMonth = dtpThang.Value;
 			var startDay = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, 1);
@@ -200,9 +204,10 @@ namespace ChamCong_v04.UI.KhaiBao {
 				indexDay = indexDay.AddDays(1d);
 			}
 			checklistNgay.FormatString = "d - ddd";
-			for (int i = 0; i < lstNgay.Count; i++)
+			for (int index = 0; index < lstNgay.Count; index++)
 			{
-				checklistNgay.Items.Add(lstNgay[i]);
+				DateTime t = lstNgay[index];
+				checklistNgay.Items.Add(t);
 			}
 		}
 
@@ -308,7 +313,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 							listWarning.AddRange(result.Select(row123 => new Warning() {
 								CB = "Đã có xin phép vắng",
 								ND = string.Format(formatString, userfullname, row123["AbsentCode"],
-														((float)row123["Workingday"]).ToString("0.0"),
+														((float)row123["Workingday"]).ToString("0.0#"),
 														((DateTime)row123["TimeDate"]).ToString("dd/MM/yyyy"))
 							}));
 						}
@@ -329,6 +334,8 @@ namespace ChamCong_v04.UI.KhaiBao {
 
 
 			// sau khi thao tác xong thì clear check các ngày liệt kê lại
+			chk2ExceptSat.Checked = false;
+			chk2ExceptSun.Checked = false;
 			for (int i = 0; i < checklistNgay.Items.Count; i++) {
 				checklistNgay.SetItemChecked(i, false);
 			}
