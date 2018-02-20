@@ -40,9 +40,10 @@ namespace ChamCong_v04.UI {
 				sConnection += @"User ID=" + User + ";";
 				sConnection += @"Password=" + pass + ";";
 			}
-			#endregion 
-			// test kết nối và ghi file
-			SqlConnection cnn = new SqlConnection(sConnection);
+            sConnection += @"Connection Timeout=120";
+            #endregion
+            // test kết nối và ghi file
+            SqlConnection cnn = new SqlConnection(sConnection);
 			try {
 				cnn.Open();
 				cnn.Close();

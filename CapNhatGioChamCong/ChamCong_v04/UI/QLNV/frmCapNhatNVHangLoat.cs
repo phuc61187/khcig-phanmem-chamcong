@@ -46,6 +46,10 @@ namespace ChamCong_v04.UI.QLNV {
 			cbLichTrinh.Enabled = checkLichtrinh.Checked;
 			tbHSLCB.Enabled = checkHSLCB.Checked;
 			tbHSLCV.Enabled = checkHSLCV.Checked;
+            tbHSLCBTT17.Enabled = checkHSLCBTT17.Checked;
+            tbHSPCCV.Enabled = checkHSPCCV.Checked;
+            tbHSPCDH.Enabled = checkHSPCDH.Checked;
+            tbHSPCTN.Enabled = checkHSPCTN.Checked;
 			checkUserEnabled.Enabled = checkTinhtrangHoatdong.Checked;
 		}
 
@@ -53,7 +57,7 @@ namespace ChamCong_v04.UI.QLNV {
 
 		private void btnLuu_Click(object sender, EventArgs e) {
 			int idPhong = -1, idChucVu = -1, idLichtrinh = -1, userEnabled = -1;
-			float hslcb = -1f, hslcv = -1f;
+            float hslcb = -1f, hslcv = -1f, hslcbtt17 = -1f, hspccv = -1f, hspcdh = -1f, hspctn = -1f;
 			List<string> arrString = new List<string>();
 			List<string> arrString2 = new List<string>();
 			bool IsExist_1Check = false;
@@ -107,7 +111,65 @@ namespace ChamCong_v04.UI.QLNV {
 				IsExist_1Check = true;
 			}
 
-			if (checkTinhtrangHoatdong.Checked) {
+            if (checkHSLCBTT17.Checked)
+            {
+                if (float.TryParse(tbHSLCBTT17.Text, out hslcbtt17) == false)
+                {
+                    ACMessageBox.Show(Resources.Text_HeSoLCB_CV_BHXH_ChuaHopLe, Resources.Caption_Loi, 2000);
+                    return;
+                }
+                else
+                {
+                    arrString.Add(" HSLCBTT17 = @HSLCBTT17 ");
+                    arrString2.Add("hệ số lương cơ bản TT17 mới: [" + hslcbtt17.ToString("0.00") + "]; ");
+                }
+                IsExist_1Check = true;
+            }
+            if (checkHSPCCV.Checked)
+            {
+                if (float.TryParse(tbHSPCCV.Text, out hspccv) == false)
+                {
+                    ACMessageBox.Show(Resources.Text_HeSoLCB_CV_BHXH_ChuaHopLe, Resources.Caption_Loi, 2000);
+                    return;
+                }
+                else
+                {
+                    arrString.Add(" HSPCCV = @HSPCCV ");
+                    arrString2.Add("hệ số phụ cấp công việc mới: [" + hspccv.ToString("0.00") + "]; ");
+                }
+                IsExist_1Check = true;
+            }
+            if (checkHSPCDH.Checked)
+            {
+                if (float.TryParse(tbHSPCDH.Text, out hspcdh) == false)
+                {
+                    ACMessageBox.Show(Resources.Text_HeSoLCB_CV_BHXH_ChuaHopLe, Resources.Caption_Loi, 2000);
+                    return;
+                }
+                else
+                {
+                    arrString.Add(" HSPCDH = @HSPCDH ");
+                    arrString2.Add("hệ số phụ cấp độc hại mới: [" + hspcdh.ToString("0.00") + "]; ");
+                }
+                IsExist_1Check = true;
+            }
+            if (checkHSPCTN.Checked)
+            {
+                if (float.TryParse(tbHSPCTN.Text, out hspctn) == false)
+                {
+                    ACMessageBox.Show(Resources.Text_HeSoLCB_CV_BHXH_ChuaHopLe, Resources.Caption_Loi, 2000);
+                    return;
+                }
+                else
+                {
+                    arrString.Add(" HSPCTN = @HSPCTN ");
+                    arrString2.Add("hệ số phụ cấp trách nhiệm mới: [" + hspcdh.ToString("0.00") + "]; ");
+                }
+                IsExist_1Check = true;
+            }
+
+
+            if (checkTinhtrangHoatdong.Checked) {
 				userEnabled = (checkUserEnabled.Checked) ? 1 : 0;
 				arrString.Add(" UserEnabled = @UserEnabled ");
 				arrString2.Add("tình trạng mới: [" + (checkUserEnabled.Checked ? "đang làm việc" : "ngưng việc") + "]; ");
@@ -130,7 +192,7 @@ namespace ChamCong_v04.UI.QLNV {
 			string query = string.Format(formatstring1, temp1, temp2);
 			int kq = SqlDataAccessHelper.ExecNoneQueryString(query,
 				new string[] {"@MaPhong", "@IDChucVu", "@SchID",
-						"@HeSoLuongCB", "@HeSoLuongSP", "@UserEnabled",},
+						"@HeSoLuongCB", "@HeSoLuongSP", "@HSLCBTT17", "@HSPCCV", "@HSPCDH", "@HSPCTN", "@UserEnabled",},
 				new object[] {idPhong, idChucVu, idLichtrinh, hslcb, hslcv, userEnabled});
 			foreach (int uen in listUEN)
 			{

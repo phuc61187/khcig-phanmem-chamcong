@@ -97,7 +97,11 @@ namespace ChamCong_v04.UI.QLNV {
 				tbHSLCB.Text = (RowView["HeSoLuongCB"] != DBNull.Value) ? ((float)RowView["HeSoLuongCB"]).ToString("0.00") : "000";
 				tbHSLCV.Text = (RowView["HeSoLuongSP"] != DBNull.Value) ? ((float)RowView["HeSoLuongSP"]).ToString("0.00") : "000";
 				tbHSBHXHCongThem.Text = (RowView["HSBHCongThem"] != DBNull.Value) ? ((float)RowView["HSBHCongThem"]).ToString("0.00") : "000";
-				checkUserEnabled.Checked = (RowView["UserEnabled"] != DBNull.Value && (bool)RowView["UserEnabled"]);
+                tbHSLCBTT17.Text = (RowView["HSLCBTT17"] != DBNull.Value) ? ((float)RowView["HSLCBTT17"]).ToString("0.00") : "000";
+                tbHSPCCV.Text = (RowView["HSPCCV"] != DBNull.Value) ? ((float)RowView["HSPCCV"]).ToString("0.00") : "000";
+                tbHSPCDH.Text = (RowView["HSPCDH"] != DBNull.Value) ? ((float)RowView["HSPCDH"]).ToString("0.00") : "000";
+                tbHSPCTN.Text = (RowView["HSPCTN"] != DBNull.Value) ? ((float)RowView["HSPCTN"]).ToString("0.00") : "000";
+                checkUserEnabled.Checked = (RowView["UserEnabled"] != DBNull.Value && (bool)RowView["UserEnabled"]);
 			}
 		}
 
@@ -122,10 +126,15 @@ namespace ChamCong_v04.UI.QLNV {
 			string tenphong = (cbPhongBan.SelectedItem != null) ? cbPhongBan.SelectedItem.ToString() : cbPhongBan.Text;
 			int idlichtrinh = (int)cbLichTrinh.SelectedValue;
 			string tenLichTrinh = (cbLichTrinh.SelectedItem != null) ? cbLichTrinh.SelectedItem.ToString() : cbLichTrinh.Text;
-			float hslcb, hslcv, hsbhxhcongthem;
+			float hslcb, hslcv, hsbhxhcongthem, hslcbtt17, hspccv, hspcdh, hspctn;
 			if (float.TryParse(tbHSLCB.Text, out hslcb) == false
 				|| float.TryParse(tbHSLCV.Text, out hslcv) == false
-				|| float.TryParse(tbHSBHXHCongThem.Text, out hsbhxhcongthem) == false) {
+				|| float.TryParse(tbHSBHXHCongThem.Text, out hsbhxhcongthem) == false
+                || float.TryParse(tbHSLCBTT17.Text, out hslcbtt17) == false
+                || float.TryParse(tbHSPCCV.Text, out hspccv) == false
+                || float.TryParse(tbHSPCDH.Text, out hspcdh) == false
+                || float.TryParse(tbHSPCTN.Text, out hspctn) == false
+                ) {
 				ACMessageBox.Show(Resources.Text_HeSoLCB_CV_BHXH_ChuaHopLe, Resources.Caption_Loi, 2000);
 				return;
 			}
@@ -148,42 +157,46 @@ namespace ChamCong_v04.UI.QLNV {
 			#region execute query 
 
 			int kq1 = SqlDataAccessHelper.ExecNoneQueryString(
-				@" UPDATE UserInfo Set 
+                @" UPDATE UserInfo Set 
 								UserFullCode = @UserFullCode, UserFullName = @UserFullName, UserLastName = @UserLastName, UserEnrollName = @UserEnrollName,
 								  UserCardNo = @UserCardNo, UserHireDay = @UserHireDay, UserIDTitle = @IDChucVu, UserSex = @UserSex, 
 								  UserEnabled = @UserEnabled, UserIDD = @UserIDD, SchID = @SchID, 
 								  HeSoLuongCB = @HeSoLuongCB, HeSoLuongSP = @HeSoLuongSP, HSBHCongThem = @HSBHCongThem
-
+                                  HSLCBTT17 = @HSLCBTT17, HSPCCV = @HSPCCV, HSPCDH = @HSPCDH, HSPCTN = @HSPCTN,
 								where UserEnrollNumber = @UserEnrollNumber
 
 							if ( @@ROWCOUNT = 0 )  
 							INSERT INTO UserInfo (  UserFullCode,  UserFullName,  UserLastName,  UserEnrollNumber,  UserEnrollName,
 									UserCardNo,  UserHireDay,  UserIDTitle,  UserSex,  UserPrivilege,  UserEnabled,
 									UserIDD,  SchID,  HeSoLuongCB,  HeSoLuongSP,  HSBHCongThem,  
+                                    HSLCBTT17, HSPCCV, HSPCDH, HSPCTN,
 									PushCardID,  UserPW, UserGroup, UserTZ) 
 							VALUES (  @UserFullCode,  @UserFullName,  @UserLastName,  @UserEnrollNumber,  @UserEnrollName,
 									  @UserCardNo,  @UserHireDay,  @IDChucVu,  @UserSex,  @UserPrivilege,  @UserEnabled,
 									  @UserIDD,  @SchID,  @HeSoLuongCB,  @HeSoLuongSP,  @HSBHCongThem,  
+                                      @HSLCBTT17, @HSPCCV, @HSPCDH, @HSPCTN,
 									  @PushCardID,  @UserPW, @UserGroup, @UserTZ )",
 				new string[]{
 						"@UserFullCode", "@UserFullName", "@UserLastName", "@UserEnrollNumber", "@UserEnrollName",
 						"@UserCardNo", "@UserHireDay", "@IDChucVu", "@UserSex",  
 						"@UserEnabled","@UserIDD", "@SchID",
-						"@HeSoLuongCB", "@HeSoLuongSP", "@HSBHCongThem", 
+						"@HeSoLuongCB", "@HeSoLuongSP", "@HSBHCongThem",
+                        "@HSLCBTT17", "@HSPCCV", "@HSPCDH", "@HSPCTN",
 						"@UserPrivilege", "@PushCardID", "@UserPW", "@UserGroup", "@UserTZ"},
 				new object[]{
 						maNV, hoten, ten, maCC, tenCC,
 						mathetu, ngayvaolam, idchucvu, gioitinh, 
 						userEnabled, idphong, idlichtrinh,
 						hslcb, hslcv, hsbhxhcongthem, 
+                        hslcbtt17, hspccv, hspcdh, hspctn,
 						0, "[0000000000]", string.Empty, 1, "0000000000000000",});
 			string noidung =
-				@"Lưu thông tin nhân viên có mã chấm công [{0}], mã nhân viên [{1}], hệ số lương cơ bản [{2}], hệ số lương sản phẩm [{3}], hệ số bảo hiểm cộng thêm cho lãnh đạo [{4}], tình trạng hoạt động [{5}], phòng ban [{6}], lịch trình [{7}]";
+				@"Lưu thông tin nhân viên có mã chấm công [{0}], mã nhân viên [{1}], hệ số lương cơ bản [{2}], hệ số lương sản phẩm [{3}], hệ số bảo hiểm cộng thêm cho lãnh đạo [{4}], hệ số lương cơ bản TT17 [{5}], hệ số phụ cấp công việc [{6}], hệ số phụ cấp độc hại [{7}], hệ số phụ cấp trách nhiệm [{8}], tình trạng hoạt động [{9}], phòng ban [{10}], lịch trình [{11}]";
 			DAO.GhiNhatKyThaotac("Lưu thông tin nhân viên", string.Format(noidung,
-				maCC, maNV, hslcb.ToString("0.00"), hslcv.ToString("0.00"), hsbhxhcongthem.ToString("0.00"), userEnabled, tenphong,tenLichTrinh), maCC:maCC);
+				maCC, maNV, hslcb.ToString("0.00"), hslcv.ToString("0.00"), hsbhxhcongthem.ToString("0.00"), hslcbtt17.ToString("0.00"), hspccv.ToString("0.00"), hspcdh.ToString("0.00"), hspctn.ToString("0.00"), userEnabled, tenphong,tenLichTrinh), maCC:maCC);
 
-			#endregion
-			if (checkLamCongnhat.Enabled && checkLamCongnhat.Checked)
+            #endregion
+            if (checkLamCongnhat.Enabled && checkLamCongnhat.Checked)
 			{
 				var ngayBD = dtpNgayBDCongnhat.Value.Date;
 				var ngayKT = dtpNgayKTCongnhat.Value.Date;
@@ -221,6 +234,10 @@ namespace ChamCong_v04.UI.QLNV {
 					tbHSLCB.Text = "000";
 					tbHSLCV.Text = "000";
 					tbHSBHXHCongThem.Text = "000";
+                    tbHSLCBTT17.Text = "000";
+                    tbHSPCCV.Text = "000";
+                    tbHSPCDH.Text = "000";
+                    tbHSPCTN.Text = "000";
 					cbChucVu.SelectedIndex = 0;
 					cbPhongBan.SelectedIndex = 0;
 					cbLichTrinh.SelectedIndex = 0;

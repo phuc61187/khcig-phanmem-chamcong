@@ -461,7 +461,7 @@ namespace ChamCong_v04.BUS {
 						  //where row["UserEnabled"] != DBNull.Value && (bool)row["UserEnabled"]
 						  select
 						  KhoiTaoNV((int)row["UserEnrollNumber"], (string)row["UserFullName"], (string)row["UserFullCode"],
-						  null, null, null,
+						  null, null, null, null, null, null, null,
 						  dsphong,
 						  (row["SchID"] != DBNull.Value ? (int)row["SchID"] : -1),
 						  (row["IDChucVu"] != DBNull.Value) ? (int)row["IDChucVu"] : -1,
@@ -479,7 +479,11 @@ namespace ChamCong_v04.BUS {
 														(row["HeSoLuongCB"] != DBNull.Value) ? (float)row["HeSoLuongCB"] : 0f,
 														(row["HeSoLuongSP"] != DBNull.Value) ? (float)row["HeSoLuongSP"] : 0f,
 														(row["HSBHCongThem"] != DBNull.Value) ? (float)row["HSBHCongThem"] : 0f,
-														dsphong,
+                                                        (row["HSLCBTT17"] != DBNull.Value) ? (float)row["HSLCBTT17"] : 0f,
+                                                        (row["HSPCTN"] != DBNull.Value) ? (float)row["HSPCTN"] : 0f,
+                                                        (row["HSPCDH"] != DBNull.Value) ? (float)row["HSPCDH"] : 0f,
+                                                        (row["HSPCCV"] != DBNull.Value) ? (float)row["HSPCCV"] : 0f,
+                                                        dsphong,
 														(row["SchID"] != DBNull.Value ? (int)row["SchID"] : (int?)null),
 														(row["IDChucVu"] != DBNull.Value) ? (int)row["IDChucVu"] : (int?)null,
 														(row["ChucVu"] != DBNull.Value) ? (string)row["ChucVu"] : null,
@@ -497,7 +501,8 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static cUserInfo KhoiTaoNV(int uen, string ten, string manv,
-			float? hslCB, float? hslCV, float? hsBHcongthem, List<cPhongBan> phongBans,
+			float? hslCB, float? hslCV, float? hsBHcongthem, float? hslCBTT17, float? hsPCTNTT17, float? hsPCDHTT17, float? hsPCCVTT17,
+            List<cPhongBan> phongBans,
 			int? schID = null, int? idChucVu = null, string ChucVu = null,
 			int? maphong = null) {
 			cUserInfo nhanvien = new cUserInfo {
@@ -507,6 +512,10 @@ namespace ChamCong_v04.BUS {
 			};
 			if (hslCB != null) nhanvien.HeSo.LuongCB = (float)hslCB;
 			if (hslCV != null) nhanvien.HeSo.LuongCV = (float)hslCV;
+            nhanvien.HeSo.LCBTT17 = hslCBTT17 != null ? (float)hslCBTT17 : 0f;
+            nhanvien.HeSo.PCTNTT17 = hsPCTNTT17 != null ? (float)hsPCTNTT17 : 0f;
+            nhanvien.HeSo.PCDHTT17 = hsPCDHTT17 != null ? (float)hsPCDHTT17 : 0f;
+            nhanvien.HeSo.PCCVTT17 = hsPCCVTT17 != null ? (float)hsPCCVTT17 : 0f;
 			if (hsBHcongthem != null && hslCB != null) nhanvien.HeSo.BHCongThem_ChoGD_PGD = (float)hsBHcongthem;
 			if (idChucVu == null) nhanvien.IDChucVu = 0;
 			#region xét lịch trình cho nv

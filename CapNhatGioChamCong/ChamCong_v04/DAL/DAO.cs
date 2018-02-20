@@ -119,7 +119,8 @@ order by ViTri desc
 			//DANGLAM
 			var query = @"
 	INSERT INTO KetLuongThang
-	(Thang, UserEnrollNumber, HSLCB, HSLCV, HSBHCongThem,
+	(Thang, UserEnrollNumber, HSLCB, HSLCV, HSBHCongThem, 	
+    HSLCBTT17, HSPCTN, HSPCDH, HSPCCV,
 	IDPhong, TenPhong, ViTriPhong, LevelDept, RelationIDDept,
 	IDChucVu, ChucVu,
 	TongCong, TongLe, TongPhep, TongH_CT_PT, TongQuaDem, TongCongCV, TongBHXH, TongRo, TongPTDT, ViecRiengKoComTrua,
@@ -130,6 +131,7 @@ order by ViTri desc
 	TamUng, MucDongBHXH, KhauTruBHXH, ThuChiKhac, TienComTrua, ThucLanh  ) 
 	VALUES (
 	@Thang, @UserEnrollNumber, @HSLCB, @HSLCV, @HSBHCongThem,
+    @HSLCBTT17, @HSPCTN, @HSPCDH, @HSPCCV,
 	@IDPhong, @TenPhong, @ViTriPhong, @LevelDept, @RelationIDDept,
 	@IDChucVu, @ChucVu,
 	@TongCong, @TongLe, @TongPhep, @TongH_CT_PT, @TongQuaDem, @TongCongCV, @TongBHXH, @TongRo, @TongPTDT, @ViecRiengKoComTrua,
@@ -145,6 +147,7 @@ order by ViTri desc
 														   new string[]//DANGLAM
 															   {
 "@Thang", "@UserEnrollNumber", "@HSLCB", "@HSLCV", "@HSBHCongThem",
+"@HSLCBTT17", "@HSPCTN", "@HSPCDH", "@HSPCCV",
 "@IDPhong", "@TenPhong", "@ViTriPhong", "@LevelDept", "@RelationIDDept",
 "@IDChucVu", "@ChucVu",
 "@TongCong", "@TongLe", "@TongPhep", "@TongH_CT_PT", "@TongQuaDem", "@TongCongCV", "@TongBHXH", "@TongRo", "@TongPTDT", "@ViecRiengKoComTrua",//ver 4.0.0.8 "@ViecRiengKoComTrua"
@@ -157,6 +160,7 @@ order by ViTri desc
 														   new object[]
 															   {
   Thang,nv.MaCC,nv.HeSo.LuongCB,nv.HeSo.LuongCV,nv.HeSo.BHCongThem_ChoGD_PGD,
+  nv.HeSo.LCBTT17, nv.HeSo.PCTNTT17, nv.HeSo.PCDHTT17, nv.HeSo.PCCVTT17,
   nv.PhongBan.ID,nv.PhongBan.Ten, nv.PhongBan.ViTri, 0/*leveldept*/, nv.PhongBan.idParent, //info xem lại nếu phòng ban null thì id và tên ntn--> đã giải quyết
 																							//info id parent nếu null --> đã giải quyết
   nv.IDChucVu, nv.ChucVu,

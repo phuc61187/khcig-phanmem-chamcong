@@ -39,7 +39,7 @@
       <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="LastDinhMucComTrua" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">680000</Value>
+      <Value Profile="(Default)">730000</Value>
     </Setting>
     <Setting Name="LastSanluongGiaCongNoibo" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30000</Value>
@@ -48,10 +48,10 @@
       <Value Profile="(Default)">100000</Value>
     </Setting>
     <Setting Name="LastDongiaGiacongNoibo" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2800</Value>
+      <Value Profile="(Default)">1600</Value>
     </Setting>
     <Setting Name="LastDongiaGiacongNgoai" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2000</Value>
+      <Value Profile="(Default)">1600</Value>
     </Setting>
     <Setting Name="headerTCty" Type="System.String" Scope="User">
       <Value Profile="(Default)">TỔNG CÔNG TY CÔNG NGHIỆP SÀI GÒN</Value>
@@ -91,7 +91,7 @@ CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastTenPhoGD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Nguyễn Chí Tân</Value>
+      <Value Profile="(Default)">Nguyễn Văn Bé Hai</Value>
     </Setting>
     <Setting Name="LastTenTruongBP" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

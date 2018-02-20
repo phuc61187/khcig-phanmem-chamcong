@@ -1,0 +1,6 @@
+C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\bin\Debug\TestConsole.exe.config
+C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\bin\Debug\TestConsole.exe
+C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\bin\Debug\TestConsole.pdb
+C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.csprojResolveAssemblyReference.cache
+C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.exe
+C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.pdb

@@ -237,6 +237,19 @@ namespace ChamCong_v04.DTO {
 		//public float BHXH_YT_TN;
 		public float BHCongThem_ChoGD_PGD;
 
+        public float LCBTT17;
+        /// <summary>
+        /// Phụ cấp trách nhiệm
+        /// </summary>
+        public float PCTNTT17;
+        /// <summary>
+        /// phụ cấp độc hại
+        /// </summary>
+        public float PCDHTT17;
+        /// <summary>
+        /// phụ cấp công việc
+        /// </summary>
+        public float PCCVTT17;
 		//private float baoHiemXaHoi_YTe_ThatNghiep;
 		public float BHXH_YT_TN
 		{

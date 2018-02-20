@@ -5,3 +5,17 @@
 5. kết số lượng sữa
 
 6. sắp xếp phòng theo vị trí --> xong
+
+
+   UPDATE ThongSoKetLuongThang   MucLuongTTTT17,
+    LuongPTT,
+    LuongTrucLeTetBV,
+    PhuCapTrachNhiem,
+
+	UserInfo HSLCBTT17,
+    HSPCCV,
+    HSPCDH,
+    HSPCTN,
+
+	INSERT INTO KetLuongThang HSLCBTT17, HSPCTN, HSPCDH, HSPCCV,
+	ExportSheetTongHopChi chưa làm
