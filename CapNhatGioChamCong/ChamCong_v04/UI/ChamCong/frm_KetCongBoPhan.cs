@@ -245,7 +245,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 						CongCongnhat += ngayCong.TongCong_4008;
 					}
 					// cập nhật số ngày công công nhật xuống csdl
-					int kq1 = SqlDataAccessHelper.ExecNoneQueryString(" update DSNVChiCongNhatThang set SoNgayCong = @SoNgayCong where UserEnrollNumber= @UserEnrollNumber", new string[] { "@SoNgayCong", "@UserEnrollNumber" }, new object[] { CongCongnhat, macc });//info ko cần log
+					int kq1 = SqlDataAccessHelper.ExecNoneQueryString(" update DSNVChiCongNhatThang set SoNgayCong = @SoNgayCong where UserEnrollNumber= @UserEnrollNumber and Thang=@Thang", new string[] { "@SoNgayCong", "@UserEnrollNumber", "@Thang" }, new object[] { CongCongnhat, macc, ngaydauthang });//info ko cần log
 					if (kq1 == 0) {
 						MessageBox.Show(Resources.Text_CoLoi);
 					}

@@ -312,7 +312,7 @@
             this.btnLuu.Location = new System.Drawing.Point(175, 500);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(90, 27);
-            this.btnLuu.TabIndex = 17;
+            this.btnLuu.TabIndex = 22;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
@@ -324,7 +324,7 @@
             this.btnDong.Location = new System.Drawing.Point(285, 500);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(90, 27);
-            this.btnDong.TabIndex = 18;
+            this.btnDong.TabIndex = 23;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
@@ -343,7 +343,7 @@
             this.checkUserEnabled.Location = new System.Drawing.Point(15, 475);
             this.checkUserEnabled.Name = "checkUserEnabled";
             this.checkUserEnabled.Size = new System.Drawing.Size(222, 19);
-            this.checkUserEnabled.TabIndex = 16;
+            this.checkUserEnabled.TabIndex = 21;
             this.checkUserEnabled.Text = "Cho phép hoạt động (UserEnabled)";
             this.toolTipHint.SetToolTip(this.checkUserEnabled, "Đánh dấu mục này nếu NV đang làm việc\r\nvà chấm công. Bỏ đánh dấu nếu NV không\r\ncò" +
         "n làm việc.");
@@ -366,7 +366,7 @@
             this.dtpNgayBDCongnhat.Location = new System.Drawing.Point(175, 401);
             this.dtpNgayBDCongnhat.Name = "dtpNgayBDCongnhat";
             this.dtpNgayBDCongnhat.Size = new System.Drawing.Size(200, 21);
-            this.dtpNgayBDCongnhat.TabIndex = 13;
+            this.dtpNgayBDCongnhat.TabIndex = 18;
             this.dtpNgayBDCongnhat.Value = new System.DateTime(2013, 8, 1, 0, 0, 0, 0);
             // 
             // label16
@@ -386,7 +386,7 @@
             this.dtpNgayKTCongnhat.Location = new System.Drawing.Point(175, 423);
             this.dtpNgayKTCongnhat.Name = "dtpNgayKTCongnhat";
             this.dtpNgayKTCongnhat.Size = new System.Drawing.Size(200, 21);
-            this.dtpNgayKTCongnhat.TabIndex = 14;
+            this.dtpNgayKTCongnhat.TabIndex = 19;
             this.dtpNgayKTCongnhat.Value = new System.DateTime(2013, 8, 1, 0, 0, 0, 0);
             // 
             // checkLamCongnhat
@@ -396,7 +396,7 @@
             this.checkLamCongnhat.Location = new System.Drawing.Point(15, 403);
             this.checkLamCongnhat.Name = "checkLamCongnhat";
             this.checkLamCongnhat.Size = new System.Drawing.Size(146, 19);
-            this.checkLamCongnhat.TabIndex = 12;
+            this.checkLamCongnhat.TabIndex = 17;
             this.checkLamCongnhat.Text = "Làm việc công nhật từ";
             this.checkLamCongnhat.UseVisualStyleBackColor = true;
             this.checkLamCongnhat.CheckedChanged += new System.EventHandler(this.checkLamCongnhat_CheckedChanged);
@@ -408,7 +408,7 @@
             this.checkNVChinhThuc.Location = new System.Drawing.Point(15, 450);
             this.checkNVChinhThuc.Name = "checkNVChinhThuc";
             this.checkNVChinhThuc.Size = new System.Drawing.Size(317, 19);
-            this.checkNVChinhThuc.TabIndex = 15;
+            this.checkNVChinhThuc.TabIndex = 20;
             this.checkNVChinhThuc.Text = "Tính lương các ngày còn lại như nhân viên chính thức";
             this.checkNVChinhThuc.UseVisualStyleBackColor = true;
             // 
@@ -454,7 +454,7 @@
             this.tbHSLCBTT17.Mask = "0.00";
             this.tbHSLCBTT17.Name = "tbHSLCBTT17";
             this.tbHSLCBTT17.Size = new System.Drawing.Size(100, 21);
-            this.tbHSLCBTT17.TabIndex = 9;
+            this.tbHSLCBTT17.TabIndex = 12;
             this.tbHSLCBTT17.Text = "000";
             // 
             // tbHSPCCV
@@ -463,7 +463,7 @@
             this.tbHSPCCV.Mask = "0.00";
             this.tbHSPCCV.Name = "tbHSPCCV";
             this.tbHSPCCV.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCCV.TabIndex = 10;
+            this.tbHSPCCV.TabIndex = 13;
             this.tbHSPCCV.Text = "000";
             // 
             // tbHSPCDH
@@ -472,7 +472,7 @@
             this.tbHSPCDH.Mask = "0.00";
             this.tbHSPCDH.Name = "tbHSPCDH";
             this.tbHSPCDH.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCDH.TabIndex = 11;
+            this.tbHSPCDH.TabIndex = 14;
             this.tbHSPCDH.Text = "000";
             // 
             // label18
@@ -490,7 +490,7 @@
             this.tbHSPCTN.Mask = "0.00";
             this.tbHSPCTN.Name = "tbHSPCTN";
             this.tbHSPCTN.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCTN.TabIndex = 11;
+            this.tbHSPCTN.TabIndex = 15;
             this.tbHSPCTN.Text = "000";
             // 
             // frmThem_Capnhat_1NV

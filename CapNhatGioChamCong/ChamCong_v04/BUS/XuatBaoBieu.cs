@@ -646,9 +646,9 @@ namespace ChamCong_v04.BUS {
 			var sanLuongGiaCongNgoai = (int)tableThongSo.Rows[0]["SanLuongGiaCongNgoai"];
 			var donGiaGiaCongNgoai = (int)tableThongSo.Rows[0]["DonGiaGiaCongNgoai"];
 			var thanhtienGiaCongNgoai = ((double)sanLuongGiaCongNgoai * (double)donGiaGiaCongNgoai);
-            var luongPTT = tableThongSo.Rows[0][""] == DBNull.Value ? 0f : (float)tableThongSo.Rows[0][""];
-            var luongTrucLeTetBV = tableThongSo.Rows[0][""] == DBNull.Value ? 0f : (float)tableThongSo.Rows[0][""];
-            var phuCapTrachNhiem = tableThongSo.Rows[0][""] == DBNull.Value ? 0f : (float)tableThongSo.Rows[0][""];
+            var luongPTT = tableThongSo.Rows[0]["LuongPTT"] == DBNull.Value ? 0f : (float)tableThongSo.Rows[0]["LuongPTT"];
+            var luongTrucLeTetBV = tableThongSo.Rows[0]["LuongTrucLeTetBV"] == DBNull.Value ? 0f : (float)tableThongSo.Rows[0]["LuongTrucLeTetBV"];
+            var phuCapTrachNhiem = tableThongSo.Rows[0]["PhuCapTrachNhiem"] == DBNull.Value ? 0f : (float)tableThongSo.Rows[0]["PhuCapTrachNhiem"];
             var quyluongThanhtoan = _80perThanhTien + thanhtienGiaCongNoiBo + thanhtienGiaCongNgoai;
 			var quyluongChoviec = (double)tableThongSo.Rows[0]["QuyLuongCV"];
 			var quyluongNghidinh = (double)tableThongSo.Rows[0]["QuyLuongNghiDinhCP"];
@@ -697,11 +697,6 @@ namespace ChamCong_v04.BUS {
 			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: quyluongThanhtoan, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
 
 			ic = left;
-			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Quỹ lương chờ việc (tính vào quỹ lương dự phòng cuối năm): ", VeBorder: false);
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: quyluongChoviec, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
-
-			ir = ir + 1; // cách 1 dòng 
-			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "QUỸ LƯƠNG TRẢ CHO NGƯỜI LAO ĐỘNG ", Bold: true, VeBorder: false);
 			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: quyluongThanhtoan, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
 
@@ -717,8 +712,24 @@ namespace ChamCong_v04.BUS {
 			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: tongLuongCongnhat, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
 
 			ic = left;
-			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Chi khác từ quỹ lương ", VeBorder: false);
+			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Chi khác từ quỹ lương ", Bold:true, VeBorder: false);
 			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: chiKhacTuQuyLuong, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
+
+			ic = left;
+			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương chờ việc: ", VeBorder: false);
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: quyluongChoviec, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
+
+			ic = left;
+			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương phụ cấp trách nhiệm: ", VeBorder: false);
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: phuCapTrachNhiem, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
+
+			ic = left;
+			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương cho phòng Thị trường: ", VeBorder: false);
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: luongPTT, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
+
+			ic = left;
+			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương trực lễ bảo vệ: ", VeBorder: false);
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: luongTrucLeTetBV, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Điều chỉnh lương tháng trước và truy lãnh lương ", VeBorder: false);

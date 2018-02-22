@@ -193,7 +193,7 @@ namespace ChamCong_v04.UI.QLNV {
 			int kq = SqlDataAccessHelper.ExecNoneQueryString(query,
 				new string[] {"@MaPhong", "@IDChucVu", "@SchID",
 						"@HeSoLuongCB", "@HeSoLuongSP", "@HSLCBTT17", "@HSPCCV", "@HSPCDH", "@HSPCTN", "@UserEnabled",},
-				new object[] {idPhong, idChucVu, idLichtrinh, hslcb, hslcv, userEnabled});
+				new object[] {idPhong, idChucVu, idLichtrinh, hslcb, hslcv, hslcbtt17, hspccv, hspcdh, hspctn, userEnabled});
 			foreach (int uen in listUEN)
 			{
 				DAO.GhiNhatKyThaotac("Cập nhật thông tin NV hàng loạt", string.Format(formatstring2, uen, temp3), maCC:uen);

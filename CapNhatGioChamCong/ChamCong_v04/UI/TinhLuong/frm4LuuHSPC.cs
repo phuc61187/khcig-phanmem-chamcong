@@ -47,31 +47,13 @@ namespace ChamCong_v04.UI.TinhLuong {
 			    numDongiaGiacongNgoai.Value = tableThongsoKetluongThang.Rows[0]["DonGiaGiaCongNgoai"] == DBNull.Value ? 0 : (int)tableThongsoKetluongThang.Rows[0]["DonGiaGiaCongNgoai"];
 
                 numTrichQuyLuong.Value = tableThongsoKetluongThang.Rows[0]["TrichQuyLuong"] == DBNull.Value ? 0 : (int)tableThongsoKetluongThang.Rows[0]["TrichQuyLuong"];
-                numLuongTT.Value = tableThongsoKetluongThang.Rows[0]["MucLuongToiThieu"]== DBNull.Value ? 0 : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["MucLuongToiThieu"]);
+                numLuongToiThieu.Value = tableThongsoKetluongThang.Rows[0]["MucLuongToiThieu"]== DBNull.Value ? 0 : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["MucLuongToiThieu"]);
                 numDinhMucComTrua.Value = tableThongsoKetluongThang.Rows[0]["DinhMucComTrua"] == DBNull.Value ? 0 : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["DinhMucComTrua"]);                
 
                 numMucLuongTT17.Value = tableThongsoKetluongThang.Rows[0]["MucLuongTTTT17"] == DBNull.Value ? 0 : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["MucLuongTTTT17"]);
                 num11LuongPTT.Value = tableThongsoKetluongThang.Rows[0]["LuongPTT"] == DBNull.Value ? 0 : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["LuongPTT"]);
                 num12LuongLeTetBV.Value = tableThongsoKetluongThang.Rows[0]["LuongTrucLeTetBV"] == DBNull.Value ? 0 : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["LuongTrucLeTetBV"]);
                 num10PCTrachNhiem.Value = tableThongsoKetluongThang.Rows[0]["PhuCapTrachNhiem"] == DBNull.Value ? 0 : Convert.ToDecimal(tableThongsoKetluongThang.Rows[0]["PhuCapTrachNhiem"]);
-            }
-            else
-            {
-                numSanLuong.Value = 0;
-                numDonGia.Value = 0;
-                numSanluongGiacongNgoai.Value = 0;
-                numDongiaGiacongNgoai.Value = 0;
-                numSanluongGiacongNoibo.Value = 0;
-                numDongiaGiacongNoibo.Value = 0;
-
-                numTrichQuyLuong.Value = 0;
-                numLuongTT.Value = 0;
-                numDinhMucComTrua.Value = 0;
-
-                numMucLuongTT17.Value = 0;
-                num11LuongPTT.Value = 0;
-                num12LuongLeTetBV.Value = 0;
-                num10PCTrachNhiem.Value = 0;
             }
 
         }
@@ -149,10 +131,10 @@ namespace ChamCong_v04.UI.TinhLuong {
 			var dongiaGiacongNoiBo = (int)numDongiaGiacongNoibo.Value;
 			var sanluongGiacongNgoai = (int)numSanluongGiacongNgoai.Value;
 			var dongiaGiacongNgoai = (int)numDongiaGiacongNgoai.Value;
-			var mucLuongToithieu = (int)numLuongTT.Value;
+			var mucLuongToithieu = (int)numLuongToiThieu.Value;
             var mucLuongTT17 = (int)numMucLuongTT17.Value;
 			var DinhMuccomtrua = (int)numDinhMucComTrua.Value;
-            var luongPTT = (float)numLuongTT.Value;
+            var luongPTT = (float)num11LuongPTT.Value;
             var luongTrucBV = (float)num12LuongLeTetBV.Value;
             var phuCapTN = (float)num10PCTrachNhiem.Value;
 
@@ -233,7 +215,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 
 			#region // tính lương cho nv chính thức
 
-			double tong_qlcb_2 = 0d, tong_SPLamRa_B2_2 = 0d, tongQuyLuongCV = 0d, tongQuyLuongNghiDinhCP = 0d, tongChiKhacTuQuyLuong = 0d, tongQuyLuongSP = 0d;
+			double tong_qlcb_2 = 0d, tong_SPLamRa_B2_2 = 0d, tongQuyLuongCV = 0d, tongQuyLuongNghiDinhCP = 0d, tongChiKhacTuQuyLuong = 0d, tongQuyLuongSP = 0d, tong_luong_dieuchinh = 0d, tongKhauTruThuChiKhac = 0d;
 			foreach (var nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat)) {
 				//if (Math.Abs(nv.ThongKeThang.Cong - 0f) < 0.01f) nv.ThongKeThang.CongCV = 0f; //fortesting nếu ko chấm công thì cũng ko có công cv
 				XL.TinhLuongCoBan_CongVaPC_A202(nv.HeSo.LuongCB, mucLuongToithieu, nv.ThongKeThang.Cong, nv.ThongKeThang.PhuCaps._TongPC,
@@ -245,8 +227,9 @@ namespace ChamCong_v04.UI.TinhLuong {
 				tongQuyLuongNghiDinhCP += nv.chiTietLuong.LCB_Theo.Cong_CD_PC;// yêu cầu mới (T8/2015) là tách lương chờ việc ra
 
 				//ver4.0.0.7 tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.TongCong_CD_CV_PC + nv.chiTietLuong.LuongDieuChinh; //yêu cầu mới (T8/2015) là tách lương chờ việc ra khỏi quỹ lương cơ bản đưa vào quỹ lương sản phẩm
-				tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.Cong_CD_PC + nv.chiTietLuong.LuongDieuChinh; //info tong_qlcb_2 bao gồm lương cb 1nv, bồi dưỡng ca 3 1nv, lương tháng trước 1 nv
-				tongChiKhacTuQuyLuong += nv.chiTietLuong.KhauTru.ThuChiKhac;
+				tong_qlcb_2 += nv.chiTietLuong.LCB_Theo.Cong_CD_PC; //info tong_qlcb_2 bao gồm lương cb 1nv, bồi dưỡng ca 3 1nv, lương tháng trước 1 nv
+                tong_luong_dieuchinh += nv.chiTietLuong.LuongDieuChinh;
+                tongKhauTruThuChiKhac += nv.chiTietLuong.KhauTru.ThuChiKhac;
 
 				XL.TinhSPLamRa_CongVaPC_B102(nv.HeSo.LuongCV, nv.ThongKeThang.Cong, nv.ThongKeThang.PhuCaps._TongPC, nv.ThongKeThang.Phep, nv.ThongKeThang.H_CT_PT, nv.ThongKeThang.PTDT, nv.ThongKeThang.Le,//DANGLAM
 											 out nv.chiTietLuong.SPLamRa_Theo.CongThucTe, out nv.chiTietLuong.SPLamRa_Theo.CheDoNghi, out nv.chiTietLuong.SPLamRa_Theo.PhuCap);
@@ -262,7 +245,8 @@ namespace ChamCong_v04.UI.TinhLuong {
 			var chitienGiacongNoibo = Convert.ToDouble(sanluongGiacongNoiBo) * Convert.ToDouble(dongiaGiacongNoiBo);
 			var chitienGiacongNgoai = Convert.ToDouble(sanluongGiacongNgoai) * Convert.ToDouble(dongiaGiacongNgoai);
 			//var tong_qlSP_A71_1_VaGiaCong = (_80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai) - tong_qlcb_2 - TongLuongCongNhat_AllNV; // yêu cầu mới (T8/2015) là tách lương chờ việc ra
-            var tong_qlSP_A71_1_VaGiaCong = (_80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai) - tong_qlcb_2 - TongLuongCongNhat_AllNV - phuCapTN - luongPTT - luongTrucBV; // yêu cầu mới (T1/2018)
+            var tong_qlSP_A71_1_VaGiaCong = (_80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai) - tong_qlcb_2 - tongQuyLuongCV - TongLuongCongNhat_AllNV - tong_luong_dieuchinh - phuCapTN - luongPTT - luongTrucBV; // yêu cầu mới (T1/2018)
+            tongChiKhacTuQuyLuong = tongQuyLuongCV + phuCapTN + luongPTT + luongTrucBV;
             double giaTri_1SP_B3_1 = (Math.Abs(tong_SPLamRa_B2_2 - 0d) > 0.001d) ? (tong_qlSP_A71_1_VaGiaCong / tong_SPLamRa_B2_2) : 0d; // tính ra được 1 đơn vị sản phẩm có giá bao nhiêu
 			//double tong0 = 0d, tong1 = 0d, tong2 = 0d, tong3 = 0d, tong4 = 0d, tong5 = 0d, tong6 = 0d, tong7 = 0d, tong8 = 0d, tong9 = 0d, tong10 = 0d, tong11 = 0d, tong12 = 0d, tong13 = 0d, tong14 = 0d, tong15 = 0d, tong16 = 0d, tong17 = 0d, tong18 = 0d, tong19 = 0d, tong20 = 0d, tong21 = 0d, tong22 = 0d, tong23 = 0d, tong24 = 0d, tong25 = 0d, tong26 = 0d, tong27 = 0d, tong28 = 0d, tong29 = 0d, tong30 = 0d, tong31 = 0d, tong32 = 0d, tong33 = 0d, tong34 = 0d, tong35 = 0d, tong36 = 0d;
 

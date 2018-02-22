@@ -15,7 +15,7 @@ namespace ChamCong_v04.DAL {
 
 									UserInfo.SchID, case when (UserInfo.SchID is null or UserInfo.SchID = 0)  then N'--' else SchName end as SchName,   
 
-									HeSoLuongCB, HeSoLuongSP, 
+									HeSoLuongCB, HeSoLuongSP, HSLCBTT17, HSPCCV, HSPCDH, HSPCTN,
 									UserCardNo, HSBHCongThem, 
 									case when ( UserSex = 0 ) then N'Nam' else N'Nữ' end as UserSex, 
 									UserBirthDay, UserEnabled, UserHireDay, UserPrivilege 

@@ -54,16 +54,16 @@
             this.g1c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HSLCBTT17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HSPCCV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HSPCDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HSPCTN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.g1c16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.g1c16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c23 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -127,7 +127,7 @@
             this.gp1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gp1.Name = "gp1";
             this.gp1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gp1.Size = new System.Drawing.Size(674, 457);
+            this.gp1.Size = new System.Drawing.Size(865, 457);
             this.gp1.TabIndex = 2;
             this.gp1.TabStop = false;
             this.gp1.Text = "Danh sách Nhân viên";
@@ -147,16 +147,16 @@
             this.g1c3,
             this.g1c11,
             this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn5,
             this.g1c13,
             this.g1c14,
             this.HSLCBTT17,
             this.HSPCCV,
             this.HSPCDH,
             this.HSPCTN,
-            this.g1c16,
             this.g1c17,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.g1c16,
             this.g1c19,
             this.g1c20,
             this.g1c23,
@@ -172,7 +172,7 @@
             this.dgrdDSNVTrgPhg.Name = "dgrdDSNVTrgPhg";
             this.dgrdDSNVTrgPhg.RowHeadersVisible = false;
             this.dgrdDSNVTrgPhg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrdDSNVTrgPhg.Size = new System.Drawing.Size(668, 439);
+            this.dgrdDSNVTrgPhg.Size = new System.Drawing.Size(859, 439);
             this.dgrdDSNVTrgPhg.TabIndex = 28;
             // 
             // btnThem
@@ -329,39 +329,17 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "TenPhong";
-            this.dataGridViewTextBoxColumn7.Frozen = true;
             this.dataGridViewTextBoxColumn7.HeaderText = "Phòng ban";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.ToolTipText = "Phòng ban";
             this.dataGridViewTextBoxColumn7.Width = 105;
             // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ChucVu";
-            this.dataGridViewTextBoxColumn6.Frozen = true;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Chức vụ";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.ToolTipText = "Chức vụ";
-            this.dataGridViewTextBoxColumn6.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "SchName";
-            this.dataGridViewTextBoxColumn5.Frozen = true;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Lịch trình";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.ToolTipText = "Lịch trình";
-            this.dataGridViewTextBoxColumn5.Width = 95;
-            // 
             // g1c13
             // 
             this.g1c13.DataPropertyName = "HeSoLuongCB";
             dataGridViewCellStyle3.Format = "0.00";
             this.g1c13.DefaultCellStyle = dataGridViewCellStyle3;
-            this.g1c13.Frozen = true;
             this.g1c13.HeaderText = "HSLCB";
             this.g1c13.Name = "g1c13";
             this.g1c13.ReadOnly = true;
@@ -373,7 +351,6 @@
             this.g1c14.DataPropertyName = "HeSoLuongSP";
             dataGridViewCellStyle4.Format = "0.00";
             this.g1c14.DefaultCellStyle = dataGridViewCellStyle4;
-            this.g1c14.Frozen = true;
             this.g1c14.HeaderText = "HSLCV";
             this.g1c14.Name = "g1c14";
             this.g1c14.ReadOnly = true;
@@ -383,35 +360,38 @@
             // HSLCBTT17
             // 
             this.HSLCBTT17.DataPropertyName = "HSLCBTT17";
-            this.HSLCBTT17.Frozen = true;
             this.HSLCBTT17.HeaderText = "HSLCB TT17";
             this.HSLCBTT17.Name = "HSLCBTT17";
+            this.HSLCBTT17.ReadOnly = true;
+            this.HSLCBTT17.ToolTipText = "Hệ số Lương CB theo Thông tư 17";
+            this.HSLCBTT17.Width = 85;
             // 
             // HSPCCV
             // 
             this.HSPCCV.DataPropertyName = "HSPCCV";
             this.HSPCCV.HeaderText = "HSPCCV";
             this.HSPCCV.Name = "HSPCCV";
+            this.HSPCCV.ReadOnly = true;
+            this.HSPCCV.ToolTipText = "Hệ số Phụ cấp công việc";
+            this.HSPCCV.Width = 60;
             // 
             // HSPCDH
             // 
             this.HSPCDH.DataPropertyName = "HSPCDH";
-            this.HSPCDH.HeaderText = "HSPCDH";
+            this.HSPCDH.HeaderText = "HSPCĐH";
             this.HSPCDH.Name = "HSPCDH";
+            this.HSPCDH.ReadOnly = true;
+            this.HSPCDH.ToolTipText = "Hệ số Phụ cấp độc hại";
+            this.HSPCDH.Width = 60;
             // 
             // HSPCTN
             // 
             this.HSPCTN.DataPropertyName = "HSPCTN";
             this.HSPCTN.HeaderText = "HSPCTN";
             this.HSPCTN.Name = "HSPCTN";
-            // 
-            // g1c16
-            // 
-            this.g1c16.DataPropertyName = "UserCardNo";
-            this.g1c16.HeaderText = "Mã thẻ từ";
-            this.g1c16.Name = "g1c16";
-            this.g1c16.ReadOnly = true;
-            this.g1c16.ToolTipText = "Mã thẻ từ";
+            this.HSPCTN.ReadOnly = true;
+            this.HSPCTN.ToolTipText = "Hệ số Phụ cấp trách nhiệm";
+            this.HSPCTN.Width = 60;
             // 
             // g1c17
             // 
@@ -423,6 +403,32 @@
             this.g1c17.ReadOnly = true;
             this.g1c17.ToolTipText = "Hệ số BHXH của lãnh đạo";
             this.g1c17.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "SchName";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Lịch trình";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.ToolTipText = "Lịch trình";
+            this.dataGridViewTextBoxColumn5.Width = 95;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ChucVu";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Chức vụ";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.ToolTipText = "Chức vụ";
+            this.dataGridViewTextBoxColumn6.Width = 200;
+            // 
+            // g1c16
+            // 
+            this.g1c16.DataPropertyName = "UserCardNo";
+            this.g1c16.HeaderText = "Mã thẻ từ";
+            this.g1c16.Name = "g1c16";
+            this.g1c16.ReadOnly = true;
+            this.g1c16.ToolTipText = "Mã thẻ từ";
             // 
             // g1c19
             // 
@@ -507,7 +513,7 @@
             // frmQLNV
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(896, 528);
+            this.ClientSize = new System.Drawing.Size(1088, 528);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnTim);
             this.Controls.Add(this.linkHienThiTatCaNV);
@@ -549,16 +555,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c3;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c13;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c14;
         private System.Windows.Forms.DataGridViewTextBoxColumn HSLCBTT17;
         private System.Windows.Forms.DataGridViewTextBoxColumn HSPCCV;
         private System.Windows.Forms.DataGridViewTextBoxColumn HSPCDH;
         private System.Windows.Forms.DataGridViewTextBoxColumn HSPCTN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn g1c16;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn g1c16;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c19;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c20;
         private System.Windows.Forms.DataGridViewCheckBoxColumn g1c23;

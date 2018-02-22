@@ -43,7 +43,7 @@
             this.numMucLuongTT17 = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.numLuongTT = new System.Windows.Forms.NumericUpDown();
+            this.numLuongToiThieu = new System.Windows.Forms.NumericUpDown();
             this.label34 = new System.Windows.Forms.Label();
             this.numTrichQuyLuong = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num10PCTrachNhiem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDinhMucComTrua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMucLuongTT17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLuongTT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLuongToiThieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTrichQuyLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDongiaGiacongNgoai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDongiaGiacongNoibo)).BeginInit();
@@ -106,7 +106,7 @@
             this.groupBox2.Controls.Add(this.numMucLuongTT17);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.numLuongTT);
+            this.groupBox2.Controls.Add(this.numLuongToiThieu);
             this.groupBox2.Controls.Add(this.label34);
             this.groupBox2.Controls.Add(this.numTrichQuyLuong);
             this.groupBox2.Controls.Add(this.label8);
@@ -171,7 +171,7 @@
             this.numSanluongGiacongNgoai.TabIndex = 4;
             this.numSanluongGiacongNgoai.ThousandsSeparator = true;
             this.numSanluongGiacongNgoai.Value = new decimal(new int[] {
-            100000,
+            714264,
             0,
             0,
             0});
@@ -189,7 +189,7 @@
             this.numSanluongGiacongNoibo.TabIndex = 2;
             this.numSanluongGiacongNoibo.ThousandsSeparator = true;
             this.numSanluongGiacongNoibo.Value = new decimal(new int[] {
-            30000,
+            4088,
             0,
             0,
             0});
@@ -207,7 +207,7 @@
             this.numSanLuong.TabIndex = 0;
             this.numSanLuong.ThousandsSeparator = true;
             this.numSanLuong.Value = new decimal(new int[] {
-            10000000,
+            4154906,
             0,
             0,
             0});
@@ -227,8 +227,13 @@
             0});
             this.num12LuongLeTetBV.Name = "num12LuongLeTetBV";
             this.num12LuongLeTetBV.Size = new System.Drawing.Size(100, 21);
-            this.num12LuongLeTetBV.TabIndex = 9;
+            this.num12LuongLeTetBV.TabIndex = 11;
             this.num12LuongLeTetBV.ThousandsSeparator = true;
+            this.num12LuongLeTetBV.Value = new decimal(new int[] {
+            5236435,
+            0,
+            0,
+            0});
             // 
             // num11LuongPTT
             // 
@@ -245,8 +250,13 @@
             0});
             this.num11LuongPTT.Name = "num11LuongPTT";
             this.num11LuongPTT.Size = new System.Drawing.Size(100, 21);
-            this.num11LuongPTT.TabIndex = 9;
+            this.num11LuongPTT.TabIndex = 10;
             this.num11LuongPTT.ThousandsSeparator = true;
+            this.num11LuongPTT.Value = new decimal(new int[] {
+            42000000,
+            0,
+            0,
+            0});
             // 
             // num10PCTrachNhiem
             // 
@@ -263,8 +273,13 @@
             0});
             this.num10PCTrachNhiem.Name = "num10PCTrachNhiem";
             this.num10PCTrachNhiem.Size = new System.Drawing.Size(100, 21);
-            this.num10PCTrachNhiem.TabIndex = 9;
+            this.num10PCTrachNhiem.TabIndex = 12;
             this.num10PCTrachNhiem.ThousandsSeparator = true;
+            this.num10PCTrachNhiem.Value = new decimal(new int[] {
+            3565000,
+            0,
+            0,
+            0});
             // 
             // numDinhMucComTrua
             // 
@@ -364,7 +379,7 @@
             0});
             this.numMucLuongTT17.Name = "numMucLuongTT17";
             this.numMucLuongTT17.Size = new System.Drawing.Size(100, 21);
-            this.numMucLuongTT17.TabIndex = 7;
+            this.numMucLuongTT17.TabIndex = 8;
             this.numMucLuongTT17.ThousandsSeparator = true;
             this.numMucLuongTT17.Value = new decimal(new int[] {
             2266000,
@@ -390,24 +405,24 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "đồng";
             // 
-            // numLuongTT
+            // numLuongToiThieu
             // 
-            this.numLuongTT.Increment = new decimal(new int[] {
+            this.numLuongToiThieu.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numLuongTT.Location = new System.Drawing.Point(195, 209);
-            this.numLuongTT.Maximum = new decimal(new int[] {
+            this.numLuongToiThieu.Location = new System.Drawing.Point(195, 209);
+            this.numLuongToiThieu.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
-            this.numLuongTT.Name = "numLuongTT";
-            this.numLuongTT.Size = new System.Drawing.Size(100, 21);
-            this.numLuongTT.TabIndex = 7;
-            this.numLuongTT.ThousandsSeparator = true;
-            this.numLuongTT.Value = new decimal(new int[] {
+            this.numLuongToiThieu.Name = "numLuongToiThieu";
+            this.numLuongToiThieu.Size = new System.Drawing.Size(100, 21);
+            this.numLuongToiThieu.TabIndex = 7;
+            this.numLuongToiThieu.ThousandsSeparator = true;
+            this.numLuongToiThieu.Value = new decimal(new int[] {
             1150000,
             0,
             0,
@@ -611,7 +626,7 @@
             this.btnDong.Location = new System.Drawing.Point(207, 484);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(189, 27);
-            this.btnDong.TabIndex = 5;
+            this.btnDong.TabIndex = 2;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnThoat_Click);
@@ -658,7 +673,7 @@
             this.btnBack.Location = new System.Drawing.Point(207, 451);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(189, 27);
-            this.btnBack.TabIndex = 4;
+            this.btnBack.TabIndex = 5;
             this.btnBack.Text = "Quay lại";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -670,7 +685,7 @@
             this.btnHuyKetluong.Location = new System.Drawing.Point(207, 418);
             this.btnHuyKetluong.Name = "btnHuyKetluong";
             this.btnHuyKetluong.Size = new System.Drawing.Size(189, 27);
-            this.btnHuyKetluong.TabIndex = 3;
+            this.btnHuyKetluong.TabIndex = 4;
             this.btnHuyKetluong.Text = "Hủy kết lương";
             this.btnHuyKetluong.UseVisualStyleBackColor = true;
             this.btnHuyKetluong.Click += new System.EventHandler(this.btnHuyKetluong_Click);
@@ -682,7 +697,7 @@
             this.button1.Location = new System.Drawing.Point(12, 451);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(189, 27);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Xuất bảng chi tiết";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnXuatBangChiTiet_Click);
@@ -713,7 +728,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num10PCTrachNhiem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDinhMucComTrua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMucLuongTT17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLuongTT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLuongToiThieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTrichQuyLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDongiaGiacongNgoai)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDongiaGiacongNoibo)).EndInit();
@@ -730,7 +745,7 @@
 		private System.Windows.Forms.NumericUpDown numDinhMucComTrua;
 		private System.Windows.Forms.Label label33;
 		private System.Windows.Forms.Label label31;
-		private System.Windows.Forms.NumericUpDown numLuongTT;
+		private System.Windows.Forms.NumericUpDown numLuongToiThieu;
 		private System.Windows.Forms.Label label34;
 		private System.Windows.Forms.Label label29;
 		private System.Windows.Forms.Label label24;

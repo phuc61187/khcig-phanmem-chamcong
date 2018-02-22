@@ -161,8 +161,8 @@ namespace ChamCong_v04.UI.QLNV {
 								UserFullCode = @UserFullCode, UserFullName = @UserFullName, UserLastName = @UserLastName, UserEnrollName = @UserEnrollName,
 								  UserCardNo = @UserCardNo, UserHireDay = @UserHireDay, UserIDTitle = @IDChucVu, UserSex = @UserSex, 
 								  UserEnabled = @UserEnabled, UserIDD = @UserIDD, SchID = @SchID, 
-								  HeSoLuongCB = @HeSoLuongCB, HeSoLuongSP = @HeSoLuongSP, HSBHCongThem = @HSBHCongThem
-                                  HSLCBTT17 = @HSLCBTT17, HSPCCV = @HSPCCV, HSPCDH = @HSPCDH, HSPCTN = @HSPCTN,
+								  HeSoLuongCB = @HeSoLuongCB, HeSoLuongSP = @HeSoLuongSP, HSBHCongThem = @HSBHCongThem,
+                                  HSLCBTT17 = @HSLCBTT17, HSPCCV = @HSPCCV, HSPCDH = @HSPCDH, HSPCTN = @HSPCTN
 								where UserEnrollNumber = @UserEnrollNumber
 
 							if ( @@ROWCOUNT = 0 )  
