@@ -170,11 +170,6 @@
             this.numSanluongGiacongNgoai.Size = new System.Drawing.Size(100, 21);
             this.numSanluongGiacongNgoai.TabIndex = 4;
             this.numSanluongGiacongNgoai.ThousandsSeparator = true;
-            this.numSanluongGiacongNgoai.Value = new decimal(new int[] {
-            714264,
-            0,
-            0,
-            0});
             // 
             // numSanluongGiacongNoibo
             // 
@@ -188,11 +183,6 @@
             this.numSanluongGiacongNoibo.Size = new System.Drawing.Size(100, 21);
             this.numSanluongGiacongNoibo.TabIndex = 2;
             this.numSanluongGiacongNoibo.ThousandsSeparator = true;
-            this.numSanluongGiacongNoibo.Value = new decimal(new int[] {
-            4088,
-            0,
-            0,
-            0});
             // 
             // numSanLuong
             // 
@@ -206,11 +196,6 @@
             this.numSanLuong.Size = new System.Drawing.Size(100, 21);
             this.numSanLuong.TabIndex = 0;
             this.numSanLuong.ThousandsSeparator = true;
-            this.numSanLuong.Value = new decimal(new int[] {
-            4154906,
-            0,
-            0,
-            0});
             // 
             // num12LuongLeTetBV
             // 
@@ -229,11 +214,6 @@
             this.num12LuongLeTetBV.Size = new System.Drawing.Size(100, 21);
             this.num12LuongLeTetBV.TabIndex = 11;
             this.num12LuongLeTetBV.ThousandsSeparator = true;
-            this.num12LuongLeTetBV.Value = new decimal(new int[] {
-            5236435,
-            0,
-            0,
-            0});
             // 
             // num11LuongPTT
             // 

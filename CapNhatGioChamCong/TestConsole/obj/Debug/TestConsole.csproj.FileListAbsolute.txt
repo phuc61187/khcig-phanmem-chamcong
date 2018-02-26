@@ -4,9 +4,3 @@ C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\bin\Debug\T
 C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.csprojResolveAssemblyReference.cache
 C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.exe
 C:\Users\HoangPhuc\Desktop\SourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.pdb
-D:\GithubSourceTree\CapNhatGioChamCong\TestConsole\bin\Debug\TestConsole.exe.config
-D:\GithubSourceTree\CapNhatGioChamCong\TestConsole\bin\Debug\TestConsole.exe
-D:\GithubSourceTree\CapNhatGioChamCong\TestConsole\bin\Debug\TestConsole.pdb
-D:\GithubSourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.csprojResolveAssemblyReference.cache
-D:\GithubSourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.exe
-D:\GithubSourceTree\CapNhatGioChamCong\TestConsole\obj\Debug\TestConsole.pdb

@@ -140,7 +140,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 		}
 
 		private void btnDocTuExcel_Click(object sender, EventArgs e) {
-			frmDocTuFileExcel2 frm = new frmDocTuFileExcel2 {StartPosition=FormStartPosition.CenterParent, m_Thang = m_thang };
+			frmDocTuFileExcel frm = new frmDocTuFileExcel {StartPosition=FormStartPosition.CenterParent, m_Thang = m_thang };
 			frm.ShowDialog();
 			if (!frm.IsReload) return;// tương đương nếu có reload thì bấm btnXem
 

@@ -1726,6 +1726,12 @@ namespace ChamCong_v04.BUS {
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (int)tableThongSo.Rows[0]["HSPC300"]);
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (int)tableThongSo.Rows[0]["HSPC390"]);
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (double)tableThongSo.Rows[0]["TienLuong1HeSoSP"]);
+			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (int)tableThongSo.Rows[0]["MucLuongTTTT17"]);
+			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (float)tableThongSo.Rows[0]["LuongPTT"]);
+			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (float)tableThongSo.Rows[0]["LuongTrucLeTetBV"]);
+			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: (float)tableThongSo.Rows[0]["PhuCapTrachNhiem"]);
+			//XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: ()tableThongSo.Rows[0][""]);
+
 			XL.FillCell(ws, ref ir, ref ic, plusRow: 1, value: Convert.ToInt32(XL.TinhCongChuanCuaThang(ngaydauthang)), numberFormat:"##");
 		}
 
@@ -1992,17 +1998,21 @@ namespace ChamCong_v04.BUS {
 		public static void EXP_record_ChiTietLuong1(ExcelWorksheet ws, ref int top, ref int left, cUserInfo nv) {
 			int ir = top, ic = left;
 
-			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.PhongBan.ID);//maphong//"Mã phòng",
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.PhongBan.ID);//maphong//"Mã phòng", // col 1
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.PhongBan.Ten);//tenphong//"Tên phòng",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.MaNV);//manv//"Mã NV",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.TenNV);//tennv//"Họ tên",
-			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.LuongCB);//hslcb 5//"HSLCB",
-			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.LuongCV);//hslcv//"HSLSP",
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.LuongCB);//hslcb 5//"HSLCB",//col 5
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.LuongCV);//
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.LCBTT17);//
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.PCCVTT17);//
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.PCDHTT17);//
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.PCTNTT17);// col 10
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.HeSo.BHCongThem_ChoGD_PGD);//"HSBH Cộng thêm lãnh đạo",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Cong);//cong//"Công",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Phep);////"Phép",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.H_CT_PT);////"Học, họp, CT, PT",
-			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Le);//Le 10//"Lễ",
+			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Le);//Le col 15
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.BHXH);////"BH",
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.SoNgayNghiRO_NguyenNgay);////"SoNgayNghiRO_NguyenNgay",//ver 4.0.0.8
 			XL.FillCell(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.NghiRo);////"Việc riêng",
