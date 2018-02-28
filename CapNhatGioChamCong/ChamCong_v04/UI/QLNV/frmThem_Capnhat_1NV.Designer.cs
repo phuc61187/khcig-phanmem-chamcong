@@ -435,9 +435,9 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(12, 337);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(142, 15);
+            this.label15.Size = new System.Drawing.Size(133, 15);
             this.label15.TabIndex = 1;
-            this.label15.Text = "Hệ số Phụ cấp công việc";
+            this.label15.Text = "Hệ số Phụ cấp chức vụ";
             // 
             // label17
             // 

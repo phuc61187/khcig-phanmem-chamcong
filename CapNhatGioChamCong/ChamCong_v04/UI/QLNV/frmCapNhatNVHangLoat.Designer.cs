@@ -77,7 +77,7 @@
             treeNode4});
             this.treePhongBan.ShowNodeToolTips = true;
             this.treePhongBan.Size = new System.Drawing.Size(242, 252);
-            this.treePhongBan.TabIndex = 1;
+            this.treePhongBan.TabIndex = 0;
             // 
             // checkPhong
             // 
@@ -109,7 +109,7 @@
             this.cbChucVu.Location = new System.Drawing.Point(197, 268);
             this.cbChucVu.Name = "cbChucVu";
             this.cbChucVu.Size = new System.Drawing.Size(242, 23);
-            this.cbChucVu.TabIndex = 0;
+            this.cbChucVu.TabIndex = 1;
             // 
             // checkLichtrinh
             // 
@@ -130,7 +130,7 @@
             this.cbLichTrinh.Location = new System.Drawing.Point(197, 297);
             this.cbLichTrinh.Name = "cbLichTrinh";
             this.cbLichTrinh.Size = new System.Drawing.Size(242, 23);
-            this.cbLichTrinh.TabIndex = 1;
+            this.cbLichTrinh.TabIndex = 2;
             // 
             // checkUserEnabled
             // 
@@ -139,7 +139,7 @@
             this.checkUserEnabled.Location = new System.Drawing.Point(197, 486);
             this.checkUserEnabled.Name = "checkUserEnabled";
             this.checkUserEnabled.Size = new System.Drawing.Size(164, 19);
-            this.checkUserEnabled.TabIndex = 8;
+            this.checkUserEnabled.TabIndex = 9;
             this.checkUserEnabled.Text = "Cho phép (UserEnabled)";
             this.toolTipHint.SetToolTip(this.checkUserEnabled, "Đánh dấu mục này nếu NV đang làm việc\r\nvà chấm công. Bỏ đánh dấu nếu NV không\r\ncò" +
         "n làm việc.");
@@ -152,7 +152,7 @@
             this.tbHSLCV.Mask = "0.00";
             this.tbHSLCV.Name = "tbHSLCV";
             this.tbHSLCV.Size = new System.Drawing.Size(100, 21);
-            this.tbHSLCV.TabIndex = 3;
+            this.tbHSLCV.TabIndex = 4;
             this.tbHSLCV.Text = "000";
             // 
             // tbHSLCB
@@ -162,7 +162,7 @@
             this.tbHSLCB.Mask = "0.00";
             this.tbHSLCB.Name = "tbHSLCB";
             this.tbHSLCB.Size = new System.Drawing.Size(100, 21);
-            this.tbHSLCB.TabIndex = 2;
+            this.tbHSLCB.TabIndex = 3;
             this.tbHSLCB.Text = "000";
             // 
             // checkHSLCB
@@ -205,7 +205,7 @@
             this.btnLuu.Location = new System.Drawing.Point(197, 511);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(90, 27);
-            this.btnLuu.TabIndex = 9;
+            this.btnLuu.TabIndex = 10;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
@@ -245,7 +245,7 @@
             // checkHSPCTN
             // 
             this.checkHSPCTN.AutoSize = true;
-            this.checkHSPCTN.Location = new System.Drawing.Point(12, 403);
+            this.checkHSPCTN.Location = new System.Drawing.Point(12, 456);
             this.checkHSPCTN.Name = "checkHSPCTN";
             this.checkHSPCTN.Size = new System.Drawing.Size(175, 19);
             this.checkHSPCTN.TabIndex = 8;
@@ -260,17 +260,17 @@
             this.tbHSLCBTT17.Mask = "0.00";
             this.tbHSLCBTT17.Name = "tbHSLCBTT17";
             this.tbHSLCBTT17.Size = new System.Drawing.Size(100, 21);
-            this.tbHSLCBTT17.TabIndex = 4;
+            this.tbHSLCBTT17.TabIndex = 5;
             this.tbHSLCBTT17.Text = "000";
             // 
             // tbHSPCTN
             // 
             this.tbHSPCTN.Enabled = false;
-            this.tbHSPCTN.Location = new System.Drawing.Point(197, 401);
+            this.tbHSPCTN.Location = new System.Drawing.Point(197, 454);
             this.tbHSPCTN.Mask = "0.00";
             this.tbHSPCTN.Name = "tbHSPCTN";
             this.tbHSPCTN.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCTN.TabIndex = 5;
+            this.tbHSPCTN.TabIndex = 8;
             this.tbHSPCTN.Text = "000";
             // 
             // checkHSPCDH
@@ -291,28 +291,28 @@
             this.tbHSPCDH.Mask = "0.00";
             this.tbHSPCDH.Name = "tbHSPCDH";
             this.tbHSPCDH.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCDH.TabIndex = 6;
+            this.tbHSPCDH.TabIndex = 7;
             this.tbHSPCDH.Text = "000";
             // 
             // checkHSPCCV
             // 
             this.checkHSPCCV.AutoSize = true;
-            this.checkHSPCCV.Location = new System.Drawing.Point(12, 457);
+            this.checkHSPCCV.Location = new System.Drawing.Point(12, 404);
             this.checkHSPCCV.Name = "checkHSPCCV";
-            this.checkHSPCCV.Size = new System.Drawing.Size(161, 19);
+            this.checkHSPCCV.Size = new System.Drawing.Size(152, 19);
             this.checkHSPCCV.TabIndex = 8;
-            this.checkHSPCCV.Text = "Hệ số Phụ cấp công việc";
+            this.checkHSPCCV.Text = "Hệ số Phụ cấp chức vụ";
             this.checkHSPCCV.UseVisualStyleBackColor = true;
             this.checkHSPCCV.CheckedChanged += new System.EventHandler(this.Checked_Changed);
             // 
             // tbHSPCCV
             // 
             this.tbHSPCCV.Enabled = false;
-            this.tbHSPCCV.Location = new System.Drawing.Point(197, 455);
+            this.tbHSPCCV.Location = new System.Drawing.Point(197, 402);
             this.tbHSPCCV.Mask = "0.00";
             this.tbHSPCCV.Name = "tbHSPCCV";
             this.tbHSPCCV.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCCV.TabIndex = 7;
+            this.tbHSPCCV.TabIndex = 6;
             this.tbHSPCCV.Text = "000";
             // 
             // frmCapNhatNVHangLoat

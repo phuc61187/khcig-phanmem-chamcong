@@ -341,7 +341,7 @@ namespace ChamCong_v04.BUS {
 						break;
 					case "RO":
 						tempRo += WorkingDay;
-						thongKeThang.NghiRo = thongKeThang.NghiRo + tempRo;
+						thongKeThang.NghiRo = thongKeThang.NghiRo + WorkingDay;
 						break;
 				}
 
@@ -350,10 +350,12 @@ namespace ChamCong_v04.BUS {
 			thongKeThang.Phep += ngayCong.CongBuPhepTre;
 			thongKeThang.Phep += ngayCong.CongBuPhepSom;
 			var tempSoNgayNghiRO_NguyenNgay = 0;
-			if (Math.Abs(tempRo - 1f) < 0.05f)
-				tempSoNgayNghiRO_NguyenNgay = 1;
-			else if (Math.Abs(tempRo - 2f) < 0.05f)
-				tempSoNgayNghiRO_NguyenNgay = 2;
+            if (Math.Abs(tempRo - 1f) < 0.05f)
+                tempSoNgayNghiRO_NguyenNgay = 1;
+            else if (Math.Abs(tempRo - 1.5f) < 0.05f)
+                tempSoNgayNghiRO_NguyenNgay = 1;
+            else if (Math.Abs(tempRo - 2f) < 0.05f)
+                tempSoNgayNghiRO_NguyenNgay = 2;
 			thongKeThang.SoNgayNghiRO_NguyenNgay += tempSoNgayNghiRO_NguyenNgay;
 		}
 	}

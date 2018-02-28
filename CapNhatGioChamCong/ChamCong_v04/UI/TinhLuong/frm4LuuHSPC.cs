@@ -246,7 +246,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 			var chitienGiacongNgoai = Convert.ToDouble(sanluongGiacongNgoai) * Convert.ToDouble(dongiaGiacongNgoai);
 			//var tong_qlSP_A71_1_VaGiaCong = (_80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai) - tong_qlcb_2 - TongLuongCongNhat_AllNV; // yêu cầu mới (T8/2015) là tách lương chờ việc ra
             var tong_qlSP_A71_1_VaGiaCong = (_80perQuy100_04 + chitienGiacongNoibo + chitienGiacongNgoai) - tong_qlcb_2 - tongQuyLuongCV - TongLuongCongNhat_AllNV - tong_luong_dieuchinh - phuCapTN - luongPTT - luongTrucBV - tongKhauTruThuChiKhac; // yêu cầu mới (T1/2018)
-            tongChiKhacTuQuyLuong = tongQuyLuongCV + phuCapTN + luongPTT + luongTrucBV;
+            tongChiKhacTuQuyLuong = tongQuyLuongCV + phuCapTN + luongPTT + luongTrucBV + tongKhauTruThuChiKhac;
             double giaTri_1SP_B3_1 = (Math.Abs(tong_SPLamRa_B2_2 - 0d) > 0.001d) ? (tong_qlSP_A71_1_VaGiaCong / tong_SPLamRa_B2_2) : 0d; // tính ra được 1 đơn vị sản phẩm có giá bao nhiêu
 			//double tong0 = 0d, tong1 = 0d, tong2 = 0d, tong3 = 0d, tong4 = 0d, tong5 = 0d, tong6 = 0d, tong7 = 0d, tong8 = 0d, tong9 = 0d, tong10 = 0d, tong11 = 0d, tong12 = 0d, tong13 = 0d, tong14 = 0d, tong15 = 0d, tong16 = 0d, tong17 = 0d, tong18 = 0d, tong19 = 0d, tong20 = 0d, tong21 = 0d, tong22 = 0d, tong23 = 0d, tong24 = 0d, tong25 = 0d, tong26 = 0d, tong27 = 0d, tong28 = 0d, tong29 = 0d, tong30 = 0d, tong31 = 0d, tong32 = 0d, tong33 = 0d, tong34 = 0d, tong35 = 0d, tong36 = 0d;
 
@@ -618,7 +618,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 
 				#region lấy thông tin cá nhân nv, phòng ban tổng công, phụ cấp, lương cơ bản, lương sản phẩm ... để xuất
 
-				nv.MaNV = row["UserFullCode"].ToString();
+				nv.MaNV = row["UserFullCode"].ToString();  //col 1
 				nv.TenNV = row["UserFullName"].ToString();
 				nv.HeSo = new HeSo { LuongCB = (float)row["HSLCB"], LuongCV = (float)row["HSLCV"], BHCongThem_ChoGD_PGD = (float)row["HSBHCongThem"],
                     LCBTT17 = (float)row["HSLCBTT17"], PCCVTT17 = (float)row["HSPCCV"], PCDHTT17 = (float)row["HSPCDH"], PCTNTT17 = (float)row["HSPCTN"]
