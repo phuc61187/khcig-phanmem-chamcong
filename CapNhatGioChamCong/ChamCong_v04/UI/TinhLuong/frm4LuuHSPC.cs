@@ -173,11 +173,6 @@ namespace ChamCong_v04.UI.TinhLuong {
 						nv.ThongKeThang.CongCV_Auto = 0f;
 					}
 				}
-                if (nv.NVNhaMay == false) {
-                    nv.ThongKeThang.CongCV = 0f;
-                    nv.ThongKeThang.CongCV_Auto = 0f;
-                    nv.ThongKeThang.CongCV_KB = 0f;
-                }
 				nv.ThongKeThang.CongCV = nv.ThongKeThang.CongCV_Auto + nv.ThongKeThang.CongCV_KB;
 			}
 
