@@ -18,7 +18,7 @@ namespace ChamCong_v04.DAL {
 									HeSoLuongCB, HeSoLuongSP, HSLCBTT17, HSPCCV, HSPCDH, HSPCTN,
 									UserCardNo, HSBHCongThem, 
 									case when ( UserSex = 0 ) then N'Nam' else N'Nữ' end as UserSex, 
-									UserBirthDay, UserEnabled, UserHireDay, UserPrivilege 
+									UserBirthDay, UserEnabled, UserHireDay, UserPrivilege, NVNhaMay 
 
 							FROM	UserInfo left join Title on UserInfo.UserIDTitle = Title.IDT
 									left join RelationDept on UserInfo.UserIDD = RelationDept.ID

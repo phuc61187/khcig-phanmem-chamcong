@@ -466,7 +466,8 @@ namespace ChamCong_v04.BUS {
 						  (row["SchID"] != DBNull.Value ? (int)row["SchID"] : -1),
 						  (row["IDChucVu"] != DBNull.Value) ? (int)row["IDChucVu"] : -1,
 						  (row["ChucVu"] != DBNull.Value) ? (string)row["ChucVu"] : null,
-						  (row["MaPhong"] == DBNull.Value || (int)row["MaPhong"] == 0 || (int)row["MaPhong"] == -1) ? -1 : (int)row["MaPhong"])); //info nếu mã phòng null hoặc 0 là chưa sắp xếp
+						  (row["MaPhong"] == DBNull.Value || (int)row["MaPhong"] == 0 || (int)row["MaPhong"] == -1) ? -1 : (int)row["MaPhong"], //info nếu mã phòng null hoặc 0 là chưa sắp xếp
+                          (row["NVNhaMay"] != DBNull.Value ? (bool)row["NVNhaMay"] : true))); 
 			return dsnv;
 		}
 		public static List<cUserInfo> KhoiTaoDSNV_TinhLuong(List<cUserInfo> dsnv, List<cPhongBan> dsphong) {
@@ -489,7 +490,8 @@ namespace ChamCong_v04.BUS {
 														(row["ChucVu"] != DBNull.Value) ? (string)row["ChucVu"] : null,
 														(row["MaPhong"] == DBNull.Value || (int)row["MaPhong"] == 0 || (int)row["MaPhong"] == -1)
 															? -1
-															: (int)row["MaPhong"])) //info nếu mã phòng null hoặc 0 là chưa sắp xếp
+															: (int)row["MaPhong"],//info nếu mã phòng null hoặc 0 là chưa sắp xếp
+                                                        (row["NVNhaMay"] != DBNull.Value) ? (bool)row["NVNhaMay"] : false)) 
 			{
 				nhanvien.chiTietLuong = new ChiTietLuong();
 				nhanvien.ThongKeThang = new ThongKeCong_PC();
@@ -504,7 +506,7 @@ namespace ChamCong_v04.BUS {
 			float? hslCB, float? hslCV, float? hsBHcongthem, float? hslCBTT17, float? hsPCTNTT17, float? hsPCDHTT17, float? hsPCCVTT17,
             List<cPhongBan> phongBans,
 			int? schID = null, int? idChucVu = null, string ChucVu = null,
-			int? maphong = null) {
+			int? maphong = null, bool? nvNhaMay = null) {
 			cUserInfo nhanvien = new cUserInfo {
 				MaCC = uen, TenNV = ten, MaNV = manv,
 				ChucVu = ChucVu,
@@ -518,6 +520,7 @@ namespace ChamCong_v04.BUS {
             nhanvien.HeSo.PCCVTT17 = hsPCCVTT17 != null ? (float)hsPCCVTT17 : 0f;
 			if (hsBHcongthem != null && hslCB != null) nhanvien.HeSo.BHCongThem_ChoGD_PGD = (float)hsBHcongthem;
 			if (idChucVu == null) nhanvien.IDChucVu = 0;
+            nhanvien.NVNhaMay = (nvNhaMay != null) ? (bool)nvNhaMay : false;
 			#region xét lịch trình cho nv
 			// chưa có lịch trình thì tạo lịch trình ko có ca
 			if (schID == null) {

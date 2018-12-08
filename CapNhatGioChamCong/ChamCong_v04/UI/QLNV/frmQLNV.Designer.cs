@@ -67,6 +67,7 @@
             this.g1c19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c23 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNVNhaMay = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.g1c24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.G1C22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -160,6 +161,7 @@
             this.g1c19,
             this.g1c20,
             this.g1c23,
+            this.colNVNhaMay,
             this.g1c24,
             this.G1C22,
             this.g1c12,
@@ -329,6 +331,7 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "TenPhong";
+            this.dataGridViewTextBoxColumn7.Frozen = true;
             this.dataGridViewTextBoxColumn7.HeaderText = "Phòng ban";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -340,6 +343,7 @@
             this.g1c13.DataPropertyName = "HeSoLuongCB";
             dataGridViewCellStyle3.Format = "0.00";
             this.g1c13.DefaultCellStyle = dataGridViewCellStyle3;
+            this.g1c13.Frozen = true;
             this.g1c13.HeaderText = "HSLCB";
             this.g1c13.Name = "g1c13";
             this.g1c13.ReadOnly = true;
@@ -351,6 +355,7 @@
             this.g1c14.DataPropertyName = "HeSoLuongSP";
             dataGridViewCellStyle4.Format = "0.00";
             this.g1c14.DefaultCellStyle = dataGridViewCellStyle4;
+            this.g1c14.Frozen = true;
             this.g1c14.HeaderText = "HSLCV";
             this.g1c14.Name = "g1c14";
             this.g1c14.ReadOnly = true;
@@ -360,6 +365,7 @@
             // HSLCBTT17
             // 
             this.HSLCBTT17.DataPropertyName = "HSLCBTT17";
+            this.HSLCBTT17.Frozen = true;
             this.HSLCBTT17.HeaderText = "HSLCB TT17";
             this.HSLCBTT17.Name = "HSLCBTT17";
             this.HSLCBTT17.ReadOnly = true;
@@ -369,6 +375,7 @@
             // HSPCCV
             // 
             this.HSPCCV.DataPropertyName = "HSPCCV";
+            this.HSPCCV.Frozen = true;
             this.HSPCCV.HeaderText = "HSPCCV";
             this.HSPCCV.Name = "HSPCCV";
             this.HSPCCV.ReadOnly = true;
@@ -378,6 +385,7 @@
             // HSPCDH
             // 
             this.HSPCDH.DataPropertyName = "HSPCDH";
+            this.HSPCDH.Frozen = true;
             this.HSPCDH.HeaderText = "HSPCĐH";
             this.HSPCDH.Name = "HSPCDH";
             this.HSPCDH.ReadOnly = true;
@@ -387,6 +395,7 @@
             // HSPCTN
             // 
             this.HSPCTN.DataPropertyName = "HSPCTN";
+            this.HSPCTN.Frozen = true;
             this.HSPCTN.HeaderText = "HSPCTN";
             this.HSPCTN.Name = "HSPCTN";
             this.HSPCTN.ReadOnly = true;
@@ -398,6 +407,7 @@
             this.g1c17.DataPropertyName = "HSBHCongThem";
             dataGridViewCellStyle5.Format = "0.00";
             this.g1c17.DefaultCellStyle = dataGridViewCellStyle5;
+            this.g1c17.Frozen = true;
             this.g1c17.HeaderText = "Hệ Số BHXH";
             this.g1c17.Name = "g1c17";
             this.g1c17.ReadOnly = true;
@@ -407,6 +417,7 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "SchName";
+            this.dataGridViewTextBoxColumn5.Frozen = true;
             this.dataGridViewTextBoxColumn5.HeaderText = "Lịch trình";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
@@ -416,6 +427,7 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ChucVu";
+            this.dataGridViewTextBoxColumn6.Frozen = true;
             this.dataGridViewTextBoxColumn6.HeaderText = "Chức vụ";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
@@ -425,6 +437,7 @@
             // g1c16
             // 
             this.g1c16.DataPropertyName = "UserCardNo";
+            this.g1c16.Frozen = true;
             this.g1c16.HeaderText = "Mã thẻ từ";
             this.g1c16.Name = "g1c16";
             this.g1c16.ReadOnly = true;
@@ -433,6 +446,7 @@
             // g1c19
             // 
             this.g1c19.DataPropertyName = "UserSex";
+            this.g1c19.Frozen = true;
             this.g1c19.HeaderText = "Giới tính";
             this.g1c19.Name = "g1c19";
             this.g1c19.ReadOnly = true;
@@ -442,6 +456,7 @@
             // g1c20
             // 
             this.g1c20.DataPropertyName = "UserBirthDay";
+            this.g1c20.Frozen = true;
             this.g1c20.HeaderText = "Ngày sinh";
             this.g1c20.Name = "g1c20";
             this.g1c20.ReadOnly = true;
@@ -452,6 +467,7 @@
             // 
             this.g1c23.DataPropertyName = "UserEnabled";
             this.g1c23.FalseValue = "False";
+            this.g1c23.Frozen = true;
             this.g1c23.HeaderText = "Enabled";
             this.g1c23.Name = "g1c23";
             this.g1c23.ReadOnly = true;
@@ -461,9 +477,21 @@
             this.g1c23.TrueValue = "True";
             this.g1c23.Width = 55;
             // 
+            // colNVNhaMay
+            // 
+            this.colNVNhaMay.DataPropertyName = "NVNhaMay";
+            this.colNVNhaMay.FalseValue = "False";
+            this.colNVNhaMay.Frozen = true;
+            this.colNVNhaMay.HeaderText = "NV Nhà máy";
+            this.colNVNhaMay.Name = "colNVNhaMay";
+            this.colNVNhaMay.ToolTipText = "Nhân viên Nhà máy hay NV Nhân Kiệt";
+            this.colNVNhaMay.TrueValue = "True";
+            this.colNVNhaMay.Width = 55;
+            // 
             // g1c24
             // 
             this.g1c24.DataPropertyName = "UserHireDay";
+            this.g1c24.Frozen = true;
             this.g1c24.HeaderText = "Ngày vào làm";
             this.g1c24.Name = "g1c24";
             this.g1c24.ReadOnly = true;
@@ -568,6 +596,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c19;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c20;
         private System.Windows.Forms.DataGridViewCheckBoxColumn g1c23;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colNVNhaMay;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c24;
         private System.Windows.Forms.DataGridViewTextBoxColumn G1C22;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c12;

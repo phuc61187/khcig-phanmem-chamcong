@@ -823,7 +823,7 @@ namespace ChamCong_v04.BUS {
 			int irSum = ir;
 			ic = left;
 
-			var dsphong = (from nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat)
+			var dsphong = (from nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat && o.NVNhaMay == true)
 						   group nv by nv.PhongBan into @group
 						   orderby @group.Key.ViTri
 						   select @group).ToList();
@@ -900,16 +900,25 @@ namespace ChamCong_v04.BUS {
 			// ghi các phần công nhật
 			ir++;
 			XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên làm việc công nhật", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
-			foreach (var nv in dsnv.Where(o => o.LoaiCN == LoaiCongNhat.NVCongNhat || o.LoaiCN == LoaiCongNhat.NVCongNhatVaChinhThuc)) {
+			foreach (var nv in dsnv.Where(o => ((o.LoaiCN == LoaiCongNhat.NVCongNhat || o.LoaiCN == LoaiCongNhat.NVCongNhatVaChinhThuc) && o.NVNhaMay == true) ) ) {
 				ic5 = left;
 				EXP_record_KetcongThang(ws, ref stt, ref ir, ref ic5, nv, false, ref sumCC, out sumCol_Pos);
 				stt++;
 			}
-			//func3(ws, ref ir, ref ic5);
+            //func3(ws, ref ir, ref ic5);
+            // ghi các phần Nhân viên Nhân Kiệt
+            ir++;
+            XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên thuê ngoài (Nhân Kiệt)", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
+            foreach (var nv in dsnv.Where(o => o.NVNhaMay == false)) {
+                ic5 = left;
+                EXP_record_KetcongThang(ws, ref stt, ref ir, ref ic5, nv, false, ref sumCC, out sumCol_Pos);
+                stt++;
+            }
 
 
-			//4. ghi footer
-			var tableShift = DAO.LayDSCa();
+
+            //4. ghi footer
+            var tableShift = DAO.LayDSCa();
 			var tableAbsent = DAO.LayDSLoaiVang();
 			ir = ir + 2;// cách 2 dòng
 			EXP_Footer(ws, ref ir,
