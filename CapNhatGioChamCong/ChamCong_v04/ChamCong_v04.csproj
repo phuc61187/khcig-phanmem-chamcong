@@ -58,7 +58,7 @@
     <StartupObject>ChamCong_v04.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>KhanhHoiChamCongv4.pfx</AssemblyOriginatorKeyFile>

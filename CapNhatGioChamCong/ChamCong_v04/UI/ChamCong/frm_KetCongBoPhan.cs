@@ -435,7 +435,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								nv.ThongKeThang.CongCV_Auto = 0f;
 							}
 						}
-                        if (nv.NVNhaMay == false) nv.ThongKeThang.CongCV_Auto = 0f; 
+                        if (nv.NVNhanKiet) nv.ThongKeThang.CongCV_Auto = 0f; 
                         
 						nv.ThongKeThang.CongCV = nv.ThongKeThang.CongCV_Auto + nv.ThongKeThang.CongCV_KB;
 						if (XL.KiemTraDieuKienCongCVAuto_VuotNguong(nv.ThongKeThang.CongCV_Auto, soNgayThu7, soNgayChuNhat)) {

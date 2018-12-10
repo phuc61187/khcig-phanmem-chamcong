@@ -33,7 +33,7 @@ namespace ChamCong_v04.DTO {
 		public int IDChucVu;
 		public string ChucVu;
 		public LoaiCongNhat LoaiCN;// mặc định là false, tức ko phải nv công nhật -->đó là nv chính thức
-        public bool NVNhaMay;
+        public bool NVNhanKiet;
 		//dưới csdl, nếu là nv chính thức thì check true => bool NVCongNhat = true nếu NVChinhThuc false, NVCongNhat = false nếu NVChinhThuc true
 		public DateTime NgayBDCongnhat;
 		public DateTime NgayKTCongnhat;

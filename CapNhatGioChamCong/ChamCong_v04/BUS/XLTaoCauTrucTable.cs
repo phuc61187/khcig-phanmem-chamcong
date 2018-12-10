@@ -43,7 +43,7 @@ namespace ChamCong_v04.BUS
 				row["HeSoLuongCB"] = nhanvien.HeSo.LuongCB;
 				row["HeSoLuongSP"] = nhanvien.HeSo.LuongCV;
 				row["HSBHCongThem"] = nhanvien.HeSo.BHCongThem_ChoGD_PGD;
-                row["NVNhaMay"] = nhanvien.NVNhaMay;
+                //row["NVNhanKiet"] = nhanvien.NVNhanKiet;
 				m_tableDSNV.Rows.Add(row);
 			}
 		}

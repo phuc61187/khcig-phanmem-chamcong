@@ -69,6 +69,7 @@
             this.tbHSPCDH = new System.Windows.Forms.MaskedTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tbHSPCTN = new System.Windows.Forms.MaskedTextBox();
+            this.checkNVNhanKiet = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -309,7 +310,7 @@
             // 
             this.btnLuu.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnLuu.ForeColor = System.Drawing.Color.Blue;
-            this.btnLuu.Location = new System.Drawing.Point(175, 500);
+            this.btnLuu.Location = new System.Drawing.Point(175, 527);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(90, 27);
             this.btnLuu.TabIndex = 22;
@@ -321,7 +322,7 @@
             // 
             this.btnDong.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnDong.ForeColor = System.Drawing.Color.Blue;
-            this.btnDong.Location = new System.Drawing.Point(285, 500);
+            this.btnDong.Location = new System.Drawing.Point(285, 527);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(90, 27);
             this.btnDong.TabIndex = 23;
@@ -340,7 +341,7 @@
             // checkUserEnabled
             // 
             this.checkUserEnabled.AutoSize = true;
-            this.checkUserEnabled.Location = new System.Drawing.Point(15, 475);
+            this.checkUserEnabled.Location = new System.Drawing.Point(15, 502);
             this.checkUserEnabled.Name = "checkUserEnabled";
             this.checkUserEnabled.Size = new System.Drawing.Size(222, 19);
             this.checkUserEnabled.TabIndex = 21;
@@ -363,7 +364,7 @@
             this.dtpNgayBDCongnhat.CustomFormat = "dddd dd/MM/yyyy";
             this.dtpNgayBDCongnhat.Enabled = false;
             this.dtpNgayBDCongnhat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgayBDCongnhat.Location = new System.Drawing.Point(175, 401);
+            this.dtpNgayBDCongnhat.Location = new System.Drawing.Point(175, 428);
             this.dtpNgayBDCongnhat.Name = "dtpNgayBDCongnhat";
             this.dtpNgayBDCongnhat.Size = new System.Drawing.Size(200, 21);
             this.dtpNgayBDCongnhat.TabIndex = 18;
@@ -372,7 +373,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(80, 426);
+            this.label16.Location = new System.Drawing.Point(80, 453);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 15);
             this.label16.TabIndex = 1;
@@ -383,7 +384,7 @@
             this.dtpNgayKTCongnhat.CustomFormat = "dddd dd/MM/yyyy";
             this.dtpNgayKTCongnhat.Enabled = false;
             this.dtpNgayKTCongnhat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgayKTCongnhat.Location = new System.Drawing.Point(175, 423);
+            this.dtpNgayKTCongnhat.Location = new System.Drawing.Point(175, 450);
             this.dtpNgayKTCongnhat.Name = "dtpNgayKTCongnhat";
             this.dtpNgayKTCongnhat.Size = new System.Drawing.Size(200, 21);
             this.dtpNgayKTCongnhat.TabIndex = 19;
@@ -393,7 +394,7 @@
             // 
             this.checkLamCongnhat.AutoSize = true;
             this.checkLamCongnhat.Enabled = false;
-            this.checkLamCongnhat.Location = new System.Drawing.Point(15, 403);
+            this.checkLamCongnhat.Location = new System.Drawing.Point(15, 430);
             this.checkLamCongnhat.Name = "checkLamCongnhat";
             this.checkLamCongnhat.Size = new System.Drawing.Size(146, 19);
             this.checkLamCongnhat.TabIndex = 17;
@@ -405,7 +406,7 @@
             // 
             this.checkNVChinhThuc.AutoSize = true;
             this.checkNVChinhThuc.Enabled = false;
-            this.checkNVChinhThuc.Location = new System.Drawing.Point(15, 450);
+            this.checkNVChinhThuc.Location = new System.Drawing.Point(15, 477);
             this.checkNVChinhThuc.Name = "checkNVChinhThuc";
             this.checkNVChinhThuc.Size = new System.Drawing.Size(317, 19);
             this.checkNVChinhThuc.TabIndex = 20;
@@ -493,12 +494,23 @@
             this.tbHSPCTN.TabIndex = 15;
             this.tbHSPCTN.Text = "000";
             // 
+            // checkNVNhanKiet
+            // 
+            this.checkNVNhanKiet.AutoSize = true;
+            this.checkNVNhanKiet.Location = new System.Drawing.Point(15, 405);
+            this.checkNVNhanKiet.Name = "checkNVNhanKiet";
+            this.checkNVNhanKiet.Size = new System.Drawing.Size(199, 19);
+            this.checkNVNhanKiet.TabIndex = 21;
+            this.checkNVNhanKiet.Text = "Là Nhân viên Công ty Nhân Kiệt";
+            this.checkNVNhanKiet.UseVisualStyleBackColor = true;
+            // 
             // frmThem_Capnhat_1NV
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(390, 535);
+            this.ClientSize = new System.Drawing.Size(390, 557);
             this.Controls.Add(this.checkNVChinhThuc);
             this.Controls.Add(this.checkLamCongnhat);
+            this.Controls.Add(this.checkNVNhanKiet);
             this.Controls.Add(this.checkUserEnabled);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnLuu);
@@ -597,5 +609,6 @@
         private System.Windows.Forms.MaskedTextBox tbHSPCDH;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.MaskedTextBox tbHSPCTN;
+        private System.Windows.Forms.CheckBox checkNVNhanKiet;
     }
 }

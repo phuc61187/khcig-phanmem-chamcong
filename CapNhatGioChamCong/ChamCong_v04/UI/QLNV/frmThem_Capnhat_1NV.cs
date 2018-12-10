@@ -74,7 +74,7 @@ namespace ChamCong_v04.UI.QLNV {
 
 			if (mode == 1) // chế độ  thêm mới, cho phép thực hiện phần công nhật
 			{
-				MyUtility.EnableDisableControl(true, tbMaCC, checkLamCongnhat, checkNVChinhThuc, dtpNgayBDCongnhat, dtpNgayKTCongnhat);
+				MyUtility.EnableDisableControl(true, tbMaCC, checkLamCongnhat, checkNVChinhThuc, checkNVNhanKiet, dtpNgayBDCongnhat, dtpNgayKTCongnhat);
 			}
 			else if (mode == 0) // chế độ cập nhật ko cho phép thực hiện phần công nhật
 			{
@@ -101,6 +101,7 @@ namespace ChamCong_v04.UI.QLNV {
                 tbHSPCCV.Text = (RowView["HSPCCV"] != DBNull.Value) ? ((float)RowView["HSPCCV"]).ToString("0.00") : "000";
                 tbHSPCDH.Text = (RowView["HSPCDH"] != DBNull.Value) ? ((float)RowView["HSPCDH"]).ToString("0.00") : "000";
                 tbHSPCTN.Text = (RowView["HSPCTN"] != DBNull.Value) ? ((float)RowView["HSPCTN"]).ToString("0.00") : "000";
+                checkNVNhanKiet.Checked = (RowView["NVNhanKiet"] != DBNull.Value) ? (bool)RowView["NVNhanKiet"] : false;
                 checkUserEnabled.Checked = (RowView["UserEnabled"] != DBNull.Value && (bool)RowView["UserEnabled"]);
 			}
 		}
@@ -139,6 +140,7 @@ namespace ChamCong_v04.UI.QLNV {
 				return;
 			}
 			bool userEnabled = checkUserEnabled.Checked;
+            bool nvNhanKiet = checkNVNhanKiet.Checked;
 
 			if (mode == 1) {
 				var tableKiemTraTonTai = SqlDataAccessHelper.ExecuteQueryString(
@@ -162,34 +164,34 @@ namespace ChamCong_v04.UI.QLNV {
 								  UserCardNo = @UserCardNo, UserHireDay = @UserHireDay, UserIDTitle = @IDChucVu, UserSex = @UserSex, 
 								  UserEnabled = @UserEnabled, UserIDD = @UserIDD, SchID = @SchID, 
 								  HeSoLuongCB = @HeSoLuongCB, HeSoLuongSP = @HeSoLuongSP, HSBHCongThem = @HSBHCongThem,
-                                  HSLCBTT17 = @HSLCBTT17, HSPCCV = @HSPCCV, HSPCDH = @HSPCDH, HSPCTN = @HSPCTN
+                                  HSLCBTT17 = @HSLCBTT17, HSPCCV = @HSPCCV, HSPCDH = @HSPCDH, HSPCTN = @HSPCTN, NVNhanKiet = @NVNhanKiet
 								where UserEnrollNumber = @UserEnrollNumber
 
 							if ( @@ROWCOUNT = 0 )  
 							INSERT INTO UserInfo (  UserFullCode,  UserFullName,  UserLastName,  UserEnrollNumber,  UserEnrollName,
 									UserCardNo,  UserHireDay,  UserIDTitle,  UserSex,  UserPrivilege,  UserEnabled,
 									UserIDD,  SchID,  HeSoLuongCB,  HeSoLuongSP,  HSBHCongThem,  
-                                    HSLCBTT17, HSPCCV, HSPCDH, HSPCTN,
+                                    HSLCBTT17, HSPCCV, HSPCDH, HSPCTN, NVNhanKiet,
 									PushCardID,  UserPW, UserGroup, UserTZ) 
 							VALUES (  @UserFullCode,  @UserFullName,  @UserLastName,  @UserEnrollNumber,  @UserEnrollName,
 									  @UserCardNo,  @UserHireDay,  @IDChucVu,  @UserSex,  @UserPrivilege,  @UserEnabled,
 									  @UserIDD,  @SchID,  @HeSoLuongCB,  @HeSoLuongSP,  @HSBHCongThem,  
-                                      @HSLCBTT17, @HSPCCV, @HSPCDH, @HSPCTN,
+                                      @HSLCBTT17, @HSPCCV, @HSPCDH, @HSPCTN, @NVNhanKiet,
 									  @PushCardID,  @UserPW, @UserGroup, @UserTZ )",
 				new string[]{
 						"@UserFullCode", "@UserFullName", "@UserLastName", "@UserEnrollNumber", "@UserEnrollName",
-						"@UserCardNo", "@UserHireDay", "@IDChucVu", "@UserSex",  
-						"@UserEnabled","@UserIDD", "@SchID",
+						"@UserCardNo", "@UserHireDay", "@IDChucVu", "@UserSex", "@UserPrivilege", "@UserEnabled", 
+						"@UserIDD", "@SchID",
 						"@HeSoLuongCB", "@HeSoLuongSP", "@HSBHCongThem",
-                        "@HSLCBTT17", "@HSPCCV", "@HSPCDH", "@HSPCTN",
-						"@UserPrivilege", "@PushCardID", "@UserPW", "@UserGroup", "@UserTZ"},
+                        "@HSLCBTT17", "@HSPCCV", "@HSPCDH", "@HSPCTN", "@NVNhanKiet",
+						"@PushCardID", "@UserPW", "@UserGroup", "@UserTZ"},
 				new object[]{
 						maNV, hoten, ten, maCC, tenCC,
-						mathetu, ngayvaolam, idchucvu, gioitinh, 
-						userEnabled, idphong, idlichtrinh,
+						mathetu, ngayvaolam, idchucvu, gioitinh, 0, userEnabled, 
+						idphong, idlichtrinh,
 						hslcb, hslcv, hsbhxhcongthem, 
-                        hslcbtt17, hspccv, hspcdh, hspctn,
-						0, "[0000000000]", string.Empty, 1, "0000000000000000",});
+                        hslcbtt17, hspccv, hspcdh, hspctn, nvNhanKiet,
+						"[0000000000]", string.Empty, 1, "0000000000000000",});
 			string noidung =
 				@"Lưu thông tin nhân viên có mã chấm công [{0}], mã nhân viên [{1}], hệ số lương cơ bản [{2}], hệ số lương sản phẩm [{3}], hệ số bảo hiểm cộng thêm cho lãnh đạo [{4}], hệ số lương cơ bản TT17 [{5}], hệ số phụ cấp công việc [{6}], hệ số phụ cấp độc hại [{7}], hệ số phụ cấp trách nhiệm [{8}], tình trạng hoạt động [{9}], phòng ban [{10}], lịch trình [{11}]";
 			DAO.GhiNhatKyThaotac("Lưu thông tin nhân viên", string.Format(noidung,
@@ -242,6 +244,7 @@ namespace ChamCong_v04.UI.QLNV {
 					cbPhongBan.SelectedIndex = 0;
 					cbLichTrinh.SelectedIndex = 0;
 					checkUserEnabled.Checked = true;
+                    checkNVNhanKiet.Checked = false;
 				}
 				else {
 					Close();

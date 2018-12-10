@@ -67,7 +67,7 @@
             this.g1c19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c23 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colNVNhaMay = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNVNhanKiet = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.g1c24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.G1C22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.g1c12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -161,7 +161,7 @@
             this.g1c19,
             this.g1c20,
             this.g1c23,
-            this.colNVNhaMay,
+            this.colNVNhanKiet,
             this.g1c24,
             this.G1C22,
             this.g1c12,
@@ -477,16 +477,16 @@
             this.g1c23.TrueValue = "True";
             this.g1c23.Width = 55;
             // 
-            // colNVNhaMay
+            // colNVNhanKiet
             // 
-            this.colNVNhaMay.DataPropertyName = "NVNhaMay";
-            this.colNVNhaMay.FalseValue = "False";
-            this.colNVNhaMay.Frozen = true;
-            this.colNVNhaMay.HeaderText = "NV Nhà máy";
-            this.colNVNhaMay.Name = "colNVNhaMay";
-            this.colNVNhaMay.ToolTipText = "Nhân viên Nhà máy hay NV Nhân Kiệt";
-            this.colNVNhaMay.TrueValue = "True";
-            this.colNVNhaMay.Width = 55;
+            this.colNVNhanKiet.DataPropertyName = "NVNhanKiet";
+            this.colNVNhanKiet.FalseValue = "False";
+            this.colNVNhanKiet.Frozen = true;
+            this.colNVNhanKiet.HeaderText = "NV Nhân Kiệt";
+            this.colNVNhanKiet.Name = "colNVNhanKiet";
+            this.colNVNhanKiet.ToolTipText = "Nhân viên Nhân Kiệt hay NV Nhà máy";
+            this.colNVNhanKiet.TrueValue = "True";
+            this.colNVNhanKiet.Width = 55;
             // 
             // g1c24
             // 
@@ -596,7 +596,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c19;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c20;
         private System.Windows.Forms.DataGridViewCheckBoxColumn g1c23;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colNVNhaMay;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colNVNhanKiet;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c24;
         private System.Windows.Forms.DataGridViewTextBoxColumn G1C22;
         private System.Windows.Forms.DataGridViewTextBoxColumn g1c12;

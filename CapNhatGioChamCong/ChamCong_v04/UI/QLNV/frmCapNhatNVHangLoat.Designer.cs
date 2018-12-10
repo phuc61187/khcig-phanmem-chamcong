@@ -54,6 +54,8 @@
             this.tbHSPCDH = new System.Windows.Forms.MaskedTextBox();
             this.checkHSPCCV = new System.Windows.Forms.CheckBox();
             this.tbHSPCCV = new System.Windows.Forms.MaskedTextBox();
+            this.checkNVNhanKiet = new System.Windows.Forms.CheckBox();
+            this.checkPhanNhomNhanVien = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // treePhongBan
@@ -136,7 +138,7 @@
             // 
             this.checkUserEnabled.AutoSize = true;
             this.checkUserEnabled.Enabled = false;
-            this.checkUserEnabled.Location = new System.Drawing.Point(197, 486);
+            this.checkUserEnabled.Location = new System.Drawing.Point(197, 481);
             this.checkUserEnabled.Name = "checkUserEnabled";
             this.checkUserEnabled.Size = new System.Drawing.Size(164, 19);
             this.checkUserEnabled.TabIndex = 9;
@@ -190,7 +192,7 @@
             // checkTinhtrangHoatdong
             // 
             this.checkTinhtrangHoatdong.AutoSize = true;
-            this.checkTinhtrangHoatdong.Location = new System.Drawing.Point(12, 486);
+            this.checkTinhtrangHoatdong.Location = new System.Drawing.Point(12, 481);
             this.checkTinhtrangHoatdong.Name = "checkTinhtrangHoatdong";
             this.checkTinhtrangHoatdong.Size = new System.Drawing.Size(139, 19);
             this.checkTinhtrangHoatdong.TabIndex = 10;
@@ -202,7 +204,7 @@
             // 
             this.btnLuu.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnLuu.ForeColor = System.Drawing.Color.Blue;
-            this.btnLuu.Location = new System.Drawing.Point(197, 511);
+            this.btnLuu.Location = new System.Drawing.Point(197, 529);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(90, 27);
             this.btnLuu.TabIndex = 10;
@@ -214,7 +216,7 @@
             // 
             this.btnDong.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnDong.ForeColor = System.Drawing.Color.Blue;
-            this.btnDong.Location = new System.Drawing.Point(349, 511);
+            this.btnDong.Location = new System.Drawing.Point(349, 529);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(90, 27);
             this.btnDong.TabIndex = 10;
@@ -315,10 +317,35 @@
             this.tbHSPCCV.TabIndex = 6;
             this.tbHSPCCV.Text = "000";
             // 
+            // checkNVNhanKiet
+            // 
+            this.checkNVNhanKiet.AutoSize = true;
+            this.checkNVNhanKiet.Enabled = false;
+            this.checkNVNhanKiet.Location = new System.Drawing.Point(197, 506);
+            this.checkNVNhanKiet.Name = "checkNVNhanKiet";
+            this.checkNVNhanKiet.Size = new System.Drawing.Size(175, 19);
+            this.checkNVNhanKiet.TabIndex = 11;
+            this.checkNVNhanKiet.Text = "Là Nhân viên Cty Nhân Kiệt";
+            this.toolTipHint.SetToolTip(this.checkNVNhanKiet, "Đánh dấu mục này nếu NV đang làm việc\r\nvà chấm công. Bỏ đánh dấu nếu NV không\r\ncò" +
+        "n làm việc.");
+            this.checkNVNhanKiet.UseVisualStyleBackColor = true;
+            // 
+            // checkPhanNhomNhanVien
+            // 
+            this.checkPhanNhomNhanVien.AutoSize = true;
+            this.checkPhanNhomNhanVien.Location = new System.Drawing.Point(12, 506);
+            this.checkPhanNhomNhanVien.Name = "checkPhanNhomNhanVien";
+            this.checkPhanNhomNhanVien.Size = new System.Drawing.Size(146, 19);
+            this.checkPhanNhomNhanVien.TabIndex = 12;
+            this.checkPhanNhomNhanVien.Text = "Phân nhóm nhân viên";
+            this.checkPhanNhomNhanVien.UseVisualStyleBackColor = true;
+            // 
             // frmCapNhatNVHangLoat
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(451, 553);
+            this.ClientSize = new System.Drawing.Size(451, 568);
+            this.Controls.Add(this.checkNVNhanKiet);
+            this.Controls.Add(this.checkPhanNhomNhanVien);
             this.Controls.Add(this.checkUserEnabled);
             this.Controls.Add(this.tbHSPCCV);
             this.Controls.Add(this.tbHSPCDH);
@@ -376,5 +403,7 @@
         private System.Windows.Forms.MaskedTextBox tbHSPCDH;
         private System.Windows.Forms.CheckBox checkHSPCCV;
         private System.Windows.Forms.MaskedTextBox tbHSPCCV;
+        private System.Windows.Forms.CheckBox checkNVNhanKiet;
+        private System.Windows.Forms.CheckBox checkPhanNhomNhanVien;
     }
 }

@@ -823,7 +823,7 @@ namespace ChamCong_v04.BUS {
 			int irSum = ir;
 			ic = left;
 
-			var dsphong = (from nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat && o.NVNhaMay == true)
+			var dsphong = (from nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat && o.NVNhanKiet == false)
 						   group nv by nv.PhongBan into @group
 						   orderby @group.Key.ViTri
 						   select @group).ToList();
@@ -895,25 +895,40 @@ namespace ChamCong_v04.BUS {
 			if (Math.Abs(sumCC.nghiRO_16 - 0f) < 0.01f) ws.Column(3 + songay + 16).Width = 0;
 			if (Math.Abs(sumCC.ptdt_17 - 0f) < 0.01f) ws.Column(3 + songay + 17).Width = 0;
 
-			#endregion
-
-			// ghi các phần công nhật
-			ir++;
+            #endregion
+            // ghi các phần công nhật
+            ir++;
 			XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên làm việc công nhật", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
-			foreach (var nv in dsnv.Where(o => ((o.LoaiCN == LoaiCongNhat.NVCongNhat || o.LoaiCN == LoaiCongNhat.NVCongNhatVaChinhThuc) && o.NVNhaMay == true) ) ) {
+			foreach (var nv in dsnv.Where(o => ((o.LoaiCN == LoaiCongNhat.NVCongNhat || o.LoaiCN == LoaiCongNhat.NVCongNhatVaChinhThuc) && o.NVNhanKiet == false) ) ) {
 				ic5 = left;
 				EXP_record_KetcongThang(ws, ref stt, ref ir, ref ic5, nv, false, ref sumCC, out sumCol_Pos);
 				stt++;
 			}
             //func3(ws, ref ir, ref ic5);
             // ghi các phần Nhân viên Nhân Kiệt
+            //---------------
             ir++;
             XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên thuê ngoài (Nhân Kiệt)", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
-            foreach (var nv in dsnv.Where(o => o.NVNhaMay == false)) {
-                ic5 = left;
-                EXP_record_KetcongThang(ws, ref stt, ref ir, ref ic5, nv, false, ref sumCC, out sumCol_Pos);
-                stt++;
+            var dsphongNK = (from nv in dsnv.Where(o => o.NVNhanKiet == true)
+                           group nv by nv.PhongBan into @group
+                           orderby @group.Key.ViTri
+                           select @group).ToList();
+            int sumCol_PosNK = 0;
+            foreach (var item in dsphongNK) {
+                var phong = item.Key;
+                List<cUserInfo> dsnv1 = dsnv.Where(o => o.PhongBan.ID == phong.ID && o.NVNhanKiet == true).ToList();
+                XL.EXP_group_KetcongThang(ws, ref stt, ref ir, ref ic, dsnv1, phong, false, ref sumCC, out sumCol_PosNK);
+                ic = left;
+                //ir++;
             }
+
+            //---------------
+            //XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên thuê ngoài (Nhân Kiệt)", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
+            //foreach (var nv in dsnv.Where(o => o.NVNhanKiet == true)) {
+            //    ic5 = left;
+            //    EXP_record_KetcongThang(ws, ref stt, ref ir, ref ic5, nv, false, ref sumCC, out sumCol_Pos);
+            //    stt++;
+            //}
 
 
 
@@ -1007,7 +1022,7 @@ namespace ChamCong_v04.BUS {
 					else XL.FormatCell_W(ws, ir, ic, value: string.Empty, wrapText: true); // phần công nhật xuất 0
 				}
 				else {
-					if (nv.LoaiCN == LoaiCongNhat.NVCongNhat) {
+					if (nv.LoaiCN == LoaiCongNhat.NVCongNhat || nv.NVNhanKiet == true) {
 						ngay.XuatChuoiKyHieuChamCong(ref temp);
 						XL.FormatCell_W(ws, ir, ic, value: temp, wrapText: true);
 					}

@@ -51,12 +51,13 @@ namespace ChamCong_v04.UI.QLNV {
             tbHSPCDH.Enabled = checkHSPCDH.Checked;
             tbHSPCTN.Enabled = checkHSPCTN.Checked;
 			checkUserEnabled.Enabled = checkTinhtrangHoatdong.Checked;
+            checkPhanNhomNhanVien.Enabled = checkNVNhanKiet.Checked;
 		}
 
 
 
 		private void btnLuu_Click(object sender, EventArgs e) {
-			int idPhong = -1, idChucVu = -1, idLichtrinh = -1, userEnabled = -1;
+			int idPhong = -1, idChucVu = -1, idLichtrinh = -1, userEnabled = -1, isNVNhanKiet = -1;
             float hslcb = -1f, hslcv = -1f, hslcbtt17 = -1f, hspccv = -1f, hspcdh = -1f, hspctn = -1f;
 			List<string> arrString = new List<string>();
 			List<string> arrString2 = new List<string>();
@@ -175,6 +176,14 @@ namespace ChamCong_v04.UI.QLNV {
 				arrString2.Add("tình trạng mới: [" + (checkUserEnabled.Checked ? "đang làm việc" : "ngưng việc") + "]; ");
 				IsExist_1Check = true;
 			}
+
+            if (checkPhanNhomNhanVien.Checked) {
+                isNVNhanKiet = (checkNVNhanKiet.Checked) ? 1 : 0;
+                arrString.Add(" NVNhanKiet = @NVNhanKiet ");
+                arrString2.Add(" nhóm Nhân viên mới: [" + (checkNVNhanKiet.Checked ? "NV Nhân Kiệt" : "NV Nhà Máy") + "]; ");
+                IsExist_1Check = true;
+            }
+
 			// chưa chọn thì báo
 			if (IsExist_1Check == false)
 			{
@@ -192,8 +201,8 @@ namespace ChamCong_v04.UI.QLNV {
 			string query = string.Format(formatstring1, temp1, temp2);
 			int kq = SqlDataAccessHelper.ExecNoneQueryString(query,
 				new string[] {"@MaPhong", "@IDChucVu", "@SchID",
-						"@HeSoLuongCB", "@HeSoLuongSP", "@HSLCBTT17", "@HSPCCV", "@HSPCDH", "@HSPCTN", "@UserEnabled",},
-				new object[] {idPhong, idChucVu, idLichtrinh, hslcb, hslcv, hslcbtt17, hspccv, hspcdh, hspctn, userEnabled});
+						"@HeSoLuongCB", "@HeSoLuongSP", "@HSLCBTT17", "@HSPCCV", "@HSPCDH", "@HSPCTN", "@UserEnabled", "@NVNhanKiet"},
+				new object[] {idPhong, idChucVu, idLichtrinh, hslcb, hslcv, hslcbtt17, hspccv, hspcdh, hspctn, userEnabled, isNVNhanKiet});
 			foreach (int uen in listUEN)
 			{
 				DAO.GhiNhatKyThaotac("Cập nhật thông tin NV hàng loạt", string.Format(formatstring2, uen, temp3), maCC:uen);
@@ -209,9 +218,6 @@ namespace ChamCong_v04.UI.QLNV {
 			}
 		}
 
-		private string abc() {
-			throw new NotImplementedException();
-		}
 
 
 		private void frmCapNhatNVHangLoat_Load(object sender, EventArgs e) {
