@@ -823,14 +823,14 @@ namespace ChamCong_v04.BUS {
 			int irSum = ir;
 			ic = left;
 
-			var dsphong = (from nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat && o.NVNhanKiet == false)
+			var dsphong = (from nv in dsnv.Where(o => o.NVNhanKiet == false && o.LoaiCN != LoaiCongNhat.NVCongNhat)
 						   group nv by nv.PhongBan into @group
 						   orderby @group.Key.ViTri
 						   select @group).ToList();
 			int sumCol_Pos = 0;
 			foreach (var item in dsphong) {
 				var phong = item.Key;
-				List<cUserInfo> dsnv1 = dsnv.Where(o => o.PhongBan.ID == phong.ID).ToList();
+				List<cUserInfo> dsnv1 = dsnv.Where(o => o.NVNhanKiet == false && o.PhongBan.ID == phong.ID).ToList();
 				XL.EXP_group_KetcongThang(ws, ref stt, ref ir, ref ic, dsnv1, phong, true, ref sumCC, out sumCol_Pos);
 				ic = left;
 				//ir++;
@@ -899,38 +899,12 @@ namespace ChamCong_v04.BUS {
             // ghi các phần công nhật
             ir++;
 			XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên làm việc công nhật", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
-			foreach (var nv in dsnv.Where(o => ((o.LoaiCN == LoaiCongNhat.NVCongNhat || o.LoaiCN == LoaiCongNhat.NVCongNhatVaChinhThuc) && o.NVNhanKiet == false) ) ) {
+			foreach (var nv in dsnv.Where(o => (o.NVNhanKiet == false && (o.LoaiCN == LoaiCongNhat.NVCongNhat || o.LoaiCN == LoaiCongNhat.NVCongNhatVaChinhThuc)) ) ) {
 				ic5 = left;
 				EXP_record_KetcongThang(ws, ref stt, ref ir, ref ic5, nv, false, ref sumCC, out sumCol_Pos);
 				stt++;
 			}
             //func3(ws, ref ir, ref ic5);
-            // ghi các phần Nhân viên Nhân Kiệt
-            //---------------
-            ir++;
-            XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên thuê ngoài (Nhân Kiệt)", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
-            var dsphongNK = (from nv in dsnv.Where(o => o.NVNhanKiet == true)
-                           group nv by nv.PhongBan into @group
-                           orderby @group.Key.ViTri
-                           select @group).ToList();
-            int sumCol_PosNK = 0;
-            foreach (var item in dsphongNK) {
-                var phong = item.Key;
-                List<cUserInfo> dsnv1 = dsnv.Where(o => o.PhongBan.ID == phong.ID && o.NVNhanKiet == true).ToList();
-                XL.EXP_group_KetcongThang(ws, ref stt, ref ir, ref ic, dsnv1, phong, false, ref sumCC, out sumCol_PosNK);
-                ic = left;
-                //ir++;
-            }
-
-            //---------------
-            //XL.FormatCell_W(ws, ref ir, ref ic, value: "Nhân viên thuê ngoài (Nhân Kiệt)", plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
-            //foreach (var nv in dsnv.Where(o => o.NVNhanKiet == true)) {
-            //    ic5 = left;
-            //    EXP_record_KetcongThang(ws, ref stt, ref ir, ref ic5, nv, false, ref sumCC, out sumCol_Pos);
-            //    stt++;
-            //}
-
-
 
             //4. ghi footer
             var tableShift = DAO.LayDSCa();
@@ -946,7 +920,153 @@ namespace ChamCong_v04.BUS {
 			EXP_KyHieuCC(ws, ref ir, new int[] { 3, 4, 24, 41 }, out ir, tableShift, tableAbsent);
 
 		}
-		public static void EXP_group_KetcongThang(ExcelWorksheet ws, ref int stt, ref int top, ref int left, List<cUserInfo> dsnv, cPhongBan phong, bool XuatPhanChinhThuc, ref SUMCC sumCC, out int sumCol_Pos) {
+
+        public static void ExportSheetBangKetcongThangNhanKiet(ExcelWorksheet ws, DateTime ngaybd, DateTime ngaykt, List<cUserInfo> dsnv, string tenNVLapBieu, string tenTrgBP, params int[] p)
+        {
+            ws.Cells.Style.Font.Size = 12; //Default font size for whole sheet
+            ws.Cells.Style.Font.Name = "Times News Roman"; //Default Font name for whole sheet
+            ws.Workbook.CalcMode = ExcelCalcMode.Automatic;
+
+            int stt = 1, left = 1, top = 1, ir, ic;
+
+            // 1. ghi header
+            string headerString = string.Format(Settings.Default.titleBangCC_THANG, ngaybd.ToString("MM/yyyy"));
+            int left1 = Settings.Default.viTriOHeaderBKC_TCTCNSG, left2 = Settings.Default.viTriOHeaderBKC_DiaChi, leftT = Settings.Default.viTriOHeaderTitle;
+            ir = top;
+            EXP_Header(ws, ref ir, left1, left2, leftT, size1: Settings.Default.sizeHeaderBKC_TCTCNSG, size2: Settings.Default.sizeHeaderBKC_TCTCNSG, sizeT: Settings.Default.sizeTitleBKC,
+                ngayLap: DateTime.Today, headerString: headerString);
+
+
+            #region // 2. ghi colTitle
+            ic = left;
+            FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.STT, value: "STT", fromRow: ir, fromCol: ic, toRow: ir + 1, toCol: ic, plusCol: 1); //col 1
+            FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.manv, value: "Mã NV", fromRow: ir, fromCol: ic, toRow: ir + 1, toCol: ic, plusCol: 1);
+            FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.ten, value: "Họ tên", fromRow: ir, fromCol: ic, toRow: ir + 1, toCol: ic, plusCol: 1);
+            var songay = Convert.ToInt32((ngaykt - ngaybd).TotalDays) + 1; // 1->31: songay = 30; 1-> 30: songay = 29 ==> phải +1 phía sau Convert.ToInt32((ngaykt - ngaybd).TotalDays)
+            FormatCell_T_Merge(ws, ref ir, ref ic, value: "Ngày", plusRow: 1, fromRow: ir, toRow: ir, fromCol: ic, toCol: ic + songay - 1); //vì ic + songay = vị trí ô kế tiếp  
+            for (DateTime indexNgay = ngaybd; indexNgay <= ngaykt; indexNgay = indexNgay.AddDays(1d)) {
+                FormatCell_T(ws, ref ir, ref ic, colWidth: (int)CC.congtrongngay, value: indexNgay, plusCol: 1, numFormat: "d");
+            }
+            ir = ir - 1; // vì "Ngày" đã làm tăng ir lên 1
+                         //ic mội lần lặp đều tăng nên ic hiện tại là vị trí của cột sau ngày cuối tháng
+            int icTemp = ic; // giữ lại vị trí cột đầu để format merge
+            int irtemp = ir + 1;
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.cong, value: "Công", plusCol: 1); //col 1
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.Le, value: "Lễ 100%", plusCol: 1);
+            //1FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.Phep, value: "Phép CĐ", plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.cv, value: "CV", plusCol: 1);
+            //2FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.bh, value: "BHXH", plusCol: 1);
+            //3FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.hoc, value: "Học, họp, CT, PT", plusCol: 1);//DANGLAM PTDT CHUYỂN RA SAU RO
+                                                                                                               // write ngày công chuẩn ở trên
+            FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: "Ngày công chuẩn", fromRow: ir, fromCol: icTemp, toRow: ir, toCol: ic - 1);
+
+            icTemp = ic;
+            FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.tongcong, value: "TC", fromRow: ir + 1, fromCol: ic, toRow: ir + 1, toCol: ic, plusCol: 1);
+            //write số công chuẫn ở trên
+            var socongchuan = DateTime.DaysInMonth(ngaybd.Year, ngaybd.Month) - DemSoNgayNghiChunhat(ngaybd, true, false);
+            FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.tongcong, value: socongchuan, fromRow: ir, fromCol: icTemp, toRow: ir, toCol: ic - 1);
+
+            icTemp = ic;
+            irtemp = ir + 1;
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.ca130, value: string.Format("PC Ca3 {0}%", p[0]), plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.ca150, value: string.Format("PCTC {0}%", p[1]), plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.tcc3_100, value: string.Format("PCTC Ca 3 {0}%", p[2]), plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.LVNN, value: string.Format("PC LVNN {0}%", p[3]), plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.pcCa3LVNN, value: string.Format("PC LVNN Ca3 {0}%", p[4]), plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.pcle_tet, value: string.Format("PC Lễ, tết {0}%", p[5]), plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.pcCa3_le, value: string.Format("PC lễ, tết ca 3 {0}%", p[6]), plusCol: 1);
+            FormatCell_T(ws, ref irtemp, ref ic, colWidth: (int)CC.pckhac, value: "PC khác", plusCol: 1);
+            //write phụ cấp ở trên
+            FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: "Phụ cấp", fromRow: ir, fromCol: icTemp, toRow: ir, toCol: ic - 1);
+
+            //4FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.nghiRo, value: "Nghỉ Ro", fromRow: ir, fromCol: ic, toRow: ir + 1, toCol: ic, plusCol: 1);
+            //5FormatCell_T_Merge(ws, ref ir, ref ic, colWidth: (int)CC.nghiRo, value: "PT Đoàn thể", fromRow: ir, fromCol: ic, toRow: ir + 1, toCol: ic, plusCol: 1);//DANGLAM
+            ws.Row(ir + 1).Height = 50d;
+
+            #endregion
+
+
+            //3. ghi noi dung
+            SUMCC sumCC = new SUMCC();
+            ir = ir + 2;// 2 dòng title
+            int irSum = ir;
+            ic = left;
+
+            var dsphong = (from nv in dsnv.Where(o => o.NVNhanKiet == true)
+                           group nv by nv.PhongBan into @group
+                           orderby @group.Key.ViTri
+                           select @group).ToList();
+            int sumCol_Pos = 0;
+            foreach (var item in dsphong) {
+                var phong = item.Key;
+                List<cUserInfo> dsnv1 = dsnv.Where(o => o.NVNhanKiet == true && o.PhongBan.ID == phong.ID).ToList();
+                XL.EXP_group_KetcongThangNhanKiet(ws, ref stt, ref ir, ref ic, dsnv1, phong, ref sumCC, out sumCol_Pos);
+                ic = left;
+                //ir++;
+            }
+            // ghi dòng tổng cộng
+            int t1 = irSum, bottom = ir - 1; //top + 1 vì top là dòng phòng ban, sum từ dòng kế tiếp; bottom -1 vì bottom = ir là index dòng kế
+                                             //XL.FormatCell_W(ws, ir, 30, "Tổng cộng: ", VeBorder: false);
+            FormatCell_T_Merge(ws, ir, ic, value: "Tổng cộng", fromRow: ir, fromCol: left, toRow: ir, toCol: sumCol_Pos - 1, wrapText: false, hAlign: ExcelHorizontalAlignment.Right);//ver 4.0.0.4	
+
+            int ic5 = sumCol_Pos;
+            // ghi phần tổng kết
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Cong);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Le);
+            //1FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Phep);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //CongCV);
+            //2FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //BHXH);
+            //3FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //H_CT_PT);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Cong + nv.ThongKeThang.Le + nv.ThongKeThang.CongCV);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._30_dem);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._50_TC);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._100_TCC3);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._100_LVNN_Ngay);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._150_LVNN_Dem);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._200_LeTet_Ngay);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._250_LeTet_Dem);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._Cus);
+            //4FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //NghiRo);
+            //5FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PTDT);//DANGLAM
+
+            //formatNumber
+            ic5 = sumCol_Pos;
+            //XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); //hslcb// t1, ic5, bottom + 1 - 1 vì t1, ic5, bottom + 1 là index của dòng mới
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//Cong);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10);//Le);
+            //1XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//Phep);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//CongCV);
+            //2XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10);//BHXH);
+            //3XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10);//H_CT_PT);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//Cong + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + nv.ThongKeThang.CongCV + nv.ThongKeThang.H_CT_PT + nv.ThongKeThang.PTDT); //DANGLAM
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._30_dem);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._50_TC);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._100_TCC3);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._100_LVNN_Ngay);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._150_LVNN_Dem);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._200_LeTet_Ngay);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._250_LeTet_Dem);
+            XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PhuCaps._Cus);
+            //4XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//NghiRo);
+            //5XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10);//PTDT);//DANGLAM
+
+            //4. ghi footer
+            var tableShift = DAO.LayDSCa();
+            var tableAbsent = DAO.LayDSLoaiVang();
+            ir = ir + 2;// cách 2 dòng
+            EXP_Footer(ws, ref ir,
+    new int[] { 4, 24, 41 },
+    new int[] { 16, 16, 16 },
+    new string[] { "LẬP BIỂU", "TRƯỞNG BỘ PHẬN", "PHÓ GIÁM ĐỐC" },
+    new string[] { tenNVLapBieu, tenTrgBP, Settings.Default.LastTenPhoGD }, khoangCachTen_ChucVu: Settings.Default.cachDongBKC_LapBieu_ten);
+
+            ir = ir + Settings.Default.cachDongBKC_LapBieu_ten + 2;// cách 2 dòng
+            EXP_KyHieuCC(ws, ref ir, new int[] { 3, 4, 24, 41 }, out ir, tableShift, tableAbsent);
+
+        }
+
+
+        public static void EXP_group_KetcongThang(ExcelWorksheet ws, ref int stt, ref int top, ref int left, List<cUserInfo> dsnv, cPhongBan phong, bool XuatPhanChinhThuc, ref SUMCC sumCC, out int sumCol_Pos) {
 			int ir = top, ic = left;
 			sumCol_Pos = 0;
 			XL.FormatCell_W(ws, ref ir, ref ic, value: phong.Ten, plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
@@ -1022,7 +1142,7 @@ namespace ChamCong_v04.BUS {
 					else XL.FormatCell_W(ws, ir, ic, value: string.Empty, wrapText: true); // phần công nhật xuất 0
 				}
 				else {
-					if (nv.LoaiCN == LoaiCongNhat.NVCongNhat || nv.NVNhanKiet == true) {
+					if (nv.LoaiCN == LoaiCongNhat.NVCongNhat) {
 						ngay.XuatChuoiKyHieuChamCong(ref temp);
 						XL.FormatCell_W(ws, ir, ic, value: temp, wrapText: true);
 					}
@@ -1093,8 +1213,81 @@ namespace ChamCong_v04.BUS {
 			top = ir; // cập nhật lại index cho row kế tiếp
 		}
 
+        public static void EXP_group_KetcongThangNhanKiet(ExcelWorksheet ws, ref int stt, ref int top, ref int left, List<cUserInfo> dsnv, cPhongBan phong, ref SUMCC sumCC, out int sumCol_Pos)
+        {
+            int ir = top, ic = left;
+            sumCol_Pos = 0;
+            XL.FormatCell_W(ws, ref ir, ref ic, value: phong.Ten, plusRow: 1, Bold: true, VeBorder: false); // ghi dòng phòng ban 
+            if (dsnv.Count == 0) return; //v9 neu 1 phong ko co nhan vien thi ko ghi sum thi dong tong cong cuoi thi sao?
+            foreach (cUserInfo nv in dsnv) {
+                ic = left;//reset về cột đầu tiên  dòng tiếp theo
+                EXP_record_KetcongThangNhanKiet(ws, ref stt, ref ir, ref ic, nv, ref sumCC, out sumCol_Pos);
+                stt++;
+            }
 
-		public static void ExportSheetBangThongKeSua(ExcelWorksheet ws, DateTime ngaybd, DateTime ngaykt, List<cUserInfo> dsnv) {
+            int t1 = top + 1, bottom = ir - 1; //top + 1 vì top là dòng phòng ban, sum từ dòng kế tiếp; bottom -1 vì bottom = ir là index dòng kế
+                                               // ghi phần sum tổng kết
+            int irSum = top; // top group
+            ic = sumCol_Pos;
+            func3(ws, ref irSum, ref ic, t1, bottom); //Cong);
+            func3(ws, ref irSum, ref ic, t1, bottom); //Le);
+            func3(ws, ref irSum, ref ic, t1, bottom); //CongCV);
+            func3(ws, ref irSum, ref ic, t1, bottom); //Cong + nv.ThongKeThang.Le + nv.ThongKeThang.Phep + nv.ThongKeThang.CongCV + nv.ThongKeThang.H_CT_PT + nv.ThongKeThang.PTDT);//DANGLAM
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._30_dem);
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._50_TC);
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._100_TCC3);
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._100_LVNN_Ngay);
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._150_LVNN_Dem);
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._200_LeTet_Ngay);
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._250_LeTet_Dem);
+            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._Cus);
+
+            top = ir;// xuất xong 1 group rồi thì cập nhật lại top là con trỏ dòng kế tiếp
+        }
+        public static void EXP_record_KetcongThangNhanKiet(ExcelWorksheet ws, ref int stt, ref int top, ref int left, cUserInfo nv, ref SUMCC sumCC, out int sumCol_Position)
+        {
+            int ir = top, ic = left;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: stt);
+            XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 1, value: nv.MaNV);
+            XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 1, value: nv.TenNV);
+
+            // ghi ký hiệu từng ngày công
+            foreach (cNgayCong ngay in nv.DSNgayCong) {
+                var temp = string.Empty;
+                ngay.XuatChuoiKyHieuChamCong(ref temp);
+                XL.FormatCell_W(ws, ir, ic, value: temp, wrapText: true);
+                ic++;// cập nhật lại vị trí cho col kế tiếp
+            }
+            // ghi phần thống kê tháng các cột cuối
+            sumCol_Position = ic;
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Cong);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Le);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.CongCV);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.Cong + nv.ThongKeThang.Le + nv.ThongKeThang.CongCV);//DANGLAM
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._30_dem);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._50_TC);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._100_TCC3);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._100_LVNN_Ngay);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._150_LVNN_Dem);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._200_LeTet_Ngay);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._250_LeTet_Dem);
+                XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._Cus);
+            
+ 
+            //sum để set colWidth
+            sumCC.le2 += nv.ThongKeThang.Le;
+            sumCC.pc100_11 += nv.ThongKeThang.PhuCaps._100_LVNN_Ngay;
+            sumCC.pc160_12 += nv.ThongKeThang.PhuCaps._150_LVNN_Dem;
+            sumCC.pc200_13 += nv.ThongKeThang.PhuCaps._200_LeTet_Ngay;
+            sumCC.pc290_14 += nv.ThongKeThang.PhuCaps._250_LeTet_Dem;
+            sumCC.pckhac_15 += nv.ThongKeThang.PhuCaps._Cus;
+
+            ir++;
+            top = ir; // cập nhật lại index cho row kế tiếp
+        }
+
+
+        public static void ExportSheetBangThongKeSua(ExcelWorksheet ws, DateTime ngaybd, DateTime ngaykt, List<cUserInfo> dsnv) {
 			ws.Cells.Style.Font.Size = 12; //Default font size for whole sheet
 			ws.Cells.Style.Font.Name = "Times News Roman"; //Default Font name for whole sheet
 			ws.Workbook.CalcMode = ExcelCalcMode.Automatic;
@@ -1131,14 +1324,14 @@ namespace ChamCong_v04.BUS {
 			int irSum = ir;
 			ic = left;
 
-			var dsphong = (from nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat)
+			var dsphong = (from nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat || o.NVNhanKiet == true)
 						   group nv by nv.PhongBan into @group
 						   orderby @group.Key.ViTri
 						   select @group).ToList();
 			int sumCol_Pos = 0;
 			foreach (var item in dsphong) {
 				var phong = item.Key;
-				List<cUserInfo> dsnv1 = dsnv.Where(o => o.PhongBan.ID == phong.ID).ToList();
+				List<cUserInfo> dsnv1 = dsnv.Where(o => (o.LoaiCN != LoaiCongNhat.NVCongNhat || o.NVNhanKiet == true) && o.PhongBan.ID == phong.ID).ToList();
 				XL.EXP_group_ThongKeSua(ws, ref stt, ref ir, ref ic, dsnv1, phong, songay, ref sumCC, out sumCol_Pos);
 				ic = left;
 				//ir++;
