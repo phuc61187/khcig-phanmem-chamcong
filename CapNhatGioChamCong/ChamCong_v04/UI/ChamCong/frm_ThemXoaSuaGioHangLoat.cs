@@ -181,7 +181,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.PhanPhoi_DSVaoRa6(nhanvien.DSVaoRa, nhanvien.DSNgayCong);
 					XL.PhanPhoi_DSVang7(nhanvien.DSVang, nhanvien.DSNgayCong);
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
-					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
+					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong, nhanvien.NVNhanKiet);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
 					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 				}
@@ -259,7 +259,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.PhanPhoi_DSVaoRa6(nhanvien.DSVaoRa, nhanvien.DSNgayCong);
 					XL.PhanPhoi_DSVang7(nhanvien.DSVang, nhanvien.DSNgayCong);
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
-					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
+					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong, nhanvien.NVNhanKiet);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
 					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 
@@ -326,7 +326,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.PhanPhoi_DSVaoRa6(nhanvien.DSVaoRa, nhanvien.DSNgayCong);
 					XL.PhanPhoi_DSVang7(nhanvien.DSVang, nhanvien.DSNgayCong);
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
-					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
+					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong, nhanvien.NVNhanKiet);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
 					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 
@@ -395,7 +395,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.PhanPhoi_DSVaoRa6(nhanvien.DSVaoRa, nhanvien.DSNgayCong);
 					XL.PhanPhoi_DSVang7(nhanvien.DSVang, nhanvien.DSNgayCong);
 					XL.TinhCong_ListNgayCong8(nhanvien.DSNgayCong, nhanvien.StartNT, nhanvien.EndddNT);//ver 4.0.0.4
-					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong);
+					XL.TinhPCTC_TrongListXNPCTC9(nhanvien.DSXNPhuCap50, nhanvien.DSNgayCong, nhanvien.NVNhanKiet);
 					XL.TinhPCDB_TrongListXNPCDB10(nhanvien.DSXNPhuCapDB, nhanvien.DSNgayCong);
 					XL.TinhPCNgayVang(nhanvien.DSVang, nhanvien.DSNgayCong);
 

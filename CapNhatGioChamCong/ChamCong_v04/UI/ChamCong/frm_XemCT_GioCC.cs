@@ -342,7 +342,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			XL.PhanPhoi_DSVaoRa6(nhanvien_goc.DSVaoRa, nhanvien_goc.DSNgayCong);
 			XL.PhanPhoi_DSVang7(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
-			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
+			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong, nhanvien_goc.NVNhanKiet);
 			XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
 			XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
@@ -399,7 +399,7 @@ namespace ChamCong_v04.UI.ChamCong {
 				XL.PhanPhoi_DSVaoRa6(nhanvien_goc.DSVaoRa, nhanvien_goc.DSNgayCong);
 				XL.PhanPhoi_DSVang7(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 				XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
-				XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
+				XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong, nhanvien_goc.NVNhanKiet);
 				XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
 				XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			}
@@ -471,7 +471,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			XL.PhanPhoi_DSVaoRa6(nhanvien_goc.DSVaoRa, nhanvien_goc.DSNgayCong);
 			XL.PhanPhoi_DSVang7(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
-			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
+			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong, nhanvien_goc.NVNhanKiet);
 			XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
 			XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);
@@ -532,7 +532,7 @@ namespace ChamCong_v04.UI.ChamCong {
 			XL.PhanPhoi_DSVaoRa6(nhanvien_goc.DSVaoRa, nhanvien_goc.DSNgayCong);
 			XL.PhanPhoi_DSVang7(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			XL.TinhCong_ListNgayCong8(nhanvien_goc.DSNgayCong, nhanvien_goc.StartNT, nhanvien_goc.EndddNT);//ver 4.0.0.4
-			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong);
+			XL.TinhPCTC_TrongListXNPCTC9(nhanvien_goc.DSXNPhuCap50, nhanvien_goc.DSNgayCong, nhanvien_goc.NVNhanKiet);
 			XL.TinhPCDB_TrongListXNPCDB10(nhanvien_goc.DSXNPhuCapDB, nhanvien_goc.DSNgayCong);
 			XL.TinhPCNgayVang(nhanvien_goc.DSVang, nhanvien_goc.DSNgayCong);
 			if (DS_Check_KoHopLe.Count > 0) DAO.LoaiGioLienQuan(DS_Check_KoHopLe);

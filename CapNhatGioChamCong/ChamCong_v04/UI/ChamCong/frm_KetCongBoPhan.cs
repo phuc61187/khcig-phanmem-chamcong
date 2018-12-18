@@ -500,11 +500,22 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 					XL.ExportSheetBangKetcongThang(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
 												   dsnv, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
 
-					#endregion
-					//3. xuat bb chi tiết kết công
-					#region ghi sheet chi tiết kết công
+                    #endregion
+                    //2.1. xuat bb bang ket cong NKiet
+                    #region ghi sheet bang ket cong thang trinh ky
 
-					p.Workbook.Worksheets.Add("ChiTietKetCong");
+                    p.Workbook.Worksheets.Add("BangKetCongNK");
+                    ws = p.Workbook.Worksheets["BangKetCongNK"];
+                    ws.Name = "BangKetCongNK"; //Setting Sheet's name
+                    XL.ExportSheetBangKetcongThangNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                                                   dsnv, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
+
+                    #endregion
+
+                    //3. xuat bb chi tiết kết công
+                    #region ghi sheet chi tiết kết công
+
+                    p.Workbook.Worksheets.Add("ChiTietKetCong");
 					ws = p.Workbook.Worksheets["ChiTietKetCong"];
 					ws.Name = "ChiTietKetCong"; //Setting Sheet's name
 					XL.ExportSheetBangChiTietKetCong(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
