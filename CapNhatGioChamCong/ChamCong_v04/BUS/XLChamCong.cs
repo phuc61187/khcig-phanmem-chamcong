@@ -291,7 +291,7 @@ namespace ChamCong_v04.BUS {
 			}
 		}
 
-		public static void Tinh_PCTC(bool TinhPC50, bool QuaDem, TimeSpan SoGioLamDemmm, TimeSpan SoGioLamThem, bool nvNhanKiet,
+		public static void Tinh_PCTC(bool TinhPC50, bool QuaDem, TimeSpan SoGioLamDemmm, TimeSpan SoGioLamThem, /*bool nvNhanKiet,*/
 			out TimeSpan tgTinh130, out TimeSpan tgTinh150, out TimeSpan tgTinhTCC3,
 			out float PhuCap30, out float PhuCapTC, out float PhuCapTCC3, out float TongPhuCap) {
 
@@ -324,8 +324,9 @@ namespace ChamCong_v04.BUS {
 				}
 				else {
 					Tinh_TGLamTCC3(SoGioLamThem, SoGioLamDemmm, out tgTinh150, out tgTinh130, out tgTinhTCC3);
-                    if (nvNhanKiet) { PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3NhanKiet, 2, MidpointRounding.ToEven)); }
-                    else { PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3, 2, MidpointRounding.ToEven)); }
+                    //if (nvNhanKiet) { PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3NhanKiet, 2, MidpointRounding.ToEven)); }
+                    
+                        PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3, 2, MidpointRounding.ToEven)); 
 					PhuCapTC = Convert.ToSingle(Math.Round((tgTinh150.TotalHours / 8d) * heso_pctc, 2, MidpointRounding.ToEven));
 					PhuCap30 = Convert.ToSingle(Math.Round((tgTinh130.TotalHours / 8d) * heso_pcdem, 2, MidpointRounding.ToEven));
 					TongPhuCap = PhuCap30 + PhuCapTC + PhuCapTCC3;
@@ -475,6 +476,7 @@ namespace ChamCong_v04.BUS {
 		public static List<cUserInfo> KhoiTaoDSNV_TinhLuong(List<cUserInfo> dsnv, List<cPhongBan> dsphong) {
 			dsnv.Clear();
 			// lấy danh sách tất cả nhân viên trừ các nhân viên công nhật ko tính lương
+            // note: bỏ qua nhân viên Nhân Kiệt
 			DataTable tableDSNV = XL.LayDSNV(UserEnabled: true); //[20140510_7]
 			if (tableDSNV.Rows.Count == 0) return dsnv;
 			foreach (var nhanvien in from DataRow row in tableDSNV.Rows
@@ -499,7 +501,8 @@ namespace ChamCong_v04.BUS {
 				nhanvien.ThongKeThang = new ThongKeCong_PC();
 
 				// tbd lưu ý chưa xét lương công nhật
-				dsnv.Add(nhanvien);
+                if (nhanvien.NVNhanKiet == false) dsnv.Add(nhanvien); // trừ nhân viên Nhân Kiệt không được add vào bảng Lương, các nhân viên còn lại add bình thường
+                
 			}
 			return dsnv;
 		}
@@ -591,7 +594,7 @@ namespace ChamCong_v04.BUS {
 				nv.NgayCongKT_Aft2D = ngayKT_Aft2D;
 				LoadDSCheck_A(tempMaCC, tableCheck_A, nv.DS_Check_A);
 				LoadDSCIO_V(tempMaCC, tableCheck_V, nv.DS_CIO_V);
-				LoadDSXPVang_Le(tempMaCC, tableVang, tableNgayLe, nv.DSVang);
+				LoadDSXPVang_Le(tempMaCC, tableVang, tableNgayLe, nv.DSVang/*, nv.NVNhanKiet*/);
 				LoadDSXNPC50(tempMaCC, tableXacNhanPC50, nv.DSXNPhuCap50);
 				LoadDSXNPCDB(tempMaCC, tableXacNhanPCDB, nv.DSXNPhuCapDB);
 				KhoiTaoDSNgayCong(nv.DSNgayCong, nv.NgayCongBD_Bef2D, nv.NgayCongKT_Aft2D);
@@ -665,23 +668,21 @@ namespace ChamCong_v04.BUS {
 			var tableXN_PCTC = DAO.LayTableXacNhanPC50(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D);
 			var tableXN_PCDB = DAO.LayTableXacNhanPCDB(Arr_MaCC, ngayBD_Bef2D, ngayKT_Aft2D, Duyet: true);
 			var tableNgayLe = DAO.DocNgayLe(ngayBD_Bef2D, ngayKT_Aft2D);
-			#endregion
+            #endregion
 
-			#region transfer dữ liệu sang object
-			foreach (var nv in dsnv) {
-				var tempMaCC = nv.MaCC;
-				nv.NgayCongBD_Bef2D = ngayBD_Bef2D;
-				nv.NgayCongKT_Aft2D = ngayKT_Aft2D;
-				LoadDSCheck_A(tempMaCC, tableCheck_A, nv.DS_Check_A);
-				LoadDSCIO_V(tempMaCC, tableCheck_V, nv.DS_CIO_V);
-				LoadDSXPVang_Le(tempMaCC, tableXPVang, tableNgayLe, nv.DSVang);
-				LoadDSXNPC50(tempMaCC, tableXN_PCTC, nv.DSXNPhuCap50);
-				LoadDSXNPCDB(tempMaCC, tableXN_PCDB, nv.DSXNPhuCapDB);
-				// khởi tạo danh sách ngày công
-				KhoiTaoDSNgayCong(nv.DSNgayCong, ngayBD_Bef2D, ngayKT_Aft2D);
-
-			}
-
+            #region transfer dữ liệu sang object
+            foreach (var nv in dsnv) {
+                var tempMaCC = nv.MaCC;
+                nv.NgayCongBD_Bef2D = ngayBD_Bef2D;
+                nv.NgayCongKT_Aft2D = ngayKT_Aft2D;
+                LoadDSCheck_A(tempMaCC, tableCheck_A, nv.DS_Check_A);
+                LoadDSCIO_V(tempMaCC, tableCheck_V, nv.DS_CIO_V);
+                LoadDSXPVang_Le(tempMaCC, tableXPVang, tableNgayLe, nv.DSVang/*, nv.NVNhanKiet*/);
+                LoadDSXNPC50(tempMaCC, tableXN_PCTC, nv.DSXNPhuCap50);
+                LoadDSXNPCDB(tempMaCC, tableXN_PCDB, nv.DSXNPhuCapDB);
+                // khởi tạo danh sách ngày công
+                KhoiTaoDSNgayCong(nv.DSNgayCong, ngayBD_Bef2D, ngayKT_Aft2D);
+            }
 			#endregion
 			#region xử lý
 			var DS_Check_KoHopLe_AllNV = new List<cCheck>();
@@ -697,7 +698,7 @@ namespace ChamCong_v04.BUS {
 				PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 				TinhCong_ListNgayCong8(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
-				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong, nv.NVNhanKiet);
+				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong/*, nv.NVNhanKiet*/);
 				TinhPCDB_TrongListXNPCDB10(nv.DSXNPhuCapDB, nv.DSNgayCong);
 				TinhPCNgayVang(nv.DSVang, nv.DSNgayCong);
 			}
@@ -839,7 +840,7 @@ namespace ChamCong_v04.BUS {
 			}
 
 		}
-		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs) {
+		public static void LoadDSXPVang_Le(int tempMaCC, DataTable tableVang, DataTable tableNgayLe, List<cLoaiVang> dsVangs/*, bool nvNhanKiet*/) {
 			dsVangs.Clear();
 			var arrVangg = tableVang.Select("UserEnrollNumber = " + tempMaCC, "TimeDate asc");
 			//if (arrVangg.Length == 0) return;
@@ -856,16 +857,7 @@ namespace ChamCong_v04.BUS {
 							let mota = row["Holiday"].ToString()
 							select new cLoaiVang { WorkingDay = 1f, MaLV_Code = "L", MoTa = mota, Ngay = ngayle, PhuCap = 0f}).ToList();
 
-/*
-			for (int i = 0; i < dsNgayLe.Count; i++) {
-				var ngayLe = dsNgayLe[i];
-				// các trường hợp ko tính 1 công lễ
-				if (dsVangs.Exists(o => o.Ngay == ngayLe.Ngay && o.MaLV_Code == "BD" || o.MaLV_Code == "TS")) {
-					dsNgayLe.RemoveAt(i);
-					i = i - 1;
-				}
-			}
-*/
+            //if (nvNhanKiet == true) dsNgayLe.Clear();
 			dsVangs.AddRange(dsNgayLe);
 
 		sort: dsVangs.Sort(new cLoaiVangComparer());
@@ -1265,7 +1257,7 @@ namespace ChamCong_v04.BUS {
 			if (Raa < TD_BD_Ca || Vao > TD_KT_Ca) {
 				return;
 			}
-			var temp = 0f;
+			//var temp = 0f;
 			XL.Vao(Vao, TD_BD_Ca, thoidiem_BD_tinhtre, KoTruVaoTre, VaotreTinhCV, out TD_BD_LV, out TGVaoTre, out TGVaoTreKoTruVR);//ver 4.0.0.8
 			XL.XetBuGioTre(ChoBuGioVaoTre, TD_BD_Ca, ref TD_BD_LV, ref TGVaoTre);
 			XL.XetBuPhepTre(ChoBuPhepVaoTre, CongPhepTre, TD_BD_Ca, ref CongBuPhepTre, ref TD_BD_LV, ref TGVaoTre);
@@ -1451,25 +1443,25 @@ namespace ChamCong_v04.BUS {
 		}
 
 
-		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong, bool nvNhanKiet) {
+		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong/*, bool nvNhanKiet*/) {
 			foreach (var item in dsXacNhanPC) {
 				var ngayCong = dsNgayCong.Find(o => o.Ngay == item.Ngay);
-				TinhPCTC_CuaNgay(ngayCong, item.TinhPC50, nvNhanKiet);
+				TinhPCTC_CuaNgay(ngayCong, item.TinhPC50/*, nvNhanKiet*/);
 			}
 
 		}
 
-		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, bool choPhepTinhTC, bool nvNhanKiet) {
+		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, bool choPhepTinhTC/*, bool nvNhanKiet*/) {
 			ngayCong.TinhPC50 = choPhepTinhTC;
-			Tinh_PCTC(choPhepTinhTC, ngayCong.QuaDem, ngayCong.TG.LamBanDem, ngayCong.TG.LamThem, nvNhanKiet,
+			Tinh_PCTC(choPhepTinhTC, ngayCong.QuaDem, ngayCong.TG.LamBanDem, ngayCong.TG.LamThem, /*nvNhanKiet,*/
 							   out ngayCong.TG.Tinh130, out ngayCong.TG.Tinh150, out ngayCong.TG.TinhTCC3,
 							   out ngayCong.PhuCaps._30_dem, out ngayCong.PhuCaps._50_TC, out ngayCong.PhuCaps._100_TCC3, out ngayCong.PhuCaps._TongPC);
 		}
 
-		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, List<structPCTC> DSXNPhuCap50, bool nvNhanKiet) {
+		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, List<structPCTC> DSXNPhuCap50/*, bool nvNhanKiet*/) {
 			var IndexngayTinhLaiPCTC1 = DSXNPhuCap50.FindIndex(item => item.Ngay == ngayCong.Ngay);
 			var kq1 = (IndexngayTinhLaiPCTC1 >= 0) && (DSXNPhuCap50[IndexngayTinhLaiPCTC1].TinhPC50);
-			TinhPCTC_CuaNgay(ngayCong, kq1, nvNhanKiet);
+			TinhPCTC_CuaNgay(ngayCong, kq1/*, nvNhanKiet*/);
 		}
 
 		public static void TinhPCDB_TrongListXNPCDB10(List<structPCDB> dsXacNhanPC, List<cNgayCong> dsNgayCong) {

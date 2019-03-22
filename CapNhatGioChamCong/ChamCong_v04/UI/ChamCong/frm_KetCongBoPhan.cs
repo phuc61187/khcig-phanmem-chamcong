@@ -184,12 +184,12 @@ namespace ChamCong_v04.UI.ChamCong {
 				while (root.PrevNode != null)
 					root = root.PrevNode;
 				GetNode_DuocThaotac_CheckKetcong(root, dsphongban);
-				#endregion
+                #endregion
 
-				WaitWindow.Show(this.ThucHienKetCong, "Đang kết công, bạn vui lòng đợi trong giây lát...", new object[] { thang, dsphongban });
-				WaitWindow.Show(this.XuatBBChamCong, "Đang xuất báo biểu, bạn vui lòng đợi trong giây lát...", new object[] { filePath, tenNVLapBieu, tenTrgBP, thang, dsphongban });
-				//kết công xong thì đóng form
-				Close();
+                WaitWindow.Show(this.ThucHienKetCong, "Đang kết công, bạn vui lòng đợi trong giây lát...", new object[] { thang, dsphongban });
+                WaitWindow.Show(this.XuatBBChamCong, "Đang xuất báo biểu, bạn vui lòng đợi trong giây lát...", new object[] { filePath, tenNVLapBieu, tenTrgBP, thang, dsphongban });
+                //kết công xong thì đóng form
+                Close();
 			} catch (Exception ex) //general try catch
 			{
 				lg.Error(string.Format("[{0}]_[{1}]\n", this.Name, System.Reflection.MethodBase.GetCurrentMethod().Name), ex);
@@ -221,13 +221,14 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 			var ngayBD_Bef2D = ngaydauthang.AddDays(-2d);
 			var ngayKT_Aft2D = ngaycuoithang.AddDays(2d);
 
-			#endregion
+            #endregion
 
 			try //general try catch
 			{
 				// khởi tạo các nhân viên chấm công thuộc phòng ban check kết công (được thao tác) và tính toán công, phụ cấp
 				XL.KhoiTaoDSNV_ChamCong(m_DSNV, (from cPhongBan item in dsphongban select item.ID).ToList(), dsphongban);
-				XL.XemCong_v08(m_DSNV, ngayBD_Bef2D, ngayKT_Aft2D);
+                XL.XemCong_v08(m_DSNV, ngayBD_Bef2D, ngayKT_Aft2D);
+                
 				// sau khi tính công xong thì cập nhật lại xử lý các trường hợp công nhật
 				var tableCongNhat = DAO.LayTableCongNhat(thang);
 				foreach (DataRow row in tableCongNhat.Rows) {
@@ -250,7 +251,6 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 						MessageBox.Show(Resources.Text_CoLoi);
 					}
 				}
-
 				// xoá bỏ các kết công cũ của tháng (nếu có) để ghi kết công mới cho tháng
 				int kq = DAO.DelKetCongCa_Ngay(ngaydauthang, ngaycuoithang, (from nv in m_DSNV select nv.MaCC).ToList());
 				//bool flagError = false;
@@ -392,9 +392,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 							XL.LoadNgayCong(nv.MaCC, nv.DSNgayCong, indexNgay, tableKetcongNgay, tableKetcongCa);
 						}
 						//load ds xp vắng
-						//XL.LoadDSXPVang(nv.MaCC, nv.DSNgayCong, tableXPVang);
-						//XL.LoadNgayLe(nv.DSNgayCong, tableNgayLe); 
-						XL.LoadDSXPVang_Le(nv.MaCC, tableXPVang, tableNgayLe, nv.DSVang);//info trường hợp nhân viên công nhật sẽ được xử lý bên dưới
+						XL.LoadDSXPVang_Le(nv.MaCC, tableXPVang, tableNgayLe, nv.DSVang/*, nv.NVNhanKiet*/);//info trường hợp nhân viên công nhật sẽ được xử lý bên dưới
 						XL.PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 						XL.LoadThongtinLamViecCongNhat(nv.MaCC, ref nv.NgayBDCongnhat, ref nv.NgayKTCongnhat, ref nv.LoaiCN, nv.DSNgayCong, tableDSNVChiCongnhatThang);
 					}
@@ -419,13 +417,6 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								congKOtinhLuong = nv.ThongKeThang.TongTruCongTreVR + nv.ThongKeThang.TongTruCongSomVR + nv.ThongKeThang.TreSom_KoDuBuCong
 												  + nv.ThongKeThang.BHXH + nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo; //ko có nv.ThongKeThang.CongCV_KB
 								tongCongKoTinhCV = congTinhLuong + congKOtinhLuong;
-/*
-								tongCongKoTinhCV = 	(nv.ThongKeThang.TongNgayLV4008 
-															   + nv.ThongKeThang.TongTruCongTreVR+nv.ThongKeThang.TongTruCongSomVR + nv.ThongKeThang.TreSom_KoDuBuCong
-															   + nv.ThongKeThang.Phep + nv.ThongKeThang.Le //ver4.0.0.8
-															   + nv.ThongKeThang.BHXH + nv.ThongKeThang.H_CT_PT
-															   + nv.ThongKeThang.PTDT + nv.ThongKeThang.NghiRo + nv.ThongKeThang.CongCV_KB);//DANGLAM
-*/
 
 								nv.ThongKeThang.CongCV_Auto = congChuanThang - tongCongKoTinhCV;
 								if (nv.ThongKeThang.CongCV_Auto < 0f) nv.ThongKeThang.CongCV_Auto = 0f;
@@ -435,7 +426,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 								nv.ThongKeThang.CongCV_Auto = 0f;
 							}
 						}
-                        if (nv.NVNhanKiet) nv.ThongKeThang.CongCV_Auto = 0f; 
+                        //if (nv.NVNhanKiet) nv.ThongKeThang.CongCV_Auto = 0f; //201903 NV NKiet cham cong nhu NM
                         
 						nv.ThongKeThang.CongCV = nv.ThongKeThang.CongCV_Auto + nv.ThongKeThang.CongCV_KB;
 						if (XL.KiemTraDieuKienCongCVAuto_VuotNguong(nv.ThongKeThang.CongCV_Auto, soNgayThu7, soNgayChuNhat)) {
@@ -501,17 +492,6 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 												   dsnv, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
 
                     #endregion
-                    //2.1. xuat bb bang ket cong NKiet
-                    #region ghi sheet bang ket cong thang trinh ky
-
-                    p.Workbook.Worksheets.Add("BangKetCongNK");
-                    ws = p.Workbook.Worksheets["BangKetCongNK"];
-                    ws.Name = "BangKetCongNK"; //Setting Sheet's name
-                    XL.ExportSheetBangKetcongThangNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
-                                                   dsnv, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
-
-                    #endregion
-
                     //3. xuat bb chi tiết kết công
                     #region ghi sheet chi tiết kết công
 
@@ -521,9 +501,29 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 					XL.ExportSheetBangChiTietKetCong(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
 													 dsnv, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
 
-					#endregion
-					//4. xuất bb lưu ý nếu có
-					if (warningMessages.Count > 0) {
+                    #endregion
+                    //2.1. xuat bb bang ket cong NKiet
+                    #region ghi sheet bang ket cong thang trinh ky
+                    if ((dsnv.Exists(item=>item.NVNhanKiet == true))) { 
+                        p.Workbook.Worksheets.Add("BangKetCongCtyNhanKiet");
+                        ws = p.Workbook.Worksheets["BangKetCongCtyNhanKiet"];
+                        ws.Name = "BangKetCongCtyNhanKiet"; //Setting Sheet's name
+                        XL.ExportSheetBangKetcongThangNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                                                       dsnv, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
+
+                        //3.1 xuat bb chi tiết kết công Nhân Kiệt
+                        #region ghi sheet chi tiết kết công
+                            //p.Workbook.Worksheets.Add("ChiTietKetCongCtyNhanKiet");
+                            //ws = p.Workbook.Worksheets["ChiTietKetCongCtyNhanKiet"];
+                            //ws.Name = "ChiTietKetCongCtyNhanKiet"; //Setting Sheet's name
+                            //XL.ExportSheetBangChiTietKetCongNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                            //                                 dsnv, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
+
+                        }
+                        #endregion
+                    #endregion
+                    //4. xuất bb lưu ý nếu có
+                    if (warningMessages.Count > 0) {
 						p.Workbook.Worksheets.Add("LUUY");
 						ws = p.Workbook.Worksheets["LUUY"];
 						ws.Name = "LuuY"; //Setting Sheet's name

@@ -51,7 +51,7 @@ namespace ChamCong_v04.UI.QLNV {
             tbHSPCDH.Enabled = checkHSPCDH.Checked;
             tbHSPCTN.Enabled = checkHSPCTN.Checked;
 			checkUserEnabled.Enabled = checkTinhtrangHoatdong.Checked;
-            checkPhanNhomNhanVien.Enabled = checkNVNhanKiet.Checked;
+            checkNVNhanKiet.Enabled = checkPhanNhomNhanVien.Checked;
 		}
 
 

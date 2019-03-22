@@ -348,6 +348,21 @@ namespace ChamCong_v04.UI.Admin {
 
 		}
 
+        private void btnTim_Click(object sender, EventArgs e)
+        {
+            if (dgrdDSNVTrgPhg.DataSource == null) return;
 
-	}
+            var searchStr1 = tbSearch.Text;
+            var searchStr = string.Format("UserFullName like '%{0}%' or UserFullCode like '%{0}%'", searchStr1);
+            var dataView = dgrdDSNVTrgPhg.DataSource as DataView;
+            if (dataView != null) dataView.RowFilter = searchStr;
+
+        }
+
+        private void linkHienThiTatCaNV_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var dataView = dgrdDSNVTrgPhg.DataSource as DataView;
+            if (dataView != null) dataView.RowFilter = string.Empty;
+        }
+    }
 }

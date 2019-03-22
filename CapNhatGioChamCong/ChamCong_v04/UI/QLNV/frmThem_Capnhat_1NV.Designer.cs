@@ -313,7 +313,7 @@
             this.btnLuu.Location = new System.Drawing.Point(175, 527);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(90, 27);
-            this.btnLuu.TabIndex = 22;
+            this.btnLuu.TabIndex = 23;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
@@ -325,7 +325,7 @@
             this.btnDong.Location = new System.Drawing.Point(285, 527);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(90, 27);
-            this.btnDong.TabIndex = 23;
+            this.btnDong.TabIndex = 24;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
@@ -344,7 +344,7 @@
             this.checkUserEnabled.Location = new System.Drawing.Point(15, 502);
             this.checkUserEnabled.Name = "checkUserEnabled";
             this.checkUserEnabled.Size = new System.Drawing.Size(222, 19);
-            this.checkUserEnabled.TabIndex = 21;
+            this.checkUserEnabled.TabIndex = 22;
             this.checkUserEnabled.Text = "Cho phép hoạt động (UserEnabled)";
             this.toolTipHint.SetToolTip(this.checkUserEnabled, "Đánh dấu mục này nếu NV đang làm việc\r\nvà chấm công. Bỏ đánh dấu nếu NV không\r\ncò" +
         "n làm việc.");
@@ -376,7 +376,7 @@
             this.label16.Location = new System.Drawing.Point(80, 453);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 15);
-            this.label16.TabIndex = 1;
+            this.label16.TabIndex = 19;
             this.label16.Text = "đến hết ngày";
             // 
             // dtpNgayKTCongnhat
@@ -387,7 +387,7 @@
             this.dtpNgayKTCongnhat.Location = new System.Drawing.Point(175, 450);
             this.dtpNgayKTCongnhat.Name = "dtpNgayKTCongnhat";
             this.dtpNgayKTCongnhat.Size = new System.Drawing.Size(200, 21);
-            this.dtpNgayKTCongnhat.TabIndex = 19;
+            this.dtpNgayKTCongnhat.TabIndex = 20;
             this.dtpNgayKTCongnhat.Value = new System.DateTime(2013, 8, 1, 0, 0, 0, 0);
             // 
             // checkLamCongnhat
@@ -409,7 +409,7 @@
             this.checkNVChinhThuc.Location = new System.Drawing.Point(15, 477);
             this.checkNVChinhThuc.Name = "checkNVChinhThuc";
             this.checkNVChinhThuc.Size = new System.Drawing.Size(317, 19);
-            this.checkNVChinhThuc.TabIndex = 20;
+            this.checkNVChinhThuc.TabIndex = 21;
             this.checkNVChinhThuc.Text = "Tính lương các ngày còn lại như nhân viên chính thức";
             this.checkNVChinhThuc.UseVisualStyleBackColor = true;
             // 
@@ -500,7 +500,7 @@
             this.checkNVNhanKiet.Location = new System.Drawing.Point(15, 405);
             this.checkNVNhanKiet.Name = "checkNVNhanKiet";
             this.checkNVNhanKiet.Size = new System.Drawing.Size(199, 19);
-            this.checkNVNhanKiet.TabIndex = 21;
+            this.checkNVNhanKiet.TabIndex = 16;
             this.checkNVNhanKiet.Text = "Là Nhân viên Công ty Nhân Kiệt";
             this.checkNVNhanKiet.UseVisualStyleBackColor = true;
             // 

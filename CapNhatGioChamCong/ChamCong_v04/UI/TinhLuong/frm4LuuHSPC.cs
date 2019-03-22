@@ -101,12 +101,12 @@ namespace ChamCong_v04.UI.TinhLuong {
 			var dsnv = new List<cUserInfo>();
 			var dsphongban = new List<cPhongBan>();
 			XL.KhoiTaoDSPhongBan(dsphongban); // khởi tạo các phòng ban để cập nhật thông tin phòng ban cho nhân viên tính công
-			XL.KhoiTaoDSNV_TinhLuong(dsnv, dsphongban); // khởi tạo tất cả nhân viên tính công, bao gồm cả công nhật ngày(nv chính thức) và công nhật tháng
+			XL.KhoiTaoDSNV_TinhLuong(dsnv, dsphongban); // khởi tạo tất cả nhân viên tính công, trừ Nhân Kiệt, bao gồm cả công nhật ngày(nv chính thức) và công nhật tháng
 
 			#endregion
 
 			#region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
-
+            // note: ko có nhân viên Nhân Kiệt
 			foreach (var nv in dsnv) {
 				nv.DSNgayCong = new List<cNgayCong>();
 				nv.DSVang = new List<cLoaiVang>();
@@ -145,8 +145,9 @@ namespace ChamCong_v04.UI.TinhLuong {
 			// xác định công chuẩn của tháng
 			var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang);
 			int temp = 0;
-			#region // thống kê công, phụ cấp hàng ngày của từng nhân viên chính thức//trường hợp nhân viên vừa công nhật vừa chính thức thì chỉ thống kê ngày công sau ngày kết thúc công nhật
-			foreach (var nv in dsnv) {
+            #region // thống kê công, phụ cấp hàng ngày của từng nhân viên chính thức//trường hợp nhân viên vừa công nhật vừa chính thức thì chỉ thống kê ngày công sau ngày kết thúc công nhật
+            //note: ko có nhân viên Nhân Kiệt
+            foreach (var nv in dsnv) {
 				// thống kê công và phụ cấp từng nv
 				XL.ThongKeThang(ref nv.ThongKeThang, nv.DSNgayCong, nv.NgayBDCongnhat, nv.NgayKTCongnhat, nv.LoaiCN, out temp, out temp);
 				// tính công chờ việc: 1.nv công nhật ko cv. 2. nv mới chính thức thì chỉ giữ công cv khai báo
@@ -214,7 +215,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 			#endregion
 
 			#region // tính lương cho nv chính thức
-
+            //note: ko có nhân viên Nhân Kiệt
 			double tong_qlcb_2 = 0d, tong_SPLamRa_B2_2 = 0d, tongQuyLuongCV = 0d, tongQuyLuongNghiDinhCP = 0d, tongChiKhacTuQuyLuong = 0d, tongQuyLuongSP = 0d, tong_luong_dieuchinh = 0d, tongKhauTruThuChiKhac = 0d;
 			foreach (var nv in dsnv.Where(o => o.LoaiCN != LoaiCongNhat.NVCongNhat)) {
 				//if (Math.Abs(nv.ThongKeThang.Cong - 0f) < 0.01f) nv.ThongKeThang.CongCV = 0f; //fortesting nếu ko chấm công thì cũng ko có công cv
@@ -334,59 +335,70 @@ namespace ChamCong_v04.UI.TinhLuong {
 				#region ghi sheet bang ket cong thang trinh ky
 
 				p.Workbook.Worksheets.Add("BangKetCong");
-				var ws = p.Workbook.Worksheets["BangKetCong"];
-				ws.Name = "BangKetCong"; //Setting Sheet's name
-				XL.ExportSheetBangKetcongThang(ws, ngaydauthang, ngaycuoithang, dsnv, string.Empty, string.Empty, pc30, pc50, pctcc3, pc100, pc160, pc200, pc290);
-
-				#endregion
-				//3. xuat bb chi tiết kết công
-				#region ghi sheet chi tiết kết công
-
 				p.Workbook.Worksheets.Add("ChiTietKetCong");
-				ws = p.Workbook.Worksheets["ChiTietKetCong"];
-				ws.Name = "ChiTietKetCong"; //Setting Sheet's name
-				XL.ExportSheetBangChiTietKetCong(ws, ngaydauthang, ngaycuoithang, dsnv, pc30, pc50, pctcc3, pc100, pc160, pc200, pc290);
-
-				#endregion
-				//4. xuat bb bang luong cong nhat
-				#region ghi sheet bang luong cong nhat
-
 				p.Workbook.Worksheets.Add("BangLuongCongNhat");
-				ws = p.Workbook.Worksheets["BangLuongCongNhat"];
-				ws.Name = "BangLuongCongNhat";
-				XL.ExportSheetBangLuongCongNhat(ws, ngaydauthang, tableDSNVChiCongnhatThang);
-
-				#endregion
-				//5. xuat bb bang luong chinh thuc
-				#region ghi sheet bảng lương
-
-				p.Workbook.Worksheets.Add("BangLuong");
-				ws = p.Workbook.Worksheets["BangLuong"];
-				ws.Name = "BangLuong";
-				XL.ExportSheetBangLuong(ws, m_Thang, dsnv, tenNVLapBieu);
-
-				#endregion
-				//6. xuat bb bang tong hop so lieu giam doc ky duyet
-				#region ghi sheet bảng tổng hợp số liệu
-
+                p.Workbook.Worksheets.Add("BangLuong");
 				p.Workbook.Worksheets.Add("BangTongHopChi");
-				ws = p.Workbook.Worksheets["BangTongHopChi"];
-				ws.Name = "BangTongHopChi";
-				XL.ExportSheetTongHopChi(ws, m_Thang, tableThongsoKetluongThang, tongLuongCongnhat, tongLuongDieuchinh);
-
-				#endregion
-				//7. xuat sheet thong ke sữa
-				#region ghi sheet thống kê BD ĐH
-
 				p.Workbook.Worksheets.Add("BangThongKeBoiDuongDocHai");
-				ws = p.Workbook.Worksheets["BangThongKeBoiDuongDocHai"];
-				ws.Name = "BangThongKeBoiDuongDocHai";
-				XL.ExportSheetBangThongKeSua(ws, ngaydauthang, ngaycuoithang, dsnv);
 
-				#endregion
+				var wsKetCong = p.Workbook.Worksheets["BangKetCong"];
+                wsKetCong.Name = "BangKetCong"; //Setting Sheet's name
+				var wsChiTietCong = p.Workbook.Worksheets["ChiTietKetCong"];
+                wsChiTietCong.Name = "ChiTietKetCong"; //Setting Sheet's name
+				var wsLuongCongNhat = p.Workbook.Worksheets["BangLuongCongNhat"];
+				wsLuongCongNhat.Name = "BangLuongCongNhat";
+				var wsBangLuong = p.Workbook.Worksheets["BangLuong"];
+				wsBangLuong.Name = "BangLuong";
+				var wsTongHopChi = p.Workbook.Worksheets["BangTongHopChi"];
+                wsTongHopChi.Name = "BangTongHopChi";
+				var wsBangTKBDDH = p.Workbook.Worksheets["BangThongKeBoiDuongDocHai"];
+                wsBangTKBDDH.Name = "BangThongKeBoiDuongDocHai";
 
-				
-				Byte[] bytes = p.GetAsByteArray();
+                XL.ExportSheetBangKetcongThang(wsKetCong, ngaydauthang, ngaycuoithang, dsnv, string.Empty, string.Empty, pc30, pc50, pctcc3, pc100, pc160, pc200, pc290);
+                //XL.ExportSheetBangChiTietKetCong(ws, ngaydauthang, ngaycuoithang, dsnv, pc30, pc50, pctcc3, pc100, pc160, pc200, pc290);
+                XL.ExportSheetBangLuongCongNhat(wsLuongCongNhat, ngaydauthang, tableDSNVChiCongnhatThang);
+                //XL.ExportSheetBangThongKeSua(ws, ngaydauthang, ngaycuoithang, dsnv);
+
+                #endregion
+                int rowTongLuongCB, colTongLuongCB, rowTongLuongCV, colTongLuongCV, rowTongDieuChinhLuong, colTongDieuChinhLuong,
+                    rowTongPCTheoHSLCB, colTongPCTheoHSLCB, rowTongHSLuongCBQuyDoi, colTongHSLuongCBQuyDoi, rowTongHSPhuCapQuyDoi, colTongHSPhuCapQuyDoi,
+                    topRow_TinhLuongSP, colLuongSP, endRow_TinhLuongSP, colPCTheoHSLSP,
+                    rowTienLuong1SP, colTienLuong1SP;
+
+
+                XL.ExportSheetBangLuong(wsBangLuong, m_Thang, dsnv, tenNVLapBieu,  out rowTongLuongCB, out  colTongLuongCB,
+            out rowTongLuongCV, out colTongLuongCV,
+            out rowTongDieuChinhLuong, out colTongDieuChinhLuong,
+            out rowTongPCTheoHSLCB, out colTongPCTheoHSLCB,
+            out rowTongHSLuongCBQuyDoi, out colTongHSLuongCBQuyDoi,
+            out rowTongHSPhuCapQuyDoi, out colTongHSPhuCapQuyDoi,
+            out topRow_TinhLuongSP, out colLuongSP,
+            out endRow_TinhLuongSP, out colPCTheoHSLSP
+            );
+
+                //6. xuat bb bang tong hop so lieu giam doc ky duyet
+                
+				XL.ExportSheetTongHopChi(wsTongHopChi, wsBangLuong, m_Thang, tableThongsoKetluongThang, tongLuongCongnhat, tongLuongDieuchinh,
+                     rowTongLuongCB, colTongLuongCB,
+            rowTongLuongCV, colTongLuongCV,
+            rowTongDieuChinhLuong, colTongDieuChinhLuong,
+            rowTongPCTheoHSLCB, colTongPCTheoHSLCB,
+            rowTongHSLuongCBQuyDoi, colTongHSLuongCBQuyDoi,
+            rowTongHSPhuCapQuyDoi, colTongHSPhuCapQuyDoi,
+            out rowTienLuong1SP, out colTienLuong1SP);
+                ExcelRange cellTienLuong1SP = wsTongHopChi.Cells[rowTienLuong1SP, colTienLuong1SP];
+                int currentRow;
+                for (int i=0; i< (endRow_TinhLuongSP-topRow_TinhLuongSP); i++)
+                {
+                    currentRow = topRow_TinhLuongSP+i;
+                    ExcelRange currentLuongSP = wsBangLuong.Cells[currentRow, 29];
+                    ExcelRange currentPhuCapSP = wsBangLuong.Cells[currentRow, 34];
+                    //if (currentLuongSP.Value == null || (currentLuongSP.Value != null && currentLuongSP.Value.ToString() != "0")) { continue; }
+                    currentLuongSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, 43].Address, cellTienLuong1SP.FullAddress);
+                    currentPhuCapSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, 44].Address, cellTienLuong1SP.FullAddress);
+                }
+
+                Byte[] bytes = p.GetAsByteArray();
 				XL.XuatFileExcel(saveFileName, bytes, "frm4LuuHSPC XuatBBLuong");
 			}
 
@@ -418,18 +430,18 @@ namespace ChamCong_v04.UI.TinhLuong {
 
 		}
 
-		private void btnXuatBangChiTiet_Click(object sender, EventArgs e) {
-			if (XL.Kiemtra(m_Thang.Date, MyUtility.LastDayOfMonth(m_Thang)) == false) {
-				MessageBox.Show(string.Format("Tháng {0} chưa kết lương!", m_Thang.ToString("MM/yyyy")), Resources.Caption_ThongBao);
-				return;
-			}
+        private void btnXuatBangChiTiet_Click(object sender, EventArgs e) {
+            if (XL.Kiemtra(m_Thang.Date, MyUtility.LastDayOfMonth(m_Thang)) == false) {
+                MessageBox.Show(string.Format("Tháng {0} chưa kết lương!", m_Thang.ToString("MM/yyyy")), Resources.Caption_ThongBao);
+                return;
+            }
 
-			if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
-			if (saveFileDialog.FileName == string.Empty) return;
+            if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
+            if (saveFileDialog.FileName == string.Empty) return;
 
-			string saveFileName = saveFileDialog.FileName;
+            string saveFileName = saveFileDialog.FileName;
 
-			WaitWindow.Show(this.XuatBangChiTiet, "Đang xuất bảng chi tiết. Bạn vui lòng đợi...", saveFileName);
+            WaitWindow.Show(this.XuatBangChiTiet, "Đang xuất bảng chi tiết. Bạn vui lòng đợi...", saveFileName);
 		}
 		private void XuatBangChiTiet(object sender, WaitWindowEventArgs e) {
 			string saveFileName = e.Arguments[0].ToString();
@@ -609,7 +621,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 				for (DateTime indexNgay = ngaydauthang; indexNgay <= ngaycuoithang; indexNgay = indexNgay.AddDays(1d)) {
 					XL.LoadNgayCong(nv.MaCC, nv.DSNgayCong, indexNgay, tableKetcongNgay, tableKetcongCa);
 				}
-				XL.LoadDSXPVang_Le(nv.MaCC, tableXPVang, tableNgayLe, nv.DSVang);
+				XL.LoadDSXPVang_Le(nv.MaCC, tableXPVang, tableNgayLe, nv.DSVang/*, nv.NVNhanKiet*/);
 				XL.PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 
 				//kiểm tra nv đó có làm công nhật ko ? tìm nv chính thức trong dsnv công nhật

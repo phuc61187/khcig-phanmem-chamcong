@@ -31,27 +31,12 @@ namespace ChamCong_v04.BUS {
 			ws.Cells[row, col].Style.HorizontalAlignment = hAlign;
 			ws.Cells[row, col].Style.VerticalAlignment = vAlign;
 			if (VeBorder) ws.Cells[row, col].Style.Border.BorderAround(viendamnhat, Color.Black);
-			if (numFormat != null) ws.Cells[row, col].Style.Numberformat.Format = numFormat;
 			if (congthuc != null) ws.Cells[row, col].Formula = congthuc;
+			if (numFormat != null) ws.Cells[row, col].Style.Numberformat.Format = numFormat;
 			if (plusCol > 0) col += plusCol;
 			if (plusRow > 0) row += plusRow;
 		}
-		/// <summary>
-		/// ko tăng row, ko tăng col, chỉ thực hiện với cell hiện tại
-		/// </summary>
-		public static void FormatCell(ExcelWorksheet ws, int row, int col, object value = null,
-			/*int plusRow = 0, int plusCol = 0, */ int? colWidth = null,
-			bool wrapText = false,
-			int size = 12, bool bold = false, bool italic = false,
-			string numFormat = null, string congthuc = null,
-			bool VeBorder = true, ExcelBorderStyle viendamnhat = ExcelBorderStyle.Thin, ExcelHorizontalAlignment hAlign = ExcelHorizontalAlignment.Center, ExcelVerticalAlignment vAlign = ExcelVerticalAlignment.Center) {
 
-			FormatCell(ws, ref row, ref col, value: value, //merge default false, wrap false
-				/*int plusRow = 0, int plusCol = 0, */ colWidth: colWidth,
-				wrapText: wrapText, size: size, bold: bold, italic: italic,
-				VeBorder: VeBorder, viendamnhat: viendamnhat, hAlign: hAlign, vAlign: vAlign,
-				numFormat: numFormat, congthuc: congthuc);
-		}
 
 		public static void FormatCell_T_Merge(ExcelWorksheet ws, ref int currRow, ref int currCol, object value = null,
 			int plusRow = 0, int plusCol = 0, int? colWidth = null,
@@ -79,7 +64,83 @@ namespace ChamCong_v04.BUS {
 			if (plusCol > 0) currCol += plusCol;
 			if (plusRow > 0) currRow += plusRow;
 		}
-		public static void FormatCell_T_Merge(ExcelWorksheet ws, int currRow, int currCol, object value = null,
+        public static void FormatCell_TCAS201903(ExcelWorksheet ws, ref int currRow, ref int currCol, object value = null,
+    int plusRow = 0, int plusCol = 0, int? colWidth = null,
+    bool wrapText = true,
+    int size = 12, bool bold = true, bool italic = false,
+    int? fromCol = null, int? toCol = null,
+    bool VeBorder = true, ExcelBorderStyle viendamnhat = ExcelBorderStyle.Thin, ExcelHorizontalAlignment hAlign = ExcelHorizontalAlignment.CenterContinuous, ExcelVerticalAlignment vAlign = ExcelVerticalAlignment.Center
+)
+        {
+            if (colWidth != null) ws.Column(currCol).Width = (int)colWidth;
+
+            ExcelRange CurrentCell = ws.Cells[currRow, currCol];
+            if (value != null) CurrentCell.Value = value;
+            CurrentCell.Style.WrapText = wrapText;
+            CurrentCell.Style.Font.Size = size;
+            if (bold) CurrentCell.Style.Font.Bold = true;
+            if (italic) CurrentCell.Style.Font.Italic = true;
+
+            ExcelRange RangeCell = ws.Cells[currRow, (int)fromCol, currRow, (int)toCol];
+            RangeCell.Style.HorizontalAlignment = hAlign;
+            RangeCell.Style.VerticalAlignment = vAlign;
+
+            if (VeBorder) RangeCell.Style.Border.BorderAround(viendamnhat, Color.Black);
+
+            if (plusCol > 0) currCol += plusCol;
+            if (plusRow > 0) currRow += plusRow;
+        }
+        public static void FormatCell_T201903(ExcelWorksheet ws, ref int currRow, ref int currCol, object value = null,
+            int fromRow = 0, int fromCol = 0,
+            int plusRow = 0, int plusCol = 0, int? colWidth = null,
+            bool wrapText = true,
+            int size = 12, bool bold = true, bool italic = false,
+            bool VeBorder = true, ExcelBorderStyle viendamnhat = ExcelBorderStyle.Thin, ExcelHorizontalAlignment hAlign = ExcelHorizontalAlignment.Center, ExcelVerticalAlignment vAlign = ExcelVerticalAlignment.Center
+            )
+        {
+            if (colWidth != null) ws.Column(currCol).Width = (int)colWidth;
+
+            ExcelRange Cells = ws.Cells[fromRow, fromCol];
+
+            Cells.Style.WrapText = wrapText;
+            if (value != null) Cells.Value = value;
+            Cells.Style.Font.Size = size;
+            if (bold) Cells.Style.Font.Bold = true;
+            if (italic) Cells.Style.Font.Italic = true;
+            Cells.Style.HorizontalAlignment = hAlign;
+            Cells.Style.VerticalAlignment = vAlign;
+
+            if (VeBorder) Cells.Style.Border.BorderAround(viendamnhat, Color.Black);
+
+            if (plusCol > 0) currCol += plusCol;
+            if (plusRow > 0) currRow += plusRow;
+        }
+        public static void FormatCell_TCenterVertical201903(ExcelWorksheet ws, ref int currRow, ref int currCol, object value = null,
+    int plusRow = 0, int plusCol = 0, int? colWidth = null,
+    bool wrapText = true,
+    int size = 12, bool bold = true, bool italic = false,
+    int? rowContainValue = null, int? fromRow = null, int? toRow = null,
+    bool VeBorder = true, ExcelBorderStyle viendamnhat = ExcelBorderStyle.Thin, ExcelHorizontalAlignment hAlign = ExcelHorizontalAlignment.Center, ExcelVerticalAlignment vAlign = ExcelVerticalAlignment.Center
+)
+        {
+            if (colWidth != null) ws.Column(currCol).Width = (int)colWidth;
+
+            ExcelRange CellFillValue = ws.Cells[(int)rowContainValue, currCol];
+            if (value != null) CellFillValue.Value = value;
+            CellFillValue.Style.WrapText = wrapText;
+            CellFillValue.Style.Font.Size = size;
+            if (bold) CellFillValue.Style.Font.Bold = true;
+            if (italic) CellFillValue.Style.Font.Italic = true;
+            CellFillValue.Style.HorizontalAlignment = hAlign;
+            CellFillValue.Style.VerticalAlignment = vAlign;
+
+            if (VeBorder) ws.Cells[(int)fromRow, currCol, (int)toRow, currCol].Style.Border.BorderAround(viendamnhat, Color.Black);
+
+            if (plusCol > 0) currCol += plusCol;
+            if (plusRow > 0) currRow += plusRow;
+        }
+
+        public static void FormatCell_T_Merge(ExcelWorksheet ws, int currRow, int currCol, object value = null,
 			/*int plusRow = 0, int plusCol = 0, */int? colWidth = null,
 			bool wrapText = true,
 			int size = 12, bool bold = true, bool italic = false,
@@ -135,19 +196,6 @@ namespace ChamCong_v04.BUS {
 			bool VeBorder = true, ExcelBorderStyle viendamnhat = ExcelBorderStyle.Thin, ExcelHorizontalAlignment hAlign = ExcelHorizontalAlignment.Center, ExcelVerticalAlignment vAlign = ExcelVerticalAlignment.Center) {
 			FormatCell(ws, ref currRow, ref currCol, value: value,
 				plusRow: plusRow, plusCol: plusCol, colWidth: colWidth,
-				wrapText: wrapText,
-				size: size, bold: Bold, italic: Italic,
-				numFormat: numFormat,
-				VeBorder: VeBorder, viendamnhat: viendamnhat, hAlign: hAlign, vAlign: vAlign);
-		}
-		public static void FormatCell_T(ExcelWorksheet ws, int currRow, int currCol, object value = null,
-			/*int plusRow = 0, int plusCol = 0, */int? colWidth = null,
-			bool wrapText = true,
-			int size = 12, bool Bold = true, bool Italic = false,
-			string numFormat = null,
-			bool VeBorder = true, ExcelBorderStyle viendamnhat = ExcelBorderStyle.Thin, ExcelHorizontalAlignment hAlign = ExcelHorizontalAlignment.Center, ExcelVerticalAlignment vAlign = ExcelVerticalAlignment.Center) {
-			FormatCell(ws, ref currRow, ref currCol, value: value,
-				/*plusRow: plusRow, plusCol: plusCol, */colWidth: colWidth,
 				wrapText: wrapText,
 				size: size, bold: Bold, italic: Italic,
 				numFormat: numFormat,

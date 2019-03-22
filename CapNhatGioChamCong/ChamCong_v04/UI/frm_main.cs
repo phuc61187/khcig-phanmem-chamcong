@@ -29,11 +29,16 @@ namespace ChamCong_v04.UI {
 		private void frm_main_Load(object sender, EventArgs e) {
 			XL.ChuanBiDSLichTrinhVaCa();
 			XL.DocSetting();
-		}
+            //test 201903
+            frm4LuuHSPC frm = new frm4LuuHSPC();
+            frm.m_Thang = new DateTime(2019, 03, 01);
+            frm.Show();
+            //test 201903
+        }
 
 
 
-		int LayVitriForm(Form mainForm, Type childType) {
+        int LayVitriForm(Form mainForm, Type childType) {
 			if (mainForm.MdiChildren.Length == 0) return -1;
 			for (int i = 0; i < mainForm.MdiChildren.Length; i++) {
 				if (mainForm.MdiChildren[i].GetType() == childType)

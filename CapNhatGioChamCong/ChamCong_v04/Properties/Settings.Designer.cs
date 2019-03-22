@@ -395,7 +395,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Lê Anh Tuấn")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Huỳnh Phương")]
         public string LastTenGD {
             get {
                 return ((string)(this["LastTenGD"]));

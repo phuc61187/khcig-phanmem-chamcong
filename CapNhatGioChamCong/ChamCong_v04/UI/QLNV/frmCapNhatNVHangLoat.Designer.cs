@@ -46,6 +46,7 @@
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
             this.toolTipHint = new System.Windows.Forms.ToolTip(this.components);
+            this.checkNVNhanKiet = new System.Windows.Forms.CheckBox();
             this.checkHSLCBTT17 = new System.Windows.Forms.CheckBox();
             this.checkHSPCTN = new System.Windows.Forms.CheckBox();
             this.tbHSLCBTT17 = new System.Windows.Forms.MaskedTextBox();
@@ -54,7 +55,6 @@
             this.tbHSPCDH = new System.Windows.Forms.MaskedTextBox();
             this.checkHSPCCV = new System.Windows.Forms.CheckBox();
             this.tbHSPCCV = new System.Windows.Forms.MaskedTextBox();
-            this.checkNVNhanKiet = new System.Windows.Forms.CheckBox();
             this.checkPhanNhomNhanVien = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -98,7 +98,7 @@
             this.checkChucVu.Location = new System.Drawing.Point(12, 270);
             this.checkChucVu.Name = "checkChucVu";
             this.checkChucVu.Size = new System.Drawing.Size(71, 19);
-            this.checkChucVu.TabIndex = 2;
+            this.checkChucVu.TabIndex = 0;
             this.checkChucVu.Text = "Chức vụ";
             this.checkChucVu.UseVisualStyleBackColor = true;
             this.checkChucVu.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -119,7 +119,7 @@
             this.checkLichtrinh.Location = new System.Drawing.Point(12, 299);
             this.checkLichtrinh.Name = "checkLichtrinh";
             this.checkLichtrinh.Size = new System.Drawing.Size(76, 19);
-            this.checkLichtrinh.TabIndex = 4;
+            this.checkLichtrinh.TabIndex = 2;
             this.checkLichtrinh.Text = "Lịch trình";
             this.checkLichtrinh.UseVisualStyleBackColor = true;
             this.checkLichtrinh.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -132,7 +132,7 @@
             this.cbLichTrinh.Location = new System.Drawing.Point(197, 297);
             this.cbLichTrinh.Name = "cbLichTrinh";
             this.cbLichTrinh.Size = new System.Drawing.Size(242, 23);
-            this.cbLichTrinh.TabIndex = 2;
+            this.cbLichTrinh.TabIndex = 3;
             // 
             // checkUserEnabled
             // 
@@ -141,7 +141,7 @@
             this.checkUserEnabled.Location = new System.Drawing.Point(197, 481);
             this.checkUserEnabled.Name = "checkUserEnabled";
             this.checkUserEnabled.Size = new System.Drawing.Size(164, 19);
-            this.checkUserEnabled.TabIndex = 9;
+            this.checkUserEnabled.TabIndex = 17;
             this.checkUserEnabled.Text = "Cho phép (UserEnabled)";
             this.toolTipHint.SetToolTip(this.checkUserEnabled, "Đánh dấu mục này nếu NV đang làm việc\r\nvà chấm công. Bỏ đánh dấu nếu NV không\r\ncò" +
         "n làm việc.");
@@ -154,7 +154,7 @@
             this.tbHSLCV.Mask = "0.00";
             this.tbHSLCV.Name = "tbHSLCV";
             this.tbHSLCV.Size = new System.Drawing.Size(100, 21);
-            this.tbHSLCV.TabIndex = 4;
+            this.tbHSLCV.TabIndex = 7;
             this.tbHSLCV.Text = "000";
             // 
             // tbHSLCB
@@ -164,7 +164,7 @@
             this.tbHSLCB.Mask = "0.00";
             this.tbHSLCB.Name = "tbHSLCB";
             this.tbHSLCB.Size = new System.Drawing.Size(100, 21);
-            this.tbHSLCB.TabIndex = 3;
+            this.tbHSLCB.TabIndex = 5;
             this.tbHSLCB.Text = "000";
             // 
             // checkHSLCB
@@ -173,7 +173,7 @@
             this.checkHSLCB.Location = new System.Drawing.Point(12, 328);
             this.checkHSLCB.Name = "checkHSLCB";
             this.checkHSLCB.Size = new System.Drawing.Size(136, 19);
-            this.checkHSLCB.TabIndex = 6;
+            this.checkHSLCB.TabIndex = 4;
             this.checkHSLCB.Text = "Hệ số lương cơ bản";
             this.checkHSLCB.UseVisualStyleBackColor = true;
             this.checkHSLCB.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -184,7 +184,7 @@
             this.checkHSLCV.Location = new System.Drawing.Point(12, 353);
             this.checkHSLCV.Name = "checkHSLCV";
             this.checkHSLCV.Size = new System.Drawing.Size(149, 19);
-            this.checkHSLCV.TabIndex = 8;
+            this.checkHSLCV.TabIndex = 6;
             this.checkHSLCV.Text = "Hệ số lương công việc";
             this.checkHSLCV.UseVisualStyleBackColor = true;
             this.checkHSLCV.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -195,7 +195,7 @@
             this.checkTinhtrangHoatdong.Location = new System.Drawing.Point(12, 481);
             this.checkTinhtrangHoatdong.Name = "checkTinhtrangHoatdong";
             this.checkTinhtrangHoatdong.Size = new System.Drawing.Size(139, 19);
-            this.checkTinhtrangHoatdong.TabIndex = 10;
+            this.checkTinhtrangHoatdong.TabIndex = 16;
             this.checkTinhtrangHoatdong.Text = "Tình trạng hoạt động";
             this.checkTinhtrangHoatdong.UseVisualStyleBackColor = true;
             this.checkTinhtrangHoatdong.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -207,7 +207,7 @@
             this.btnLuu.Location = new System.Drawing.Point(197, 529);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(90, 27);
-            this.btnLuu.TabIndex = 10;
+            this.btnLuu.TabIndex = 20;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
@@ -219,7 +219,7 @@
             this.btnDong.Location = new System.Drawing.Point(349, 529);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(90, 27);
-            this.btnDong.TabIndex = 10;
+            this.btnDong.TabIndex = 21;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
@@ -233,13 +233,26 @@
             this.toolTipHint.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTipHint_Draw);
             this.toolTipHint.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTipHint_Popup);
             // 
+            // checkNVNhanKiet
+            // 
+            this.checkNVNhanKiet.AutoSize = true;
+            this.checkNVNhanKiet.Enabled = false;
+            this.checkNVNhanKiet.Location = new System.Drawing.Point(197, 506);
+            this.checkNVNhanKiet.Name = "checkNVNhanKiet";
+            this.checkNVNhanKiet.Size = new System.Drawing.Size(175, 19);
+            this.checkNVNhanKiet.TabIndex = 19;
+            this.checkNVNhanKiet.Text = "Là Nhân viên Cty Nhân Kiệt";
+            this.toolTipHint.SetToolTip(this.checkNVNhanKiet, "Đánh dấu mục này nếu NV đang làm việc\r\nvà chấm công. Bỏ đánh dấu nếu NV không\r\ncò" +
+        "n làm việc.");
+            this.checkNVNhanKiet.UseVisualStyleBackColor = true;
+            // 
             // checkHSLCBTT17
             // 
             this.checkHSLCBTT17.AutoSize = true;
             this.checkHSLCBTT17.Location = new System.Drawing.Point(12, 378);
             this.checkHSLCBTT17.Name = "checkHSLCBTT17";
             this.checkHSLCBTT17.Size = new System.Drawing.Size(167, 19);
-            this.checkHSLCBTT17.TabIndex = 6;
+            this.checkHSLCBTT17.TabIndex = 8;
             this.checkHSLCBTT17.Text = "Hệ số lương cơ bản TT17";
             this.checkHSLCBTT17.UseVisualStyleBackColor = true;
             this.checkHSLCBTT17.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -250,7 +263,7 @@
             this.checkHSPCTN.Location = new System.Drawing.Point(12, 456);
             this.checkHSPCTN.Name = "checkHSPCTN";
             this.checkHSPCTN.Size = new System.Drawing.Size(175, 19);
-            this.checkHSPCTN.TabIndex = 8;
+            this.checkHSPCTN.TabIndex = 14;
             this.checkHSPCTN.Text = "Hệ số Phụ cấp trách nhiệm";
             this.checkHSPCTN.UseVisualStyleBackColor = true;
             this.checkHSPCTN.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -262,7 +275,7 @@
             this.tbHSLCBTT17.Mask = "0.00";
             this.tbHSLCBTT17.Name = "tbHSLCBTT17";
             this.tbHSLCBTT17.Size = new System.Drawing.Size(100, 21);
-            this.tbHSLCBTT17.TabIndex = 5;
+            this.tbHSLCBTT17.TabIndex = 9;
             this.tbHSLCBTT17.Text = "000";
             // 
             // tbHSPCTN
@@ -272,7 +285,7 @@
             this.tbHSPCTN.Mask = "0.00";
             this.tbHSPCTN.Name = "tbHSPCTN";
             this.tbHSPCTN.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCTN.TabIndex = 8;
+            this.tbHSPCTN.TabIndex = 15;
             this.tbHSPCTN.Text = "000";
             // 
             // checkHSPCDH
@@ -281,7 +294,7 @@
             this.checkHSPCDH.Location = new System.Drawing.Point(12, 430);
             this.checkHSPCDH.Name = "checkHSPCDH";
             this.checkHSPCDH.Size = new System.Drawing.Size(150, 19);
-            this.checkHSPCDH.TabIndex = 8;
+            this.checkHSPCDH.TabIndex = 12;
             this.checkHSPCDH.Text = "Hệ số Phụ cấp độc hại";
             this.checkHSPCDH.UseVisualStyleBackColor = true;
             this.checkHSPCDH.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -293,7 +306,7 @@
             this.tbHSPCDH.Mask = "0.00";
             this.tbHSPCDH.Name = "tbHSPCDH";
             this.tbHSPCDH.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCDH.TabIndex = 7;
+            this.tbHSPCDH.TabIndex = 13;
             this.tbHSPCDH.Text = "000";
             // 
             // checkHSPCCV
@@ -302,7 +315,7 @@
             this.checkHSPCCV.Location = new System.Drawing.Point(12, 404);
             this.checkHSPCCV.Name = "checkHSPCCV";
             this.checkHSPCCV.Size = new System.Drawing.Size(152, 19);
-            this.checkHSPCCV.TabIndex = 8;
+            this.checkHSPCCV.TabIndex = 10;
             this.checkHSPCCV.Text = "Hệ số Phụ cấp chức vụ";
             this.checkHSPCCV.UseVisualStyleBackColor = true;
             this.checkHSPCCV.CheckedChanged += new System.EventHandler(this.Checked_Changed);
@@ -314,21 +327,8 @@
             this.tbHSPCCV.Mask = "0.00";
             this.tbHSPCCV.Name = "tbHSPCCV";
             this.tbHSPCCV.Size = new System.Drawing.Size(100, 21);
-            this.tbHSPCCV.TabIndex = 6;
+            this.tbHSPCCV.TabIndex = 11;
             this.tbHSPCCV.Text = "000";
-            // 
-            // checkNVNhanKiet
-            // 
-            this.checkNVNhanKiet.AutoSize = true;
-            this.checkNVNhanKiet.Enabled = false;
-            this.checkNVNhanKiet.Location = new System.Drawing.Point(197, 506);
-            this.checkNVNhanKiet.Name = "checkNVNhanKiet";
-            this.checkNVNhanKiet.Size = new System.Drawing.Size(175, 19);
-            this.checkNVNhanKiet.TabIndex = 11;
-            this.checkNVNhanKiet.Text = "Là Nhân viên Cty Nhân Kiệt";
-            this.toolTipHint.SetToolTip(this.checkNVNhanKiet, "Đánh dấu mục này nếu NV đang làm việc\r\nvà chấm công. Bỏ đánh dấu nếu NV không\r\ncò" +
-        "n làm việc.");
-            this.checkNVNhanKiet.UseVisualStyleBackColor = true;
             // 
             // checkPhanNhomNhanVien
             // 
@@ -336,9 +336,10 @@
             this.checkPhanNhomNhanVien.Location = new System.Drawing.Point(12, 506);
             this.checkPhanNhomNhanVien.Name = "checkPhanNhomNhanVien";
             this.checkPhanNhomNhanVien.Size = new System.Drawing.Size(146, 19);
-            this.checkPhanNhomNhanVien.TabIndex = 12;
+            this.checkPhanNhomNhanVien.TabIndex = 18;
             this.checkPhanNhomNhanVien.Text = "Phân nhóm nhân viên";
             this.checkPhanNhomNhanVien.UseVisualStyleBackColor = true;
+            this.checkPhanNhomNhanVien.CheckedChanged += new System.EventHandler(this.Checked_Changed);
             // 
             // frmCapNhatNVHangLoat
             // 

@@ -249,7 +249,7 @@ namespace ChamCong_v04.BUS {
 				#region 4.0.0.8 xét lại bù giờ
 
 				var tempTongCongTreSomBu = (thongKeThang.TongTruCongTreBu + thongKeThang.TongTruCongSomBu);
-				var tempTongCongTreSom_KoDuBu = 0f;
+				//var tempTongCongTreSom_KoDuBu = 0f;
 				if (thongKeThang.TongCongTichLuy >= tempTongCongTreSomBu)
 				{
 					thongKeThang.TreSom_KoDuBuCong = 0f;

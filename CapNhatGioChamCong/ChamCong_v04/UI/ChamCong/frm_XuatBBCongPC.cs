@@ -102,10 +102,13 @@ namespace ChamCong_v04.UI.ChamCong {
 			var tableNgayLe = DAO.DocNgayLe(ngaydauthang, ngaycuoithang);
 			var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngaydauthang, DSNV: listMaCC);
 
-			#endregion
+            #endregion
+            var tongCongKoTinhCV = 0f;
+            var congTinhLuong = 0f;
+            var congKOtinhLuong = 0f;
 
-			// xác định công chuẩn của tháng
-			var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
+            // xác định công chuẩn của tháng
+            var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
 			var congChuanThang = DateTime.DaysInMonth(ngaydauthang.Year, ngaydauthang.Month) - soNgayChuNhat;
 
 			#region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
@@ -120,40 +123,71 @@ namespace ChamCong_v04.UI.ChamCong {
 					XL.LoadNgayCong(nv9.MaCC, nv9.DSNgayCong, indexNgay, tableKetcongNgay, tableKetcongCa);
 				}
 
-				XL.LoadDSXPVang_Le(nv.MaCC, tableXPVang, tableNgayLe, nv.DSVang);
+				XL.LoadDSXPVang_Le(nv.MaCC, tableXPVang, tableNgayLe, nv.DSVang/*, nv.NVNhanKiet*/);
 				XL.PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 
 				XL.LoadThongtinLamViecCongNhat(nv9.MaCC, ref nv9.NgayBDCongnhat, ref nv9.NgayKTCongnhat, ref nv9.LoaiCN, nv9.DSNgayCong, tableDSNVChiCongnhatThang);
 				dsnv9.Add(nv9);
 			}
-			int temp = 0;
+			int temp = 0, temp2=0;
 			foreach (var nv9 in dsnv9) {
-				XL.ThongKeThang(ref nv9.ThongKeThang, nv9.DSNgayCong, nv9.NgayBDCongnhat, nv9.NgayKTCongnhat, nv9.LoaiCN, out temp, out temp);
+                #region collapse
+                //XL.ThongKeThang(ref nv9.ThongKeThang, nv9.DSNgayCong, nv9.NgayBDCongnhat, nv9.NgayKTCongnhat, nv9.LoaiCN, out temp, out temp2);
 
-				// tính công chờ việc: 1.nv công nhật ko cv. 2. nv mới chính thức thì chỉ giữ công cv khai báo
-				if (nv9.NgayBDCongnhat != DateTime.MinValue) // nhân viên vừa làm chính thức vừa làm công nhật, công cv tự động = 0
-					{
-					nv9.ThongKeThang.CongCV_Auto = 0f;
-				}
-				else // nhân viên chính thức
-					{
-					nv9.ThongKeThang.CongCV_Auto = congChuanThang -
-												  /*(nv9.ThongKeThang.Cong + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep +//ver4.0.0.0*/
-												  /*(nv9.ThongKeThang.TongNgayLV + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep +//ver4.0.0.1*/
-												  (nv9.ThongKeThang.TongNgayLV4008
-												  + nv9.ThongKeThang.TongTruCongTreVR + nv9.ThongKeThang.TongTruCongSomVR + nv9.ThongKeThang.TreSom_KoDuBuCong//ver 4.0.0.8
-												  + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep//ver4.0.0.8
-												  + nv9.ThongKeThang.BHXH + nv9.ThongKeThang.H_CT_PT
-												  + nv9.ThongKeThang.PTDT + nv9.ThongKeThang.NghiRo + nv9.ThongKeThang.CongCV_KB);//DANGLAM
-					if (nv9.ThongKeThang.CongCV_Auto < 0f) nv9.ThongKeThang.CongCV_Auto = 0f;
-				}
-				nv9.ThongKeThang.CongCV = nv9.ThongKeThang.CongCV_Auto + nv9.ThongKeThang.CongCV_KB;
-			}
+                //// tính công chờ việc: 1.nv công nhật ko cv. 2. nv mới chính thức thì chỉ giữ công cv khai báo
+                //if (nv9.NgayBDCongnhat != DateTime.MinValue) // nhân viên vừa làm chính thức vừa làm công nhật, công cv tự động = 0
+                //{
+                //	nv9.ThongKeThang.CongCV_Auto = 0f;
+                //}
+                //else // nhân viên chính thức
+                //	{
+                //	nv9.ThongKeThang.CongCV_Auto = congChuanThang -
+                //								  /*(nv9.ThongKeThang.Cong + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep +//ver4.0.0.0*/
+                //								  /*(nv9.ThongKeThang.TongNgayLV + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep +//ver4.0.0.1*/
+                //								  (nv9.ThongKeThang.TongNgayLV4008
+                //								  + nv9.ThongKeThang.TongTruCongTreVR + nv9.ThongKeThang.TongTruCongSomVR + nv9.ThongKeThang.TreSom_KoDuBuCong//ver 4.0.0.8
+                //								  + nv9.ThongKeThang.Le + nv9.ThongKeThang.Phep//ver4.0.0.8
+                //								  + nv9.ThongKeThang.BHXH + nv9.ThongKeThang.H_CT_PT
+                //								  + nv9.ThongKeThang.PTDT + nv9.ThongKeThang.NghiRo + nv9.ThongKeThang.CongCV_KB);//DANGLAM
+                //	if (nv9.ThongKeThang.CongCV_Auto < 0f) nv9.ThongKeThang.CongCV_Auto = 0f;
+                //}
+                //nv9.ThongKeThang.CongCV = nv9.ThongKeThang.CongCV_Auto + nv9.ThongKeThang.CongCV_KB;
+                // tính công chờ việc: 1.nv công nhật ko cv. 2. nv mới chính thức thì chỉ giữ công cv khai báo
+                #endregion collapse
 
-			#endregion
+                if (nv9.LoaiCN == LoaiCongNhat.NVCongNhat)// nhân viên làm công nhật, công cv tự động, khai báo = 0
+                {
+                    nv9.ThongKeThang.CongCV_Auto = 0f;
+                    nv9.ThongKeThang.CongCV_KB = 0f;
+                }
+                else {
+                    if (nv9.LoaiCN == LoaiCongNhat.NVChinhThuc)// nhân viên chính thức
+                    {
+                        congTinhLuong = (nv9.ThongKeThang.TongNgayLV4008
+                                         + nv9.ThongKeThang.Phep + nv9.ThongKeThang.Le //ver4.0.0.8
+                                         + nv9.ThongKeThang.H_CT_PT);
+                        congKOtinhLuong = nv9.ThongKeThang.TongTruCongTreVR + nv9.ThongKeThang.TongTruCongSomVR + nv9.ThongKeThang.TreSom_KoDuBuCong
+                                          + nv9.ThongKeThang.BHXH + nv9.ThongKeThang.PTDT + nv9.ThongKeThang.NghiRo; //ko có nv.ThongKeThang.CongCV_KB
+                        tongCongKoTinhCV = congTinhLuong + congKOtinhLuong;
+
+                        nv9.ThongKeThang.CongCV_Auto = congChuanThang - tongCongKoTinhCV;
+                        if (nv9.ThongKeThang.CongCV_Auto < 0f) nv9.ThongKeThang.CongCV_Auto = 0f;
+                    }
+                    else// nhân viên chính thức vừa công nhật thì công cv_auto =0, công cv khai báo ko đổi
+                    {
+                        nv9.ThongKeThang.CongCV_Auto = 0f;
+                    }
+                }
+                //if (nv9.NVNhanKiet) nv9.ThongKeThang.CongCV_Auto = 0f;
+
+                nv9.ThongKeThang.CongCV = nv9.ThongKeThang.CongCV_Auto + nv9.ThongKeThang.CongCV_KB;
+
+            }
+
+            #endregion
 
 
-			using (var p = new ExcelPackage()) {
+            using (var p = new ExcelPackage()) {
 				//2. xuat bb bang ket cong thang
 
 				#region ghi sheet bang ket cong thang trinh ky
@@ -176,9 +210,29 @@ namespace ChamCong_v04.UI.ChamCong {
 				XL.ExportSheetBangChiTietKetCong(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
 												 dsnv9, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
 
-				#endregion
+                #endregion
+                //3. xuat bb chi tiết kết công
+                #region ghi sheet chi tiết kết công
 
-				Byte[] bytes = p.GetAsByteArray();
+                p.Workbook.Worksheets.Add("ChiTietKetCong");
+                ws = p.Workbook.Worksheets["ChiTietKetCong"];
+                ws.Name = "ChiTietKetCong"; //Setting Sheet's name
+                XL.ExportSheetBangChiTietKetCong(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                                                 dsnv9, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
+
+                #endregion
+                //3.1 xuat bb chi tiết kết công Nhân Kiệt
+                #region ghi sheet chi tiết kết công
+
+                p.Workbook.Worksheets.Add("ChiTietKetCongCtyNhanKiet");
+                ws = p.Workbook.Worksheets["ChiTietKetCongCtyNhanKiet"];
+                ws.Name = "ChiTietKetCongCtyNhanKiet"; //Setting Sheet's name
+                XL.ExportSheetBangChiTietKetCongNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                                                 dsnv9, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
+
+                #endregion
+
+                Byte[] bytes = p.GetAsByteArray();
 				XL.XuatFileExcel(saveFileName, bytes, "frmXuatBBCongPC XuatBBKetCongThang");
 			}
 		}

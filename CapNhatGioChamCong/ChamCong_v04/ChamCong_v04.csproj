@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>4.1.0.%2a</ApplicationVersion>
+    <ApplicationVersion>4.3.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -61,19 +61,20 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>KhanhHoiChamCongv4.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5E434C179D16276573DAA386DCF360D6EA5233BC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>01F851F14BF5BCAFA3DAAF93966355123D33F083</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ChamCong_v04_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ChamCong_v04_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -577,7 +578,6 @@
     <None Include="app.config" />
     <Compile Include="BUS\XLChamCong_v4.0.0.5.cs" />
     <Compile Include="DAL\DAO_XuLyChamCong_v4.0.0.5.cs" />
-    <None Include="KhanhHoiChamCongv4.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

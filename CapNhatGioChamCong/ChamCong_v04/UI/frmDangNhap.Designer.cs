@@ -41,6 +41,7 @@
             this.tbTaikhoan.Name = "tbTaikhoan";
             this.tbTaikhoan.Size = new System.Drawing.Size(175, 21);
             this.tbTaikhoan.TabIndex = 1;
+            this.tbTaikhoan.Text = "dainghia";
             this.tbTaikhoan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTaikhoan_Or_tbPassword_KeyDown);
             // 
             // tb_Password

@@ -97,7 +97,7 @@ CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastTenGD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Lê Anh Tuấn</Value>
+      <Value Profile="(Default)">Huỳnh Phương</Value>
     </Setting>
     <Setting Name="LastTenKTT" Type="System.String" Scope="User">
       <Value Profile="(Default)">Nguyễn Quốc Thái</Value>

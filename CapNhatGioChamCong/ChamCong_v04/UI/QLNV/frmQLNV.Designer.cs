@@ -469,9 +469,11 @@
             this.colNVNhanKiet.FalseValue = "False";
             this.colNVNhanKiet.HeaderText = "NV Nhân Kiệt";
             this.colNVNhanKiet.Name = "colNVNhanKiet";
-            this.colNVNhanKiet.ToolTipText = "Nhân viên Nhân Kiệt hay NV Nhà máy";
+            this.colNVNhanKiet.ReadOnly = true;
+            this.colNVNhanKiet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colNVNhanKiet.ToolTipText = "Là Nhân viên Nhân Kiệt?";
             this.colNVNhanKiet.TrueValue = "True";
-            this.colNVNhanKiet.Width = 55;
+            this.colNVNhanKiet.Width = 90;
             // 
             // g1c24
             // 
