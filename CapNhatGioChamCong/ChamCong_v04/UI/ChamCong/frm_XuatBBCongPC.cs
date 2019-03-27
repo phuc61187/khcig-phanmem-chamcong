@@ -198,37 +198,15 @@ namespace ChamCong_v04.UI.ChamCong {
 				XL.ExportSheetBangKetcongThang(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
 											   dsnv9, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
 
-				#endregion
-
-				//3. xuat bb chi tiết kết công
-
-				#region ghi sheet chi tiết kết công
-
-				p.Workbook.Worksheets.Add("ChiTietKetCong");
-				ws = p.Workbook.Worksheets["ChiTietKetCong"];
-				ws.Name = "ChiTietKetCong"; //Setting Sheet's name
-				XL.ExportSheetBangChiTietKetCong(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
-												 dsnv9, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
-
-                #endregion
-                //3. xuat bb chi tiết kết công
-                #region ghi sheet chi tiết kết công
-
-                p.Workbook.Worksheets.Add("ChiTietKetCong");
-                ws = p.Workbook.Worksheets["ChiTietKetCong"];
-                ws.Name = "ChiTietKetCong"; //Setting Sheet's name
-                XL.ExportSheetBangChiTietKetCong(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
-                                                 dsnv9, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
-
                 #endregion
                 //3.1 xuat bb chi tiết kết công Nhân Kiệt
                 #region ghi sheet chi tiết kết công
 
-                p.Workbook.Worksheets.Add("ChiTietKetCongCtyNhanKiet");
-                ws = p.Workbook.Worksheets["ChiTietKetCongCtyNhanKiet"];
-                ws.Name = "ChiTietKetCongCtyNhanKiet"; //Setting Sheet's name
-                XL.ExportSheetBangChiTietKetCongNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
-                                                 dsnv9, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
+                p.Workbook.Worksheets.Add("BangKetCongCtyNhanKiet");
+                ws = p.Workbook.Worksheets["BangKetCongCtyNhanKiet"];
+                ws.Name = "BangKetCongCtyNhanKiet"; //Setting Sheet's name
+                XL.ExportSheetBangKetcongThangNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                                                 dsnv9, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290);
 
                 #endregion
 

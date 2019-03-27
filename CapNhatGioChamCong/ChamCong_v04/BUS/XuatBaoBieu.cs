@@ -37,13 +37,14 @@ namespace ChamCong_v04.BUS {
 			ic = leftVietNam;
 			XL.FormatCell_TCAS201903(ws, ref ir, ref ic, size: sizeVietNam, fromCol: leftVietNam, toCol: rightVietNam, bold: true, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerCHXHCNVN, hAlign: ExcelHorizontalAlignment.CenterContinuous);
 			XL.FormatCell_TCAS201903(ws, ref ir, ref ic, size: sizeVietNam, fromCol: leftVietNam, toCol: rightVietNam, bold: true, VeBorder: false, wrapText: false, plusRow: 1, value: Settings.Default.headerDL_TD_HP, hAlign: ExcelHorizontalAlignment.CenterContinuous);
-            ic = ic + 2;
-            XL.FormatCell_TCAS201903(ws, ref ir, ref ic, size: sizeVietNam, bold: false, italic:true, VeBorder: false, wrapText: false, 
+			ir = ir + 2;// bỏ 2 row rồi bắt đầu ghi title
+            ic = leftVietNam;
+            XL.FormatCell_TCAS201903(ws, ref ir, ref ic, size: sizeVietNam, fromCol: leftVietNam, toCol:rightVietNam, bold: false, italic:true, VeBorder: false, wrapText: false, 
 				value: string.Format(Settings.Default.headerTPHCMNgaythangnam, ((DateTime)ngayLap).Day, ((DateTime)ngayLap).Month, ((DateTime)ngayLap).Year), hAlign: ExcelHorizontalAlignment.CenterContinuous);
 
-			ir = ir + 3;// bỏ 2 row rồi bắt đầu ghi title
+			ir = ir + 1;// bỏ 2 row rồi bắt đầu ghi title
 			ic = leftTitle;
-			XL.FormatCell_T(ws, ref  ir, ref ic, size: sizeTitle, Bold: true, VeBorder: false, wrapText: false, value: headerString);
+			XL.FormatCell_TCAS201903(ws, ref  ir, ref ic, size: sizeTitle, fromCol:leftTitle, toCol:rightTitle, bold: true, VeBorder: false, wrapText: false, value: headerString);
 			ir = ir + 2;// bỏ 2 row rồi bắt đầu ghi nội dung
 			top1 = ir;
 
@@ -166,7 +167,10 @@ namespace ChamCong_v04.BUS {
 			ic = left;
 		}
 
-		public static void ExportSheetBangLuongCongNhat(ExcelWorksheet ws, DateTime m_thang, DataTable tableLuongCongNhat) {
+		public static void ExportSheetBangLuongCongNhat(ExcelWorksheet ws, DateTime m_thang, DataTable tableLuongCongNhat, int DinhMucComTrua, out string FullAddressTongLuongCongNhat) {
+            FullAddressTongLuongCongNhat = string.Empty;
+            if (tableLuongCongNhat.Rows.Count == 0) return;// nếu ko có nhân viên làm việc công nhật thì ko ghi sheet này
+
 			ws.Cells.Style.Font.Size = 11; //Default font size for whole sheet
 			ws.Cells.Style.Font.Name = "Times News Roman"; //Default Font name for whole sheet
 			ws.Workbook.CalcMode = ExcelCalcMode.Automatic;
@@ -177,16 +181,17 @@ namespace ChamCong_v04.BUS {
 			#region // 1. ghi header
 
 			string headerString = string.Format(Settings.Default.titleBangLuongCongNhat, m_thang.ToString("MM/yyyy"));
-			int left1 = 3, left2 = 7, leftT = 5;
+            int left1 = 1, left2 = 5, rightVietNam = 10, leftT = 1;
 			ir = top;
-			EXP_Header(ws, ref ir, left1, left2, leftT, sizeTCT: 12, sizeVietNam: 12, sizeTitle: 14,
-					   ngayLap: DateTime.Today, headerString: headerString);
 
-			#endregion
-			// sau khi ghi header thì ir là vị trí row đầu tiên ghi title
+            EXP_Header(ws, ref ir, left1, rightTCT: 3, leftVietNam: left2, rightVietNam: rightVietNam, leftTitle: leftT, rightTitle: 10, sizeTCT: 12, sizeVietNam: 12, sizeTitle: 14,
+                       ngayLap: DateTime.Today, headerString: headerString);
 
-			#region // 2. ghi colTitle
-			ic = left;
+            #endregion
+            // sau khi ghi header thì ir là vị trí row đầu tiên ghi title
+
+            #region // 2. ghi colTitle
+            ic = left;
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.STT, value: "STT", plusCol: 1);//col 1
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.TEN, value: "Họ tên", plusCol: 1);
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.CHUCVU, value: "Chức vụ", plusCol: 1);
@@ -194,6 +199,7 @@ namespace ChamCong_v04.BUS {
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.NGAYCONG, value: "Số ngày công", plusCol: 1);
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.THANHTIEN, value: "Thành tiền", plusCol: 1);
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.TAMUNG, value: "Khấu trừ tạm ứng lương tháng " + m_thang.ToString("M/yyyy"), plusCol: 1);
+			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.TAMUNG, value: "Tiền ăn giữa ca tháng " + m_thang.ToString("M/yyyy"), plusCol: 1);
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.THUCLANH, value: "Thực lãnh", plusCol: 1);
 			XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)X.KYNHAN, value: "Ký nhận", plusCol: 1);
 			ir++;
@@ -201,46 +207,66 @@ namespace ChamCong_v04.BUS {
 
 			#region //3. ghi noi dung
 
-			var tongThucLanh = 0d;
+            int colDonGiaLuong = 0, colSoNgayCong = 0, colTamUng = 0, colThanhTien = 0, colTienComTrua, colThucLanh = 0;
+            int rowStartRecord = ir, rowLastestRecord = ir;
 			foreach (DataRow row in tableLuongCongNhat.Rows) {
 				ic = left;
 				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: stt);
 				FormatCell_W(ws, ref ir, ref ic, plusCol: 1, value: row["UserFullName"].ToString());
-				FormatCell_W(ws, ref ir, ref ic, plusCol: 1, value: row["ChucVu"].ToString());
+				FormatCell_W(ws, ref ir, ref ic, plusCol: 1, wrapText:true, value: row["ChucVu"].ToString());
+
+                colDonGiaLuong = ic;
 				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: (int)row["DonGiaLuong"], numFormat: Settings.Default.numFormatInt);
-				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Convert.ToSingle(row["SoNgayCong"]), numFormat: Settings.Default.numFormatFloat101F);
-				var thanhtien = Convert.ToDouble((int)row["DonGiaLuong"] * Convert.ToSingle(row["SoNgayCong"]));
-				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: thanhtien, numFormat: Settings.Default.numFormatMoney);
-				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Convert.ToDouble(row["TamUng"]), numFormat: Settings.Default.numFormatMoney);
-				var thuclanh = thanhtien - Convert.ToDouble(row["TamUng"]);
-				tongThucLanh += thuclanh;
-				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: thuclanh, numFormat: Settings.Default.numFormatMoney);
+
+                colSoNgayCong = ic;
+				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(Convert.ToSingle(row["SoNgayCong"]), 2), numFormat: Settings.Default.numFormatFloat101F);
+
+                colThanhTien = ic;
+				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}*{1}", ws.Cells[ir, colDonGiaLuong].Address, ws.Cells[ir, colSoNgayCong].Address),
+                    numFormat: Settings.Default.numFormatMoney);
+
+                colTamUng = ic;
+				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(Convert.ToDouble(row["TamUng"]), 2), numFormat: Settings.Default.numFormatMoney);
+
+                colTienComTrua = ic;
+				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: DinhMucComTrua, numFormat: Settings.Default.numFormatMoney);
+
+                colThucLanh = ic;
+				FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}-{1}+{2}", ws.Cells[ir, colThanhTien].Address, ws.Cells[ir, colTamUng].Address, ws.Cells[ir, colTienComTrua].Address),
+                    numFormat: Settings.Default.numFormatMoney);
+
 				FormatCell(ws, ref ir, ref ic, plusCol: 1, plusRow: 1); //ký nhận
 				stt++;
 			}
-			bottom = ir;
+            rowLastestRecord = ir - 1;
+            ic = left;
 
-			ir = bottom;
-			ic = left;
-			var fromRow = top + 2;// bỏ qua 1 dòng tiêu đề, 1 dòng tên cột
-			var toRow = bottom - 1;
-			FormatCell_W(ws, ref ir, ref ic, plusCol: 1);
-			FormatCell_W(ws, ref ir, ref ic, plusCol: 1);
-			FormatCell_W(ws, ref ir, ref ic, plusCol: 1, value: "CỘNG", Bold: true);
-			FormatCell_W(ws, ref ir, ref ic, plusCol: 1);
-			func3(ws, ref ir, ref ic, fromRow, toRow, numFormat: Settings.Default.numFormatFloat101F); //songaycong
-			func3(ws, ref ir, ref ic, fromRow, toRow, numFormat: Settings.Default.numFormatMoney); //thanhtien
-			func3(ws, ref ir, ref ic, fromRow, toRow, numFormat: Settings.Default.numFormatMoney); //tamung
-			func3(ws, ref ir, ref ic, fromRow, toRow, numFormat: Settings.Default.numFormatMoney); //thuclanh
-			FormatCell_W(ws, ref ir, ref ic, plusCol: 1);//ký nhận
+            //chắc chắn luôn có ít nhất 1 record
+            int rowTongCong = ir;
+            FormatCell_TCAS201903(ws, ref ir, ref ic, plusCol: 1, value: "CỘNG", fromCol: left, toCol: colDonGiaLuong, bold: true);
+            ic = colDonGiaLuong;
+            func3(ws, ref ir, ref ic, rowStartRecord, rowLastestRecord, numFormat: Settings.Default.numFormatMoney); //dongialuong
+            func3(ws, ref ir, ref ic, rowStartRecord, rowLastestRecord, numFormat: Settings.Default.numFormatFloat101F); //songaycong
+			func3(ws, ref ir, ref ic, rowStartRecord, rowLastestRecord, numFormat: Settings.Default.numFormatMoney); //thanhtien
+			func3(ws, ref ir, ref ic, rowStartRecord, rowLastestRecord, numFormat: Settings.Default.numFormatMoney); //tamung
+			func3(ws, ref ir, ref ic, rowStartRecord, rowLastestRecord, numFormat: Settings.Default.numFormatMoney); //tiencomtrua
+			func3(ws, ref ir, ref ic, rowStartRecord, rowLastestRecord, numFormat: Settings.Default.numFormatMoney); //thuclanh
+			FormatCell_W(ws, ref ir, ref ic, VeBorder:true, plusCol: 1);//ký nhận
 
 			#endregion
 
 			#region //4. ghi footer
 
 			ir++;
-			FormatCell_W(ws, ir, 5, value: "Số tiền bằng chữ: ", VeBorder: false, Bold: true, hAlign: ExcelHorizontalAlignment.Center);
+            ws.Cells[ir, 1].Value = "Số tiền bằng chữ: ";
+            ws.Cells[ir, 1].Style.Font.Color.SetColor(Color.White);
+            ws.Cells[ir, 1].Style.Border.BorderAround(ExcelBorderStyle.None);
+            ic = 2;
+            ws.Cells[ir, 2].Formula = string.Format("{0}&VND({1})", ws.Cells[ir, 1].Address, ws.Cells[rowTongCong, colThucLanh].Address);
+            int lastColumn = ws.Dimension.End.Column;
+            ws.Cells[ir, 2, ir, lastColumn].Style.HorizontalAlignment = ExcelHorizontalAlignment.CenterContinuous;
 
+            FullAddressTongLuongCongNhat = ws.Cells[rowTongCong, colThanhTien].FullAddress;
 			ir = ir + 2;
 			ic = left;
 			EXP_Footer(ws, ref ir,
@@ -255,12 +281,13 @@ namespace ChamCong_v04.BUS {
 		}
 
 		public static void ExportSheetBangLuong(ExcelWorksheet ws, DateTime m_thang, List<cUserInfo> dsnv, string tenNVLapBieu,
-            out int rowTongLuongCB, out int colTongLuongCB, 
-            out int rowTongLuongCV, out int colTongLuongCV, 
-            out int rowTongDieuChinhLuong, out int colTongDieuChinhLuong, 
-            out int rowTongPCTheoHSLCB, out int colTongPCTheoHSLCB, 
-            out int rowTongHSLuongCBQuyDoi, out int colTongHSLuongCBQuyDoi, 
-            out int rowTongHSPhuCapQuyDoi, out int colTongHSPhuCapQuyDoi,
+            int MucLuongToiThieuND205, int MucLuongToiThieuTT17, int DinhMucComTrua,
+            out int rowTong,
+            out int colTongLuongCB, out int colTongLuongCV, 
+            out int colTongDieuChinhLuong, 
+            out int colTongPCTheoHSLCB, 
+            out int colTongHSLuongCBQuyDoi, 
+            out int colTongHSPhuCapQuyDoi,
             out int topRow_TinhLuongSP, out int colLuongSP,
             out int endRow_TinhLuongSP, out int colPCTheoHSLSP
             ) {
@@ -273,9 +300,9 @@ namespace ChamCong_v04.BUS {
 			#region // 1. ghi header
 
 			string headerString = string.Format(Settings.Default.titleBangLuongThang, m_thang.ToString("MM/yyyy"));
-			int left1 = 6, left2 = 30, leftT = 20;
+			int left1 = 1, left2 = 22, rightVietNam = 42, leftT = 1;
 			ir = top;
-			EXP_Header(ws, ref ir, left1, left2, leftT, sizeTCT: 22, sizeVietNam: 22, sizeTitle: 22,
+			EXP_Header(ws, ref ir, left1, rightTCT:20, leftVietNam:left2, rightVietNam:rightVietNam, leftTitle: leftT, rightTitle:42, sizeTCT: 22, sizeVietNam: 22, sizeTitle: 22,
 					   ngayLap: DateTime.Today, headerString: headerString);
 
 			#endregion
@@ -299,13 +326,13 @@ namespace ChamCong_v04.BUS {
 
             XL.FormatCell_TCAS201903(ws, ref ir, ref ic, colWidth: null, value: "Thống kê", fromCol: ic, toCol: ic + 7);//write ngày công chuẩn ở trên-- ko tinh col
 			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.BANNGAY, value: "Công", fromRow: ir + 1, fromCol: ic, plusCol: 1);//col 10
-			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.HOCHOPLE, value: "Học, họp, CT, PT", fromRow: ir + 1, fromCol: ic, plusCol: 1);
+			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.HOCHOPLE, size: 10, value: "Học, họp, CT, PT NM chi", fromRow: ir + 1, fromCol: ic, plusCol: 1);
 			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.HOCHOPLE, value: "Lễ", fromRow: ir + 1, fromCol: ic, plusCol: 1);
-			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.PTDOANTHE, value: "PTĐT", fromRow: ir + 1, fromCol: ic, plusCol: 1);//bỏ
+			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.PTDOANTHE, size:10, value: "PT (Đoàn thể chi)", fromRow: ir + 1, fromCol: ic, plusCol: 1);//bỏ
 			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.PHEP, value: "Phép", fromRow: ir + 1, fromCol: ic, plusCol: 1);
+			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.CV, value: "Chờ việc", fromRow: ir + 1, fromCol: ic, plusCol: 1);
 			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.VIECRIENG, value: "Việc riêng", fromRow: ir + 1, fromCol: ic, plusCol: 1);//col15
 			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.VIECRIENG, value: "BHXH", fromRow: ir + 1, fromCol: ic, plusCol: 1);//col16
-			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.CV, value: "Chờ việc", fromRow: ir + 1, fromCol: ic, plusCol: 1);
 
 			XL.FormatCell_TCAS201903(ws, ref ir, ref ic, colWidth: null, value: "Phụ cấp", fromCol: ic, toCol: ic + 7);//write làm thêm giờ ở trên-- ko tinh col
 			XL.FormatCell_T201903(ws, ref ir, ref ic, colWidth: (int)L.PC30, value: "30%", fromRow: ir + 1, fromCol: ic, plusCol: 1);//ic+0 
@@ -371,7 +398,7 @@ namespace ChamCong_v04.BUS {
 			foreach (var item in dsphong) {
 				var phong = item.Key;
 				List<cUserInfo> dsnv1 = dsnv.Where(o => o.PhongBan.ID == phong.ID).ToList();
-				EXP_group_LuongNV(ws, ref stt, ref ir, ref ic, dsnv1, phong, ref sumLuong);
+				EXP_group_LuongNV(ws, ref stt, ref ir, ref ic, MucLuongToiThieuND205, MucLuongToiThieuTT17, DinhMucComTrua, dsnv1, phong, ref sumLuong);
 				ic = left;
 				//ir++; //exp record cuối  cùng của group tự động tăng ir
 			}
@@ -384,7 +411,9 @@ namespace ChamCong_v04.BUS {
 			FormatCell_TCAS201903(ws, ref ir, ref temp, value: "Tổng cộng: ", bold:true, wrapText: false, fromCol: left, toCol: 3, hAlign: ExcelHorizontalAlignment.Right); //ver 4.0.0.4	
 			int ic5 = 4;// bat dau ghi tong cong tu cot 4 hslcb
 
-			#region ghi dòng sum cuối cùng
+            #region ghi dòng sum cuối cùng
+            rowTong = ir;
+
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2"); // vì top là dòng phòng ban, sum từ dòng kế dòng phòng ban//  "CB"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "SP"//col5
             FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "CBTT17"
@@ -397,8 +426,8 @@ namespace ChamCong_v04.BUS {
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "PTĐT"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Phép"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Việc riêng"
-			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "HBXH"
-			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Chờ việc"//col15
+			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "BHXH"
+			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Chờ việc"//col17
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "30%"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "50%"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "TCC3 100%"
@@ -408,29 +437,30 @@ namespace ChamCong_v04.BUS {
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Trực lễ ca3 290%"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "PCKhác"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tổng công"
-			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tổng PC"//col25
-            rowTongLuongCB = ir; colTongLuongCB = ic5;
+			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tổng PC"//col27
+            colTongLuongCB = ic5;
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Lương CB"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Lương SP"
-            rowTongLuongCV = ir; colTongLuongCV = ic5;
+            colTongLuongCV = ic5;
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Lương CV"
-            rowTongDieuChinhLuong = ir; colTongDieuChinhLuong = ic;
+            colTongDieuChinhLuong = ic5;
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Điều chỉnh lương tháng trước"
-			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tổng lương"//col30
-            rowTongPCTheoHSLCB = ir; colTongPCTheoHSLCB = ic5;
+			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tổng lương"//col32
+            colTongPCTheoHSLCB = ic5;
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "PC theo Lương CB"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "PC theo Lương SP"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tổng PC"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tổng lương và PC"
-			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tạm ứng"//col35
+			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tạm ứng"//col37
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "10,5% BHXH, YT, TN"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Thu chi khác"
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Tiền cơm trưa"
-			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Thực lãnh"//col39
+            int colThucLanh = ic5;
+			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// "Thực lãnh"//col41
 			FormatCell_W(ws, ref ir, ref ic5, plusCol: 1); //ký nhận// đáng lẽ sau dòng SUM này thì tăng ir để trỏ sang dòng mới// "Ký nhận"
-            rowTongHSLuongCBQuyDoi = ir; colTongHSLuongCBQuyDoi = ic5;
+            colTongHSLuongCBQuyDoi = ic5;
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// he so quy doi luong cb
-            rowTongHSPhuCapQuyDoi = ir; colTongHSPhuCapQuyDoi = ic5;
+            colTongHSPhuCapQuyDoi = ic5;
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// he so quy doi phu cap
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[top3, ic5, bottom3, ic5].Address + ")/2");// nghi Ro Nguyen Ngay
 
@@ -442,45 +472,46 @@ namespace ChamCong_v04.BUS {
 			//ws.Cells[t1, ic5, bottom, ic5].Style.Numberformat.Format = Settings.Default.numFormatFloat101F; // vì top là dòng phòng ban, sum từ dòng kế dòng phòng ban
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); //hslcb// t1, ic5, bottom + 1 - 1 vì t1, ic5, bottom3 + 1 là do format luôn dòng tổng cộng
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); //col 5 hslcv
-            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); 
-            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); 
-            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); 
-            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); 
+            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); //cb tt17
+            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); //tn tt17
+            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); // dh tt17
+            XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat20); //cv tt17
             XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //cong//col10 
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10); //hoc
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatInt); //le
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10); //ptdt //DANGLAM
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //phep
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //cho viec//col15
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //viecrieng //DANGLAM
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //bhxh 
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //cho viec//col15
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //col20
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //30per
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //50%
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //tcc3
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); // CN 100%
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); // CN C3 150%
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); // truc le 200%
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //truc le c3 290%
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //pc khac
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);// tong cong
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F); //tong pc//col25
 			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); // luong cb
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);//col30
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); 
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);//col35
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); 
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);//col39
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //luong sp
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //luong CV
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); // dieu chinh luong
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);//Tong Luong ko phu cap
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //Phu Cap Theo HSLCB
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //Phu Cap Theo HSL SP
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //Tong PC
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //Tong Luong va PC
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);//TamUng
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //BHXH
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //ThuChiKhac
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney); //ComTrua
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatMoney);//Thuc Lanh
 			FormatCell_W(ws, ref ir, ref ic5, plusCol: 1); //ký nhận
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat30);
-			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat30);//col39
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat30); //He so quy doi Cong ra san pham
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat30);//He so quy doi Phu Cap ra San Pham
+			XL.FormatNumber(ws, ref top3, ref ic5, top3, ic5, bottom3 + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatInt);// Nghi Ro Nguyen ngay
 
 			#endregion
 
@@ -504,11 +535,20 @@ namespace ChamCong_v04.BUS {
 			#region //4. ghi footer
 
 			ir++;
-			FormatCell_W(ws, ir, 20, value: "Số tiền bằng chữ: " + MyUtility.So_chu(sumLuong.thuclanh36), VeBorder: false, Bold: true, hAlign: ExcelHorizontalAlignment.Center);//ký nhận
+            ws.Cells[ir, 1].Formula = string.Format("{0}&ROUND(VND({1}),0)", ws.Cells[ir, ic5 - 1].Address, ws.Cells[ir - 1, colThucLanh].Address);
+            ws.Cells[ir, 1].Style.Border.BorderAround(ExcelBorderStyle.None);
+            ws.Cells[ir, 1].Style.Font.Bold = true;
+            ws.Cells[ir, 1, ir, ic5 - 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.CenterContinuous;
 
-			ir = ir + 2; // cách 2 dòng
+            FormatCell_W(ws, ir, ic5 - 1, value: "Số tiền bằng chữ: ");
+            ws.Cells[ir, ic5 - 1].Style.Font.Color.SetColor(Color.White);
+            ws.Cells[ir, ic5 - 1].Style.Border.BorderAround(ExcelBorderStyle.None);
+
+            //FormatCell_T(ws, ref ir, ref temp2, congthuc: , VeBorder: false, Bold: true, hAlign: );//ký nhận
+
+            ir = ir + 2; // cách 2 dòng
 			EXP_Footer(ws, ref ir,
-					   new int[] { 6, 24, 32 },
+					   new int[] { 6, 24, 38 },
 					   new int[] { 24, 24, 24 },
 					   new string[] { "GIÁM ĐỐC", "KTT", "LẬP BIỂU" },
 					   new string[] { Settings.Default.LastTenGD, Settings.Default.LastTenKTT, tenNVLapBieu },
@@ -518,7 +558,8 @@ namespace ChamCong_v04.BUS {
 
 		}
 
-		public static void EXP_group_LuongNV(ExcelWorksheet ws, ref int stt, ref int top, ref int left, List<cUserInfo> dsnv, cPhongBan cPhongBan, ref SUMLUONG sumluong) {
+		public static void EXP_group_LuongNV(ExcelWorksheet ws, ref int stt, ref int top, ref int left, int MucLuongToiThieuND205, int MucLuongToiThieu_TT17, int DinhMucComTrua,
+            List<cUserInfo> dsnv, cPhongBan cPhongBan, ref SUMLUONG sumluong) {
 			// giữ lại vị trí ô để tính tổng
 			var ir = top;
 			var ic = left;
@@ -527,7 +568,7 @@ namespace ChamCong_v04.BUS {
 			ir = ir + 1; // bỏ 1 dòng ghi phòng ban
 			foreach (var nv in dsnv.Where(o => o.PhongBan.ID == cPhongBan.ID)) {
 				ic = left; //reset ve cot dau tien sau moi lan lap
-				XL.EXP_record_LuongNVChinhThuc(ws, ref stt, ref ir, ref ic, nv, ref sumluong);
+				XL.EXP_record_LuongNVChinhThuc(ws, ref stt, ref ir, ref ic, MucLuongToiThieuND205, MucLuongToiThieu_TT17, DinhMucComTrua, nv, ref sumluong);
 
 				// sau moi lan lap thi row tang len, stt tang len, col reset ve dau
 				stt++;
@@ -543,48 +584,48 @@ namespace ChamCong_v04.BUS {
 			FormatCell_W(ws, ref ir, ref ic, cPhongBan.Ten, Bold: true, plusCol: 1); //col 1 stt --> manv
 			ic++; //manv-> tennv
 			ic++; //tennv --> hslcb
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); //hslcb// bottom - 1 vì bottom là index của dòng mới
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); //col 5 hslcv
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); 
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); 
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//col10 Cong
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); 
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); 
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//col15 VR
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); 
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); //col20 TCC3 100% 
-            func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//col25 PC Khac
-            func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); 
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//col30  Theo Cong CV
-            func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true); 
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//col35 Tong PC tạm ứng
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//col39 thu chi khac
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//col 40 com trua
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);// col 41 thuc lanh
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold:true, italic: true); //hslcb// bottom - 1 vì bottom là index của dòng mới
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); //col 5 hslcv
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); 
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); 
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//col10 Cong
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); 
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); 
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//col15 VR
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); 
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); //col20 TCC3 100% 
+            func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//col25 PC Khac
+            func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); 
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//col30  Theo Cong CV
+            func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true); 
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//col35 Tong PC tạm ứng
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//col39 thu chi khac
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//col 40 com trua
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);// col 41 thuc lanh
             FormatCell_W(ws, ref ir, ref ic, plusCol: 1); //ký nhận
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//He so quy doi
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);
-			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, italic: true);//nghỉ Ro nguyên ngày
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//He so quy doi
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);
+			func3(ws, ref ir, ref ic, ir + 1, bottom - 1, bold: true, italic: true);//nghỉ Ro nguyên ngày
 
 
 			#endregion
@@ -602,24 +643,35 @@ namespace ChamCong_v04.BUS {
 			XL.FormatCell_N(ws, ref ir, ref ic, bold: bold, italic:italic, congthuc: congthuc, plusCol: 1, numFormat: numFormat);
 		}
 
-		public static void EXP_record_LuongNVChinhThuc(ExcelWorksheet ws, ref int stt, ref int ir, ref int ic, cUserInfo nv, ref SUMLUONG sumBKL) {
+		public static void EXP_record_LuongNVChinhThuc(ExcelWorksheet ws, ref int stt, ref int ir, ref int ic, int MucLuongToiThieu_ND205, int MucLuongToiThieu_TT17, int DinhMucComTrua, 
+            cUserInfo nv, ref SUMLUONG sumBKL) {
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: stt); //col 1
             XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 1, value: nv.MaNV);
             XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 1, value: nv.TenNV);//col3
+            int colHSLCBND205 = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.HeSo.LuongCB, 2));
+            int colHSLSPND205 = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.HeSo.LuongCV, 2));//col 5
+            int colHSLCBTT17 = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.HeSo.LCBTT17, 2));
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.HeSo.PCTNTT17, 2));//col 7
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.HeSo.PCDHTT17, 2));
+            int colHSPCCV_TT17 = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.HeSo.PCCVTT17, 2));//col 9
+            int colCong = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Cong, 2));//col10
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.H_CT_PT, 2));
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Le, 2));
+            int colPTDT = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PTDT, 2));//col13
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Phep, 2));
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.NghiRo, 2));//col15
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.BHXH, 2));//col16
+            int colCongCV = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.CongCV, 2));
+            int colNghiRo = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.NghiRo, 2));//col15
+            int colNghiBHXH = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.BHXH, 2));//col16
+            int colPCC3_30 = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._30_dem, 2));
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._50_TC, 2));//col19
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._100_TCC3, 2));
@@ -627,33 +679,71 @@ namespace ChamCong_v04.BUS {
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._150_LVNN_Dem, 2));//col22
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._200_LeTet_Ngay, 2));
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._250_LeTet_Dem, 2));
+            int colPhuCapKhac = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._Cus, 2));//col25
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})-SUM({1})", ws.Cells[ir, 10, ir, 17].Address, ws.Cells[ir, 13, ir, 15].Address), numFormat: Settings.Default.numFormatFloat101F);// col26TongCong
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, 18, ir, 25].Address));//col27 Tong PC
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("((1150000*{0})/26)*({1}-{2})", ws.Cells[ir, 4].Address, ws.Cells[ir, 26].Address, ws.Cells[ir, 17].Address), numFormat: Settings.Default.numFormatMoney);//col28LuongCB
+
+            int colTongCong = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})-{1}-SUM({2})", 
+                ws.Cells[ir, colCong, ir, colNghiBHXH].Address, ws.Cells[ir, colPTDT].Address, ws.Cells[ir, colNghiRo, ir, colNghiBHXH].Address), numFormat: Settings.Default.numFormatFloat101F);// col26TongCong
+
+            int colTongPhuCap = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, colPCC3_30, ir, colPhuCapKhac].Address));//col27 Tong PC
+
+            int colLuongTheoHSLSBND205 = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, 
+                congthuc: string.Format("(({0}*{1})/26)*({2}-{3})", MucLuongToiThieu_ND205, ws.Cells[ir, colHSLCBND205].Address, ws.Cells[ir, colTongCong].Address, ws.Cells[ir, colCongCV].Address), 
+                numFormat: Settings.Default.numFormatMoney);//col28LuongCB
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0, numFormat: Settings.Default.numFormatMoney);//col29 Luong Theo HSSP //201903 chua lam
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("((1150000*{0})/26)*{1}",
-               ws.Cells[ir, 4].Address, ws.Cells[ir, 17].Address),
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("(({0}*{1})/26)*{2}",
+               MucLuongToiThieu_ND205, ws.Cells[ir, colHSLCBND205].Address, ws.Cells[ir, colCongCV].Address),
                 numFormat: Settings.Default.numFormatMoney);//col30 Luong Theo CongCV
+
+            int colLuongDieuChinh = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.chiTietLuong.LuongDieuChinh, 2), numFormat: Settings.Default.numFormatMoney);//col 31 luong dieu chinh 
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, 28, ir, 31].Address), numFormat: Settings.Default.numFormatMoney);// col32TongLuong
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("((1150000*{0})/26)*{1}", ws.Cells[ir, 4].Address, ws.Cells[ir, 27].Address), numFormat: Settings.Default.numFormatMoney);//col33 PC Theo LuongCB
+
+            int colTongLuongKhongPhuCap = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, 
+                congthuc: string.Format("SUM({0})", ws.Cells[ir, colLuongTheoHSLSBND205, ir, colLuongDieuChinh].Address), numFormat: Settings.Default.numFormatMoney);// col32TongLuong
+
+            int colTienPhuCapTheoHSLCB_ND205 = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, 
+                congthuc: string.Format("(({0}*{1})/26)*{2}", MucLuongToiThieu_ND205, ws.Cells[ir, colHSLCBND205].Address, ws.Cells[ir, colTongPhuCap].Address), 
+                numFormat: Settings.Default.numFormatMoney);//col33 PC Theo LuongCB
+
+            int colTienPhuCapTheoHSLSP = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0, numFormat: Settings.Default.numFormatMoney); //col34 //201903 chua lam
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, 33, ir, 34].Address), numFormat: Settings.Default.numFormatMoney);//col 35 tong tien PC
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}+{1}", ws.Cells[ir, 32].Address, ws.Cells[ir, 35].Address), numFormat: Settings.Default.numFormatMoney);//col36 Tong Luong va PC
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.chiTietLuong.KhauTru.TamUng, 2), numFormat: Settings.Default.numFormatMoney);//COL37 tam ung
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})*2266000*({1}/100)", ws.Cells[ir, 6, ir, 9].Address, Math.Round(nv.chiTietLuong.KhauTru.BHXH, 2)), numFormat: Settings.Default.numFormatMoney); //COL38 BHXH
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.chiTietLuong.KhauTru.ThuChiKhac, 2), numFormat: Settings.Default.numFormatMoney);//col39 thu chi khac
+
+            int colTongTienPhuCap = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, colTienPhuCapTheoHSLCB_ND205, ir, colTienPhuCapTheoHSLSP].Address), numFormat: Settings.Default.numFormatMoney);//col 35 tong tien PC
+
+            int colTongTienLuongVaTienPhuCap = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}+{1}", ws.Cells[ir, colTongLuongKhongPhuCap].Address, ws.Cells[ir, colTongTienPhuCap].Address), 
+                numFormat: Settings.Default.numFormatMoney);//col36 Tong Luong va PC
+
+            int colTamUng = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.chiTietLuong.KhauTru.TamUng), numFormat: Settings.Default.numFormatMoney);//COL37 tam ung
+
+            int colBHXHYTTN = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("IF(SUM({0})>=14,0,SUM({1})*{2}*(10.5%))", 
+                ws.Cells[ir, colNghiRo, ir, colNghiBHXH].Address, ws.Cells[ir, colHSLCBTT17, ir, colHSPCCV_TT17].Address, MucLuongToiThieu_TT17), numFormat: Settings.Default.numFormatMoney); //COL38 BHXH
+
+            int colThuChiKhac = ic;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.chiTietLuong.KhauTru.ThuChiKhac), numFormat: Settings.Default.numFormatMoney);//col39 thu chi khac
+
+            int colTienComTrua = ic;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("IF({0}-({0}/26*{1})<0, 0,{0}-({0}/26*{1}))",
-                730000, ws.Cells[ir, 45].Address), /*ws.Cells[ir, 45].Address)IF({0}-({0}/26*{1})<0;0;{0}-({0}/26*{1}))*/
+                DinhMucComTrua, ws.Cells[ir, colTienComTrua+5].Address), //số ngày nghỉ RO cách 5 cột nên = cột cơm trưa + 5
                 numFormat: Settings.Default.numFormatMoney);//col40
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}-{1}-{2}-{3}+{4}",
-                ws.Cells[ir, 36].Address, ws.Cells[ir, 37].Address, ws.Cells[ir, 38].Address, ws.Cells[ir, 39].Address, ws.Cells[ir, 40].Address), numFormat: Settings.Default.numFormatMoney);//col41
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}-(SUM({1}))+{2}",
+                ws.Cells[ir, colTongTienLuongVaTienPhuCap].Address, ws.Cells[ir, colTamUng, ir, colThuChiKhac].Address, ws.Cells[ir, colTienComTrua].Address), 
+                numFormat: Settings.Default.numFormatMoney);//col41
+
             XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 1);//ký nhận//col42
+
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}*({1}-{2})",
-                ws.Cells[ir, 5].Address, ws.Cells[ir, 26].Address, ws.Cells[ir, 17].Address), numFormat: Settings.Default.numFormatFloat30);//col43
+                ws.Cells[ir, colHSLSPND205].Address, ws.Cells[ir, colTongCong].Address, ws.Cells[ir, colCongCV].Address), numFormat: Settings.Default.numFormatFloat30);//col43
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("{0}*{1}",
-                ws.Cells[ir, 5].Address, ws.Cells[ir, 27].Address), numFormat: Settings.Default.numFormatFloat30);//col44
+                ws.Cells[ir, colHSLSPND205].Address, ws.Cells[ir, colTongPhuCap].Address), numFormat: Settings.Default.numFormatFloat30);//col44
             XL.FormatCell_N(ws, ref ir, ref ic, /*chu y day la dong cuoi cung phai plusRow*/plusRow: 1, plusCol: 1, value: nv.ThongKeThang.SoNgayNghiRO_NguyenNgay, numFormat: Settings.Default.numFormatInt);//col44
 
                                                                                                                  // phần sum để set colWidth
@@ -669,13 +759,14 @@ namespace ChamCong_v04.BUS {
 			sumBKL.thuclanh36 += nv.chiTietLuong.ThucLanh;//col39
 		}
 
-		public static void ExportSheetTongHopChi(ExcelWorksheet ws, ExcelWorksheet wsBangLuong, DateTime ngaydauthang, DataTable tableThongSo, double tongLuongCongnhat, double tongLuongDieuchinh,
-             int rowTongLuongCB, int colTongLuongCB,
-            int rowTongLuongCV, int colTongLuongCV,
-            int rowTongDieuChinhLuong, int colTongDieuChinhLuong,
-            int rowTongPCTheoHSLCB, int colTongPCTheoHSLCB,
-            int rowTongHSLuongCBQuyDoi, int colTongHSLuongCBQuyDoi,
-            int rowTongHSPhuCapQuyDoi, int colTongHSPhuCapQuyDoi,
+		public static void ExportSheetTongHopChi(ExcelWorksheet ws, ExcelWorksheet wsBangLuong, DateTime ngaydauthang, DataTable tableThongSo, 
+            int rowTong, 
+            int colTongLuongCB, int colTongLuongCV,
+            int colTongDieuChinhLuong,
+            int colTongPCTheoHSLCB,
+            int colTongHSLuongCBQuyDoi,
+            int colTongHSPhuCapQuyDoi,
+            string fullAddressTongLuongCongNhat,
             out int rowTienLuong1SP, out int colTienLuong1SP
             ) {
 			ws.Cells.Style.Font.Size = 11; //Default font size for whole sheet
@@ -707,7 +798,8 @@ namespace ChamCong_v04.BUS {
 
 			// 1. ghi header
 			ir = top;
-			EXP_Header(ws, ref ir, 4, 12, 8, ngayLap: DateTime.Today, headerString: string.Format(Settings.Default.titleBangTongHopChiThang, ngaydauthang.ToString("MM/yyyy")));
+			EXP_Header(ws, ref ir, leftTCT: 2, rightTCT: 6, leftVietNam: 7, rightVietNam:13, leftTitle:2, rightTitle:13,
+                ngayLap: DateTime.Today, headerString: string.Format(Settings.Default.titleBangTongHopChiThang, ngaydauthang.ToString("MM/yyyy")));
 
 			ic = left;
             // 2. ghi colTitle ( sản lương đơn giá)
@@ -772,51 +864,55 @@ namespace ChamCong_v04.BUS {
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Quỹ lương theo nghị định 205/CP ", Bold: true, VeBorder: false);
             int rowQLND205 = ir, colQLND205 = ic;
 			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18,congthuc: string.Format("{0}+{1}",
-                wsBangLuong.Cells[rowTongLuongCB, colTongLuongCB].FullAddress, wsBangLuong.Cells[rowTongPCTheoHSLCB,colTongPCTheoHSLCB].FullAddress),
+                wsBangLuong.Cells[rowTong, colTongLuongCB].FullAddress, wsBangLuong.Cells[rowTong, colTongPCTheoHSLCB].FullAddress),
                 VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Quỹ lương công nhật, thời vụ, khoán việc ", VeBorder: false);
             int rowLuongCongNhat = ir, colLuongCongNhat = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: tongLuongCongnhat, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
+            if (fullAddressTongLuongCongNhat == string.Empty) { ws.Cells[ir - 1, ic].Value = 0; }
+            else ws.Cells[ir - 1, ic].Formula = fullAddressTongLuongCongNhat;
 
-			ic = left;
+            ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Chi khác từ quỹ lương ", Bold:true, VeBorder: false);
             int rowChiKhac = ir, colChiKhac = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: chiKhacTuQuyLuong, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
+            XL.FormatCell_N(ws, ref ir, ref ic, plusRow: 1, colWidth: 18,
+                congthuc: string.Format("SUM({0})", ws.Cells[rowChiKhac+1, colChiKhac, rowChiKhac+5, colChiKhac].Address),
+                VeBorder: false, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương chờ việc: ", VeBorder: false);
             int rowQLChoViec = ir, colQLChoViec = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, congthuc: string.Format("{0}", wsBangLuong.Cells[rowTongLuongCV, colTongLuongCV].FullAddress),
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, congthuc: string.Format("{0}", wsBangLuong.Cells[rowTong, colTongLuongCV].FullAddress),
                 VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương phụ cấp trách nhiệm: ", VeBorder: false);
             int rowLuongPCTN = ir, colLuongPCTN = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: phuCapTrachNhiem, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: Math.Round(phuCapTrachNhiem), VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương cho phòng Thị trường: ", VeBorder: false);
             int rowLuongPTT = ir, colLuongPTT = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: luongPTT, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: Math.Round(luongPTT), VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Lương trực lễ bảo vệ: ", VeBorder: false);
             int rowLuongTrucLeBV = ir, colLuongTrucLeBV = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: luongTrucLeTetBV, VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, value: Math.Round(luongTrucLeTetBV), VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Điều chỉnh lương tháng trước và truy lãnh lương ", VeBorder: false);
             int rowDieuChinhLuong = ir, colDieuChinhLuong = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, congthuc: string.Format("{0}", wsBangLuong.Cells[rowTongDieuChinhLuong, colTongDieuChinhLuong].FullAddress),
+			XL.FormatCell_N(ws, ref ir, ref ic, colWidth: 18, congthuc: string.Format("{0}", wsBangLuong.Cells[rowTong, colTongDieuChinhLuong].FullAddress),
                 VeBorder: false, plusRow: 1, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
 
 			ic = left;
 			XL.FormatCell_W(ws, ref ir, ref ic, plusCol: 7, value: "Quỹ lương theo hệ số (sản phẩm) ", Bold: true, VeBorder: false);
             int rowQLSP = ir, colQLSP = ic;
-			XL.FormatCell_N(ws, ref ir, ref ic, plusRow: 1, colWidth: 18, congthuc: string.Format("{0}-SUM({1})",
-                ws.Cells[rowQLThanhToan, colQLThanhToan].Address, ws.Cells[rowQLND205, colQLND205, rowDieuChinhLuong, colDieuChinhLuong].Address),
+			XL.FormatCell_N(ws, ref ir, ref ic, plusRow: 1, colWidth: 18, congthuc: string.Format("{0}-{1}-{2}-{3}",
+                ws.Cells[rowQLThanhToan, colQLThanhToan].Address, ws.Cells[rowQLND205, colQLND205].Address, ws.Cells[rowChiKhac, colChiKhac].Address, ws.Cells[rowLuongCongNhat, colLuongCongNhat].Address),
                 VeBorder: false, numFormat: Settings.Default.numFormatMoney);
 
 			ic = left;
@@ -824,8 +920,8 @@ namespace ChamCong_v04.BUS {
             rowTienLuong1SP = ir; colTienLuong1SP = ic;
 			XL.FormatCell_N(ws, ref ir, ref ic, plusRow: 1, colWidth: 18, congthuc: string.Format("{0}/({1}+{2})",
                 ws.Cells[rowQLSP, colQLSP].Address, 
-                wsBangLuong.Cells[rowTongHSLuongCBQuyDoi, colTongHSLuongCBQuyDoi].FullAddress, 
-                wsBangLuong.Cells[rowTongHSPhuCapQuyDoi, colTongHSPhuCapQuyDoi].FullAddress),
+                wsBangLuong.Cells[rowTong, colTongHSLuongCBQuyDoi].FullAddress, 
+                wsBangLuong.Cells[rowTong, colTongHSPhuCapQuyDoi].FullAddress),
                 VeBorder: false, numFormat: Settings.Default.numFormatMoney);//201903 chua lam
 
 			//4. ghi footer
@@ -847,14 +943,13 @@ namespace ChamCong_v04.BUS {
 
 			// 1. ghi header
 			string headerString = string.Format(Settings.Default.titleBangCC_THANG, ngaybd.ToString("MM/yyyy"));
-			int left1 = Settings.Default.viTriOHeaderBKC_TCTCNSG, left2 = Settings.Default.viTriOHeaderBKC_DiaChi, leftT = Settings.Default.viTriOHeaderTitle;
+			int leftTCT = 1, leftVietNam = 22, rightVietNam = 40, leftT = Settings.Default.viTriOHeaderTitle;
 			ir = top;
-			EXP_Header(ws, ref ir, left1, left2, leftT, sizeTCT: Settings.Default.sizeHeaderBKC_TCTCNSG, sizeVietNam: Settings.Default.sizeHeaderBKC_TCTCNSG, sizeTitle: Settings.Default.sizeTitleBKC,
-				ngayLap: DateTime.Today, headerString: headerString);
+            EXP_Header(ws, ref ir, leftTCT, rightTCT: 10, leftVietNam: leftVietNam, rightVietNam: rightVietNam, leftTitle: leftT, rightTitle: 50, sizeTCT: 22, sizeVietNam: 18, sizeTitle: 22,
+                       ngayLap: DateTime.Today, headerString: headerString);
 
-
-			#region // 2. ghi colTitle
-			ic = left;
+            #region // 2. ghi colTitle
+            ic = left;
             FormatCell_TCenterVertical201903(ws, ref ir, ref ic, colWidth: (int)CC.STT, value: "STT", fromRow: ir, toRow: ir + 1, rowContainValue:ir+1, plusCol: 1); //col 1
             FormatCell_TCenterVertical201903(ws, ref ir, ref ic, colWidth: (int)CC.manv, value: "Mã NV", fromRow: ir, toRow: ir + 1, rowContainValue:ir+1, plusCol: 1);
 			FormatCell_TCenterVertical201903(ws, ref ir, ref ic, colWidth: (int)CC.ten, value: "Họ tên", fromRow: ir, toRow: ir + 1, rowContainValue:ir+1, plusCol: 1);
@@ -869,10 +964,10 @@ namespace ChamCong_v04.BUS {
             FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.cong, value: "Công", plusCol: 1); //col 1
 			FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.hoc, value: "Học, họp, CT, PT", plusCol: 1);//DANGLAM PTDT CHUYỂN RA SAU RO
 			FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.Le, value: "Lễ", plusCol: 1);
-			FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.Phep, value: "Phép CĐ", plusCol: 1);
+			FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.Phep, value: "Phép Chế độ", plusCol: 1);
 			FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.cv, value: "CV", plusCol: 1);
             // write ngày công chuẩn ở trên
-            FormatCell_TCAS201903(ws, ref ir, ref icStartSection, colWidth: (int)CC.cong, value: "Ngày công chuẩn", fromCol: icStartSection, toCol: ic-1); //5 cột trừ cột hiện tại đang đứng
+            FormatCell_TCAS201903(ws, ref ir, ref icStartSection, colWidth: (int)CC.cong, value: "Chấm công", fromCol: icStartSection, toCol: ic-1); //5 cột trừ cột hiện tại đang đứng
 
 			icStartSection = ic;
 			//write số công chuẫn ở trên
@@ -898,7 +993,8 @@ namespace ChamCong_v04.BUS {
             icStartSection = ic; //giữ lại vị trí bắt đầu merge
             FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.bh, value: "BHXH", plusCol: 1);
             FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.nghiRo, value: "Việc riêng", plusCol: 1);
-            FormatCell_TCAS201903(ws, ref ir, ref icStartSection, colWidth: (int)CC.cong, value: "Ngày nghỉ", fromCol: icStartSection, toCol: ic - 1);
+            FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.nghiRo, value: "PT Đoàn thể chi", plusCol: 1);
+            FormatCell_TCAS201903(ws, ref ir, ref icStartSection, colWidth: (int)CC.cong, value: "Không tính công", fromCol: icStartSection, toCol: ic - 1);
 			ws.Row(ir + 1).Height = 50d;
 
 			#endregion
@@ -949,6 +1045,7 @@ namespace ChamCong_v04.BUS {
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Tổng PC;
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //BHXH);//DANGLAM
 			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //NghiRo);
+			FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PTDT);
 
 			//formatNumber
 			ic5 = sumCol_Pos;
@@ -970,6 +1067,7 @@ namespace ChamCong_v04.BUS {
 			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//Tổng PC;
 			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat10);//BHXH);
 			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//NghiRo);
+			XL.FormatNumber(ws, ref t1, ref ic5, t1, ic5, bottom + 1, ic5, plusCol: 1, numberFormat: Settings.Default.numFormatFloat101F);//PTDT);
 
 
 			#region // set ColWidth = 0 các cột ko cần thiết
@@ -1021,10 +1119,10 @@ namespace ChamCong_v04.BUS {
             // 1. ghi header
             string headerString = string.Format(Settings.Default.titleBangCC_THANG, ngaybd.ToString("MM/yyyy"));
             headerString += " CỦA CÔNG TY NHÂN KIỆT";
-            int left1 = Settings.Default.viTriOHeaderBKC_TCTCNSG, left2 = Settings.Default.viTriOHeaderBKC_DiaChi, leftT = Settings.Default.viTriOHeaderTitle;
+            int leftTCT = 1, leftVietNam = 22, rightVietNam = 40, leftT = Settings.Default.viTriOHeaderTitle;
             ir = top;
-            EXP_Header(ws, ref ir, left1, left2, leftT, sizeTCT: Settings.Default.sizeHeaderBKC_TCTCNSG, sizeVietNam: Settings.Default.sizeHeaderBKC_TCTCNSG, sizeTitle: Settings.Default.sizeTitleBKC,
-                ngayLap: DateTime.Today, headerString: headerString);
+            EXP_Header(ws, ref ir, leftTCT, rightTCT: 10, leftVietNam: leftVietNam, rightVietNam: rightVietNam, leftTitle: leftT, rightTitle: 50, sizeTCT: 22, sizeVietNam: 18, sizeTitle: 22,
+                       ngayLap: DateTime.Today, headerString: headerString);
 
 
             #region // 2. ghi colTitle
@@ -1045,7 +1143,7 @@ namespace ChamCong_v04.BUS {
             FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.cv, value: "Lễ", plusCol: 1);
             FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.cv, value: "CV", plusCol: 1);
             // write ngày công chuẩn ở trên
-            FormatCell_TCAS201903(ws, ref ir, ref icStartSection, colWidth: (int)CC.cong, value: "Ngày công chuẩn", fromCol: icStartSection, toCol: ic - 1); //5 cột trừ cột hiện tại đang đứng
+            FormatCell_TCAS201903(ws, ref ir, ref icStartSection, colWidth: (int)CC.cong, value: "Chấm công", fromCol: icStartSection, toCol: ic - 1); //5 cột trừ cột hiện tại đang đứng
 
             icStartSection = ic;
             //write số công chuẫn ở trên
@@ -1068,7 +1166,7 @@ namespace ChamCong_v04.BUS {
             //write tổng PC
             FormatCell_TCenterVertical201903(ws, ref ir, ref ic, colWidth: (int)CC.pckhac, value: "Tổng Phụ cấp", fromRow: ir, toRow: irBelow, rowContainValue: irBelow, plusCol: 1);
 
-            FormatCell_TCenterVertical201903(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: "Ngày nghỉ", fromRow: ir, toRow: irBelow, rowContainValue: irBelow, plusCol: 1);
+            FormatCell_TCenterVertical201903(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: "Không chấm công (Ro)", fromRow: ir, toRow: irBelow, rowContainValue: irBelow, plusCol: 1);
             ws.Row(ir + 1).Height = 50d;
 
             #endregion
@@ -1100,20 +1198,20 @@ namespace ChamCong_v04.BUS {
 
             int ic5 = sumCol_Pos;
             // ghi phần tổng kết
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Cong);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Lễ);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //CongCV);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Tổng công;
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._30_dem);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._50_TC);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._100_TCC3);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._100_LVNN_Ngay);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._150_LVNN_Dem);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._200_LeTet_Ngay);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._250_LeTet_Dem);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._Cus);
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Tổng PC;
-            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Tổng ngày nghỉ ro
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Cong);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Lễ);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //CongCV);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Tổng công;
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._30_dem);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._50_TC);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._100_TCC3);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._100_LVNN_Ngay);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._150_LVNN_Dem);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._200_LeTet_Ngay);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._250_LeTet_Dem);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //PhuCaps._Cus);
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Tổng PC;
+            FormatCell_N(ws, ref ir, ref ic5, plusCol: 1, bold:true, italic:true, congthuc: "SUM(" + ws.Cells[t1, ic5, bottom, ic5].Address + ")/2"); //Tổng ngày nghỉ ro
 
             //formatNumber
             ic5 = sumCol_Pos;
@@ -1181,6 +1279,7 @@ namespace ChamCong_v04.BUS {
 			func3(ws, ref irSum, ref ic, t1, bottom); //Tổng PC
 			func3(ws, ref irSum, ref ic, t1, bottom); //BHXH);
 			func3(ws, ref irSum, ref ic, t1, bottom); //Nghiro);
+			func3(ws, ref irSum, ref ic, t1, bottom); //PTDT
 
 			top = ir;// xuất xong 1 group rồi thì cập nhật lại top là con trỏ dòng kế tiếp
 		}
@@ -1252,6 +1351,7 @@ namespace ChamCong_v04.BUS {
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.CongCV, 2));
                 icEndSection = ic - 1;
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, icStartSection, ir, icEndSection].Address));
+
                 icStartSection = ic;
                 XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._30_dem, 2));
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._50_TC, 2));
@@ -1263,8 +1363,10 @@ namespace ChamCong_v04.BUS {
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PhuCaps._Cus, 2));
                 icEndSection = ic - 1;
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, icStartSection, ir, icEndSection].Address));
+
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.BHXH, 2));
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.NghiRo, 2));
+				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.PTDT, 2));
 			}
 			else {
                 icStartSection = ic;
@@ -1275,6 +1377,8 @@ namespace ChamCong_v04.BUS {
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.CongCV);
                 icEndSection = ic - 1;
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, icStartSection, ir, icEndSection].Address)); //Tổng công
+
+                icStartSection = ic;
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.PhuCaps._30_dem);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.PhuCaps._50_TC);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.PhuCaps._100_TCC3);
@@ -1285,8 +1389,10 @@ namespace ChamCong_v04.BUS {
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.PhuCaps._Cus);
                 icEndSection = ic - 1;
                 XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, icStartSection, ir, icEndSection].Address));//Tổng PC
+
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.BHXH);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.NghiRo);
+				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.PTDT);
 			}
 			//sum để set colWidth
 			sumCC.le2 += nv.ThongKeThang.Le;
@@ -1319,20 +1425,20 @@ namespace ChamCong_v04.BUS {
                                                // ghi phần sum tổng kết
             int irSum = top; // top group
             ic = sumCol_Pos;
-            func3(ws, ref irSum, ref ic, t1, bottom); //Cong);
-            func3(ws, ref irSum, ref ic, t1, bottom); //Lễ);
-            func3(ws, ref irSum, ref ic, t1, bottom); //CongCV);
-            func3(ws, ref irSum, ref ic, t1, bottom); //Tổng Công
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._30_dem);
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._50_TC);
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._100_TCC3);
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._100_LVNN_Ngay);
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._150_LVNN_Dem);
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._200_LeTet_Ngay);
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._250_LeTet_Dem);
-            func3(ws, ref irSum, ref ic, t1, bottom); //PhuCaps._Cus);
-            func3(ws, ref irSum, ref ic, t1, bottom); //Tổng PC
-            func3(ws, ref irSum, ref ic, t1, bottom); //Nghỉ RO
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //Cong);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //Lễ);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //CongCV);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //Tổng Công
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._30_dem);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._50_TC);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._100_TCC3);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._100_LVNN_Ngay);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._150_LVNN_Dem);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._200_LeTet_Ngay);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._250_LeTet_Dem);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //PhuCaps._Cus);
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //Tổng PC
+            func3(ws, ref irSum, ref ic, t1, bottom, bold: true, italic: true); //Nghỉ RO
 
             top = ir;// xuất xong 1 group rồi thì cập nhật lại top là con trỏ dòng kế tiếp
         }
@@ -1356,9 +1462,10 @@ namespace ChamCong_v04.BUS {
             icStartSection = ic; 
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Cong, 2));
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //Lễ mặc định điền tay
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.CongCV);
-            icEndSection = ic-1; 
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir,icStartSection,ir,icEndSection].Address));
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.CongCV, 2));
+            icEndSection = ic - 1;
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, icStartSection, ir, icEndSection].Address));
+
             icStartSection = ic; 
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._30_dem);
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._50_TC);
@@ -1370,7 +1477,8 @@ namespace ChamCong_v04.BUS {
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.PhuCaps._Cus);
             icEndSection = ic - 1;
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir,icStartSection,ir,icEndSection].Address));//tổng PC
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: nv.ThongKeThang.NghiRo);
+
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.NghiRo, 2));
                         
  
             //sum để set colWidth
@@ -1518,8 +1626,6 @@ namespace ChamCong_v04.BUS {
 			string headerString = string.Format(Settings.Default.titleBangCC_THANG, ngaybd.ToString("MM/yyyy"));
 			int left1 = 6, left2 = 39, leftT = 24;
 			ir = top;
-			EXP_Header(ws, ref ir, left1, left2, leftT, sizeTCT: 24, sizeVietNam: 24, sizeTitle: 24,
-				logoName: "logo", ngayLap: DateTime.Today, headerString: headerString);
 
 			// 2. ghi colTitle
 			ic = left;

@@ -29,8 +29,8 @@ namespace ChamCong_v04.UI {
 		#endregion
 
 		private void btnDangnhap_Click(object sender, EventArgs e) {
-            testExcel();
-            return;
+            //testExcel();
+            //return;
 			#region lay du lieu tu form
 			string tempUsername = tbTaikhoan.Text, tempPassword = tb_Password.Text;
 

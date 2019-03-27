@@ -362,7 +362,7 @@
             this.numMucLuongTT17.TabIndex = 8;
             this.numMucLuongTT17.ThousandsSeparator = true;
             this.numMucLuongTT17.Value = new decimal(new int[] {
-            2266000,
+            2380000,
             0,
             0,
             0});

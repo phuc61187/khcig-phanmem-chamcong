@@ -304,12 +304,6 @@ namespace ChamCong_v04.UI.TinhLuong {
 			var tableTongLuongCongnhat = SqlDataAccessHelper.ExecuteQueryString(
 				@"select  CAST(SUM (SoNgayCong*DonGiaLuong) as float)  from DSNVChiCongNhatThang where Thang=@Thang",
 				new string[] { "@Thang" }, new object[] { ngaydauthang });
-			var tongLuongCongnhat = (tableTongLuongCongnhat.Rows[0][0] != DBNull.Value) ? (double)tableTongLuongCongnhat.Rows[0][0] : 0d;
-			var tongLuongDieuchinh = (from DataRow row in tableKetLuongThang.Rows
-									  let luongdieuchinh = (row["LuongDieuChinh"] != DBNull.Value)
-															   ? (double)row["LuongDieuChinh"]
-															   : 0d
-									  select luongdieuchinh).Sum();
 			var tableKetcongNgay = DAO.LayKetcongNgay(ngaydauthang, ngaycuoithang);
 			var tableKetcongCa = DAO.LayKetcongCa(ngaydauthang, ngaycuoithang);
 			var tableXPVang = DAO.LayTableXPVang(ngaydauthang, ngaycuoithang);
@@ -330,7 +324,10 @@ namespace ChamCong_v04.UI.TinhLuong {
 				int pc160 = (int)tableThongsoKetluongThang.Rows[0]["HSPC260"];
 				int pc200 = (int)tableThongsoKetluongThang.Rows[0]["HSPC300"];
 				int pc290 = (int)tableThongsoKetluongThang.Rows[0]["HSPC390"];
-				#endregion
+                #endregion
+                int MucLuongToiThieuTT17 = (int)tableThongsoKetluongThang.Rows[0]["MucLuongTTTT17"];
+                int MucLuongToiThieuND205 = (int)tableThongsoKetluongThang.Rows[0]["MucLuongToiThieu"];
+                int DinhMucComTrua = (int)tableThongsoKetluongThang.Rows[0]["DinhMucComTrua"];
 				//2. xuat bb bang ket cong thang
 				#region ghi sheet bang ket cong thang trinh ky
 
@@ -355,47 +352,52 @@ namespace ChamCong_v04.UI.TinhLuong {
                 wsBangTKBDDH.Name = "BangThongKeBoiDuongDocHai";
 
                 XL.ExportSheetBangKetcongThang(wsKetCong, ngaydauthang, ngaycuoithang, dsnv, string.Empty, string.Empty, pc30, pc50, pctcc3, pc100, pc160, pc200, pc290);
-                //XL.ExportSheetBangChiTietKetCong(ws, ngaydauthang, ngaycuoithang, dsnv, pc30, pc50, pctcc3, pc100, pc160, pc200, pc290);
-                XL.ExportSheetBangLuongCongNhat(wsLuongCongNhat, ngaydauthang, tableDSNVChiCongnhatThang);
-                //XL.ExportSheetBangThongKeSua(ws, ngaydauthang, ngaycuoithang, dsnv);
+                XL.ExportSheetBangChiTietKetCong(wsChiTietCong, ngaydauthang, ngaycuoithang, dsnv, pc30, pc50, pctcc3, pc100, pc160, pc200, pc290);
+                string fullAddressTongLuongCongNhat = string.Empty;
+                XL.ExportSheetBangLuongCongNhat(wsLuongCongNhat, ngaydauthang, tableDSNVChiCongnhatThang, DinhMucComTrua, out fullAddressTongLuongCongNhat);
+                XL.ExportSheetBangThongKeSua(wsBangTKBDDH, ngaydauthang, ngaycuoithang, dsnv);
 
                 #endregion
-                int rowTongLuongCB, colTongLuongCB, rowTongLuongCV, colTongLuongCV, rowTongDieuChinhLuong, colTongDieuChinhLuong,
-                    rowTongPCTheoHSLCB, colTongPCTheoHSLCB, rowTongHSLuongCBQuyDoi, colTongHSLuongCBQuyDoi, rowTongHSPhuCapQuyDoi, colTongHSPhuCapQuyDoi,
+                int rowTong, colTongLuongCB, colTongLuongCV, colTongDieuChinhLuong,
+                    colTongPCTheoHSLCB, colTongHSLuongCBQuyDoi, colTongHSPhuCapQuyDoi,
                     topRow_TinhLuongSP, colLuongSP, endRow_TinhLuongSP, colPCTheoHSLSP,
                     rowTienLuong1SP, colTienLuong1SP;
 
 
-                XL.ExportSheetBangLuong(wsBangLuong, m_Thang, dsnv, tenNVLapBieu,  out rowTongLuongCB, out  colTongLuongCB,
-            out rowTongLuongCV, out colTongLuongCV,
-            out rowTongDieuChinhLuong, out colTongDieuChinhLuong,
-            out rowTongPCTheoHSLCB, out colTongPCTheoHSLCB,
-            out rowTongHSLuongCBQuyDoi, out colTongHSLuongCBQuyDoi,
-            out rowTongHSPhuCapQuyDoi, out colTongHSPhuCapQuyDoi,
+                XL.ExportSheetBangLuong(wsBangLuong, m_Thang, dsnv, tenNVLapBieu, MucLuongToiThieuND205, MucLuongToiThieuTT17, DinhMucComTrua, 
+                    out rowTong, 
+                    out colTongLuongCB, out colTongLuongCV,
+                    out colTongDieuChinhLuong,
+                    out colTongPCTheoHSLCB,
+                    out colTongHSLuongCBQuyDoi,
+                    out colTongHSPhuCapQuyDoi,
             out topRow_TinhLuongSP, out colLuongSP,
             out endRow_TinhLuongSP, out colPCTheoHSLSP
             );
 
                 //6. xuat bb bang tong hop so lieu giam doc ky duyet
                 
-				XL.ExportSheetTongHopChi(wsTongHopChi, wsBangLuong, m_Thang, tableThongsoKetluongThang, tongLuongCongnhat, tongLuongDieuchinh,
-                     rowTongLuongCB, colTongLuongCB,
-            rowTongLuongCV, colTongLuongCV,
-            rowTongDieuChinhLuong, colTongDieuChinhLuong,
-            rowTongPCTheoHSLCB, colTongPCTheoHSLCB,
-            rowTongHSLuongCBQuyDoi, colTongHSLuongCBQuyDoi,
-            rowTongHSPhuCapQuyDoi, colTongHSPhuCapQuyDoi,
-            out rowTienLuong1SP, out colTienLuong1SP);
+				XL.ExportSheetTongHopChi(wsTongHopChi, wsBangLuong, m_Thang, tableThongsoKetluongThang, 
+                    rowTong, 
+                    colTongLuongCB, colTongLuongCV,
+                    colTongDieuChinhLuong,
+                    colTongPCTheoHSLCB,
+                    colTongHSLuongCBQuyDoi, colTongHSPhuCapQuyDoi,
+                    fullAddressTongLuongCongNhat,
+                    out rowTienLuong1SP, out colTienLuong1SP);
                 ExcelRange cellTienLuong1SP = wsTongHopChi.Cells[rowTienLuong1SP, colTienLuong1SP];
                 int currentRow;
                 for (int i=0; i< (endRow_TinhLuongSP-topRow_TinhLuongSP); i++)
                 {
-                    currentRow = topRow_TinhLuongSP+i;
-                    ExcelRange currentLuongSP = wsBangLuong.Cells[currentRow, 29];
-                    ExcelRange currentPhuCapSP = wsBangLuong.Cells[currentRow, 34];
-                    //if (currentLuongSP.Value == null || (currentLuongSP.Value != null && currentLuongSP.Value.ToString() != "0")) { continue; }
-                    currentLuongSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, 43].Address, cellTienLuong1SP.FullAddress);
-                    currentPhuCapSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, 44].Address, cellTienLuong1SP.FullAddress);
+                    currentRow = topRow_TinhLuongSP + i;
+                    ExcelRange currentLuongSP = wsBangLuong.Cells[currentRow, colLuongSP];
+                    ExcelRange currentPhuCapSP = wsBangLuong.Cells[currentRow, colPCTheoHSLSP];
+                    if (currentLuongSP.Formula != "") { continue; } // bỏ qua các dòng tổng sum
+                    else
+                    {
+                        currentLuongSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, colTongHSLuongCBQuyDoi].Address, cellTienLuong1SP.FullAddress);
+                        currentPhuCapSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, colTongHSPhuCapQuyDoi].Address, cellTienLuong1SP.FullAddress);
+                    }
                 }
 
                 Byte[] bytes = p.GetAsByteArray();
