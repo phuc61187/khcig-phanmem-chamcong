@@ -40,6 +40,12 @@ namespace ChamCong_v04.BUS {
 							XL2.PCTCC3 = valTCC3;
 						}
 						break;
+                    case "PCTCC3NK":
+						var valTCC3NK = 0;
+						if (int.TryParse(value, out valTCC3NK)) {
+							XL2.PCTCC3NK = valTCC3NK;
+						}
+						break;
 					case "PC100":
 						var val100 = 0;
 						if (int.TryParse(value, out val100)) {
@@ -827,7 +833,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_A = nv.DSNgayCong.Find(item => item.Ngay == CIO_A.ThuocNgayCong);
 			ngayCong_cua_CIO_A.DSVaoRa.Remove(CIO_A);
 			TinhCong_HangNgay2(ngayCong_cua_CIO_A, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCapDB);
 
 			// 9. xác định ngày của ca 3 để thêm ca 3 vào ngayCong.DSVaoRa, tính lại công, pctc, pcdb
@@ -835,7 +841,7 @@ namespace ChamCong_v04.BUS {
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Add(CIO_V_Ca3);
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Sort(new cCheckInOutComparer());
 			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca3, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCapDB);
 
 			// 9. xác định ngày của ca 1 để thêm ca 1 vào ngayCong.DSVaoRa, tính lại công, pctc, pcdb
@@ -843,7 +849,7 @@ namespace ChamCong_v04.BUS {
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Add(CIO_V_Ca1);
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Sort(new cCheckInOutComparer());
 			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca1, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCapDB);
 		}
 		public static void XacNhan_CIO_V_CoTachCa(cUserInfo nv, cCheckInOut CIO, cCa currShift, bool bDuyetCPTre, bool bDuyetCPSom, int soPhutLamThem, bool choPhepTinhPc50, string lydo, string ghichu,
@@ -932,7 +938,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_V_OLD = nv.DSNgayCong.Find(item => item.Ngay == CIO_V_OLD.ThuocNgayCong);
 			ngayCong_cua_CIO_V_OLD.DSVaoRa.Remove(CIO_V_OLD);
 			TinhCong_HangNgay2(ngayCong_cua_CIO_V_OLD, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_OLD, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_OLD, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_OLD, nv.DSXNPhuCapDB);
 
 			// 9. xác định ngày của ca 3 để thêm ca 3 vào ngayCong.DSVaoRa, tính lại công, pctc, pcdb
@@ -940,7 +946,7 @@ namespace ChamCong_v04.BUS {
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Add(CIO_V_NEW_Ca3);
 			ngayCong_cua_CIO_V_Ca3.DSVaoRa.Sort(new cCheckInOutComparer());
 			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca3, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca3, nv.DSXNPhuCapDB);
 
 			// 9. xác định ngày của ca 1 để thêm ca 1 vào ngayCong.DSVaoRa, tính lại công, pctc, pcdb
@@ -948,7 +954,7 @@ namespace ChamCong_v04.BUS {
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Add(CIO_V_NEW_Ca1);
 			ngayCong_cua_CIO_V_Ca1.DSVaoRa.Sort(new cCheckInOutComparer());
 			TinhCong_HangNgay2(ngayCong_cua_CIO_V_Ca1, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V_Ca1, nv.DSXNPhuCapDB);
 
 		}
@@ -993,7 +999,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_V = nv.DSNgayCong.Find(item => item.Ngay == CIO.ThuocNgayCong);
 			//ngayCong_cua_CIO_V.DSVaoRa.Add(CIO); ko cần add lại, chỉ tính lại
 			TinhCong_HangNgay2(ngayCong_cua_CIO_V, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCapDB);
 
 		}
@@ -1058,7 +1064,7 @@ namespace ChamCong_v04.BUS {
 			var ngayCong_cua_CIO_A = nv.DSNgayCong.Find(item => item.Ngay == CIO_A.ThuocNgayCong);
 			ngayCong_cua_CIO_A.DSVaoRa.Remove(CIO_A);
 			TinhCong_HangNgay2(ngayCong_cua_CIO_A, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_A, nv.DSXNPhuCapDB);
 
 			// 9. xác định ngày của CIO_V để thêm CIO_V vào ngayCong.DSVaoRa, tính lại công, pctc, pcdb
@@ -1066,7 +1072,7 @@ namespace ChamCong_v04.BUS {
 			ngayCong_cua_CIO_V.DSVaoRa.Add(CIO_V);
 			ngayCong_cua_CIO_V.DSVaoRa.Sort(new cCheckInOutComparer());
 			TinhCong_HangNgay2(ngayCong_cua_CIO_V, startNT, endddNT);//ver 4.0.0.8
-			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCap50/*, nv.NVNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCap50, nv.NVNhanKiet);
 			TinhPCDB_CuaNgay(ngayCong_cua_CIO_V, nv.DSXNPhuCapDB);
 
 		}
@@ -1103,7 +1109,7 @@ namespace ChamCong_v04.BUS {
 				ngayCong.TG.Tinh300 = TimeSpan.Zero;
 				ngayCong.TG.Tinh390 = TimeSpan.Zero;
 				ngayCong.TG.TinhPCCus = TimeSpan.Zero;
-				TinhPCTC_CuaNgay(ngayCong, nhanvien.DSXNPhuCap50/*, nhanvien.NVNhanKiet*/);
+				TinhPCTC_CuaNgay(ngayCong, nhanvien.DSXNPhuCap50, nhanvien.NVNhanKiet);
 				TinhPCNgayVang(ngayCong);
 			}
 		}

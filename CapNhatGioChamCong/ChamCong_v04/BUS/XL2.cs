@@ -50,6 +50,7 @@ namespace ChamCong_v04.BUS {
 		public static int PC30;
 		public static int PC50;
 		public static int PCTCC3;
+		public static int PCTCC3NK;
 		public static int PC100;
 		public static int PC160;
 		public static int PC200;

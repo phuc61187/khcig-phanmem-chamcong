@@ -86,7 +86,88 @@ namespace ChamCong_v04.UI.TinhLuong {
 
 		}
 
-		private void KetLuong(object sender, WaitWindowEventArgs e) {
+        private void btnXuatBDDH_Click(object sender, EventArgs e)
+        {
+            if (XL2.KiemtraKetnoiCSDL() == false) return;
+
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName != string.Empty)
+            {
+                string saveFileName = saveFileDialog.FileName;
+                WaitWindow.Show(this.XuatBBBDDH, "Đang xuất báo biểu. Bạn vui lòng đợi...", new object[] { saveFileName });
+            }
+
+        }
+		private void XuatBBBDDH(object sender, WaitWindowEventArgs e) {
+
+            #region MyRegion
+
+            string saveFileName = (string)e.Arguments[0];
+            var ngaydauthang = MyUtility.FirstDayOfMonth(m_Thang);
+            var ngaycuoithang = MyUtility.LastDayOfMonth(m_Thang);
+            var dsnv = new List<cUserInfo>();
+            var tableKetcongNgay = DAO.LayKetcongNgay(ngaydauthang, ngaycuoithang);
+            var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngaydauthang);
+            List<cPhongBan> m_DSPhg = new List<cPhongBan>();
+            XL.KhoiTaoDSPhongBan(m_DSPhg, XL2.currUserID); // tạo danh sách phòng ban chỉ userID này được thao tác
+            List<int> idAll = new List<int>();
+            for (int i = 0; i < m_DSPhg.Count; i++)
+            { idAll.Add(m_DSPhg[i].ID); }
+            XL.KhoiTaoDSNV_ChamCong(dsnv, idAll, m_DSPhg);
+
+            ChuanBiDuLieuXuatBB(dsnv, ngaydauthang, ngaycuoithang, tableKetcongNgay, tableDSNVChiCongnhatThang);
+
+            using (var p = new ExcelPackage())
+            {
+                p.Workbook.Worksheets.Add("BangThongKeBoiDuongDocHai");
+                var wsBangTKBDDH = p.Workbook.Worksheets["BangThongKeBoiDuongDocHai"];
+                wsBangTKBDDH.Name = "BangThongKeBoiDuongDocHai";
+                XL.ExportSheetBangThongKeSua(wsBangTKBDDH, ngaydauthang, ngaycuoithang, dsnv);
+                Byte[] bytes = p.GetAsByteArray();
+                XL.XuatFileExcel(saveFileName, bytes, "frm4LuuHSPC XuatBBLuong");
+            }
+            #endregion
+
+        }
+
+
+        private void ChuanBiDuLieuXuatBB(List<cUserInfo> dsnv, DateTime ngaydauthang, DateTime ngaycuoithang,
+            DataTable tableKetcongNgay, DataTable tableDSNVChiCongnhatThang)
+        {
+
+            foreach (cUserInfo nv in dsnv)
+            { //info chỉ lấy các nhân viên chính thức, vừa chính thức vừa công nhật, thiếu các nv công nhật
+
+                //cUserInfo nv = new cUserInfo();
+                //nv.MaCC = (int)row["UserEnrollNumber"];
+                nv.DSNgayCong = new List<cNgayCong>();
+                for (DateTime indexNgay = ngaydauthang; indexNgay <= ngaycuoithang; indexNgay = indexNgay.AddDays(1d))
+                {
+                    //XL.LoadNgayCong(nv.MaCC, nv.DSNgayCong, indexNgay, tableKetcongNgay, tableKetcongCa);
+                    #region load ngày công
+                    cNgayCong ngayCong = new cNgayCong
+                    {
+                        Ngay = indexNgay,
+                        TG = new ThoiGian()
+                    };
+
+                    //load ket cong ngay
+                    foreach (DataRow rowNgayCong in tableKetcongNgay.Rows.Cast<DataRow>()
+                        .Where(o => ((int)o["UserEnrollNumber"]) == nv.MaCC && ((DateTime)o["Ngay"]) == indexNgay))
+                    {
+                        ngayCong.Ngay = (DateTime)rowNgayCong["Ngay"];
+                        ngayCong.TG = new ThoiGian { GioLamViec = (TimeSpan)rowNgayCong["TGLamViec"] };
+                    }
+                    nv.DSNgayCong.Add(ngayCong);
+
+                    #endregion
+                }
+
+
+            }
+        }
+
+        private void KetLuong(object sender, WaitWindowEventArgs e) {
 			#region lấy thông tin từ csdl và khỏi tạo  nv
 
 			var ngaydauthang = MyUtility.FirstDayOfMonth(m_Thang);
@@ -132,7 +213,8 @@ namespace ChamCong_v04.UI.TinhLuong {
 			var sanluongGiacongNgoai = (int)numSanluongGiacongNgoai.Value;
 			var dongiaGiacongNgoai = (int)numDongiaGiacongNgoai.Value;
 			var mucLuongToithieu = (int)numLuongToiThieu.Value;
-            var mucLuongTT17 = (int)numMucLuongTT17.Value;
+            var mucLuongTT17MoiNhat = (int)numMucLuongTT17.Value;
+            var mucLuongTT172135 = Settings.Default.MucLuongTT172135;
 			var DinhMuccomtrua = (int)numDinhMucComTrua.Value;
             var luongPTT = (float)num11LuongPTT.Value;
             var luongTrucBV = (float)num12LuongLeTetBV.Value;
@@ -237,7 +319,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 				tong_SPLamRa_B2_2 += nv.chiTietLuong.SPLamRa_Theo.TongSPLamRa;
                 // tính khấu trừ BHXH
                 //nv.chiTietLuong.KhauTru.BHXH = Convert.ToDouble(nv.HeSo.BHXH_YT_TN * mucLuongToithieu * (nv.chiTietLuong.MucDongBHXH / 100f));
-                nv.chiTietLuong.KhauTru.BHXH = Convert.ToDouble( (nv.HeSo.LCBTT17 + nv.HeSo.PCTNTT17 + nv.HeSo.PCDHTT17 + nv.HeSo.PCCVTT17) * mucLuongTT17 * (nv.chiTietLuong.MucDongBHXH / 100f));// tính BHXH theo TT17 [update T1/2018]
+                nv.chiTietLuong.KhauTru.BHXH = Convert.ToDouble( (nv.HeSo.LCBTT17 + nv.HeSo.PCTNTT17 + nv.HeSo.PCDHTT17 + nv.HeSo.PCCVTT17) * mucLuongTT17MoiNhat * (nv.chiTietLuong.MucDongBHXH / 100f));// tính BHXH theo TT17 [update T1/2018]
                 // tính tiền cơm trưa
                 var temp1 = DinhMuccomtrua - ((DinhMuccomtrua / congChuanThang) * nv.ThongKeThang.SoNgayNghiRO_NguyenNgay);
 				nv.chiTietLuong.TienComTrua = (temp1 >= 0d) ? temp1 : 0d;
@@ -279,7 +361,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 													 sanluong01, dongia02, perTrichQuyLuong,
 													 sanluongGiacongNoiBo, dongiaGiacongNoiBo, sanluongGiacongNgoai, dongiaGiacongNgoai,
 													 mucLuongToithieu, /*donGiaBdCa3,*/ DinhMuccomtrua,
-                                                     mucLuongTT17, luongPTT, luongTrucBV, phuCapTN,
+                                                     mucLuongTT17MoiNhat, luongPTT, luongTrucBV, phuCapTN,
 													 tongQuyLuongCV, tongQuyLuongNghiDinhCP,
 													 tongChiKhacTuQuyLuong, tongQuyLuongSP, giaTri_1SP_B3_1);
 
@@ -325,7 +407,8 @@ namespace ChamCong_v04.UI.TinhLuong {
 				int pc200 = (int)tableThongsoKetluongThang.Rows[0]["HSPC300"];
 				int pc290 = (int)tableThongsoKetluongThang.Rows[0]["HSPC390"];
                 #endregion
-                int MucLuongToiThieuTT17 = (int)tableThongsoKetluongThang.Rows[0]["MucLuongTTTT17"];
+                int MucLuongToiThieuTT17MoiNhat = (int)tableThongsoKetluongThang.Rows[0]["MucLuongTTTT17"];
+                int MucLuongTT172135 = Settings.Default.MucLuongTT172135;
                 int MucLuongToiThieuND205 = (int)tableThongsoKetluongThang.Rows[0]["MucLuongToiThieu"];
                 int DinhMucComTrua = (int)tableThongsoKetluongThang.Rows[0]["DinhMucComTrua"];
 				//2. xuat bb bang ket cong thang
@@ -364,7 +447,7 @@ namespace ChamCong_v04.UI.TinhLuong {
                     rowTienLuong1SP, colTienLuong1SP;
 
 
-                XL.ExportSheetBangLuong(wsBangLuong, m_Thang, dsnv, tenNVLapBieu, MucLuongToiThieuND205, MucLuongToiThieuTT17, DinhMucComTrua, 
+                XL.ExportSheetBangLuong(wsBangLuong, m_Thang, dsnv, tenNVLapBieu, MucLuongToiThieuND205, MucLuongToiThieuTT17MoiNhat, MucLuongTT172135, DinhMucComTrua, 
                     out rowTong, 
                     out colTongLuongCB, out colTongLuongCV,
                     out colTongDieuChinhLuong,
@@ -395,8 +478,8 @@ namespace ChamCong_v04.UI.TinhLuong {
                     if (currentLuongSP.Formula != "") { continue; } // bỏ qua các dòng tổng sum
                     else
                     {
-                        currentLuongSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, colTongHSLuongCBQuyDoi].Address, cellTienLuong1SP.FullAddress);
-                        currentPhuCapSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, colTongHSPhuCapQuyDoi].Address, cellTienLuong1SP.FullAddress);
+                        currentLuongSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, colTongHSLuongCBQuyDoi].Address, cellTienLuong1SP.FullAddressAbsolute);
+                        currentPhuCapSP.Formula = string.Format("{0}*{1}", wsBangLuong.Cells[currentRow, colTongHSPhuCapQuyDoi].Address, cellTienLuong1SP.FullAddressAbsolute);
                     }
                 }
 

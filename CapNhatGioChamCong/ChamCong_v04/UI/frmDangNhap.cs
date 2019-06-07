@@ -29,8 +29,6 @@ namespace ChamCong_v04.UI {
 		#endregion
 
 		private void btnDangnhap_Click(object sender, EventArgs e) {
-            //testExcel();
-            //return;
 			#region lay du lieu tu form
 			string tempUsername = tbTaikhoan.Text, tempPassword = tb_Password.Text;
 
@@ -75,29 +73,6 @@ namespace ChamCong_v04.UI {
 				// hiển thị form tài khoản thường
 			}
 		}
-
-        private void testExcel()
-        {
-            using(var p = new ExcelPackage())
-            {
-                string wsName1 = "test1", wsName2 = "test2";
-
-                p.Workbook.Worksheets.Add(wsName1);
-                p.Workbook.Worksheets.Add(wsName2);
-
-                var ws1 = p.Workbook.Worksheets[wsName1];
-                var ws2 = p.Workbook.Worksheets[wsName2];
-
-                ExcelRange range = ws1.Cells[1, 1, 5, 5];
-                string name = "Cong";
-                //ExcelNamedRange nameRange = 
-                ws1.Names.Add(name, range);               
-
-                Byte[] bytes = p.GetAsByteArray();
-                XL.XuatFileExcel(@"D:\test.xlsx", bytes, "frm4LuuHSPC XuatBBLuong");
-            }
-
-        }
 
         private void btnKetnoiCSDL_Click(object sender, EventArgs e) {
 

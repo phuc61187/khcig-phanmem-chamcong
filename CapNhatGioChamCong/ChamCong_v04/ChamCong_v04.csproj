@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>4.3.1.%2a</ApplicationVersion>
+    <ApplicationVersion>4.4.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -68,7 +68,7 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>01F851F14BF5BCAFA3DAAF93966355123D33F083</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>65D8A2AABED81AD4E8057B6D8C56222A22A3DD64</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>ChamCong_v04_TemporaryKey.pfx</ManifestKeyFile>
@@ -77,7 +77,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -578,6 +578,7 @@
     <None Include="app.config" />
     <Compile Include="BUS\XLChamCong_v4.0.0.5.cs" />
     <Compile Include="DAL\DAO_XuLyChamCong_v4.0.0.5.cs" />
+    <None Include="ChamCong_v04_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

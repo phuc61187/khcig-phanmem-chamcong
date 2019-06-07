@@ -83,13 +83,13 @@ namespace ChamCong_v04.UI.XacNhan {
 				//if (ngay <= XL2.NgayCuoiThangKetCong && XL2.NgayCuoiThangKetCong != DateTime.MinValue) continue;//tbd temp patch// ko thực hiện đối với các ngày trong tháng đã kết công
 				if (loai == -1) {
 					XL.CheckTinhPC50_UpdORInsNew_Sort(nhanvien, ngay, false);
-					XL.TinhPCTC_CuaNgay(ngayCong, false/*, nhanvien.NVNhanKiet*/);
+					XL.TinhPCTC_CuaNgay(ngayCong, false, nhanvien.NVNhanKiet);
 					XL.TinhPCDB_CuaNgay(ngayCong, nhanvien.DSXNPhuCapDB);
 					XL.TinhPCNgayVang(ngayCong);
 				}
 				else {
 					XL.CheckTinhPC50_UpdORInsNew_Sort(nhanvien, ngay, true);
-					XL.TinhPCTC_CuaNgay(ngayCong, true/*, nhanvien.NVNhanKiet*/);
+					XL.TinhPCTC_CuaNgay(ngayCong, true, nhanvien.NVNhanKiet);
 					XL.TinhPCDB_CuaNgay(ngayCong, nhanvien.DSXNPhuCapDB);
 					XL.TinhPCNgayVang(ngayCong);
 				}

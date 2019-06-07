@@ -41,7 +41,6 @@
             this.tbTaikhoan.Name = "tbTaikhoan";
             this.tbTaikhoan.Size = new System.Drawing.Size(175, 21);
             this.tbTaikhoan.TabIndex = 1;
-            this.tbTaikhoan.Text = "dainghia";
             this.tbTaikhoan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTaikhoan_Or_tbPassword_KeyDown);
             // 
             // tb_Password
@@ -53,7 +52,6 @@
             this.tb_Password.PasswordChar = '*';
             this.tb_Password.Size = new System.Drawing.Size(175, 21);
             this.tb_Password.TabIndex = 2;
-            this.tb_Password.Text = "D@n9n4ab";
             this.tb_Password.UseSystemPasswordChar = true;
             this.tb_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTaikhoan_Or_tbPassword_KeyDown);
             // 

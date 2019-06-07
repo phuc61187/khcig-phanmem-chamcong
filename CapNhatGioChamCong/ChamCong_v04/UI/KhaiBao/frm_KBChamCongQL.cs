@@ -463,7 +463,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 			float cong_ngoai_ca = Convert.ToSingle(Math.Round((OTCa.TotalHours / 8f), 2));
 			Cong = cong_trong_ca + cong_ngoai_ca;
 
-			XL.Tinh_PCTC(tinhPCTC, QuaDem, TGLamBanDem, TGLamThem, out tgTinhPC30, out tgTinhPC50, out tgTinhPCTCC3, out PhuCap30, out PhuCapTC, out PhuCapTCC3, out TongPhuCap);
+			XL.Tinh_PCTC(tinhPCTC, QuaDem, TGLamBanDem, TGLamThem, false, out tgTinhPC30, out tgTinhPC50, out tgTinhPCTCC3, out PhuCap30, out PhuCapTC, out PhuCapTCC3, out TongPhuCap);
 
 		point:
 			tbTongGio.Text = tongGiothuc.ToString(@"hh\gmm\p");

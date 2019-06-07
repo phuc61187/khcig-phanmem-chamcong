@@ -291,16 +291,16 @@ namespace ChamCong_v04.BUS {
 			}
 		}
 
-		public static void Tinh_PCTC(bool TinhPC50, bool QuaDem, TimeSpan SoGioLamDemmm, TimeSpan SoGioLamThem, /*bool nvNhanKiet,*/
+		public static void Tinh_PCTC(bool TinhPC50, bool QuaDem, TimeSpan SoGioLamDemmm, TimeSpan SoGioLamThem, bool nvNhanKiet,
 			out TimeSpan tgTinh130, out TimeSpan tgTinh150, out TimeSpan tgTinhTCC3,
 			out float PhuCap30, out float PhuCapTC, out float PhuCapTCC3, out float TongPhuCap) {
 
 			var heso_pctc = Convert.ToSingle(XL2.PC50) / 100f;
 			var heso_pcdem = Convert.ToSingle(XL2.PC30) / 100f; //tbd
 			var heso_pctcc3 = (Convert.ToSingle(XL2.PCTCC3)) / 100f;
-            var heso_pctcc3NhanKiet = heso_pctc + heso_pcdem;
+            var heso_pctcc3NhanKiet = (Convert.ToSingle(XL2.PCTCC3NK)) / 100f;
 
-			PhuCap30 = 0f;
+            PhuCap30 = 0f;
 			PhuCapTC = 0f;
 			PhuCapTCC3 = 0f;
 			TongPhuCap = 0f;
@@ -324,9 +324,8 @@ namespace ChamCong_v04.BUS {
 				}
 				else {
 					Tinh_TGLamTCC3(SoGioLamThem, SoGioLamDemmm, out tgTinh150, out tgTinh130, out tgTinhTCC3);
-                    //if (nvNhanKiet) { PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3NhanKiet, 2, MidpointRounding.ToEven)); }
-                    
-                        PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3, 2, MidpointRounding.ToEven)); 
+                    if (nvNhanKiet) { PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3NhanKiet, 2, MidpointRounding.ToEven)); }
+                    else { PhuCapTCC3 = Convert.ToSingle(Math.Round((tgTinhTCC3.TotalHours / 8d) * heso_pctcc3, 2, MidpointRounding.ToEven)); }
 					PhuCapTC = Convert.ToSingle(Math.Round((tgTinh150.TotalHours / 8d) * heso_pctc, 2, MidpointRounding.ToEven));
 					PhuCap30 = Convert.ToSingle(Math.Round((tgTinh130.TotalHours / 8d) * heso_pcdem, 2, MidpointRounding.ToEven));
 					TongPhuCap = PhuCap30 + PhuCapTC + PhuCapTCC3;
@@ -698,7 +697,7 @@ namespace ChamCong_v04.BUS {
 				PhanPhoi_DSVaoRa6(nv.DSVaoRa, nv.DSNgayCong);
 				PhanPhoi_DSVang7(nv.DSVang, nv.DSNgayCong);
 				TinhCong_ListNgayCong8(nv.DSNgayCong, nv.StartNT, nv.EndddNT);//ver 4.0.0.4
-				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong/*, nv.NVNhanKiet*/);
+				TinhPCTC_TrongListXNPCTC9(nv.DSXNPhuCap50, nv.DSNgayCong, nv.NVNhanKiet);
 				TinhPCDB_TrongListXNPCDB10(nv.DSXNPhuCapDB, nv.DSNgayCong);
 				TinhPCNgayVang(nv.DSVang, nv.DSNgayCong);
 			}
@@ -1443,25 +1442,25 @@ namespace ChamCong_v04.BUS {
 		}
 
 
-		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong/*, bool nvNhanKiet*/) {
+		public static void TinhPCTC_TrongListXNPCTC9(List<structPCTC> dsXacNhanPC, List<cNgayCong> dsNgayCong, bool nvNhanKiet) {
 			foreach (var item in dsXacNhanPC) {
 				var ngayCong = dsNgayCong.Find(o => o.Ngay == item.Ngay);
-				TinhPCTC_CuaNgay(ngayCong, item.TinhPC50/*, nvNhanKiet*/);
+				TinhPCTC_CuaNgay(ngayCong, item.TinhPC50, nvNhanKiet);
 			}
 
 		}
 
-		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, bool choPhepTinhTC/*, bool nvNhanKiet*/) {
+		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, bool choPhepTinhTC, bool nvNhanKiet) {
 			ngayCong.TinhPC50 = choPhepTinhTC;
-			Tinh_PCTC(choPhepTinhTC, ngayCong.QuaDem, ngayCong.TG.LamBanDem, ngayCong.TG.LamThem, /*nvNhanKiet,*/
+			Tinh_PCTC(choPhepTinhTC, ngayCong.QuaDem, ngayCong.TG.LamBanDem, ngayCong.TG.LamThem, nvNhanKiet,
 							   out ngayCong.TG.Tinh130, out ngayCong.TG.Tinh150, out ngayCong.TG.TinhTCC3,
 							   out ngayCong.PhuCaps._30_dem, out ngayCong.PhuCaps._50_TC, out ngayCong.PhuCaps._100_TCC3, out ngayCong.PhuCaps._TongPC);
 		}
 
-		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, List<structPCTC> DSXNPhuCap50/*, bool nvNhanKiet*/) {
+		public static void TinhPCTC_CuaNgay(cNgayCong ngayCong, List<structPCTC> DSXNPhuCap50, bool nvNhanKiet) {
 			var IndexngayTinhLaiPCTC1 = DSXNPhuCap50.FindIndex(item => item.Ngay == ngayCong.Ngay);
 			var kq1 = (IndexngayTinhLaiPCTC1 >= 0) && (DSXNPhuCap50[IndexngayTinhLaiPCTC1].TinhPC50);
-			TinhPCTC_CuaNgay(ngayCong, kq1/*, nvNhanKiet*/);
+			TinhPCTC_CuaNgay(ngayCong, kq1, nvNhanKiet);
 		}
 
 		public static void TinhPCDB_TrongListXNPCDB10(List<structPCDB> dsXacNhanPC, List<cNgayCong> dsNgayCong) {

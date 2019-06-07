@@ -69,6 +69,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnHuyKetluong = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnXuatBDDH = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSanluongGiacongNgoai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSanluongGiacongNoibo)).BeginInit();
@@ -682,6 +683,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnXuatBangChiTiet_Click);
             // 
+            // btnXuatBDDH
+            // 
+            this.btnXuatBDDH.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.btnXuatBDDH.ForeColor = System.Drawing.Color.Blue;
+            this.btnXuatBDDH.Location = new System.Drawing.Point(12, 484);
+            this.btnXuatBDDH.Name = "btnXuatBDDH";
+            this.btnXuatBDDH.Size = new System.Drawing.Size(189, 27);
+            this.btnXuatBDDH.TabIndex = 1;
+            this.btnXuatBDDH.Text = "Xuất Bảng Bồi Dưỡng Độc Hại";
+            this.btnXuatBDDH.UseVisualStyleBackColor = true;
+            this.btnXuatBDDH.Click += new System.EventHandler(this.btnXuatBDDH_Click);
+            // 
             // frm4LuuHSPC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -691,6 +704,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnHuyKetluong);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnXuatBDDH);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.label1);
@@ -766,5 +780,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.NumericUpDown numMucLuongTT17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnXuatBDDH;
     }
 }

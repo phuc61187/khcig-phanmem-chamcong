@@ -775,5 +775,14 @@ namespace ChamCong_v04.Properties {
                 this["headerCNS"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2135000")]
+        public int MucLuongTT172135 {
+            get {
+                return ((int)(this["MucLuongTT172135"]));
+            }
+        }
     }
 }
