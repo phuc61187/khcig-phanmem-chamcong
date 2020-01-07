@@ -1149,14 +1149,17 @@ namespace ChamCong_v04.BUS {
 			return true;
 		}
 
-		public static float TinhCongChuanCuaThang(DateTime ngaydauthang) {
-			return (DateTime.DaysInMonth(ngaydauthang.Year, ngaydauthang.Month) - XL.DemSoNgayNghiChunhat(ngaydauthang, true, false));
-		}
+		public static float TinhCongChuanCuaThang(DateTime ngaydauky, DateTime ngaycuoiKy) {
+			//return (DateTime.DaysInMonth(ngaydauthang.Year, ngaydauthang.Month) - XL.DemSoNgayNghiChunhat(ngaydauthang, true, false));
+            var temp = ngaycuoiKy - ngaydauky;
+            var congChuanThang = (float)temp.TotalDays + 1f - (float)XL.DemSoNgayNghiChunhat(ngaydauky, ngaycuoiKy, true, false); //v4.7
+            return congChuanThang;
+        }
 
 
 
 
-		internal static List<int> LayPhanQuyen() {
+        internal static List<int> LayPhanQuyen() {
 			List<int> kq = new List<int>();
 			DataTable dt = DAO.PhanQuyenMenu(XL2.currUserID);
 			for (int i = 0; i < dt.Rows.Count; i++) {

@@ -168,10 +168,13 @@ namespace ChamCong_v04.UI.TinhLuong {
         }
 
         private void KetLuong(object sender, WaitWindowEventArgs e) {
-			#region lấy thông tin từ csdl và khỏi tạo  nv
+            #region lấy thông tin từ csdl và khỏi tạo  nv
 
-			var ngaydauthang = MyUtility.FirstDayOfMonth(m_Thang);
-			var ngaycuoithang = MyUtility.LastDayOfMonth(m_Thang);
+            //var ngaydauthang = MyUtility.FirstDayOfMonth(m_Thang);
+            //var ngaycuoithang = MyUtility.LastDayOfMonth(m_Thang);
+            var ngaycuoithang = new DateTime(m_Thang.Year, m_Thang.Month, 25);
+            var ngaydauthang = ngaycuoithang.AddMonths(-1).AddDays(1);
+
 			var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngaydauthang);
 			var tableDSThuchiThang = DAO.LayDSThuchiThang(ngaydauthang);
 			var tableKetcongNgay = DAO.LayKetcongNgay(ngaydauthang, ngaycuoithang);
@@ -225,7 +228,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 
 			#endregion
 			// xác định công chuẩn của tháng
-			var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang);
+			var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang, ngaycuoithang);//v4.7
 			int temp = 0;
             #region // thống kê công, phụ cấp hàng ngày của từng nhân viên chính thức//trường hợp nhân viên vừa công nhật vừa chính thức thì chỉ thống kê ngày công sau ngày kết thúc công nhật
             //note: ko có nhân viên Nhân Kiệt
@@ -595,7 +598,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 
 					var ws = workbook.Worksheets["ThongSo"];
 					ws.Name = "ThongSo"; //Setting Sheet's name
-					XL.ExportSheetThongSo1(ws, ngaydauthang, tableThongsoKetluongThang);
+					XL.ExportSheetThongSo1(ws, ngaydauthang, ngaycuoithang, tableThongsoKetluongThang);
 					#endregion
 
 					#region ghi sheet chi tiết từng ngày công

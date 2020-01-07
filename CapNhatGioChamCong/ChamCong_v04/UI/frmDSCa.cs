@@ -21,7 +21,11 @@ namespace ChamCong_v04.UI {
 		private void frmDSCa_Load(object sender, EventArgs e) {
 			#region gán datasource cho các datagrid
 
-			dgrd4h.AutoGenerateColumns = dgrd8h.AutoGenerateColumns = dgrd16h.AutoGenerateColumns = dgrdCaTuDo.AutoGenerateColumns = false;
+			dgrd4h.AutoGenerateColumns = false;
+            dgrd8h.AutoGenerateColumns = false;
+            dgrd12h.AutoGenerateColumns = false;
+            dgrd16h.AutoGenerateColumns = false;
+            dgrdCaTuDo.AutoGenerateColumns = false;
 			var dsca4h = (from ca in XL.DSCa
 						  where Math.Abs(ca.Workingday - 0.5f) < 0.01f
 						  select new { ca = ca, ID = ca.ID, Code = ca.Code, VaoCa = ca.Duty.Onn, RaaCa = ca.Duty.Off, QuaDem = ca.QuaDem, MoTa = ca.MoTa }).ToList();
@@ -64,6 +68,7 @@ namespace ChamCong_v04.UI {
 
 			dgrd4h.DataSource = dsca4h;
 			dgrd8h.DataSource = dsca8h;
+            dgrd12h.DataSource = dsca12h;
 			dgrd16h.DataSource = dsca16h;
 			dgrdCaTuDo.DataSource = dsCaTuDo;
 
@@ -128,18 +133,21 @@ namespace ChamCong_v04.UI {
 		private DataGridView GetDataGrid(TabControl tabControl) {
 			if (tabControl.SelectedTab == tab4h) return dgrd4h;
 			if (tabControl.SelectedTab == tab8h) return dgrd8h;
-			return tabControl.SelectedTab == tab16h ? dgrd16h : dgrdCaTuDo;
+            if (tabControl.SelectedTab == tab12h) return dgrd12h;
+            return tabControl.SelectedTab == tab16h ? dgrd16h : dgrdCaTuDo;
 		}
 
 		private DataGridView GetDataGrid(float workingday) {
 			if (Math.Abs(workingday - 0.5f) < 0.01f) return dgrd4h;
 			if (Math.Abs(workingday - 1f) < 0.01f) return dgrd8h;
-			return Math.Abs(workingday - 2f) < 0.01f ? dgrd16h : dgrdCaTuDo;
+            if (Math.Abs(workingday - 1.5f) < 0.01f) return dgrd12h;
+            return Math.Abs(workingday - 2f) < 0.01f ? dgrd16h : dgrdCaTuDo;
 		}
 		private TabPage GetTabPage(float workingday) {
 			if (Math.Abs(workingday - 0.5f) < 0.01f) return tab4h;
 			if (Math.Abs(workingday - 1f) < 0.01f) return tab8h;
-			return Math.Abs(workingday - 2f) < 0.01f ? tab16h : tabCaTuDo;
+            if (Math.Abs(workingday - 1.5f) < 0.01f) return tab12h;
+            return Math.Abs(workingday - 2f) < 0.01f ? tab16h : tabCaTuDo;
 		}
 
 		private void tabControl1_Selected(object sender, TabControlEventArgs e) {

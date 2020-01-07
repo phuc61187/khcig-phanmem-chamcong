@@ -60,8 +60,12 @@ namespace ChamCong_v04.UI.ChamCong {
 
 		private void frm_ChiTietVaoRa_Load(object sender, EventArgs e) {
 			IsReload = false; // mặc định ko có gì thay đổi, nếu có sử dụng chức năng thêm, xoá sửa, đảo thì this.DialogResult = Yes;
+            btnThem.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC);
+            btnXoaGioVao.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XoaGioCC);
+            btnXoaGioRaa.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XoaGioCC);
+            btnSuaa.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.SuaGioCC);
 
-			try //general try catch
+            try //general try catch
 			{
 				loadGrid();
 				cbCa.DataSource = XL.DSCa;
@@ -107,9 +111,12 @@ namespace ChamCong_v04.UI.ChamCong {
 
 
 		private void dgrdTongHop_SelectionChanged(object sender, EventArgs e) {
-			MyUtility.EnableDisableControl((dgrdDSGioVaoRa.SelectedRows.Count != 0), new Control[] { btnThem, btnSuaa, btnXoaGioVao, btnXoaGioRaa });
-
-		}
+			//MyUtility.EnableDisableControl((dgrdDSGioVaoRa.SelectedRows.Count != 0), new Control[] { btnThem, btnSuaa, btnXoaGioVao, btnXoaGioRaa });
+            btnThem.Enabled = (dgrdDSGioVaoRa.SelectedRows.Count != 0) && XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC);
+            btnSuaa.Enabled = (dgrdDSGioVaoRa.SelectedRows.Count != 0) && XL2.QuyenThaoTac.Any(o => o == (int)Quyen.SuaGioCC);
+            btnXoaGioVao.Enabled = (dgrdDSGioVaoRa.SelectedRows.Count != 0) && XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XoaGioCC);
+            btnXoaGioRaa.Enabled = (dgrdDSGioVaoRa.SelectedRows.Count != 0) && XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XoaGioCC);
+        }
 
 		private void btnThem_Click(object sender, EventArgs e) {
 			if (XL2.KiemtraKetnoiCSDL() == false) return;

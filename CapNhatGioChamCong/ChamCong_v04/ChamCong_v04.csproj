@@ -115,6 +115,12 @@
     <Compile Include="DAL\DAO_PhucHoi.cs" />
     <Compile Include="DAL\DAO_XuLyChamCong.cs" />
     <Compile Include="DAL\DAO_XuLyLuong.cs" />
+    <Compile Include="demoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="demoForm.Designer.cs">
+      <DependentUpon>demoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DTO\cCaChuan.cs" />
     <Compile Include="DTO\cCheckInOut.cs" />
     <Compile Include="DTO\cNgayCong.cs" />
@@ -414,6 +420,9 @@
     <Compile Include="UI\XacNhan\frm_XN_PC50.Designer.cs">
       <DependentUpon>frm_XN_PC50.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="demoForm.resx">
+      <DependentUpon>demoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Helper\WaitWindowGUI.resx">
       <DependentUpon>WaitWindowGUI.cs</DependentUpon>
     </EmbeddedResource>

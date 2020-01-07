@@ -215,11 +215,15 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 
 			DateTime thang = (DateTime)e.Arguments[0];
 			List<cPhongBan> dsphongban = (List<cPhongBan>)e.Arguments[1];
-			#region  lấy ngày BD và kết thúc
+            #region  lấy ngày BD và kết thúc
 
-			DateTime ngaydauthang = MyUtility.FirstDayOfMonth(thang), ngaycuoithang = MyUtility.LastDayOfMonth(thang);
-			var ngayBD_Bef2D = ngaydauthang.AddDays(-2d);
-			var ngayKT_Aft2D = ngaycuoithang.AddDays(2d);
+            //DateTime ngaydauthang = MyUtility.FirstDayOfMonth(thang), ngaycuoithang = MyUtility.LastDayOfMonth(thang);
+            DateTime ngayCuoiKy = new DateTime(thang.Year,thang.Month,25);
+            DateTime ngayDauKy = ngayCuoiKy.AddMonths(-1).AddDays(1);
+            DateTime ngaydauThang = new DateTime(thang.Year, thang.Month, 1);
+
+            var ngayBD_Bef2D = ngayDauKy.AddDays(-2d);
+			var ngayKT_Aft2D = ngayCuoiKy.AddDays(2d);
 
             #endregion
 
@@ -246,16 +250,16 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 						CongCongnhat += ngayCong.TongCong_4008;
 					}
 					// cập nhật số ngày công công nhật xuống csdl
-					int kq1 = SqlDataAccessHelper.ExecNoneQueryString(" update DSNVChiCongNhatThang set SoNgayCong = @SoNgayCong where UserEnrollNumber= @UserEnrollNumber and Thang=@Thang", new string[] { "@SoNgayCong", "@UserEnrollNumber", "@Thang" }, new object[] { CongCongnhat, macc, ngaydauthang });//info ko cần log
+					int kq1 = SqlDataAccessHelper.ExecNoneQueryString(" update DSNVChiCongNhatThang set SoNgayCong = @SoNgayCong where UserEnrollNumber= @UserEnrollNumber and Thang=@Thang", new string[] { "@SoNgayCong", "@UserEnrollNumber", "@Thang" }, new object[] { CongCongnhat, macc, ngaydauThang });//info ko cần log
 					if (kq1 == 0) {
 						MessageBox.Show(Resources.Text_CoLoi);
 					}
 				}
 				// xoá bỏ các kết công cũ của tháng (nếu có) để ghi kết công mới cho tháng
-				int kq = DAO.DelKetCongCa_Ngay(ngaydauthang, ngaycuoithang, (from nv in m_DSNV select nv.MaCC).ToList());
+				int kq = DAO.DelKetCongCa_Ngay(ngayDauKy, ngayCuoiKy, (from nv in m_DSNV select nv.MaCC).ToList());
 				//bool flagError = false;
 				foreach (var nv in m_DSNV) {
-					foreach (var ngayCong in nv.DSNgayCong.Where(item => item.Ngay >= ngaydauthang && item.Ngay <= ngaycuoithang)) {
+					foreach (var ngayCong in nv.DSNgayCong.Where(item => item.Ngay >= ngayDauKy && item.Ngay <= ngayCuoiKy)) {
 						foreach (var CIO in ngayCong.DSVaoRa) {
 							int kq1 = 0;
 							if (CIO.HaveINOUT < 0) {
@@ -335,7 +339,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 					}
 				}
 				// sau khi ghi kết công thì cập nhật tình trạng kết công (đã kết công), đồng thời ghi log đã kết công
-				DAO.UpdInsKetCongBoPhan(ngaydauthang, (from cPhongBan item in dsphongban select item).ToList());
+				DAO.UpdInsKetCongBoPhan(ngaydauThang, (from cPhongBan item in dsphongban select item).ToList());
 			} catch (Exception ex) //general try catch
 			{
 				lg.Error(string.Format("[{0}]_[{1}]\n", this.Name, System.Reflection.MethodBase.GetCurrentMethod().Name), ex);
@@ -356,10 +360,13 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 			try  //general try catch
 			{
 				List<WarningMessage> warningMessages = new List<WarningMessage>();
-				#region lấy thông tin từ csdl và khỏi tạo  nv
+                #region lấy thông tin từ csdl và khỏi tạo  nv
 
-				DateTime ngaydauthang = MyUtility.FirstDayOfMonth(dtpThang.Value), ngaycuoithang = MyUtility.LastDayOfMonth(dtpThang.Value);
-				var tableKetcongNgay = DAO.LayKetcongNgay(ngaydauthang, ngaycuoithang);
+                //DateTime ngaydauthang = MyUtility.FirstDayOfMonth(dtpThang.Value), ngaycuoithang = MyUtility.LastDayOfMonth(dtpThang.Value);
+                DateTime ngaycuoithang = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, 25);//v4.7
+                DateTime ngaydauthang = ngaycuoithang.AddMonths(-1).AddDays(1);//v4.7
+
+                var tableKetcongNgay = DAO.LayKetcongNgay(ngaydauthang, ngaycuoithang);
 				var tableKetcongCa = DAO.LayKetcongCa(ngaydauthang, ngaycuoithang);
 				var tableXPVang = DAO.LayTableXPVang(ngaydauthang, ngaycuoithang);
 				var tableNgayLe = DAO.DocNgayLe(ngaydauthang, ngaycuoithang);
@@ -368,7 +375,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 				var dsnv = new List<cUserInfo>();
 				XL.KhoiTaoDSNV_ChamCong(dsnv, (from p in dsphongban select p.ID).ToList(), dsphongban); // khởi tạo tất cả nhân viên tính công, bao gồm cả công nhật ngày(nv chính thức) và công nhật tháng
 
-				/*
+                /*
 							List<cPhongBan> dsphongban = new List<cPhongBan>();
 							// đưa về root node trước khi thực hiện
 							var root = treePhongBan.TopNode;
@@ -377,13 +384,15 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 							GetNode_DuocThaotac_CheckKetcong(root, dsphongban);
 				*/
 
-				#endregion
-				// xác định công chuẩn của tháng
-				var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang);
+                #endregion
+                // xác định công chuẩn của tháng
+                //var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang);
+                var temp = ngaycuoithang - ngaydauthang;
+                var congChuanThang = (float)temp.TotalDays + 1f - (float)XL.DemSoNgayNghiChunhat(ngaydauthang, ngaycuoithang, true, false); //v4.7
 
-				#region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
+                #region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
 
-				try {
+                try {
 					foreach (var nv in dsnv) {
 						nv.ThongKeThang = new ThongKeCong_PC();
 						nv.DSNgayCong = new List<cNgayCong>();
@@ -397,8 +406,11 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 						XL.LoadThongtinLamViecCongNhat(nv.MaCC, ref nv.NgayBDCongnhat, ref nv.NgayKTCongnhat, ref nv.LoaiCN, nv.DSNgayCong, tableDSNVChiCongnhatThang);
 					}
 
-					var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
-					var soNgayThu7 = XL.DemSoNgayNghiChunhat(ngaydauthang, false, true);//v 4.0.0.1
+//					var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
+//					var soNgayThu7 = XL.DemSoNgayNghiChunhat(ngaydauthang, false, true);//v 4.0.0.1
+                    var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, ngaycuoithang, true, false);//v4.7
+					var soNgayThu7 = XL.DemSoNgayNghiChunhat(ngaydauthang, ngaycuoithang, false, true);//v4.7
+
 					int soNgayChamCongx2 = 0, soNgayNghiAnhHuongCongx2 = 0;
 					foreach (var nv in dsnv) {
 						XL.ThongKeThang(ref nv.ThongKeThang, nv.DSNgayCong, nv.NgayBDCongnhat, nv.NgayKTCongnhat, nv.LoaiCN, out soNgayChamCongx2, out soNgayNghiAnhHuongCongx2);
@@ -482,18 +494,23 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 
 
 				using (var p = new ExcelPackage()) {
+                    var ngayCuoiKy = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, 25);//v4.7
+                    var ngayDauKyy = ngayCuoiKy.AddMonths(-1).AddDays(1);//v4.7
 					//2. xuat bb bang ket cong thang
 					#region ghi sheet bang ket cong thang trinh ky
 
 					p.Workbook.Worksheets.Add("BangKetCong");
 					var ws = p.Workbook.Worksheets["BangKetCong"];
 					ws.Name = "BangKetCong"; //Setting Sheet's name
-					XL.ExportSheetBangKetcongThang(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                    SetDefautFontForWorkSheet(ref ws);
+                    XL.ExportSheetBangKetcongThang(ws, ngayDauKyy, ngayCuoiKy,//MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
 												   dsnv, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
 					p.Workbook.Worksheets.Add("BangChiTietKetCong");
 					ws = p.Workbook.Worksheets["BangChiTietKetCong"];
 					ws.Name = "BangChiTietKetCong"; //Setting Sheet's name
-					XL.ExportSheetBangChiTietKetCong(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                    SetDefautFontForWorkSheet(ref ws);
+
+                    XL.ExportSheetBangChiTietKetCong(ws, ngayDauKyy, ngayCuoiKy,// MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
 												   dsnv, XL2.PC30, XL2.PC50, XL2.PCTCC3, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
 
                     #endregion
@@ -504,12 +521,14 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
                         p.Workbook.Worksheets.Add("BangKetCongCtyNhanKiet");
                         ws = p.Workbook.Worksheets["BangKetCongCtyNhanKiet"];
                         ws.Name = "BangKetCongCtyNhanKiet"; //Setting Sheet's name
-                        XL.ExportSheetBangKetcongThangNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                        SetDefautFontForWorkSheet(ref ws);
+                        XL.ExportSheetBangKetcongThangNhanKiet(ws, ngayDauKyy, ngayCuoiKy,//MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
                                                        dsnv, tenNVLapBieu, tenTrgBP, XL2.PC30, XL2.PC50, XL2.PCTCC3NK, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
                         p.Workbook.Worksheets.Add("BangChiTietKetCongCtyNhanKiet");
                         ws = p.Workbook.Worksheets["BangChiTietKetCongCtyNhanKiet"];
                         ws.Name = "BangChiTietKetCongCtyNhanKiet"; //Setting Sheet's name
-                        XL.ExportSheetBangChiTietKetCongNhanKiet(ws, MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
+                        SetDefautFontForWorkSheet(ref ws);
+                        XL.ExportSheetBangChiTietKetCongNhanKiet(ws, ngayDauKyy, ngayCuoiKy,//MyUtility.FirstDayOfMonth(dtpThang.Value), MyUtility.LastDayOfMonth(dtpThang.Value),
                                                        dsnv, XL2.PC30, XL2.PC50, XL2.PCTCC3NK, XL2.PC100, XL2.PC160, XL2.PC200, XL2.PC290, XL2.PCTCC3NK); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
                     }
 
@@ -547,7 +566,14 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 			}
 		}
 
-		private void GetNode_DuocThaotac_CheckKetcong(TreeNode root, List<cPhongBan> dsphongban) {
+        private void SetDefautFontForWorkSheet(ref ExcelWorksheet ws)
+        {
+            ws.Cells.Style.Font.Size = 12; //Default font size for whole sheet
+            ws.Cells.Style.Font.Name = "Times News Roman"; //Default Font name for whole sheet
+            ws.Workbook.CalcMode = ExcelCalcMode.Automatic;
+        }
+
+        private void GetNode_DuocThaotac_CheckKetcong(TreeNode root, List<cPhongBan> dsphongban) {
 			if (root == null) return;
 			var phong = (cPhongBan)root.Tag;
 			if (phong.ChoPhep && root.Checked) dsphongban.Add(phong);

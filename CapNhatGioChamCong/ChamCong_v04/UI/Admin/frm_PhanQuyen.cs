@@ -246,15 +246,17 @@ namespace ChamCong_v04.UI.Admin {
 
 			//duyệt từng chức năng và update lại cho phép hay ko cho phép chức năng đó
 			List<cChucNang> lstchucnang = checkQuyenThaotac.DataSource as List<cChucNang>;
-			for (int i = 0; i < checkQuyenThaotac.Items.Count; i++) {
+            int kq = 0;
+            for (int i = 0; i < checkQuyenThaotac.Items.Count; i++) {
 				cChucNang item = checkQuyenThaotac.Items[i] as cChucNang;
 				bool check = item.IsYes;
 				int menuid = item.ID;
-				SqlDataAccessHelper.ExecNoneQueryString(
+				kq = SqlDataAccessHelper.ExecNoneQueryString(
 					@" update MenuPrivilege set IsYes = @IsYes where UserID = @UserID and MenuID = @MenuID
 						IF @@ROWCOUNT=0 INSERT INTO MenuPrivilege (UserID,MenuID,IsYes) VALUES (@UserID,@MenuID,@IsYes) "
 					, new string[] { "@UserID", "@IsYes", "@MenuID" }
 					, new object[] { userid, check, menuid });
+                if (kq == 0) { ACMessageBox.Show("Cập nhật phân quyền thất bại.", "Thông báo", 2000); }
 			}
 
 			ACMessageBox.Show("Cập nhật phân quyền thành công.", "Thông báo", 2000);

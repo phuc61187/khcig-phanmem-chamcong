@@ -106,25 +106,25 @@ CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="numFormatMoney30" Type="System.String" Scope="User">
-      <Value Profile="(Default)">###,###,###,###,###,##0.000;-###,###,###,###,###,##0.000;-?;</Value>
+      <Value Profile="(Default)">#,##0.000;-#,##0.000;-?;@</Value>
     </Setting>
     <Setting Name="numFormatFloat20" Type="System.String" Scope="User">
-      <Value Profile="(Default)">###,###,##0.00;-###,###,##0.00;-?;</Value>
+      <Value Profile="(Default)">#,##0.00;-#,##0.00;-?;@</Value>
     </Setting>
     <Setting Name="numFormatFloat30" Type="System.String" Scope="User">
-      <Value Profile="(Default)">###,###,##0.000;-###,###,##0.000;-?;</Value>
+      <Value Profile="(Default)">#,##0.000;-#,##0.000;-?;@</Value>
     </Setting>
     <Setting Name="numFormatFloat10" Type="System.String" Scope="User">
-      <Value Profile="(Default)">###,###,##0.0;-###,###,##0.0;-?;</Value>
+      <Value Profile="(Default)">#,##0.0;-#,##0.0;-?;@</Value>
     </Setting>
     <Setting Name="numFormatFloat101F" Type="System.String" Scope="User">
-      <Value Profile="(Default)">###,###,##0.0#;-###,###,##0.0#;-?;</Value>
+      <Value Profile="(Default)">#,##0.0#;-#,##0.0#;-?;@</Value>
     </Setting>
     <Setting Name="numFormatMoney" Type="System.String" Scope="User">
-      <Value Profile="(Default)">###,###,###,###,###,##0;-###,###,###,###,###,##0;-?;</Value>
+      <Value Profile="(Default)">#,##0;-#,##0;-?;@</Value>
     </Setting>
     <Setting Name="numFormatInt" Type="System.String" Scope="User">
-      <Value Profile="(Default)">###,###,###,###,##0;-###,###,###,###,##0;-?;</Value>
+      <Value Profile="(Default)">#,##0;-#,##0;-?;@</Value>
     </Setting>
     <Setting Name="testDateTimeDiemDanh" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)">01/06/2014 13:00:00</Value>

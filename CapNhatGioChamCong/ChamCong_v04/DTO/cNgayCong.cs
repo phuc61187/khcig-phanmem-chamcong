@@ -67,7 +67,7 @@ namespace ChamCong_v04.DTO {
 			if (PhuCaps._150_LVNN_Dem > 0f) temp += ", (x2đ)";
 			if (PhuCaps._200_LeTet_Ngay > 0f) temp += ", (x3)";
 			if (PhuCaps._250_LeTet_Dem > 0f) temp += ", (x3đ)";
-			if (PhuCaps._Cus > 0f) temp += ", (xYC)";
+			if (PhuCaps._Cus > 0f) temp += ", (x)";
 			if (PhuCaps._50_TC > 0f) temp += ", (tc)";
 			if (PhuCaps._100_TCC3 > 0f) temp += ", (t3)";
 		}
@@ -82,7 +82,7 @@ namespace ChamCong_v04.DTO {
 				if (PhuCaps._150_LVNN_Dem > 0f) temp += "; (x2đ)";
 				if (PhuCaps._200_LeTet_Ngay > 0f) temp += "; (x3)";
 				if (PhuCaps._250_LeTet_Dem > 0f) temp += "; (x3đ)";
-				if (PhuCaps._Cus > 0f) temp += "; (xYC)";
+				if (PhuCaps._Cus > 0f) temp += "; (x)";
 			}
 			else if (TinhPC50) {
 				if (PhuCaps._50_TC > 0f) temp += "; (tc)";
@@ -127,7 +127,7 @@ namespace ChamCong_v04.DTO {
 				if (PhuCaps._150_LVNN_Dem > 0f) kq += "; (x2đ)";
 				if (PhuCaps._200_LeTet_Ngay > 0f) kq += "; (x3)";
 				if (PhuCaps._250_LeTet_Dem > 0f) kq += "; (x3đ)";
-				if (PhuCaps._Cus > 0f) kq += "; (xYC)";
+				if (PhuCaps._Cus > 0f) kq += "; (x)";
 			}
 			else if (TinhPC50) {
 				if (PhuCaps._50_TC > 0f) kq += "; (tc)";
@@ -153,7 +153,7 @@ namespace ChamCong_v04.DTO {
 				if (PhuCaps._150_LVNN_Dem > 0f) kq += "; (x2đ)";
 				if (PhuCaps._200_LeTet_Ngay > 0f) kq += "; (x3)";
 				if (PhuCaps._250_LeTet_Dem > 0f) kq += "; (x3đ)";
-				if (PhuCaps._Cus > 0f) kq += "; (xYC)";
+				if (PhuCaps._Cus > 0f) kq += "; (x)";
 			}
 			else if (TinhPC50) {
 				if (PhuCaps._50_TC > 0f) kq += "; (tc)";

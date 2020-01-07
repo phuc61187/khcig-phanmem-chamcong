@@ -18,10 +18,22 @@ namespace ChamCong_v04.BUS {
 			}
 			return kq;
 		}
+        public static int DemSoNgayNghiChunhat(DateTime ngayDauKy, DateTime ngayCuoiKy, bool demCN, bool demT7) //v4.7
+        {
+            var ngayBD = ngayDauKy;
+            var ngayKT = ngayCuoiKy;
+            int kq = 0;
+            for (DateTime ngaydem = ngayBD; ngaydem.Date <= ngayKT.Date; ngaydem = ngaydem.AddDays(1d))
+            {
+                if (demT7 && ngaydem.DayOfWeek == DayOfWeek.Saturday) kq++;
+                if (demCN && ngaydem.DayOfWeek == DayOfWeek.Sunday) kq++;
+            }
+            return kq;
+        }
 
 
 
-		public static void TinhSPLamRa_CongVaPC_B102(float HSLCV, float congthang, float PCapThang, float phep, float H_CT_PT, float PTDT, float Le,
+        public static void TinhSPLamRa_CongVaPC_B102(float HSLCV, float congthang, float PCapThang, float phep, float H_CT_PT, float PTDT, float Le,
 			out double SP_LamRa_TheoCong, out double SP_LamRa_TheoCheDoNghi, out double SP_LamRa_TheoPCap) { //DANGLAM PD
 			SP_LamRa_TheoCong = HSLCV * congthang;// sản phẩm làm ra theo công// ko có chờ việc
 			SP_LamRa_TheoCheDoNghi = HSLCV * (phep + H_CT_PT + Le); // công chờ việc ko có vì chờ việc ko làm ra sản phẩm

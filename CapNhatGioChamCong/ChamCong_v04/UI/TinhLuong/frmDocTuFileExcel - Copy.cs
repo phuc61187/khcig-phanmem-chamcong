@@ -73,7 +73,8 @@ namespace ChamCong_v04.UI.TinhLuong {
             }
             catch (Exception ex)
             {
-                Console.WriteLine("");
+                throw ex;
+                //Console.WriteLine("");
             }
 		}
 

@@ -254,8 +254,8 @@ namespace ChamCong_v04.UI.ChamCong {
 			treePhongBan.SelectedNode = treePhongBan.TopNode;
 
 			//vô hiệu hoá các nút chức năng ko có phân quyền
-			btnThemXoaSuaHangLoat.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC);
-			btnThemXoaSuaDonGian.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC);
+			//btnThemXoaSuaHangLoat.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC);
+			//btnThemXoaSuaDonGian.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC);
 			btnKetCongThang.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.KetCongThang);
 			btnThemKBVang.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.KhaiBaoVang);
 			btnXoaKBVang.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.KhaiBaoVang);

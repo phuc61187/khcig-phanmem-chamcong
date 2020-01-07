@@ -69,9 +69,14 @@ namespace ChamCong_v04.UI.ChamCong {
 			// 
 			// .triển khai load datagrid, trong khi load datagrid cũng đồng thời triển khai load dataSource cho các combobox
 			loadGrid();
-		}
+            btnThem.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC);
+            btnSuaa.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.SuaGioCC);
+            btnXoaa.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XoaGioCC);
+            btnChuyenDoi.Enabled = XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ChuyenDoiVaoRa);
 
-		public void loadGrid() {
+        }
+
+        public void loadGrid() {
 			m_Bang_ChiTiet.Rows.Clear();
 			//load datagrid từ dataTable
 			// kiểm  tra nếu ngày trước bị edited hoặc ngày sau bị edited thì load các giờ của ngày hôm trước, ngày hôm sau
@@ -218,7 +223,9 @@ namespace ChamCong_v04.UI.ChamCong {
 				tbGioCu_Xoaa.Text = tbGioCuu_ChuyenDoi.Text = ((check.MachineNo % 2 == 1) ? "Vào" : "Ra") + " " + check.Time.ToString("H:mm ddd d/M", Application.CurrentCulture);
 				cbLyDo_Xoaa.SelectedIndex = 0;
 				tbGhiChu_Xoaa.Text = string.Empty;
-				MyUtility.EnableDisableControl(true, btnChuyenDoi, btnXoaa);
+				MyUtility.EnableDisableControl(XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ChuyenDoiVaoRa), btnChuyenDoi);
+				MyUtility.EnableDisableControl(XL2.QuyenThaoTac.Any(o => o == (int)Quyen.XoaGioCC), btnXoaa);
+
 			}
 		}
 
@@ -240,12 +247,12 @@ namespace ChamCong_v04.UI.ChamCong {
 				tbGhiChu_Suaa.Text = string.Empty;
 
 				//tồn tại giờ cũ nên cho phép sửa
-				MyUtility.EnableDisableControl(true, btnChonCa_Suaa, btnSuaa);
+				MyUtility.EnableDisableControl(XL2.QuyenThaoTac.Any(o => o == (int)Quyen.SuaGioCC), btnChonCa_Suaa, btnSuaa);
 			}
 		}
 
 		private void LoadGroup_Them(DateTime ngay, cCheckInOut CIO) {
-			MyUtility.EnableDisableControl(true, btnChonCa_Them, btnThem);//vì thêm giờ ko cần xác định giờ cũ, chỉ insert data nên mặc định cho phép enable
+			MyUtility.EnableDisableControl(XL2.QuyenThaoTac.Any(o => o == (int)Quyen.ThemXoaSuaGioCC), btnChonCa_Them, btnThem);//vì thêm giờ ko cần xác định giờ cũ, chỉ insert data nên mặc định cho phép enable
 			MyUtility.ClearControlText(tbCa_Them, tbGhichu_Them);
 			tbCa_Them.Tag = (CIO == null || CIO.HaveINOUT < 0) ? null : CIO.ThuocCa;
 			tbCa_Them.Text = (CIO == null || CIO.HaveINOUT < 0) ? string.Empty : CIO.ThuocCa.Code;

@@ -431,7 +431,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("###,###,###,###,###,##0.000;-###,###,###,###,###,##0.000;-?;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#,##0.000;-#,##0.000;-?;@")]
         public string numFormatMoney30 {
             get {
                 return ((string)(this["numFormatMoney30"]));
@@ -443,7 +443,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("###,###,##0.00;-###,###,##0.00;-?;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#,##0.00;-#,##0.00;-?;@")]
         public string numFormatFloat20 {
             get {
                 return ((string)(this["numFormatFloat20"]));
@@ -455,7 +455,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("###,###,##0.000;-###,###,##0.000;-?;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#,##0.000;-#,##0.000;-?;@")]
         public string numFormatFloat30 {
             get {
                 return ((string)(this["numFormatFloat30"]));
@@ -467,7 +467,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("###,###,##0.0;-###,###,##0.0;-?;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#,##0.0;-#,##0.0;-?;@")]
         public string numFormatFloat10 {
             get {
                 return ((string)(this["numFormatFloat10"]));
@@ -479,7 +479,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("###,###,##0.0#;-###,###,##0.0#;-?;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#,##0.0#;-#,##0.0#;-?;@")]
         public string numFormatFloat101F {
             get {
                 return ((string)(this["numFormatFloat101F"]));
@@ -491,7 +491,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("###,###,###,###,###,##0;-###,###,###,###,###,##0;-?;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#,##0;-#,##0;-?;@")]
         public string numFormatMoney {
             get {
                 return ((string)(this["numFormatMoney"]));
@@ -503,7 +503,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("###,###,###,###,##0;-###,###,###,###,##0;-?;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#,##0;-#,##0;-?;@")]
         public string numFormatInt {
             get {
                 return ((string)(this["numFormatInt"]));

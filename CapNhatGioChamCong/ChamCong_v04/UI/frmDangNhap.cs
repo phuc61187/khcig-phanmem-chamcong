@@ -62,7 +62,11 @@ namespace ChamCong_v04.UI {
 				frm.Show();
 			}
 			else {
-
+                //test region
+                //demoForm frm1 = new demoForm();
+                //frm1.ShowDialog();
+                //Close();
+                //
 				XL.SaveSetting(lastAccLogIn: currUserAccount);
 				XL.ChuanBiDSLichTrinhVaCa();
 				frm_main frm = new frm_main();

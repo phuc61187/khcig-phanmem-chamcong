@@ -108,11 +108,13 @@ namespace ChamCong_v04.UI.ChamCong {
             var congKOtinhLuong = 0f;
 
             // xác định công chuẩn của tháng
-            var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
-			var congChuanThang = DateTime.DaysInMonth(ngaydauthang.Year, ngaydauthang.Month) - soNgayChuNhat;
+            //var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
+			//var congChuanThang = DateTime.DaysInMonth(ngaydauthang.Year, ngaydauthang.Month) - soNgayChuNhat;
+            var congChuanThang = (float)(ngaycuoithang - ngaydauthang).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngaydauthang, ngaycuoithang, true, false); //v4.7
 
-			#region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
-			List<cUserInfo> dsnv9 = new List<cUserInfo>();
+
+            #region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
+            List<cUserInfo> dsnv9 = new List<cUserInfo>();
 			foreach (var nv in m_dsnv) { // duyệt qua các nhân viên được check
 				cUserInfo nv9 = new cUserInfo {
 					MaCC = nv.MaCC, MaNV = nv.MaNV, TenNV = nv.TenNV, ChucVu = nv.ChucVu, IDChucVu = nv.IDChucVu,
@@ -129,7 +131,7 @@ namespace ChamCong_v04.UI.ChamCong {
 				XL.LoadThongtinLamViecCongNhat(nv9.MaCC, ref nv9.NgayBDCongnhat, ref nv9.NgayKTCongnhat, ref nv9.LoaiCN, nv9.DSNgayCong, tableDSNVChiCongnhatThang);
 				dsnv9.Add(nv9);
 			}
-			int temp = 0, temp2=0;
+			//int temp = 0, temp2=0;
 			foreach (var nv9 in dsnv9) {
                 #region collapse
                 //XL.ThongKeThang(ref nv9.ThongKeThang, nv9.DSNgayCong, nv9.NgayBDCongnhat, nv9.NgayKTCongnhat, nv9.LoaiCN, out temp, out temp2);

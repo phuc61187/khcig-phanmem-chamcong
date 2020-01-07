@@ -111,8 +111,11 @@ namespace ChamCong_v04.BUS {
 			List<cChucNang> lstChucNang = new List<cChucNang>();
 			//lstChucNang.Add(new cChucNang() { ID = 10000, MoTa = "Kết nối CSDL" });
 			lstChucNang.Add(new cChucNang { ID = 10011, MoTa = "Xem Công" });
-			lstChucNang.Add(new cChucNang { ID = 10012, MoTa = "Thêm xoá sửa giờ chấm công"  });
-			lstChucNang.Add(new cChucNang { ID = 10033, MoTa = "Xác nhận ca và làm thêm"  });
+			lstChucNang.Add(new cChucNang { ID = 10012, MoTa = "Thêm giờ chấm công"  });
+            lstChucNang.Add(new cChucNang { ID = 10122, MoTa = "Sửa giờ chấm công" });
+            lstChucNang.Add(new cChucNang { ID = 10123, MoTa = "Xóa giờ chấm công" });
+            lstChucNang.Add(new cChucNang { ID = 10124, MoTa = "Chuyển đổi giờ chấm công" });
+            lstChucNang.Add(new cChucNang { ID = 10033, MoTa = "Xác nhận ca và làm thêm"  });
 			lstChucNang.Add(new cChucNang { ID = 10014, MoTa = "Xác nhận phụ cấp tăng cường"  });
 			lstChucNang.Add(new cChucNang { ID = 10015, MoTa = "Xác nhận phụ cấp làm việc ngày nghỉ, trực lễ, tết"  });
 			lstChucNang.Add(new cChucNang { ID = 10016, MoTa = "Kết công tháng"  });

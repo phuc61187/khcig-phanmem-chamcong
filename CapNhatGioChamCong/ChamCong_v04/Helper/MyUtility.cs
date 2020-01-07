@@ -16,7 +16,7 @@ namespace ChamCong_v04.Helper {
 	#region ENUM
 	public enum CC {
 		STT = 6,
-		ten = 24,
+		ten = 26,
 		manv = 6,
 		kyhieuchamcong = 8,
 		congtrongngay = 5,
@@ -154,8 +154,11 @@ namespace ChamCong_v04.Helper {
 
 	public enum Quyen {
 			XemCong	= 10011,// MoTa = "Xem Công" });
-			ThemXoaSuaGioCC= 10012,// MoTa = "Thêm xoá sửa giờ chấm công" });
-			XNCa_LamThem= 10033,// MoTa = "Xác nhận ca và làm thêm" });
+			ThemXoaSuaGioCC= 10012,// MoTa = "Thêm xoá sửa giờ chấm công"
+            SuaGioCC = 10122, //MoTa = "Sửa giờ chấm công"
+            XoaGioCC = 10123, //MoTa = "Xóa giờ chấm công"
+            ChuyenDoiVaoRa = 10124, //MoTa = "Chuyển đổi giờ chấm công" 
+            XNCa_LamThem= 10033,// MoTa = "Xác nhận ca và làm thêm" });
 			XN_PCTC= 10014,// MoTa = "Xác nhận phụ cấp tăng cường" });
 			XN_PCDB= 10015,// MoTa = "Xác nhận phụ cấp làm việc ngày nghỉ, trực lễ, tết" });
 			KetCongThang= 10016,// MoTa = "Kết công tháng" });

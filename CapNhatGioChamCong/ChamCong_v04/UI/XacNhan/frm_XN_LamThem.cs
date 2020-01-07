@@ -337,8 +337,8 @@ namespace ChamCong_v04.UI.XacNhan {
 			var choPhepTinhPc50 = checkXNTinhPC50.Checked;
 			var bVaoTreLaCV = checkXNVaoTreTinhCV.Checked;//ver 4.0.0.4	
 			var bRaaSomLaCV = checkXNRaaSomTinhCV.Checked;//ver 4.0.0.4	
-			var fCongPhepTreCongDon = 0f;
-			var fCongPhepSomCongDon = 0f;
+			//var fCongPhepTreCongDon = 0f;
+			//var fCongPhepSomCongDon = 0f;
 
 			var lydo = (cbXNLyDo.SelectedItem != null) ? cbXNLyDo.SelectedItem.ToString() : cbXNLyDo.Text;
 			var ghichu = tbXNGhiChu.Text;
