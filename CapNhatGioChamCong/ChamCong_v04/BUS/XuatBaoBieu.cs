@@ -575,7 +575,58 @@ namespace ChamCong_v04.BUS {
 
 		}
 
-		public static void EXP_group_LuongNV(ExcelWorksheet ws, ref int stt, ref int top, ref int left, int MucLuongToiThieuND205, int MucLuongToiThieu_TT17MoiNhat, int MucLuongTT172135, int DinhMucComTrua,
+        internal static void TinhNgayCNBu(DataTable tableNgayLeThangTruoc, DataTable tableNgayLe, DateTime ngaydauthang, DateTime ngaycuoithang, out int truNgayCNTrungLe, out int ngayCNnghiBu)
+        {
+            ngayCNnghiBu = 0;
+            truNgayCNTrungLe = 0;
+            if (tableNgayLe.Rows.Count == 0) truNgayCNTrungLe = 0;
+            else
+            {
+                var dsNgayLe = (from DataRow row in tableNgayLe.Select(string.Empty, "HDate ASC")
+                                let ngayle = (DateTime)row["HDate"]
+                                select ngayle).ToList();
+                for(DateTime temp = ngaycuoithang; temp > ngaydauthang; temp = temp.AddDays(-1))
+                {
+                    var found = false;
+                    for (int i=0; i< dsNgayLe.Count; i++)
+                        if (temp == dsNgayLe[i]) found = true;
+                    if (found == true)
+                    {
+                        if (temp.DayOfWeek == DayOfWeek.Sunday)
+                            truNgayCNTrungLe = 1;
+                    }
+                    else break;                    
+                }
+            }
+            if (tableNgayLeThangTruoc.Rows.Count == 0) ngayCNnghiBu = 0;
+            else
+            {
+                var dsNgayLe = (from DataRow row in tableNgayLeThangTruoc.Select(string.Empty, "HDate ASC")
+                                let ngayle = (DateTime)row["HDate"]
+                                select ngayle).ToList();
+                var ngaycuoithangTruoc = ngaydauthang.AddDays(-1);
+                var ngaydauthangTruoc = ngaycuoithangTruoc.AddMonths(-1);
+                var truNgayCNTrungLe2 = 0;
+                for (DateTime temp = ngaycuoithangTruoc; temp > ngaydauthangTruoc; temp = temp.AddDays(-1))
+                {
+                    var found = false;
+                    for (int i = 0; i < dsNgayLe.Count; i++)
+                        if (temp == dsNgayLe[i]) found = true;
+                    if (found == true)
+                    {
+                        if (temp.DayOfWeek == DayOfWeek.Sunday)
+                            truNgayCNTrungLe2 = 1;
+                    }
+                    else break;
+                }
+                if (truNgayCNTrungLe2 == 1)
+                {
+                    ngayCNnghiBu = -1;
+                }
+            }
+        }
+
+        public static void EXP_group_LuongNV(ExcelWorksheet ws, ref int stt, ref int top, ref int left, int MucLuongToiThieuND205, int MucLuongToiThieu_TT17MoiNhat, int MucLuongTT172135, int DinhMucComTrua,
             List<cUserInfo> dsnv, cPhongBan cPhongBan, ref SUMLUONG sumluong) {
 			// giữ lại vị trí ô để tính tổng
 			var ir = top;
@@ -990,9 +1041,9 @@ namespace ChamCong_v04.BUS {
             //write số công chuẫn ở trên
             //var socongchuan = DateTime.DaysInMonth(ngaybd.Year, ngaybd.Month) - DemSoNgayNghiChunhat(ngaybd, true, false);
             var temp1 = ngaykt - ngaybd;
-            var socongchuan = (float)temp1.TotalDays + 1f - (float)XL.DemSoNgayNghiChunhat(ngaybd, ngaykt, true, false); //v4.7
+            //var socongchuan = (float)temp1.TotalDays + 1f - (float)XL.DemSoNgayNghiChunhat(ngaybd, ngaykt, true, false); //v4.7
 
-            FormatCell_T(ws, ref ir, ref ic, plusCol:0, colWidth: (int)CC.tongcong, value: socongchuan);// không tăng column
+            FormatCell_T(ws, ref ir, ref ic, plusCol:0, colWidth: (int)CC.tongcong, value: "");// không tăng column
             //irtemp = ir + 1; //dòng dưới của dòng Ngày - Công chuẩn
 			FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.tongcong, value: "Tổng công", plusCol: 1);
 
@@ -1184,7 +1235,7 @@ namespace ChamCong_v04.BUS {
             //var socongchuan = DateTime.DaysInMonth(ngaybd.Year, ngaybd.Month) - DemSoNgayNghiChunhat(ngaybd, true, false);
             var socongchuan = (float)(ngaykt - ngaybd).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngaybd, ngaykt, true, false); //v4.7
 
-            FormatCell_T(ws, ref ir, ref ic, plusCol: 0, colWidth: (int)CC.tongcong, value: socongchuan);// không tăng column
+            FormatCell_T(ws, ref ir, ref ic, plusCol: 0, colWidth: (int)CC.tongcong, value: "");// không tăng column
                                                                                                          //irtemp = ir + 1; //dòng dưới của dòng Ngày - Công chuẩn
             FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.tongcong, value: "Tổng công", plusCol: 1);
 
@@ -1428,9 +1479,9 @@ namespace ChamCong_v04.BUS {
             else {
                 icStartSection = ic;
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Cong_Congnhat,2)); //nv.ThongKeThang.Cong);
-				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.H_CT_PT);
+				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.H_CT_PT, 2)); //nv.ThongKeThang.H_CT_PT);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.Le);
-				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.Phep);
+				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Phep, 2)); //nv.ThongKeThang.Phep);
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //nv.ThongKeThang.CongCV);
                 icEndSection = ic - 1;
 				XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, congthuc: string.Format("SUM({0})", ws.Cells[ir, icStartSection, ir, icEndSection].Address)); //Tổng công
@@ -1536,7 +1587,7 @@ namespace ChamCong_v04.BUS {
             int icStartSection = 0, icEndSection;
             icStartSection = ic; 
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Cong, 2));
-            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: 0f); //Lễ mặc định điền tay
+            XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Le, 2));
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.Phep, 2));
             XL.FormatCell_N(ws, ref ir, ref ic, plusCol: 1, value: Math.Round(nv.ThongKeThang.CongCV, 2));
             icEndSection = ic - 1;
@@ -1735,9 +1786,9 @@ namespace ChamCong_v04.BUS {
 			XL.FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.tongcong, value: "TC");
             //write số công chuẫn ở trên
             //var socongchuan = DateTime.DaysInMonth(ngaybd.Year, ngaybd.Month) - XL.DemSoNgayNghiChunhat(ngaybd, true, false);
-            var socongchuan = (float)(ngaykt - ngaybd).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngaybd, ngaykt, true, false); //v4.7
+            //var socongchuan = (float)(ngaykt - ngaybd).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngaybd, ngaykt, true, false); //v4.7
 
-            XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: socongchuan, plusCol: 1);
+            XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: "", plusCol: 1);
 
 			icStartSection = ic;
 			XL.FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.ca130, value: string.Format("Ca 3", p[0]), plusCol: 1);
@@ -1919,9 +1970,9 @@ namespace ChamCong_v04.BUS {
 
             //write số công chuẫn ở trên
             //var socongchuan = DateTime.DaysInMonth(ngaybd.Year, ngaybd.Month) - XL.DemSoNgayNghiChunhat(ngaybd, true, false);
-            var socongchuan = (float)(ngaykt - ngaybd).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngaybd, ngaykt, true, false); //v4.7
+            //var socongchuan = (float)(ngaykt - ngaybd).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngaybd, ngaykt, true, false); //v4.7
 
-            XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: socongchuan, plusCol: 1);
+            XL.FormatCell_T(ws, ref ir, ref ic, colWidth: (int)CC.cong, value: "", plusCol: 1);//công chuẩn ẩn
 
             icStartSection = ic;
             XL.FormatCell_T(ws, ref irBelow, ref ic, colWidth: (int)CC.ca130, value: string.Format("Ca 3", p[0]), plusCol: 1);

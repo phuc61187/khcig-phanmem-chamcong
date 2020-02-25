@@ -33,7 +33,7 @@
       <Value Profile="(Default)">1150000</Value>
     </Setting>
     <Setting Name="LastBoiDuongCa3" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1500</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="LastTrichQuyLuong" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">80</Value>
@@ -193,7 +193,7 @@ CÔNG NHÂN CÔNG NHẬT, THỜI VỤ (chuyển khoản) THÁNG {0}</Value>
       <Value Profile="(Default)">(CNS)</Value>
     </Setting>
     <Setting Name="MucLuongTT172135" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">2135000</Value>
+      <Value Profile="(Default)">2516000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

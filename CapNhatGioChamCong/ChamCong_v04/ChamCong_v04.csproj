@@ -89,9 +89,9 @@
     <Reference Include="EPPlus">
       <HintPath>..\..\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -185,6 +185,12 @@
     </Compile>
     <Compile Include="UI\ChamCong\frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TinhLuong\frm5NhapNgayCNTrungLe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TinhLuong\frm5NhapNgayCNTrungLe.Designer.cs">
+      <DependentUpon>frm5NhapNgayCNTrungLe.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\TinhLuong\frmDocTuFileExcel - Copy.cs">
       <SubType>Form</SubType>
@@ -461,6 +467,9 @@
     <EmbeddedResource Include="UI\ChamCong\frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\TinhLuong\frm5NhapNgayCNTrungLe.resx">
+      <DependentUpon>frm5NhapNgayCNTrungLe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\TinhLuong\frmDocTuFileExcel - Copy.resx">
       <DependentUpon>frmDocTuFileExcel - Copy.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -588,6 +597,7 @@
     <Compile Include="BUS\XLChamCong_v4.0.0.5.cs" />
     <Compile Include="DAL\DAO_XuLyChamCong_v4.0.0.5.cs" />
     <None Include="ChamCong_v04_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

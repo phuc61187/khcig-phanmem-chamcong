@@ -94,13 +94,17 @@ namespace ChamCong_v04.UI.ChamCong {
 			#region lấy thông tin từ csdl và khỏi tạo  nv
 
 			int[] listMaCC = (from nv in m_dsnv select nv.MaCC).ToArray();
-			var ngaydauthang = MyUtility.FirstDayOfMonth(dtpThang.Value);
-			var ngaycuoithang = MyUtility.LastDayOfMonth(dtpThang.Value);
-			var tableKetcongNgay = DAO.LayKetcongNgay(ngaydauthang, ngaycuoithang, DSNV: listMaCC);
-			var tableKetcongCa = DAO.LayKetcongCa(ngaydauthang, ngaycuoithang, DSNV: listMaCC);
-			var tableXPVang = DAO.LayTableXPVang(ngaydauthang, ngaycuoithang, listMaCC);
-			var tableNgayLe = DAO.DocNgayLe(ngaydauthang, ngaycuoithang);
-			var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngaydauthang, DSNV: listMaCC);
+			//var ngaydauthang = MyUtility.FirstDayOfMonth(dtpThang.Value);
+			//var ngaycuoithang = MyUtility.LastDayOfMonth(dtpThang.Value);
+            DateTime ngayCuoiKy = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, 25);
+            DateTime ngayDauKy = ngayCuoiKy.AddMonths(-1).AddDays(1);
+            DateTime ngaydauThang = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, 1);
+
+            var tableKetcongNgay = DAO.LayKetcongNgay(ngayDauKy, ngayCuoiKy, DSNV: listMaCC);
+			var tableKetcongCa = DAO.LayKetcongCa(ngayDauKy, ngayCuoiKy, DSNV: listMaCC);
+			var tableXPVang = DAO.LayTableXPVang(ngayDauKy, ngayCuoiKy, listMaCC);
+			var tableNgayLe = DAO.DocNgayLe(ngayDauKy, ngayCuoiKy);
+			var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngayDauKy, DSNV: listMaCC);
 
             #endregion
             var tongCongKoTinhCV = 0f;
@@ -110,7 +114,7 @@ namespace ChamCong_v04.UI.ChamCong {
             // xác định công chuẩn của tháng
             //var soNgayChuNhat = XL.DemSoNgayNghiChunhat(ngaydauthang, true, false);
 			//var congChuanThang = DateTime.DaysInMonth(ngaydauthang.Year, ngaydauthang.Month) - soNgayChuNhat;
-            var congChuanThang = (float)(ngaycuoithang - ngaydauthang).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngaydauthang, ngaycuoithang, true, false); //v4.7
+            var congChuanThang = (float)(ngayCuoiKy - ngayDauKy).TotalDays + 1f - XL.DemSoNgayNghiChunhat(ngayDauKy, ngayCuoiKy, true, false); //v4.7
 
 
             #region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
@@ -121,7 +125,7 @@ namespace ChamCong_v04.UI.ChamCong {
 					HeSo = nv.HeSo, PhongBan = nv.PhongBan, IsUserEnabled = nv.IsUserEnabled, LichTrinhLV = nv.LichTrinhLV,
 					ThongKeThang = new ThongKeCong_PC(), DSNgayCong = new List<cNgayCong>(), DSVang = new List<cLoaiVang>()
 				};
-				for (DateTime indexNgay = ngaydauthang; indexNgay <= ngaycuoithang; indexNgay = indexNgay.AddDays(1d)) {
+				for (DateTime indexNgay = ngayDauKy; indexNgay <= ngayCuoiKy; indexNgay = indexNgay.AddDays(1d)) {
 					XL.LoadNgayCong(nv9.MaCC, nv9.DSNgayCong, indexNgay, tableKetcongNgay, tableKetcongCa);
 				}
 

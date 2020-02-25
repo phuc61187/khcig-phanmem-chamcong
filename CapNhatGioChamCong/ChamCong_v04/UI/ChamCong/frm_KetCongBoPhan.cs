@@ -370,6 +370,7 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 				var tableKetcongCa = DAO.LayKetcongCa(ngaydauthang, ngaycuoithang);
 				var tableXPVang = DAO.LayTableXPVang(ngaydauthang, ngaycuoithang);
 				var tableNgayLe = DAO.DocNgayLe(ngaydauthang, ngaycuoithang);
+                var tableNgayLeThangTruoc = DAO.DocNgayLe(ngaydauthang.AddDays(-7), ngaycuoithang);
 				var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngaydauthang);
 
 				var dsnv = new List<cUserInfo>();
@@ -388,7 +389,9 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
                 // xác định công chuẩn của tháng
                 //var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang);
                 var temp = ngaycuoithang - ngaydauthang;
-                var congChuanThang = (float)temp.TotalDays + 1f - (float)XL.DemSoNgayNghiChunhat(ngaydauthang, ngaycuoithang, true, false); //v4.7
+                int truNgayCNTrungLe = 0, ngayCNnghiBu = 0;
+                    XL.TinhNgayCNBu(tableNgayLeThangTruoc, tableNgayLe, ngaydauthang, ngaycuoithang, out truNgayCNTrungLe, out ngayCNnghiBu);
+                var congChuanThang = (float)temp.TotalDays + 1f - (float)XL.DemSoNgayNghiChunhat(ngaydauthang, ngaycuoithang, true, false)+truNgayCNTrungLe+ngayCNnghiBu; //v4.7
 
                 #region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
 
@@ -552,7 +555,15 @@ cho phép trễ [{6}] phút, ra sớm [{7}] phút, thời gian làm thêm tối 
 							XL.FormatCell_W(ws, ref ir, ref ic, message.NoiDung, colWidth: 60, plusCol: 1, plusRow: 1);
 						}
 					}
-					Byte[] bytes = p.GetAsByteArray();
+
+                    p.Workbook.Worksheets.Add("BangThongKeBDDH");
+                    ws = p.Workbook.Worksheets["BangThongKeBDDH"];
+                    ws.Name = "BangThongKeBDDH"; //Setting Sheet's name
+                    SetDefautFontForWorkSheet(ref ws);
+                    XL.ExportSheetBangThongKeSua(ws, ngayDauKyy, ngayCuoiKy, dsnv); //info dsnv kết công bộ phận gồm cả nv công nhật, chính thức, vừa chính thức vừa công nhật  khác với bảng lương
+
+
+                    Byte[] bytes = p.GetAsByteArray();
 					XL.XuatFileExcel(filePath, bytes, "frm_KetCongBoPhan XuatBBChamCong ");
 				}
 

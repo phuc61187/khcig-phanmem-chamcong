@@ -256,11 +256,6 @@
             this.num10PCTrachNhiem.Size = new System.Drawing.Size(100, 21);
             this.num10PCTrachNhiem.TabIndex = 12;
             this.num10PCTrachNhiem.ThousandsSeparator = true;
-            this.num10PCTrachNhiem.Value = new decimal(new int[] {
-            3565000,
-            0,
-            0,
-            0});
             // 
             // numDinhMucComTrua
             // 
@@ -363,7 +358,7 @@
             this.numMucLuongTT17.TabIndex = 8;
             this.numMucLuongTT17.ThousandsSeparator = true;
             this.numMucLuongTT17.Value = new decimal(new int[] {
-            2380000,
+            2516000,
             0,
             0,
             0});
@@ -403,11 +398,6 @@
             this.numLuongToiThieu.Size = new System.Drawing.Size(100, 21);
             this.numLuongToiThieu.TabIndex = 7;
             this.numLuongToiThieu.ThousandsSeparator = true;
-            this.numLuongToiThieu.Value = new decimal(new int[] {
-            1150000,
-            0,
-            0,
-            0});
             // 
             // label34
             // 

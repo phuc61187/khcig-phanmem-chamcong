@@ -24,6 +24,8 @@ namespace ChamCong_v04
             DateTime ngayDauKy = ngayCuoiKy.AddMonths(-1).AddDays(1);
             textBox1.Text += string.Format("\nCK: {0}/{1}/{2}\n   ", ngayCuoiKy.Day, ngayCuoiKy.Month, ngayCuoiKy.Year);
             textBox1.Text += string.Format("\nDK: {0}/{1}/{2}\n   ", ngayDauKy.Day, ngayDauKy.Month, ngayDauKy.Year);
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)

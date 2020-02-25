@@ -194,8 +194,10 @@ namespace ChamCong_v04.UI.KhaiBao {
 			chk2ExceptSun.Checked = false;
 			checklistNgay.Items.Clear();
 			currMonth = dtpThang.Value;
-			var startDay = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, 1);
-			var endddDay = new DateTime(dtpThang.Value.Year, dtpThang.Value.Month, DateTime.DaysInMonth(dtpThang.Value.Year, dtpThang.Value.Month));
+            DateTime previousMonth = currMonth.AddMonths(-1);
+
+            var startDay = new DateTime(previousMonth.Year, previousMonth.Month, 26);
+			var endddDay = startDay + new TimeSpan(DateTime.DaysInMonth(previousMonth.Year, previousMonth.Month) - 1, 0, 0, 0) ;
 
 			var indexDay = startDay;
 			var lstNgay = new List<DateTime>();
@@ -203,7 +205,7 @@ namespace ChamCong_v04.UI.KhaiBao {
 				lstNgay.Add(indexDay);
 				indexDay = indexDay.AddDays(1d);
 			}
-			checklistNgay.FormatString = "d - ddd";
+			checklistNgay.FormatString = "d/M - ddd";
 			for (int index = 0; index < lstNgay.Count; index++)
 			{
 				DateTime t = lstNgay[index];
@@ -394,8 +396,11 @@ namespace ChamCong_v04.UI.KhaiBao {
 			currMonth = dtpThang.Value;
 			var ngayBD = DateTime.MinValue;
 			var ngayKT = DateTime.MinValue;
-				ngayBD = new DateTime(currMonth.Year, currMonth.Month, 1);
-				ngayKT = new DateTime(currMonth.Year, currMonth.Month, DateTime.DaysInMonth(currMonth.Year, currMonth.Month));
+            var previousMonth = currMonth.AddMonths(-1);
+            var soNgayCuaPrevMonth = DateTime.DaysInMonth(previousMonth.Year, previousMonth.Month);
+
+				ngayBD = new DateTime(previousMonth.Year, previousMonth.Month, 26);
+				ngayKT = ngayBD + new TimeSpan(soNgayCuaPrevMonth - 1, 0, 0, 0);
 			//-----------INFO bắt buộc EndEdit thao tác trên Grid rồi mới thực hiện xử lý tác vụ
 
 			dgrdDSNVTrgPhg.EndEdit();

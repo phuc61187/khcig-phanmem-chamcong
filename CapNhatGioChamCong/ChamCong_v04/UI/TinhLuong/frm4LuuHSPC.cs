@@ -75,8 +75,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 			}
 
 			#endregion
-			WaitWindow.Show(this.KetLuong, "Đang kết lương tháng. Bạn vui lòng đợi trong giây lát..."); 
-
+			WaitWindow.Show(this.KetLuong, "Đang kết lương tháng. Bạn vui lòng đợi trong giây lát...");
 			saveFileDialog.ShowDialog();
 			if (saveFileDialog.FileName != string.Empty) {
 				string saveFileName = saveFileDialog.FileName;
@@ -170,31 +169,33 @@ namespace ChamCong_v04.UI.TinhLuong {
         private void KetLuong(object sender, WaitWindowEventArgs e) {
             #region lấy thông tin từ csdl và khỏi tạo  nv
 
-            //var ngaydauthang = MyUtility.FirstDayOfMonth(m_Thang);
-            //var ngaycuoithang = MyUtility.LastDayOfMonth(m_Thang);
-            var ngaycuoithang = new DateTime(m_Thang.Year, m_Thang.Month, 25);
-            var ngaydauthang = ngaycuoithang.AddMonths(-1).AddDays(1);
+            var ngaydauthang = MyUtility.FirstDayOfMonth(m_Thang);
+            var ngaycuoithang = MyUtility.LastDayOfMonth(m_Thang);
+            var ngayCuoiKy = new DateTime(m_Thang.Year, m_Thang.Month, 25);
+            var ngaytemp = MyUtility.FirstDayOfMonth(m_Thang);
+            var ngayDauKy = ngaytemp.AddMonths(-1);
 
-			var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngaydauthang);
+            var tableDSNVChiCongnhatThang = DAO.LayTableCongNhat(ngaydauthang);
 			var tableDSThuchiThang = DAO.LayDSThuchiThang(ngaydauthang);
-			var tableKetcongNgay = DAO.LayKetcongNgay(ngaydauthang, ngaycuoithang);
-			var tableKetcongCa = DAO.LayKetcongCa(ngaydauthang, ngaycuoithang);
-			var tableXPVang = DAO.LayTableXPVang(ngaydauthang, ngaycuoithang);
-			var tableNgayLe = DAO.DocNgayLe(ngaydauthang, ngaycuoithang);
+			var tableKetcongNgay = DAO.LayKetcongNgay(ngayDauKy, ngayCuoiKy);
+			var tableKetcongCa = DAO.LayKetcongCa(ngayDauKy, ngayCuoiKy);
+			var tableXPVang = DAO.LayTableXPVang(ngayDauKy, ngayCuoiKy);
+			var tableNgayLe = DAO.DocNgayLe(ngayDauKy, ngayCuoiKy);
 
 			var dsnv = new List<cUserInfo>();
 			var dsphongban = new List<cPhongBan>();
 			XL.KhoiTaoDSPhongBan(dsphongban); // khởi tạo các phòng ban để cập nhật thông tin phòng ban cho nhân viên tính công
 			XL.KhoiTaoDSNV_TinhLuong(dsnv, dsphongban); // khởi tạo tất cả nhân viên tính công, trừ Nhân Kiệt, bao gồm cả công nhật ngày(nv chính thức) và công nhật tháng
 
-			#endregion
+            #endregion
+            int DieuChinhNgayCNTrungLe = 0;
 
 			#region //load cong phu cap tung ngay cho tat ca nv, ke ca cong nhat, rieng truong hop cong nhat se xu ly ngay ben duoi
             // note: ko có nhân viên Nhân Kiệt
 			foreach (var nv in dsnv) {
 				nv.DSNgayCong = new List<cNgayCong>();
 				nv.DSVang = new List<cLoaiVang>();
-				for (DateTime indexNgay = ngaydauthang; indexNgay <= ngaycuoithang; indexNgay = indexNgay.AddDays(1d)) {
+				for (DateTime indexNgay = ngayDauKy; indexNgay <= ngayCuoiKy; indexNgay = indexNgay.AddDays(1d)) {
 					XL.LoadNgayCong(nv.MaCC, nv.DSNgayCong, indexNgay, tableKetcongNgay, tableKetcongCa);
 				}
 				XL.LoadDSXPVang_Le(nv.MaCC, tableXPVang, tableNgayLe, nv.DSVang);//info trường hợp nhân viên công nhật sẽ được xử lý bên dưới
@@ -228,7 +229,7 @@ namespace ChamCong_v04.UI.TinhLuong {
 
 			#endregion
 			// xác định công chuẩn của tháng
-			var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang, ngaycuoithang);//v4.7
+			var congChuanThang = XL.TinhCongChuanCuaThang(ngaydauthang, ngaycuoithang, DieuChinhNgayCNTrungLe);//v4.7
 			int temp = 0;
             #region // thống kê công, phụ cấp hàng ngày của từng nhân viên chính thức//trường hợp nhân viên vừa công nhật vừa chính thức thì chỉ thống kê ngày công sau ngày kết thúc công nhật
             //note: ko có nhân viên Nhân Kiệt

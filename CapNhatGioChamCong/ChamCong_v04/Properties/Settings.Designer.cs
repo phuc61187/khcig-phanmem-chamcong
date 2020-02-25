@@ -143,7 +143,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1500")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int LastBoiDuongCa3 {
             get {
                 return ((int)(this["LastBoiDuongCa3"]));
@@ -778,7 +778,7 @@ namespace ChamCong_v04.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2135000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2516000")]
         public int MucLuongTT172135 {
             get {
                 return ((int)(this["MucLuongTT172135"]));

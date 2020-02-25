@@ -36,8 +36,7 @@ namespace ChamCong_v04.UI {
 			passroot = ((DateTime.Now.Minute % 2 == 0))
 				? DateTime.Now.Minute + "@" + DateTime.Now.Hour + "$" + DateTime.Now.Month + "^" + DateTime.Now.Day
 				: DateTime.Now.Minute + "!" + DateTime.Now.Hour + "#" + DateTime.Now.Month + "%" + DateTime.Now.Day;
-			#endregion
-
+            #endregion
 			string tmpConnStr = string.Empty, currUserAccount = string.Empty;
 			int loaiTK = 1, currUserID = 0;
 			var kq = XL.CheckLogIn(tempUsername, tempPassword, passroot,

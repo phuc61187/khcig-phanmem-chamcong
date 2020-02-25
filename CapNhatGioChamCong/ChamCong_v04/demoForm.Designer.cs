@@ -32,6 +32,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.dateT1 = new System.Windows.Forms.DateTimePicker();
+            this.dateT2 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // dtpThang
@@ -47,7 +49,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 39);
+            this.textBox1.Location = new System.Drawing.Point(12, 99);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(416, 150);
@@ -69,9 +71,31 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
-            this.button2.Text = "button1";
+            this.button2.Text = "Close()";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // dateT1
+            // 
+            this.dateT1.CustomFormat = "dd/MM/yyyy";
+            this.dateT1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateT1.Location = new System.Drawing.Point(12, 38);
+            this.dateT1.Name = "dateT1";
+            this.dateT1.ShowUpDown = true;
+            this.dateT1.Size = new System.Drawing.Size(92, 20);
+            this.dateT1.TabIndex = 1;
+            this.dateT1.Value = new System.DateTime(2014, 1, 1, 0, 0, 0, 0);
+            // 
+            // dateT2
+            // 
+            this.dateT2.CustomFormat = "dd/MM/yyyy";
+            this.dateT2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateT2.Location = new System.Drawing.Point(111, 38);
+            this.dateT2.Name = "dateT2";
+            this.dateT2.ShowUpDown = true;
+            this.dateT2.Size = new System.Drawing.Size(92, 20);
+            this.dateT2.TabIndex = 1;
+            this.dateT2.Value = new System.DateTime(2014, 1, 1, 0, 0, 0, 0);
             // 
             // demoForm
             // 
@@ -81,6 +105,8 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dateT2);
+            this.Controls.Add(this.dateT1);
             this.Controls.Add(this.dtpThang);
             this.Name = "demoForm";
             this.Text = "demoForm";
@@ -95,5 +121,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DateTimePicker dateT1;
+        private System.Windows.Forms.DateTimePicker dateT2;
     }
 }

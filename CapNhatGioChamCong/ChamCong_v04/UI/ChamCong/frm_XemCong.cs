@@ -17,7 +17,7 @@ namespace ChamCong_v04.UI.ChamCong {
 	public partial class frm_XemCong : Form {
 		#region log tooltip và hàm ko quan trọng
 
-		public readonly ILog lg = LogManager.GetLogger("frm_XemCong");
+		private static readonly ILog lg = LogManager.GetLogger(typeof(frm_XemCong));
 
 		private void toolTipHint_Draw(object sender, DrawToolTipEventArgs e)
 		{

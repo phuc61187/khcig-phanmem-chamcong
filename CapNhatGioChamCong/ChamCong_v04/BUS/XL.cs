@@ -1149,10 +1149,10 @@ namespace ChamCong_v04.BUS {
 			return true;
 		}
 
-		public static float TinhCongChuanCuaThang(DateTime ngaydauky, DateTime ngaycuoiKy) {
+		public static float TinhCongChuanCuaThang(DateTime ngaydauky, DateTime ngaycuoiKy, int DieuChinhNgayCNTrungLe = 0) {
 			//return (DateTime.DaysInMonth(ngaydauthang.Year, ngaydauthang.Month) - XL.DemSoNgayNghiChunhat(ngaydauthang, true, false));
             var temp = ngaycuoiKy - ngaydauky;
-            var congChuanThang = (float)temp.TotalDays + 1f - (float)XL.DemSoNgayNghiChunhat(ngaydauky, ngaycuoiKy, true, false); //v4.7
+            var congChuanThang = (float)temp.TotalDays + 1f + DieuChinhNgayCNTrungLe - (float)XL.DemSoNgayNghiChunhat(ngaydauky, ngaycuoiKy, true, false); //v4.7
             return congChuanThang;
         }
 
